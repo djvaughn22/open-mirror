@@ -1,20 +1,28 @@
 const products = [
-  [
-    "Cross Heart Pray",
-    "Bring your situation. Explore Scripture. Pray with confidence. AI-assisted help grounded in God’s Word.",
-  ],
-  [
-    "What Am I AI?",
-    "A reflection tool designed to help people notice patterns in their own words, thoughts, questions, and conversations.",
-  ],
-  [
-    "The DJ Cares",
-    "Encouragement, music, practical help, and resources for people who need care and hope.",
-  ],
-  [
-    "Open Mirror Platform",
-    "The future home for reflection tools, journaling, learning systems, and new ways to grow intentionally.",
-  ],
+  {
+    name: "Cross Heart Pray ✝️ ❤️ 🙏",
+    href: "/cross-heart-pray",
+    description:
+      "Bring your situation. Explore Scripture. Pray with confidence. AI-assisted help grounded in God’s Word.",
+  },
+  {
+    name: "What Am I AI?",
+    href: "/what-am-i-ai",
+    description:
+      "A reflection tool designed to help people notice patterns in their own words, thoughts, questions, and conversations.",
+  },
+  {
+    name: "The DJ Cares",
+    href: "/the-dj-cares",
+    description:
+      "Encouragement, music, practical help, and resources for people who need care and hope.",
+  },
+  {
+    name: "Open Mirror Platform",
+    href: "/open-mirror-platform",
+    description:
+      "The future home for reflection tools, journaling, learning systems, and new ways to grow intentionally.",
+  },
 ];
 
 export default function Home() {
@@ -31,15 +39,15 @@ export default function Home() {
 
       <section className="flex min-h-[85vh] flex-col items-center justify-center px-8 text-center">
         <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-          Reflection • Wisdom • Prayer • Purpose
+          See Clearly • Choose Wisely • Live Intentionally
         </p>
 
         <h1 className="max-w-5xl text-5xl font-bold leading-tight md:text-7xl">
-          See clearly.
+          Open the mirror.
           <br />
-          Choose wisely.
+          Tell the truth.
           <br />
-          Live intentionally.
+          Take the next right step.
         </h1>
 
         <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
@@ -95,17 +103,21 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {products.map(([name, description]) => (
-              <div
-                key={name}
-                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8"
+            {products.map((product) => (
+              <a
+                key={product.name}
+                href={product.href}
+                className="block rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-yellow-500 hover:bg-zinc-900"
               >
                 <p className="mb-3 text-xs uppercase tracking-[0.25em] text-yellow-500">
                   Coming Soon
                 </p>
-                <h3 className="text-2xl font-bold">{name}</h3>
-                <p className="mt-4 text-zinc-400">{description}</p>
-              </div>
+                <h3 className="text-2xl font-bold">{product.name}</h3>
+                <p className="mt-4 text-zinc-400">{product.description}</p>
+                <p className="mt-6 text-sm font-semibold text-yellow-500">
+                  Learn More →
+                </p>
+              </a>
             ))}
           </div>
         </div>
@@ -116,27 +128,16 @@ export default function Home() {
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
             Ask More
           </p>
-          <h2 className="text-3xl font-bold md:text-5xl">
-            Follow the build.
-          </h2>
+          <h2 className="text-3xl font-bold md:text-5xl">Follow the build.</h2>
           <p className="mt-6 text-zinc-400">
             Join the early access list to follow the journey, test new features,
             and help shape what Open Mirror becomes.
           </p>
 
           <div className="mt-8 grid gap-3">
-            <input
-              className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-              placeholder="Name"
-            />
-            <input
-              className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-              placeholder="Email address"
-            />
-            <input
-              className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-              placeholder="What are you seeking or building?"
-            />
+            <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="Name" />
+            <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="Email address" />
+            <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="What are you seeking or building?" />
             <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
               Join Early Access
             </button>
@@ -150,3 +151,4 @@ export default function Home() {
     </main>
   );
 }
+npm run dev
