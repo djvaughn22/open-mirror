@@ -138,9 +138,12 @@ export default function Home() {
             <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="Name" />
             <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="Email address" />
             <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="What are you seeking or building?" />
-            <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
+            <a
+              href="mailto:ask@openmirrorllc.com?subject=Open%20Mirror%20Early%20Access"
+              className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+            >
               Join Early Access
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -150,4 +153,5 @@ export default function Home() {
       </footer>
     </main>
   );
+
 }
