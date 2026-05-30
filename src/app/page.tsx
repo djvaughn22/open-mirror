@@ -151,4 +151,3 @@ export default function Home() {
     </main>
   );
 }
-npm run dev
