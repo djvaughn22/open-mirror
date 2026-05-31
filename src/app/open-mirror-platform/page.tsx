@@ -1,57 +1,108 @@
-export default function OpenMirrorPlatform() {
+export default function OpenMirrorPlatformPage() {
   return (
-    <main className="min-h-screen bg-black px-8 py-12 text-white">
-      <a href="/" className="text-sm text-zinc-400 hover:text-white">
-        ← Back to Open Mirror
-      </a>
+    <main className="min-h-screen bg-black text-white">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+        <a href="/" className="font-bold">
+          Open Mirror
+        </a>
 
-      <section className="mx-auto flex min-h-[80vh] max-w-4xl flex-col justify-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-          Coming Soon
+        <div className="flex gap-6 text-sm text-zinc-400">
+          <a href="/">Home</a>
+          <a href="/cross-heart-pray">Cross Heart Pray</a>
+          <a href="/what-am-i-ai">What Am I AI?</a>
+          <a href="/the-dj-cares">The DJ Cares</a>
+        </div>
+      </nav>
+
+      <section className="mx-auto flex min-h-[80vh] max-w-5xl flex-col items-center justify-center px-6 text-center">
+        <div className="mb-6 text-5xl">🪞</div>
+
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Reflection · Faith · Growth · Purpose
         </p>
 
         <h1 className="text-5xl font-bold leading-tight md:text-7xl">
           Open Mirror Platform
         </h1>
 
-        <p className="mt-8 text-2xl leading-10 text-zinc-300">
-          The future home for reflection tools, journals, prompts, content, and guided growth.
+        <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
+          One question.
+          <br />
+          Many mirrors.
+        </h2>
+
+        <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          Open Mirror is the home for tools, content, and communities designed
+          to help people reflect honestly, grow intentionally, and move forward
+          with purpose.
         </p>
 
-        <p className="mt-8 text-lg leading-8 text-zinc-400">
-          Open Mirror Platform will bring together tools that help people see
-          clearly, choose wisely, and live intentionally.
-        </p>
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="/"
+            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
+            Explore Open Mirror
+          </a>
 
-        <p className="mt-6 text-lg leading-8 text-zinc-400">
-          The platform begins simply: questions, reflections, content, and
-          lightweight tools. Over time, it will grow into a connected system for
-          reflection, prayer, learning, journaling, and action.
-        </p>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-bold">See Clearly</h2>
-            <p className="mt-3 text-zinc-400">
-              Reflection tools that help people slow down and tell the truth.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-bold">Choose Wisely</h2>
-            <p className="mt-3 text-zinc-400">
-              Prompts and guidance that support better decisions and deeper wisdom.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-bold">Live Intentionally</h2>
-            <p className="mt-3 text-zinc-400">
-              Turning reflection into habits, service, content, and real life change.
-            </p>
-          </div>
+          <a
+            href="#ecosystem"
+            className="rounded-full border border-zinc-700 px-8 py-3"
+          >
+            View Ecosystem
+          </a>
         </div>
       </section>
+
+      <section
+        id="ecosystem"
+        className="border-t border-zinc-900 px-6 py-24 text-center"
+      >
+        <h2 className="text-4xl font-bold md:text-6xl">
+          Look in the mirror.
+          <br />
+          What do you see?
+        </h2>
+
+        <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-3">
+          <a
+            href="/cross-heart-pray"
+            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8"
+          >
+            <div className="text-4xl">✝️ ❤️ 🙏</div>
+            <h3 className="mt-4 text-2xl font-bold">Cross Heart Pray</h3>
+            <p className="mt-4 text-zinc-400">
+              Faith-centered reflection and prayer.
+            </p>
+          </a>
+
+          <a
+            href="/what-am-i-ai"
+            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8"
+          >
+            <div className="text-4xl">🤖 🪞</div>
+            <h3 className="mt-4 text-2xl font-bold">What Am I AI?</h3>
+            <p className="mt-4 text-zinc-400">
+              Discover patterns hidden in your words.
+            </p>
+          </a>
+
+          <a
+            href="/the-dj-cares"
+            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8"
+          >
+            <div className="text-4xl">🎵 ❤️ 🤝</div>
+            <h3 className="mt-4 text-2xl font-bold">The DJ Cares</h3>
+            <p className="mt-4 text-zinc-400">
+              Encouragement, help, and hope.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+        © Open Mirror LLC. Built one step at a time.
+      </footer>
     </main>
   );
 }

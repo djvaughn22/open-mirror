@@ -1,58 +1,55 @@
 const products = [
   {
-    name: "Cross Heart Pray ✝️ ❤️ 🙏",
+    name: "Cross Heart Pray",
+    emoji: "✝️ ❤️ 🙏",
     href: "/cross-heart-pray",
     description:
-      "Bring your situation. Explore Scripture. Pray with confidence. AI-assisted help grounded in God’s Word.",
+      "Faith-centered reflection, prayer, and scriptural guidance for life’s real decisions.",
   },
   {
     name: "What Am I AI?",
+    emoji: "🤖 🪞",
     href: "/what-am-i-ai",
     description:
-      "A reflection tool designed to help people notice patterns in their own words, thoughts, questions, and conversations.",
+      "A reflection tool that helps you notice patterns in your own words, questions, and conversations.",
   },
   {
     name: "The DJ Cares",
+    emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
     description:
       "Encouragement, music, practical help, and resources for people who need care and hope.",
-  },
-  {
-    name: "Open Mirror Platform",
-    href: "/open-mirror-platform",
-    description:
-      "The future home for reflection tools, journaling, learning systems, and new ways to grow intentionally.",
   },
 ];
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <nav className="flex items-center justify-between px-8 py-6">
-        <div className="text-lg font-bold tracking-wide">Open Mirror</div>
-        <div className="hidden gap-6 text-sm text-zinc-400 sm:flex">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+        <div className="font-bold">Open Mirror</div>
+        <div className="flex gap-6 text-sm text-zinc-400">
           <a href="#mission">Mission</a>
           <a href="#products">Coming Soon</a>
           <a href="#join">Join</a>
         </div>
       </nav>
 
-      <section className="flex min-h-[85vh] flex-col items-center justify-center px-8 text-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-          See Clearly • Choose Wisely • Live Intentionally
+      <section className="mx-auto flex min-h-[80vh] max-w-5xl flex-col items-center justify-center px-6 text-center">
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          See Clearly · Choose Wisely · Live Intentionally
         </p>
 
-        <h1 className="max-w-5xl text-5xl font-bold leading-tight md:text-7xl">
-          Open the mirror.
-          <br />
-          Tell the truth.
-          <br />
-          Take the next right step.
+        <h1 className="text-6xl font-bold leading-tight md:text-8xl">
+          Look in the mirror.
         </h1>
 
+        <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
+          What do you see?
+        </h2>
+
         <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
-          Open Mirror is building tools and content that help people slow down,
-          reflect honestly, seek wisdom, and move forward with purpose.
+          Open Mirror helps people reflect honestly, learn continuously, and
+          move forward with purpose.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -71,80 +68,87 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="mission" className="border-t border-zinc-900 px-8 py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-            Mission
-          </p>
-          <h2 className="text-3xl font-bold md:text-5xl">
-            Better tools for honest reflection.
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-zinc-400">
-            In a world filled with noise, distraction, comparison, and endless
-            opinions, Open Mirror exists to help people ask better questions,
-            pursue deeper answers, and take the next right step.
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-400">
-            We believe technology should help people think more deeply, not
-            distract them more often. For products that provide spiritual
-            guidance or prayer support, Scripture is the foundation and AI is
-            only a tool.
-          </p>
-        </div>
+      <section
+        id="mission"
+        className="border-t border-zinc-900 px-6 py-24 text-center"
+      >
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          The Mission
+        </p>
+
+        <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+          Reflect honestly.
+          <br />
+          Learn continuously.
+          <br />
+          Move forward with purpose.
+        </h2>
+
+        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          Most platforms tell people what to think. Open Mirror is being built
+          to help people slow down, see themselves more clearly, seek wisdom,
+          and take the next right step.
+        </p>
       </section>
 
-      <section id="products" className="px-8 py-24">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-            Coming Soon
-          </p>
-          <h2 className="mb-10 text-3xl font-bold md:text-5xl">
-            One mission. Multiple doors.
-          </h2>
+      <section
+        id="products"
+        className="border-t border-zinc-900 px-6 py-24 text-center"
+      >
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          One Question · Many Mirrors
+        </p>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {products.map((product) => (
-              <a
-                key={product.name}
-                href={product.href}
-                className="block rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-yellow-500 hover:bg-zinc-900"
-              >
-                <p className="mb-3 text-xs uppercase tracking-[0.25em] text-yellow-500">
-                  Coming Soon
-                </p>
-                <h3 className="text-2xl font-bold">{product.name}</h3>
-                <p className="mt-4 text-zinc-400">{product.description}</p>
-                <p className="mt-6 text-sm font-semibold text-yellow-500">
-                  Learn More →
-                </p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+        <h2 className="text-4xl font-bold md:text-5xl">What&apos;s Coming</h2>
 
-      <section id="join" className="border-t border-zinc-900 px-8 py-24">
-        <div className="mx-auto max-w-3xl rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center">
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-            Ask More
-          </p>
-          <h2 className="text-3xl font-bold md:text-5xl">Follow the build.</h2>
-          <p className="mt-6 text-zinc-400">
-            Join the early access list to follow the journey, test new features,
-            and help shape what Open Mirror becomes.
-          </p>
-
-          <div className="mt-8 grid gap-3">
-            <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="Name" />
-            <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="Email address" />
-            <input className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none" placeholder="What are you seeking or building?" />
+        <div className="mx-auto mt-12 grid max-w-6xl gap-6 text-left md:grid-cols-3">
+          {products.map((product) => (
             <a
-              href="mailto:ask@openmirrorllc.com?subject=Open%20Mirror%20Early%20Access"
-              className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+              key={product.name}
+              href={product.href}
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-zinc-500"
             >
-              Join Early Access
+              <div className="text-3xl">{product.emoji}</div>
+
+              <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
+
+              <p className="mt-4 leading-7 text-zinc-400">
+                {product.description}
+              </p>
             </a>
-          </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="join"
+        className="border-t border-zinc-900 px-6 py-24 text-center"
+      >
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Start Here
+        </p>
+
+        <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
+          What do you see?
+        </h2>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+          Join early updates as Open Mirror builds tools, content, and
+          experiences for reflection, faith, growth, and purpose.
+        </p>
+
+        <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-4">
+          <input
+            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
+            placeholder="Email address"
+          />
+          <input
+            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
+            placeholder="What do you see?"
+          />
+          <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
+            Join Early Access
+          </button>
         </div>
       </section>
 
@@ -153,5 +157,4 @@ export default function Home() {
       </footer>
     </main>
   );
-
 }

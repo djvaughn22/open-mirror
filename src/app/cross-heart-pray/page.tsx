@@ -1,70 +1,111 @@
-export default function CrossHeartPray() {
+export default function CrossHeartPrayPage() {
   return (
-    <main className="min-h-screen bg-black px-8 py-12 text-white">
-      <a href="/" className="text-sm text-zinc-400 hover:text-white">
-        ← Back to Open Mirror
-      </a>
+    <main className="min-h-screen bg-black text-white">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+        <a href="/" className="font-bold">
+          Open Mirror
+        </a>
+        <div className="flex gap-6 text-sm text-zinc-400">
+          <a href="/">Home</a>
+          <a href="/what-am-i-ai">What Am I AI?</a>
+          <a href="/the-dj-cares">The DJ Cares</a>
+        </div>
+      </nav>
 
-      <section className="mx-auto flex min-h-[80vh] max-w-4xl flex-col justify-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-yellow-500">
-          Coming Soon
+      <section className="mx-auto flex min-h-[80vh] max-w-5xl flex-col items-center justify-center px-6 text-center">
+        <div className="mb-6 text-5xl">✝️ ❤️ 🙏</div>
+
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Scripture · Prayer · Next Right Step
         </p>
 
         <h1 className="text-5xl font-bold leading-tight md:text-7xl">
           Cross Heart Pray
         </h1>
 
-        <p className="mt-8 text-2xl leading-10 text-zinc-300">
-          Bring your situation. Explore Scripture. Pray with confidence.
+        <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
+          Bring your situation.
+          <br />
+          Seek wisdom.
+          <br />
+          Pray with confidence.
+        </h2>
+
+        <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          Cross Heart Pray is being built as a faith-centered reflection tool
+          that helps people slow down, bring real life decisions before God,
+          explore Scripture, and take the next right step.
         </p>
 
-        <p className="mt-8 text-lg leading-8 text-zinc-400">
-          Cross Heart Pray is an AI-assisted Scripture and prayer experience
-          designed to help people connect real-life challenges with God&apos;s
-          Word.
-        </p>
-
-        <p className="mt-6 text-lg leading-8 text-zinc-400">
-          The goal is not to replace prayer, pastors, churches, mentors, or
-          personal discernment. The goal is to help people slow down, seek
-          relevant Scripture, understand biblical themes, and form prayers
-          grounded in God&apos;s Word.
-        </p>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-bold">1. Share</h2>
-            <p className="mt-3 text-zinc-400">
-              Describe what you are facing in plain language.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-bold">2. Search</h2>
-            <p className="mt-3 text-zinc-400">
-              Explore Scripture, context, themes, and passages related to your
-              situation.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-bold">3. Pray</h2>
-            <p className="mt-3 text-zinc-400">
-              Build a prayer rooted in Scripture, humility, wisdom, and trust in
-              God.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-12 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <h2 className="text-2xl font-bold">MVP 1</h2>
-          <p className="mt-4 text-zinc-400">
-            The first version will be simple: enter a real-life situation,
-            receive relevant Scripture passages, see brief context, and generate
-            a prayer based on those passages.
-          </p>
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="#join"
+            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
+            Join Early Access
+          </a>
+          <a
+            href="/"
+            className="rounded-full border border-zinc-700 px-8 py-3"
+          >
+            Back to Open Mirror
+          </a>
         </div>
       </section>
+
+      <section className="border-t border-zinc-900 px-6 py-24 text-center">
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          The Mirror
+        </p>
+
+        <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+          Look in the mirror.
+          <br />
+          What do you see?
+        </h2>
+
+        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          A fear. A question. A burden. A decision. A sin. A hope. A calling.
+          Cross Heart Pray is designed to help you reflect honestly, turn toward
+          God&apos;s Word, and pray before you move.
+        </p>
+      </section>
+
+      <section
+        id="join"
+        className="border-t border-zinc-900 px-6 py-24 text-center"
+      >
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Start Here
+        </p>
+
+        <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
+          What situation do you want to bring before God?
+        </h2>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+          Join early updates as Cross Heart Pray develops scripture-grounded
+          tools for prayer, reflection, and faithful action.
+        </p>
+
+        <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-4">
+          <input
+            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
+            placeholder="Email address"
+          />
+          <input
+            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
+            placeholder="What are you praying through?"
+          />
+          <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
+            Join Early Access
+          </button>
+        </div>
+      </section>
+
+      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+        © Open Mirror LLC. Built one step at a time.
+      </footer>
     </main>
   );
 }
