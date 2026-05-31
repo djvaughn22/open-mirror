@@ -27,6 +27,7 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <div className="font-bold">Open Mirror</div>
+
         <div className="flex gap-6 text-sm text-zinc-400">
           <a href="#mission">Mission</a>
           <a href="#products">Coming Soon</a>
@@ -59,6 +60,7 @@ export default function Home() {
           >
             Join Early Access
           </a>
+
           <a
             href="#products"
             className="rounded-full border border-zinc-700 px-8 py-3"
@@ -142,10 +144,12 @@ export default function Home() {
             className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
             placeholder="Email address"
           />
+
           <input
             className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
             placeholder="What do you see?"
           />
+
           <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
             Join Early Access
           </button>
