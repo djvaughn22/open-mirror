@@ -150,9 +150,12 @@ export default function Home() {
             placeholder="What do you see?"
           />
 
-          <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
+          <a
+            href="mailto:ask@openmirrorllc.com?subject=Open%20Mirror%20Early%20Access"
+            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
             Join Early Access
-          </button>
+          </a>
         </div>
       </section>
 
