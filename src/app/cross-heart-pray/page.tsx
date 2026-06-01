@@ -1,12 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 
-export default function CrossHeartPrayPage() {
-  const [problem, setProblem] = useState("");
-  const [showReflection, setShowReflection] = useState(false);
-
+export default function CrossHeartPrayLandingPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-10 text-white">
       <nav className="mx-auto flex max-w-5xl items-center justify-between py-4">
@@ -21,117 +15,63 @@ export default function CrossHeartPrayPage() {
         </div>
       </nav>
 
-      <section className="mx-auto flex max-w-4xl flex-col items-center py-16 text-center">
+      <section className="mx-auto flex max-w-4xl flex-col items-center py-20 text-center">
         <div className="mb-6 text-6xl">✝️❤️🙏</div>
 
-        <h1 className="text-5xl font-bold tracking-tight">CrossHeartPray</h1>
+        <h1 className="text-5xl font-bold tracking-tight">
+          CrossHeartPray
+        </h1>
 
         <p className="mt-6 max-w-2xl text-xl text-zinc-300">
-          Bring your burden to Christ.
+          Bring your situation.
           <br />
-          Receive God&apos;s love.
+          Seek wisdom.
           <br />
-          Reflect through Scripture.
-          <br />
-          Pray and take the next faithful step.
+          Pray with confidence.
         </p>
 
-        <div className="mt-12 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left shadow-2xl">
-          <label className="text-sm font-semibold text-zinc-300">
-            What is weighing on your heart today?
-          </label>
+        <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          CrossHeartPray helps you bring what is weighing on your heart before
+          God — not to force an easy answer, but to reflect through the Cross,
+          receive God&apos;s love, pray with Scripture, and take the next
+          faithful step.
+        </p>
 
-          <textarea
-            value={problem}
-            onChange={(e) => setProblem(e.target.value)}
-            className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
-            placeholder="I don't feel enough, I'm afraid, I'm angry, I can't forgive..."
-          />
-
-          <button
-            onClick={() => setShowReflection(true)}
-            className="mt-5 rounded-full bg-white px-8 py-3 font-semibold text-black"
-          >
-            Begin Reflection
-          </button>
-        </div>
-
-        {showReflection && (
-          <div className="mt-10 w-full space-y-6 text-left">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">✝️ Cross</h2>
-              <p className="mt-4 text-zinc-300">
-                Before trying to fix this yourself, bring it to Christ.
-              </p>
-              <p className="mt-4 text-zinc-400">
-                Jesus laid down His life for you so your worth, peace, and
-                identity do not depend on solving this problem perfectly.
-              </p>
-              <p className="mt-4 text-zinc-400">
-                You are not loved because you are enough. You are loved because
-                Christ is enough for you.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">❤️ Heart</h2>
-              <p className="mt-4 text-zinc-300">
-                God already sees what is happening inside your heart.
-              </p>
-              <p className="mt-4 text-zinc-400">
-                This may involve fear, shame, anger, grief, loneliness, pride,
-                hurt, or the desire to control the outcome.
-              </p>
-              <p className="mt-4 text-zinc-400">
-                Be honest before God. You do not have to pretend to be stronger
-                than you are.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">📖 Scripture</h2>
-              <p className="mt-4 text-zinc-300">
-                “Come to me, all who labor and are heavy laden, and I will give
-                you rest.”
-              </p>
-              <p className="mt-2 text-zinc-500">Matthew 11:28</p>
-              <p className="mt-4 text-zinc-400">
-                Jesus is not inviting only the strong, impressive, or put
-                together. He invites the weary to come to Him.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">🙏 Prayer</h2>
-              <p className="mt-4 whitespace-pre-line text-zinc-300">
-                Father,{"\n\n"}
-                Thank You for loving me through Jesus Christ.{"\n\n"}
-                I confess that I am trying to carry what I cannot carry on my
-                own.{"\n\n"}
-                Help me bring this burden to You.{"\n\n"}
-                Teach me to receive Your love, trust Your will, and take the
-                next faithful step.{"\n\n"}
-                Amen.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">👣 Next Faithful Step</h2>
-              <p className="mt-4 text-zinc-300">
-                Pause. Pray honestly. Name what you are feeling. Choose one
-                small faithful action today instead of trying to solve
-                everything at once.
-              </p>
-            </div>
+        <div className="mt-12 grid w-full gap-6 md:grid-cols-3">
+          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+            <div className="text-4xl">✝️</div>
+            <h2 className="mt-4 text-xl font-bold">Cross</h2>
+            <p className="mt-3 text-zinc-400">
+              Start with what Christ has already done before trying to fix
+              yourself or the situation.
+            </p>
           </div>
-        )}
 
-        <div className="mt-12 max-w-3xl text-center text-sm text-zinc-500">
-          CrossHeartPray provides biblical reflection and prayer guidance. It is
-          not pastoral counseling, medical advice, legal advice, or a substitute
-          for your local church, trusted relationships, or professional care
-          when needed.
+          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+            <div className="text-4xl">❤️</div>
+            <h2 className="mt-4 text-xl font-bold">Heart</h2>
+            <p className="mt-3 text-zinc-400">
+              Honestly name fear, shame, anger, grief, pride, hurt, or control
+              before God.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+            <div className="text-4xl">🙏</div>
+            <h2 className="mt-4 text-xl font-bold">Pray</h2>
+            <p className="mt-3 text-zinc-400">
+              Pray with Scripture, humility, confession, thanksgiving, and
+              trust.
+            </p>
+          </div>
         </div>
+
+        <Link
+          href="/cross-heart-pray/reflect"
+          className="mt-12 rounded-full bg-white px-8 py-3 font-semibold text-black"
+        >
+          Begin Reflection
+        </Link>
       </section>
     </main>
   );
