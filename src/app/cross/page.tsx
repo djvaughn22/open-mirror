@@ -6,7 +6,7 @@ export default function CrossPage() {
       <header className="border-b border-zinc-900 px-6 py-5">
         <nav className="mx-auto flex max-w-6xl items-center justify-between">
           <Link href="/" className="text-xl font-bold">Cross Heart Pray</Link>
-          <Link href="/#begin" className="rounded-full border border-zinc-700 px-4 py-2 text-sm">
+          <Link href="/cross-heart-pray/reflect" className="rounded-full border border-zinc-700 px-4 py-2 text-sm">
             Begin Reflection
           </Link>
         </nav>
@@ -48,7 +48,7 @@ export default function CrossPage() {
         </div>
 
         <Link
-          href="/#begin"
+          href="/cross-heart-pray/reflect"
           className="mt-10 inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
         >
           Begin Reflection
