@@ -4,21 +4,21 @@ const products = [
     emoji: "✝️ ❤️ 🙏",
     href: "/cross-heart-pray",
     description:
-      "Surrender to Christ. Receive God’s love. Walk forward in prayer.",
+      "Bring what you see to God. Lay it at the Cross, receive His love, pray honestly, and discover Scripture for your situation.",
   },
   {
     name: "TheDJCares",
     emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
     description:
-      "Encouragement, music, Scripture, prayer, resources, churches, and practical next steps.",
+      "Music, playlists, and encouragement that help people find hope, healing, and the right soundtrack for the road ahead.",
   },
   {
     name: "WhatAmIAI",
     emoji: "🤖 🪞",
     href: "/what-am-i-ai",
     description:
-      "Coming soon: a deeper reflection engine for patterns, growth, struggles, victories, and truth.",
+      "Coming soon: a deeper mirror for patterns, questions, blind spots, growth, and truth.",
   },
 ];
 
@@ -45,12 +45,16 @@ export default function Home() {
         </h1>
 
         <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
-          The Truth Will Set You Free.
+          What do you see?
         </h2>
+
+        <h3 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
+          The Truth Will Set You Free.
+        </h3>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
           Open Mirror exists to help people honestly reflect, seek truth, find
-          hope, and take their next step toward God.
+          hope, and take their next step.
         </p>
 
         <p className="mt-8 max-w-2xl text-xl leading-8 text-zinc-300">
@@ -82,34 +86,28 @@ export default function Home() {
         </p>
 
         <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          The reflection is often different from the perception.
+          Tell the truth.
+          <br />
+          Find hope.
+          <br />
+          Take the next step.
         </h2>
 
         <div className="mx-auto mt-10 max-w-3xl space-y-6 text-lg leading-8 text-zinc-400">
-          <p>Life moves fast.</p>
+          <p>Everyone is carrying something.</p>
 
           <p>
-            Most people spend their lives solving problems, meeting
-            expectations, chasing goals, and carrying burdens.
+            Pain. Fear. Shame. Anger. Grief. Loneliness. Questions. Confusion.
+            Hope.
           </p>
 
           <p>
-            Yet many of life&apos;s most important questions remain unanswered.
-          </p>
-
-          <p>
-            What am I feeling? What am I seeking? What am I avoiding? What truth
-            am I refusing to face?
-          </p>
-
-          <p>
-            Open Mirror is a place to pause, reflect honestly, seek truth, find
-            hope, and take the next step toward God.
+            Open Mirror is a place to pause, reflect honestly, seek truth, and
+            move forward with wisdom, purpose, and hope.
           </p>
 
           <p className="text-zinc-300">
-            The mirror is the doorway. Truth is the destination. Christ is the
-            answer.
+            The mirror is the doorway. Truth is the path. Jesus is the answer.
           </p>
         </div>
       </section>
@@ -119,7 +117,7 @@ export default function Home() {
         className="border-t border-zinc-900 px-6 py-24 text-center"
       >
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          The Journey
+          One Question · Many Mirrors
         </p>
 
         <h2 className="text-4xl font-bold md:text-5xl">
@@ -151,13 +149,14 @@ export default function Home() {
         </p>
 
         <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
-          What truth have you been avoiding?
+          Look in the mirror.
+          <br />
+          What do you see?
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          You can lie to social media. You can lie to your friends. You can even
-          lie to yourself. But if you&apos;re going to get anything out of this,
-          don&apos;t lie to the mirror.
+          Bring what you see to the Mirror. AI will help connect your reflection
+          with prayer, Scripture, and a next step rooted in truth.
         </p>
 
         <a
@@ -169,9 +168,8 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. The Truth Will Set You Free.
+        © Open Mirror LLC. The mirror doesn&apos;t judge. The mirror reveals.
       </footer>
     </main>
   );
 }
-
