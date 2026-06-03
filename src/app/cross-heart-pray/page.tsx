@@ -1,109 +1,94 @@
-cat > src/app/heart/page.tsx <<'EOF'
 import Link from "next/link";
 
-export default function HeartPage() {
+export default function CrossHeartPrayLandingPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <header className="border-b border-zinc-900 px-6 py-5">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
-            Open Mirror
-          </Link>
+    <main className="min-h-screen bg-black px-6 py-10 text-white">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between py-4">
+        <Link href="/" className="font-semibold">
+          Open Mirror
+        </Link>
 
-          <div className="flex gap-5 text-sm text-zinc-400">
-            <Link href="/cross-heart-pray">Cross Heart Pray</Link>
-            <Link href="/cross-heart-pray/reflect">Talk To The Mirror</Link>
-          </div>
-        </nav>
-      </header>
+        <div className="flex gap-6 text-sm text-zinc-400">
+          <Link href="/">Home</Link>
+          <Link href="/cross">Cross</Link>
+          <Link href="/heart">Heart</Link>
+          <Link href="/pray">Pray</Link>
+        </div>
+      </nav>
 
-      <section className="mx-auto max-w-4xl px-6 py-16 text-center">
-        <div className="mb-6 text-7xl">❤️</div>
+      <section className="mx-auto flex max-w-4xl flex-col items-center py-20 text-center">
+        <div className="mb-6 text-6xl">✝️❤️🙏</div>
 
-        <p className="mb-3 text-sm uppercase tracking-[0.35em] text-zinc-500">
-          Step Two
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Cross Heart Pray
         </p>
 
-        <h1 className="mb-6 text-5xl font-bold">
-          Receive God&apos;s Love
+        <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
+          A Simple Path Toward Truth, Hope, and God
         </h1>
 
-        <p className="mx-auto mb-10 max-w-2xl text-xl leading-9 text-zinc-300">
-          God does not merely tolerate you.
-          <br />
-          He loves you.
+        <p className="mt-8 max-w-3xl text-xl leading-9 text-zinc-300">
+          Cross Heart Pray helps move honest reflection toward faith, freedom,
+          and a deeper relationship with God.
         </p>
 
-        <div className="mx-auto max-w-3xl space-y-6 text-left text-lg leading-8 text-zinc-300">
-          <p>
-            Not because you earned it.
-          </p>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+          Not through perfection. Not through performance. Through surrender,
+          grace, and prayer.
+        </p>
 
-          <p>
-            Not because you deserve it.
-          </p>
+        <div className="mt-12 grid w-full gap-6 md:grid-cols-3">
+          <Link
+            href="/cross"
+            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-white hover:bg-zinc-900"
+          >
+            <div className="text-4xl">✝️</div>
+            <h2 className="mt-4 text-xl font-bold">Cross</h2>
+            <p className="mt-3 text-zinc-400">
+              Surrender. Repent. Receive forgiveness. Freedom begins at the
+              Cross.
+            </p>
+          </Link>
 
-          <p>
-            Because that is who He is.
-          </p>
+          <Link
+            href="/heart"
+            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-white hover:bg-zinc-900"
+          >
+            <div className="text-4xl">❤️</div>
+            <h2 className="mt-4 text-xl font-bold">Heart</h2>
+            <p className="mt-3 text-zinc-400">
+              Receive God&apos;s love. Trust His promises. Share His love with
+              others.
+            </p>
+          </Link>
 
-          <p>
-            His mercy is new every morning.
-          </p>
-
-          <p>
-            His grace is sufficient.
-          </p>
-
-          <p>
-            His promises are true.
-          </p>
+          <Link
+            href="/pray"
+            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-white hover:bg-zinc-900"
+          >
+            <div className="text-4xl">🙏</div>
+            <h2 className="mt-4 text-xl font-bold">Pray</h2>
+            <p className="mt-3 text-zinc-400">
+              Talk with God. Listen. Trust. Take the next faithful step.
+            </p>
+          </Link>
         </div>
 
-        <div className="mt-12 grid gap-4 text-left md:grid-cols-3">
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">1</p>
-            <h2 className="mb-2 text-xl font-semibold">Receive Love</h2>
-            <p className="text-zinc-400">
-              Let God&apos;s love speak louder than shame, fear, pride, or failure.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">2</p>
-            <h2 className="mb-2 text-xl font-semibold">Trust Mercy</h2>
-            <p className="text-zinc-400">
-              You are not beyond grace. You are not forgotten. You are not alone.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">3</p>
-            <h2 className="mb-2 text-xl font-semibold">Share Love</h2>
-            <p className="text-zinc-400">
-              Love received becomes love given.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="mb-2 font-semibold">Reflection Question</p>
-          <p className="text-zinc-300">
-            What would change if you truly believed God loved you?
+        <div className="mt-12 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
+          <p className="text-lg leading-8 text-zinc-300">
+            Cross. Heart. Pray.
+            <br />
+            Surrender to Christ.
+            <br />
+            Receive His love.
+            <br />
+            Walk forward in prayer.
           </p>
-        </div>
-
-        <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="mb-2 font-semibold">Scripture</p>
-          <p className="text-zinc-300">
-            &quot;We love because He first loved us.&quot;
-          </p>
-          <p className="mt-2 text-zinc-500">1 John 4:19</p>
         </div>
 
         <Link
           href="/cross-heart-pray/reflect"
-          className="mt-10 inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
+          className="mt-12 rounded-full bg-white px-8 py-3 font-semibold text-black"
         >
           Talk To The Mirror
         </Link>
@@ -111,4 +96,4 @@ export default function HeartPage() {
     </main>
   );
 }
-EOF
+
