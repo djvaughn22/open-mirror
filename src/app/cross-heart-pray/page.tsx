@@ -1,99 +1,151 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
-export default function CrossHeartPrayLandingPage() {
-  return (
-    <main className="min-h-screen bg-black px-6 py-10 text-white">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between py-4">
-        <Link href="/" className="font-semibold">
-          Open Mirror
-        </Link>
+const reflections = [
+{
+keywords: ["enough", "worth", "failure", "ashamed", "shame"],
+title: "Identity and Worth",
+verse:
+"For by grace you have been saved through faith. And this is not your own doing; it is the gift of God.",
+reference: "Ephesians 2:8",
+cross:
+"Lay your striving, comparison, shame, and fear at the foot of the Cross. Christ is enough where you are not.",
+heart:
+"Receive God's love. Your value is not measured by performance, approval, success, or being enough.",
+prayer:
+"Father, thank You for Your grace. Help me stop trying to prove I am enough and rest in Christ.",
+step:
+"Thank God for His grace and do one faithful thing today without trying to earn your worth.",
+},
+];
 
-        <div className="flex gap-6 text-sm text-zinc-400">
-          <Link href="/">Home</Link>
-          <Link href="/cross">Cross</Link>
-          <Link href="/heart">Heart</Link>
-          <Link href="/pray">Pray</Link>
-        </div>
-      </nav>
+const fallback = {
+title: "Burden and Rest",
+verse:
+"Come to me, all who labor and are heavy laden, and I will give you rest.",
+reference: "Matthew 11:28",
+cross:
+"Lay this burden at the foot of the Cross. Surrender what you cannot control.",
+heart:
+"Receive God's love. He already sees your fear, anger, grief, shame, confusion, and hope.",
+prayer:
+"Father, I give this burden to You. Let Your will be done and guide my next step.",
+step:
+"Pause. Pray honestly. Choose one small faithful action instead of trying to solve everything at once.",
+};
 
-      <section className="mx-auto flex max-w-4xl flex-col items-center py-20 text-center">
-        <div className="mb-6 text-6xl">✝️❤️🙏</div>
+export default function CrossHeartPrayReflectPage() {
+const [problem, setProblem] = useState("");
+const [reflection, setReflection] = useState(fallback);
+const [showReflection, setShowReflection] = useState(false);
 
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Cross Heart Pray
-        </p>
+function beginReflection() {
+const text = problem.toLowerCase();
 
-        <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
-          A Simple Path Toward Truth, Hope, and God
-        </h1>
+const match =
+  reflections.find((item) =>
+    item.keywords.some((keyword) => text.includes(keyword))
+  ) || fallback;
 
-        <p className="mt-8 max-w-3xl text-xl leading-9 text-zinc-300">
-          Cross Heart Pray helps move honest reflection toward faith, freedom,
-          and a deeper relationship with God.
-        </p>
+setReflection(match);
+setShowReflection(true);
 
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-          Not through perfection. Not through performance. Through surrender,
-          grace, and prayer.
-        </p>
-
-        <div className="mt-12 grid w-full gap-6 md:grid-cols-3">
-          <Link
-            href="/cross"
-            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-white hover:bg-zinc-900"
-          >
-            <div className="text-4xl">✝️</div>
-            <h2 className="mt-4 text-xl font-bold">Cross</h2>
-            <p className="mt-3 text-zinc-400">
-              Surrender. Repent. Receive forgiveness. Freedom begins at the
-              Cross.
-            </p>
-          </Link>
-
-          <Link
-            href="/heart"
-            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-white hover:bg-zinc-900"
-          >
-            <div className="text-4xl">❤️</div>
-            <h2 className="mt-4 text-xl font-bold">Heart</h2>
-            <p className="mt-3 text-zinc-400">
-              Receive God&apos;s love. Trust His promises. Share His love with
-              others.
-            </p>
-          </Link>
-
-          <Link
-            href="/pray"
-            className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-white hover:bg-zinc-900"
-          >
-            <div className="text-4xl">🙏</div>
-            <h2 className="mt-4 text-xl font-bold">Pray</h2>
-            <p className="mt-3 text-zinc-400">
-              Talk with God. Listen. Trust. Take the next faithful step.
-            </p>
-          </Link>
-        </div>
-
-        <div className="mt-12 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="text-lg leading-8 text-zinc-300">
-            Cross. Heart. Pray.
-            <br />
-            Surrender to Christ.
-            <br />
-            Receive His love.
-            <br />
-            Walk forward in prayer.
-          </p>
-        </div>
-
-        <Link
-          href="/cross-heart-pray/reflect"
-          className="mt-12 rounded-full bg-white px-8 py-3 font-semibold text-black"
-        >
-          Talk To The Mirror
-        </Link>
-      </section>
-    </main>
-  );
 }
 
+return ( <main className="min-h-screen bg-black px-6 py-10 text-white"> <nav className="mx-auto flex max-w-5xl items-center justify-between py-4"> <Link href="/">Open Mirror</Link>
+
+    <div className="flex gap-6 text-sm text-zinc-400">
+      <Link href="/">Home</Link>
+      <Link href="/cross-heart-pray">Cross Heart Pray</Link>
+    </div>
+  </nav>
+
+  <section className="mx-auto flex max-w-4xl flex-col items-center text-center">
+    <div className="mb-6 text-6xl">🪞</div>
+
+    <h1 className="text-5xl font-bold tracking-tight">
+      Look In The Mirror
+    </h1>
+
+    <p className="mt-6 max-w-2xl text-xl leading-9 text-zinc-300">
+      The Truth Will Set You Free.
+      <br />
+      <br />
+      The mirror doesn't judge.
+      <br />
+      The mirror reveals.
+      <br />
+      <br />
+      What are you feeling?
+      <br />
+      What are you seeking?
+      <br />
+      What are you avoiding?
+      <br />
+      What truth are you refusing to face?
+    </p>
+
+    <div className="mt-12 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left">
+      <label className="text-sm font-semibold text-zinc-300">
+        What is weighing on your heart today?
+      </label>
+
+      <textarea
+        value={problem}
+        onChange={(e) => setProblem(e.target.value)}
+        className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
+        placeholder="Be honest. Don't lie to the mirror."
+      />
+
+      <button
+        onClick={beginReflection}
+        className="mt-5 rounded-full bg-white px-8 py-3 font-semibold text-black"
+      >
+        Talk To The Mirror
+      </button>
+    </div>
+
+    {showReflection && (
+      <div className="mt-10 w-full space-y-6 text-left">
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <h2 className="text-2xl font-bold">🪞 The Mirror</h2>
+          <p className="mt-4 text-zinc-300">
+            Here's what I notice. Let's explore this together.
+          </p>
+          <p className="mt-4 text-zinc-400">{reflection.title}</p>
+        </div>
+
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <h2 className="text-2xl font-bold">✝️ Cross</h2>
+          <p className="mt-4 text-zinc-300">{reflection.cross}</p>
+        </div>
+
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <h2 className="text-2xl font-bold">❤️ Heart</h2>
+          <p className="mt-4 text-zinc-300">{reflection.heart}</p>
+        </div>
+
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <h2 className="text-2xl font-bold">📖 Scripture</h2>
+          <p className="mt-4 text-zinc-300">"{reflection.verse}"</p>
+          <p className="mt-2 text-zinc-500">{reflection.reference}</p>
+        </div>
+
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <h2 className="text-2xl font-bold">🙏 Prayer</h2>
+          <p className="mt-4 text-zinc-300">{reflection.prayer}</p>
+        </div>
+
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <h2 className="text-2xl font-bold">👣 Next Faithful Step</h2>
+          <p className="mt-4 text-zinc-300">{reflection.step}</p>
+        </div>
+      </div>
+    )}
+  </section>
+</main>
+
+);
+}
