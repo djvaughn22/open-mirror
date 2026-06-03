@@ -17,7 +17,7 @@ export default function WhatAmIAIPage() {
         <div className="mb-6 text-5xl">🤖 🪞</div>
 
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Reflection · Patterns · Discovery
+          Purpose · Growth · Truth
         </p>
 
         <h1 className="text-5xl font-bold leading-tight md:text-7xl">
@@ -25,14 +25,14 @@ export default function WhatAmIAIPage() {
         </h1>
 
         <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
-          Your questions reveal more than you think.
+          Who are you becoming?
         </h2>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Every prompt, journal entry, conversation, and question leaves clues.
-          What Am I AI helps people discover recurring themes, strengths,
-          blind spots, motivations, fears, and opportunities hidden inside
-          their own words.
+          Every conversation leaves clues. Every question reveals something.
+          What Am I AI is being built to help people discover patterns,
+          strengths, blind spots, opportunities, purpose, and growth hidden
+          inside their own words.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -44,33 +44,54 @@ export default function WhatAmIAIPage() {
           </a>
 
           <a
-            href="/"
+            href="/cross-heart-pray/reflect"
             className="rounded-full border border-zinc-700 px-8 py-3"
           >
-            Back to Open Mirror
+            Talk To The Mirror
           </a>
         </div>
       </section>
 
       <section className="border-t border-zinc-900 px-6 py-24 text-center">
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          The Mirror
+          Beyond Reflection
         </p>
 
         <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          Look in the mirror.
+          Your words reveal patterns.
           <br />
-          What do you see?
+          Patterns reveal direction.
         </h2>
 
         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          A founder. A parent. A creator. A leader. A student. A dreamer.
+          Most people leave fingerprints in everything they write, ask, fear,
+          pursue, avoid, celebrate, and dream about.
         </p>
 
         <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-          Most people leave fingerprints in everything they write. What Am I AI
-          helps uncover those patterns and reflect them back in a way that is
-          useful, actionable, and honest.
+          What Am I AI is designed to reflect those patterns back in a way that
+          is useful, honest, and actionable.
+        </p>
+      </section>
+
+      <section className="border-t border-zinc-900 px-6 py-24 text-center">
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Future Vision
+        </p>
+
+        <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+          Discover purpose.
+          <br />
+          Take the next step.
+        </h2>
+
+        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          Over time, What Am I AI may help people understand how their gifts,
+          habits, interests, strengths, struggles, and values fit together.
+        </p>
+
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+          Not simply who they are today, but who they are becoming.
         </p>
       </section>
 
@@ -87,8 +108,8 @@ export default function WhatAmIAIPage() {
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Join early updates as What Am I AI develops tools for self-awareness,
-          pattern recognition, personal growth, and reflection.
+          Join early updates as What Am I AI develops tools for purpose,
+          growth, self-awareness, and truth.
         </p>
 
         <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-4">
@@ -109,7 +130,7 @@ export default function WhatAmIAIPage() {
       </section>
 
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. Built one step at a time.
+        © Open Mirror LLC. Purpose, growth, and truth.
       </footer>
     </main>
   );
