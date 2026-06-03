@@ -5,22 +5,22 @@ const steps = [
     emoji: "✝️",
     title: "Cross",
     href: "/cross",
-    headline: "Surrender what you cannot carry.",
-    text: "Bring your burdens, failures, fears, guilt, grief, and regrets to the Cross.",
+    headline: "Lay down what you've been carrying.",
+    text: "Bring the truth to Jesus. Find forgiveness, freedom, and a new beginning.",
   },
   {
     emoji: "❤️",
     title: "Heart",
     href: "/heart",
-    headline: "Receive love, grace, and truth.",
-    text: "Allow God's love to speak louder than fear, shame, pride, and doubt.",
+    headline: "Receive God's love, grace, mercy, and truth.",
+    text: "Let His love speak louder than fear, shame, pride, and doubt. You are loved more than you know.",
   },
   {
     emoji: "🙏",
     title: "Pray",
     href: "/pray",
-    headline: "Take the next faithful step.",
-    text: "Bring everything before God in prayer and walk forward in faith.",
+    headline: "Talk honestly with God.",
+    text: "Praise Him. Thank Him. Ask for help. Trust Him with the next step.",
   },
 ];
 
@@ -44,18 +44,19 @@ export default function CrossHeartPrayLandingPage() {
         </h1>
 
         <p className="mt-8 max-w-3xl text-xl leading-9 text-zinc-300">
-          A simple path toward truth, hope, and God.
+          Bring what you see to God.
         </p>
 
         <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-          The journey begins with honest reflection.
+          Cross Heart Pray is a simple path for turning honest reflection into
+          prayer, Scripture, hope, and the next step.
         </p>
 
         <Link
           href="/cross-heart-pray/reflect"
           className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black"
         >
-          Begin Reflection
+          Talk To The Mirror
         </Link>
       </section>
 
@@ -77,6 +78,29 @@ export default function CrossHeartPrayLandingPage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl py-20 text-center">
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          Scripture · Prayer · Next Step
+        </p>
+
+        <h2 className="text-4xl font-bold md:text-5xl">
+          The Mirror helps you name what you are carrying.
+        </h2>
+
+        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          As Open Mirror grows, AI will help connect your reflection with
+          prayer, relevant Scripture, encouragement, and a next step rooted in
+          truth.
+        </p>
+
+        <Link
+          href="/cross-heart-pray/reflect"
+          className="mt-10 inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
+        >
+          Begin With The Mirror
+        </Link>
       </section>
     </main>
   );
