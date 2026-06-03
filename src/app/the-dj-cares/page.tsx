@@ -17,7 +17,7 @@ export default function TheDJCaresPage() {
         <div className="mb-6 text-5xl">🎵 ❤️ 🤝</div>
 
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Encouragement · Music · Hope
+          Music · Encouragement · Hope
         </p>
 
         <h1 className="text-5xl font-bold leading-tight md:text-7xl">
@@ -25,55 +25,52 @@ export default function TheDJCaresPage() {
         </h1>
 
         <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
-          You matter.
+          The right soundtrack
           <br />
-          Your story matters.
-          <br />
-          You are not alone.
+          for the road ahead.
         </h2>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          The DJ Cares is a growing collection of encouragement, resources,
-          playlists, practical help, and human connection for people navigating
-          life's challenges and opportunities.
+          The DJ Cares uses music, playlists, and encouragement to help people
+          find hope, healing, and perspective for what they are facing.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <a
-            href="#join"
+            href="#start"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
-            Join Early Access
+            Find Encouragement
           </a>
 
           <a
-            href="/"
+            href="/cross-heart-pray/reflect"
             className="rounded-full border border-zinc-700 px-8 py-3"
           >
-            Back to Open Mirror
+            Talk To The Mirror
           </a>
         </div>
       </section>
 
       <section className="border-t border-zinc-900 px-6 py-24 text-center">
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          The Mirror
+          After The Mirror
         </p>
 
         <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          Look in the mirror.
+          Sometimes hope
           <br />
-          What do you see?
+          comes through a song.
         </h2>
 
         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          A person who has struggled. A person who has overcome. A person who
-          still has more to give.
+          After someone reflects, prays, and takes the next step, music can help
+          carry encouragement into the rest of the day.
         </p>
 
         <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-          Sometimes people need encouragement. Sometimes they need a resource.
-          Sometimes they simply need someone who cares.
+          The DJ Cares is being built to connect real life situations with songs,
+          playlists, reminders, and encouragement for the road ahead.
         </p>
       </section>
 
@@ -83,19 +80,24 @@ export default function TheDJCaresPage() {
         </p>
 
         <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          Help where it matters.
+          Music first.
           <br />
-          Hope when it's needed.
+          Encouragement always.
         </h2>
 
         <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Music. Playlists. Community. Resources. Practical assistance.
-          Encouragement. Stories. Opportunities to help others.
+          Playlists for grief, courage, gratitude, repentance, joy, endurance,
+          family, faith, recovery, work, rest, and starting again.
+        </p>
+
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+          Over time, AI can help match what someone brings to the Mirror with
+          music that encourages, comforts, challenges, and helps them keep going.
         </p>
       </section>
 
       <section
-        id="join"
+        id="start"
         className="border-t border-zinc-900 px-6 py-24 text-center"
       >
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
@@ -103,12 +105,12 @@ export default function TheDJCaresPage() {
         </p>
 
         <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
-          How can we help?
+          What are you carrying today?
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Join early updates as The DJ Cares grows into a platform for
-          encouragement, connection, and practical help.
+          The DJ Cares is growing into a place for music, playlists, and
+          encouragement shaped around real life.
         </p>
 
         <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-4">
@@ -119,7 +121,7 @@ export default function TheDJCaresPage() {
 
           <input
             className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-            placeholder="What do you need help with?"
+            placeholder="What kind of encouragement do you need?"
           />
 
           <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
@@ -129,7 +131,7 @@ export default function TheDJCaresPage() {
       </section>
 
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. Built one step at a time.
+        © Open Mirror LLC. Music, encouragement, and hope for the road ahead.
       </footer>
     </main>
   );
