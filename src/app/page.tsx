@@ -97,8 +97,7 @@ export default function Home() {
           <p>Everyone is carrying something.</p>
 
           <p>
-            Pain. Fear. Shame. Anger. Grief. Loneliness. Questions. Confusion.
-            Hope.
+            Anxiety. Fear. Pain. Shame. Anger. Grief. Loneliness. Questions. Confusion.
           </p>
 
           <p>
