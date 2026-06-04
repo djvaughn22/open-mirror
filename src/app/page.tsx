@@ -65,7 +65,7 @@ export default function Home() {
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <a
-            href="/cross-heart-pray/reflect"
+            href="/reflect"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
             Talk To The Mirror
@@ -160,7 +160,7 @@ export default function Home() {
         </p>
 
         <a
-          href="/cross-heart-pray/reflect"
+          href="/reflect"
           className="mt-10 inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
         >
           Talk To The Mirror
