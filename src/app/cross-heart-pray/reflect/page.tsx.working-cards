@@ -1,0 +1,215 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+type ReflectionSection = {
+  title: string;
+  body: string;
+};
+
+const SECTION_ORDER = [
+  "Reflection",
+  "Cross",
+  "Heart",
+  "Pray",
+  "Prayer",
+  "Scripture",
+  "Next Faithful Step",
+];
+
+const SECTION_LABELS: Record<string, string> = {
+  Reflection: "🪞 Reflection",
+  Cross: "✝️ Cross",
+  Heart: "❤️ Heart",
+  Pray: "🙏 Pray",
+  Prayer: "🙏 Pray",
+  Scripture: "📖 Scripture",
+  "Next Faithful Step": "➡️ Next Faithful Step",
+};
+
+function parseReflectionSections(text: string): ReflectionSection[] {
+  const cleaned = text.replace(/\r/g, "").trim();
+
+  const headingRegex =
+    /##\s*(Reflection|Cross|Heart|Pray|Prayer|Scripture|Next Faithful Step)\s*/gi;
+
+  const matches = [...cleaned.matchAll(headingRegex)];
+
+  if (matches.length === 0) {
+    return [
+      {
+        title: "Reflection",
+        body: cleaned,
+      },
+    ];
+  }
+
+  return matches.map((match, index) => {
+    const title = match[1] === "Prayer" ? "Pray" : match[1];
+    const start = (match.index || 0) + match[0].length;
+    const end =
+      index + 1 < matches.length
+        ? matches[index + 1].index || cleaned.length
+        : cleaned.length;
+
+    const body = cleaned
+      .slice(start, end)
+      .replace(/\*\*(Adoration|Confession|Thanksgiving|Supplication):\*\*/g, "\n\n$1:")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+
+    return {
+      title,
+      body,
+    };
+  });
+}
+
+function sortSections(sections: ReflectionSection[]) {
+  return [...sections].sort((a, b) => {
+    const aIndex = SECTION_ORDER.indexOf(a.title);
+    const bIndex = SECTION_ORDER.indexOf(b.title);
+
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+
+    return aIndex - bIndex;
+  });
+}
+
+export default function CrossHeartPrayReflectPage() {
+  const [problem, setProblem] = useState("");
+  const [reflection, setReflection] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const sections = sortSections(parseReflectionSections(reflection));
+
+  async function beginReflection() {
+    setError("");
+    setReflection("");
+
+    if (!problem.trim()) {
+      setError("Please share what you are carrying.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/reflect", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ problem }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to generate reflection.");
+      }
+
+      setReflection(data.reflection || "");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to generate reflection right now."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <main className="min-h-screen bg-black text-white">
+      <section className="mx-auto flex min-h-screen max-w-5xl flex-col items-center px-6 py-10">
+        <div className="mb-10 flex w-full items-center justify-between">
+          <Link href="/" className="text-sm font-semibold text-zinc-300 hover:text-white">
+            Open Mirror
+          </Link>
+
+          <Link
+            href="/cross-heart-pray"
+            className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-300 hover:border-zinc-500 hover:text-white"
+          >
+            CrossHeartPray
+          </Link>
+        </div>
+
+        <div className="w-full max-w-3xl text-center">
+          <p className="mb-4 text-sm uppercase tracking-[0.35em] text-zinc-500">
+            Look in the mirror
+          </p>
+
+          <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+            What are you carrying?
+          </h1>
+
+          <p className="mt-6 text-lg leading-8 text-zinc-300">
+            Bring the truth into the light. Reflect honestly. Receive Scripture.
+            Pray. Take one faithful next step.
+          </p>
+        </div>
+
+        <div className="mt-10 w-full max-w-3xl rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
+          <textarea
+            value={problem}
+            onChange={(event) => setProblem(event.target.value)}
+            placeholder="Share what you are carrying..."
+            className="min-h-40 w-full resize-none rounded-2xl border border-zinc-800 bg-black p-5 text-base leading-7 text-white outline-none placeholder:text-zinc-600"
+          />
+
+          {error && (
+            <p className="mt-4 rounded-2xl border border-red-900 bg-red-950/40 p-4 text-sm text-red-200">
+              {error}
+            </p>
+          )}
+
+          <button
+            onClick={beginReflection}
+            disabled={isLoading}
+            className="mt-6 w-full rounded-full bg-white px-8 py-4 font-semibold text-black disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isLoading ? "Reflecting..." : "Begin Reflection"}
+          </button>
+        </div>
+
+        {reflection && (
+          <div className="mt-10 w-full max-w-3xl rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left">
+            <p className="mb-6 text-sm uppercase tracking-[0.25em] text-zinc-500">
+              Your reflection
+            </p>
+
+            <div className="grid gap-6">
+              {sections.map((section, index) => (
+                <div
+                  key={`${section.title}-${index}`}
+                  className="rounded-3xl border border-zinc-800 bg-black/50 p-6"
+                >
+                  <h2 className="mb-4 text-2xl font-bold text-white">
+                    {SECTION_LABELS[section.title] || section.title}
+                  </h2>
+
+                  <div className="whitespace-pre-wrap text-lg leading-8 text-zinc-200">
+                    {section.body}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="mt-12 max-w-3xl text-center text-sm leading-7 text-zinc-500">
+          CrossHeartPray provides biblical reflection and prayer guidance. It is
+          not pastoral counseling, medical advice, legal advice, or a substitute
+          for your local church, trusted relationships, or professional care
+          when needed.
+        </div>
+      </section>
+    </main>
+  );
+}

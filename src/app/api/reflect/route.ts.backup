@@ -1,8 +1,6 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
-export const runtime = "nodejs";
-
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -18,16 +16,8 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!process.env.OPENAI_API_KEY) {
-      return NextResponse.json(
-        { error: "OpenAI API key is missing on the server." },
-        { status: 500 }
-      );
-    }
-
     const response = await client.responses.create({
       model: "gpt-4o-mini",
-      max_output_tokens: 500,
       input: [
         {
           role: "system",
@@ -39,7 +29,7 @@ Respond to the user's real situation with compassion, truth, Scripture, prayer, 
 Do not use the same Scripture every time.
 Choose Scripture that fits the user's actual situation.
 
-The response must follow this exact format and order:
+The response must follow this exact format:
 
 ## Reflection
 A short, compassionate reflection on what the user shared.
@@ -50,7 +40,12 @@ Help the user bring this situation to Jesus. Invite surrender, repentance where 
 ## Heart
 Help the user receive God's love, grace, mercy, and truth in this situation.
 
-## Pray
+## Scripture
+Provide one Bible verse that fits the situation.
+Include the verse text and reference.
+Do not always use Matthew 11:28.
+
+## Prayer
 Write a prayer using the ACTS model:
 Adoration: Praise God for who He is in this situation.
 Confession: Honestly confess fear, sin, weakness, control, anger, shame, doubt, or need where appropriate.
@@ -58,11 +53,6 @@ Thanksgiving: Thank God for His grace, mercy, love, forgiveness, presence, or pr
 Supplication: Ask God for help, wisdom, strength, peace, courage, repentance, forgiveness, or next steps.
 
 Make the prayer specific to the user's situation.
-
-## Scripture
-Provide one Bible verse that fits the situation.
-Include the verse text and reference.
-Do not always use Matthew 11:28.
 
 ## Next Faithful Step
 Give one simple, practical, faithful next step.
@@ -81,22 +71,8 @@ Do not sound preachy, harsh, generic, or robotic.
     return NextResponse.json({
       reflection: response.output_text,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error(error);
-
-    if (
-      error?.status === 429 ||
-      error?.code === "insufficient_quota" ||
-      error?.type === "insufficient_quota"
-    ) {
-      return NextResponse.json(
-        {
-          error:
-            "Open Mirror is connected, but the AI account needs API billing or quota added before reflections can be generated.",
-        },
-        { status: 429 }
-      );
-    }
 
     return NextResponse.json(
       { error: "Unable to generate reflection." },
