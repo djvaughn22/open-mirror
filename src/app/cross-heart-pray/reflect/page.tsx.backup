@@ -9,10 +9,6 @@ export default function CrossHeartPrayReflectPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const formattedReflection = reflection
-    .replace(/\s*(#{2,4}\s+(Reflection|Cross|Heart|Scripture|Prayer|Next Faithful Step))/g, "\n\n$1")
-    .trim();
-
   async function beginReflection() {
     setError("");
     setReflection("");
@@ -115,7 +111,7 @@ export default function CrossHeartPrayReflectPage() {
             </p>
 
             <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
-              {formattedReflection}
+              {reflection}
             </div>
           </div>
         )}

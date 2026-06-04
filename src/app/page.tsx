@@ -65,7 +65,7 @@ export default function Home() {
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <a
-            href="/reflect"
+            href="/cross-heart-pray/reflect"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
             Talk To The Mirror
