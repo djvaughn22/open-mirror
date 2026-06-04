@@ -40,7 +40,7 @@ export default function WhatAmIAIPage() {
             href="#join"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
-            Join Early Access
+            Request Early Access
           </a>
 
           <a
@@ -108,24 +108,21 @@ export default function WhatAmIAIPage() {
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Join early updates as What Am I AI develops tools for purpose,
-          growth, self-awareness, and truth.
+          Request early access and tell us what you would want to discover about
+          your patterns, growth, purpose, or next step.
         </p>
 
-        <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-4">
-          <input
-            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-            placeholder="Email address"
-          />
+        <div className="mx-auto mt-10 max-w-2xl">
+          <a
+            href="mailto:ask@openmirrorllc.com?subject=WhatAmIAI%20Early%20Access"
+            className="inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
+            Request Early Access
+          </a>
 
-          <input
-            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-            placeholder="What would you want to learn about yourself?"
-          />
-
-          <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
-            Join Early Access
-          </button>
+          <p className="mt-4 text-sm text-zinc-500">
+            This opens your email app so you can send a request directly.
+          </p>
         </div>
       </section>
 

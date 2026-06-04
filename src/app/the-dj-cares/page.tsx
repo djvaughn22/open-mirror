@@ -105,28 +105,25 @@ export default function TheDJCaresPage() {
         </p>
 
         <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
-          What are you carrying today?
+          What kind of encouragement do you need?
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          The DJ Cares is growing into a place for music, playlists, and
-          encouragement shaped around real life.
+          Request early access and tell us what kind of music, playlists, or
+          encouragement would help you most.
         </p>
 
-        <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-4">
-          <input
-            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-            placeholder="Email address"
-          />
+        <div className="mx-auto mt-10 max-w-2xl">
+          <a
+            href="mailto:ask@openmirrorllc.com?subject=TheDJCares%20Early%20Access"
+            className="inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
+            Request Early Access
+          </a>
 
-          <input
-            className="rounded-full border border-zinc-800 bg-black px-6 py-3 text-white outline-none"
-            placeholder="What kind of encouragement do you need?"
-          />
-
-          <button className="rounded-full bg-white px-8 py-3 font-semibold text-black">
-            Join Early Access
-          </button>
+          <p className="mt-4 text-sm text-zinc-500">
+            This opens your email app so you can send a request directly.
+          </p>
         </div>
       </section>
 
