@@ -1,215 +1,143 @@
-"use client";
-
-import Link from "next/link";
-import { useState } from "react";
-
-const reflections = [
+const steps = [
   {
-    keywords: ["enough", "worth", "failure", "ashamed", "shame"],
-    title: "Identity and Worth",
-    verse:
-      "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God.",
-    reference: "Ephesians 2:8",
-    cross:
-      "Lay your striving, comparison, shame, and fear at the foot of the Cross. You do not have to prove your worth to God. Christ is enough where you are not.",
-    heart:
-      "Receive God's love in your heart. Your value is not measured by performance, approval, success, or being enough. Let God's grace speak louder than shame.",
-    prayer:
-      "Father, I praise You for Your grace. Thank You for loving me through Jesus Christ. Help me stop trying to prove I am enough. Let Your will be done in my heart, and give me strength to follow You today. Amen.",
-    step:
-      "Pause before striving. Thank God for grace. Then do one faithful thing today without trying to earn your worth.",
+    title: "Cross",
+    emoji: "✝️",
+    href: "/cross-heart-pray/cross",
+    text: "Surrender what you are carrying to Jesus. Repent, receive forgiveness, and remember that the Cross is where grace meets the truth.",
+    cta: "Learn The Cross",
   },
   {
-    keywords: ["forgive", "resent", "bitter", "anger", "angry"],
-    title: "Forgiveness and Anger",
-    verse:
-      "Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you.",
-    reference: "Ephesians 4:32",
-    cross:
-      "Lay your hurt, anger, and desire for revenge at the Cross. Jesus does not ignore sin; He carries judgment, mercy, and justice perfectly.",
-    heart:
-      "Receive God's love in your heart before trying to force forgiveness. Be honest about the wound, the fear, and the cost. God can meet you there.",
-    prayer:
-      "Father, I praise You for Your mercy. You know the hurt I am carrying. Help me trust Your justice and receive Your love. Let Your will be done, and teach me to forgive as I have been forgiven in Christ. Amen.",
-    step:
-      "Do not pretend everything is fine. Pray honestly for willingness, wisdom, and the next faithful step toward peace.",
+    title: "Heart",
+    emoji: "❤️",
+    href: "/cross-heart-pray/heart",
+    text: "Receive God’s love, mercy, and grace in your heart. Let His truth move from something you know into something you live.",
+    cta: "Learn The Heart",
   },
   {
-    keywords: [
-      "daughter",
-      "son",
-      "child",
-      "marriage",
-      "wife",
-      "husband",
-      "relationship",
-    ],
-    title: "Relationship and Reconciliation",
-    verse:
-      "If possible, so far as it depends on you, live peaceably with all.",
-    reference: "Romans 12:18",
-    cross:
-      "Lay this relationship at the Cross. You cannot force reconciliation, control another person's heart, or carry the whole outcome yourself.",
-    heart:
-      "Receive God's love in your heart. Let Him reveal fear, grief, pride, control, loneliness, or the longing to be understood.",
-    prayer:
-      "Father, I praise You because You are faithful. I give this relationship to You. Help me love with humility, patience, truth, and courage. Let Your will be done, and help me follow where You lead. Amen.",
-    step:
-      "Pray for the person by name. Then take one peaceful step without demanding control of the result.",
-  },
-  {
-    keywords: ["afraid", "fear", "anxious", "anxiety", "worry", "worried"],
-    title: "Fear and Trust",
-    verse: "Casting all your anxieties on him, because he cares for you.",
-    reference: "1 Peter 5:7",
-    cross:
-      "Lay your fear at the Cross. You were not made to carry tomorrow by yourself. Give God what you cannot control.",
-    heart:
-      "Receive God's love in your heart. He does not shame you for being afraid. He invites you to trust His care in the middle of fear.",
-    prayer:
-      "Father, I praise You because You care for me. I confess that I am afraid and trying to carry what belongs to You. Let Your will be done. Give me courage, peace, and strength to follow You today. Amen.",
-    step:
-      "Name the fear clearly. Pray it honestly. Then take only the next faithful step in front of you.",
+    title: "Pray",
+    emoji: "🙏",
+    href: "/cross-heart-pray/pray",
+    text: "Pray honestly with God using a simple rhythm: adoration, confession, thanksgiving, and asking for help.",
+    cta: "Learn To Pray",
   },
 ];
 
-const fallback = {
-  title: "Burden and Rest",
-  verse:
-    "Come to me, all who labor and are heavy laden, and I will give you rest.",
-  reference: "Matthew 11:28",
-  cross:
-    "Lay this burden at the foot of the Cross. Before trying to fix everything yourself, surrender it to God and trust Him with what you cannot control.",
-  heart:
-    "Receive God's love in your heart. God already sees your fear, anger, grief, shame, confusion, and hope. You do not have to pretend to be stronger than you are.",
-  prayer:
-    "Father, I praise You because You are good. Thank You for loving me through Jesus Christ. I give this burden to You. Let Your will be done, and give me strength to follow wherever You lead. Amen.",
-  step:
-    "Pause. Pray honestly. Name what you are feeling. Choose one small faithful action instead of trying to solve everything at once.",
-};
-
-export default function CrossHeartPrayReflectPage() {
-  const [problem, setProblem] = useState("");
-  const [reflection, setReflection] = useState(fallback);
-  const [showReflection, setShowReflection] = useState(false);
-
-  function beginReflection() {
-    const text = problem.toLowerCase();
-
-    const match =
-      reflections.find((item) =>
-        item.keywords.some((keyword) => text.includes(keyword))
-      ) || fallback;
-
-    setReflection(match);
-    setShowReflection(true);
-  }
-
+export default function CrossHeartPrayPage() {
   return (
-    <main className="min-h-screen bg-black px-6 py-10 text-white">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between py-4">
-        <Link href="/" className="font-semibold">
-          Open Mirror
-        </Link>
+    <main className="min-h-screen bg-black text-white">
+      <div className="mx-auto max-w-6xl px-6 py-8">
+        <nav className="flex items-center justify-between">
+          <a href="/" className="text-sm font-semibold text-zinc-300">
+            Open Mirror
+          </a>
 
-        <div className="flex gap-6 text-sm text-zinc-400">
-          <Link href="/">Home</Link>
-          <Link href="/cross-heart-pray">CrossHeartPray</Link>
-        </div>
-      </nav>
-
-      <section className="mx-auto flex max-w-4xl flex-col items-center text-center">
-        <div className="mb-6 text-6xl">🪞</div>
-
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          The Mirror
-        </p>
-
-        <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
-          Talk To The Mirror
-        </h1>
-
-        <p className="mt-6 max-w-2xl text-xl leading-9 text-zinc-300">
-          Look honestly.
-          <br />
-          Tell the truth.
-          <br />
-          Bring what you see to God.
-        </p>
-
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          The Mirror helps you name what you are carrying, connect it with
-          Scripture, pray honestly, and take the next faithful step.
-        </p>
-
-        <div className="mt-12 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left shadow-2xl">
-          <label className="text-sm font-semibold text-zinc-300">
-            What do you see?
-          </label>
-
-          <textarea
-            value={problem}
-            onChange={(e) => setProblem(e.target.value)}
-            className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
-            placeholder="I feel afraid. I feel stuck. I am carrying anger. I need wisdom. I do not know what to do next..."
-          />
-
-          <button
-            onClick={beginReflection}
-            className="mt-5 rounded-full bg-white px-8 py-3 font-semibold text-black"
+          <a
+            href="/reflect"
+            className="rounded-full border border-zinc-700 px-5 py-2 text-sm text-zinc-200 transition hover:border-white hover:text-white"
           >
-            Talk To The Mirror
-          </button>
-        </div>
+            Begin Reflection
+          </a>
+        </nav>
 
-        {showReflection && (
-          <div className="mt-10 w-full space-y-6 text-left">
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
-                What The Mirror Reveals
-              </p>
-              <h2 className="mt-4 text-3xl font-bold">{reflection.title}</h2>
-            </div>
+        <section
+          className="mx-auto max-w-4xl text-center"
+          style={{ paddingTop: "96px", paddingBottom: "96px" }}
+        >
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
+            Cross Heart Pray
+          </p>
 
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">✝️ Cross</h2>
-              <p className="mt-4 leading-8 text-zinc-300">{reflection.cross}</p>
-            </div>
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+            Bring it to Jesus.
+          </h1>
 
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">❤️ Heart</h2>
-              <p className="mt-4 leading-8 text-zinc-300">{reflection.heart}</p>
-            </div>
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-300">
+            Cross Heart Pray is a simple reflection journey: surrender at the
+            Cross, receive God&apos;s love in your heart, pray honestly, then
+            seek Scripture for truth, hope, forgiveness, and the next right
+            step.
+          </p>
 
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">📖 Scripture</h2>
-              <p className="mt-4 leading-8 text-zinc-300">
-                &quot;{reflection.verse}&quot;
-              </p>
-              <p className="mt-2 text-zinc-500">{reflection.reference}</p>
-            </div>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="/cross-heart-pray/cross"
+              className="rounded-full bg-white px-8 py-3 font-semibold text-black transition hover:bg-zinc-200"
+            >
+              Start With The Cross
+            </a>
 
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">🙏 Prayer</h2>
-              <p className="mt-4 leading-8 text-zinc-300">
-                {reflection.prayer}
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-              <h2 className="text-2xl font-bold">👣 Next Faithful Step</h2>
-              <p className="mt-4 leading-8 text-zinc-300">{reflection.step}</p>
-            </div>
+            <a
+              href="/reflect"
+              className="rounded-full border border-zinc-700 px-8 py-3 font-semibold text-white transition hover:border-white"
+            >
+              Go To The Mirror
+            </a>
           </div>
-        )}
+        </section>
 
-        <div className="mt-12 max-w-3xl text-center text-sm leading-7 text-zinc-500">
-          CrossHeartPray provides biblical reflection and prayer guidance. It is
-          not pastoral counseling, medical advice, legal advice, or a substitute
-          for your local church, trusted relationships, or professional care
-          when needed.
-        </div>
-      </section>
+        <section
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+            gap: "32px",
+          }}
+        >
+          {steps.map((step) => (
+            <a
+              key={step.title}
+              href={step.href}
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-white"
+              style={{
+                minHeight: "360px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="text-5xl">{step.emoji}</div>
+
+              <h2 className="mt-8 text-2xl font-bold">{step.title}</h2>
+
+              <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
+                {step.text}
+              </p>
+
+              <p className="mt-8 text-sm font-semibold text-zinc-300">
+                {step.cta} →
+              </p>
+            </a>
+          ))}
+        </section>
+
+        <div style={{ height: "140px" }} />
+
+        <section
+          className="mx-auto max-w-3xl rounded-3xl border border-zinc-800 bg-zinc-950 text-center"
+          style={{
+            paddingTop: "56px",
+            paddingRight: "48px",
+            paddingBottom: "72px",
+            paddingLeft: "48px",
+          }}
+        >
+          <h2 className="text-3xl font-bold">Then bring it to the mirror.</h2>
+
+          <p className="mx-auto mt-6 max-w-2xl leading-7 text-zinc-400">
+            After Cross, Heart, and Pray, Open Mirror helps you reflect honestly
+            and seek a Scripture-grounded response for what you are carrying.
+          </p>
+
+          <div style={{ marginTop: "40px" }}>
+            <a
+              href="/reflect"
+              className="inline-flex rounded-full bg-white px-8 py-3 font-semibold text-black transition hover:bg-zinc-200"
+            >
+              Begin Reflection
+            </a>
+          </div>
+        </section>
+
+        <div style={{ height: "120px" }} />
+      </div>
     </main>
   );
 }
