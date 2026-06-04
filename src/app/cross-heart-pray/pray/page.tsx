@@ -30,7 +30,7 @@ export default function PrayPage() {
           </a>
 
           <a
-            href="/reflect"
+            href="/cross-heart-pray/reflect"
             className="rounded-full border border-zinc-700 px-5 py-2 text-sm text-zinc-200 hover:border-white hover:text-white"
           >
             Begin Reflection
@@ -100,7 +100,7 @@ export default function PrayPage() {
 
           <div style={{ marginTop: "44px" }}>
             <a
-              href="/reflect"
+              href="/cross-heart-pray/reflect"
               className="inline-flex rounded-full bg-white px-8 py-3 font-semibold text-black transition hover:bg-zinc-200"
             >
               Begin Reflection 📖

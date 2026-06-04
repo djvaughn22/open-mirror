@@ -7,7 +7,7 @@ export default function HeartPage() {
             ← Cross Heart Pray
           </a>
           <a
-            href="/reflect"
+            href="/cross-heart-pray/reflect"
             className="rounded-full border border-zinc-700 px-5 py-2 text-sm text-zinc-200 hover:border-white"
           >
             Begin Reflection
@@ -64,7 +64,7 @@ export default function HeartPage() {
             Next: Pray
           </a>
           <a
-            href="/reflect"
+            href="/cross-heart-pray/reflect"
             className="rounded-full border border-zinc-700 px-8 py-3 text-center font-semibold text-white hover:border-white"
           >
             Begin Reflection
