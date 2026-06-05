@@ -98,6 +98,18 @@ export default function CrossHeartPrayReflectPage() {
             What do you see?
           </label>
 
+          <div className="mt-4 rounded-2xl border border-zinc-800 bg-black/40 px-5 py-4 text-sm leading-7 text-zinc-300">
+            <p>
+              ✝️ <span className="font-semibold text-white">Cross</span> — Surrender. Repent. Give it to Jesus.
+            </p>
+            <p>
+              ❤️ <span className="font-semibold text-white">Heart</span> — Receive God’s Love, Grace, Mercy, Truth.
+            </p>
+            <p>
+              🙏 <span className="font-semibold text-white">Pray</span> — Praise Him. Thank Him. Ask Him.
+            </p>
+          </div>
+
           <textarea
             value={problem}
             onChange={(e) => setProblem(e.target.value)}
@@ -115,6 +127,8 @@ export default function CrossHeartPrayReflectPage() {
 
           {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
         </div>
+
+
 
         {reflection && (
           <div className="mt-10 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left">
