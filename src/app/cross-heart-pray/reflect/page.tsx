@@ -87,11 +87,15 @@ export default function CrossHeartPrayReflectPage() {
           Bring what you see to God.
         </p>
 
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          The Mirror helps you reflect, bring it to the Cross, receive
-          God&apos;s love, find Scripture, pray with ACTS, and take the next
-          faithful step.
-        </p>
+        <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-zinc-400">
+  The Mirror helps you reflect, bring it to the Cross, receive
+  God&apos;s love, find Scripture, pray with ACTS
+  <span className="text-zinc-500">*</span>, and take the next faithful step.
+</p>
+
+<p className="mx-auto mt-2 max-w-2xl text-center text-xs leading-5 text-zinc-500">
+  * ACTS is a simple prayer guide: Adoration, Confession, Thanksgiving, and Supplication.
+</p>
 
         <div className="mt-12 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left shadow-2xl">
           <label className="text-sm font-semibold text-zinc-300">
