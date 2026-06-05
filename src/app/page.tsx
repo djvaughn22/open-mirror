@@ -11,14 +11,14 @@ const products = [
     emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
     description:
-      "Music, playlists, and encouragement that help people find hope, healing, and the right soundtrack for the road ahead.",
+      "Coming soon: Music, playlists, and encouragement that help people find hope, healing, and the right soundtrack for the road ahead.",
   },
   {
     name: "WhatAmIAI",
     emoji: "🤖 🪞",
     href: "/what-am-i-ai",
     description:
-      "Coming soon: a deeper mirror for patterns, questions, blind spots, growth, and truth.",
+      "Coming soon: A deeper mirror for patterns, questions, blind spots, growth, and truth.",
   },
 ];
 
