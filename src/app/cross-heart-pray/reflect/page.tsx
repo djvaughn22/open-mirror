@@ -53,8 +53,10 @@ export default function CrossHeartPrayReflectPage() {
       }
 
       setReflection(formatReflectionText(data.reflection));
-    } catch {
-      setError("The Mirror could not respond right now. Please try again.");
+    } catch (err: any) {
+      setError(
+        err?.message || "The Mirror could not respond right now. Please try again."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -124,7 +126,7 @@ export default function CrossHeartPrayReflectPage() {
             onChange={(e) => setProblem(e.target.value)}
             maxLength={250}
             className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
-            placeholder="I feel afraid. I feel grateful. I feel stuck. I am carrying anger. I need wisdom. I am excited but unsure what to do next..."
+            placeholder="I see a person who is grateful. I see a person who wants wisdom. I see a person who loves broccoli. I need help with forgiveness. I am building something new..."
           />
 
           <p className="mt-2 text-right text-sm text-zinc-500">
