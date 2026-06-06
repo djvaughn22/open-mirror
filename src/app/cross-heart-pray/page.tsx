@@ -75,13 +75,7 @@ export default function CrossHeartPrayPage() {
           </div>
         </section>
 
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-            gap: "32px",
-          }}
-        >
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {steps.map((step) => (
             <a
               key={step.title}
