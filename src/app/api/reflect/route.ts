@@ -18,6 +18,13 @@ export async function POST(request: Request) {
       );
     }
 
+    if (problem.length > 250) {
+      return NextResponse.json(
+        { error: "Please keep your reflection to 250 characters or less." },
+        { status: 400 }
+      );
+    }
+
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json(
         { error: "OpenAI API key is missing on the server." },

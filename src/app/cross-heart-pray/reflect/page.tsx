@@ -30,6 +30,11 @@ export default function CrossHeartPrayReflectPage() {
       return;
     }
 
+    if (problem.length > 250) {
+      setError("Please keep your reflection to 250 characters or less.");
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -117,9 +122,14 @@ export default function CrossHeartPrayReflectPage() {
           <textarea
             value={problem}
             onChange={(e) => setProblem(e.target.value)}
+            maxLength={250}
             className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
             placeholder="I feel afraid. I feel grateful. I feel stuck. I am carrying anger. I need wisdom. I am excited but unsure what to do next..."
           />
+
+          <p className="mt-2 text-right text-sm text-zinc-500">
+            {problem.length}/250 characters
+          </p>
 
           <button
             onClick={beginReflection}
