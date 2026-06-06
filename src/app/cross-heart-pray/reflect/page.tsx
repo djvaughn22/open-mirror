@@ -126,8 +126,7 @@ export default function CrossHeartPrayReflectPage() {
             onChange={(e) => setProblem(e.target.value)}
             maxLength={250}
             className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
-            placeholder="I see a person who is grateful. I see a person who wants wisdom. I see a person who loves broccoli. I need help with forgiveness. I am building something new..."
-          />
+placeholder="A person who is grateful. A person who wants wisdom. A person who needs help with forgiveness. A person who is building something new..."          />
 
           <p className="mt-2 text-right text-sm text-zinc-500">
             {problem.length}/250 characters
