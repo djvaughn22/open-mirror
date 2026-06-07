@@ -72,6 +72,7 @@ export default function CrossHeartPrayReflectPage() {
         <div className="flex gap-6 text-sm text-zinc-400">
           <Link href="/">Home</Link>
           <Link href="/cross-heart-pray">CrossHeartPray</Link>
+          <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">Bible</a>
         </div>
       </nav>
 

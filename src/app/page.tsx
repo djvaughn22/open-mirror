@@ -32,6 +32,7 @@ export default function Home() {
           <a href="/cross-heart-pray">Cross Heart Pray</a>
           <a href="/the-dj-cares">TheDJCares</a>
           <a href="/what-am-i-ai">WhatAmIAI</a>
+          <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">Bible</a>
         </div>
       </nav>
 
