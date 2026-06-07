@@ -28,11 +28,29 @@ export default function Home() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <div className="font-bold">Open Mirror</div>
 
-        <div className="flex gap-6 text-sm text-zinc-400">
+        <div className="hidden gap-6 text-sm text-zinc-400 sm:flex">
           <a href="/cross-heart-pray">Cross Heart Pray</a>
           <a href="/the-dj-cares">TheDJCares</a>
           <a href="/what-am-i-ai">WhatAmIAI</a>
           <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">BIBLE</a>
+        </div>
+
+        <div className="flex items-center gap-5 text-sm text-zinc-400 sm:hidden">
+          <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">
+            BIBLE
+          </a>
+
+          <details className="relative">
+            <summary className="cursor-pointer list-none text-2xl leading-none">
+              ☰
+            </summary>
+
+            <div className="absolute right-0 z-50 mt-4 flex w-48 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+              <a href="/cross-heart-pray">Cross Heart Pray</a>
+              <a href="/the-dj-cares">TheDJCares</a>
+              <a href="/what-am-i-ai">WhatAmIAI</a>
+            </div>
+          </details>
         </div>
       </nav>
 
