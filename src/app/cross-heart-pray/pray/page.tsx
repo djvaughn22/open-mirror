@@ -27,12 +27,17 @@ export default function PrayPage() {
         </a>
 
         <a
-          href="https://www.bible.com/"
+          href="https://www.bible.com/app"
           target="_blank"
           rel="noopener noreferrer"
-          className="justify-self-center text-sm text-zinc-400"
+          aria-label="Open YouVersion Bible App"
+          className="justify-self-center"
         >
-          BIBLE
+          <img
+            src="/brand/youversion-bible-app.png"
+            alt="YouVersion Bible App"
+            className="h-9 w-9 rounded-lg"
+          />
         </a>
 
         <details className="relative justify-self-end text-sm text-zinc-400">
