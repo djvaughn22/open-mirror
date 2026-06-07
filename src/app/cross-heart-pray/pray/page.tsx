@@ -21,20 +21,34 @@ export default function PrayPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <section className="mx-auto max-w-4xl px-6 py-10">
-        <nav className="mb-16 flex items-center justify-between">
-          <a
-            href="/cross-heart-pray"
-            className="text-sm font-semibold text-zinc-300"
-          >
-            ← Cross Heart Pray
-          </a>
+        <nav className="mb-16 grid grid-cols-3 items-center">
+        <a href="/" className="justify-self-start font-bold">
+          Open Mirror
+        </a>
 
-          <a
-            href="/cross-heart-pray/reflect"
-            className="rounded-full border border-zinc-700 px-5 py-2 text-sm text-zinc-200 hover:border-white hover:text-white"
-          >
-            Begin Reflection
-          </a>
+        <a
+          href="https://www.bible.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="justify-self-center text-sm text-zinc-400"
+        >
+          BIBLE
+        </a>
+
+        <details className="relative justify-self-end text-sm text-zinc-400">
+          <summary className="cursor-pointer list-none text-2xl leading-none">
+            ☰
+          </summary>
+
+          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+            <a href="/">Home</a>
+            <a href="/cross-heart-pray">Cross Heart Pray</a>
+            <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
+            <a href="/the-dj-cares">TheDJCares</a>
+            <a href="/what-am-i-ai">WhatAmIAI</a>
+          </div>
+        </details>
+
         </nav>
 
         <section className="text-center">

@@ -4,17 +4,34 @@ export default function HeartPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <header className="border-b border-zinc-900 px-6 py-5">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between">
-          <Link href="/cross-heart-pray" className="text-xl font-bold">
-            Cross Heart Pray
-          </Link>
+        <nav className="mx-auto grid grid-cols-3 max-w-6xl items-center">
+        <a href="/" className="justify-self-start font-bold">
+          Open Mirror
+        </a>
 
-          <Link
-            href="/cross-heart-pray/reflect"
-            className="rounded-full border border-zinc-700 px-4 py-2 text-sm"
-          >
-            Talk To The Mirror
-          </Link>
+        <a
+          href="https://www.bible.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="justify-self-center text-sm text-zinc-400"
+        >
+          BIBLE
+        </a>
+
+        <details className="relative justify-self-end text-sm text-zinc-400">
+          <summary className="cursor-pointer list-none text-2xl leading-none">
+            ☰
+          </summary>
+
+          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+            <a href="/">Home</a>
+            <a href="/cross-heart-pray">Cross Heart Pray</a>
+            <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
+            <a href="/the-dj-cares">TheDJCares</a>
+            <a href="/what-am-i-ai">WhatAmIAI</a>
+          </div>
+        </details>
+
         </nav>
       </header>
 

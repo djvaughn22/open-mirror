@@ -104,16 +104,34 @@ export default function CrossHeartPrayReflectPage() {
 
   return (
     <main className="min-h-screen bg-black px-6 py-10 text-white">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between py-4">
-        <Link href="/" className="font-semibold">
+      <nav className="mx-auto grid grid-cols-3 max-w-5xl items-center py-4">
+        <a href="/" className="justify-self-start font-bold">
           Open Mirror
-        </Link>
+        </a>
 
-        <div className="flex gap-6 text-sm text-zinc-400">
-          <Link href="/">Home</Link>
-          <Link href="/cross-heart-pray">CrossHeartPray</Link>
-          <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">BIBLE</a>
-        </div>
+        <a
+          href="https://www.bible.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="justify-self-center text-sm text-zinc-400"
+        >
+          BIBLE
+        </a>
+
+        <details className="relative justify-self-end text-sm text-zinc-400">
+          <summary className="cursor-pointer list-none text-2xl leading-none">
+            ☰
+          </summary>
+
+          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+            <a href="/">Home</a>
+            <a href="/cross-heart-pray">Cross Heart Pray</a>
+            <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
+            <a href="/the-dj-cares">TheDJCares</a>
+            <a href="/what-am-i-ai">WhatAmIAI</a>
+          </div>
+        </details>
+
       </nav>
 
       <section className="mx-auto flex max-w-4xl flex-col items-center text-center">
