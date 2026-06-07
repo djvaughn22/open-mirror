@@ -11,6 +11,46 @@ function formatReflectionText(text: string) {
     .trim();
 }
 
+function renderReflectionWithBibleLinks(text: string) {
+  const books =
+    "Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\\s*Samuel|2\\s*Samuel|1\\s*Kings|2\\s*Kings|1\\s*Chronicles|2\\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Psalms|Proverbs|Ecclesiastes|Song\\s+of\\s+Solomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\\s*Corinthians|2\\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\\s*Thessalonians|2\\s*Thessalonians|1\\s*Timothy|2\\s*Timothy|Titus|Philemon|Hebrews|James|1\\s*Peter|2\\s*Peter|1\\s*John|2\\s*John|3\\s*John|Jude|Revelation";
+
+  const versePattern = new RegExp(
+    `\\b(${books})\\s+\\d{1,3}:\\d{1,3}(?:-\\d{1,3})?\\b`,
+    "gi"
+  );
+
+  const pieces = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(versePattern)) {
+    const reference = match[0];
+    const index = match.index ?? 0;
+
+    if (index > lastIndex) {
+      pieces.push(text.slice(lastIndex, index));
+    }
+
+    pieces.push(
+      <a
+        key={`${reference}-${index}`}
+        href={`https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-zinc-500 underline-offset-4 hover:text-white"
+      >
+        {reference}
+      </a>
+    );
+
+    lastIndex = index + reference.length;
+  }
+
+  pieces.push(text.slice(lastIndex));
+
+  return pieces;
+}
+
 export default function CrossHeartPrayReflectPage() {
   const [problem, setProblem] = useState("");
   const [reflection, setReflection] = useState("");
@@ -72,7 +112,7 @@ export default function CrossHeartPrayReflectPage() {
         <div className="flex gap-6 text-sm text-zinc-400">
           <Link href="/">Home</Link>
           <Link href="/cross-heart-pray">CrossHeartPray</Link>
-          <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">Bible</a>
+          <a href="https://www.bible.com/" target="_blank" rel="noopener noreferrer">BIBLE</a>
         </div>
       </nav>
 
@@ -153,7 +193,7 @@ placeholder="I am... I feel... I need help with... I am thankful for... I am str
             </p>
 
             <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
-              {formattedReflection}
+              {renderReflectionWithBibleLinks(formattedReflection)}
             </div>
           </div>
         )}
