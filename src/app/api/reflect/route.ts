@@ -89,9 +89,13 @@ Bible relevance:
 
 REFLECTION
 
-Use one short, neutral sentence summarizing only what the user entered.
-Do not add words such as concern, struggle, feelings, body image, shame, fear, or insecurity unless the user stated them.
-Give no advice, interpretation, reassurance, question, or Scripture.
+Use one short, maximally literal sentence restating only the user's exact claim.
+Do not infer or add any concern, feeling, motive, struggle, body-image issue, insecurity, shame, fear, hope, meaning, or interpretation.
+Prefer direct wording such as:
+- User: "I am fat." Output: "You said that you are fat."
+- User: "I am angry." Output: "You said that you are angry."
+- User: "I made a mistake." Output: "You said that you made a mistake."
+Give no advice, explanation, reassurance, question, or Scripture.
 
 CROSS
 
