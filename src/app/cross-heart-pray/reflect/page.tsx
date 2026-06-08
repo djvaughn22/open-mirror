@@ -51,6 +51,36 @@ function renderReflectionWithBibleLinks(text: string) {
   return pieces;
 }
 
+
+function renderStyledReflection(text: string) {
+  const bibleInstruction =
+    "Click any Bible reference to open the passage in the Bible app. Read it in context, meditate on God's Word, and pray honestly in your own words. Open Mirror only points you toward Scripture; God's Word is the authority.";
+
+  const actsInstruction =
+    "Talk to God in prayer in whatever way feels natural to you. If you would like a simple structure, use the ACTS passages below as a guide.";
+
+  return text.split(/\n\n+/).map((block, index) => {
+    const trimmed = block.trim();
+
+    if (trimmed === bibleInstruction || trimmed === actsInstruction) {
+      return (
+        <p
+          key={`guidance-${index}`}
+          className="my-6 text-center text-sm italic leading-7 text-yellow-300/80"
+        >
+          ({renderReflectionWithBibleLinks(trimmed)})
+        </p>
+      );
+    }
+
+    return (
+      <div key={`reflection-${index}`} className="whitespace-pre-wrap">
+        {renderReflectionWithBibleLinks(trimmed)}
+      </div>
+    );
+  });
+}
+
 export default function CrossHeartPrayReflectPage() {
   const [problem, setProblem] = useState("");
   const [reflection, setReflection] = useState("");
@@ -207,7 +237,7 @@ placeholder="I am... I feel... I need help with... I am thankful for... I am str
             </p>
 
             <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
-              {renderReflectionWithBibleLinks(formattedReflection)}
+              {renderStyledReflection(formattedReflection)}
             </div>
           </div>
         )}
