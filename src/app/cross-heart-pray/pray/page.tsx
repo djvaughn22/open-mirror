@@ -1,19 +1,23 @@
 const prayerSteps = [
   {
+    letter: "A",
     title: "Adoration",
-    text: "Begin by praising God for who He is: holy, loving, merciful, faithful, powerful, and present.",
+    text: "Praise God for who He is: holy, loving, merciful, faithful, powerful, and present.",
   },
   {
+    letter: "C",
     title: "Confession",
-    text: "Tell the truth to God. Confess sin, fear, pride, resentment, weakness, and anything you are carrying.",
+    text: "Bring sin and truth before God. Confess what needs forgiveness, mercy, and change.",
   },
   {
+    letter: "T",
     title: "Thanksgiving",
-    text: "Thank God for His mercy, forgiveness, provision, protection, patience, and love.",
+    text: "Thank God for His mercy, forgiveness, provision, patience, faithfulness, and love.",
   },
   {
+    letter: "S",
     title: "Supplication",
-    text: "Ask God for help. Ask for wisdom, courage, forgiveness, healing, direction, strength, and the next right step.",
+    text: "Ask God for help, wisdom, courage, forgiveness, healing, direction, and strength.",
   },
 ];
 
@@ -71,8 +75,17 @@ export default function PrayPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-300">
-            Prayer is honest conversation with God. The ACTS model gives you a
-            simple way to pray when you do not know where to start.
+            Prayer is personal conversation with God. Speak to Him in your own
+            words. If you would like help finding a simple structure, ACTS can
+            guide you through Scripture.
+          </p>
+
+          <p className="mx-auto mt-8 max-w-2xl text-xl italic leading-9 text-zinc-400">
+            Speak to God in prayer
+            <br />
+            Rest in His love and sacrifice
+            <br />
+            Bring Him all your heart
           </p>
         </section>
 
@@ -95,7 +108,12 @@ export default function PrayPage() {
                 paddingLeft: "32px",
               }}
             >
-              <h2 className="text-2xl font-bold">{step.title}</h2>
+              <div className="flex items-center gap-4">
+                <span className="text-3xl font-bold text-yellow-400">
+                  {step.letter}
+                </span>
+                <h2 className="text-2xl font-bold">{step.title}</h2>
+              </div>
 
               <p className="mt-5 leading-7 text-zinc-400">{step.text}</p>
             </div>
@@ -113,11 +131,11 @@ export default function PrayPage() {
             paddingLeft: "48px",
           }}
         >
-          <h2 className="text-3xl font-bold">Then seek Scripture.</h2>
+          <h2 className="text-3xl font-bold">Begin with reflection.</h2>
 
           <p className="mx-auto mt-6 max-w-2xl leading-7 text-zinc-400">
-            After prayer, bring your reflection to the mirror and seek a
-            Bible-grounded response for what you are facing.
+            Take a moment at the mirror. Then turn toward Jesus, open the Bible,
+            and continue through Cross, Heart, and Pray.
           </p>
 
           <div style={{ marginTop: "44px" }}>
