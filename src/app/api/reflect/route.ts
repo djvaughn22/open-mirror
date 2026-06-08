@@ -53,7 +53,10 @@ Rules:
 - Understand meaning rather than matching keywords or metaphors.
 - Body weight or the word "fat" must never trigger verses about burdens, heaviness, weariness, loads, or being weighed down.
 - Reject generic comfort verses that do not address the actual subject.
-- ACTS contains Bible references only, with 2 or 3 distinct and relevant references per category.
+- ACTS contains canonical Bible references only, never verse text.
+- Each ACTS item must look only like "Psalm 34:1", "1 John 1:9", or "Romans 12:1-2".
+- Do not put quotations, sentences, verse wording, explanations, or punctuation around ACTS references.
+- Return 2 or 3 distinct and relevant references per ACTS category.
 - Adoration references concern loving, praising, worshiping, or honoring God or Jesus.
 - Confession references concern confession, repentance, forgiveness, or honest examination. Do not invent guilt.
 - Thanksgiving references concern gratitude, grace, mercy, provision, forgiveness, or God's faithfulness.
@@ -187,8 +190,16 @@ Rules:
     const verse = (text: string, reference: string) =>
       `"${text.trim()}" — ${reference.trim()}`;
 
-    const references = (items: string[]) =>
-      items.map((item) => item.trim()).join("\n");
+    const references = (items: string[]) => {
+      const bibleReferencePattern =
+        /\b(?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*\s+\d{1,3}:\d{1,3}(?:-\d{1,3})?\b/g;
+
+      return items
+        .flatMap((item) => item.match(bibleReferencePattern) ?? [])
+        .map((reference) => reference.trim())
+        .slice(0, 3)
+        .join("\n");
+    };
 
     const formattedReflection = `## Reflection
 
@@ -196,19 +207,13 @@ ${result.reflection.trim()}
 
 ## ✝️ Cross
 
-Bring what you see honestly to Jesus.
-
 ${verse(result.cross.text, result.cross.reference)}
 
 ## ❤️ Heart
 
-Receive God's love, grace, mercy, forgiveness, and truth through His Word.
-
 ${verse(result.heart.text, result.heart.reference)}
 
 ## 🙏 Pray
-
-Meditate on God's Word and pray honestly in your own words about what you entered.
 
 ${verse(result.pray.text, result.pray.reference)}
 
@@ -216,11 +221,11 @@ ${verse(result.pray.text, result.pray.reference)}
 
 ${verse(result.scripture.text, result.scripture.reference)}
 
-Please click any Bible reference you find here, leave Open Mirror, and explore the passage further in your Bible or Bible app. Read the surrounding Scripture, meditate on God's Word, and pray honestly in your own words. God's Word is the authority; this reflection is only a guide.
+Click any Bible reference here and continue in your Bible or Bible app. Read the surrounding passages, meditate on God's Word, pray honestly in your own words, and draw closer to God. God's Word is the authority; Open Mirror only points you toward it.
 
 ## Optional ACTS Scripture Guide
 
-Pray however you want, honestly and in your own words. If you do not know where to begin or would like help structuring your prayer, consider ACTS and explore these passages in your Bible:
+Pray however you want in your own words. If you need help finding a structure, open these Scripture suggestions for ACTS:
 
 **Adoration**
 
