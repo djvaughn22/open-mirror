@@ -33,7 +33,7 @@ export default function Home() {
           <img src="/brand/youversion-bible-app.png" alt="YouVersion Bible App" className="h-9 w-9 rounded-lg" />
         </a>
 
-        <span className="justify-self-end text-sm text-zinc-500">Look Closer</span>
+        <span aria-hidden="true" />
       </nav>
 
       <section className="mx-auto flex min-h-[82vh] max-w-4xl flex-col items-center justify-center px-6 text-center">
