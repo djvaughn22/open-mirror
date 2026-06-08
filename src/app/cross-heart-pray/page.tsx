@@ -3,21 +3,21 @@ const steps = [
     title: "Cross",
     emoji: "✝️",
     href: "/cross-heart-pray/cross",
-    text: "Surrender what you are carrying to Jesus. Repent, receive forgiveness, and remember that the Cross is where grace meets the truth.",
+    text: "Bring what you saw to Jesus. Surrender it at the Cross, confess and repent where needed, and trust what Christ has already done.",
     cta: "Learn The Cross",
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/cross-heart-pray/heart",
-    text: "Receive God’s love, mercy, and grace in your heart. Let His truth move from something you know into something you live.",
+    text: "Open God’s Word. Receive His love, grace, mercy, forgiveness, correction, and truth through Scripture.",
     cta: "Learn The Heart",
   },
   {
     title: "Pray",
     emoji: "🙏",
     href: "/cross-heart-pray/pray",
-    text: "Pray honestly with God using a simple rhythm: adoration, confession, thanksgiving, and asking for help.",
+    text: "Talk with God in your own words. If you need a simple structure, ACTS can help guide your prayer through Scripture.",
     cta: "Learn To Pray",
   },
 ];
@@ -77,10 +77,17 @@ export default function CrossHeartPrayPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-300">
-            Cross Heart Pray is a simple reflection journey: surrender at the
-            Cross, receive God&apos;s love in your heart, pray honestly, then
-            seek Scripture for truth, hope, forgiveness, and the next right
-            step.
+            Cross Heart Pray is the next step after reflection. Turn from the
+            mirror, bring what you saw to Jesus, open God&apos;s Word, and
+            respond to Him in prayer.
+          </p>
+
+          <p className="mx-auto mt-8 max-w-2xl text-xl italic leading-9 text-zinc-400">
+            Pause at the mirror
+            <br />
+            Turn your eyes toward Jesus
+            <br />
+            Read, pray, follow Him
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -92,10 +99,12 @@ export default function CrossHeartPrayPage() {
             </a>
 
             <a
-              href="/cross-heart-pray/reflect"
+              href="https://www.bible.com/app"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-zinc-700 px-8 py-3 font-semibold text-white transition hover:border-white"
             >
-              Go To The Mirror
+              Open The Bible
             </a>
           </div>
         </section>
@@ -138,11 +147,11 @@ export default function CrossHeartPrayPage() {
             paddingLeft: "48px",
           }}
         >
-          <h2 className="text-3xl font-bold">Then bring it to the mirror.</h2>
+          <h2 className="text-3xl font-bold">Begin with reflection.</h2>
 
           <p className="mx-auto mt-6 max-w-2xl leading-7 text-zinc-400">
-            After Cross, Heart, and Pray, Open Mirror helps you reflect honestly
-            and seek a Scripture-grounded response for what you are carrying.
+            Take a moment at the mirror to notice what has your attention. Then
+            turn from the mirror and continue through Cross, Heart, and Pray.
           </p>
 
           <div style={{ marginTop: "40px" }}>
