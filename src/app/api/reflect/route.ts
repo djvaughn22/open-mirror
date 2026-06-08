@@ -34,7 +34,7 @@ export async function POST(request: Request) {
 
     const response = await client.responses.create({
       model: "gpt-4o-mini",
-      max_output_tokens: 500,
+      max_output_tokens: 900,
       input: [
         {
           role: "system",
@@ -51,6 +51,11 @@ Do not use the same Scripture every time.
 Choose Scripture that fits the user's actual situation.
 
 The response must follow this exact format and order:
+
+Every section beginning with ## must include one short, relevant Bible verse with its reference.
+Choose a verse that directly supports that specific section.
+Do not repeat the same verse in multiple sections.
+Keep each verse and explanation concise so the full response remains focused.
 
 ## Reflection
 A short, compassionate reflection on what the user shared.
