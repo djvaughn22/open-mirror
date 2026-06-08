@@ -4,7 +4,7 @@ const products = [
     emoji: "✝️ ❤️ 🙏",
     href: "/cross-heart-pray",
     description:
-      "Bring what you see to God. Lay it at the Cross, receive His love, pray honestly, and discover Scripture for your situation.",
+      "Turn away from the mirror. Bring what you see to Jesus, receive God’s truth through Scripture, and pray honestly.",
   },
   {
     name: "TheDJCares",
@@ -18,7 +18,7 @@ const products = [
     emoji: "🤖 🪞",
     href: "/what-am-i-ai",
     description:
-      "Coming soon: A deeper mirror for patterns, questions, blind spots, growth, and truth.",
+      "Coming soon: A tool for noticing patterns, questions, and blind spots more clearly.",
   },
 ];
 
@@ -78,8 +78,8 @@ export default function Home() {
         </h3>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Open Mirror exists to help people honestly reflect, seek truth, find
-          hope, and take their next step.
+          Open Mirror is a place to look honestly at yourself and open your eyes
+          to what is already true before God. God already knows you fully.
         </p>
 
         <p className="mt-8 max-w-2xl text-xl leading-8 text-zinc-300">
@@ -126,12 +126,13 @@ export default function Home() {
           </p>
 
           <p>
-            Open Mirror is a place to pause, reflect honestly, seek truth, and
-            move forward with wisdom, purpose, and hope.
+            The mirror helps you pause, look honestly at yourself, and recognize
+            what is already there.
           </p>
 
           <p className="text-zinc-300">
-            The mirror is the doorway. Truth is the path. Jesus is the answer.
+            Turn away from the mirror. Bring what you see to Jesus. Open
+            God&apos;s Word. Pray honestly. Follow Him.
           </p>
         </div>
       </section>
@@ -141,7 +142,7 @@ export default function Home() {
         className="border-t border-zinc-900 px-6 py-24 text-center"
       >
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          One Question · Many Mirrors
+          One Question · A Clear Next Step
         </p>
 
         <h2 className="text-4xl font-bold md:text-5xl">
@@ -179,8 +180,14 @@ export default function Home() {
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Bring what you see to the Mirror. AI will help connect your reflection
-          with prayer, Scripture, and a next step rooted in truth.
+          Look honestly. Then turn away from the mirror and bring what you see
+          to Jesus. Open Mirror uses AI only to suggest Bible passages that may
+          help you begin reading Scripture.
+        </p>
+
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-zinc-500">
+          AI does not provide the answers or speak for God. God&apos;s Word is
+          the authority. Jesus is the answer.
         </p>
 
         <a
@@ -192,7 +199,7 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. The mirror doesn&apos;t judge. The mirror reveals.
+        © Open Mirror LLC. Open God&apos;s Word. Pray honestly. Follow Jesus.
       </footer>
     </main>
   );
