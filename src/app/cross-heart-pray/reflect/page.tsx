@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function formatReflectionText(text: string) {
   return text
-    .replace(/\s*##\s*(Reflection|Cross|Heart|Pray|Prayer|Scripture|Next Faithful Step)\s*/g, "\n\n## $1\n\n")
+    .replace(/\s*##\s*(Reflection|✝️ Cross|❤️ Heart|🙏 Pray|📖 Scripture|Optional ACTS Scripture Guide|Next Faithful Step)\s*/g, "\n\n## $1\n\n")
     .replace(/\s*\*\*(Adoration|Confession|Thanksgiving|Supplication):\*\*\s*/g, "\n\n$1:\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -58,7 +58,7 @@ export default function CrossHeartPrayReflectPage() {
   const [error, setError] = useState("");
 
   const formattedReflection = reflection
-    .replace(/\s*(#{2,4}\s+(Reflection|Cross|Heart|Scripture|Prayer|Next Faithful Step))/g, "\n\n$1")
+    .replace(/\s*(#{2,4}\s+(Reflection|✝️ Cross|❤️ Heart|🙏 Pray|📖 Scripture|Optional ACTS Scripture Guide|Next Faithful Step))/g, "\n\n$1")
     .trim();
 
   async function beginReflection() {
