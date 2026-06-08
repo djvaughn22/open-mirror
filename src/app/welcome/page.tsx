@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
       <nav className="mx-auto grid grid-cols-3 max-w-6xl items-center px-6 py-6">
-        <a href="/" className="justify-self-start font-bold">
+        <a href="/welcome" className="justify-self-start font-bold">
           Open Mirror
         </a>
 

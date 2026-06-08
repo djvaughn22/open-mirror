@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
       <nav className="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 py-6">
-        <a href="/" className="justify-self-start font-bold">Open Mirror</a>
+        <span aria-hidden="true" />
 
         <a href="https://www.bible.com/app" target="_blank" rel="noopener noreferrer" aria-label="Open YouVersion Bible App" className="justify-self-center">
           <img src="/brand/youversion-bible-app.png" alt="YouVersion Bible App" className="h-9 w-9 rounded-lg" />
