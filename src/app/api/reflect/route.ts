@@ -51,8 +51,9 @@ Rules:
 - Cross, Heart, Pray, and Scripture each need one distinct and directly relevant Bible verse or short passage.
 - For those four sections, return the complete selected Bible text and its reference.
 - Understand meaning rather than matching keywords or metaphors.
-- Body weight or the word "fat" must never trigger verses about burdens, heaviness, weariness, loads, or being weighed down.
-- Reject generic comfort verses that do not address the actual subject.
+- Body weight or the word "fat" must never trigger verses about burdens, heaviness, weariness, loads, eating, drinking, food, appearance, body image, exercise, discipline, health, or self-control unless the user explicitly mentions those things.
+- When the user gives only a physical observation without stating an emotion, cause, behavior, desire, or question, do not guess what the observation means. Choose passages about honestly coming to Jesus, grace, wisdom, prayer, and self-examination instead of passages about the physical topic itself.
+- Reject generic comfort verses and literal keyword matches that do not address what the user actually stated.
 - ACTS contains canonical Bible references only, never verse text.
 - Each ACTS item must look only like "Psalm 34:1", "1 John 1:9", or "Romans 12:1-2".
 - Do not put quotations, sentences, verse wording, explanations, or punctuation around ACTS references.
