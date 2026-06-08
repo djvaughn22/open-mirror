@@ -37,11 +37,15 @@ export default function Home() {
       </nav>
 
       <section className="mx-auto flex min-h-[82vh] max-w-4xl flex-col items-center justify-center px-6 text-center">
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">Truth · Reflection · Freedom</p>
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">Look in the mirror.</p>
 
         <h1 className="text-5xl font-bold leading-tight md:text-8xl">Open Mirror</h1>
 
-        <p className="mt-6 max-w-2xl text-xl leading-8 text-zinc-400">The truth will set you free.</p>
+        <p className="mt-6 max-w-2xl text-xl leading-8 text-zinc-400">
+          What do you see?
+          <br />
+          The truth will set you free.
+        </p>
 
         <form onSubmit={handleSubmit} className="mt-10 flex w-full max-w-xl flex-col gap-4 sm:flex-row">
           <input
@@ -63,16 +67,25 @@ export default function Home() {
 
         {status === "error" && <p className="mt-6 max-w-lg text-sm leading-6 text-red-300">Something went wrong. Please try again.</p>}
 
-        <p className="mt-6 max-w-lg text-sm leading-6 text-zinc-500">Enter your email to look closely.</p>
+        <p className="mt-6 max-w-lg text-sm leading-6 text-zinc-500">
+          Look honestly. Then turn away from the mirror, open God&apos;s Word,
+          pray, and follow Jesus.
+        </p>
 
         <a href="https://www.bible.com/app" target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex items-center gap-3 rounded-full border border-zinc-800 px-5 py-3 text-sm text-zinc-300 hover:border-zinc-500 hover:text-white">
           <img src="/brand/youversion-bible-app.png" alt="" className="h-7 w-7 rounded-md" />
           Open the Bible
         </a>
+
+        <p className="mt-6 max-w-xl text-sm leading-7 text-zinc-500">
+          Open Mirror uses AI only to suggest Bible passages that may relate to
+          what you share and give you a place to begin reading Scripture.
+          God&apos;s Word is the authority. Jesus is the answer.
+        </p>
       </section>
 
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. The mirror doesn&apos;t judge. The mirror reveals.
+        © Open Mirror LLC. God&apos;s Word is the authority. Jesus is the answer.
       </footer>
     </main>
   );
