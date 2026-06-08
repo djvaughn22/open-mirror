@@ -78,14 +78,16 @@ export default function Home() {
         </h3>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Open Mirror is a place to look honestly at yourself and open your eyes
-          to what is already true before God. God already knows you fully.
+          Pause for a moment. Look honestly at yourself and notice what has your
+          attention. God already knows you fully.
         </p>
 
-        <p className="mt-8 max-w-2xl text-xl leading-8 text-zinc-300">
-          The mirror doesn&apos;t judge.
+        <p className="mt-8 max-w-2xl text-xl leading-9 text-zinc-300">
+          Do not stay at the mirror.
           <br />
-          The mirror reveals.
+          Turn.
+          <br />
+          Give your attention to Jesus.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -150,8 +152,14 @@ export default function Home() {
             Galatians 5:22–23
           </a>
 
+          <p className="text-sm font-bold uppercase tracking-[0.3em] text-yellow-400">
+            Resist the Drift
+          </p>
+
           <p className="text-zinc-300">
-            Read Scripture in context. Pray honestly. Follow Jesus.
+            Whether you are seeking God for the first time or returning after
+            wandering, turn toward Jesus. Read Scripture in context. Pray
+            honestly. Follow Him.
           </p>
         </div>
       </section>
@@ -193,15 +201,15 @@ export default function Home() {
         </p>
 
         <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
-          Look in the mirror.
+          Look for a moment.
           <br />
-          What do you see?
+          Then turn.
         </h2>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Look honestly. Then turn away from the mirror and bring what you see
-          to Jesus. Open Mirror uses AI only to suggest Bible passages that may
-          help you begin reading Scripture.
+          Notice what has your attention. Then turn away from the mirror and
+          give your attention to Jesus. Open Mirror uses AI only to suggest
+          Bible passages that may help you begin reading Scripture.
         </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-zinc-500">
