@@ -53,6 +53,22 @@ export default function HeartPage() {
             mercy, grace, forgiveness, and faith. You do not just know it in
             your head. You let it reach your heart.
           </p>
+
+          <p className="mx-auto mt-8 max-w-2xl text-xl italic leading-9 text-zinc-400">
+            God is love for you
+            <br />
+            Open your heart and receive
+            <br />
+            Walk within His truth
+          </p>
+
+          <p className="mx-auto mt-8 max-w-2xl text-xl italic leading-9 text-zinc-400">
+            God is love for you
+            <br />
+            Open your heart and receive
+            <br />
+            Walk within His truth
+          </p>
         </div>
 
         <section className="mt-16 grid gap-6">
