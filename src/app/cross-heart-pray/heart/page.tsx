@@ -62,13 +62,7 @@ export default function HeartPage() {
             Walk within His truth
           </p>
 
-          <p className="mx-auto mt-8 max-w-2xl text-xl italic leading-9 text-zinc-400">
-            God is love for you
-            <br />
-            Open your heart and receive
-            <br />
-            Walk within His truth
-          </p>
+
         </div>
 
         <section className="mt-16 grid gap-6">
