@@ -199,7 +199,7 @@ Rules:
         .flatMap((item) => item.match(bibleReferencePattern) ?? [])
         .map((reference) => reference.trim())
         .slice(0, 3)
-        .join("\n");
+        .join(", ");
     };
 
     const formattedReflection = `## Reflection
