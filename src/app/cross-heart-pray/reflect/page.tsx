@@ -139,21 +139,23 @@ export default function CrossHeartPrayReflectPage() {
           Open Mirror
         </a>
 
-        <a
-          href="https://www.bible.com/app"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open YouVersion Bible App"
-          className="justify-self-center"
-        >
-          <img
-            src="/brand/youversion-bible-app.png"
-            alt="YouVersion Bible App"
-            className="h-9 w-9 rounded-lg"
-          />
-        </a>
+        <span aria-hidden="true" />
 
-        <details className="relative justify-self-end text-sm text-zinc-400">
+        <div className="justify-self-end flex items-center gap-4">
+          <a
+            href="https://www.bible.com/app"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open YouVersion Bible App"
+          >
+            <img
+              src="/brand/youversion-bible-app.png"
+              alt="YouVersion Bible App"
+              className="h-9 w-9 rounded-lg"
+            />
+          </a>
+
+          <details className="relative text-sm text-zinc-400">
           <summary className="cursor-pointer list-none text-2xl leading-none">
             ☰
           </summary>
@@ -165,7 +167,8 @@ export default function CrossHeartPrayReflectPage() {
             <a href="/the-dj-cares">TheDJCares</a>
             <a href="/what-am-i-ai">WhatAmIAI</a>
           </div>
-        </details>
+          </details>
+        </div>
 
       </nav>
 
