@@ -21,7 +21,7 @@ export default function Home() {
       return;
     }
 
-    window.location.href = "/cross-heart-pray/reflect";
+    window.location.href = "/welcome";
   }
 
   return (
