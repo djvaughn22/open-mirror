@@ -39,9 +39,9 @@ export default function Home() {
       <section className="mx-auto flex min-h-[82vh] max-w-4xl flex-col items-center justify-center px-6 text-center">
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">Truth · Reflection · Freedom</p>
 
-        <h1 className="text-5xl font-bold leading-tight md:text-8xl">Enter the mirror.</h1>
+        <h1 className="text-5xl font-bold leading-tight md:text-8xl">Open Mirror</h1>
 
-        <p className="mt-6 max-w-2xl text-xl leading-8 text-zinc-400">Your reflection starts here.</p>
+        <p className="mt-6 max-w-2xl text-xl leading-8 text-zinc-400">The truth will set you free.</p>
 
         <form onSubmit={handleSubmit} className="mt-10 flex w-full max-w-xl flex-col gap-4 sm:flex-row">
           <input
