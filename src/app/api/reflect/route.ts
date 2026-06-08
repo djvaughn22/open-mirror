@@ -222,11 +222,11 @@ ${verse(result.pray.text, result.pray.reference)}
 
 ${verse(result.scripture.text, result.scripture.reference)}
 
-Click any Bible reference here and continue in your Bible or Bible app. Read the surrounding passages, meditate on God's Word, pray honestly in your own words, and draw closer to God. God's Word is the authority; Open Mirror only points you toward it.
+Click any Bible reference to open the passage in the Bible app. Read it in context, meditate on God's Word, and pray honestly in your own words. Open Mirror only points you toward Scripture; God's Word is the authority.
 
 ## Optional ACTS Scripture Guide
 
-Pray however you want in your own words. If you need help finding a structure, open these Scripture suggestions for ACTS:
+Talk to God in prayer in whatever way feels natural to you. If you would like a simple structure, use the ACTS passages below as a guide.
 
 **Adoration**
 
