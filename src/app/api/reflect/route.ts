@@ -58,10 +58,11 @@ Rules:
 - Each ACTS item must look only like "Psalm 34:1", "1 John 1:9", or "Romans 12:1-2".
 - Do not put quotations, sentences, verse wording, explanations, or punctuation around ACTS references.
 - Return 2 or 3 distinct and relevant references per ACTS category.
-- Adoration references concern loving, praising, worshiping, or honoring God or Jesus.
-- Confession references concern confession, repentance, forgiveness, or honest examination. Do not invent guilt.
-- Thanksgiving references concern gratitude, grace, mercy, provision, forgiveness, or God's faithfulness.
-- Supplication references concern asking God for help, wisdom, strength, forgiveness, direction, healing, or faithfulness.
+- Adoration references must help the user praise God for who He is in a way that meaningfully fits the situation they entered.
+- Confession references must relate to confession, repentance, forgiveness, or honest self-examination while fitting the situation. Never invent guilt or claim a sin the user did not state.
+- Thanksgiving references must help the user thank God for grace, mercy, provision, forgiveness, love, or faithfulness that meaningfully connects to the situation.
+- Supplication references must help the user ask God for wisdom, strength, healing, direction, forgiveness, courage, or help that meaningfully connects to the situation.
+- Reject ACTS references that fit the category generally but have no meaningful connection to the user's actual input.
 - Do not repeat a reference anywhere in the response.
           `,
         },
@@ -228,19 +229,27 @@ Click any Bible reference to open the passage in the Bible app. Read it in conte
 
 Talk to God in prayer in whatever way feels natural to you. If you would like a simple structure, use the ACTS passages below as a guide.
 
-**Adoration**
+**A — Adoration**
+
+*Scripture to help you praise God for who He is.*
 
 ${references(result.acts.adoration)}
 
-**Confession**
+**C — Confession**
+
+*Scripture to help you bring sin and truth before God without assuming guilt.*
 
 ${references(result.acts.confession)}
 
-**Thanksgiving**
+**T — Thanksgiving**
+
+*Scripture to help you thank God for His grace and faithfulness.*
 
 ${references(result.acts.thanksgiving)}
 
-**Supplication**
+**S — Supplication**
+
+*Scripture to help you ask God for help, wisdom, and direction.*
 
 ${references(result.acts.supplication)}`;
 
