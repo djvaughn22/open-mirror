@@ -154,15 +154,11 @@ export default function CrossHeartPrayReflectPage() {
           Look honestly.
           <br />
           Tell the truth.
-          <br />
-          What The Mirror Reveals.
         </p>
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-zinc-400">
-  The mirror reflects what you bring. Scripture reveals truth.
-  Bring what you see to Jesus through Cross Heart Pray, meditate on God&apos;s
-  Word, and pray honestly in your own words with ACTS
-  <span className="text-zinc-500">*</span> if helpful.
+  The mirror helps you reflect. Cross Heart Pray helps you bring what you see
+  to Jesus, receive God&apos;s truth through Scripture, and respond in prayer.
 </p>
 
 <p className="mx-auto mt-2 max-w-2xl text-center text-xs leading-5 text-zinc-500">
@@ -212,6 +208,11 @@ placeholder="I am... I feel... I need help with... I am thankful for... I am str
 
         {reflection && (
           <div className="mt-10 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left">
+            <p className="mb-6 text-center text-base leading-7 text-zinc-400">
+              The mirror reflects what you bring. Scripture reveals truth.
+              Bring what you see to Jesus.
+            </p>
+
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
               What The Mirror Reveals
             </p>
