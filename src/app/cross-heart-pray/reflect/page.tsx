@@ -213,8 +213,9 @@ placeholder="I am... I feel... I need help with... I am thankful for... I am str
               Bring what you see to Jesus.
             </p>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
-              Turn away from the mirror and lay what you see at the Cross.
+            <p className="text-center text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
+              <span className="block">Turn away from the mirror</span>
+              <span className="mt-2 block">and lay what you see at the Cross.</span>
             </p>
 
             <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
