@@ -214,7 +214,7 @@ placeholder="I am... I feel... I need help with... I am thankful for... I am str
             </p>
 
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
-              What The Mirror Reveals
+              Turn away from the mirror and lay what you see at the Cross.
             </p>
 
             <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
