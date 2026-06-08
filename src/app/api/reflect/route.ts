@@ -39,117 +39,26 @@ export async function POST(request: Request) {
         {
           role: "system",
           content: `
-You are Open Mirror, a Christian biblical reflection guide.
+You select biblically relevant Scripture for Open Mirror.
 
-Open Mirror is a doorway for honest self-reflection. The mirror is not Jesus, is not divine, and is not the source of truth, forgiveness, or salvation. It only helps the user examine their thoughts, feelings, choices, motives, habits, wounds, strengths, and sin. We are all sinners who need the grace and salvation of Jesus Christ.
+Open Mirror reflects only what the user states. It is not Jesus, Scripture, a pastor, therapist, counselor, or authority. God's Word is the authority. Jesus alone saves.
 
-AI is only a guide that helps connect the user's reflection to relevant Scripture. Do not speak as God, claim divine authority, or present an AI interpretation as unquestionable truth. God's Word is the authority. Jesus alone saves.
+Return only the requested structured data.
 
-Cross Heart Pray is the consistent process used after reflection:
-- Cross: help the user bring what they honestly see to Jesus.
-- Heart: help the user listen to Scripture and receive God's love, grace, mercy, correction, and truth.
-- Pray: help the user respond personally and faithfully to God.
-
-This process does not replace Scripture, prayer, pastoral care, Christian community, or a personal relationship with Jesus. It helps the user give what is personal and real to Jesus, examine it through the Bible, and respond in prayer.
-
-Respond to the user's real situation with compassion, truth, Scripture, and one next faithful step.
-
-Safety boundary: If the user mentions alcohol, drugs, anxiety, addiction, medication, diagnosis, or health/safety concerns, do not give intake limits, treatment plans, behavior plans, coping protocols, or medical-style advice. Stay biblical: Scripture, prayer, repentance, hope, and encourage trusted real-life support.
-
-The reflection input is almost always the user describing themselves. If they write phrases like "a person," "someone," or "the person," treat that as self-reflection unless they clearly say they are asking about another person. Respond directly to the user using "you," not as if discussing a third party.
-
-Do not use the same Scripture every time.
-Choose Scripture that fits the user's actual situation.
-
-The response must follow this exact format and order:
-
-Keep it brief, direct, humble, and grounded in Scripture.
-
-Never act like a therapist, counselor, life coach, pastor, or AI friend.
-Never invent feelings, motives, shame, insecurity, guilt, sin, trauma, diagnosis, concern, or meaning not stated by the user.
-Never write a prayer for the user or put words in their mouth.
-
-Bible format everywhere:
-- Include the complete text of one relevant Bible verse or short passage.
-- Put the Bible reference immediately after the text.
-- Use plain references only, not Markdown and not raw URLs.
-- Format exactly: "[complete Bible text]" — Book Chapter:Verse
-- The website will automatically turn the reference into a Bible link.
-
-Bible relevance:
-- Understand the meaning of the user's statement, not merely matching shared words or metaphors.
-- Reject any passage whose only connection is a literal word association.
-- Example: body weight, being overweight, or the word "fat" must not trigger verses about heavy burdens, being weighed down, or carrying a load.
-- First identify the concrete subject actually stated, without inventing emotions or motives.
-- Choose passages that directly connect that subject to Jesus, biblical truth, prayer, wisdom, stewardship, repentance, grace, or faithful living.
-- Reject passages that are only generally comforting and do not address the actual subject.
-- Do not default to Matthew 11:28, Romans 8:28, Psalm 139:14, or Philippians 4:6-7 unless the user's words genuinely fit those passages.
-- Use a different passage in every section.
-- Before using each passage, silently verify: "Would this passage still fit if the user's exact wording were paraphrased without its keywords?" If not, choose another passage.
-
-## Reflection
-
-Use one short, maximally literal sentence restating only the user's exact claim.
-Do not infer or add any concern, feeling, motive, struggle, body-image issue, insecurity, shame, fear, hope, meaning, or interpretation.
-Prefer direct wording such as:
-- User: "I am fat." Output: "You said that you are fat."
-- User: "I am angry." Output: "You said that you are angry."
-- User: "I made a mistake." Output: "You said that you made a mistake."
-Give no advice, explanation, reassurance, question, or Scripture.
-
-## ✝️ Cross
-
-Write exactly:
-"Bring what you see honestly to Jesus."
-
-Then include one complete relevant verse about Jesus, surrender, repentance, confession, forgiveness, grace, or Christ's work.
-
-## ❤️ Heart
-
-Write exactly:
-"Receive God's love, grace, mercy, forgiveness, and truth through His Word."
-
-Then include one complete relevant verse about God's love, grace, mercy, forgiveness, correction, wisdom, or truth.
-
-## 🙏 Pray
-
-Write exactly:
-"Meditate on God's Word and pray honestly in your own words about what you entered."
-
-Never write the prayer, an opening, a closing, or words for the user to repeat.
-
-Then include one complete relevant verse about prayer, seeking God, listening, or asking Him for help.
-
-## 📖 Scripture
-
-Include one complete verse or short passage that best summarizes the entire reflection.
-
-Then write exactly:
-"Open this passage, meditate on God's Word, and read it in context. God's Word is the authority; this reflection is only a guide."
-
-## Optional ACTS Scripture Guide
-
-Write exactly:
-"Pray however you want, honestly and in your own words. If you need help with structure, consider these Scriptures for ACTS:"
-
-ACTS contains only the four labels and their Scriptures.
-Add no advice, prompts, explanations, interpretations, commentary, opening, closing, or suggested prayer wording.
-
-Adoration
-Include one complete situation-relevant verse about loving, praising, worshiping, or honoring God or Jesus.
-
-Confession
-Include one complete situation-relevant verse about confession, repentance, forgiveness, or honest examination.
-Do not invent guilt or claim the user committed a particular sin.
-
-Thanksgiving
-Include one complete situation-relevant verse about gratitude, grace, mercy, provision, forgiveness, or God's faithfulness.
-
-Supplication
-Include one complete situation-relevant verse about asking God for help, wisdom, strength, forgiveness, direction, healing, or faithfulness.
-
-Keep the tone warm, honest, humble, hopeful, concise, and biblically grounded.
-Do not sound preachy, harsh, generic, robotic, therapeutic, or overly conversational.
+Rules:
+- reflection must be one short, maximally literal restatement of only what the user said.
+- Never invent concern, feelings, motives, shame, guilt, insecurity, body image, trauma, diagnosis, sin, or meaning.
+- Cross, Heart, Pray, and Scripture each need one distinct and directly relevant Bible verse or short passage.
+- For those four sections, return the complete selected Bible text and its reference.
+- Understand meaning rather than matching keywords or metaphors.
+- Body weight or the word "fat" must never trigger verses about burdens, heaviness, weariness, loads, or being weighed down.
+- Reject generic comfort verses that do not address the actual subject.
+- ACTS contains Bible references only, with 2 or 3 distinct and relevant references per category.
+- Adoration references concern loving, praising, worshiping, or honoring God or Jesus.
+- Confession references concern confession, repentance, forgiveness, or honest examination. Do not invent guilt.
+- Thanksgiving references concern gratitude, grace, mercy, provision, forgiveness, or God's faithfulness.
+- Supplication references concern asking God for help, wisdom, strength, forgiveness, direction, healing, or faithfulness.
+- Do not repeat a reference anywhere in the response.
           `,
         },
         {
@@ -157,10 +66,180 @@ Do not sound preachy, harsh, generic, robotic, therapeutic, or overly conversati
           content: problem,
         },
       ],
+      text: {
+        format: {
+          type: "json_schema",
+          name: "open_mirror_reflection",
+          strict: true,
+          schema: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              reflection: {
+                type: "string",
+              },
+              cross: {
+                type: "object",
+                additionalProperties: false,
+                properties: {
+                  text: { type: "string" },
+                  reference: { type: "string" },
+                },
+                required: ["text", "reference"],
+              },
+              heart: {
+                type: "object",
+                additionalProperties: false,
+                properties: {
+                  text: { type: "string" },
+                  reference: { type: "string" },
+                },
+                required: ["text", "reference"],
+              },
+              pray: {
+                type: "object",
+                additionalProperties: false,
+                properties: {
+                  text: { type: "string" },
+                  reference: { type: "string" },
+                },
+                required: ["text", "reference"],
+              },
+              scripture: {
+                type: "object",
+                additionalProperties: false,
+                properties: {
+                  text: { type: "string" },
+                  reference: { type: "string" },
+                },
+                required: ["text", "reference"],
+              },
+              acts: {
+                type: "object",
+                additionalProperties: false,
+                properties: {
+                  adoration: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 2,
+                    maxItems: 3,
+                  },
+                  confession: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 2,
+                    maxItems: 3,
+                  },
+                  thanksgiving: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 2,
+                    maxItems: 3,
+                  },
+                  supplication: {
+                    type: "array",
+                    items: { type: "string" },
+                    minItems: 2,
+                    maxItems: 3,
+                  },
+                },
+                required: [
+                  "adoration",
+                  "confession",
+                  "thanksgiving",
+                  "supplication",
+                ],
+              },
+            },
+            required: [
+              "reflection",
+              "cross",
+              "heart",
+              "pray",
+              "scripture",
+              "acts",
+            ],
+          },
+        },
+      },
     });
 
+    let result: {
+      reflection: string;
+      cross: { text: string; reference: string };
+      heart: { text: string; reference: string };
+      pray: { text: string; reference: string };
+      scripture: { text: string; reference: string };
+      acts: {
+        adoration: string[];
+        confession: string[];
+        thanksgiving: string[];
+        supplication: string[];
+      };
+    };
+
+    try {
+      result = JSON.parse(response.output_text);
+    } catch {
+      throw new Error("Structured reflection response could not be parsed.");
+    }
+
+    const verse = (text: string, reference: string) =>
+      `"${text.trim()}" — ${reference.trim()}`;
+
+    const references = (items: string[]) =>
+      items.map((item) => item.trim()).join("\n");
+
+    const formattedReflection = `## Reflection
+
+${result.reflection.trim()}
+
+## ✝️ Cross
+
+Bring what you see honestly to Jesus.
+
+${verse(result.cross.text, result.cross.reference)}
+
+## ❤️ Heart
+
+Receive God's love, grace, mercy, forgiveness, and truth through His Word.
+
+${verse(result.heart.text, result.heart.reference)}
+
+## 🙏 Pray
+
+Meditate on God's Word and pray honestly in your own words about what you entered.
+
+${verse(result.pray.text, result.pray.reference)}
+
+## 📖 Scripture
+
+${verse(result.scripture.text, result.scripture.reference)}
+
+Please click any Bible reference you find here, leave Open Mirror, and explore the passage further in your Bible or Bible app. Read the surrounding Scripture, meditate on God's Word, and pray honestly in your own words. God's Word is the authority; this reflection is only a guide.
+
+## Optional ACTS Scripture Guide
+
+Pray however you want, honestly and in your own words. If you do not know where to begin or would like help structuring your prayer, consider ACTS and explore these passages in your Bible:
+
+**Adoration**
+
+${references(result.acts.adoration)}
+
+**Confession**
+
+${references(result.acts.confession)}
+
+**Thanksgiving**
+
+${references(result.acts.thanksgiving)}
+
+**Supplication**
+
+${references(result.acts.supplication)}`;
+
     return NextResponse.json({
-      reflection: response.output_text,
+      reflection: formattedReflection,
     });
   } catch (error: any) {
     console.error(error);
