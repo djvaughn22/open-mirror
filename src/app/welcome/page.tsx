@@ -119,20 +119,39 @@ export default function Home() {
         </h2>
 
         <div className="mx-auto mt-10 max-w-3xl space-y-6 text-lg leading-8 text-zinc-400">
-          <p>Everyone is carrying something.</p>
-
           <p>
-            Anxiety. Fear. Pain. Shame. Anger. Grief. Loneliness. Questions. Confusion.
+            Bring your gratitude, hope, purpose, growth, questions, and change.
           </p>
 
           <p>
-            The mirror helps you pause, look honestly at yourself, and recognize
-            what is already there.
+            Bring your fear, pain, grief, confusion, and anxiety.
+          </p>
+
+          <p>
+            Look honestly at what is there. Then turn away from the mirror,
+            bring it to Jesus, and open God&apos;s Word.
           </p>
 
           <p className="text-zinc-300">
-            Turn away from the mirror. Bring what you see to Jesus. Open
-            God&apos;s Word. Pray honestly. Follow Him.
+            Seek the fruit of the Spirit:
+          </p>
+
+          <p>
+            Love. Joy. Peace. Patience. Kindness. Goodness. Faithfulness.
+            Gentleness. Self-control.
+          </p>
+
+          <a
+            href="https://www.bible.com/search/bible?q=Galatians%205%3A22-23"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm text-zinc-500 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+          >
+            Galatians 5:22–23
+          </a>
+
+          <p className="text-zinc-300">
+            Read Scripture in context. Pray honestly. Follow Jesus.
           </p>
         </div>
       </section>
