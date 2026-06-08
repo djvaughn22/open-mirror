@@ -6,7 +6,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("saving");
 
