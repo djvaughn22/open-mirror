@@ -2,7 +2,7 @@ export default function TheDJCaresPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <nav className="mx-auto grid grid-cols-3 max-w-6xl items-center px-6 py-6">
-        <a href="/" className="justify-self-start font-bold">
+        <a href="/welcome" className="justify-self-start font-bold">
           Open Mirror
         </a>
 
@@ -26,7 +26,7 @@ export default function TheDJCaresPage() {
           </summary>
 
           <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-            <a href="/">Home</a>
+            <a href="/welcome">Home</a>
             <a href="/cross-heart-pray">Cross Heart Pray</a>
             <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
             <a href="/the-dj-cares">TheDJCares</a>
