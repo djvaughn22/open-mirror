@@ -155,13 +155,14 @@ export default function CrossHeartPrayReflectPage() {
           <br />
           Tell the truth.
           <br />
-          Bring what you see to God.
+          What The Mirror Reveals.
         </p>
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-zinc-400">
-  The Mirror helps you reflect, bring it to the Cross, receive
-  God&apos;s love, find Scripture, pray with ACTS
-  <span className="text-zinc-500">*</span>, and take the next faithful step.
+  The mirror reflects what you bring. Scripture reveals truth.
+  Bring what you see to Jesus through Cross Heart Pray, meditate on God&apos;s
+  Word, and pray honestly in your own words with ACTS
+  <span className="text-zinc-500">*</span> if helpful.
 </p>
 
 <p className="mx-auto mt-2 max-w-2xl text-center text-xs leading-5 text-zinc-500">
