@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: "Open Mirror <onboarding@resend.dev>",
-      to: ["ask@openmirrorllc.com"],
+      to: ["djvaughn22@gmail.com"],
       subject: "New Open Mirror email signup",
       text: `New Open Mirror signup:\n\nEmail: ${email}\nTime: ${createdAt}\nIP: ${ip}`,
     });
