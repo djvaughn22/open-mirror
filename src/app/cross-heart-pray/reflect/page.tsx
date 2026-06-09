@@ -11,7 +11,14 @@ function formatReflectionText(text: string) {
     .trim();
 }
 
-function renderReflectionWithBibleLinks(text: string) {
+function renderReflectionWithBibleLinks(
+  text: string,
+  expandedVerse: string | null,
+  verseExplanation: string,
+  verseExplanationLoading: boolean,
+  verseExplanationError: string,
+  onExplainVerse: (reference: string) => void
+) {
   const books =
     "Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\\s*Samuel|2\\s*Samuel|1\\s*Kings|2\\s*Kings|1\\s*Chronicles|2\\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Psalms|Proverbs|Ecclesiastes|Song\\s+of\\s+Solomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\\s*Corinthians|2\\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\\s*Thessalonians|2\\s*Thessalonians|1\\s*Timothy|2\\s*Timothy|Titus|Philemon|Hebrews|James|1\\s*Peter|2\\s*Peter|1\\s*John|2\\s*John|3\\s*John|Jude|Revelation";
 
@@ -32,15 +39,40 @@ function renderReflectionWithBibleLinks(text: string) {
     }
 
     pieces.push(
-      <a
-        key={`${reference}-${index}`}
-        href={`https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="underline decoration-zinc-500 underline-offset-4 hover:text-white"
-      >
-        {reference}
-      </a>
+      <span key={`${reference}-${index}`} className="inline-flex flex-wrap items-center gap-2">
+        <a
+          href={`https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-zinc-500 underline-offset-4 hover:text-white"
+        >
+          {reference}
+        </a>
+
+        <button
+          type="button"
+          onClick={() => onExplainVerse(reference)}
+          className="rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 text-xs font-semibold text-yellow-200 transition hover:border-yellow-300/60 hover:bg-yellow-400/20"
+        >
+          {expandedVerse === reference ? "Hide explanation" : "Why this verse?"}
+        </button>
+
+        {expandedVerse === reference && (
+          <span className="mt-2 block w-full rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4 text-sm leading-7 text-zinc-300">
+            <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.25em] text-yellow-400">
+              Why this may connect
+            </span>
+
+            {verseExplanationLoading && "Looking at this one passage..."}
+
+            {!verseExplanationLoading && verseExplanation && verseExplanation}
+
+            {!verseExplanationLoading && verseExplanationError && (
+              <span className="text-red-300">{verseExplanationError}</span>
+            )}
+          </span>
+        )}
+      </span>
     );
 
     lastIndex = index + reference.length;
@@ -52,7 +84,14 @@ function renderReflectionWithBibleLinks(text: string) {
 }
 
 
-function renderStyledReflection(text: string) {
+function renderStyledReflection(
+  text: string,
+  expandedVerse: string | null,
+  verseExplanation: string,
+  verseExplanationLoading: boolean,
+  verseExplanationError: string,
+  onExplainVerse: (reference: string) => void
+) {
   const bibleInstruction =
     "Click any Bible reference to open the passage in the Bible app. Read it in context, meditate on God's Word, and pray honestly in your own words. Open Mirror only points you toward Scripture; God's Word is the authority.";
 
@@ -68,14 +107,14 @@ function renderStyledReflection(text: string) {
           key={`guidance-${index}`}
           className="my-6 text-center text-sm italic leading-7 text-yellow-300/80"
         >
-          ({renderReflectionWithBibleLinks(trimmed)})
+          ({renderReflectionWithBibleLinks(trimmed, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, onExplainVerse)})
         </p>
       );
     }
 
     return (
       <div key={`reflection-${index}`} className="whitespace-pre-wrap">
-        {renderReflectionWithBibleLinks(trimmed)}
+        {renderReflectionWithBibleLinks(trimmed, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, onExplainVerse)}
       </div>
     );
   });
@@ -86,14 +125,59 @@ export default function CrossHeartPrayReflectPage() {
   const [reflection, setReflection] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [expandedVerse, setExpandedVerse] = useState<string | null>(null);
+  const [verseExplanation, setVerseExplanation] = useState("");
+  const [verseExplanationLoading, setVerseExplanationLoading] = useState(false);
+  const [verseExplanationError, setVerseExplanationError] = useState("");
 
   const formattedReflection = reflection
     .replace(/\s*(#{2,4}\s+(Reflection|✝️ Cross|❤️ Heart|🙏 Pray|📖 Scripture|Optional ACTS Scripture Guide|Next Faithful Step))/g, "\n\n$1")
     .trim();
 
+  async function explainVerse(reference: string) {
+    if (expandedVerse === reference) {
+      setExpandedVerse(null);
+      setVerseExplanation("");
+      setVerseExplanationError("");
+      return;
+    }
+
+    setExpandedVerse(reference);
+    setVerseExplanation("");
+    setVerseExplanationError("");
+    setVerseExplanationLoading(true);
+
+    try {
+      const response = await fetch("/api/verse-explanation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ problem, verse: reference }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to explain this verse.");
+      }
+
+      setVerseExplanation(data.explanation);
+    } catch (err: any) {
+      setVerseExplanationError(
+        err?.message || "Unable to explain this verse right now."
+      );
+    } finally {
+      setVerseExplanationLoading(false);
+    }
+  }
+
   async function beginReflection() {
     setError("");
     setReflection("");
+    setExpandedVerse(null);
+    setVerseExplanation("");
+    setVerseExplanationError("");
 
     if (!problem.trim()) {
       setError("Please share what you are carrying.");
@@ -250,7 +334,7 @@ export default function CrossHeartPrayReflectPage() {
             </p>
 
             <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
-              {renderStyledReflection(formattedReflection)}
+              {renderStyledReflection(formattedReflection, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, explainVerse)}
             </div>
           </div>
         )}
