@@ -206,9 +206,19 @@ export default function CrossHeartPrayReflectPage() {
           <textarea
             value={problem}
             onChange={(e) => setProblem(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+
+                if (!isLoading) {
+                  beginReflection();
+                }
+              }
+            }}
             maxLength={250}
             className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
-placeholder="I am... I feel... I need help with... I am thankful for... I am struggling with... I am hoping for..."          />
+            placeholder="I am... I feel... I need help with... I am thankful for... I am struggling with... I am hoping for..."
+          />
 
           <p className="mt-2 text-right text-sm text-zinc-500">
             {problem.length}/250 characters
