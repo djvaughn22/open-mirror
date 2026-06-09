@@ -1,0 +1,169 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+function formatReflectionText(text: string) {
+  return text
+    .replace(/\s*##\s*(Reflection|Cross|Heart|Pray|Prayer|Scripture|Next Faithful Step)\s*/g, "\n\n## $1\n\n")
+    .replace(/\s*\*\*(Adoration|Confession|Thanksgiving|Supplication):\*\*\s*/g, "\n\n$1:\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+export default function CrossHeartPrayReflectPage() {
+  const [problem, setProblem] = useState("");
+  const [reflection, setReflection] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const formattedReflection = reflection
+    .replace(/\s*(#{2,4}\s+(Reflection|Cross|Heart|Scripture|Prayer|Next Faithful Step))/g, "\n\n$1")
+    .trim();
+
+  async function beginReflection() {
+    setError("");
+    setReflection("");
+
+    if (!problem.trim()) {
+      setError("Please share what you are carrying.");
+      return;
+    }
+
+    if (problem.length > 250) {
+      setError("Please keep your reflection to 250 characters or less.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/reflect", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ problem }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to generate reflection.");
+      }
+
+      setReflection(formatReflectionText(data.reflection));
+    } catch (err: any) {
+      setError(
+        err?.message || "The Mirror could not respond right now. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <main className="min-h-screen bg-black px-6 py-10 text-white">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between py-4">
+        <Link href="/" className="font-semibold">
+          Open Mirror
+        </Link>
+
+        <div className="flex gap-6 text-sm text-zinc-400">
+          <Link href="/">Home</Link>
+          <Link href="/cross-heart-pray">CrossHeartPray</Link>
+        </div>
+      </nav>
+
+      <section className="mx-auto flex max-w-4xl flex-col items-center text-center">
+        <div className="mb-6 text-6xl">🪞</div>
+
+        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+          The Mirror
+        </p>
+
+        <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
+          Talk To The Mirror
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-xl leading-9 text-zinc-300">
+          Look honestly.
+          <br />
+          Tell the truth.
+          <br />
+          Bring what you see to God.
+        </p>
+
+        <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-zinc-400">
+  The Mirror helps you reflect, bring it to the Cross, receive
+  God&apos;s love, find Scripture, pray with ACTS
+  <span className="text-zinc-500">*</span>, and take the next faithful step.
+</p>
+
+<p className="mx-auto mt-2 max-w-2xl text-center text-xs leading-5 text-zinc-500">
+  * ACTS is a simple prayer guide: Adoration, Confession, Thanksgiving, and Supplication.
+</p>
+
+        <div className="mt-12 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left shadow-2xl">
+          <label className="text-sm font-semibold text-zinc-300">
+            What do you see?
+          </label>
+
+          <div className="mt-4 rounded-2xl border border-zinc-800 bg-black/40 px-5 py-4 text-sm leading-7 text-zinc-300">
+            <p>
+              ✝️ <span className="font-semibold text-white">Cross</span> — Surrender. Repent. Give it to Jesus.
+            </p>
+            <p>
+              ❤️ <span className="font-semibold text-white">Heart</span> — Receive God’s Love, Grace, Mercy, Truth.
+            </p>
+            <p>
+              🙏 <span className="font-semibold text-white">Pray</span> — Praise Him. Thank Him. Ask Him.
+            </p>
+          </div>
+
+          <textarea
+            value={problem}
+            onChange={(e) => setProblem(e.target.value)}
+            maxLength={250}
+            className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
+placeholder="Describe honestly what you see. Your strengths. Your struggles. Your questions. Your fears. Your hopes. Your habits. What do you see?"          />
+
+          <p className="mt-2 text-right text-sm text-zinc-500">
+            {problem.length}/250 characters
+          </p>
+
+          <button
+            onClick={beginReflection}
+            disabled={isLoading}
+            className="mt-5 rounded-full bg-white px-8 py-3 font-semibold text-black disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isLoading ? "The Mirror is reflecting..." : "Talk To The Mirror"}
+          </button>
+
+          {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
+        </div>
+
+
+
+        {reflection && (
+          <div className="mt-10 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
+              What The Mirror Reveals
+            </p>
+
+            <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
+              {formattedReflection}
+            </div>
+          </div>
+        )}
+
+        <div className="mt-12 max-w-3xl text-center text-sm leading-7 text-zinc-500">
+          CrossHeartPray provides biblical reflection and prayer guidance. It is
+          not pastoral counseling, medical advice, legal advice, or a substitute
+          for your local church, trusted relationships, or professional care
+          when needed.
+        </div>
+      </section>
+    </main>
+  );
+}
