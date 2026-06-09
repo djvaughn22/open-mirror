@@ -25,6 +25,72 @@ export async function POST(request: Request) {
       );
     }
 
+    const normalizedProblem = problem.trim().toLowerCase();
+
+    const immediateSafetyPattern =
+      /\b(suicid(?:e|al)|kill myself|end my life|take my life|hurt myself|harm myself|self[- ]?harm|don['’]?t want to live|do not want to live|better off dead|wish i were dead|wish i was dead)\b/i;
+
+    const depressionPattern =
+      /\b(depressed|depression|hopeless|no hope|can['’]?t go on|cannot go on)\b/i;
+
+    if (immediateSafetyPattern.test(normalizedProblem)) {
+      const safetyReflection = `## Please pause here
+
+What you shared may involve your immediate safety. Open Mirror should not try to handle this with an ordinary reflection or a list of Bible verses.
+
+Please contact someone who can be with you now: a trusted family member, friend, pastor, clinician, or emergency service.
+
+In the United States, call or text 988 to reach the Suicide & Crisis Lifeline. If you may act on these thoughts or are in immediate danger, call 911 or go to the nearest emergency department.
+
+You do not need to face this moment alone.
+
+## 📖 Scripture
+
+"The Lord is near to all who call on him, to all who call on him in truth." — Psalm 145:18
+
+Open the passage in your Bible, but please seek immediate human support first. Scripture and prayer matter deeply, and urgent real-life help matters too.`;
+
+      return NextResponse.json({
+        reflection: safetyReflection,
+        safety: true,
+      });
+    }
+
+    if (depressionPattern.test(normalizedProblem)) {
+      const supportReflection = `## Reflection
+
+You said that you are feeling depressed or hopeless.
+
+## Please reach out
+
+Please tell a trusted person today—a family member, friend, pastor, or qualified mental-health professional. Open Mirror cannot determine how serious this is, and you should not have to carry it alone.
+
+If you are thinking about harming yourself, do not want to live, or feel unsafe, call or text 988 in the United States. If you are in immediate danger, call 911 or go to the nearest emergency department.
+
+## ✝️ Cross
+
+"I have come that they may have life, and have it to the full." — John 10:10
+
+## ❤️ Heart
+
+"May the God of hope fill you with all joy and peace as you trust in him." — Romans 15:13
+
+## 🙏 Pray
+
+"Cast all your anxiety on him because he cares for you." — 1 Peter 5:7
+
+## 📖 Scripture
+
+"The light shines in the darkness, and the darkness has not overcome it." — John 1:5
+
+Click a Bible reference to read it in context. Pray in your own words, and please also reach out to a real person who can support you.`;
+
+      return NextResponse.json({
+        reflection: supportReflection,
+        safety: true,
+      });
+    }
+
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json(
         { error: "OpenAI API key is missing on the server." },
@@ -54,6 +120,9 @@ Rules:
 - Body weight or the word "fat" must never trigger verses about burdens, heaviness, weariness, loads, eating, drinking, food, appearance, body image, exercise, discipline, health, or self-control unless the user explicitly mentions those things.
 - When the user gives only a physical observation without stating an emotion, cause, behavior, desire, or question, do not guess what the observation means. Choose passages about honestly coming to Jesus, grace, wisdom, prayer, and self-examination instead of passages about the physical topic itself.
 - Reject generic comfort verses and literal keyword matches that do not address what the user actually stated.
+- For ordinary sadness, disappointment, loneliness, or discouragement, use gentle passages about God's presence, care, peace, hope, love, and faithfulness.
+- For ordinary sadness, do not choose passages centered on death, dying, being crushed, brokenheartedness, heavy burdens, condemnation, destruction, despair, punishment, or suffering unless the user explicitly names those themes.
+- Never diagnose sadness as depression or assume danger that the user did not state.
 - ACTS contains canonical Bible references only, never verse text.
 - Each ACTS item must look only like "Psalm 34:1", "1 John 1:9", or "Romans 12:1-2".
 - Do not put quotations, sentences, verse wording, explanations, or punctuation around ACTS references.
