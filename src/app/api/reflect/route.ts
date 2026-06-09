@@ -91,6 +91,149 @@ Click a Bible reference to read it in context. Pray in your own words, and pleas
       });
     }
 
+    const reviewedEmotionalResponses = [
+      {
+        pattern:
+          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:sad|unhappy|down|discouraged)(?:\s+today)?[.!]?$/i,
+        reflection: "You said that you are sad.",
+        cross: {
+          text: "Peace I leave with you; my peace I give you.",
+          reference: "John 14:27",
+        },
+        heart: {
+          text: "May the God of hope fill you with all joy and peace as you trust in him.",
+          reference: "Romans 15:13",
+        },
+        pray: {
+          text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+          reference: "Psalm 62:8",
+        },
+        scripture: {
+          text: "The Lord is good to all; he has compassion on all he has made.",
+          reference: "Psalm 145:9",
+        },
+      },
+      {
+        pattern:
+          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:lonely|alone|isolated)[.!]?$/i,
+        reflection: "You said that you feel alone.",
+        cross: {
+          text: "Surely I am with you always, to the very end of the age.",
+          reference: "Matthew 28:20",
+        },
+        heart: {
+          text: "See what great love the Father has lavished on us, that we should be called children of God.",
+          reference: "1 John 3:1",
+        },
+        pray: {
+          text: "You will seek me and find me when you seek me with all your heart.",
+          reference: "Jeremiah 29:13",
+        },
+        scripture: {
+          text: "God is faithful, who has called you into fellowship with his Son, Jesus Christ our Lord.",
+          reference: "1 Corinthians 1:9",
+        },
+      },
+      {
+        pattern:
+          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:afraid|scared|fearful|worried|anxious)[.!]?$/i,
+        reflection: "You said that you feel afraid or worried.",
+        cross: {
+          text: "Peace I leave with you; my peace I give you.",
+          reference: "John 14:27",
+        },
+        heart: {
+          text: "God is love. Whoever lives in love lives in God, and God in them.",
+          reference: "1 John 4:16",
+        },
+        pray: {
+          text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault.",
+          reference: "James 1:5",
+        },
+        scripture: {
+          text: "Now may the Lord of peace himself give you peace at all times and in every way.",
+          reference: "2 Thessalonians 3:16",
+        },
+      },
+      {
+        pattern:
+          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:overwhelmed|stressed|exhausted|tired)[.!]?$/i,
+        reflection: "You said that you feel overwhelmed or tired.",
+        cross: {
+          text: "My grace is sufficient for you, for my power is made perfect in weakness.",
+          reference: "2 Corinthians 12:9",
+        },
+        heart: {
+          text: "The Lord is gracious and compassionate, slow to anger and rich in love.",
+          reference: "Psalm 145:8",
+        },
+        pray: {
+          text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault.",
+          reference: "James 1:5",
+        },
+        scripture: {
+          text: "Be still, and know that I am God.",
+          reference: "Psalm 46:10",
+        },
+      },
+      {
+        pattern:
+          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:grieving|heartbroken|mourning)|(?:i miss .+)[.!]?$/i,
+        reflection: "You shared that you are grieving or missing someone.",
+        cross: {
+          text: "Jesus Christ is the same yesterday and today and forever.",
+          reference: "Hebrews 13:8",
+        },
+        heart: {
+          text: "The Lord is gracious and compassionate, slow to anger and rich in love.",
+          reference: "Psalm 145:8",
+        },
+        pray: {
+          text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+          reference: "Psalm 62:8",
+        },
+        scripture: {
+          text: "May the God of hope fill you with all joy and peace as you trust in him.",
+          reference: "Romans 15:13",
+        },
+      },
+    ];
+
+    const reviewedResponse = reviewedEmotionalResponses.find(({ pattern }) =>
+      pattern.test(normalizedProblem)
+    );
+
+    if (reviewedResponse) {
+      const safeReflection = `## Reflection
+
+${reviewedResponse.reflection}
+
+## ✝️ Cross
+
+"${reviewedResponse.cross.text}" — ${reviewedResponse.cross.reference}
+
+## ❤️ Heart
+
+"${reviewedResponse.heart.text}" — ${reviewedResponse.heart.reference}
+
+## 🙏 Pray
+
+"${reviewedResponse.pray.text}" — ${reviewedResponse.pray.reference}
+
+## 📖 Scripture
+
+"${reviewedResponse.scripture.text}" — ${reviewedResponse.scripture.reference}
+
+Click any Bible reference to open the passage in the Bible app. Read it in context, meditate on God's Word, and talk with God in your own words.
+
+If what you are feeling continues, becomes overwhelming, or makes you feel unsafe, please tell someone you trust—a family member, friend, pastor, or qualified professional.`;
+
+      return NextResponse.json({
+        reflection: safeReflection,
+        safety: true,
+      });
+    }
+
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json(
         { error: "OpenAI API key is missing on the server." },
