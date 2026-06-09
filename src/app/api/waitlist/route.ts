@@ -15,9 +15,16 @@ export async function POST(request: Request) {
 
     const createdAt = new Date().toISOString();
 
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const ip =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
     console.log("OPEN_MIRROR_EMAIL_SIGNUP", {
       email,
       createdAt,
+      ip,
     });
 
     if (!process.env.RESEND_API_KEY) {
@@ -38,7 +45,7 @@ export async function POST(request: Request) {
       from: "Open Mirror <onboarding@resend.dev>",
       to: ["ask@openmirrorllc.com"],
       subject: "New Open Mirror email signup",
-      text: `New Open Mirror signup:\n\nEmail: ${email}\nTime: ${createdAt}`,
+      text: `New Open Mirror signup:\n\nEmail: ${email}\nTime: ${createdAt}\nIP: ${ip}`,
     });
 
     if (error) {
