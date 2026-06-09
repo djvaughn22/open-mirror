@@ -356,7 +356,7 @@ ${references(result.acts.adoration)}
 
 **C — Confession**
 
-*Scripture to help you bring sin and truth before God without assuming guilt.*
+*Scripture to help you bring sin and truth before God.*
 
 ${references(result.acts.confession)}
 

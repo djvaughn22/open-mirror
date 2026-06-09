@@ -7,7 +7,7 @@ const prayerSteps = [
   {
     letter: "C",
     title: "Confession",
-    text: "Bring sin and truth before God. Confess what needs forgiveness, mercy, and change.",
+    text: "Bring sin and truth before God.",
   },
   {
     letter: "T",
