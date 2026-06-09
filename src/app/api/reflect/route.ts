@@ -91,148 +91,42 @@ Click a Bible reference to read it in context. Pray in your own words, and pleas
       });
     }
 
-    const reviewedEmotionalResponses = [
-      {
-        pattern:
-          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:sad|unhappy|down|discouraged)(?:\s+today)?[.!]?$/i,
-        reflection: "You said that you are sad.",
-        cross: {
-          text: "Peace I leave with you; my peace I give you.",
-          reference: "John 14:27",
-        },
-        heart: {
-          text: "May the God of hope fill you with all joy and peace as you trust in him.",
-          reference: "Romans 15:13",
-        },
-        pray: {
-          text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
-          reference: "Psalm 62:8",
-        },
-        scripture: {
-          text: "The Lord is good to all; he has compassion on all he has made.",
-          reference: "Psalm 145:9",
-        },
-      },
-      {
-        pattern:
-          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:lonely|alone|isolated)[.!]?$/i,
-        reflection: "You said that you feel alone.",
-        cross: {
-          text: "Surely I am with you always, to the very end of the age.",
-          reference: "Matthew 28:20",
-        },
-        heart: {
-          text: "See what great love the Father has lavished on us, that we should be called children of God.",
-          reference: "1 John 3:1",
-        },
-        pray: {
-          text: "You will seek me and find me when you seek me with all your heart.",
-          reference: "Jeremiah 29:13",
-        },
-        scripture: {
-          text: "God is faithful, who has called you into fellowship with his Son, Jesus Christ our Lord.",
-          reference: "1 Corinthians 1:9",
-        },
-      },
-      {
-        pattern:
-          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:afraid|scared|fearful|worried|anxious)[.!]?$/i,
-        reflection: "You said that you feel afraid or worried.",
-        cross: {
-          text: "Peace I leave with you; my peace I give you.",
-          reference: "John 14:27",
-        },
-        heart: {
-          text: "God is love. Whoever lives in love lives in God, and God in them.",
-          reference: "1 John 4:16",
-        },
-        pray: {
-          text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault.",
-          reference: "James 1:5",
-        },
-        scripture: {
-          text: "Now may the Lord of peace himself give you peace at all times and in every way.",
-          reference: "2 Thessalonians 3:16",
-        },
-      },
-      {
-        pattern:
-          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:overwhelmed|stressed|exhausted|tired)[.!]?$/i,
-        reflection: "You said that you feel overwhelmed or tired.",
-        cross: {
-          text: "My grace is sufficient for you, for my power is made perfect in weakness.",
-          reference: "2 Corinthians 12:9",
-        },
-        heart: {
-          text: "The Lord is gracious and compassionate, slow to anger and rich in love.",
-          reference: "Psalm 145:8",
-        },
-        pray: {
-          text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault.",
-          reference: "James 1:5",
-        },
-        scripture: {
-          text: "Be still, and know that I am God.",
-          reference: "Psalm 46:10",
-        },
-      },
-      {
-        pattern:
-          /^(?:(?:i am|i['’]?m|im|i feel|feeling)\s+)?(?:very\s+|really\s+)?(?:grieving|heartbroken|mourning)|(?:i miss .+)[.!]?$/i,
-        reflection: "You shared that you are grieving or missing someone.",
-        cross: {
-          text: "Jesus Christ is the same yesterday and today and forever.",
-          reference: "Hebrews 13:8",
-        },
-        heart: {
-          text: "The Lord is gracious and compassionate, slow to anger and rich in love.",
-          reference: "Psalm 145:8",
-        },
-        pray: {
-          text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
-          reference: "Psalm 62:8",
-        },
-        scripture: {
-          text: "May the God of hope fill you with all joy and peace as you trust in him.",
-          reference: "Romans 15:13",
-        },
-      },
-    ];
+    const vulnerableEmotionPattern =
+      /\b(sad|unhappy|lonely|alone|isolated|afraid|scared|fearful|worried|anxious|overwhelmed|stressed|exhausted|tired|grieving|heartbroken|mourning|discouraged|down)\b/i;
 
-    const reviewedResponse = reviewedEmotionalResponses.find(({ pattern }) =>
-      pattern.test(normalizedProblem)
-    );
+    const isVulnerableEmotion =
+      vulnerableEmotionPattern.test(normalizedProblem);
 
-    if (reviewedResponse) {
-      const safeReflection = `## Reflection
-
-${reviewedResponse.reflection}
-
-## ✝️ Cross
-
-"${reviewedResponse.cross.text}" — ${reviewedResponse.cross.reference}
-
-## ❤️ Heart
-
-"${reviewedResponse.heart.text}" — ${reviewedResponse.heart.reference}
-
-## 🙏 Pray
-
-"${reviewedResponse.pray.text}" — ${reviewedResponse.pray.reference}
-
-## 📖 Scripture
-
-"${reviewedResponse.scripture.text}" — ${reviewedResponse.scripture.reference}
-
-Click any Bible reference to open the passage in the Bible app. Read it in context, meditate on God's Word, and talk with God in your own words.
-
-If what you are feeling continues, becomes overwhelming, or makes you feel unsafe, please tell someone you trust—a family member, friend, pastor, or qualified professional.`;
-
-      return NextResponse.json({
-        reflection: safeReflection,
-        safety: true,
-      });
-    }
+    const vulnerableEmotionGuidance = isVulnerableEmotion
+      ? `
+Vulnerable emotional input safety:
+- The user has described sadness, loneliness, fear, anxiety, grief, discouragement, exhaustion, or another vulnerable emotional state.
+- Do not diagnose them.
+- Do not imply that the emotion itself is sin, guilt, weak faith, spiritual failure, or something they caused.
+- In the Cross section, do not automatically choose surrender, repentance, confession, burden, punishment, or condemnation passages.
+- For the Cross section, focus on bringing the person into the presence, care, peace, hope, compassion, and faithfulness of Jesus.
+- Choose all four primary passages only from this reviewed pool:
+  Psalm 34:18
+  Psalm 62:8
+  Psalm 145:8-9
+  Isaiah 41:10
+  Zephaniah 3:17
+  Matthew 28:20
+  John 14:27
+  Romans 8:38-39
+  Romans 15:13
+  2 Corinthians 1:3-4
+  2 Corinthians 12:9
+  2 Thessalonians 3:16
+  1 Peter 5:7
+  1 John 3:1
+  1 John 4:16
+- Select four different passages from that pool according to the user's actual words.
+- Psalm 34:18 is appropriate when the user describes sadness, heartbreak, grief, or feeling emotionally crushed.
+- Do not select a verse merely because one word resembles the user's wording.
+- If no passage is an exact match, choose the gentlest passage about God's nearness, care, peace, hope, or love.
+`
+      : "";
 
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json(
@@ -276,6 +170,9 @@ Cross selection rules:
 - For ordinary sadness, disappointment, loneliness, or discouragement, use gentle passages about God's presence, care, peace, hope, love, and faithfulness.
 - For ordinary sadness, do not choose passages centered on death, dying, being crushed, brokenheartedness, heavy burdens, condemnation, destruction, despair, punishment, or suffering unless the user explicitly names those themes.
 - Never diagnose sadness as depression or assume danger that the user did not state.
+
+${vulnerableEmotionGuidance}
+
 - ACTS contains canonical Bible references only, never verse text.
 - Each ACTS item must look only like "Psalm 34:1", "1 John 1:9", or "Romans 12:1-2".
 - Do not put quotations, sentences, verse wording, explanations, or punctuation around ACTS references.
