@@ -39,7 +39,10 @@ function renderReflectionWithBibleLinks(
     }
 
     pieces.push(
-      <span key={`${reference}-${index}`} className="inline-flex flex-wrap items-center gap-2">
+      <span
+        key={`${reference}-${index}`}
+        className="inline-flex max-w-full flex-wrap items-center gap-2 align-middle"
+      >
         <a
           href={`https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`}
           target="_blank"
@@ -52,13 +55,13 @@ function renderReflectionWithBibleLinks(
         <button
           type="button"
           onClick={() => onExplainVerse(reference)}
-          className="rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 text-xs font-semibold text-yellow-200 transition hover:border-yellow-300/60 hover:bg-yellow-400/20"
+          className="inline-flex shrink-0 items-center rounded-full border border-yellow-400/40 bg-transparent px-3 py-1 text-xs font-semibold text-yellow-300 transition hover:border-yellow-300/70 hover:bg-yellow-400/10"
         >
           {expandedVerse === reference ? "Hide explanation" : "Why this verse?"}
         </button>
 
         {expandedVerse === reference && (
-          <span className="mt-2 block w-full rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4 text-sm leading-7 text-zinc-300">
+          <span className="mt-2 block w-full basis-full rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4 text-left text-sm leading-7 text-zinc-300">
             <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.25em] text-yellow-400">
               Why this may connect
             </span>
