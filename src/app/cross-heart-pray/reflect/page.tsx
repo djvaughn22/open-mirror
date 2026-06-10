@@ -296,7 +296,7 @@ function renderStyledReflection(
                 rel="noopener noreferrer"
                 className="inline-flex rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2 text-sm font-semibold text-yellow-200 transition hover:border-yellow-300/70 hover:bg-yellow-400/20 hover:text-white"
               >
-                Open verse {verseReference}
+                Read verse: {verseReference}
               </a>
             )}
 
@@ -306,7 +306,7 @@ function renderStyledReflection(
               rel="noopener noreferrer"
               className="inline-flex rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-yellow-400/40 hover:bg-zinc-800 hover:text-white"
             >
-              Read chapter {chapter}
+              Read chapter: {chapter}
             </a>
           </div>
         </div>
