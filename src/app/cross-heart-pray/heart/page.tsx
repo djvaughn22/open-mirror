@@ -35,7 +35,7 @@ export default function HeartPage() {
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
             Heart
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             God loves you deeply
             <br />
             His grace and mercy are true
