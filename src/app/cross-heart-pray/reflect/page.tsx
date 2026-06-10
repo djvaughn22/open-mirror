@@ -378,7 +378,13 @@ export default function CrossHeartPrayReflectPage() {
             }}
             maxLength={250}
             className="mt-4 min-h-36 w-full rounded-2xl border border-zinc-800 bg-black p-4 text-white outline-none"
-            placeholder="I am... I feel... I need help with... I am thankful for... I am struggling with... I am hoping for..."
+            placeholder="Describe how you picture yourself.
+
+Your strengths. Your struggles.
+Your questions. Your fears.
+Your hopes. Your habits.
+
+What do you see?"
           />
 
           <p className="mt-2 text-right text-sm text-zinc-500">
