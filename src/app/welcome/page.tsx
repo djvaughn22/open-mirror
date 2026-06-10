@@ -9,7 +9,7 @@ const products = [
   {
     name: "TheDJCares",
     emoji: "🎵 ❤️ 🤝",
-    href: "",
+    href: "/the-dj-cares",
     status: "Coming Soon",
     description:
       "Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
@@ -17,7 +17,7 @@ const products = [
   {
     name: "WhatAmIAI",
     emoji: "🤖 📖",
-    href: "",
+    href: "/what-am-i-ai",
     status: "Coming Soon",
     description:
       "A deeper step-by-step reflection experience with related Bible stories, Gospel-focused Scripture, and space to see more clearly.",
