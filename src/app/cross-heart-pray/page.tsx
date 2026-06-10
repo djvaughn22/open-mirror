@@ -124,6 +124,21 @@ export default function CrossHeartPrayPage() {
           </h2>
         </section>
 
+        <section className="mt-20 border-t border-zinc-900 px-6 py-20 text-center">
+          <h2 className="text-4xl font-bold md:text-5xl">
+            Ready to begin?
+          </h2>
+
+          <div className="mt-10">
+            <a
+              href="/cross-heart-pray/reflect"
+              className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+            >
+              Begin Reflection
+            </a>
+          </div>
+        </section>
+
         <div style={{ height: "120px" }} />
       </div>
     </main>
