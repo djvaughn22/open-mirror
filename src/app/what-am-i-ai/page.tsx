@@ -158,6 +158,21 @@ export default function WhatAmIAIPage() {
         </div>
       </section>
 
+      <section className="mt-20 border-t border-zinc-900 px-6 py-20 text-center">
+          <h2 className="text-4xl font-bold md:text-5xl">
+            Ready to begin?
+          </h2>
+
+          <div className="mt-10">
+            <a
+              href="/cross-heart-pray/reflect"
+              className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+            >
+              Begin Reflection
+            </a>
+          </div>
+      </section>
+
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
         © Open Mirror LLC. Purpose, growth, and truth.
       </footer>

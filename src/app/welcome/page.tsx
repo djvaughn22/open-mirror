@@ -83,14 +83,6 @@ export default function Home() {
           John 8:31–32
         </a>
 
-        <div className="mt-12">
-          <a
-            href="/cross-heart-pray/reflect"
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
-          >
-            Begin Reflection
-          </a>
-        </div>
       </section>
 
       <section
@@ -165,6 +157,21 @@ export default function Home() {
               </div>
             )
           )}
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-900 px-6 py-24 text-center">
+        <h2 className="text-4xl font-bold md:text-5xl">
+          Ready to begin?
+        </h2>
+
+        <div className="mt-10">
+          <a
+            href="/cross-heart-pray/reflect"
+            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
+            Begin Reflection
+          </a>
         </div>
       </section>
 
