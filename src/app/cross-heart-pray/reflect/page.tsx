@@ -11,8 +11,123 @@ function formatReflectionText(text: string) {
     .trim();
 }
 
+const bibleBookCodes: Record<string, string> = {
+  genesis: "GEN",
+  exodus: "EXO",
+  leviticus: "LEV",
+  numbers: "NUM",
+  deuteronomy: "DEU",
+  joshua: "JOS",
+  judges: "JDG",
+  ruth: "RUT",
+  "1 samuel": "1SA",
+  "2 samuel": "2SA",
+  "1 kings": "1KI",
+  "2 kings": "2KI",
+  "1 chronicles": "1CH",
+  "2 chronicles": "2CH",
+  ezra: "EZR",
+  nehemiah: "NEH",
+  esther: "EST",
+  job: "JOB",
+  psalm: "PSA",
+  psalms: "PSA",
+  proverbs: "PRO",
+  ecclesiastes: "ECC",
+  "song of solomon": "SNG",
+  isaiah: "ISA",
+  jeremiah: "JER",
+  lamentations: "LAM",
+  ezekiel: "EZK",
+  daniel: "DAN",
+  hosea: "HOS",
+  joel: "JOL",
+  amos: "AMO",
+  obadiah: "OBA",
+  jonah: "JON",
+  micah: "MIC",
+  nahum: "NAM",
+  habakkuk: "HAB",
+  zephaniah: "ZEP",
+  haggai: "HAG",
+  zechariah: "ZEC",
+  malachi: "MAL",
+  matthew: "MAT",
+  mark: "MRK",
+  luke: "LUK",
+  john: "JHN",
+  acts: "ACT",
+  romans: "ROM",
+  "1 corinthians": "1CO",
+  "2 corinthians": "2CO",
+  galatians: "GAL",
+  ephesians: "EPH",
+  philippians: "PHP",
+  colossians: "COL",
+  "1 thessalonians": "1TH",
+  "2 thessalonians": "2TH",
+  "1 timothy": "1TI",
+  "2 timothy": "2TI",
+  titus: "TIT",
+  philemon: "PHM",
+  hebrews: "HEB",
+  james: "JAS",
+  "1 peter": "1PE",
+  "2 peter": "2PE",
+  "1 john": "1JN",
+  "2 john": "2JN",
+  "3 john": "3JN",
+  jude: "JUD",
+  revelation: "REV",
+};
+
 function bibleSearchUrl(reference: string) {
   return `https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`;
+}
+
+function normalizeBibleBook(book: string) {
+  return book.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function parseBibleReference(reference: string) {
+  const match = reference
+    .trim()
+    .match(/^([1-3]?\s?[A-Za-z]+(?:\s+of\s+[A-Za-z]+|\s+[A-Za-z]+)*)\s+(\d{1,3})(?::(\d{1,3})(?:-\d{1,3})?)?$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const book = normalizeBibleBook(match[1]);
+  const chapter = match[2];
+  const verse = match[3] ?? "";
+  const code = bibleBookCodes[book];
+
+  if (!code) {
+    return null;
+  }
+
+  return { code, chapter, verse };
+}
+
+function bibleChapterUrl(reference: string) {
+  const parsed = parseBibleReference(reference);
+
+  if (!parsed) {
+    return bibleSearchUrl(reference);
+  }
+
+  return `https://www.bible.com/bible/111/${parsed.code}.${parsed.chapter}.NIV`;
+}
+
+function bibleVerseUrl(reference: string) {
+  const parsed = parseBibleReference(reference);
+
+  if (!parsed || !parsed.verse) {
+    return bibleSearchUrl(reference);
+  }
+
+  return `https://www.bible.com/bible/111/${parsed.code}.${parsed.chapter}.${parsed.verse}.NIV`;
 }
 
 function findBibleReference(text: string) {
@@ -61,7 +176,7 @@ function renderReflectionWithBibleLinks(
         className="inline-flex max-w-full flex-wrap items-center gap-2 align-middle"
       >
         <a
-          href={bibleSearchUrl(reference)}
+          href={bibleVerseUrl(reference)}
           target="_blank"
           rel="noopener noreferrer"
           className="underline decoration-zinc-500 underline-offset-4 hover:text-white"
@@ -176,7 +291,7 @@ function renderStyledReflection(
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {verseReference && (
               <a
-                href={bibleSearchUrl(verseReference)}
+                href={bibleVerseUrl(verseReference)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2 text-sm font-semibold text-yellow-200 transition hover:border-yellow-300/70 hover:bg-yellow-400/20 hover:text-white"
@@ -186,7 +301,7 @@ function renderStyledReflection(
             )}
 
             <a
-              href={bibleSearchUrl(chapter)}
+              href={bibleChapterUrl(chapter)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-yellow-400/40 hover:bg-zinc-800 hover:text-white"
