@@ -4,18 +4,21 @@ const steps = [
     emoji: "✝️",
     href: "/cross-heart-pray/cross",
     text: "Jesus Christ. His life, teachings, sacrifice, resurrection, and promise.",
+    cta: "Explore Jesus",
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/cross-heart-pray/heart",
     text: "God's love, grace, mercy, and truth.",
+    cta: "Explore God's Love",
   },
   {
     title: "Pray",
     emoji: "🙏",
     href: "/cross-heart-pray/pray",
     text: "A daily relationship with God through prayer.",
+    cta: "Explore Prayer",
   },
 ];
 
@@ -113,7 +116,9 @@ export default function CrossHeartPrayPage() {
                 {step.text}
               </p>
 
-
+              <p className="mt-8 text-sm font-semibold text-zinc-300">
+                {step.cta} →
+              </p>
             </a>
           ))}
         </section>
@@ -135,6 +140,8 @@ export default function CrossHeartPrayPage() {
             Open God&apos;s Word.
             <br />
             Grow closer to God.
+            <br />
+            Resist the drift.
             <br />
             Live it. Share it.
           </h2>

@@ -9,16 +9,18 @@ const products = [
   {
     name: "TheDJCares",
     emoji: "🎵 ❤️ 🤝",
-    href: "/the-dj-cares",
+    href: "",
+    status: "Coming Soon",
     description:
-      "Coming soon: Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
+      "Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
   },
   {
     name: "WhatAmIAI",
     emoji: "🤖 📖",
-    href: "/what-am-i-ai",
+    href: "",
+    status: "Coming Soon",
     description:
-      "Coming soon: A deeper step-by-step reflection experience with related Bible stories, Gospel-focused Scripture, and space to see more clearly.",
+      "A deeper step-by-step reflection experience with related Bible stories, Gospel-focused Scripture, and space to see more clearly.",
   },
 ];
 
@@ -104,8 +106,6 @@ export default function Home() {
           <br />
           Grow closer to God.
           <br />
-          Resist the drift.
-          <br />
           Live it. Share it.
         </h2>
       </section>
@@ -123,21 +123,41 @@ export default function Home() {
         </h2>
 
         <div className="mx-auto mt-12 grid max-w-6xl gap-6 text-left md:grid-cols-3">
-          {products.map((product) => (
-            <a
-              key={product.name}
-              href={product.href}
-              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-zinc-500"
-            >
-              <div className="text-3xl">{product.emoji}</div>
+          {products.map((product) =>
+            product.href ? (
+              <a
+                key={product.name}
+                href={product.href}
+                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-zinc-500"
+              >
+                <div className="text-3xl">{product.emoji}</div>
 
-              <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
+                <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
 
-              <p className="mt-4 leading-7 text-zinc-400">
-                {product.description}
-              </p>
-            </a>
-          ))}
+                <p className="mt-4 leading-7 text-zinc-400">
+                  {product.description}
+                </p>
+              </a>
+            ) : (
+              <div
+                key={product.name}
+                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 opacity-90"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="text-3xl">{product.emoji}</div>
+                  <span className="rounded-full border border-zinc-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                    {product.status}
+                  </span>
+                </div>
+
+                <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
+
+                <p className="mt-4 leading-7 text-zinc-400">
+                  {product.description}
+                </p>
+              </div>
+            )
+          )}
         </div>
       </section>
 

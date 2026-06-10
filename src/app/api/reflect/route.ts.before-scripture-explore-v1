@@ -41,13 +41,9 @@ In the United States, call or text 988 for the Suicide & Crisis Lifeline. If you
 
 Please reach out right now to a trusted family member, friend, pastor, counselor, clinician, or someone who can be with you.
 
----
-
 ## Scripture
 
 "The Lord is close to the brokenhearted and saves those who are crushed in spirit." — Psalm 34:18
-
----
 
 ## Jesus Loves You
 
@@ -55,45 +51,6 @@ Ephesians 3:17–19`;
 
       return NextResponse.json({
         reflection: safetyReflection,
-        safety: true,
-      });
-    }
-
-    const vulnerableEmotionPattern =
-      /\b(sad|sadness|grief|grieving|heartbroken|mourning|depressed|depression|hopeless|lonely|alone|afraid|scared|anxious|overwhelmed|exhausted|tired|down|empty|numb|lost|broken)\b/i;
-
-    if (vulnerableEmotionPattern.test(normalizedProblem)) {
-      const safeReflection = `✝️ ❤️ 🙏
-
-## What We Heard
-
-${problem.trim()}
-
-## Scripture To Explore
-
-### 1. John 1
-
-"In him was life, and that life was the light of all mankind." — John 1:4
-
-Start reading:
-John 1
-
-### 2. Romans 8
-
-"For I am convinced that neither death nor life... will be able to separate us from the love of God that is in Christ Jesus our Lord." — Romans 8:38-39
-
-Start reading:
-Romans 8
-
-### 3. Ephesians 3
-
-"And I pray that you, being rooted and established in love..." — Ephesians 3:17-19
-
-Start reading:
-Ephesians 3`;
-
-      return NextResponse.json({
-        reflection: safeReflection,
         safety: true,
       });
     }
@@ -107,39 +64,44 @@ Ephesians 3`;
 
     const response = await client.responses.create({
       model: "gpt-4o-mini",
-      max_output_tokens: 700,
+      max_output_tokens: 850,
       input: [
         {
           role: "system",
           content: `
-You are a careful Scripture discovery facilitator.
+You are a careful Scripture-reflection facilitator for Open Mirror.
 
 Your role is narrow:
-- Read the user's reflection.
-- Summarize only what the user wrote.
+- Identify the main themes in the user's reflection.
 - Select exactly 3 potentially relevant Bible passages.
-- Prefer chapter-level exploration.
-- Prefer passages that remain helpful when the whole chapter is read.
 - Avoid shallow keyword matching.
-- Avoid random selection.
-- Avoid isolated proof-texts.
-- Do not explain Scripture.
-- Do not tell the user what the passage means.
-- Do not tell the user what God is saying to them.
-- Do not give advice.
-- Do not diagnose.
-- Do not assume motives, sin, guilt, trauma, or hidden meaning.
+- Avoid random verse selection.
+- Avoid overused default verses unless they clearly fit.
+- Explain briefly why each passage may connect to the reflection.
+- Point the user back to reading Scripture in context.
 
-Return only structured data.
+Scripture is the authority. AI is only a facilitator.
 
-For each Scripture item:
-- chapter should be like "John 1" or "Romans 5".
-- reference should be the selected verse or short passage reference.
-- text should be the selected Bible text only.
+Do not:
+- Give life advice.
+- Tell the user what God is saying to them.
+- Claim to know God's will for their life.
+- Diagnose the user.
+- Make assumptions beyond their words.
+- Write a sermon.
+- Use Cross Heart Pray sections.
+- Use ACTS sections.
+- Over-explain.
 
-Do not include "why this connects."
-Do not include Bible context.
-Do not include commentary.
+Use humble language:
+- "may connect"
+- "appears to express"
+- "potentially relevant"
+- "consider reading"
+
+The quality of the match depends on the honesty and clarity of the user's reflection.
+
+Return only the requested structured data.
           `,
         },
         {
@@ -150,13 +112,15 @@ Do not include commentary.
       text: {
         format: {
           type: "json_schema",
-          name: "scripture_explore_reflection",
+          name: "scripture_reflection",
           strict: true,
           schema: {
             type: "object",
             additionalProperties: false,
             properties: {
-              heard: { type: "string" },
+              heard: {
+                type: "string",
+              },
               passages: {
                 type: "array",
                 minItems: 3,
@@ -165,11 +129,12 @@ Do not include commentary.
                   type: "object",
                   additionalProperties: false,
                   properties: {
-                    chapter: { type: "string" },
+                    text: { type: "string" },
                     reference: { type: "string" },
-                    text: { type: "string" }
+                    why: { type: "string" },
+                    context: { type: "string" }
                   },
-                  required: ["chapter", "reference", "text"]
+                  required: ["text", "reference", "why", "context"]
                 }
               }
             },
@@ -182,9 +147,10 @@ Do not include commentary.
     let result: {
       heard: string;
       passages: {
-        chapter: string;
-        reference: string;
         text: string;
+        reference: string;
+        why: string;
+        context: string;
       }[];
     };
 
@@ -199,14 +165,15 @@ Do not include commentary.
 
     const formattedPassages = result.passages
       .map(
-        (passage, index) => `### ${index + 1}. ${passage.chapter.trim()}
+        (passage, index) => `${index + 1}. ${verse(passage.text, passage.reference)}
 
-${verse(passage.text, passage.reference)}
+Why this may connect:
+${passage.why.trim()}
 
-Start reading:
-${passage.chapter.trim()}`
+Read in context:
+${passage.context.trim()}`
       )
-      .join("\n\n---\n\n");
+      .join("\n\n");
 
     const formattedReflection = `✝️ ❤️ 🙏
 
@@ -214,13 +181,32 @@ ${passage.chapter.trim()}`
 
 ${result.heard.trim()}
 
----
-
-## Scripture To Explore
+## Potentially Relevant Scripture
 
 ${formattedPassages}
 
-`;
+## Keep Reading
+
+Open God's Word.
+
+Read the full chapter.
+
+Pray honestly.
+
+Talk with a trusted pastor, church leader, mature Christian, counselor, or loved one if helpful.
+
+## Jesus Loves You
+
+Ephesians 3:17–19
+
+## Live It. Share It.
+
+Jesus said, "Go and make disciples of all nations." — Matthew 28:19
+
+Open God's Word.
+Pray.
+Follow Jesus.
+Live it. Share it.`;
 
     return NextResponse.json({
       reflection: formattedReflection,

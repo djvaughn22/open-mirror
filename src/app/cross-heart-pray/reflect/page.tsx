@@ -17,7 +17,8 @@ function renderReflectionWithBibleLinks(
   verseExplanation: string,
   verseExplanationLoading: boolean,
   verseExplanationError: string,
-  onExplainVerse: (reference: string) => void
+  onExplainVerse: (reference: string) => void,
+  isSafetyResponse: boolean
 ) {
   const books =
     "Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\\s*Samuel|2\\s*Samuel|1\\s*Kings|2\\s*Kings|1\\s*Chronicles|2\\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Psalms|Proverbs|Ecclesiastes|Song\\s+of\\s+Solomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\\s*Corinthians|2\\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\\s*Thessalonians|2\\s*Thessalonians|1\\s*Timothy|2\\s*Timothy|Titus|Philemon|Hebrews|James|1\\s*Peter|2\\s*Peter|1\\s*John|2\\s*John|3\\s*John|Jude|Revelation";
@@ -52,13 +53,15 @@ function renderReflectionWithBibleLinks(
           {reference}
         </a>
 
-        <button
-          type="button"
-          onClick={() => onExplainVerse(reference)}
-          className="inline-flex shrink-0 items-center rounded-full border border-yellow-400/40 bg-transparent px-3 py-1 text-xs font-semibold text-yellow-300 transition hover:border-yellow-300/70 hover:bg-yellow-400/10"
-        >
-          {expandedVerse === reference ? "Hide explanation" : "Why this verse?"}
-        </button>
+        {!isSafetyResponse && (
+          <button
+            type="button"
+            onClick={() => onExplainVerse(reference)}
+            className="inline-flex shrink-0 items-center rounded-full border border-yellow-400/40 bg-transparent px-3 py-1 text-xs font-semibold text-yellow-300 transition hover:border-yellow-300/70 hover:bg-yellow-400/10"
+          >
+            {expandedVerse === reference ? "Hide explanation" : "Why this verse?"}
+          </button>
+        )}
 
         {expandedVerse === reference && (
           <span className="mt-2 block w-full basis-full rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4 text-left text-sm leading-7 text-zinc-300">
@@ -93,34 +96,102 @@ function renderStyledReflection(
   verseExplanation: string,
   verseExplanationLoading: boolean,
   verseExplanationError: string,
-  onExplainVerse: (reference: string) => void
+  onExplainVerse: (reference: string) => void,
+  isSafetyResponse: boolean
 ) {
-  const bibleInstruction =
-    "Click any Bible reference to open the passage in the Bible app. Read it in context, meditate on God's Word, and pray honestly in your own words. Open Mirror only points you toward Scripture; God's Word is the authority.";
+  const blocks = text.split(/\n\n+/).map((block) => block.trim()).filter(Boolean);
+  const rendered = [];
 
-  const actsInstruction =
-    "Talk to God in prayer in whatever way feels natural to you. If you would like a simple structure, use the ACTS passages below as a guide.";
+  for (let i = 0; i < blocks.length; i++) {
+    const trimmed = blocks[i];
 
-  return text.split(/\n\n+/).map((block, index) => {
-    const trimmed = block.trim();
-
-    if (trimmed === bibleInstruction || trimmed === actsInstruction) {
-      return (
-        <p
-          key={`guidance-${index}`}
-          className="my-6 text-center text-sm italic leading-7 text-yellow-300/80"
-        >
-          ({renderReflectionWithBibleLinks(trimmed, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, onExplainVerse)})
-        </p>
-      );
+    if (trimmed === "✝️ ❤️ 🙏") {
+      continue;
     }
 
-    return (
-      <div key={`reflection-${index}`} className="whitespace-pre-wrap">
-        {renderReflectionWithBibleLinks(trimmed, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, onExplainVerse)}
-      </div>
+    if (trimmed.startsWith("## ")) {
+      rendered.push(
+        <h2
+          key={`heading-${i}`}
+          className="mt-10 text-center text-sm font-bold uppercase tracking-[0.35em] text-yellow-400"
+        >
+          {trimmed.replace(/^##\s*/, "")}
+        </h2>
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      const title = trimmed.replace(/^###\s*/, "");
+      const verseBlock = blocks[i + 1] ?? "";
+      const startBlock = blocks[i + 2] ?? "";
+      const chapter = startBlock.startsWith("Start reading:")
+        ? startBlock.replace("Start reading:", "").trim()
+        : title.replace(/^\d+\.\s*/, "").trim();
+
+      rendered.push(
+        <div
+          key={`scripture-card-${i}`}
+          className="my-8 rounded-3xl border border-zinc-800 bg-zinc-950 p-6 shadow-xl"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-yellow-400/30 bg-yellow-400/10 text-sm font-bold text-yellow-300">
+              {title.split(".")[0]}
+            </span>
+
+            <h3 className="text-2xl font-bold text-white">
+              {title.replace(/^\d+\.\s*/, "")}
+            </h3>
+          </div>
+
+          <div className="mt-6 text-lg leading-9 text-zinc-200">
+            {renderReflectionWithBibleLinks(
+              verseBlock,
+              expandedVerse,
+              verseExplanation,
+              verseExplanationLoading,
+              verseExplanationError,
+              onExplainVerse,
+              isSafetyResponse
+            )}
+          </div>
+
+          <a
+            href={`https://www.bible.com/search/bible?q=${encodeURIComponent(chapter)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-yellow-400/40 hover:bg-zinc-800 hover:text-white"
+          >
+            Start reading {chapter}
+          </a>
+        </div>
+      );
+
+      if (blocks[i + 2]?.startsWith("Start reading:")) {
+        i += 2;
+      } else {
+        i += 1;
+      }
+
+      continue;
+    }
+
+    rendered.push(
+      <p key={`text-${i}`} className="my-5 text-lg leading-9 text-zinc-300">
+        {renderReflectionWithBibleLinks(
+          trimmed,
+          expandedVerse,
+          verseExplanation,
+          verseExplanationLoading,
+          verseExplanationError,
+          onExplainVerse,
+          isSafetyResponse
+        )}
+      </p>
     );
-  });
+  }
+
+  return rendered;
 }
 
 export default function CrossHeartPrayReflectPage() {
@@ -128,6 +199,7 @@ export default function CrossHeartPrayReflectPage() {
   const [reflection, setReflection] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isSafetyResponse, setIsSafetyResponse] = useState(false);
   const [expandedVerse, setExpandedVerse] = useState<string | null>(null);
   const [verseExplanation, setVerseExplanation] = useState("");
   const [verseExplanationLoading, setVerseExplanationLoading] = useState(false);
@@ -178,6 +250,7 @@ export default function CrossHeartPrayReflectPage() {
   async function beginReflection() {
     setError("");
     setReflection("");
+    setIsSafetyResponse(false);
     setExpandedVerse(null);
     setVerseExplanation("");
     setVerseExplanationError("");
@@ -209,10 +282,11 @@ export default function CrossHeartPrayReflectPage() {
         throw new Error(data.error || "Unable to generate reflection.");
       }
 
+      setIsSafetyResponse(Boolean(data.safety));
       setReflection(formatReflectionText(data.reflection));
     } catch (err: any) {
       setError(
-        err?.message || "The Mirror could not respond right now. Please try again."
+        err?.message || "Reflection could not respond right now. Please try again."
       );
     } finally {
       setIsLoading(false);
@@ -250,7 +324,7 @@ export default function CrossHeartPrayReflectPage() {
           <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
             <a href="/welcome">Home</a>
             <a href="/cross-heart-pray">Cross Heart Pray</a>
-            <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
+            <a href="/cross-heart-pray/reflect">Begin Reflection</a>
             <a href="/the-dj-cares">TheDJCares</a>
             <a href="/what-am-i-ai">WhatAmIAI</a>
           </div>
@@ -267,7 +341,7 @@ export default function CrossHeartPrayReflectPage() {
         </p>
 
         <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
-          Talk To The Mirror
+          Begin Reflection
         </h1>
 
         <p className="mt-6 max-w-2xl text-xl leading-9 text-zinc-300">
@@ -287,7 +361,7 @@ export default function CrossHeartPrayReflectPage() {
 
         <div className="mt-12 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left shadow-2xl">
           <label className="text-sm font-semibold text-zinc-300">
-            What do you see?
+            🪞 Reflection
           </label>
 
           <textarea
@@ -316,7 +390,7 @@ export default function CrossHeartPrayReflectPage() {
             disabled={isLoading}
             className="mt-5 rounded-full bg-white px-8 py-3 font-semibold text-black disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isLoading ? "The Mirror is reflecting..." : "Talk To The Mirror"}
+            {isLoading ? "Finding relevant Scripture..." : "Begin Reflection"}
           </button>
 
           {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
@@ -326,18 +400,106 @@ export default function CrossHeartPrayReflectPage() {
 
         {reflection && (
           <div className="mt-10 w-full rounded-3xl border border-zinc-800 bg-zinc-950 p-6 text-left">
-            <p className="mb-6 text-center text-base leading-7 text-zinc-400">
-              The mirror reflects what you bring. Scripture reveals truth.
-              Bring what you see to Jesus.
+            <p className="mb-6 text-center text-sm italic leading-7 text-zinc-500">
+              Turn from the mirror.
             </p>
 
-            <p className="text-center text-sm font-semibold uppercase tracking-[0.3em] text-yellow-400">
-              <span className="block">Turn away from the mirror</span>
-              <span className="mt-2 block">and lay what you see at the Cross.</span>
-            </p>
+            <div className="mt-2 text-center">
+              <p className="text-sm text-zinc-400">
+                ✝️ Lay it at the Cross
+                <span className="mx-4 text-zinc-700">•</span>
+                ❤️ Feel God&apos;s Love
+                <span className="mx-4 text-zinc-700">•</span>
+                🙏 Walk in Prayer
+              </p>
+            </div>
 
-            <div className="mt-8 whitespace-pre-wrap rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
-              {renderStyledReflection(formattedReflection, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, explainVerse)}
+            <div className="mt-8 rounded-3xl border border-zinc-800 bg-black/40 p-6 text-left text-lg leading-9 text-zinc-200">
+              {renderStyledReflection(formattedReflection, expandedVerse, verseExplanation, verseExplanationLoading, verseExplanationError, explainVerse, isSafetyResponse)}
+            </div>
+
+            <div className="mt-6 rounded-3xl border border-yellow-400/20 bg-yellow-400/10 p-6 text-sm italic leading-7 text-yellow-100">
+              <p>These passages may be relevant to your reflection.</p>
+              <p className="mt-3">
+                Continue by exploring them directly in the Bible and reading the surrounding chapters for context.
+              </p>
+              <p className="mt-3">
+                If these passages do not seem like a good fit, continue exploring Scripture or try another reflection. Open Mirror may not always identify the most relevant passages.
+              </p>
+            </div>
+
+            <div className="mt-10 rounded-[2rem] border border-zinc-800 bg-gradient-to-b from-zinc-950 to-black p-7 text-left shadow-2xl">
+              <div className="text-center">
+                <p className="text-4xl">📖</p>
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.35em] text-yellow-400">
+                  Start Here Anytime
+                </p>
+                <p className="mx-auto mt-5 max-w-2xl text-sm italic leading-7 text-zinc-400">
+                  If the passages above do not seem like a good fit, keep going.
+                  Open Mirror may miss the best match, but Scripture is always worth opening.
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                <a
+                  href="https://www.bible.com/search/bible?q=John%201"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-3xl border border-zinc-800 bg-black/60 p-6 text-center transition hover:-translate-y-1 hover:border-yellow-400/50 hover:bg-zinc-950"
+                >
+                  <span className="text-3xl">✝️</span>
+                  <span className="mt-4 block text-xl font-bold text-white">
+                    John 1
+                  </span>
+                  <span className="mt-3 block text-sm leading-6 text-zinc-400 group-hover:text-zinc-300">
+                    Start with Jesus, the Word, life, light, grace, and truth.
+                  </span>
+                </a>
+
+                <a
+                  href="https://www.bible.com/search/bible?q=Psalm%2033"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-3xl border border-zinc-800 bg-black/60 p-6 text-center transition hover:-translate-y-1 hover:border-yellow-400/50 hover:bg-zinc-950"
+                >
+                  <span className="text-3xl">❤️</span>
+                  <span className="mt-4 block text-xl font-bold text-white">
+                    Psalm 33
+                  </span>
+                  <span className="mt-3 block text-sm leading-6 text-zinc-400 group-hover:text-zinc-300">
+                    Start with God&apos;s goodness, faithfulness, creation, and care.
+                  </span>
+                </a>
+
+                <a
+                  href="https://www.bible.com/search/bible?q=Romans%205"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-3xl border border-zinc-800 bg-black/60 p-6 text-center transition hover:-translate-y-1 hover:border-yellow-400/50 hover:bg-zinc-950"
+                >
+                  <span className="text-3xl">🙏</span>
+                  <span className="mt-4 block text-xl font-bold text-white">
+                    Romans 5
+                  </span>
+                  <span className="mt-3 block text-sm leading-6 text-zinc-400 group-hover:text-zinc-300">
+                    Start with peace with God, grace, hope, and God&apos;s love.
+                  </span>
+                </a>
+              </div>
+
+              <div className="mt-8 rounded-3xl border border-yellow-400/30 bg-yellow-400/10 p-6 text-center">
+                <p className="text-sm font-bold uppercase tracking-[0.25em] text-yellow-300">
+                  Jesus Loves You
+                </p>
+                <a
+                  href="https://www.bible.com/search/bible?q=Ephesians%203%3A17-19"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block text-lg font-semibold text-white underline decoration-yellow-300/50 underline-offset-4 hover:text-yellow-100"
+                >
+                  Ephesians 3:17–19
+                </a>
+              </div>
             </div>
           </div>
         )}
