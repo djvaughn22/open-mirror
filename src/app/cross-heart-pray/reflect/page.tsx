@@ -11,6 +11,22 @@ function formatReflectionText(text: string) {
     .trim();
 }
 
+function bibleSearchUrl(reference: string) {
+  return `https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`;
+}
+
+function findBibleReference(text: string) {
+  const books =
+    "Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\\s*Samuel|2\\s*Samuel|1\\s*Kings|2\\s*Kings|1\\s*Chronicles|2\\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Psalms|Proverbs|Ecclesiastes|Song\\s+of\\s+Solomon|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\\s*Corinthians|2\\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\\s*Thessalonians|2\\s*Thessalonians|1\\s*Timothy|2\\s*Timothy|Titus|Philemon|Hebrews|James|1\\s*Peter|2\\s*Peter|1\\s*John|2\\s*John|3\\s*John|Jude|Revelation";
+
+  const versePattern = new RegExp(
+    `\\b(${books})\\s+\\d{1,3}:\\d{1,3}(?:-\\d{1,3})?\\b`,
+    "i"
+  );
+
+  return text.match(versePattern)?.[0] ?? "";
+}
+
 function renderReflectionWithBibleLinks(
   text: string,
   expandedVerse: string | null,
@@ -45,7 +61,7 @@ function renderReflectionWithBibleLinks(
         className="inline-flex max-w-full flex-wrap items-center gap-2 align-middle"
       >
         <a
-          href={`https://www.bible.com/search/bible?q=${encodeURIComponent(reference)}`}
+          href={bibleSearchUrl(reference)}
           target="_blank"
           rel="noopener noreferrer"
           className="underline decoration-zinc-500 underline-offset-4 hover:text-white"
@@ -128,6 +144,7 @@ function renderStyledReflection(
       const chapter = startBlock.startsWith("Start reading:")
         ? startBlock.replace("Start reading:", "").trim()
         : title.replace(/^\d+\.\s*/, "").trim();
+      const verseReference = findBibleReference(verseBlock);
 
       rendered.push(
         <div
@@ -156,14 +173,27 @@ function renderStyledReflection(
             )}
           </div>
 
-          <a
-            href={`https://www.bible.com/search/bible?q=${encodeURIComponent(chapter)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-yellow-400/40 hover:bg-zinc-800 hover:text-white"
-          >
-            Start reading {chapter}
-          </a>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {verseReference && (
+              <a
+                href={bibleSearchUrl(verseReference)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2 text-sm font-semibold text-yellow-200 transition hover:border-yellow-300/70 hover:bg-yellow-400/20 hover:text-white"
+              >
+                Open verse {verseReference}
+              </a>
+            )}
+
+            <a
+              href={bibleSearchUrl(chapter)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-yellow-400/40 hover:bg-zinc-800 hover:text-white"
+            >
+              Read chapter {chapter}
+            </a>
+          </div>
         </div>
       );
 
