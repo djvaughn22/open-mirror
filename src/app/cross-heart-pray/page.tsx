@@ -74,23 +74,7 @@ export default function CrossHeartPrayPage() {
             love, and a daily relationship with God through prayer.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="/cross-heart-pray/reflect"
-              className="rounded-full bg-white px-8 py-3 font-semibold text-black transition hover:bg-zinc-200"
-            >
-              Begin Reflection
-            </a>
 
-            <a
-              href="https://www.bible.com/app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-zinc-700 px-8 py-3 font-semibold text-white transition hover:border-white"
-            >
-              Open The Bible
-            </a>
-          </div>
         </section>
 
         <section className="grid grid-cols-1 gap-8 md:grid-cols-3">

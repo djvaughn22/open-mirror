@@ -67,21 +67,7 @@ export default function TheDJCaresPage() {
           find hope, healing, and perspective for what they are facing.
         </p>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a
-            href="#start"
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
-          >
-            Find Encouragement
-          </a>
 
-          <a
-            href="/cross-heart-pray/reflect"
-            className="rounded-full border border-zinc-700 px-8 py-3"
-          >
-            Begin Reflection
-          </a>
-        </div>
       </section>
 
       <section className="border-t border-zinc-900 px-6 py-24 text-center">

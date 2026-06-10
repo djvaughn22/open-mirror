@@ -67,21 +67,7 @@ export default function WhatAmIAIPage() {
           inside their own words.
         </p>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a
-            href="#join"
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
-          >
-            Request Early Access
-          </a>
 
-          <a
-            href="/cross-heart-pray/reflect"
-            className="rounded-full border border-zinc-700 px-8 py-3"
-          >
-            Begin Reflection
-          </a>
-        </div>
       </section>
 
       <section className="border-t border-zinc-900 px-6 py-24 text-center">
