@@ -68,7 +68,7 @@ Ephesians 3:17–19`;
 
     const response = await client.responses.create({
       model: "gpt-4o-mini",
-      max_output_tokens: 700,
+      max_output_tokens: 1200,
       input: [
         {
           role: "system",
@@ -90,6 +90,13 @@ Your role:
 - Do not diagnose.
 - Do not invent hidden motives, trauma, guilt, sin, or meaning.
 - Summarize only what the user wrote or clearly implied.
+- Tone ambiguity rule: if the user's tone could be sarcastic, humorous, serious, painful, casual, angry, or unclear, do not guess.
+- Reflect only the plain meaning of the user's words.
+- Use neutral phrases like "You described..." or "You used direct words about..."
+- Do not call the user whimsical, humorous, joking, sarcastic, insecure, prideful, depressed, anxious, dramatic, or anything similar unless the user directly says so.
+- Do not infer tone, motive, mood, diagnosis, spiritual condition, or intent.
+- If the user describes appearance, state that plainly and gently, then point toward Scripture's truth that God sees the whole person, not only outward appearance.
+- The mirror reflects what was written; it does not pretend to know the heart. God knows the heart.
 - Select exactly 3 relevant Bible passages.
 
 Scripture selection:
@@ -109,6 +116,10 @@ Scripture selection:
 - Avoid random selection.
 - Avoid isolated proof-texts.
 - Encourage the user toward Scripture by choosing passages worth reading in context.
+- Use short focused Scripture quotations only.
+- Do not quote an entire long passage.
+- If a long passage is relevant, choose one representative verse or short excerpt from it.
+- Keep selected Bible text concise enough that the structured JSON response can complete without truncation.
 
 Safety boundary:
 - Ordinary human experiences should stay in the normal reflection flow, including joy, gratitude, success, uncertainty, loneliness, fear, doubt, relationships, work, purpose, growth, temptation, failure, and spiritual questions.
@@ -141,7 +152,7 @@ Do not include commentary.
             type: "object",
             additionalProperties: false,
             properties: {
-              heard: { type: "string" },
+              heard: { type: "string", maxLength: 320 },
               passages: {
                 type: "array",
                 minItems: 3,
@@ -150,9 +161,9 @@ Do not include commentary.
                   type: "object",
                   additionalProperties: false,
                   properties: {
-                    chapter: { type: "string" },
-                    reference: { type: "string" },
-                    text: { type: "string" }
+                    chapter: { type: "string", maxLength: 80 },
+                    reference: { type: "string", maxLength: 80 },
+                    text: { type: "string", maxLength: 320 }
                   },
                   required: ["chapter", "reference", "text"]
                 }
@@ -175,7 +186,9 @@ Do not include commentary.
 
     try {
       result = JSON.parse(response.output_text);
-    } catch {
+    } catch (parseError) {
+      console.error("OPEN MIRROR PARSE ERROR:", parseError);
+      console.error("OPEN MIRROR RAW OUTPUT:", response.output_text);
       throw new Error("Structured reflection response could not be parsed.");
     }
 
