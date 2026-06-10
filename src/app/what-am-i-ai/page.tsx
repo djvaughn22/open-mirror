@@ -30,7 +30,7 @@ export default function WhatAmIAIPage() {
           <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
             <a href="/welcome">Home</a>
             <a href="/cross-heart-pray">Cross Heart Pray</a>
-            <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
+            <a href="/cross-heart-pray/reflect">Begin Reflection</a>
             <a href="/the-dj-cares">TheDJCares</a>
             <a href="/what-am-i-ai">WhatAmIAI</a>
           </div>
@@ -41,6 +41,12 @@ export default function WhatAmIAIPage() {
 
       <section className="mx-auto flex min-h-[80vh] max-w-5xl flex-col items-center justify-center px-6 text-center">
         <div className="mb-6 text-5xl">🤖 🪞</div>
+
+        <div className="mb-8">
+          <span className="rounded-full border border-zinc-700 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-400">
+            Coming Soon · Early Concept Preview
+          </span>
+        </div>
 
         <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
           Purpose · Growth · Truth
@@ -73,7 +79,7 @@ export default function WhatAmIAIPage() {
             href="/cross-heart-pray/reflect"
             className="rounded-full border border-zinc-700 px-8 py-3"
           >
-            Talk To The Mirror
+            Begin Reflection
           </a>
         </div>
       </section>

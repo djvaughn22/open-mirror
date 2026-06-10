@@ -130,7 +130,14 @@ export default function Home() {
                 href={product.href}
                 className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-zinc-500"
               >
-                <div className="text-3xl">{product.emoji}</div>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="text-3xl">{product.emoji}</div>
+                  {product.status && (
+                    <span className="rounded-full border border-zinc-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                      {product.status}
+                    </span>
+                  )}
+                </div>
 
                 <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
 
