@@ -108,6 +108,9 @@ export default function CrossPage() {
           </a>
         </div>
       </section>
+      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+        © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+      </footer>
     </main>
   );
 }
