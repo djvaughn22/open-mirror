@@ -66,7 +66,6 @@ const sections: Section[] = [
   {
     title: "Gospel",
     emoji: "✝️",
-    gridClass: "lg:col-start-1",
     line: "Walk with Jesus through His words, works, cross, and resurrection.",
     passages: [
       { label: "Matthew 5:3", code: "MAT", chapter: "5", verse: "3" },
@@ -82,7 +81,6 @@ const sections: Section[] = [
   {
     title: "Epistles",
     emoji: "✉️",
-    gridClass: "lg:col-start-2",
     line: "Read how the Church learns to live, love, serve, endure, and grow.",
     passages: [
       { label: "Romans 8:1", code: "ROM", chapter: "8", verse: "1" },
@@ -99,6 +97,7 @@ const sections: Section[] = [
     title: "Genesis",
     emoji: "🌅",
     gridClass: "lg:col-start-1",
+    gridClass: "lg:col-start-1",
     line: "The beginning: creation, fall, promise, covenant, and God’s story opening.",
     passages: [
       { label: "Genesis 1:1", code: "GEN", chapter: "1", verse: "1" },
@@ -112,6 +111,7 @@ const sections: Section[] = [
   {
     title: "Revelation",
     emoji: "👑",
+    gridClass: "lg:col-start-2",
     gridClass: "lg:col-start-2",
     line: "The end: worship, victory, restoration, and Jesus making all things new.",
     passages: [
