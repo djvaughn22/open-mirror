@@ -87,35 +87,9 @@ export default function TheDJCaresPage() {
           </details>
         </nav>
 
-        <section className="mx-auto max-w-5xl py-24 text-center">
-          <p className="mb-8 flex items-center justify-center gap-8 text-6xl md:gap-14 md:text-7xl">
-            <span>🎵</span>
-            <span>❤️</span>
-            <span>🤝</span>
-          </p>
+        
 
-          <p className="mb-5 inline-flex rounded-full border border-zinc-700 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-400">
-            Coming Soon
-          </p>
 
-          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
-            TheDJCares
-          </h1>
-
-          <p className="mx-auto mt-8 max-w-4xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
-            A Gospel-first place to find Christian music, messages, media,
-            churches, charities, books, businesses, and community resources
-            that lift the heart, move the soul, connect the body of Christ,
-            and point people to Jesus.
-          </p>
-
-          <div className="mx-auto mt-10 grid max-w-3xl gap-4 text-lg font-semibold text-zinc-400 sm:grid-cols-4">
-            <p>Find what encourages.</p>
-            <p>Share what helps.</p>
-            <p>Support what serves.</p>
-            <p>Follow Jesus.</p>
-          </div>
-        </section>
 
         <section className="rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
           <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
