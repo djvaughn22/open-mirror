@@ -24,13 +24,13 @@ const more = [
     title: "TheDJCares",
     emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
-    text: "Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
+    text: "Music, podcasts, videos, churches, and encouragement for the road ahead.",
   },
   {
     title: "WhatAmIAI",
     emoji: "🤖 📖",
     href: "/what-am-i-ai",
-    text: "A deeper step-by-step reflection experience with related Bible stories, Gospel-focused Scripture, and space to see more clearly.",
+    text: "A deeper reflection experience for seeing yourself clearly and turning toward truth.",
   },
 ];
 
