@@ -29,7 +29,7 @@ export default function OpenMirrorPlatformPage() {
 
           <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
             <a href="/welcome">Home</a>
-            <a href="/cross-heart-pray">Cross Heart Pray</a>
+            <a href="/welcome">Cross Heart Pray</a>
             <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
             <a href="/the-dj-cares">TheDJCares</a>
             <a href="/what-am-i-ai">WhatAmIAI</a>
@@ -91,7 +91,7 @@ export default function OpenMirrorPlatformPage() {
 
         <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-3">
           <a
-            href="/cross-heart-pray"
+            href="/welcome"
             className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8"
           >
             <div className="text-4xl">✝️ ❤️ 🙏</div>
