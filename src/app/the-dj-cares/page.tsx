@@ -87,9 +87,17 @@ export default function TheDJCaresPage() {
           </details>
         </nav>
 
-        
+        <section className="px-6 py-16 text-center">
+          <div className="mb-6 text-7xl">🎵 ❤️ 🤝</div>
 
+          <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
+            Coming Soon
+          </p>
 
+          <h1 className="text-5xl font-black tracking-tight md:text-7xl">
+            TheDJCares
+          </h1>
+        </section>
 
         <section className="rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
           <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
