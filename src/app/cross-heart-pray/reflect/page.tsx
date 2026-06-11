@@ -442,7 +442,7 @@ export default function CrossHeartPrayReflectPage() {
     <main className="min-h-screen bg-black px-6 py-10 text-white">
       <nav className="mx-auto grid grid-cols-3 max-w-5xl items-center py-4">
         <a href="/welcome" className="justify-self-start font-bold">
-          Open Mirror
+          Cross Heart Pray
         </a>
 
         <span aria-hidden="true" />

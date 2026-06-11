@@ -4,7 +4,7 @@ export default function CrossPage() {
       <section className="mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-16 grid grid-cols-3 items-center">
         <a href="/welcome" className="justify-self-start font-bold">
-          Open Mirror
+          Cross Heart Pray
         </a>
 
         <span aria-hidden="true" />
