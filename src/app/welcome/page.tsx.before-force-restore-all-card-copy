@@ -3,19 +3,19 @@ const steps = [
     title: "Cross",
     emoji: "✝️",
     href: "/cross-heart-pray/cross",
-    text: "Jesus Christ. His life, teachings, sacrifice, resurrection, and promise.",
+    text: "Come to Jesus. His life, teachings, sacrifice, resurrection, and promise.",
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/cross-heart-pray/heart",
-    text: "God's love, grace, mercy, and truth.",
+    text: "Receive God’s love, grace, mercy, and truth.",
   },
   {
     title: "Pray",
     emoji: "🙏",
     href: "/cross-heart-pray/pray",
-    text: "A daily relationship with God through prayer.",
+    text: "Pray your way through the Holy Bible.",
   },
 ];
 
