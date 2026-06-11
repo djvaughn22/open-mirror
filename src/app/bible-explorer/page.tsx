@@ -305,7 +305,7 @@ export default function BibleExplorerPage() {
         </section>
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          <p>Follow Jesus. Love God. Pray.</p>
+          <p>© 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.</p>
           <p className="mx-auto mt-4 max-w-3xl text-xs leading-6 text-zinc-600">
             Scripture quotations marked CSB have been taken from the Christian Standard Bible®,
             Copyright © 2017 by Holman Bible Publishers. Used by permission.

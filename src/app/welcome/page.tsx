@@ -160,7 +160,7 @@ export default function WelcomePage() {
         </section>
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          Follow Jesus. Love God. Pray.
+          © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
         </footer>
       </div>
     </main>
