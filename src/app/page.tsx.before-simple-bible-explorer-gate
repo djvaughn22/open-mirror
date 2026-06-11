@@ -26,19 +26,29 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <section className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 text-center">
+      <section className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6 text-center">
         <div
           aria-label="Cross Heart Pray"
-          className="mb-14 flex items-center justify-center gap-10 text-7xl md:gap-16 md:text-8xl"
+          className="mb-10 text-6xl tracking-[0.32em] md:text-8xl"
         >
-          <span>✝️</span>
-          <span>❤️</span>
-          <span>🙏</span>
+          ✝️ ❤️ 🙏
         </div>
+
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.45em] text-zinc-500">
+          Cross Heart Pray
+        </p>
+
+        <h1 className="text-6xl font-bold leading-tight md:text-8xl">
+          Holy Bible
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
+          Cross Heart Pray your way through the Holy Bible.
+        </p>
 
         <form
           onSubmit={handleSubmit}
-          className="flex w-full max-w-xl flex-col gap-4 sm:flex-row"
+          className="mt-12 flex w-full max-w-xl flex-col gap-4 sm:flex-row"
         >
           <input
             type="email"
@@ -55,7 +65,7 @@ export default function Home() {
             disabled={status === "saving"}
             className="rounded-full bg-white px-8 py-3 font-semibold text-black disabled:opacity-60"
           >
-            {status === "saving" ? "Opening..." : "Open Bible Explorer"}
+            {status === "saving" ? "Opening..." : "Open Holy Bible"}
           </button>
         </form>
 
@@ -64,7 +74,15 @@ export default function Home() {
             Something went wrong. Please try again.
           </p>
         )}
+
+        <p className="mt-8 max-w-xl text-sm leading-7 text-zinc-500">
+          Scripture is the authority. Jesus is the destination.
+        </p>
       </section>
+
+      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+        © Open Mirror LLC. Open God&apos;s Word. Pray. Follow Jesus.
+      </footer>
     </main>
   );
 }
