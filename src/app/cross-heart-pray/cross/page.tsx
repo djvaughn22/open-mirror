@@ -1,9 +1,8 @@
-
 export default function CrossPage() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <header className="border-b border-zinc-900 px-6 py-5">
-        <nav className="mx-auto grid grid-cols-3 max-w-6xl items-center">
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <nav className="mb-16 grid grid-cols-3 items-center">
         <a href="/welcome" className="justify-self-start font-bold">
           Open Mirror
         </a>
@@ -40,56 +39,73 @@ export default function CrossPage() {
         </div>
 
         </nav>
-      </header>
 
-      <section className="mx-auto max-w-4xl px-6 py-16 text-center">
-        <div className="mb-6 text-7xl">✝️</div>
-
-        <p className="mb-3 text-sm uppercase tracking-[0.35em] text-zinc-500">
-          Step One
-        </p>
-
-        <h1 className="mb-6 text-5xl font-bold">Bring it to the Cross.</h1>
-
-        <p className="mx-auto mb-12 max-w-2xl text-xl leading-9 text-zinc-300">
-          Lay down what you&apos;ve been carrying. Bring the truth to Jesus.
-          Find forgiveness, freedom, and a new beginning.
-        </p>
-
-        <div className="grid gap-4 text-left md:grid-cols-3">
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">1</p>
-            <h2 className="mb-2 text-xl font-semibold">Name it</h2>
-            <p className="text-zinc-400">
-              Fear, shame, anger, sin, confusion, regret, grief, or a decision
-              you do not know how to carry.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">2</p>
-            <h2 className="mb-2 text-xl font-semibold">Lay it down</h2>
-            <p className="text-zinc-400">
-              You were not made to carry everything alone or save yourself by
-              strength, performance, or control.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">3</p>
-            <h2 className="mb-2 text-xl font-semibold">Trust Jesus</h2>
-            <p className="text-zinc-400">
-              Bring the real thing to Him. Not the polished version. Not the
-              hidden version. The honest one.
-            </p>
-          </div>
+        <div className="text-center">
+          <div className="mb-8 text-7xl">✝️</div>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
+            Step One
+          </p>
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+            Cross
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
+            Jesus died on cross
+            <br />
+            He descended into hell
+            <br />
+            And He rose again
+          </p>
         </div>
 
-        <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="mb-2 font-semibold">Reflection Question</p>
-          <p className="text-zinc-300">
-            What do I need to lay down at the Cross today?
-          </p>
+        
+
+<section className="mt-16 rounded-[2rem] border border-zinc-800 bg-zinc-950 px-8 py-12 text-center">
+  <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+    The Cross
+  </p>
+
+  <div className="mx-auto mt-10 grid max-w-4xl gap-10 md:grid-cols-3">
+    <div>
+      <div className="text-4xl">✝️</div>
+      <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
+      <p className="mt-4 leading-7 text-zinc-400">
+        Jesus died on the Cross.
+        <br />
+        He gave His life for all.
+      </p>
+    </div>
+
+    <div>
+      <div className="text-4xl">⬇️</div>
+      <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
+      <p className="mt-4 leading-7 text-zinc-400">
+        He descended into hell.
+        <br />
+        Death did not hold Him.
+      </p>
+    </div>
+
+    <div>
+      <div className="text-4xl">☀️</div>
+      <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
+      <p className="mt-4 leading-7 text-zinc-400">
+        Jesus rose again.
+        <br />
+        Life is found in Him.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+        <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href="/cross-heart-pray/heart"
+            className="rounded-full bg-white px-8 py-3 text-center font-semibold text-black"
+          >
+            Next: Heart
+          </a>
         </div>
       </section>
     </main>
