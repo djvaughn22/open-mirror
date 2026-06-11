@@ -24,14 +24,12 @@ const more = [
     title: "TheDJCares",
     emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
-    status: "Coming Soon",
     text: "Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
   },
   {
     title: "WhatAmIAI",
     emoji: "🤖 📖",
     href: "/what-am-i-ai",
-    status: "Coming Soon",
     text: "A deeper step-by-step reflection experience with related Bible stories, Gospel-focused Scripture, and space to see more clearly.",
   },
 ];
@@ -137,13 +135,7 @@ export default function WelcomePage() {
 
               <h2 className="mt-8 text-2xl font-bold">{item.title}</h2>
 
-              {item.status && (
-                <span className="mt-4 rounded-full border border-zinc-700 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">
-                  {item.status}
-                </span>
-              )}
-
-              <p className="mt-5 leading-7 text-zinc-400" style={{ flex: 1 }}>
+              <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
                 {item.text}
               </p>
             </a>
