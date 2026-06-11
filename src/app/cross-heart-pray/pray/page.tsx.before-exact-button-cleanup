@@ -6,6 +6,9 @@ export default function PrayPage() {
           <a href="/bible-explorer" className="rounded-full bg-white px-8 py-3 text-center font-semibold text-black">
             Holy Bible Explorer
           </a>
+          <a href="https://www.bible.com/app" target="_blank" rel="noopener noreferrer" className="rounded-full border border-zinc-700 px-8 py-3 text-center font-semibold text-white hover:border-white">
+            Holy Bible Explorer
+          </a>
         </div>
       </section>
     </main>

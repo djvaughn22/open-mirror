@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export default function CrossPage() {
   return (
@@ -33,7 +32,7 @@ export default function CrossPage() {
           <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
             <a href="/welcome">Home</a>
             <a href="/cross-heart-pray">Cross Heart Pray</a>
-            <a href="/cross-heart-pray/reflect">Talk To The Mirror</a>
+            <a href="/bible-explorer">Holy Bible Explorer</a>
             <a href="/the-dj-cares">TheDJCares</a>
             <a href="/what-am-i-ai">WhatAmIAI</a>
           </div>
@@ -92,13 +91,6 @@ export default function CrossPage() {
             What do I need to lay down at the Cross today?
           </p>
         </div>
-
-        <Link
-          href="/cross-heart-pray/reflect"
-          className="mt-10 inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
-        >
-          Talk To The Mirror
-        </Link>
       </section>
     </main>
   );
