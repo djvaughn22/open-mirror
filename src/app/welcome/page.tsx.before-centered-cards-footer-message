@@ -99,12 +99,11 @@ export default function WelcomePage() {
             <a
               key={step.title}
               href={step.href}
-              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white"
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-white"
               style={{
                 minHeight: "300px",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
               }}
             >
               <div className="text-5xl">{step.emoji}</div>
@@ -123,12 +122,11 @@ export default function WelcomePage() {
             <a
               key={item.title}
               href={item.href}
-              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white"
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-white"
               style={{
                 minHeight: "240px",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
               }}
             >
               <div className="text-5xl">{item.emoji}</div>
@@ -152,7 +150,7 @@ export default function WelcomePage() {
         </section>
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          Follow Jesus. Love God. Pray.
+          © Open Mirror LLC. Open God&apos;s Word. Pray. Follow Jesus.
         </footer>
       </div>
     </main>
