@@ -1,183 +1,158 @@
-const products = [
+const steps = [
   {
-    name: "Cross Heart Pray",
-    emoji: "✝️ ❤️ 🙏",
-    href: "/cross-heart-pray",
-    description:
-      "A simple visual language for seeking Jesus, knowing God’s love, and staying close to God through prayer.",
+    title: "Cross",
+    emoji: "✝️",
+    href: "/cross-heart-pray/cross",
+    text: "Come to Jesus. His life, teachings, sacrifice, resurrection, and promise.",
   },
   {
-    name: "TheDJCares",
-    emoji: "🎵 ❤️ 🤝",
-    href: "/the-dj-cares",
-    status: "Coming Soon",
-    description:
-      "Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
+    title: "Heart",
+    emoji: "❤️",
+    href: "/cross-heart-pray/heart",
+    text: "Receive God’s love, grace, mercy, and truth.",
   },
   {
-    name: "WhatAmIAI",
-    emoji: "🤖 📖",
-    href: "/what-am-i-ai",
-    status: "Coming Soon",
-    description:
-      "A deeper step-by-step reflection experience with related Bible stories, Gospel-focused Scripture, and space to see more clearly.",
+    title: "Pray",
+    emoji: "🙏",
+    href: "/cross-heart-pray/pray",
+    text: "Pray your way through the Holy Bible.",
   },
 ];
 
-export default function Home() {
+const more = [
+  {
+    title: "TheDJCares",
+    emoji: "🎵 ❤️ 🤝",
+    href: "/the-dj-cares",
+    text: "Music, podcasts, videos, churches, and encouragement for the road ahead.",
+  },
+  {
+    title: "WhatAmIAI",
+    emoji: "🤖 📖",
+    href: "/what-am-i-ai",
+    text: "A deeper reflection experience for seeing yourself clearly and turning toward truth.",
+  },
+];
+
+export default function WelcomePage() {
+  const today = new Date();
+  const todayDate = `${today.getFullYear()}-${String(
+    today.getMonth() + 1,
+  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const verseOfTheDayUrl = `https://www.bibleportal.com/verse-of-the-day?version=NIV&date=${todayDate}`;
+
   return (
     <main className="min-h-screen bg-black text-white">
-      <nav className="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 py-6">
-        <a href="/welcome" className="justify-self-start font-bold">
-          Open Mirror
-        </a>
+      <div className="mx-auto max-w-6xl px-6 py-8">
+        <nav className="grid grid-cols-3 items-center">
+          <span aria-hidden="true" />
 
-        <a
-          href="https://www.bible.com/app"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open YouVersion Bible App"
-          className="justify-self-center"
-        >
-          <img
-            src="/brand/youversion-bible-app.png"
-            alt="YouVersion Bible App"
-            className="h-9 w-9 rounded-lg"
-          />
-        </a>
+          <a
+            href={verseOfTheDayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open today's Bible verse"
+            className="justify-self-center"
+          >
+            <img
+              src="/brand/youversion-bible-app.png"
+              alt="Holy Bible"
+              className="h-10 w-10 rounded-lg"
+            />
+          </a>
 
-        <details className="relative justify-self-end text-sm text-zinc-400">
-          <summary className="cursor-pointer list-none text-2xl leading-none">
-            ☰
-          </summary>
+          <details className="relative justify-self-end text-sm text-zinc-400">
+            <summary className="cursor-pointer list-none text-2xl leading-none">
+              ☰
+            </summary>
 
-          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-            <a href="/welcome">Home</a>
-            <a href="/cross-heart-pray">Cross Heart Pray</a>
-            <a href="/cross-heart-pray/reflect">Begin Reflection</a>
-            <a href="/the-dj-cares">TheDJCares</a>
-            <a href="/what-am-i-ai">WhatAmIAI</a>
-          </div>
-        </details>
-      </nav>
+            <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+              <a href="/welcome">Home</a>
+              <a href="/cross-heart-pray/cross">Cross</a>
+              <a href="/cross-heart-pray/heart">Heart</a>
+              <a href="/cross-heart-pray/pray">Pray</a>
+              <a href="/the-dj-cares">TheDJCares</a>
+              <a href="/what-am-i-ai">WhatAmIAI</a>
+              <a href="/cross-heart-pray/reflect">Bible Explorer</a>
+            </div>
+          </details>
+        </nav>
 
-      <section className="mx-auto flex min-h-[80vh] max-w-5xl flex-col items-center justify-center px-6 text-center">
-        <p className="mb-6 text-5xl tracking-[0.35em] md:text-6xl">
-          ✝️ ❤️ 🙏
-        </p>
+        <section className="mx-auto max-w-4xl py-24 text-center">
+          <p className="mb-8 flex items-center justify-center gap-8 text-6xl md:gap-14 md:text-7xl">
+            <span>✝️</span>
+            <span>❤️</span>
+            <span>🙏</span>
+          </p>
 
-        <h1 className="text-6xl font-bold leading-tight md:text-8xl">
-          Open the Bible.
-        </h1>
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+            Cross Heart Pray
+          </h1>
 
-        <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
-          The truth will set you free.
-        </h2>
+          <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
+            Cross Heart Pray your way through the Holy Bible.
+          </p>
+        </section>
 
-        <a
-          href="https://www.bible.com/search/bible?q=John%208%3A31-32"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-block text-sm text-zinc-500 underline decoration-zinc-700 underline-offset-4 hover:text-white"
-        >
-          John 8:31–32
-        </a>
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {steps.map((step) => (
+            <a
+              key={step.title}
+              href={step.href}
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-white"
+              style={{
+                minHeight: "300px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="text-5xl">{step.emoji}</div>
 
-      </section>
+              <h2 className="mt-8 text-2xl font-bold">{step.title}</h2>
 
-      <section
-        id="mission"
-        className="border-t border-zinc-900 px-6 py-24 text-center"
-      >
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          The Mission
-        </p>
+              <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
+                {step.text}
+              </p>
+            </a>
+          ))}
+        </section>
 
-        <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          Spend time in God&apos;s Word.
-          <br />
-          Grow closer to God.
-          <br />
-          Live it. Share it.
-        </h2>
-      </section>
+        <section className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {more.map((item) => (
+            <a
+              key={item.title}
+              href={item.href}
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:border-white"
+              style={{
+                minHeight: "240px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="text-5xl">{item.emoji}</div>
 
-      <section
-        id="journey"
-        className="border-t border-zinc-900 px-6 py-24 text-center"
-      >
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          More Coming
-        </p>
+              <h2 className="mt-8 text-2xl font-bold">{item.title}</h2>
 
-        <h2 className="text-4xl font-bold md:text-5xl">
-          Built around Scripture, prayer, and faith.
-        </h2>
+              <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
+                {item.text}
+              </p>
+            </a>
+          ))}
+        </section>
 
-        <div className="mx-auto mt-12 grid max-w-6xl gap-6 text-left md:grid-cols-3">
-          {products.map((product) =>
-            product.href ? (
-              <a
-                key={product.name}
-                href={product.href}
-                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-zinc-500"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="text-3xl">{product.emoji}</div>
-                  {product.status && (
-                    <span className="rounded-full border border-zinc-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                      {product.status}
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
-
-                <p className="mt-4 leading-7 text-zinc-400">
-                  {product.description}
-                </p>
-              </a>
-            ) : (
-              <div
-                key={product.name}
-                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 opacity-90"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="text-3xl">{product.emoji}</div>
-                  <span className="rounded-full border border-zinc-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                    {product.status}
-                  </span>
-                </div>
-
-                <h3 className="mt-4 text-2xl font-bold">{product.name}</h3>
-
-                <p className="mt-4 leading-7 text-zinc-400">
-                  {product.description}
-                </p>
-              </div>
-            )
-          )}
-        </div>
-      </section>
-
-      <section className="border-t border-zinc-900 px-6 py-24 text-center">
-        <h2 className="text-4xl font-bold md:text-5xl">
-          Ready to begin?
-        </h2>
-
-        <div className="mt-10">
+        <section className="border-t border-zinc-900 px-6 py-20 text-center">
           <a
             href="/cross-heart-pray/reflect"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
-            Begin Reflection
+            Open Bible Explorer
           </a>
-        </div>
-      </section>
+        </section>
 
-      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. Open God&apos;s Word. Pray. Follow Jesus.
-      </footer>
+        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+          © Open Mirror LLC. Open God&apos;s Word. Pray. Follow Jesus.
+        </footer>
+      </div>
     </main>
   );
 }
