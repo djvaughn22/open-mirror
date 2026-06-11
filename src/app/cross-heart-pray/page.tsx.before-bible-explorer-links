@@ -50,7 +50,7 @@ export default function CrossHeartPrayPage() {
             <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
               <a href="/welcome">Home</a>
               <a href="/cross-heart-pray">Cross Heart Pray</a>
-              <a href="/bible-explorer">Bible Explorer</a>
+              <a href="/cross-heart-pray/reflect">Begin Reflection</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
             </div>
@@ -131,10 +131,10 @@ export default function CrossHeartPrayPage() {
 
           <div className="mt-10">
             <a
-              href="/bible-explorer"
+              href="/cross-heart-pray/reflect"
               className="rounded-full bg-white px-8 py-3 font-semibold text-black"
             >
-              Bible Explorer
+              Begin Reflection
             </a>
           </div>
         </section>

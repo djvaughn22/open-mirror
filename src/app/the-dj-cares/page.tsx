@@ -82,7 +82,7 @@ export default function TheDJCaresPage() {
               <a href="/cross-heart-pray/pray">Pray</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
-              <a href="/cross-heart-pray/reflect">Bible Explorer</a>
+              <a href="/bible-explorer">Bible Explorer</a>
             </div>
           </details>
         </nav>
@@ -193,7 +193,7 @@ export default function TheDJCaresPage() {
 
         <section className="border-t border-zinc-900 px-6 py-20 text-center">
           <a
-            href="/cross-heart-pray/reflect"
+            href="/bible-explorer"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
             Open Bible Explorer
