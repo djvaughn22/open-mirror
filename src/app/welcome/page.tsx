@@ -157,7 +157,7 @@ export default function WelcomePage() {
             href="/bible-explorer"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
-            Holy Holy Bible Explorer
+            Holy Bible Explorer
           </a>
         </section>
 
