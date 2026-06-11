@@ -1,167 +1,229 @@
+const features = [
+  {
+    title: "The Deep Dive",
+    emoji: "🪞",
+    text: "Notice the good and the harmful — habits, feelings, patterns, gifts, burdens, strengths, struggles, and opportunities that may be easy to miss.",
+  },
+  {
+    title: "Good Fruit",
+    emoji: "🌱",
+    text: "Explore signs of love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control already growing in your life.",
+  },
+  {
+    title: "Destructive Patterns",
+    emoji: "⚠️",
+    text: "Carefully notice patterns that may be pulling you away from peace, truth, love, humility, service, and self-control.",
+  },
+  {
+    title: "Simple Changes",
+    emoji: "👣",
+    text: "Self-identify simple ways to change anything you feel called to change — one honest step at a time.",
+  },
+  {
+    title: "Gifts & Burdens",
+    emoji: "🎁",
+    text: "Reflect on what moves your heart, what you care about, what you keep noticing, and where your life experience may help someone else.",
+  },
+  {
+    title: "Ways to Serve",
+    emoji: "🤝",
+    text: "Explore small and large opportunities to help others through family, neighbors, churches, charities, ministries, and communities.",
+  },
+  {
+    title: "Calling & Next Steps",
+    emoji: "🧭",
+    text: "Explore possible next faithful steps without ego, pressure, or pretending to have it all figured out.",
+  },
+  {
+    title: "Approved Opportunities",
+    emoji: "✅",
+    text: "Connect with Cross Heart Pray approved opportunities to serve, give, volunteer, encourage, learn, and grow.",
+  },
+];
+
 export default function WhatAmIAIPage() {
+  const today = new Date();
+  const todayDate = `${today.getFullYear()}-${String(
+    today.getMonth() + 1,
+  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const verseOfTheDayUrl = `https://www.bibleportal.com/verse-of-the-day?version=NIV&date=${todayDate}`;
+
   return (
     <main className="min-h-screen bg-black text-white">
-      <nav className="mx-auto grid grid-cols-3 max-w-6xl items-center px-6 py-6">
-        <a href="/welcome" className="justify-self-start font-bold">
-          Open Mirror
-        </a>
+      <div className="mx-auto max-w-6xl px-6 py-8">
+        <nav className="grid grid-cols-3 items-center">
+          <a href="/welcome" className="justify-self-start font-bold">
+            Cross Heart Pray
+          </a>
 
-        <span aria-hidden="true" />
-
-        <div className="justify-self-end flex items-center gap-4">
           <a
-            href="https://www.bible.com/app"
+            href={verseOfTheDayUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open YouVersion Bible App"
+            aria-label="Open today's Bible verse"
+            className="justify-self-center"
           >
             <img
               src="/brand/youversion-bible-app.png"
-              alt="YouVersion Bible App"
-              className="h-9 w-9 rounded-lg"
+              alt="Holy Bible"
+              className="h-10 w-10 rounded-lg"
             />
           </a>
 
-          <details className="relative text-sm text-zinc-400">
-          <summary className="cursor-pointer list-none text-2xl leading-none">
-            ☰
-          </summary>
+          <details className="relative justify-self-end text-sm text-zinc-400">
+            <summary className="cursor-pointer list-none text-2xl leading-none">
+              ☰
+            </summary>
 
-          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-            <a href="/welcome">Home</a>
-            <a href="/cross-heart-pray">Cross Heart Pray</a>
-            <a href="/cross-heart-pray/reflect">Begin Reflection</a>
-            <a href="/the-dj-cares">TheDJCares</a>
-            <a href="/what-am-i-ai">WhatAmIAI</a>
-          </div>
+            <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+              <a href="/welcome">Home</a>
+              <a href="/cross-heart-pray/cross">Cross</a>
+              <a href="/cross-heart-pray/heart">Heart</a>
+              <a href="/cross-heart-pray/pray">Pray</a>
+              <a href="/the-dj-cares">TheDJCares</a>
+              <a href="/what-am-i-ai">WhatAmIAI</a>
+              <a href="/cross-heart-pray/reflect">Bible Explorer</a>
+            </div>
           </details>
-        </div>
+        </nav>
 
-      </nav>
-
-      <section className="mx-auto flex min-h-[80vh] max-w-5xl flex-col items-center justify-center px-6 text-center">
-        <div className="mb-6 text-5xl">🤖 🪞</div>
-
-        <div className="mb-8">
-          <span className="rounded-full border border-zinc-700 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-400">
-            Coming Soon · Early Concept Preview
-          </span>
-        </div>
-
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Purpose · Growth · Truth
-        </p>
-
-        <h1 className="text-5xl font-bold leading-tight md:text-7xl">
-          What Am I AI?
-        </h1>
-
-        <h2 className="mt-6 text-3xl font-semibold text-zinc-300 md:text-5xl">
-          Who are you becoming?
-        </h2>
-
-        <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Every conversation leaves clues. Every question reveals something.
-          What Am I AI is being built to help people discover patterns,
-          strengths, blind spots, opportunities, purpose, and growth hidden
-          inside their own words.
-        </p>
-
-
-      </section>
-
-      <section className="border-t border-zinc-900 px-6 py-24 text-center">
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Beyond Reflection
-        </p>
-
-        <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          Your words reveal patterns.
-          <br />
-          Patterns reveal direction.
-        </h2>
-
-        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Most people leave fingerprints in everything they write, ask, fear,
-          pursue, avoid, celebrate, and dream about.
-        </p>
-
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-          What Am I AI is designed to reflect those patterns back in a way that
-          is useful, honest, and actionable.
-        </p>
-      </section>
-
-      <section className="border-t border-zinc-900 px-6 py-24 text-center">
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Future Vision
-        </p>
-
-        <h2 className="mx-auto max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-          Discover purpose.
-          <br />
-          Take the next step.
-        </h2>
-
-        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-          Over time, What Am I AI may help people understand how their gifts,
-          habits, interests, strengths, struggles, and values fit together.
-        </p>
-
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-          Not simply who they are today, but who they are becoming.
-        </p>
-      </section>
-
-      <section
-        id="join"
-        className="border-t border-zinc-900 px-6 py-24 text-center"
-      >
-        <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Start Here
-        </p>
-
-        <h2 className="mx-auto max-w-3xl text-4xl font-bold md:text-5xl">
-          What might your words reveal?
-        </h2>
-
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Request early access and tell us what you would want to discover about
-          your patterns, growth, purpose, or next step.
-        </p>
-
-        <div className="mx-auto mt-10 max-w-2xl">
-          <a
-            href="mailto:ask@openmirrorllc.com?subject=WhatAmIAI%20Early%20Access"
-            className="inline-block rounded-full bg-white px-8 py-3 font-semibold text-black"
-          >
-            Request Early Access
-          </a>
-
-          <p className="mt-4 text-sm text-zinc-500">
-            This opens your email app so you can send a request directly.
+        <section className="mx-auto max-w-5xl py-24 text-center">
+          <p className="mb-8 flex items-center justify-center gap-8 text-6xl md:gap-14 md:text-7xl">
+            <span>🤖</span>
+            <span>📖</span>
+            <span>🌱</span>
           </p>
-        </div>
-      </section>
 
-      <section className="mt-20 border-t border-zinc-900 px-6 py-20 text-center">
-          <h2 className="text-4xl font-bold md:text-5xl">
-            Ready to begin?
+          <p className="mb-5 inline-flex rounded-full border border-zinc-700 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-400">
+            Coming Soon
+          </p>
+
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+            WhatAmIAI
+          </h1>
+
+          <p className="mx-auto mt-8 max-w-4xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
+            A Gospel-first reflection tool for noticing what is growing, what is
+            hurting, what is hidden, and where you may feel called to serve.
+          </p>
+
+          <div className="mx-auto mt-10 grid max-w-3xl gap-4 text-lg font-semibold text-zinc-400 sm:grid-cols-4">
+            <p>Look honestly.</p>
+            <p>Notice the fruit.</p>
+            <p>Choose the next step.</p>
+            <p>Serve with love.</p>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
+          <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
+            AI As A Question Tool
+          </p>
+
+          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
+            Not to guide you.
+            <br />
+            Not to define you.
+            <br />
+            To help you ask better questions.
           </h2>
 
-          <div className="mt-10">
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+            WhatAmIAI will use AI not to guide, advise, define, diagnose, or
+            decide for you. It will simply ask thoughtful questions for
+            self-discovery and help you self-identify simple ways to change
+            anything you feel called to change.
+          </p>
+
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+            Bring what you notice back to Scripture, prayer, trusted people, and
+            Jesus.
+          </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
+          <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
+            The Foundation
+          </p>
+
+          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
+            The way of Jesus.
+            <br />
+            The fruit of the Spirit.
+            <br />
+            The next faithful step.
+          </h2>
+
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+            The experience will be shaped by the core principles Jesus taught in
+            the Sermon on the Mount and the fruit of the Spirit Paul describes:
+            love, joy, peace, patience, kindness, goodness, faithfulness,
+            gentleness, and self-control.
+          </p>
+        </section>
+
+        <section className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {features.map((feature) => (
+            <article
+              key={feature.title}
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center"
+              style={{
+                minHeight: "250px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div className="text-5xl">{feature.emoji}</div>
+
+              <h2 className="mt-8 text-2xl font-bold">{feature.title}</h2>
+
+              <p className="mt-4 leading-7 text-zinc-400">{feature.text}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
+          <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
+            Service & Calling
+          </p>
+
+          <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
+            Small steps matter.
+            <br />
+            Big callings can start quietly.
+          </h2>
+
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+            WhatAmIAI will help people hunger for helping others by exploring
+            gifts, burdens, habits, feelings, opportunities, and simple next
+            steps — from a prayer, a message, or a meal to serving through a
+            church, charity, ministry, or community need.
+          </p>
+        </section>
+
+        <section className="border-t border-zinc-900 px-6 py-20 text-center">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="/welcome"
+              className="rounded-full border border-zinc-700 px-8 py-3 font-semibold text-white"
+            >
+              Back to Cross Heart Pray
+            </a>
+
             <a
               href="/cross-heart-pray/reflect"
               className="rounded-full bg-white px-8 py-3 font-semibold text-black"
             >
-              Begin Reflection
+              Open Bible Explorer
             </a>
           </div>
-      </section>
+        </section>
 
-      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © Open Mirror LLC. Purpose, growth, and truth.
-      </footer>
+        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+          Follow Jesus. Love God. Pray.
+        </footer>
+      </div>
     </main>
   );
 }
