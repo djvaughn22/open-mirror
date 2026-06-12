@@ -97,7 +97,7 @@ export default function WelcomePage() {
             your way through the Holy Bible.
           </p>
 
-          <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-amber-200 md:text-2xl">
+          <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-blue-400 md:text-2xl">
             for Truth, Joy and Peace.
           </p>
         </section>
