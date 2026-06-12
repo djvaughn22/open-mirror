@@ -297,22 +297,7 @@ export default function BibleExplorerPage() {
           ))}
         </section>
 
-        <section className="border-t border-zinc-900 px-6 py-20 text-center">
-          <p className="mx-auto max-w-3xl text-lg leading-8 text-zinc-400">
-            No AI. No explanation. No reflection required. Open Scripture and
-            discover what God may show you today.
-          </p>
-        </section>
 
-        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          <p>© 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.</p>
-          <p className="mx-auto mt-4 max-w-3xl text-xs leading-6 text-zinc-600">
-            Scripture quotations marked CSB have been taken from the Christian Standard Bible®,
-            Copyright © 2017 by Holman Bible Publishers. Used by permission.
-            Christian Standard Bible® and CSB® are federally registered trademarks of Holman Bible Publishers.
-          </p>
-        </footer>
-      </div>
         <section className="mt-8 rounded-3xl border border-white/15 bg-white/10 p-5 text-center shadow-sm">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">
             Bible Verse Lookup
@@ -351,6 +336,22 @@ export default function BibleExplorerPage() {
           </p>
         </section>
 
+        <section className="border-t border-zinc-900 px-6 py-20 text-center">
+          <p className="mx-auto max-w-3xl text-lg leading-8 text-zinc-400">
+            No AI. No explanation. No reflection required. Open Scripture and
+            discover what God may show you today.
+          </p>
+        </section>
+
+        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+          <p>© 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.</p>
+          <p className="mx-auto mt-4 max-w-3xl text-xs leading-6 text-zinc-600">
+            Scripture quotations marked CSB have been taken from the Christian Standard Bible®,
+            Copyright © 2017 by Holman Bible Publishers. Used by permission.
+            Christian Standard Bible® and CSB® are federally registered trademarks of Holman Bible Publishers.
+          </p>
+        </footer>
+      </div>
     </main>
   );
 }
