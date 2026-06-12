@@ -25,7 +25,7 @@ const more = [
     emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
     status: "Coming Soon",
-    text: "Spins uplifting music, podcasts, sermons, and more for any mood, moment, or season.",
+    text: "Your digital disc jockey's collection of uplifting music, videos, sermons, podcasts, blogs and resources to connect churches, charities and businesses.",
   },
   {
     title: "WhatAmIAI",
@@ -95,6 +95,10 @@ export default function WelcomePage() {
 
           <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
             your way through the Holy Bible.
+          </p>
+
+          <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-amber-200 md:text-2xl">
+            for Truth, Joy and Peace.
           </p>
         </section>
 
