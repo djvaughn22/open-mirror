@@ -94,7 +94,7 @@ export default function WelcomePage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
-            your way through the Holy Bible.
+            your way through the Holy Bible
           </p>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-blue-400 md:text-2xl">
