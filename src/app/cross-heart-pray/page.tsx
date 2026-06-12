@@ -25,7 +25,7 @@ const more = [
     emoji: "🎵 ❤️ 🤝",
     href: "/the-dj-cares",
     status: "Coming Soon",
-    text: "Your digital disc jockey's collection of uplifting music, videos, sermons, podcasts, blogs and resources to connect churches, charities and businesses.",
+    text: "Your digital disc jockey connecting YOU to a growing collection of uplifting music, videos, sermons, podcasts, blogs, churches, charities, businesses and bible study resources.",
   },
   {
     title: "WhatAmIAI",
