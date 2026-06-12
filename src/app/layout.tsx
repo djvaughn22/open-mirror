@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Open Mirror",
+  title: "CrossHeartPray",
   description: "Look in the mirror. Tell the truth. Return to God.",
 };
 export default function RootLayout({
