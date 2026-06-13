@@ -105,7 +105,7 @@ export default function AboutPage() {
 
           <p>❤️ Touch your heart, receive God&apos;s love.</p>
 
-          <p>🙏 Put your hands together and pray.</p>
+          <p>🙏 Put your hands together and Pray.</p>
 
           <p>Then take the next step.</p>
 
