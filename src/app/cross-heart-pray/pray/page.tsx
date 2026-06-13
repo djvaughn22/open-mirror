@@ -4,25 +4,31 @@ export default function PrayPage() {
       <section className="mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-16 grid grid-cols-3 items-center">
           <a href="/welcome" className="justify-self-start font-bold">
-            Cross Heart Pray
+            CrossHeartPray
           </a>
 
           <span aria-hidden="true" />
 
           <div className="justify-self-end flex items-center gap-4">
-            <a href="https://www.bible.com/app" target="_blank" rel="noopener noreferrer" aria-label="Open YouVersion Bible App">
+            <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open YouVersion Bible App">
               <img src="/brand/youversion-bible-app.png" alt="YouVersion Bible App" className="h-9 w-9 rounded-lg" />
             </a>
 
             <details className="relative text-sm text-zinc-400">
               <summary className="cursor-pointer list-none text-2xl leading-none">☰</summary>
               <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-                <a href="/welcome">Home</a>
-                <a href="/welcome">Cross Heart Pray</a>
-                <a href="/bible-explorer">Holy Bible Explorer</a>
-                <a href="/the-dj-cares">TheDJCares</a>
-                <a href="/what-am-i-ai">WhatAmIAI</a>
-              </div>
+              <a href="/welcome">Home</a>
+              <a href="/cross-heart-pray/cross">Cross</a>
+              <a href="/cross-heart-pray/heart">Heart</a>
+              <a href="/cross-heart-pray/pray">Pray</a>
+              <a href="/the-dj-cares">TheDJCares</a>
+              <a href="/what-am-i-ai">WhatAmIAI</a>
+              <a href="/bible-explorer">Holy Bible Explorer</a>
+              <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
+                Bible Portal
+              </a>
+              <a href="/about">About</a>
+            </div>
             </details>
           </div>
         </nav>

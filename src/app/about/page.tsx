@@ -1,6 +1,36 @@
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-16 text-white">
+      <nav className="mb-16 grid grid-cols-3 items-center">
+        <a href="/welcome" className="justify-self-start font-bold">
+          CrossHeartPray
+        </a>
+
+        <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open Bible.com Verse of the Day" className="justify-self-center">
+          <img src="/holy-bible-app.png" alt="Holy Bible" className="h-10 w-10 rounded-xl object-cover" />
+        </a>
+
+        <details className="relative justify-self-end text-sm text-zinc-400">
+          <summary className="cursor-pointer list-none text-2xl leading-none">
+            ☰
+          </summary>
+
+          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+              <a href="/welcome">Home</a>
+              <a href="/cross-heart-pray/cross">Cross</a>
+              <a href="/cross-heart-pray/heart">Heart</a>
+              <a href="/cross-heart-pray/pray">Pray</a>
+              <a href="/the-dj-cares">TheDJCares</a>
+              <a href="/what-am-i-ai">WhatAmIAI</a>
+              <a href="/bible-explorer">Holy Bible Explorer</a>
+              <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
+                Bible Portal
+              </a>
+              <a href="/about">About</a>
+          </div>
+        </details>
+      </nav>
+
       <section className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
         <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
 
