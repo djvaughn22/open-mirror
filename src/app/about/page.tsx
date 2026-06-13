@@ -1,13 +1,13 @@
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-16 text-white">
-      <nav className="mb-16 grid grid-cols-3 items-center">
+      <nav className="mx-auto mb-16 grid max-w-5xl grid-cols-3 items-center">
         <a href="/welcome" className="justify-self-start font-bold">
           CrossHeartPray
         </a>
 
         <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open Bible.com Verse of the Day" className="justify-self-center">
-          <img src="/holy-bible-app.png" alt="Holy Bible" className="h-10 w-10 rounded-xl object-cover" />
+          <img src="/holy-bible-app.png" alt="Holy Bible" className="h-9 w-9 rounded-lg object-cover" />
         </a>
 
         <details className="relative justify-self-end text-sm text-zinc-400">
