@@ -32,9 +32,9 @@ export default function AboutPage() {
           </div>
         </nav>
 
-      <section className="mx-auto max-w-5xl py-24 text-left">
+      <section className="mx-auto max-w-5xl py-0 text-center">
         <div className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
-        <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
+        <h1 className="text-6xl font-bold text-white">About CrossHeartPray</h1>
 
         <p>CrossHeartPray is built around a simple idea:</p>
 
