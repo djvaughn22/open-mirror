@@ -171,7 +171,7 @@ export default function BibleExplorerPage() {
     <main className="min-h-screen bg-black text-white">
       <div className="mx-auto max-w-6xl px-6 py-8">
         <nav className="grid grid-cols-3 items-center">
-          <a href="/" className="justify-self-start font-bold">
+          <a href="/home" className="justify-self-start font-bold">
             Cross Heart Pray
           </a>
 
@@ -195,7 +195,7 @@ export default function BibleExplorerPage() {
             </summary>
 
             <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-              <a href="/">Home</a>
+              <a href="/home">Home</a>
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>

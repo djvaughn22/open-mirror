@@ -3,7 +3,7 @@ export default function PrayPage() {
     <main className="min-h-screen bg-black text-white">
       <section className="mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-16 grid grid-cols-3 items-center">
-          <a href="/" className="justify-self-start font-bold">
+          <a href="/home" className="justify-self-start font-bold">
             CrossHeartPray
           </a>
 
@@ -17,7 +17,7 @@ export default function PrayPage() {
             <details className="relative text-sm text-zinc-400">
               <summary className="cursor-pointer list-none text-2xl leading-none">☰</summary>
               <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-              <a href="/">Home</a>
+              <a href="/home">Home</a>
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
