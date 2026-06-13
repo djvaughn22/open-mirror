@@ -1,92 +1,123 @@
-"use client";
+const steps = [
+  {
+    title: "Cross",
+    emoji: "✝️",
+    href: "/cross",
+    text: "Jesus Christ. His life, teachings, sacrifice, resurrection, and promise.",
+  },
+  {
+    title: "Heart",
+    emoji: "❤️",
+    href: "/heart",
+    text: "God's love, grace, mercy, and truth.",
+  },
+  {
+    title: "Pray",
+    emoji: "🙏",
+    href: "/pray",
+    text: "A daily relationship with God through prayer.",
+  },
+];
 
-import { useState } from "react";
-
-export default function Home() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
-
-  const today = new Date();
-  const todayDate = `${today.getFullYear()}-${String(
-    today.getMonth() + 1,
-  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  const verseOfTheDayUrl = `https://www.bible.com/verse-of-the-day`;
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("saving");
-
-    const response = await fetch("/api/waitlist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-
-    if (!response.ok) {
-      setStatus("error");
-      return;
-    }
-
-    window.location.href = "/cross-heart-pray";
-  }
+export default function HomePage() {
+  const verseOfTheDayUrl = "https://www.bible.com/verse-of-the-day";
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <nav className="absolute left-0 top-0 w-full px-6 py-6 text-center">
-        <a
-          href={verseOfTheDayUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open today's Bible verse"
-          className="inline-flex"
-        >
-          <img
-            src="/brand/youversion-bible-app.png"
-            alt="Holy Bible"
-            className="h-10 w-10 rounded-lg"
-          />
-        </a>
-      </nav>
+      <div className="mx-auto max-w-6xl px-6 py-8">
+        <nav className="grid grid-cols-3 items-center">
+          <span aria-hidden="true" />
 
-      <section className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 text-center">
-        <div
-          aria-label="Cross Heart Pray"
-          className="mb-14 flex items-center justify-center gap-10 text-7xl md:gap-16 md:text-8xl"
-        >
-          <span>✝️</span>
-          <span>❤️</span>
-          <span>🙏</span>
-        </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="flex w-full max-w-xl flex-col gap-4 sm:flex-row"
-        >
-          <input
-            type="email"
-            name="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Enter your email"
-            className="min-h-12 flex-1 rounded-full border border-zinc-800 bg-zinc-950 px-6 text-white outline-none placeholder:text-zinc-600 focus:border-zinc-500"
-          />
-
-          <button
-            type="submit"
-            disabled={status === "saving"}
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black disabled:opacity-60"
+          <a
+            href={verseOfTheDayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open today's Bible verse"
+            className="justify-self-center"
           >
-            {status === "saving" ? "Opening..." : "Open Bible Explorer"}
-          </button>
-        </form>
+            <img
+              src="/brand/youversion-bible-app.png"
+              alt="Holy Bible"
+              className="h-10 w-10 rounded-lg"
+            />
+          </a>
 
-        {status === "error" && (
-          <p className="mt-6 max-w-lg text-sm leading-6 text-red-300">
-            Something went wrong. Please try again.
+          <details className="relative justify-self-end text-sm text-zinc-400">
+            <summary className="cursor-pointer list-none text-2xl leading-none">
+              ☰
+            </summary>
+
+            <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+              <a href="/">Home</a>
+              <a href="/cross">Cross</a>
+              <a href="/heart">Heart</a>
+              <a href="/pray">Pray</a>
+              <a href="/explorebible">Explore Bible</a>
+              <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
+                Bible Portal
+              </a>
+              <a href="/about">About</a>
+            </div>
+          </details>
+        </nav>
+
+        <section className="mx-auto max-w-4xl py-24 text-center">
+          <p className="mb-8 flex items-center justify-center gap-8 text-6xl md:gap-14 md:text-7xl">
+            <span>✝️</span>
+            <span>❤️</span>
+            <span>🙏</span>
           </p>
-        )}
-      </section>
+
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+            Cross Heart Pray
+          </h1>
+
+          <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
+            your way through the Holy Bible
+          </p>
+
+          <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-blue-400 md:text-2xl">
+            for Truth, Joy and Peace.
+          </p>
+        </section>
+
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {steps.map((step) => (
+            <a
+              key={step.title}
+              href={step.href}
+              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white"
+              style={{
+                minHeight: "300px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div className="text-5xl">{step.emoji}</div>
+
+              <h2 className="mt-8 text-2xl font-bold">{step.title}</h2>
+
+              <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
+                {step.text}
+              </p>
+            </a>
+          ))}
+        </section>
+
+        <section className="border-t border-zinc-900 px-6 py-20 text-center">
+          <a
+            href="/explorebible"
+            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+          >
+            Explore Bible
+          </a>
+        </section>
+
+        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+          © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+        </footer>
+      </div>
     </main>
   );
 }

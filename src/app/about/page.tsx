@@ -3,7 +3,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-black px-6 py-12 text-white">
       <div className="mx-auto max-w-5xl">
         <nav className="mb-16 grid grid-cols-3 items-center">
-          <a href="/welcome" className="justify-self-start font-bold">
+          <a href="/" className="justify-self-start font-bold">
             CrossHeartPray
           </a>
 
@@ -17,13 +17,11 @@ export default function AboutPage() {
             </summary>
 
             <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-              <a href="/welcome">Home</a>
-              <a href="/cross-heart-pray/cross">Cross</a>
-              <a href="/cross-heart-pray/heart">Heart</a>
-              <a href="/cross-heart-pray/pray">Pray</a>
-              <a href="/the-dj-cares">TheDJCares</a>
-              <a href="/what-am-i-ai">WhatAmIAI</a>
-              <a href="/bible-explorer">Holy Bible Explorer</a>
+              <a href="/">Home</a>
+              <a href="/cross">Cross</a>
+              <a href="/heart">Heart</a>
+              <a href="/pray">Pray</a>
+              <a href="/explorebible">Holy Bible Explorer</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>

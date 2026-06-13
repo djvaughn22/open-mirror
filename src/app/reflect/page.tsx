@@ -441,7 +441,7 @@ export default function CrossHeartPrayReflectPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-10 text-white">
       <nav className="mx-auto grid grid-cols-3 max-w-5xl items-center py-4">
-        <a href="/welcome" className="justify-self-start font-bold">
+        <a href="/" className="justify-self-start font-bold">
           Cross Heart Pray
         </a>
 
@@ -467,11 +467,9 @@ export default function CrossHeartPrayReflectPage() {
           </summary>
 
           <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-            <a href="/welcome">Home</a>
-            <a href="/welcome">Cross Heart Pray</a>
-            <a href="/cross-heart-pray/reflect">Begin Reflection</a>
-            <a href="/the-dj-cares">TheDJCares</a>
-            <a href="/what-am-i-ai">WhatAmIAI</a>
+            <a href="/">Home</a>
+            <a href="/">Cross Heart Pray</a>
+            <a href="/reflect">Begin Reflection</a>
           </div>
           </details>
         </div>
