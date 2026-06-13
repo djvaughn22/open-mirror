@@ -201,7 +201,10 @@ export default function BibleExplorerPage() {
               <a href="/cross-heart-pray/pray">Pray</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
-              <a href="/bible-explorer">Bible Explorer</a>
+              <a href="/bible-explorer">Holy Bible Explorer</a>
+              <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
+                Bible Portal
+              </a>
             </div>
           </details>
         </nav>
