@@ -79,6 +79,7 @@ export default function WelcomePage() {
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>
+              <a href="/about">About</a>
             </div>
           </details>
         </nav>
