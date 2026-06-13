@@ -17,6 +17,24 @@ const steps = [
     href: "/pray",
     text: "A daily relationship with God through prayer.",
   },
+  {
+    title: "Holy Bible Explorer",
+    emoji: "📖",
+    href: "/explorebible",
+    text: "Discover Scripture. Discover Connections. Explore the Bible from Genesis to Revelation.",
+  },
+  {
+    title: "TheDJCares",
+    emoji: "🎧",
+    href: "/the-dj-cares",
+    text: "Your digital disc jockey connecting YOU to uplifting music, videos, sermons, podcasts, blogs, churches, charities, Christian businesses, Bible studies, and other gospel-centered resources.",
+  },
+  {
+    title: "WhatAmIAI",
+    emoji: "🤖",
+    href: "/what-am-i-ai",
+    text: "A deeper reflection experience designed to help you explore identity, gifts, purpose, calling, strengths, weaknesses, and opportunities to serve.",
+  },
 ];
 
 export default function HomePage() {
@@ -52,7 +70,9 @@ export default function HomePage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Explore Bible</a>
+              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="/the-dj-cares">TheDJCares</a>
+              <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>
