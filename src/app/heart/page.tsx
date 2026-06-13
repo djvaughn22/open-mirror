@@ -1,135 +1,100 @@
-
 export default function HeartPage() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <header className="border-b border-zinc-900 px-6 py-5">
-        <nav className="mx-auto grid grid-cols-3 max-w-6xl items-center">
-        <a href="/" className="justify-self-start font-bold">
-          Cross Heart Pray
-        </a>
-
-        <span aria-hidden="true" />
-
-        <div className="justify-self-end flex items-center gap-4">
-          <a
-            href="https://www.bible.com/app"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open YouVersion Bible App"
-          >
-            <img
-              src="/brand/youversion-bible-app.png"
-              alt="YouVersion Bible App"
-              className="h-9 w-9 rounded-lg"
-            />
+      <section className="mx-auto max-w-4xl px-6 py-10">
+        <nav className="mb-16 grid grid-cols-3 items-center">
+          <a href="/" className="justify-self-start font-bold">
+            CrossHeartPray
           </a>
 
-          <details className="relative text-sm text-zinc-400">
-          <summary className="cursor-pointer list-none text-2xl leading-none">
-            ☰
-          </summary>
+          <span aria-hidden="true" />
 
-          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-            <a href="/">Home</a>
-            <a href="/">Cross Heart Pray</a>
-            <a href="/explorebible">Holy Bible Explorer</a>
+          <div className="justify-self-end flex items-center gap-4">
+            <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open YouVersion Bible App">
+              <img src="/brand/youversion-bible-app.png" alt="YouVersion Bible App" className="h-9 w-9 rounded-lg" />
+            </a>
+
+            <details className="relative text-sm text-zinc-400">
+              <summary className="cursor-pointer list-none text-2xl leading-none">☰</summary>
+              <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+              <a href="/">Home</a>
+              <a href="/cross">Cross</a>
+              <a href="/heart">Heart</a>
+              <a href="/pray">Pray</a>
+              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
+                Bible Portal
+              </a>
+              <a href="/about">About</a>
+            </div>
+            </details>
           </div>
-          </details>
-        </div>
-
         </nav>
-      </header>
 
-      <section className="mx-auto max-w-4xl px-6 py-16 text-center">
-        <div className="mb-6 text-7xl">❤️</div>
-
-        <p className="mb-3 text-sm uppercase tracking-[0.35em] text-zinc-500">
-          Step Two
-        </p>
-
-        <h1 className="mb-6 text-5xl font-bold">
-          Receive God's Love
-        </h1>
-
-        <p className="mx-auto mb-10 max-w-2xl text-xl leading-9 text-zinc-300">
-          Receive God's love, grace, mercy, and truth.
-          <br />
-          You are loved more than you know.
-        </p>
-
-        <div className="mx-auto max-w-3xl space-y-6 text-center text-lg leading-8 text-zinc-300">
-          <p>Not because you earned it.</p>
-
-          <p>Not because you deserve it.</p>
-
-          <p>Because that is who God is.</p>
-
-          <p>His mercy is new every morning.</p>
-
-          <p>His grace is sufficient.</p>
-
-          <p>His promises are true.</p>
-        </div>
-
-        <div className="mt-12 grid gap-4 text-left md:grid-cols-3">
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">1</p>
-
-            <h2 className="mb-2 text-xl font-semibold">
-              Receive Love
-            </h2>
-
-            <p className="text-zinc-400">
-              Let God's love speak louder than shame, fear, pride, failure,
-              and doubt.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">2</p>
-
-            <h2 className="mb-2 text-xl font-semibold">
-              Trust Grace
-            </h2>
-
-            <p className="text-zinc-400">
-              You are not beyond mercy. You are not forgotten. You are not alone.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6">
-            <p className="mb-3 text-3xl">3</p>
-
-            <h2 className="mb-2 text-xl font-semibold">
-              Share Love
-            </h2>
-
-            <p className="text-zinc-400">
-              Love received becomes love given.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="mb-2 font-semibold">Reflection Question</p>
-
-          <p className="text-zinc-300">
-            What would change if you truly believed God loved you?
+        <div className="text-center">
+          <div className="mb-8 text-7xl">❤️</div>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
+            Step Two
+          </p>
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+            Heart
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
+            God loves you deeply
+            <br />
+            His grace and mercy are true
+            <br />
+            Walk within His love
           </p>
         </div>
 
-        <div className="mt-10 rounded-3xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="mb-2 font-semibold">Scripture</p>
-
-          <p className="text-zinc-300">
-            "We love because He first loved us."
+        <section className="mt-16 rounded-[2rem] border border-zinc-800 bg-zinc-950 px-8 py-12 text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+            The Heart
           </p>
 
-          <p className="mt-2 text-zinc-500">
-            1 John 4:19
-          </p>
+          <div className="mx-auto mt-10 grid max-w-4xl gap-10 md:grid-cols-3">
+            <div>
+              <div className="text-4xl">❤️</div>
+              <h2 className="mt-5 text-2xl font-bold">God Loves</h2>
+              <p className="mt-4 leading-7 text-zinc-400">
+                God is love.
+                <br />
+                His love is for all.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-4xl">🕊️</div>
+              <h2 className="mt-5 text-2xl font-bold">God Gives Grace</h2>
+              <p className="mt-4 leading-7 text-zinc-400">
+                Grace is a gift.
+                <br />
+                Mercy is real.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-4xl">📖</div>
+              <h2 className="mt-5 text-2xl font-bold">God Speaks Truth</h2>
+              <p className="mt-4 leading-7 text-zinc-400">
+                God&apos;s Word is true.
+                <br />
+                His truth leads to life.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/pray" className="rounded-full bg-white px-8 py-3 text-center font-semibold text-black">
+            Next: Pray
+          </a>
         </div>
       </section>
+      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+        © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+      </footer>
     </main>
   );
 }
