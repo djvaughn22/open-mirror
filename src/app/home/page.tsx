@@ -3,18 +3,21 @@ const steps = [
     title: "Cross",
     emoji: "✝️",
     href: "/cross",
+    comingSoon: false,
     text: "Jesus Christ. His life, teachings, sacrifice, resurrection, and promise.",
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/heart",
+    comingSoon: false,
     text: "God's love, grace, mercy, and truth.",
   },
   {
     title: "Pray",
     emoji: "🙏",
     href: "/pray",
+    comingSoon: false,
     text: "A daily relationship with God through prayer.",
   },
   {
@@ -97,12 +100,14 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {steps.map((step) => (
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-6">
+          {steps.map((step, index) => (
             <a
               key={step.title}
               href={step.href}
-              className="rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white"
+              className={`rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white md:col-span-2 ${
+                index === 3 ? "md:col-start-2" : ""
+              } ${index === 4 ? "md:col-start-4" : ""}`}
               style={{
                 minHeight: "300px",
                 display: "flex",
@@ -134,7 +139,7 @@ export default function HomePage() {
             href="/explorebible"
             className="rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
-            Explore Bible
+            Bible Explorer
           </a>
         </section>
 
