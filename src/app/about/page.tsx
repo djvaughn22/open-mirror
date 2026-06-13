@@ -1,6 +1,6 @@
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-black px-6 py-16 text-white">
+    <main className="min-h-screen bg-black px-6 py-12 text-white">
       <nav className="mb-16 grid grid-cols-3 items-center">
           <a href="/welcome" className="justify-self-start font-bold">
             CrossHeartPray
@@ -32,7 +32,8 @@ export default function AboutPage() {
           </div>
         </nav>
 
-      <section className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
+      <section className="mx-auto max-w-5xl py-24 text-left">
+        <div className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
         <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
 
         <p>CrossHeartPray is built around a simple idea:</p>
@@ -120,6 +121,7 @@ export default function AboutPage() {
         <p>This is for you.</p>
 
         <p className="text-5xl">✝️ ❤️ 🙏</p>
+        </div>
       </section>
     </main>
   );
