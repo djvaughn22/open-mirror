@@ -46,7 +46,7 @@ export default function TheDJCaresPage() {
   const todayDate = `${today.getFullYear()}-${String(
     today.getMonth() + 1,
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  const verseOfTheDayUrl = `https://www.bibleportal.com/verse-of-the-day?version=NIV&date=${todayDate}`;
+  const verseOfTheDayUrl = `https://www.bible.com/verse-of-the-day`;
 
   return (
     <main className="min-h-screen bg-black text-white">

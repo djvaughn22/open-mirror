@@ -10,7 +10,7 @@ export default function Home() {
   const todayDate = `${today.getFullYear()}-${String(
     today.getMonth() + 1,
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  const verseOfTheDayUrl = `https://www.bibleportal.com/verse-of-the-day?version=NIV&date=${todayDate}`;
+  const verseOfTheDayUrl = `https://www.bible.com/verse-of-the-day`;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

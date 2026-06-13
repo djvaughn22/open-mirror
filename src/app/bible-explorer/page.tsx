@@ -154,7 +154,7 @@ export default function BibleExplorerPage() {
       today.getMonth() + 1,
     ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
-    return `https://www.bibleportal.com/verse-of-the-day?version=NIV&date=${todayDate}`;
+    return `https://www.bible.com/verse-of-the-day`;
   }, []);
 
   function spinOne(index: number) {
