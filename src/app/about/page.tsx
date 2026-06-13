@@ -8,7 +8,7 @@ export default function AboutPage() {
           </a>
 
           <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open Bible.com Verse of the Day" className="justify-self-center">
-            <img src="/holy-bible-app.png" alt="Holy Bible" className="h-9 w-9 rounded-lg object-cover" />
+            <img src="/brand/youversion-bible-app.png" alt="Holy Bible" className="h-10 w-10 rounded-lg" />
           </a>
 
           <details className="relative justify-self-end text-sm text-zinc-400">
