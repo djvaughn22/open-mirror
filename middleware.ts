@@ -9,8 +9,6 @@ const oldPathRedirects: Record<string, string> = {
   "/cross-heart-pray/pray": "/pray",
   "/cross-heart-pray/reflect": "/reflect",
   "/bible-explorer": "/explorebible",
-  "/the-dj-cares": "/",
-  "/what-am-i-ai": "/",
   "/open-mirror-platform": "/",
 };
 
@@ -39,8 +37,6 @@ export const config = {
     "/cross-heart-pray",
     "/cross-heart-pray/:path*",
     "/bible-explorer",
-    "/the-dj-cares",
-    "/what-am-i-ai",
     "/open-mirror-platform",
     "/((?!_next/static|_next/image|favicon.ico|brand).*)",
   ],
