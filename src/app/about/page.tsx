@@ -1,21 +1,21 @@
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-16 text-white">
-      <nav className="mx-auto mb-16 grid max-w-5xl grid-cols-3 items-center">
-        <a href="/welcome" className="justify-self-start font-bold">
-          CrossHeartPray
-        </a>
+      <nav className="mb-16 grid grid-cols-3 items-center">
+          <a href="/welcome" className="justify-self-start font-bold">
+            CrossHeartPray
+          </a>
 
-        <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open Bible.com Verse of the Day" className="justify-self-center">
-          <img src="/holy-bible-app.png" alt="Holy Bible" className="h-9 w-9 rounded-lg object-cover" />
-        </a>
+          <span aria-hidden="true" />
 
-        <details className="relative justify-self-end text-sm text-zinc-400">
-          <summary className="cursor-pointer list-none text-2xl leading-none">
-            ☰
-          </summary>
+          <div className="justify-self-end flex items-center gap-4">
+            <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open YouVersion Bible App">
+              <img src="/brand/youversion-bible-app.png" alt="YouVersion Bible App" className="h-9 w-9 rounded-lg" />
+            </a>
 
-          <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+            <details className="relative text-sm text-zinc-400">
+              <summary className="cursor-pointer list-none text-2xl leading-none">☰</summary>
+              <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
               <a href="/welcome">Home</a>
               <a href="/cross-heart-pray/cross">Cross</a>
               <a href="/cross-heart-pray/heart">Heart</a>
@@ -27,9 +27,10 @@ export default function AboutPage() {
                 Bible Portal
               </a>
               <a href="/about">About</a>
+            </div>
+            </details>
           </div>
-        </details>
-      </nav>
+        </nav>
 
       <section className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
         <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
