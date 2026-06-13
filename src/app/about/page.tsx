@@ -35,10 +35,6 @@ export default function AboutPage() {
         <section className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
           <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
 
-          <p>CrossHeartPray is built around a simple idea:</p>
-
-          <p className="text-5xl">✝️ ❤️ 🙏</p>
-
           <p>Cross. Heart. Pray.</p>
 
           <p>For generations, people have been taught to turn to God through faith, Scripture, prayer, family, and community.</p>
@@ -101,11 +97,15 @@ export default function AboutPage() {
 
           <p>It is simply an invitation.</p>
 
-          <p>✝️ Come to the Cross.</p>
+          <p>CrossHeartPray is an action verb.</p>
 
-          <p>❤️ Open your heart to God&apos;s love.</p>
+          <p>Before acting, or reacting:</p>
 
-          <p>🙏 Pray through it.</p>
+          <p>✝️ Make the sign of the Cross.</p>
+
+          <p>❤️ Touch your heart, receive God&apos;s love.</p>
+
+          <p>🙏 Put your hands together and pray.</p>
 
           <p>Then take the next step.</p>
 
@@ -117,7 +117,6 @@ export default function AboutPage() {
 
           <p>RIP Travis.</p>
 
-          <p>This is for you.</p>
 
           <p className="text-5xl">✝️ ❤️ 🙏</p>
         </section>
