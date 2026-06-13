@@ -82,7 +82,7 @@ export default function WhatAmIAIPage() {
               <a href="/pray">Pray</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
-              <a href="/explorebible">Holy Holy Bible Explorer</a>
+              <a href="/explorebible">Holy Bible Explorer</a>
             </div>
           </details>
         </nav>
@@ -215,7 +215,7 @@ export default function WhatAmIAIPage() {
               href="/explorebible"
               className="rounded-full bg-white px-8 py-3 font-semibold text-black"
             >
-              Open Holy Holy Bible Explorer
+              Open Holy Bible Explorer
             </a>
           </div>
         </section>

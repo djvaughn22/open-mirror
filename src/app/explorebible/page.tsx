@@ -199,7 +199,7 @@ export default function BibleExplorerPage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Holy Holy Bible Explorer</a>
+              <a href="/explorebible">Holy Bible Explorer</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
@@ -222,7 +222,7 @@ export default function BibleExplorerPage() {
           </p>
 
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
-            Holy Holy Bible Explorer
+            Holy Bible Explorer
           </h1>
 
           <p className="mx-auto mt-8 max-w-4xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
