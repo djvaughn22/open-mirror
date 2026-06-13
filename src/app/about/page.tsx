@@ -89,12 +89,6 @@ export default function AboutPage() {
         <p>This is for you.</p>
 
         <p className="text-5xl">✝️ ❤️ 🙏</p>
-
-        <p>Please always, before you act,</p>
-
-        <p className="text-5xl">✝️ ❤️ 🙏</p>
-
-        <p>CrossHeartPray.</p>
       </section>
     </main>
   );
