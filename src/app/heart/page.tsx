@@ -21,7 +21,7 @@ export default function HeartPage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="/explorebible">Holy Holy Bible Explorer</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">

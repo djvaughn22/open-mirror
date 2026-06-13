@@ -18,22 +18,18 @@ const steps = [
     text: "A daily relationship with God through prayer.",
   },
   {
-    title: "Holy Bible Explorer",
-    emoji: "📖",
-    href: "/explorebible",
-    text: "Discover Scripture. Discover Connections. Explore the Bible from Genesis to Revelation.",
-  },
-  {
     title: "TheDJCares",
     emoji: "🎧",
     href: "/the-dj-cares",
-    text: "Your digital disc jockey connecting YOU to uplifting music, videos, sermons, podcasts, blogs, churches, charities, Christian businesses, Bible studies, and other gospel-centered resources.",
+    comingSoon: true,
+    text: "Your digital disc jockey connecting YOU to uplifting music, videos, sermons, podcasts, blogs, churches, charities, Christian businesses, Bible studies, and gospel-centered resources.",
   },
   {
     title: "WhatAmIAI",
     emoji: "🤖",
     href: "/what-am-i-ai",
-    text: "A deeper reflection experience designed to help you explore identity, gifts, purpose, calling, strengths, weaknesses, and opportunities to serve.",
+    comingSoon: true,
+    text: "A deeper reflection tool for exploring identity, calling, gifts, patterns, purpose, and next steps — with AI asking questions, not giving labels.",
   },
 ];
 
@@ -70,7 +66,7 @@ export default function HomePage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="/explorebible">Holy Holy Bible Explorer</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
@@ -116,7 +112,15 @@ export default function HomePage() {
             >
               <div className="text-5xl">{step.emoji}</div>
 
-              <h2 className="mt-8 text-2xl font-bold">{step.title}</h2>
+              {step.comingSoon && (
+                <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
+                  Coming Soon
+                </p>
+              )}
+
+              <h2 className={step.comingSoon ? "mt-4 text-2xl font-bold" : "mt-8 text-2xl font-bold"}>
+                {step.title}
+              </h2>
 
               <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
                 {step.text}

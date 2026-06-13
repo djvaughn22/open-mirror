@@ -21,7 +21,7 @@ export default function PrayPage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="/explorebible">Holy Holy Bible Explorer</a>
               <a href="/the-dj-cares">TheDJCares</a>
               <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
@@ -90,7 +90,7 @@ export default function PrayPage() {
 
         <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
           <a href="/explorebible" target="_blank" rel="noopener noreferrer" className="rounded-full border border-zinc-700 px-8 py-3 text-center font-semibold text-white hover:border-white">
-              Holy Bible Explorer
+              Holy Holy Bible Explorer
             </a>
         </div>
       </section>
