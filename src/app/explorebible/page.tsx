@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { randomReferenceForSection } from "../../lib/bibleRandom";
 
 type Passage = {
   label: string;
@@ -127,12 +128,7 @@ const sections: Section[] = [
 ];
 
 function randomPassage(section: Section, avoidLabel?: string) {
-  const availablePassages =
-    section.passages.length > 1
-      ? section.passages.filter((passage) => passage.label !== avoidLabel)
-      : section.passages;
-
-  return availablePassages[Math.floor(Math.random() * availablePassages.length)];
+  return randomReferenceForSection(section.title, avoidLabel);
 }
 
 function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
@@ -147,11 +143,11 @@ function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
 }
 
 function verseUrl(passage: Passage) {
-  return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.${passage.verse}.NIV`;
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
 
 function chapterUrl(passage: Passage) {
-  return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.NIV`;
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
 export default function BibleExplorerPage() {
@@ -165,6 +161,65 @@ export default function BibleExplorerPage() {
 
     return `https://www.bible.com/verse-of-the-day`;
   }, []);
+
+  useEffect(() => {
+    const needsVerseText = path.some((item) => item.passage.text === "Loading verse text...");
+
+    if (!needsVerseText) {
+      return;
+    }
+
+    let cancelled = false;
+
+    async function loadVerseTexts() {
+      const updatedPath = await Promise.all(
+        path.map(async (item) => {
+          if (item.passage.text !== "Loading verse text...") {
+            return item;
+          }
+
+          try {
+            const response = await fetch(
+              `https://bible-api.com/${encodeURIComponent(item.passage.label)}?translation=web`,
+            );
+
+            if (!response.ok) {
+              throw new Error("Verse lookup failed");
+            }
+
+            const data: { text?: string } = await response.json();
+            const verseText = data.text?.replace(/\s+/g, " ").trim();
+
+            return {
+              ...item,
+              passage: {
+                ...item.passage,
+                text: verseText || "Open this verse in the Holy Bible, then explore the chapter.",
+              },
+            };
+          } catch {
+            return {
+              ...item,
+              passage: {
+                ...item.passage,
+                text: "Open this verse in the Holy Bible, then explore the chapter.",
+              },
+            };
+          }
+        }),
+      );
+
+      if (!cancelled) {
+        setPath(updatedPath);
+      }
+    }
+
+    void loadVerseTexts();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [path]);
 
   function spinOne(index: number) {
     setPath((current) =>
