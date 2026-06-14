@@ -82,7 +82,7 @@ export default function PrayPage() {
               <div className="text-4xl">🙏</div>
               <h2 className="mt-5 text-2xl font-bold">Ask God</h2>
               <p className="mt-4 leading-7 text-zinc-400">
-                Ask God for help.
+                Ask God for guidance.
                 <br />
                 Always!
               </p>
