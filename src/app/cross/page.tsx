@@ -78,9 +78,7 @@ export default function CrossPage() {
       <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
       <p className="mt-4 leading-7 text-zinc-400">
         Jesus died on the Cross.
-        <br />
-        He gave His life for all.
-      </p>
+        <br />For You</p>
     </div>
 
     <div>
@@ -88,9 +86,7 @@ export default function CrossPage() {
       <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
       <p className="mt-4 leading-7 text-zinc-400">
         He descended into hell.
-        <br />
-        Death did not hold Him.
-      </p>
+        <br />For 3 days in hell for you</p>
     </div>
 
     <div>
@@ -98,9 +94,7 @@ export default function CrossPage() {
       <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
       <p className="mt-4 leading-7 text-zinc-400">
         Jesus rose again.
-        <br />
-        Life is found in Him.
-      </p>
+        <br />And joined His Father in Heaven For You</p>
     </div>
   </div>
 </section>
