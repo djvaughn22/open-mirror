@@ -126,15 +126,24 @@ const sections: Section[] = [
   },
 ];
 
-function randomPassage(section: Section) {
-  return section.passages[Math.floor(Math.random() * section.passages.length)];
+function randomPassage(section: Section, avoidLabel?: string) {
+  const availablePassages =
+    section.passages.length > 1
+      ? section.passages.filter((passage) => passage.label !== avoidLabel)
+      : section.passages;
+
+  return availablePassages[Math.floor(Math.random() * availablePassages.length)];
 }
 
-function buildPath() {
-  return sections.map((section) => ({
-    section,
-    passage: randomPassage(section),
-  }));
+function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
+  return sections.map((section) => {
+    const currentItem = currentPath?.find((item) => item.section.title === section.title);
+
+    return {
+      section,
+      passage: randomPassage(section, currentItem?.passage.label),
+    };
+  });
 }
 
 function verseUrl(passage: Passage) {
@@ -161,7 +170,10 @@ export default function BibleExplorerPage() {
     setPath((current) =>
       current.map((item, itemIndex) =>
         itemIndex === index
-          ? { section: item.section, passage: randomPassage(item.section) }
+          ? {
+              section: item.section,
+              passage: randomPassage(item.section, item.passage.label),
+            }
           : item,
       ),
     );
@@ -235,7 +247,7 @@ export default function BibleExplorerPage() {
 
           <button
             type="button"
-            onClick={() => setPath(buildPath())}
+            onClick={() => setPath((current) => buildPath(current))}
             className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
             New Bible Bingo Board
