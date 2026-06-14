@@ -46,9 +46,9 @@ export default function PrayPage() {
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             Pray in the morning
             <br />
-            And pray with an open heart
+            Pray all day and evenings
             <br />
-            Have Faith. Trust His Will.
+            Your Father is near
           </p>
         </div>
 
