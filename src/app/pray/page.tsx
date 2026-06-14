@@ -64,7 +64,7 @@ export default function PrayPage() {
               <p className="mt-4 leading-7 text-zinc-400">
                 Praise God for who He is.
                 <br />
-                He is holy and good.
+                Always!
               </p>
             </div>
 
@@ -74,7 +74,7 @@ export default function PrayPage() {
               <p className="mt-4 leading-7 text-zinc-400">
                 Thank God for His love.
                 <br />
-                His mercy is real.
+                Always!
               </p>
             </div>
 
@@ -84,7 +84,7 @@ export default function PrayPage() {
               <p className="mt-4 leading-7 text-zinc-400">
                 Ask God for help.
                 <br />
-                Walk with Him daily.
+                Always!
               </p>
             </div>
           </div>
