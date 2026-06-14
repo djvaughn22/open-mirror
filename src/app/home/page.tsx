@@ -78,7 +78,7 @@ export default function HomePage() {
           <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
             your way through the day
           </p>
-          <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
+          <p className="mx-auto mt-2 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
             with the Holy Bible
           </p>
 
