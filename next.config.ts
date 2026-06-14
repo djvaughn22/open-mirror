@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
         destination: "https://crossheartpray.com/:path*",
         permanent: true,
       },
+
       {
         source: "/the-dj-cares",
         has: [{ type: "host", value: "crossheartpray.com" }],
@@ -37,6 +38,56 @@ const nextConfig: NextConfig = {
         source: "/what-am-i-ai",
         has: [{ type: "host", value: "www.crossheartpray.com" }],
         destination: "https://whatamiai.com",
+        permanent: false,
+      },
+
+      {
+        source: "/home",
+        has: [{ type: "host", value: "thedjcares.com" }],
+        destination: "https://crossheartpray.com/home",
+        permanent: false,
+      },
+      {
+        source: "/home",
+        has: [{ type: "host", value: "www.thedjcares.com" }],
+        destination: "https://crossheartpray.com/home",
+        permanent: false,
+      },
+      {
+        source: "/home",
+        has: [{ type: "host", value: "whatamiai.com" }],
+        destination: "https://crossheartpray.com/home",
+        permanent: false,
+      },
+      {
+        source: "/home",
+        has: [{ type: "host", value: "www.whatamiai.com" }],
+        destination: "https://crossheartpray.com/home",
+        permanent: false,
+      },
+
+      {
+        source: "/explorebible",
+        has: [{ type: "host", value: "thedjcares.com" }],
+        destination: "https://crossheartpray.com/explorebible",
+        permanent: false,
+      },
+      {
+        source: "/explorebible",
+        has: [{ type: "host", value: "www.thedjcares.com" }],
+        destination: "https://crossheartpray.com/explorebible",
+        permanent: false,
+      },
+      {
+        source: "/explorebible",
+        has: [{ type: "host", value: "whatamiai.com" }],
+        destination: "https://crossheartpray.com/explorebible",
+        permanent: false,
+      },
+      {
+        source: "/explorebible",
+        has: [{ type: "host", value: "www.whatamiai.com" }],
+        destination: "https://crossheartpray.com/explorebible",
         permanent: false,
       },
     ];
