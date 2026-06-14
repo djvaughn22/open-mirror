@@ -32,6 +32,9 @@ export default function AboutPage() {
 
         <section className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
           <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
+          <p className="mt-4 text-lg font-semibold text-yellow-300">
+            A formula for Truth, Joy and Peace.
+          </p>
 
           <p>Cross. Heart. Pray.</p>
 
