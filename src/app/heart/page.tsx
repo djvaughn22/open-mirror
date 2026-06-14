@@ -64,7 +64,7 @@ export default function HeartPage() {
               <p className="mt-4 leading-7 text-zinc-400">
                 God is love.
                 <br />
-                His love is for all.
+                It's free!
               </p>
             </div>
 
@@ -74,7 +74,7 @@ export default function HeartPage() {
               <p className="mt-4 leading-7 text-zinc-400">
                 Grace is a gift.
                 <br />
-                Mercy is real.
+                It's free!
               </p>
             </div>
 
@@ -84,7 +84,7 @@ export default function HeartPage() {
               <p className="mt-4 leading-7 text-zinc-400">
                 God&apos;s Word is true.
                 <br />
-                His truth leads to life.
+                It's free!
               </p>
             </div>
           </div>
