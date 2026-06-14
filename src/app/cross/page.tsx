@@ -47,21 +47,21 @@ export default function CrossPage() {
         <div className="text-center">
           <div className="mb-8 text-7xl">✝️</div>
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
-            Step One
+            Step 1
           </p>
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
             Cross
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
-            Bring it to Jesus. The good, the bad, and the ugly.
+          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-blue-300">
+            Bring it to Jesus.
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
-            Jesus died on cross
+            Jesus is your friend
             <br />
-            He descended into hell
+            Jesus gave His life for you
             <br />
-            And He rose again
+            He’s waiting right now
           </p>
         </div>
 
