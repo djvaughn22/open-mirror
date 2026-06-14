@@ -76,10 +76,10 @@ export default function HomePage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
-            your way throughout the day
+            <span className="text-blue-300">your way</span>{" "}throughout the day
           </p>
           <p className="mx-auto mt-2 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
-            with the Holy Bible
+            with the <span className="text-blue-300">Holy Bible</span>
           </p>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-blue-400 md:text-2xl">
