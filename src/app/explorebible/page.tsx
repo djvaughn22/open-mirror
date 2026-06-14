@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { randomReferenceForSection } from "../../lib/bibleRandom";
 
 type Passage = {
   label: string;
@@ -127,12 +128,7 @@ const sections: Section[] = [
 ];
 
 function randomPassage(section: Section, avoidLabel?: string) {
-  const availablePassages =
-    section.passages.length > 1
-      ? section.passages.filter((passage) => passage.label !== avoidLabel)
-      : section.passages;
-
-  return availablePassages[Math.floor(Math.random() * availablePassages.length)];
+  return randomReferenceForSection(section.title, avoidLabel);
 }
 
 function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
@@ -277,7 +273,7 @@ export default function BibleExplorerPage() {
               </p>
 
               <p className="mt-4 max-w-sm text-sm leading-7 text-zinc-300">
-                “{passage.text}”
+                {passage.text}
               </p>
 
               <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
