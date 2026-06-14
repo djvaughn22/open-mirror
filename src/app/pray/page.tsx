@@ -22,8 +22,6 @@ export default function PrayPage() {
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
               <a href="/explorebible">Holy Bible Explorer</a>
-              <a href="/the-dj-cares">TheDJCares</a>
-              <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>

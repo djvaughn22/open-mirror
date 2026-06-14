@@ -99,6 +99,22 @@ export default function TheDJCaresPage() {
           </h1>
         </section>
 
+        <section className="mb-8 rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center">
+          <div className="text-5xl">🎧</div>
+
+          <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
+            Coming Soon
+          </p>
+
+          <h2 className="mt-4 text-2xl font-bold">TheDJCares</h2>
+
+          <p className="mx-auto mt-4 max-w-3xl leading-7 text-zinc-400">
+            Your digital disc jockey connecting YOU to uplifting music, videos,
+            sermons, podcasts, blogs, churches, charities, Christian businesses,
+            Bible studies, and gospel-centered resources.
+          </p>
+        </section>
+
         <section className="rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
           <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
             Cross Heart Pray Stamped

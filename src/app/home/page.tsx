@@ -20,20 +20,6 @@ const steps = [
     comingSoon: false,
     text: "A daily relationship with God through prayer.",
   },
-  {
-    title: "TheDJCares",
-    emoji: "🎧",
-    href: "/the-dj-cares",
-    comingSoon: true,
-    text: "Your digital disc jockey connecting YOU to uplifting music, videos, sermons, podcasts, blogs, churches, charities, Christian businesses, Bible studies, and gospel-centered resources.",
-  },
-  {
-    title: "WhatAmIAI",
-    emoji: "🤖",
-    href: "/what-am-i-ai",
-    comingSoon: true,
-    text: "A deeper reflection tool for exploring identity, calling, gifts, patterns, purpose, and next steps — with AI asking questions, not giving labels.",
-  },
 ];
 
 export default function HomePage() {
@@ -70,8 +56,6 @@ export default function HomePage() {
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
               <a href="/explorebible">Holy Bible Explorer</a>
-              <a href="/the-dj-cares">TheDJCares</a>
-              <a href="/what-am-i-ai">WhatAmIAI</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>
@@ -105,9 +89,7 @@ export default function HomePage() {
             <a
               key={step.title}
               href={step.href}
-              className={`rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white md:col-span-2 ${
-                index === 3 ? "md:col-start-2" : ""
-              } ${index === 4 ? "md:col-start-4" : ""}`}
+              className={`rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white md:col-span-2`}
               style={{
                 minHeight: "300px",
                 display: "flex",

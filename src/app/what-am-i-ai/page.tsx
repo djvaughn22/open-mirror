@@ -115,6 +115,22 @@ export default function WhatAmIAIPage() {
           </div>
         </section>
 
+        <section className="mb-8 rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center">
+          <div className="text-5xl">🤖</div>
+
+          <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
+            Coming Soon
+          </p>
+
+          <h2 className="mt-4 text-2xl font-bold">WhatAmIAI</h2>
+
+          <p className="mx-auto mt-4 max-w-3xl leading-7 text-zinc-400">
+            A deeper reflection tool for exploring identity, calling, gifts,
+            patterns, purpose, and next steps — with AI asking questions, not
+            giving labels.
+          </p>
+        </section>
+
         <section className="rounded-3xl border border-zinc-800 bg-zinc-950 px-8 py-14 text-center">
           <p className="mb-5 text-sm font-bold uppercase tracking-[0.32em] text-yellow-400">
             AI As A Question Tool
