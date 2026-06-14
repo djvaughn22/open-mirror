@@ -4,21 +4,21 @@ const steps = [
     emoji: "✝️",
     href: "/cross",
     comingSoon: false,
-    text: "Jesus Christ. His life, teachings, sacrifice, resurrection, and promise.",
+    text: "Bring it to Jesus. The good, the bad, and the ugly.",
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/heart",
     comingSoon: false,
-    text: "God's love, grace, mercy, and truth.",
+    text: "Open your heart and receive God's everlasting, unconditional love.",
   },
   {
     title: "Pray",
     emoji: "🙏",
     href: "/pray",
     comingSoon: false,
-    text: "A daily relationship with God through prayer.",
+    text: "Pray. Give it to God. Trust His will. Let it go.",
   },
 ];
 

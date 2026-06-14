@@ -52,6 +52,10 @@ export default function CrossPage() {
           <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
             Cross
           </h1>
+
+          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
+            Bring it to Jesus. The good, the bad, and the ugly.
+          </p>
           <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
             Jesus died on cross
             <br />
