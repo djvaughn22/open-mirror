@@ -21,12 +21,21 @@ const steps = [
     text: <>Just talk to God. Let His will be done.<br />Follow His lead.</>,
   },
 ];
+const HOME_CARD_TONES = [
+  "border-emerald-200/15 bg-emerald-300/10",
+  "border-red-200/15 bg-red-300/10",
+  "border-sky-200/15 bg-sky-300/10",
+];
+
+function homeCardTone(index: number) {
+  return HOME_CARD_TONES[index % HOME_CARD_TONES.length];
+}
 
 export default function HomePage() {
   const verseOfTheDayUrl = "https://www.bible.com/verse-of-the-day";
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-8">
         <nav className="grid grid-cols-3 items-center">
           <span aria-hidden="true" />
@@ -93,7 +102,7 @@ export default function HomePage() {
             <a
               key={step.title}
               href={step.href}
-              className={`rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center transition hover:border-white md:col-span-2`}
+              className={`rounded-[2rem] border p-8 text-center text-slate-100 transition hover:bg-white/15 md:col-span-2 ${homeCardTone(index)}`}
               style={{
                 minHeight: "300px",
                 display: "flex",
@@ -113,7 +122,7 @@ export default function HomePage() {
                 {step.title}
               </h2>
 
-              <p className="mt-4 leading-7 text-zinc-400" style={{ flex: 1 }}>
+              <p className="mt-4 leading-7 text-slate-300" style={{ flex: 1 }}>
                 {step.text}
               </p>
             </a>
@@ -123,7 +132,7 @@ export default function HomePage() {
         <section className="border-t border-zinc-900 px-6 py-20 text-center">
           <a
             href="/explorebible"
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black"
+            className="rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
           >
             Bible Explorer
           </a>

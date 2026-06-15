@@ -1,6 +1,6 @@
 export default function PrayPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-16 grid grid-cols-3 items-center">
           <a href="/home" className="justify-self-start font-bold">
@@ -52,8 +52,8 @@ export default function PrayPage() {
           </p>
         </div>
 
-        <section className="mt-16 rounded-[2rem] border border-zinc-800 bg-zinc-950 px-8 py-12 text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+        <section className="mt-16 rounded-[2rem] border border-sky-200/15 bg-sky-300/10 px-8 py-12 text-center text-slate-100">
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-sky-100">
             Prayer
           </p>
 
@@ -61,7 +61,7 @@ export default function PrayPage() {
             <div>
               <div className="text-4xl">🙌</div>
               <h2 className="mt-5 text-2xl font-bold">Praise God</h2>
-              <p className="mt-4 leading-7 text-zinc-400">
+              <p className="mt-4 leading-7 text-slate-300">
                 Praise God the Almighty.
                 <br />
                 Always!
@@ -71,7 +71,7 @@ export default function PrayPage() {
             <div>
               <div className="text-4xl">❤️</div>
               <h2 className="mt-5 text-2xl font-bold">Thank God</h2>
-              <p className="mt-4 leading-7 text-zinc-400">
+              <p className="mt-4 leading-7 text-slate-300">
                 Thank God for His love.
                 <br />
                 Always!
@@ -81,7 +81,7 @@ export default function PrayPage() {
             <div>
               <div className="text-4xl">🙏</div>
               <h2 className="mt-5 text-2xl font-bold">Ask God</h2>
-              <p className="mt-4 leading-7 text-zinc-400">
+              <p className="mt-4 leading-7 text-slate-300">
                 Ask God for guidance.
                 <br />
                 Always!
@@ -91,7 +91,7 @@ export default function PrayPage() {
         </section>
 
         <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
-          <a href="/explorebible" className="rounded-full border border-zinc-700 px-8 py-3 text-center font-semibold text-white hover:border-white">
+          <a href="/explorebible" className="rounded-full border border-white/15 bg-white/10 px-8 py-3 text-center font-semibold text-slate-100 transition hover:bg-white/15">
               Holy Bible Explorer
             </a>
         </div>

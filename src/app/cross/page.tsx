@@ -1,6 +1,6 @@
 export default function CrossPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-4xl px-6 py-10">
         <nav className="mb-16 grid grid-cols-3 items-center">
         <a href="/home" className="justify-self-start font-bold">
@@ -67,8 +67,8 @@ export default function CrossPage() {
 
         
 
-<section className="mt-16 rounded-[2rem] border border-zinc-800 bg-zinc-950 px-8 py-12 text-center">
-  <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
+<section className="mt-16 rounded-[2rem] border border-emerald-200/15 bg-emerald-300/10 px-8 py-12 text-center text-slate-100">
+  <p className="text-sm font-bold uppercase tracking-[0.35em] text-emerald-100">
     The Cross
   </p>
 
@@ -76,7 +76,7 @@ export default function CrossPage() {
     <div>
       <div className="text-4xl">✝️</div>
       <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
-      <p className="mt-4 leading-7 text-zinc-400">
+      <p className="mt-4 leading-7 text-slate-300">
         On the Cross for You
       </p>
     </div>
@@ -84,7 +84,7 @@ export default function CrossPage() {
     <div>
       <div className="text-4xl">⬇️</div>
       <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
-      <p className="mt-4 leading-7 text-zinc-400">
+      <p className="mt-4 leading-7 text-slate-300">
         Into Hell so you don't have to
       </p>
     </div>
@@ -92,7 +92,7 @@ export default function CrossPage() {
     <div>
       <div className="text-4xl">☀️</div>
       <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
-      <p className="mt-4 leading-7 text-zinc-400">
+      <p className="mt-4 leading-7 text-slate-300">
         So you can one day can Ascend to Heaven too
       </p>
     </div>
@@ -104,7 +104,7 @@ export default function CrossPage() {
         <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
           <a
             href="/heart"
-            className="rounded-full bg-white px-8 py-3 text-center font-semibold text-black"
+            className="rounded-full border border-white/15 bg-white/10 px-8 py-3 text-center font-semibold text-slate-100 transition hover:bg-white/15"
           >
             Next: Heart
           </a>
