@@ -19,6 +19,11 @@ type Section = {
   passages: Passage[];
 };
 
+type PathItem = {
+  section: Section;
+  passage: Passage;
+};
+
 const sections: Section[] = [
   {
     title: "Old Testament",
@@ -150,8 +155,104 @@ function chapterUrl(passage: Passage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
+const LOADING_VERSE_TEXT = "Loading verse text...";
+const verseTextCache = new Map<string, string>();
+
+function wait(milliseconds: number) {
+  return new Promise<void>((resolve) => {
+    window.setTimeout(resolve, milliseconds);
+  });
+}
+
+async function fetchVerseText(label: string) {
+  const cached = verseTextCache.get(label);
+
+  if (cached) {
+    return cached;
+  }
+
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    try {
+      const response = await fetch(
+        `https://bible-api.com/${encodeURIComponent(label)}?translation=web`,
+      );
+
+      if (!response.ok) {
+        throw new Error("Verse lookup failed");
+      }
+
+      const data: { text?: string } = await response.json();
+      const text = data.text?.replace(/\s+/g, " ").trim();
+
+      if (text) {
+        verseTextCache.set(label, text);
+        return text;
+      }
+    } catch {
+      if (attempt < 3) {
+        await wait(300);
+      }
+    }
+  }
+
+  return null;
+}
+
+async function randomPassageWithVerseText(section: Section, avoidLabel?: string) {
+  let currentAvoidLabel = avoidLabel;
+
+  for (let attempt = 0; attempt < 12; attempt += 1) {
+    const passage = randomPassage(section, currentAvoidLabel);
+    const text = await fetchVerseText(passage.label);
+
+    if (text) {
+      return {
+        ...passage,
+        text,
+      };
+    }
+
+    currentAvoidLabel = passage.label;
+  }
+
+  return null;
+}
+
+async function pathWithVerseText(path: PathItem[]) {
+  return Promise.all(
+    path.map(async (item) => {
+      const text = await fetchVerseText(item.passage.label);
+
+      if (text) {
+        return {
+          ...item,
+          passage: {
+            ...item.passage,
+            text,
+          },
+        };
+      }
+
+      const replacement = await randomPassageWithVerseText(
+        item.section,
+        item.passage.label,
+      );
+
+      if (replacement) {
+        return {
+          ...item,
+          passage: replacement,
+        };
+      }
+
+      return item;
+    }),
+  );
+}
+
 export default function BibleExplorerPage() {
-  const [path, setPath] = useState(() => buildPath());
+  const [path, setPath] = useState<PathItem[]>(() => buildPath());
+  const [isLoadingBoard, setIsLoadingBoard] = useState(false);
 
   const verseOfTheDayUrl = useMemo(() => {
     const today = new Date();
@@ -163,7 +264,7 @@ export default function BibleExplorerPage() {
   }, []);
 
   useEffect(() => {
-    const needsVerseText = path.some((item) => item.passage.text === "Loading verse text...");
+    const needsVerseText = path.some((item) => item.passage.text === LOADING_VERSE_TEXT);
 
     if (!needsVerseText) {
       return;
@@ -171,67 +272,83 @@ export default function BibleExplorerPage() {
 
     let cancelled = false;
 
-    async function loadVerseTexts() {
-      const updatedPath = await Promise.all(
-        path.map(async (item) => {
-          if (item.passage.text !== "Loading verse text...") {
-            return item;
-          }
+    async function loadInitialVerseTexts() {
+      setIsLoadingBoard(true);
 
-          try {
-            const response = await fetch(
-              `https://bible-api.com/${encodeURIComponent(item.passage.label)}?translation=web`,
-            );
+      const readyPath = await pathWithVerseText(path);
 
-            if (!response.ok) {
-              throw new Error("Verse lookup failed");
-            }
-
-            const data: { text?: string } = await response.json();
-            const verseText = data.text?.replace(/\s+/g, " ").trim();
-
-            return {
-              ...item,
-              passage: {
-                ...item.passage,
-                text: verseText || "Open this verse in the Holy Bible, then explore the chapter.",
-              },
-            };
-          } catch {
-            return {
-              ...item,
-              passage: {
-                ...item.passage,
-                text: "Open this verse in the Holy Bible, then explore the chapter.",
-              },
-            };
-          }
-        }),
-      );
+      if (!cancelled && readyPath) {
+        setPath(readyPath);
+      }
 
       if (!cancelled) {
-        setPath(updatedPath);
+        setIsLoadingBoard(false);
       }
     }
 
-    void loadVerseTexts();
+    void loadInitialVerseTexts();
 
     return () => {
       cancelled = true;
     };
-  }, [path]);
+  }, []);
 
-  function spinOne(index: number) {
-    setPath((current) =>
-      current.map((item, itemIndex) =>
-        itemIndex === index
-          ? {
-              section: item.section,
-              passage: randomPassage(item.section, item.passage.label),
-            }
-          : item,
-      ),
-    );
+  async function spinOne(index: number) {
+    if (isLoadingBoard) {
+      return;
+    }
+
+    const currentItem = path[index];
+
+    if (!currentItem) {
+      return;
+    }
+
+    setIsLoadingBoard(true);
+
+    try {
+      const nextPassage = await randomPassageWithVerseText(
+        currentItem.section,
+        currentItem.passage.label,
+      );
+
+      if (!nextPassage) {
+        return;
+      }
+
+      setPath((current) =>
+        current.map((item, itemIndex) =>
+          itemIndex === index
+            ? {
+                section: item.section,
+                passage: nextPassage,
+              }
+            : item,
+        ),
+      );
+    } finally {
+      setIsLoadingBoard(false);
+    }
+  }
+
+  async function spinBoard() {
+    if (isLoadingBoard) {
+      return;
+    }
+
+    setIsLoadingBoard(true);
+
+    try {
+      const nextPath = await pathWithVerseText(buildPath(path));
+
+      if (!nextPath) {
+        return;
+      }
+
+      setPath(nextPath);
+    } finally {
+      setIsLoadingBoard(false);
+    }
   }
 
   return (
@@ -302,10 +419,11 @@ export default function BibleExplorerPage() {
 
           <button
             type="button"
-            onClick={() => setPath((current) => buildPath(current))}
-            className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black"
+            onClick={() => void spinBoard()}
+            disabled={isLoadingBoard}
+            className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black disabled:cursor-wait disabled:opacity-60"
           >
-            New Bible Bingo Board
+            {isLoadingBoard ? "Loading Bible Bingo..." : "New Bible Bingo Board"}
           </button>
         </section>
 
@@ -357,7 +475,8 @@ export default function BibleExplorerPage() {
 
               <button
                 type="button"
-                onClick={() => spinOne(index)}
+                onClick={() => void spinOne(index)}
+                  disabled={isLoadingBoard}
                 className="mt-4 text-sm font-semibold text-zinc-500 underline decoration-zinc-700 underline-offset-4 hover:text-white"
               >
                 Pick another {section.title}
