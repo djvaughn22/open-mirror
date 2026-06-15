@@ -91,7 +91,7 @@ export default function PrayPage() {
         </section>
 
         <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
-          <a href="/explorebible" target="_blank" rel="noopener noreferrer" className="rounded-full border border-zinc-700 px-8 py-3 text-center font-semibold text-white hover:border-white">
+          <a href="/explorebible" className="rounded-full border border-zinc-700 px-8 py-3 text-center font-semibold text-white hover:border-white">
               Holy Bible Explorer
             </a>
         </div>
