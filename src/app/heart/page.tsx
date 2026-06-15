@@ -41,7 +41,7 @@ export default function HeartPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Open your heart to God.
+            Open your heart and receive God’s everlasting, unconditional love.
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             God loves you deeply

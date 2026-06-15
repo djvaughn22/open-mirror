@@ -62,7 +62,7 @@ export default function PrayPage() {
               <div className="text-4xl">🙌</div>
               <h2 className="mt-5 text-2xl font-bold">Praise God</h2>
               <p className="mt-4 leading-7 text-zinc-400">
-                Praise God the Almighty..
+                Praise God the Almighty.
                 <br />
                 Always!
               </p>
