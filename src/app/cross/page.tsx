@@ -77,24 +77,24 @@ export default function CrossPage() {
       <div className="text-4xl">✝️</div>
       <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
       <p className="mt-4 leading-7 text-zinc-400">
-        Jesus died on the Cross.
-        <br />for you.</p>
+        On the Cross for You
+      </p>
     </div>
 
     <div>
       <div className="text-4xl">⬇️</div>
       <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
       <p className="mt-4 leading-7 text-zinc-400">
-        He descended into hell.
-        <br />for you.</p>
+        Into Hell so you don't have to
+      </p>
     </div>
 
     <div>
       <div className="text-4xl">☀️</div>
       <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
       <p className="mt-4 leading-7 text-zinc-400">
-        Jesus rose again.
-        <br />for you.</p>
+        So you can one day can Ascend to Heaven too
+      </p>
     </div>
   </div>
 </section>
