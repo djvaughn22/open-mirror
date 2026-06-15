@@ -126,6 +126,19 @@ const sections: Section[] = [
     ],
   },
 ];
+const CARD_TONES = [
+  "border-emerald-200/15 bg-emerald-300/10",
+  "border-yellow-200/15 bg-yellow-200/10",
+  "border-red-200/15 bg-red-300/10",
+  "border-sky-200/15 bg-sky-300/10",
+  "border-lime-200/15 bg-lime-300/10",
+  "border-orange-200/15 bg-orange-300/10",
+  "border-violet-200/15 bg-violet-300/10",
+];
+
+function cardTone(index: number) {
+  return CARD_TONES[index % CARD_TONES.length];
+}
 
 function randomPassage(section: Section, avoidLabel?: string) {
   return randomReferenceForSection(section.title, avoidLabel);
@@ -176,7 +189,7 @@ export default function BibleExplorerPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-8">
         <nav className="grid grid-cols-3 items-center">
           <a href="/home" className="justify-self-start font-bold">
@@ -223,7 +236,7 @@ export default function BibleExplorerPage() {
             <span>🙏</span>
           </p>
 
-          <p className="mb-5 inline-flex rounded-full border border-zinc-700 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-400">
+          <p className="mb-5 inline-flex rounded-full border border-white/15 bg-black/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-100">
             Bible Bingo
           </p>
 
@@ -244,7 +257,7 @@ export default function BibleExplorerPage() {
           <button
             type="button"
             onClick={() => setPath((current) => buildPath(current))}
-            className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black"
+            className="mt-10 rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
           >
             New Bible Bingo Board
           </button>
@@ -254,7 +267,7 @@ export default function BibleExplorerPage() {
           {path.map(({ section, passage }, index) => (
             <article
               key={section.title}
-              className={`rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center lg:col-span-2 ${section.gridClass ?? ""}`}
+              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)}`}
               style={{
                 minHeight: "340px",
                 display: "flex",
@@ -266,13 +279,13 @@ export default function BibleExplorerPage() {
 
               <h2 className="mt-6 text-2xl font-bold">{section.title}</h2>
 
-              <p className="mt-4 leading-7 text-zinc-400">{section.line}</p>
+              <p className="mt-4 leading-7 text-slate-300">{section.line}</p>
 
-              <p className="mt-6 text-2xl font-bold text-white">
+              <p className="mt-6 text-2xl font-bold text-slate-100">
                 {passage.label}
               </p>
 
-              <p className="mt-4 max-w-sm text-sm leading-7 text-zinc-300">
+              <p className="mt-4 max-w-sm text-sm leading-7 text-slate-200">
                 {passage.text}
               </p>
 
@@ -281,7 +294,7 @@ export default function BibleExplorerPage() {
                   href={verseUrl(passage)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-black"
+                  className="rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
                 >
                   Open Verse
                 </a>
@@ -290,7 +303,7 @@ export default function BibleExplorerPage() {
                   href={chapterUrl(passage)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-zinc-700 px-5 py-2 text-sm font-semibold text-white"
+                  className="rounded-full border border-white/10 bg-black/10 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
                 >
                   Read Chapter
                 </a>
@@ -299,7 +312,7 @@ export default function BibleExplorerPage() {
               <button
                 type="button"
                 onClick={() => spinOne(index)}
-                className="mt-4 text-sm font-semibold text-zinc-500 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+                className="mt-4 text-sm font-semibold text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white"
               >
                 Pick another {section.title}
               </button>
@@ -308,14 +321,14 @@ export default function BibleExplorerPage() {
         </section>
 
 
-        <section className="mt-8 rounded-3xl border border-white/15 bg-white/10 p-5 text-center shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">
+        <section className="mt-8 rounded-[2rem] border border-white/10 bg-gradient-to-r from-sky-300/10 via-yellow-200/10 to-red-300/10 p-5 text-center text-slate-100">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-100">
             Bible Verse Lookup
           </p>
-          <h2 className="mt-2 text-2xl font-bold text-white">
+          <h2 className="mt-2 text-2xl font-bold text-slate-100">
             Search Bible Verse
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-white/75">
+          <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-200">
             Type a verse like John 3:16, Psalm 23, Romans 8:28, or Genesis 1:1.
           </p>
 
@@ -331,17 +344,17 @@ export default function BibleExplorerPage() {
               inputMode="text"
               placeholder="John 3:16"
               aria-label="Bible verse to search"
-              className="min-h-12 flex-1 rounded-2xl border border-white/15 bg-black/25 px-4 text-base text-white placeholder:text-white/45 outline-none ring-0 focus:border-white/35"
+              className="min-h-12 flex-1 rounded-2xl border border-white/15 bg-black/20 px-4 text-base text-white placeholder:text-white/40 outline-none ring-0 focus:border-emerald-200/50"
             />
             <button
               type="submit"
-              className="min-h-12 rounded-2xl bg-white px-5 font-semibold text-slate-950 shadow-sm transition hover:bg-white/90"
+              className="min-h-12 rounded-2xl border border-white/15 bg-white/10 px-5 font-semibold text-slate-100 transition hover:bg-white/15"
             >
               Search Bible Verse
             </button>
           </form>
 
-          <p className="mt-3 text-xs text-white/50">
+          <p className="mt-3 text-xs text-slate-300">
             Opens Bible.com / YouVersion so the Bible stays the destination.
           </p>
         </section>
