@@ -18,7 +18,7 @@ const steps = [
     emoji: "🙏",
     href: "/pray",
     comingSoon: false,
-    text: <>Pray. Give it to God. Trust His will.<br />Let it go.</>,
+    text: <>Just talk to God. Let His will be done.<br />Follow His lead.</>,
   },
 ];
 
