@@ -61,7 +61,7 @@ export default function AboutPage() {
 
           <p>It is simply a reminder.</p>
 
-          <p>Before acting, or reacting:</p>
+          <p>Cross Heart Pray your way through it.</p>
 
           <p>✝️ In the name of the Father, Son and Holy Ghost.</p>
 
