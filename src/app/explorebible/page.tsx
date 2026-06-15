@@ -218,6 +218,66 @@ async function randomPassageWithVerseText(section: Section, avoidLabel?: string)
   return null;
 }
 
+function guaranteedPassageForSection(section: Section): Passage {
+  if (section.title === "Psalms") {
+    return {
+      label: "Psalms 23:1",
+      code: "PSA",
+      chapter: "23",
+      verse: "1",
+      text: "Yahweh is my shepherd: I shall lack nothing.",
+    };
+  }
+
+  if (section.title === "Proverbs") {
+    return {
+      label: "Proverbs 3:5",
+      code: "PRO",
+      chapter: "3",
+      verse: "5",
+      text: "Trust in Yahweh with all your heart, and don’t lean on your own understanding.",
+    };
+  }
+
+  if (section.title === "Gospel") {
+    return {
+      label: "John 3:16",
+      code: "JHN",
+      chapter: "3",
+      verse: "16",
+      text: "For God so loved the world, that he gave his one and only Son, that whoever believes in him should not perish, but have eternal life.",
+    };
+  }
+
+  if (section.title === "Epistles") {
+    return {
+      label: "Romans 8:28",
+      code: "ROM",
+      chapter: "8",
+      verse: "28",
+      text: "We know that all things work together for good for those who love God, to those who are called according to his purpose.",
+    };
+  }
+
+  if (section.title === "Revelation") {
+    return {
+      label: "Revelation 21:5",
+      code: "REV",
+      chapter: "21",
+      verse: "5",
+      text: "He who sits on the throne said, “Behold, I am making all things new.” He said, “Write, for these words of God are faithful and true.”",
+    };
+  }
+
+  return {
+    label: "Genesis 1:1",
+    code: "GEN",
+    chapter: "1",
+    verse: "1",
+    text: "In the beginning, God created the heavens and the earth.",
+  };
+}
+
 async function pathWithVerseText(path: PathItem[]) {
   return Promise.all(
     path.map(async (item) => {
@@ -238,14 +298,10 @@ async function pathWithVerseText(path: PathItem[]) {
         item.passage.label,
       );
 
-      if (replacement) {
-        return {
-          ...item,
-          passage: replacement,
-        };
-      }
-
-      return item;
+      return {
+        ...item,
+        passage: replacement ?? guaranteedPassageForSection(item.section),
+      };
     }),
   );
 }
@@ -307,14 +363,11 @@ export default function BibleExplorerPage() {
     setIsLoadingBoard(true);
 
     try {
-      const nextPassage = await randomPassageWithVerseText(
-        currentItem.section,
-        currentItem.passage.label,
-      );
-
-      if (!nextPassage) {
-        return;
-      }
+      const nextPassage =
+        (await randomPassageWithVerseText(
+          currentItem.section,
+          currentItem.passage.label,
+        )) ?? guaranteedPassageForSection(currentItem.section);
 
       setPath((current) =>
         current.map((item, itemIndex) =>
