@@ -172,9 +172,13 @@ async function fetchVerseText(label: string) {
   }
 
   for (let attempt = 0; attempt < 4; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 2500);
+
     try {
       const response = await fetch(
         `https://bible-api.com/${encodeURIComponent(label)}?translation=web`,
+        { signal: controller.signal },
       );
 
       if (!response.ok) {
@@ -192,6 +196,8 @@ async function fetchVerseText(label: string) {
       if (attempt < 3) {
         await wait(300);
       }
+    } finally {
+      window.clearTimeout(timeout);
     }
   }
 
