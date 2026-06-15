@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { randomReferenceForSection } from "../../lib/bibleRandom";
 
 type Passage = {
@@ -17,11 +17,6 @@ type Section = {
   line: string;
   gridClass?: string;
   passages: Passage[];
-};
-
-type PathItem = {
-  section: Section;
-  passage: Passage;
 };
 
 const sections: Section[] = [
@@ -148,173 +143,15 @@ function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
 }
 
 function verseUrl(passage: Passage) {
-  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
+  return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.${passage.verse}.NIV`;
 }
 
 function chapterUrl(passage: Passage) {
-  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
-}
-
-const LOADING_VERSE_TEXT = "Loading verse text...";
-const verseTextCache = new Map<string, string>();
-
-function wait(milliseconds: number) {
-  return new Promise<void>((resolve) => {
-    window.setTimeout(resolve, milliseconds);
-  });
-}
-
-async function fetchVerseText(label: string) {
-  const cached = verseTextCache.get(label);
-
-  if (cached) {
-    return cached;
-  }
-
-  for (let attempt = 0; attempt < 4; attempt += 1) {
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 2500);
-
-    try {
-      const response = await fetch(
-        `https://bible-api.com/${encodeURIComponent(label)}?translation=web`,
-        { signal: controller.signal },
-      );
-
-      if (!response.ok) {
-        throw new Error("Verse lookup failed");
-      }
-
-      const data: { text?: string } = await response.json();
-      const text = data.text?.replace(/\s+/g, " ").trim();
-
-      if (text) {
-        verseTextCache.set(label, text);
-        return text;
-      }
-    } catch {
-      if (attempt < 3) {
-        await wait(300);
-      }
-    } finally {
-      window.clearTimeout(timeout);
-    }
-  }
-
-  return null;
-}
-
-async function randomPassageWithVerseText(section: Section, avoidLabel?: string) {
-  let currentAvoidLabel = avoidLabel;
-
-  for (let attempt = 0; attempt < 12; attempt += 1) {
-    const passage = randomPassage(section, currentAvoidLabel);
-    const text = await fetchVerseText(passage.label);
-
-    if (text) {
-      return {
-        ...passage,
-        text,
-      };
-    }
-
-    currentAvoidLabel = passage.label;
-  }
-
-  return null;
-}
-
-function guaranteedPassageForSection(section: Section): Passage {
-  if (section.title === "Psalms") {
-    return {
-      label: "Psalms 23:1",
-      code: "PSA",
-      chapter: "23",
-      verse: "1",
-      text: "Yahweh is my shepherd: I shall lack nothing.",
-    };
-  }
-
-  if (section.title === "Proverbs") {
-    return {
-      label: "Proverbs 3:5",
-      code: "PRO",
-      chapter: "3",
-      verse: "5",
-      text: "Trust in Yahweh with all your heart, and don’t lean on your own understanding.",
-    };
-  }
-
-  if (section.title === "Gospel") {
-    return {
-      label: "John 3:16",
-      code: "JHN",
-      chapter: "3",
-      verse: "16",
-      text: "For God so loved the world, that he gave his one and only Son, that whoever believes in him should not perish, but have eternal life.",
-    };
-  }
-
-  if (section.title === "Epistles") {
-    return {
-      label: "Romans 8:28",
-      code: "ROM",
-      chapter: "8",
-      verse: "28",
-      text: "We know that all things work together for good for those who love God, to those who are called according to his purpose.",
-    };
-  }
-
-  if (section.title === "Revelation") {
-    return {
-      label: "Revelation 21:5",
-      code: "REV",
-      chapter: "21",
-      verse: "5",
-      text: "He who sits on the throne said, “Behold, I am making all things new.” He said, “Write, for these words of God are faithful and true.”",
-    };
-  }
-
-  return {
-    label: "Genesis 1:1",
-    code: "GEN",
-    chapter: "1",
-    verse: "1",
-    text: "In the beginning, God created the heavens and the earth.",
-  };
-}
-
-async function pathWithVerseText(path: PathItem[]) {
-  return Promise.all(
-    path.map(async (item) => {
-      const text = await fetchVerseText(item.passage.label);
-
-      if (text) {
-        return {
-          ...item,
-          passage: {
-            ...item.passage,
-            text,
-          },
-        };
-      }
-
-      const replacement = await randomPassageWithVerseText(
-        item.section,
-        item.passage.label,
-      );
-
-      return {
-        ...item,
-        passage: replacement ?? guaranteedPassageForSection(item.section),
-      };
-    }),
-  );
+  return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.NIV`;
 }
 
 export default function BibleExplorerPage() {
-  const [path, setPath] = useState<PathItem[]>(() => buildPath());
-  const [isLoadingBoard, setIsLoadingBoard] = useState(false);
+  const [path, setPath] = useState(() => buildPath());
 
   const verseOfTheDayUrl = useMemo(() => {
     const today = new Date();
@@ -325,89 +162,17 @@ export default function BibleExplorerPage() {
     return `https://www.bible.com/verse-of-the-day`;
   }, []);
 
-  useEffect(() => {
-    const needsVerseText = path.some((item) => item.passage.text === LOADING_VERSE_TEXT);
-
-    if (!needsVerseText) {
-      return;
-    }
-
-    let cancelled = false;
-
-    async function loadInitialVerseTexts() {
-      setIsLoadingBoard(true);
-
-      const readyPath = await pathWithVerseText(path);
-
-      if (!cancelled && readyPath) {
-        setPath(readyPath);
-      }
-
-      if (!cancelled) {
-        setIsLoadingBoard(false);
-      }
-    }
-
-    void loadInitialVerseTexts();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  async function spinOne(index: number) {
-    if (isLoadingBoard) {
-      return;
-    }
-
-    const currentItem = path[index];
-
-    if (!currentItem) {
-      return;
-    }
-
-    setIsLoadingBoard(true);
-
-    try {
-      const nextPassage =
-        (await randomPassageWithVerseText(
-          currentItem.section,
-          currentItem.passage.label,
-        )) ?? guaranteedPassageForSection(currentItem.section);
-
-      setPath((current) =>
-        current.map((item, itemIndex) =>
-          itemIndex === index
-            ? {
-                section: item.section,
-                passage: nextPassage,
-              }
-            : item,
-        ),
-      );
-    } finally {
-      setIsLoadingBoard(false);
-    }
-  }
-
-  async function spinBoard() {
-    if (isLoadingBoard) {
-      return;
-    }
-
-    setIsLoadingBoard(true);
-
-    try {
-      const nextPath = await pathWithVerseText(buildPath(path));
-
-      if (!nextPath) {
-        return;
-      }
-
-      setPath(nextPath);
-    } finally {
-      setIsLoadingBoard(false);
-    }
+  function spinOne(index: number) {
+    setPath((current) =>
+      current.map((item, itemIndex) =>
+        itemIndex === index
+          ? {
+              section: item.section,
+              passage: randomPassage(item.section, item.passage.label),
+            }
+          : item,
+      ),
+    );
   }
 
   return (
@@ -478,11 +243,10 @@ export default function BibleExplorerPage() {
 
           <button
             type="button"
-            onClick={() => void spinBoard()}
-            disabled={isLoadingBoard}
-            className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black disabled:cursor-wait disabled:opacity-60"
+            onClick={() => setPath((current) => buildPath(current))}
+            className="mt-10 rounded-full bg-white px-8 py-3 font-semibold text-black"
           >
-            {isLoadingBoard ? "Loading Bible Bingo..." : "New Bible Bingo Board"}
+            New Bible Bingo Board
           </button>
         </section>
 
@@ -509,7 +273,7 @@ export default function BibleExplorerPage() {
               </p>
 
               <p className="mt-4 max-w-sm text-sm leading-7 text-zinc-300">
-                “{passage.text}”
+                {passage.text}
               </p>
 
               <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
@@ -534,8 +298,7 @@ export default function BibleExplorerPage() {
 
               <button
                 type="button"
-                onClick={() => void spinOne(index)}
-                  disabled={isLoadingBoard}
+                onClick={() => spinOne(index)}
                 className="mt-4 text-sm font-semibold text-zinc-500 underline decoration-zinc-700 underline-offset-4 hover:text-white"
               >
                 Pick another {section.title}
