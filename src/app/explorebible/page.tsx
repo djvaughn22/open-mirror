@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { randomReferenceForSection } from "../../lib/bibleRandom";
 import BibleVerseLookup from "../../components/BibleVerseLookup";
-import GreekTranslator from "../../components/GreekTranslator";
 
 type Passage = {
   label: string;
@@ -348,10 +347,6 @@ export default function BibleExplorerPage() {
 
 
         <BibleVerseLookup className="mt-8" />
-
-        <div className="mt-8">
-          <GreekTranslator />
-        </div>
 
         <section className="mt-12 border-t border-zinc-900 px-4 py-12 text-center sm:mt-16 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-3xl space-y-4 pt-10 text-sm leading-7 text-zinc-400 sm:space-y-5 sm:pt-12 sm:text-base sm:leading-8 md:text-lg">
