@@ -129,6 +129,30 @@ function originalLanguageName(language: OriginalLanguage) {
   return language === "hebrew" ? "Hebrew" : "Greek";
 }
 
+function availableOriginalLanguages(sectionTitle: string): OriginalLanguage[] {
+  if (
+    sectionTitle === "Gospel" ||
+    sectionTitle === "Epistles" ||
+    sectionTitle === "Revelation"
+  ) {
+    return ["greek"];
+  }
+
+  return ["hebrew"];
+}
+
+function languageButtonClass(language: OriginalLanguage, activeLanguage: OriginalLanguage) {
+  if (language === activeLanguage && language === "hebrew") {
+    return "border-emerald-200/40 bg-emerald-300/15 text-emerald-100";
+  }
+
+  if (language === activeLanguage && language === "greek") {
+    return "border-sky-200/40 bg-sky-300/15 text-sky-100";
+  }
+
+  return "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10";
+}
+
 export default function BibleExplorerPage() {
   const [path, setPath] = useState(() => buildPath());
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
@@ -371,29 +395,19 @@ export default function BibleExplorerPage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <button
-                  type="button"
-                  onClick={() => chooseWordStudyLanguage("hebrew")}
-                  className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${
-                    activeWordStudy.language === "hebrew"
-                      ? "border-emerald-200/40 bg-emerald-300/15 text-emerald-100"
-                      : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10"
-                  }`}
-                >
-                  Search Hebrew
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => chooseWordStudyLanguage("greek")}
-                  className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${
-                    activeWordStudy.language === "greek"
-                      ? "border-sky-200/40 bg-sky-300/15 text-sky-100"
-                      : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10"
-                  }`}
-                >
-                  Search Greek
-                </button>
+                {availableOriginalLanguages(activeWordStudy.sectionTitle).map((language) => (
+                  <button
+                    key={language}
+                    type="button"
+                    onClick={() => chooseWordStudyLanguage(language)}
+                    className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${languageButtonClass(
+                      language,
+                      activeWordStudy.language,
+                    )}`}
+                  >
+                    Search {originalLanguageName(language)}
+                  </button>
+                ))}
               </div>
 
               <div className="mt-6 rounded-2xl border border-yellow-200/15 bg-yellow-200/10 p-5">
