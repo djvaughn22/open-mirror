@@ -79,7 +79,7 @@ export default function CrossPage() {
       <div className="text-4xl">✝️</div>
       <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
       <p className="mt-4 leading-7 text-slate-300">
-        On the Cross for You
+        Jesus died on the Cross for you
       </p>
     </div>
 
@@ -87,7 +87,7 @@ export default function CrossPage() {
       <div className="text-4xl">⬇️</div>
       <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
       <p className="mt-4 leading-7 text-slate-300">
-        Into Hell so you don't have to
+        He descended into Hell so you do not have to
       </p>
     </div>
 
@@ -95,7 +95,7 @@ export default function CrossPage() {
       <div className="text-4xl">☀️</div>
       <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
       <p className="mt-4 leading-7 text-slate-300">
-        And ascended into Heaven
+        He rose again and ascended into Heaven so you can too
       </p>
     </div>
   </div>
