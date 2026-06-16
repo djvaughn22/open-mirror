@@ -90,8 +90,6 @@ export default function AboutPage() {
                 52 Week Bible Reading Plan
               </a>
 
-              <p>A simple way for old friends and new friends to begin.</p>
-
               <p>
                 Read through the Holy Bible in one year, one week at a time.
               </p>
