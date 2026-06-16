@@ -405,7 +405,7 @@ export default function BibleExplorerPage() {
                       activeWordStudy.language,
                     )}`}
                   >
-                    Search {originalLanguageName(language)}
+                    Behind the Verse
                   </button>
                 ))}
               </div>
