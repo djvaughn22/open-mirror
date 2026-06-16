@@ -174,6 +174,7 @@ function chapterUrl(passage: Passage) {
 
 export default function BibleExplorerPage() {
   const [path, setPath] = useState(() => buildPath());
+  const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
 
   const verseOfTheDayUrl = useMemo(() => {
     const today = new Date();
@@ -184,6 +185,11 @@ export default function BibleExplorerPage() {
     return `https://www.bible.com/verse-of-the-day`;
   }, []);
 
+  function spinAll() {
+    setPath((current) => buildPath(current));
+    setSpinVersions((current) => current.map((version) => version + 1));
+  }
+
   function spinOne(index: number) {
     setPath((current) =>
       current.map((item, itemIndex) =>
@@ -193,6 +199,12 @@ export default function BibleExplorerPage() {
               passage: randomPassage(item.section, item.passage.label),
             }
           : item,
+      ),
+    );
+
+    setSpinVersions((current) =>
+      current.map((version, itemIndex) =>
+        itemIndex === index ? version + 1 : version,
       ),
     );
   }
@@ -265,7 +277,7 @@ export default function BibleExplorerPage() {
 
           <button
             type="button"
-            onClick={() => setPath((current) => buildPath(current))}
+            onClick={spinAll}
             className="mt-10 rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
           >
             New Bible Bingo Board
@@ -275,8 +287,8 @@ export default function BibleExplorerPage() {
         <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
           {path.map(({ section, passage }, index) => (
             <article
-              key={section.title}
-              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)}`}
+              key={`${section.title}-${spinVersions[index]}`}
+              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
               style={{
                 minHeight: "340px",
                 display: "flex",
@@ -352,6 +364,38 @@ export default function BibleExplorerPage() {
           </p>
         </footer>
       </div>
+
+      <style>{`
+        @keyframes bible-card-axis-spin {
+          0% {
+            opacity: 0.85;
+            transform: perspective(900px) rotateY(0deg) scale(0.98);
+          }
+
+          45% {
+            opacity: 0.45;
+            transform: perspective(900px) rotateY(88deg) scale(0.96);
+          }
+
+          100% {
+            opacity: 1;
+            transform: perspective(900px) rotateY(360deg) scale(1);
+          }
+        }
+
+        .bible-card-spin {
+          animation: bible-card-axis-spin 700ms ease-in-out;
+          transform-origin: center;
+          transform-style: preserve-3d;
+          will-change: transform, opacity;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .bible-card-spin {
+            animation: none;
+          }
+        }
+      `}</style>
     </main>
   );
 }
