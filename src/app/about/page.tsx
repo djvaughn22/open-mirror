@@ -77,33 +77,31 @@ export default function AboutPage() {
 
           <p>Jesus is the destination.</p>
 
-          <div className="mt-12 space-y-5 border-t border-zinc-800 pt-10 text-center">
-            <p className="text-5xl">✝️ ❤️ 🙏</p>
-
+          <div className="mt-12 space-y-4 border-t border-zinc-800 pt-10 text-center">
             <p className="text-2xl font-bold text-white">Cross Heart Pray</p>
 
-            <div className="mx-auto max-w-2xl space-y-4 text-base leading-7 text-zinc-300">
+            <div className="mx-auto max-w-2xl space-y-3 text-base leading-7 text-zinc-300">
               <p className="text-lg font-bold text-white">
                 52 Week Bible Reading Plan
               </p>
 
+              <p>A simple way for old friends and new friends to begin.</p>
+
               <p>
-                A great way for old friends and new friends to begin and finish
-                their first year reading the Holy Bible in its entirety.
+                Read through the Holy Bible in one year, one week at a time.
               </p>
 
               <p>
-                The plan walks through the Bible in 52 weeks, with readings from
-                Epistles, The Law, History, Psalms, Poetry, Prophecy, and
-                Gospels.
+                The plan includes readings from Epistles, The Law, History,
+                Psalms, Poetry, Prophecy, and Gospels.
               </p>
             </div>
+
+            <p className="pt-2 text-5xl">✝️ ❤️ 🙏</p>
 
             <p className="text-base font-semibold tracking-wide text-zinc-400">
               RIP Travis. VTL.
             </p>
-
-            <p className="text-5xl">✝️ ❤️ 🙏</p>
           </div>
         </section>
 
