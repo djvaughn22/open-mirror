@@ -1,3 +1,5 @@
+import BibleVerseLookup from "../../components/BibleVerseLookup";
+
 export default function PrayPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
@@ -95,6 +97,8 @@ export default function PrayPage() {
               Holy Bible Explorer
             </a>
         </div>
+
+        <BibleVerseLookup />
       </section>
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
         © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.

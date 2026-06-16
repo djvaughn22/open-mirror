@@ -1,3 +1,5 @@
+import BibleVerseLookup from "../../components/BibleVerseLookup";
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-12 text-white">
@@ -85,6 +87,8 @@ export default function AboutPage() {
             </p>
           </div>
         </section>
+
+        <BibleVerseLookup />
       </div>
     </main>
   );
