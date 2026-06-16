@@ -95,7 +95,7 @@ export default function CrossPage() {
       <div className="text-4xl">☀️</div>
       <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
       <p className="mt-4 leading-7 text-slate-300">
-        So you can one day can Ascend to Heaven too
+        And ascended into Heaven
       </p>
     </div>
   </div>
