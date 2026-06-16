@@ -141,7 +141,7 @@ export default function HomePage() {
         </section>
 
 
-        <BibleVerseLookup />
+        <BibleVerseLookup className="mt-20 pb-12 sm:mt-24 sm:pb-16" />
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
           © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
