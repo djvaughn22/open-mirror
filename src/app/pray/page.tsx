@@ -43,7 +43,7 @@ export default function PrayPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Just talk to God. Let His will be done.
+            Just talk to God Let His will be done
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             Pray in the morning
@@ -64,7 +64,7 @@ export default function PrayPage() {
               <div className="text-4xl">🙌</div>
               <h2 className="mt-5 text-2xl font-bold">Praise God</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Praise God the Almighty.
+                Praise God the Almighty
                 <br />
                 Always!
               </p>
@@ -74,7 +74,7 @@ export default function PrayPage() {
               <div className="text-4xl">❤️</div>
               <h2 className="mt-5 text-2xl font-bold">Thank God</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Thank God for His love.
+                Thank God for His love
                 <br />
                 Always!
               </p>
@@ -84,7 +84,7 @@ export default function PrayPage() {
               <div className="text-4xl">🙏</div>
               <h2 className="mt-5 text-2xl font-bold">Ask God</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Ask God for guidance.
+                Ask God for guidance
                 <br />
                 Always!
               </p>
@@ -101,7 +101,7 @@ export default function PrayPage() {
         <BibleVerseLookup />
       </section>
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+        © 2026 Open Mirror LLC · Follow Jesus · Love God · Pray
       </footer>
     </main>
   );

@@ -43,7 +43,7 @@ export default function HeartPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Open your heart and receive God’s everlasting, unconditional love.
+            Open your heart and receive God’s everlasting, unconditional love
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             God loves you deeply
@@ -64,9 +64,9 @@ export default function HeartPage() {
               <div className="text-4xl">❤️</div>
               <h2 className="mt-5 text-2xl font-bold">God Loves</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                God is love.
+                God is love
                 <br />
-                Open your heart.
+                Open your heart
               </p>
             </div>
 
@@ -74,9 +74,9 @@ export default function HeartPage() {
               <div className="text-4xl">🕊️</div>
               <h2 className="mt-5 text-2xl font-bold">God Gives Grace</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Grace is a gift.
+                Grace is a gift
                 <br />
-                Receive His mercy.
+                Receive His mercy
               </p>
             </div>
 
@@ -84,9 +84,9 @@ export default function HeartPage() {
               <div className="text-4xl">📖</div>
               <h2 className="mt-5 text-2xl font-bold">God Speaks Truth</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                God&apos;s Word is true.
+                God&apos;s Word is true
                 <br />
-                Let it guide you.
+                Let it guide you
               </p>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function HeartPage() {
         <BibleVerseLookup />
       </section>
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+        © 2026 Open Mirror LLC · Follow Jesus · Love God · Pray
       </footer>
     </main>
   );

@@ -56,7 +56,7 @@ export default function CrossPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Bring it to Jesus. The good, the bad, and the ugly.
+            Bring it to Jesus, the good, the bad, and the ugly
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             Jesus loves you so
@@ -119,7 +119,7 @@ export default function CrossPage() {
         <BibleVerseLookup />
       </section>
       <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+        © 2026 Open Mirror LLC · Follow Jesus · Love God · Pray
       </footer>
     </main>
   );

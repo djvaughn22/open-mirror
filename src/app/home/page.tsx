@@ -20,7 +20,7 @@ const steps = [
     emoji: "🙏",
     href: "/pray",
     comingSoon: false,
-    text: <>Just talk to God. Let His will be done.<br />Follow His lead.</>,
+    text: <>Just talk to God<br />Let His will be done<br />Follow His lead</>,
   },
 ];
 const HOME_CARD_TONES = [
@@ -89,7 +89,7 @@ export default function HomePage() {
           <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
             Your Way
             <br />
-            in the HOLY BIBLE APP.
+            in the HOLY BIBLE APP
           </p>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-blue-400 md:text-2xl">
@@ -142,7 +142,7 @@ export default function HomePage() {
         <BibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
+          © 2026 Open Mirror LLC · Follow Jesus · Love God · Pray
         </footer>
       </div>
     </main>
