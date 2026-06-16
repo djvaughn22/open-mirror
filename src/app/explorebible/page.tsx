@@ -335,7 +335,7 @@ export default function BibleExplorerPage() {
                   onClick={() => openWordStudy(section, passage)}
                   className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-300/15"
                 >
-                  Dig Deeper
+                  Deep Dive
                 </button>
               </div>
 
