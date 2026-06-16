@@ -56,7 +56,7 @@ export default function CrossPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Bring it to Jesus, the good, the bad, and the ugly
+            Bring it all to Jesus
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             Jesus loves you so
