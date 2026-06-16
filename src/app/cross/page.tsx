@@ -79,7 +79,9 @@ export default function CrossPage() {
       <div className="text-4xl">✝️</div>
       <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
       <p className="mt-4 leading-7 text-slate-300">
-        Jesus died on the Cross for you
+        Jesus died on the Cross
+        <br />
+        for you
       </p>
     </div>
 
