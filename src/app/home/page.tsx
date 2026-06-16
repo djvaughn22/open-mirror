@@ -131,7 +131,7 @@ export default function HomePage() {
           ))}
         </section>
 
-        <section className="border-t border-zinc-900 px-6 py-12 text-center sm:py-14">
+        <section className="border-t border-zinc-900 px-6 pt-12 pb-4 text-center sm:pt-14 sm:pb-5">
           <a
             href="/explorebible"
             className="rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
@@ -141,7 +141,7 @@ export default function HomePage() {
         </section>
 
 
-        <BibleVerseLookup className="mt-10 pb-12 sm:mt-12 sm:pb-14" />
+        <BibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
           © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
