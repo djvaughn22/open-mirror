@@ -20,6 +20,14 @@ type Section = {
   gridClass?: string;
 };
 
+type OriginalLanguage = "hebrew" | "greek";
+
+type ActiveWordStudy = {
+  sectionTitle: string;
+  passage: Passage;
+  language: OriginalLanguage;
+};
+
 const sections: Section[] = [
   {
     title: "Old Testament",
@@ -105,9 +113,26 @@ function chapterUrl(passage: Passage) {
   return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.NIV`;
 }
 
+function defaultOriginalLanguage(section: Section): OriginalLanguage {
+  if (
+    section.title === "Gospel" ||
+    section.title === "Epistles" ||
+    section.title === "Revelation"
+  ) {
+    return "greek";
+  }
+
+  return "hebrew";
+}
+
+function originalLanguageName(language: OriginalLanguage) {
+  return language === "hebrew" ? "Hebrew" : "Greek";
+}
+
 export default function BibleExplorerPage() {
   const [path, setPath] = useState(() => buildPath());
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
+  const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
 
   const verseOfTheDayUrl = useMemo(() => {
     const today = new Date();
@@ -139,6 +164,25 @@ export default function BibleExplorerPage() {
       current.map((version, itemIndex) =>
         itemIndex === index ? version + 1 : version,
       ),
+    );
+  }
+
+  function openWordStudy(section: Section, passage: Passage) {
+    setActiveWordStudy({
+      sectionTitle: section.title,
+      passage,
+      language: defaultOriginalLanguage(section),
+    });
+  }
+
+  function chooseWordStudyLanguage(language: OriginalLanguage) {
+    setActiveWordStudy((current) =>
+      current
+        ? {
+            ...current,
+            language,
+          }
+        : current,
     );
   }
 
@@ -261,6 +305,14 @@ export default function BibleExplorerPage() {
                 >
                   Read Chapter
                 </a>
+
+                <button
+                  type="button"
+                  onClick={() => openWordStudy(section, passage)}
+                  className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-300/15"
+                >
+                  Dig Deeper
+                </button>
               </div>
 
               <button
@@ -278,6 +330,109 @@ export default function BibleExplorerPage() {
           ))}
         </section>
 
+        {activeWordStudy && (
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 py-8"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="word-study-title"
+          >
+            <div className="w-full max-w-xl rounded-[2rem] border border-emerald-200/20 bg-slate-950 p-6 text-left text-slate-100 shadow-2xl sm:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200">
+                    Dig Deeper
+                  </p>
+
+                  <h2 id="word-study-title" className="mt-3 text-2xl font-bold">
+                    Original Word Study
+                  </h2>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveWordStudy(null)}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm font-semibold text-slate-300">
+                  Verse reference
+                </p>
+                <p className="mt-1 text-lg font-bold text-white">
+                  {activeWordStudy.passage.label}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-slate-300">
+                  {activeWordStudy.passage.text}
+                </p>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={() => chooseWordStudyLanguage("hebrew")}
+                  className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${
+                    activeWordStudy.language === "hebrew"
+                      ? "border-emerald-200/40 bg-emerald-300/15 text-emerald-100"
+                      : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10"
+                  }`}
+                >
+                  Search Hebrew
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => chooseWordStudyLanguage("greek")}
+                  className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${
+                    activeWordStudy.language === "greek"
+                      ? "border-sky-200/40 bg-sky-300/15 text-sky-100"
+                      : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10"
+                  }`}
+                >
+                  Search Greek
+                </button>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-yellow-200/15 bg-yellow-200/10 p-5">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-yellow-100">
+                  {originalLanguageName(activeWordStudy.language)} lookup status
+                </p>
+
+                <p className="mt-4 text-base font-semibold leading-7 text-slate-100">
+                  No verified original-language match found for this word in this verse.
+                </p>
+
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  CrossHeartPray will only show Hebrew or Greek word data when a
+                  local dataset proves the exact verse match. No AI translation.
+                  No guessing. No invented meanings.
+                </p>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={verseUrl(activeWordStudy.passage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/15 bg-white/10 px-5 py-2 text-center text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+                >
+                  Open verse in Holy Bible app
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveWordStudy(null)}
+                  className="rounded-full border border-white/10 bg-black/10 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <BibleVerseLookup className="mt-8" />
 
