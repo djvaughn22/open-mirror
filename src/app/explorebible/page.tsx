@@ -18,7 +18,6 @@ type Section = {
   line: string;
   odds: string;
   gridClass?: string;
-  passages: Passage[];
 };
 
 const sections: Section[] = [
@@ -27,48 +26,18 @@ const sections: Section[] = [
     emoji: "📜",
     line: "Open the story of promise, rescue, wisdom, prophets, and God’s faithfulness.",
     odds: "1 in 18,237",
-    passages: [
-      { label: "Exodus 14:13", code: "EXO", chapter: "14", verse: "13", text: "Don’t be afraid. Stand firm and see the LORD’s salvation." },
-      { label: "Deuteronomy 6:5", code: "DEU", chapter: "6", verse: "5", text: "Love the LORD your God with all your heart, soul, and strength." },
-      { label: "Joshua 1:9", code: "JOS", chapter: "1", verse: "9", text: "Be strong and courageous. Do not be afraid or discouraged." },
-      { label: "Ruth 1:16", code: "RUT", chapter: "1", verse: "16", text: "Where you go, I will go, and where you stay, I will stay." },
-      { label: "1 Samuel 16:7", code: "1SA", chapter: "16", verse: "7", text: "People look at the outward appearance, but the LORD looks at the heart." },
-      { label: "Isaiah 6:8", code: "ISA", chapter: "6", verse: "8", text: "Here I am. Send me." },
-      { label: "Micah 6:8", code: "MIC", chapter: "6", verse: "8", text: "Act justly, love faithfulness, and walk humbly with your God." },
-      { label: "Habakkuk 3:18", code: "HAB", chapter: "3", verse: "18", text: "I will celebrate in the LORD; I will rejoice in the God of my salvation." },
-    ],
   },
   {
     title: "Psalms",
     emoji: "🎶",
     line: "Pray, praise, cry out, worship, and hope through Scripture.",
     odds: "1 in 2,461",
-    passages: [
-      { label: "Psalm 1:1", code: "PSA", chapter: "1", verse: "1", text: "How happy is the one who does not walk in the advice of the wicked." },
-      { label: "Psalm 23:1", code: "PSA", chapter: "23", verse: "1", text: "The LORD is my shepherd; I have what I need." },
-      { label: "Psalm 27:1", code: "PSA", chapter: "27", verse: "1", text: "The LORD is my light and my salvation — whom should I fear?" },
-      { label: "Psalm 46:10", code: "PSA", chapter: "46", verse: "10", text: "Stop fighting, and know that I am God." },
-      { label: "Psalm 51:10", code: "PSA", chapter: "51", verse: "10", text: "God, create a clean heart for me and renew a steadfast spirit within me." },
-      { label: "Psalm 91:1", code: "PSA", chapter: "91", verse: "1", text: "The one who lives under the protection of the Most High dwells in the shadow of the Almighty." },
-      { label: "Psalm 103:2", code: "PSA", chapter: "103", verse: "2", text: "My soul, bless the LORD, and do not forget all his benefits." },
-      { label: "Psalm 139:14", code: "PSA", chapter: "139", verse: "14", text: "I will praise you because I have been remarkably and wondrously made." },
-    ],
   },
   {
     title: "Proverbs",
     emoji: "💡",
     line: "Find wisdom for words, choices, friendship, work, and the heart.",
     odds: "1 in 915",
-    passages: [
-      { label: "Proverbs 3:5", code: "PRO", chapter: "3", verse: "5", text: "Trust in the LORD with all your heart, and do not rely on your own understanding." },
-      { label: "Proverbs 4:23", code: "PRO", chapter: "4", verse: "23", text: "Guard your heart above all else, for it is the source of life." },
-      { label: "Proverbs 11:25", code: "PRO", chapter: "11", verse: "25", text: "A generous person will be enriched, and the one who gives a drink will receive water." },
-      { label: "Proverbs 15:1", code: "PRO", chapter: "15", verse: "1", text: "A gentle answer turns away anger, but a harsh word stirs up wrath." },
-      { label: "Proverbs 16:3", code: "PRO", chapter: "16", verse: "3", text: "Commit your activities to the LORD, and your plans will be established." },
-      { label: "Proverbs 18:10", code: "PRO", chapter: "18", verse: "10", text: "The name of the LORD is a strong tower; the righteous run to it and are protected." },
-      { label: "Proverbs 27:17", code: "PRO", chapter: "27", verse: "17", text: "Iron sharpens iron, and one person sharpens another." },
-      { label: "Proverbs 31:8", code: "PRO", chapter: "31", verse: "8", text: "Speak up for those who have no voice." },
-    ],
   },
   {
     title: "Gospel",
@@ -76,16 +45,6 @@ const sections: Section[] = [
     emoji: "✝️",
     line: "Walk with Jesus through His words, works, cross, and resurrection.",
     odds: "1 in 3,779",
-    passages: [
-      { label: "Matthew 5:3", code: "MAT", chapter: "5", verse: "3", text: "Blessed are the poor in spirit, for the kingdom of heaven is theirs." },
-      { label: "Matthew 6:9", code: "MAT", chapter: "6", verse: "9", text: "Our Father in heaven, your name be honored as holy." },
-      { label: "Matthew 28:19", code: "MAT", chapter: "28", verse: "19", text: "Go, therefore, and make disciples of all nations." },
-      { label: "Mark 4:9", code: "MRK", chapter: "4", verse: "9", text: "Let anyone who has ears to hear listen." },
-      { label: "Luke 10:27", code: "LUK", chapter: "10", verse: "27", text: "Love the Lord your God with all your heart, soul, strength, and mind." },
-      { label: "Luke 15:20", code: "LUK", chapter: "15", verse: "20", text: "While the son was still a long way off, his father saw him and was filled with compassion." },
-      { label: "John 1:14", code: "JHN", chapter: "1", verse: "14", text: "The Word became flesh and dwelt among us." },
-      { label: "John 10:11", code: "JHN", chapter: "10", verse: "11", text: "I am the good shepherd. The good shepherd lays down his life for the sheep." },
-    ],
   },
   {
     title: "Epistles",
@@ -93,16 +52,6 @@ const sections: Section[] = [
     emoji: "✉️",
     line: "Read how the Church learns to live, love, serve, endure, and grow.",
     odds: "1 in 3,774",
-    passages: [
-      { label: "Romans 8:1", code: "ROM", chapter: "8", verse: "1", text: "There is now no condemnation for those in Christ Jesus." },
-      { label: "Romans 12:2", code: "ROM", chapter: "12", verse: "2", text: "Do not be conformed to this age, but be transformed by the renewing of your mind." },
-      { label: "1 Corinthians 13:4", code: "1CO", chapter: "13", verse: "4", text: "Love is patient, love is kind." },
-      { label: "Galatians 5:22", code: "GAL", chapter: "5", verse: "22", text: "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness." },
-      { label: "Ephesians 2:10", code: "EPH", chapter: "2", verse: "10", text: "We are his workmanship, created in Christ Jesus for good works." },
-      { label: "Philippians 2:5", code: "PHP", chapter: "2", verse: "5", text: "Adopt the same attitude as that of Christ Jesus." },
-      { label: "Colossians 3:12", code: "COL", chapter: "3", verse: "12", text: "Put on compassion, kindness, humility, gentleness, and patience." },
-      { label: "James 1:22", code: "JAS", chapter: "1", verse: "22", text: "Be doers of the word and not hearers only." },
-    ],
   },
   {
     title: "Genesis",
@@ -110,14 +59,6 @@ const sections: Section[] = [
     emoji: "🌅",
     line: "The beginning: creation, fall, promise, covenant, and God’s story opening.",
     odds: "1 in 1,533",
-    passages: [
-      { label: "Genesis 1:1", code: "GEN", chapter: "1", verse: "1", text: "In the beginning God created the heavens and the earth." },
-      { label: "Genesis 1:27", code: "GEN", chapter: "1", verse: "27", text: "God created mankind in his own image." },
-      { label: "Genesis 3:15", code: "GEN", chapter: "3", verse: "15", text: "He will strike your head, and you will strike his heel." },
-      { label: "Genesis 12:2", code: "GEN", chapter: "12", verse: "2", text: "I will make you into a great nation, I will bless you." },
-      { label: "Genesis 15:6", code: "GEN", chapter: "15", verse: "6", text: "Abram believed the LORD, and he credited it to him as righteousness." },
-      { label: "Genesis 50:20", code: "GEN", chapter: "50", verse: "20", text: "You planned evil against me; God planned it for good." },
-    ],
   },
   {
     title: "Revelation",
@@ -125,14 +66,6 @@ const sections: Section[] = [
     emoji: "👑",
     line: "The end: worship, victory, restoration, and Jesus making all things new.",
     odds: "1 in 404",
-    passages: [
-      { label: "Revelation 1:8", code: "REV", chapter: "1", verse: "8", text: "I am the Alpha and the Omega, says the Lord God." },
-      { label: "Revelation 3:20", code: "REV", chapter: "3", verse: "20", text: "See! I stand at the door and knock." },
-      { label: "Revelation 5:12", code: "REV", chapter: "5", verse: "12", text: "Worthy is the Lamb who was slaughtered." },
-      { label: "Revelation 7:17", code: "REV", chapter: "7", verse: "17", text: "The Lamb who is at the center of the throne will shepherd them." },
-      { label: "Revelation 21:4", code: "REV", chapter: "21", verse: "4", text: "He will wipe away every tear from their eyes." },
-      { label: "Revelation 22:13", code: "REV", chapter: "22", verse: "13", text: "I am the Alpha and the Omega, the first and the last, the beginning and the end." },
-    ],
   },
 ];
 const CARD_TONES = [
