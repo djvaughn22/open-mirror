@@ -55,15 +55,15 @@ export default function CrossPage() {
             Cross
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-blue-300">
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
             Bring it to Jesus. The good, the bad, and the ugly.
           </p>
-          <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
-            Jesus is your friend
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
+            Jesus Loves You So
             <br />
-            Jesus gave His life for you
+            He laid down his life for you
             <br />
-            He’s waiting right now
+            Believe and be saved
           </p>
         </div>
 
