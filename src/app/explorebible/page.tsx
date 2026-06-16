@@ -349,10 +349,31 @@ export default function BibleExplorerPage() {
         <BibleVerseLookup className="mt-8" />
 
         <section className="border-t border-zinc-900 px-6 py-20 text-center">
-          <p className="mx-auto max-w-3xl text-lg leading-8 text-zinc-400">
-            No AI. No explanation. No reflection required. Open Scripture and
-            discover what God may show you today.
-          </p>
+          <div className="mx-auto max-w-3xl space-y-5 text-lg leading-8 text-zinc-400">
+            <p>Dear ✝️ ❤️ 🙏 Bible Bingo users,</p>
+
+            <p>
+              Bible Bingo uses a complete local Holy Bible verse list built into
+              the app, NO AI!
+            </p>
+
+            <p>
+              Each card randomly picks one verse from that card’s Bible section.
+            </p>
+
+            <p>
+              The odds shown on each card are the number of possible verses in
+              that section.
+            </p>
+
+            <p>
+              Please click on the verse or chapter for the source text and full
+              context. Keep exploring everything in the Holy Bible app and all
+              their well organized devotion plans.
+            </p>
+
+            <p>✝️ ❤️ 🙏</p>
+          </div>
         </section>
 
         <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
