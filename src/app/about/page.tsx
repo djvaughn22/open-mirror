@@ -76,39 +76,39 @@ export default function AboutPage() {
           <p>The Bible is the guide.</p>
 
           <p>Jesus is the destination.</p>
-
-          <div className="mt-12 space-y-4 border-t border-zinc-800 pt-10 text-center">
-            <p className="text-2xl font-bold text-white">Cross Heart Pray</p>
-
-            <div className="mx-auto max-w-2xl space-y-3 text-base leading-7 text-zinc-300">
-              <a
-                href="/resources/52-week-bible-reading-plan.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-              >
-                52 Week Bible Reading Plan
-              </a>
-
-              <p>
-                Read through the Holy Bible in one year, one week at a time.
-              </p>
-
-              <p>
-                The plan includes readings from Epistles, The Law, History,
-                Psalms, Poetry, Prophecy, and Gospels.
-              </p>
-            </div>
-
-            <p className="pt-2 text-5xl">✝️ ❤️ 🙏</p>
-
-            <p className="text-base font-semibold tracking-wide text-zinc-400">
-              RIP Travis. VTL.
-            </p>
-          </div>
         </section>
 
         <BibleVerseLookup />
+
+        <section className="mx-auto mt-12 max-w-3xl space-y-4 border-t border-zinc-800 pt-10 text-center">
+          <p className="text-2xl font-bold text-white">Cross Heart Pray</p>
+
+          <div className="mx-auto max-w-2xl space-y-3 text-base leading-7 text-zinc-300">
+            <a
+              href="/resources/52-week-bible-reading-plan.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              52 Week Bible Reading Plan
+            </a>
+
+            <p>
+              Read through the Holy Bible in one year, one week at a time.
+            </p>
+
+            <p>
+              The plan includes readings from Epistles, The Law, History,
+              Psalms, Poetry, Prophecy, and Gospels.
+            </p>
+          </div>
+
+          <p className="pt-2 text-5xl">✝️ ❤️ 🙏</p>
+
+          <p className="text-base font-semibold tracking-wide text-zinc-400">
+            RIP Travis. VTL.
+          </p>
+        </section>
       </div>
     </main>
   );
