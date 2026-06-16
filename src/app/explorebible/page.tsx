@@ -275,7 +275,7 @@ export default function BibleExplorerPage() {
           {path.map(({ section, passage }, index) => (
             <article
               key={section.title}
-              className={`relative rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)}`}
+              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)}`}
               style={{
                 minHeight: "340px",
                 display: "flex",
@@ -283,10 +283,6 @@ export default function BibleExplorerPage() {
                 alignItems: "center",
               }}
             >
-              <p className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[0.68rem] font-bold tracking-[0.12em] text-slate-200">
-                {section.odds}
-              </p>
-
               <div className="text-5xl">{section.emoji}</div>
 
               <h2 className="mt-6 text-2xl font-bold">{section.title}</h2>
@@ -328,6 +324,10 @@ export default function BibleExplorerPage() {
               >
                 Pick another {section.title}
               </button>
+
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                Odds: {section.odds}
+              </p>
             </article>
           ))}
         </section>
