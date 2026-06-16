@@ -43,7 +43,7 @@ export default function HeartPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Open your heart and receive God&apos;s Love
+            Open your heart and receive God&apos;s love
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             God loves you deeply
@@ -72,7 +72,7 @@ export default function HeartPage() {
 
             <div>
               <div className="text-4xl">🕊️</div>
-              <h2 className="mt-5 text-2xl font-bold">God Gives Grace</h2>
+              <h2 className="mt-5 text-2xl font-bold">He Gives Grace</h2>
               <p className="mt-4 leading-7 text-slate-300">
                 Grace is a gift
                 <br />
@@ -82,7 +82,7 @@ export default function HeartPage() {
 
             <div>
               <div className="text-4xl">📖</div>
-              <h2 className="mt-5 text-2xl font-bold">God Speaks Truth</h2>
+              <h2 className="mt-5 text-2xl font-bold">He Speaks Truth</h2>
               <p className="mt-4 leading-7 text-slate-300">
                 God&apos;s Word is true
                 <br />
