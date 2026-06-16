@@ -61,7 +61,7 @@ export default function CrossPage() {
           <p className="mx-auto mt-8 max-w-2xl text-2xl font-semibold leading-10 text-zinc-300">
             Jesus is your friend
             <br />
-            Jesus gave His life for you.
+            Jesus gave His life for you
             <br />
             He’s waiting right now
           </p>
