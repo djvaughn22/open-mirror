@@ -81,9 +81,14 @@ export default function AboutPage() {
             <p className="text-2xl font-bold text-white">Cross Heart Pray</p>
 
             <div className="mx-auto max-w-2xl space-y-3 text-base leading-7 text-zinc-300">
-              <p className="text-lg font-bold text-white">
+              <a
+                href="/resources/52-week-bible-reading-plan.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+              >
                 52 Week Bible Reading Plan
-              </p>
+              </a>
 
               <p>A simple way for old friends and new friends to begin.</p>
 
