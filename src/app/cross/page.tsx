@@ -89,7 +89,9 @@ export default function CrossPage() {
       <div className="text-4xl">⬇️</div>
       <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
       <p className="mt-4 leading-7 text-slate-300">
-        He descended into Hell so you do not have to
+        He descended into Hell so
+        <br />
+        you do not have to
       </p>
     </div>
 
