@@ -9,7 +9,7 @@ export default function BibleVerseLookup({
 }: BibleVerseLookupProps) {
   return (
     <section
-      className={`${className} rounded-[2rem] border border-white/10 bg-gradient-to-r from-sky-300/10 via-yellow-200/10 to-red-300/10 p-5 text-center text-slate-100`}
+      className={`${className} text-center text-slate-100`}
     >
       <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-100">
         Bible Verse Lookup
