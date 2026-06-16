@@ -15,6 +15,7 @@ type Section = {
   title: string;
   emoji: string;
   line: string;
+  odds: string;
   gridClass?: string;
   passages: Passage[];
 };
@@ -24,6 +25,7 @@ const sections: Section[] = [
     title: "Old Testament",
     emoji: "📜",
     line: "Open the story of promise, rescue, wisdom, prophets, and God’s faithfulness.",
+    odds: "1 in 18,237",
     passages: [
       { label: "Exodus 14:13", code: "EXO", chapter: "14", verse: "13", text: "Don’t be afraid. Stand firm and see the LORD’s salvation." },
       { label: "Deuteronomy 6:5", code: "DEU", chapter: "6", verse: "5", text: "Love the LORD your God with all your heart, soul, and strength." },
@@ -39,6 +41,7 @@ const sections: Section[] = [
     title: "Psalms",
     emoji: "🎶",
     line: "Pray, praise, cry out, worship, and hope through Scripture.",
+    odds: "1 in 2,461",
     passages: [
       { label: "Psalm 1:1", code: "PSA", chapter: "1", verse: "1", text: "How happy is the one who does not walk in the advice of the wicked." },
       { label: "Psalm 23:1", code: "PSA", chapter: "23", verse: "1", text: "The LORD is my shepherd; I have what I need." },
@@ -54,6 +57,7 @@ const sections: Section[] = [
     title: "Proverbs",
     emoji: "💡",
     line: "Find wisdom for words, choices, friendship, work, and the heart.",
+    odds: "1 in 915",
     passages: [
       { label: "Proverbs 3:5", code: "PRO", chapter: "3", verse: "5", text: "Trust in the LORD with all your heart, and do not rely on your own understanding." },
       { label: "Proverbs 4:23", code: "PRO", chapter: "4", verse: "23", text: "Guard your heart above all else, for it is the source of life." },
@@ -70,6 +74,7 @@ const sections: Section[] = [
     gridClass: "lg:col-start-2",
     emoji: "✝️",
     line: "Walk with Jesus through His words, works, cross, and resurrection.",
+    odds: "1 in 3,779",
     passages: [
       { label: "Matthew 5:3", code: "MAT", chapter: "5", verse: "3", text: "Blessed are the poor in spirit, for the kingdom of heaven is theirs." },
       { label: "Matthew 6:9", code: "MAT", chapter: "6", verse: "9", text: "Our Father in heaven, your name be honored as holy." },
@@ -86,6 +91,7 @@ const sections: Section[] = [
     gridClass: "lg:col-start-4",
     emoji: "✉️",
     line: "Read how the Church learns to live, love, serve, endure, and grow.",
+    odds: "1 in 3,774",
     passages: [
       { label: "Romans 8:1", code: "ROM", chapter: "8", verse: "1", text: "There is now no condemnation for those in Christ Jesus." },
       { label: "Romans 12:2", code: "ROM", chapter: "12", verse: "2", text: "Do not be conformed to this age, but be transformed by the renewing of your mind." },
@@ -102,6 +108,7 @@ const sections: Section[] = [
     gridClass: "lg:col-start-2",
     emoji: "🌅",
     line: "The beginning: creation, fall, promise, covenant, and God’s story opening.",
+    odds: "1 in 1,533",
     passages: [
       { label: "Genesis 1:1", code: "GEN", chapter: "1", verse: "1", text: "In the beginning God created the heavens and the earth." },
       { label: "Genesis 1:27", code: "GEN", chapter: "1", verse: "27", text: "God created mankind in his own image." },
@@ -116,6 +123,7 @@ const sections: Section[] = [
     gridClass: "lg:col-start-4",
     emoji: "👑",
     line: "The end: worship, victory, restoration, and Jesus making all things new.",
+    odds: "1 in 404",
     passages: [
       { label: "Revelation 1:8", code: "REV", chapter: "1", verse: "8", text: "I am the Alpha and the Omega, says the Lord God." },
       { label: "Revelation 3:20", code: "REV", chapter: "3", verse: "20", text: "See! I stand at the door and knock." },
@@ -267,7 +275,7 @@ export default function BibleExplorerPage() {
           {path.map(({ section, passage }, index) => (
             <article
               key={section.title}
-              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)}`}
+              className={`relative rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)}`}
               style={{
                 minHeight: "340px",
                 display: "flex",
@@ -275,6 +283,10 @@ export default function BibleExplorerPage() {
                 alignItems: "center",
               }}
             >
+              <p className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[0.68rem] font-bold tracking-[0.12em] text-slate-200">
+                {section.odds}
+              </p>
+
               <div className="text-5xl">{section.emoji}</div>
 
               <h2 className="mt-6 text-2xl font-bold">{section.title}</h2>
