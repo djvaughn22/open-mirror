@@ -6,14 +6,14 @@ const steps = [
     emoji: "✝️",
     href: "/cross",
     comingSoon: false,
-    text: "Bring it to Jesus. The good, the bad, and the ugly.",
+    text: <>Bring it to Jesus<br />The good, the bad<br />and the ugly</>,
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/heart",
     comingSoon: false,
-    text: "Open your heart and receive God's everlasting, unconditional love.",
+    text: <>Open your heart<br />Receive God&apos;s everlasting<br />unconditional love</>,
   },
   {
     title: "Pray",
