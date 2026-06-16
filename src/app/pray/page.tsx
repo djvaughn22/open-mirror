@@ -64,9 +64,9 @@ export default function PrayPage() {
               <div className="text-4xl">🙌</div>
               <h2 className="mt-5 text-2xl font-bold">Praise God</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Praise God the Almighty
+                The Almighty
                 <br />
-                Always!
+                Open the Bible
               </p>
             </div>
 
@@ -74,9 +74,9 @@ export default function PrayPage() {
               <div className="text-4xl">❤️</div>
               <h2 className="mt-5 text-2xl font-bold">Thank God</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Thank God for His love
+                For His love
                 <br />
-                Always!
+                Open the Bible
               </p>
             </div>
 
@@ -84,9 +84,9 @@ export default function PrayPage() {
               <div className="text-4xl">🙏</div>
               <h2 className="mt-5 text-2xl font-bold">Ask God</h2>
               <p className="mt-4 leading-7 text-slate-300">
-                Ask God for guidance
+                For guidance
                 <br />
-                Always!
+                Open the Bible
               </p>
             </div>
           </div>
