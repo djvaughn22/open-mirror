@@ -59,7 +59,7 @@ export default function CrossPage() {
             Bring it to Jesus. The good, the bad, and the ugly.
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
-            Jesus Loves You So
+            Jesus loves you so
             <br />
             He laid down his life for you
             <br />
