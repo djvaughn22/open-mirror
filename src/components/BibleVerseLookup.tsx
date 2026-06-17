@@ -1,16 +1,85 @@
 "use client";
 
+import { FormEvent, useState } from "react";
+
 type BibleVerseLookupProps = {
   className?: string;
 };
 
+type LookupPassage = {
+  label: string;
+  book: string;
+  code: string;
+  chapter: string;
+  verse: string;
+  text: string;
+  group: string;
+};
+
+function verseUrl(passage: LookupPassage) {
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
+}
+
+function chapterUrl(passage: LookupPassage) {
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
+}
+
+function hasVerifiedWordLinks(_passage: LookupPassage) {
+  return false;
+}
+
 export default function BibleVerseLookup({
   className = "mt-12",
 }: BibleVerseLookupProps) {
+  const [query, setQuery] = useState("");
+  const [passage, setPassage] = useState<LookupPassage | null>(null);
+  const [note, setNote] = useState("");
+  const [error, setError] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+
+  async function lookupVerse(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const trimmedQuery = query.trim();
+
+    if (!trimmedQuery) {
+      setError("Type a Bible reference first.");
+      setPassage(null);
+      setNote("");
+      return;
+    }
+
+    setIsSearching(true);
+    setError("");
+    setNote("");
+
+    try {
+      const response = await fetch(
+        `/api/local-verse-lookup?q=${encodeURIComponent(trimmedQuery)}`,
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setPassage(null);
+        setError(data.error ?? "No local verse match found.");
+        return;
+      }
+
+      setPassage(data.passage);
+      setNote(data.note ?? "");
+    } catch {
+      setPassage(null);
+      setError("Unable to search the local Bible library right now.");
+    } finally {
+      setIsSearching(false);
+    }
+  }
+
+  const deepDiveReady = passage ? hasVerifiedWordLinks(passage) : false;
+
   return (
-    <section
-      className={`${className} text-center text-slate-100`}
-    >
+    <section className={`${className} text-center text-slate-100`}>
       <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-100">
         Bible Verse Lookup
       </p>
@@ -20,17 +89,16 @@ export default function BibleVerseLookup({
       </h2>
 
       <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-200">
-        Type a verse like John 3:16, Psalm 23, Romans 8:28, or Genesis 1:1.
+        Type a verse like John 3:16, Psalm 23:1, Romans 8:28, or Genesis 1:1.
       </p>
 
       <form
-        action="https://www.bible.com/search/bible"
-        method="get"
-        target="_blank"
+        onSubmit={lookupVerse}
         className="mx-auto mt-5 flex max-w-xl flex-col gap-3 sm:flex-row"
       >
         <input
-          name="q"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
           type="text"
           inputMode="text"
           placeholder="John 3:16"
@@ -40,15 +108,72 @@ export default function BibleVerseLookup({
 
         <button
           type="submit"
-          className="min-h-12 rounded-2xl border border-white/15 bg-white/10 px-5 font-semibold text-slate-100 transition hover:bg-white/15"
+          disabled={isSearching}
+          className="min-h-12 rounded-2xl border border-white/15 bg-white/10 px-5 font-semibold text-slate-100 transition hover:bg-white/15 disabled:cursor-wait disabled:opacity-60"
         >
-          Search Bible Verse
+          {isSearching ? "Searching..." : "Search Bible Verse"}
         </button>
       </form>
 
       <p className="mt-3 text-xs text-slate-300">
-        Opens Bible.com / YouVersion so the Bible stays the destination.
+        Searches the local complete Bible library first. Open the verse or chapter
+        to keep reading in the Holy Bible app.
       </p>
+
+      {error && (
+        <p className="mx-auto mt-5 max-w-xl rounded-2xl border border-red-200/20 bg-red-300/10 px-5 py-3 text-sm font-semibold text-red-100">
+          {error}
+        </p>
+      )}
+
+      {passage && (
+        <article className="mx-auto mt-6 max-w-2xl rounded-[2rem] border border-emerald-200/15 bg-emerald-300/10 p-6 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">
+            Local Bible Library Match
+          </p>
+
+          <h3 className="mt-3 text-2xl font-bold text-white">{passage.label}</h3>
+
+          <p className="mt-4 text-sm leading-7 text-slate-200">{passage.text}</p>
+
+          {note && (
+            <p className="mt-4 text-xs font-semibold text-slate-300">{note}</p>
+          )}
+
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <a
+              href={verseUrl(passage)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Open Verse
+            </a>
+
+            <a
+              href={chapterUrl(passage)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 bg-black/10 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
+            >
+              Read Chapter
+            </a>
+
+            <button
+              type="button"
+              disabled={!deepDiveReady}
+              title={
+                deepDiveReady
+                  ? "Open verified original-language word study"
+                  : "Deep Dive opens when this verse has verified underlined word links."
+              }
+              className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-emerald-300/10"
+            >
+              Deep Dive*
+            </button>
+          </div>
+        </article>
+      )}
     </section>
   );
 }
