@@ -160,6 +160,121 @@ const lowValueEnglishWords = new Set([
   "only",
 ]);
 
+const alwaysKeepDeepDiveWords = new Set([
+  "god",
+  "lord",
+  "jesus",
+  "christ",
+  "spirit",
+  "holy",
+  "faith",
+  "faithful",
+  "grace",
+  "mercy",
+  "peace",
+  "joy",
+  "truth",
+  "love",
+  "beloved",
+  "righteous",
+  "righteousness",
+  "justice",
+  "judgment",
+  "sin",
+  "repent",
+  "repentance",
+  "forgive",
+  "forgiven",
+  "forgiveness",
+  "covenant",
+  "command",
+  "commandment",
+  "law",
+  "wisdom",
+  "heart",
+  "soul",
+  "life",
+  "death",
+  "resurrection",
+  "salvation",
+  "save",
+  "saved",
+  "bless",
+  "blessing",
+  "blessed",
+  "curse",
+  "sacrifice",
+  "blood",
+  "worship",
+  "praise",
+  "glory",
+  "kingdom",
+  "king",
+  "father",
+  "son",
+  "gospel",
+  "angel",
+  "prophet",
+  "apostle",
+  "disciple",
+  "church",
+  "temple",
+  "sabbath",
+  "bread",
+  "water",
+  "light",
+  "darkness",
+  "good",
+  "evil",
+  "name",
+  "word",
+  "flesh",
+  "hope",
+  "fear",
+]);
+
+function normalizeMeaningRoot(value: string) {
+  const normalized = normalizeStudyWord(value);
+
+  if (!normalized) return "";
+
+  if (normalized.endsWith("ies") && normalized.length > 4) {
+    return `${normalized.slice(0, -3)}y`;
+  }
+
+  if (normalized.endsWith("s") && !normalized.endsWith("ss") && normalized.length > 3) {
+    return normalized.slice(0, -1);
+  }
+
+  return normalized;
+}
+
+function meaningRoots(value: string) {
+  return value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .split(/[^a-z0-9]+/g)
+    .map(normalizeMeaningRoot)
+    .filter((word) => word && !lowValueEnglishWords.has(word));
+}
+
+function hasSourceMeaningExpansion(wordStudy: VerifiedWordStudy) {
+  const englishRoot = normalizeMeaningRoot(wordStudy.englishWord);
+
+  if (!englishRoot) return false;
+  if (alwaysKeepDeepDiveWords.has(englishRoot)) return true;
+
+  const roots = new Set([
+    ...meaningRoots(wordStudy.lexiconMeaning),
+    ...meaningRoots(wordStudy.sourceGloss),
+  ]);
+
+  roots.delete(englishRoot);
+
+  return roots.size > 0;
+}
+
 function isUsefulGrammar(morphology: string) {
   const grammar = morphology.trim().toUpperCase();
 
@@ -183,11 +298,12 @@ function isUsefulGrammar(morphology: string) {
 
 export function isUsefulVerifiedWordStudy(wordStudy: VerifiedWordStudy) {
   const englishWord = normalizeStudyWord(wordStudy.englishWord);
-  const lexiconMeaning = normalizeStudyWord(wordStudy.lexiconMeaning);
-  const sourceGloss = normalizeStudyWord(wordStudy.sourceGloss);
+  const englishRoot = normalizeMeaningRoot(wordStudy.englishWord);
 
   if (!englishWord) return false;
-  if (lowValueEnglishWords.has(englishWord)) return false;
+  if (lowValueEnglishWords.has(englishWord) || lowValueEnglishWords.has(englishRoot)) {
+    return false;
+  }
 
   if (!wordStudy.originalWord || !wordStudy.strongs || !wordStudy.lexiconMeaning) {
     return false;
@@ -197,9 +313,10 @@ export function isUsefulVerifiedWordStudy(wordStudy: VerifiedWordStudy) {
     return false;
   }
 
-  // Avoid underlining words where the displayed meaning adds no study value.
-  // Example: English "now" -> Greek meaning "now".
-  if (lexiconMeaning === englishWord && sourceGloss === englishWord) {
+  // Avoid underlining words where the displayed source meaning adds no study value.
+  // Examples: English "years" -> meaning "year"; English "seven" -> meaning "seven".
+  // Keep high-value Bible words and words where the source gives expanded meaning.
+  if (!hasSourceMeaningExpansion(wordStudy)) {
     return false;
   }
 
