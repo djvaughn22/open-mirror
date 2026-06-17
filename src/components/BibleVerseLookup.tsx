@@ -1,9 +1,10 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import OriginalWordStudyModal from "./OriginalWordStudyModal";
 import VerifiedVerseText from "./VerifiedVerseText";
 import {
+  buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
   hasVerifiedWordStudies,
   type VerifiedWordStudy,
@@ -36,8 +37,8 @@ function chapterUrl(passage: LookupPassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
-function hasVerifiedWordLinks(passage: LookupPassage) {
-  return hasVerifiedWordStudies(passage);
+function hasVerifiedWordLinks(wordStudies: VerifiedWordStudy[]) {
+  return hasVerifiedWordStudies(wordStudies);
 }
 
 export default function BibleVerseLookup({
@@ -45,10 +46,60 @@ export default function BibleVerseLookup({
 }: BibleVerseLookupProps) {
   const [query, setQuery] = useState("");
   const [passage, setPassage] = useState<LookupPassage | null>(null);
+  const [wordStudies, setWordStudies] = useState<VerifiedWordStudy[]>([]);
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [isLoadingWordStudies, setIsLoadingWordStudies] = useState(false);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveLookupWordStudy | null>(null);
+
+  useEffect(() => {
+    if (!passage) {
+      setWordStudies([]);
+      setIsLoadingWordStudies(false);
+      return;
+    }
+
+    const selectedPassage = passage;
+    let cancelled = false;
+
+    async function loadWordStudies() {
+      setIsLoadingWordStudies(true);
+      setWordStudies([]);
+
+      try {
+        const response = await fetch(buildDeepDiveWordStudiesUrl(selectedPassage));
+
+        if (!response.ok) {
+          if (!cancelled) {
+            setWordStudies([]);
+          }
+
+          return;
+        }
+
+        const data = await response.json();
+
+        if (!cancelled) {
+          setWordStudies(Array.isArray(data.wordStudies) ? data.wordStudies : []);
+        }
+      } catch {
+        if (!cancelled) {
+          setWordStudies([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoadingWordStudies(false);
+        }
+      }
+    }
+
+    loadWordStudies();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [passage]);
 
   async function lookupVerse(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -93,7 +144,7 @@ export default function BibleVerseLookup({
     selectedPassage: LookupPassage,
     selectedWordStudy?: VerifiedWordStudy,
   ) {
-    const wordStudy = selectedWordStudy ?? getDefaultWordStudy(selectedPassage);
+    const wordStudy = selectedWordStudy ?? getDefaultWordStudy(wordStudies);
 
     if (!wordStudy) {
       return;
@@ -105,7 +156,7 @@ export default function BibleVerseLookup({
     });
   }
 
-  const deepDiveReady = passage ? hasVerifiedWordLinks(passage) : false;
+  const deepDiveReady = hasVerifiedWordLinks(wordStudies);
 
   return (
     <section className={`${className} text-center text-slate-100`}>
@@ -166,6 +217,7 @@ export default function BibleVerseLookup({
           <p className="mt-4 text-sm leading-7 text-slate-200">
             <VerifiedVerseText
               passage={passage}
+              wordStudies={wordStudies}
               onWordClick={(wordStudy) => openWordStudy(passage, wordStudy)}
             />
           </p>
@@ -194,9 +246,11 @@ export default function BibleVerseLookup({
               onClick={() => passage && openWordStudy(passage)}
               disabled={!deepDiveReady}
               title={
-                deepDiveReady
-                  ? "Open verified original-language word study"
-                  : "Deep Dive opens when this verse has verified underlined word links."
+                isLoadingWordStudies
+                  ? "Checking for verified original-language word links."
+                  : deepDiveReady
+                    ? "Open verified original-language word study"
+                    : "Deep Dive opens when this verse has verified underlined word links."
               }
               className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 shadow-sm transition hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-zinc-700/70 disabled:bg-zinc-800/70 disabled:text-zinc-500 disabled:shadow-none disabled:hover:bg-zinc-800/70"
             >

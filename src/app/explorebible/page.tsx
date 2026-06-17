@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { randomReferenceForSection } from "../../lib/bibleRandom";
 import BibleVerseLookup from "../../components/BibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
 import {
+  buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
   hasVerifiedWordStudies,
   type VerifiedWordStudy,
+  wordStudyLookupKey,
 } from "../../lib/originalLanguageWordStudy";
 
 type Passage = {
@@ -119,8 +121,8 @@ function chapterUrl(passage: Passage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
-function hasVerifiedWordLinks(passage: Passage) {
-  return hasVerifiedWordStudies(passage);
+function hasVerifiedWordLinks(wordStudies: VerifiedWordStudy[]) {
+  return hasVerifiedWordStudies(wordStudies);
 }
 
 function defaultOriginalLanguage(section: Section): OriginalLanguage {
@@ -167,6 +169,9 @@ export default function BibleExplorerPage() {
   const [path, setPath] = useState(() => buildPath());
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
+  const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
+    Record<string, VerifiedWordStudy[]>
+  >({});
 
   const verseOfTheDayUrl = useMemo(() => {
     const today = new Date();
@@ -176,6 +181,54 @@ export default function BibleExplorerPage() {
 
     return `https://www.bible.com/verse-of-the-day`;
   }, []);
+
+  function wordStudiesForPassage(passage: Passage) {
+    return wordStudiesByPassage[wordStudyLookupKey(passage)] ?? [];
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadWordStudies() {
+      const uniquePassages = new Map(
+        path.map(({ passage }) => [wordStudyLookupKey(passage), passage]),
+      );
+
+      const entries = await Promise.all(
+        [...uniquePassages.entries()].map(async ([key, passage]) => {
+          try {
+            const response = await fetch(buildDeepDiveWordStudiesUrl(passage));
+
+            if (!response.ok) {
+              return [key, []] as const;
+            }
+
+            const data = await response.json();
+
+            return [
+              key,
+              Array.isArray(data.wordStudies) ? data.wordStudies : [],
+            ] as const;
+          } catch {
+            return [key, []] as const;
+          }
+        }),
+      );
+
+      if (!cancelled) {
+        setWordStudiesByPassage((current) => ({
+          ...current,
+          ...Object.fromEntries(entries),
+        }));
+      }
+    }
+
+    loadWordStudies();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [path]);
 
   function spinAll() {
     setPath((current) => buildPath(current));
@@ -206,7 +259,8 @@ export default function BibleExplorerPage() {
     passage: Passage,
     selectedWordStudy?: VerifiedWordStudy,
   ) {
-    const wordStudy = selectedWordStudy ?? getDefaultWordStudy(passage);
+    const wordStudy =
+      selectedWordStudy ?? getDefaultWordStudy(wordStudiesForPassage(passage));
 
     if (!wordStudy) {
       return;
@@ -322,6 +376,7 @@ export default function BibleExplorerPage() {
               <p className="mt-4 max-w-sm text-sm leading-7 text-slate-200">
                 <VerifiedVerseText
                   passage={passage}
+                  wordStudies={wordStudiesForPassage(passage)}
                   onWordClick={(wordStudy) => openWordStudy(section, passage, wordStudy)}
                 />
               </p>
@@ -344,9 +399,9 @@ export default function BibleExplorerPage() {
                 <button
                   type="button"
                   onClick={() => openWordStudy(section, passage)}
-                  disabled={!hasVerifiedWordLinks(passage)}
+                  disabled={!hasVerifiedWordLinks(wordStudiesForPassage(passage))}
                   title={
-                    hasVerifiedWordLinks(passage)
+                    hasVerifiedWordLinks(wordStudiesForPassage(passage))
                       ? "Open verified original-language word study"
                       : "Deep Dive opens when this verse has verified underlined word links."
                   }
