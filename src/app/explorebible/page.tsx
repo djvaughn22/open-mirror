@@ -3,6 +3,13 @@
 import { useMemo, useState } from "react";
 import { randomReferenceForSection } from "../../lib/bibleRandom";
 import BibleVerseLookup from "../../components/BibleVerseLookup";
+import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
+import VerifiedVerseText from "../../components/VerifiedVerseText";
+import {
+  getDefaultWordStudy,
+  hasVerifiedWordStudies,
+  type VerifiedWordStudy,
+} from "../../lib/originalLanguageWordStudy";
 
 type Passage = {
   label: string;
@@ -23,9 +30,8 @@ type Section = {
 type OriginalLanguage = "hebrew" | "greek";
 
 type ActiveWordStudy = {
-  sectionTitle: string;
   passage: Passage;
-  language: OriginalLanguage;
+  wordStudy: VerifiedWordStudy;
 };
 
 const sections: Section[] = [
@@ -113,11 +119,8 @@ function chapterUrl(passage: Passage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
-function hasVerifiedWordLinks(_passage: Passage) {
-  // Future source-data rule:
-  // return true only when this exact verse has verified original-language
-  // alignment records that can safely underline English words.
-  return false;
+function hasVerifiedWordLinks(passage: Passage) {
+  return hasVerifiedWordStudies(passage);
 }
 
 function defaultOriginalLanguage(section: Section): OriginalLanguage {
@@ -198,23 +201,21 @@ export default function BibleExplorerPage() {
     );
   }
 
-  function openWordStudy(section: Section, passage: Passage) {
-    setActiveWordStudy({
-      sectionTitle: section.title,
-      passage,
-      language: defaultOriginalLanguage(section),
-    });
-  }
+  function openWordStudy(
+    _section: Section,
+    passage: Passage,
+    selectedWordStudy?: VerifiedWordStudy,
+  ) {
+    const wordStudy = selectedWordStudy ?? getDefaultWordStudy(passage);
 
-  function chooseWordStudyLanguage(language: OriginalLanguage) {
-    setActiveWordStudy((current) =>
-      current
-        ? {
-            ...current,
-            language,
-          }
-        : current,
-    );
+    if (!wordStudy) {
+      return;
+    }
+
+    setActiveWordStudy({
+      passage,
+      wordStudy,
+    });
   }
 
   return (
@@ -319,7 +320,10 @@ export default function BibleExplorerPage() {
               </p>
 
               <p className="mt-4 max-w-sm text-sm leading-7 text-slate-200">
-                {passage.text}
+                <VerifiedVerseText
+                  passage={passage}
+                  onWordClick={(wordStudy) => openWordStudy(section, passage, wordStudy)}
+                />
               </p>
 
               <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
@@ -328,18 +332,14 @@ export default function BibleExplorerPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >
-                  Open Verse
-                </a>
+                >View Verse in Bible App</a>
 
                 <a
                   href={chapterUrl(passage)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >
-                  Read Chapter
-                </a>
+                >View Chapter in Bible App</a>
 
                 <button
                   type="button"
@@ -372,98 +372,12 @@ export default function BibleExplorerPage() {
         </section>
 
         {activeWordStudy && (
-          <div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 py-8"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="word-study-title"
-          >
-            <div className="w-full max-w-xl rounded-[2rem] border border-emerald-200/20 bg-slate-950 p-6 text-left text-slate-100 shadow-2xl sm:p-8">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200">
-                    Dig Deeper
-                  </p>
-
-                  <h2 id="word-study-title" className="mt-3 text-2xl font-bold">
-                    Original Word Study
-                  </h2>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveWordStudy(null)}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
-                >
-                  Close
-                </button>
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm font-semibold text-slate-300">
-                  Verse reference
-                </p>
-                <p className="mt-1 text-lg font-bold text-white">
-                  {activeWordStudy.passage.label}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-slate-300">
-                  {activeWordStudy.passage.text}
-                </p>
-              </div>
-
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                {availableOriginalLanguages(activeWordStudy.sectionTitle).map((language) => (
-                  <button
-                    key={language}
-                    type="button"
-                    onClick={() => chooseWordStudyLanguage(language)}
-                    className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${languageButtonClass(
-                      language,
-                      activeWordStudy.language,
-                    )}`}
-                  >
-                    Behind the Verse
-                  </button>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-yellow-200/15 bg-yellow-200/10 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-yellow-100">
-                  {originalLanguageName(activeWordStudy.language)} lookup status
-                </p>
-
-                <p className="mt-4 text-base font-semibold leading-7 text-slate-100">
-                  No verified original-language match found for this word in this verse.
-                </p>
-
-                <p className="mt-4 text-sm leading-7 text-slate-300">
-                  CrossHeartPray only shows Hebrew or Greek word data when a
-                  trusted local source proves the exact verse match. No guessing.
-                  No invented meanings. No pretending one English word always
-                  equals one Hebrew or Greek word.
-                </p>
-              </div>
-
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={verseUrl(activeWordStudy.passage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-white/15 bg-white/10 px-5 py-2 text-center text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-                >
-                  Open verse in Holy Bible app
-                </a>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveWordStudy(null)}
-                  className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
+          <OriginalWordStudyModal
+            passage={activeWordStudy.passage}
+            wordStudy={activeWordStudy.wordStudy}
+            verseUrl={verseUrl(activeWordStudy.passage)}
+            onClose={() => setActiveWordStudy(null)}
+          />
         )}
 
         <BibleVerseLookup className="mt-8" />

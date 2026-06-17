@@ -1,6 +1,13 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import OriginalWordStudyModal from "./OriginalWordStudyModal";
+import VerifiedVerseText from "./VerifiedVerseText";
+import {
+  getDefaultWordStudy,
+  hasVerifiedWordStudies,
+  type VerifiedWordStudy,
+} from "../lib/originalLanguageWordStudy";
 
 type BibleVerseLookupProps = {
   className?: string;
@@ -16,6 +23,11 @@ type LookupPassage = {
   group: string;
 };
 
+type ActiveLookupWordStudy = {
+  passage: LookupPassage;
+  wordStudy: VerifiedWordStudy;
+};
+
 function verseUrl(passage: LookupPassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
@@ -24,8 +36,8 @@ function chapterUrl(passage: LookupPassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
-function hasVerifiedWordLinks(_passage: LookupPassage) {
-  return false;
+function hasVerifiedWordLinks(passage: LookupPassage) {
+  return hasVerifiedWordStudies(passage);
 }
 
 export default function BibleVerseLookup({
@@ -36,6 +48,7 @@ export default function BibleVerseLookup({
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [activeWordStudy, setActiveWordStudy] = useState<ActiveLookupWordStudy | null>(null);
 
   async function lookupVerse(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -74,6 +87,22 @@ export default function BibleVerseLookup({
     } finally {
       setIsSearching(false);
     }
+  }
+
+  function openWordStudy(
+    selectedPassage: LookupPassage,
+    selectedWordStudy?: VerifiedWordStudy,
+  ) {
+    const wordStudy = selectedWordStudy ?? getDefaultWordStudy(selectedPassage);
+
+    if (!wordStudy) {
+      return;
+    }
+
+    setActiveWordStudy({
+      passage: selectedPassage,
+      wordStudy,
+    });
   }
 
   const deepDiveReady = passage ? hasVerifiedWordLinks(passage) : false;
@@ -134,7 +163,12 @@ export default function BibleVerseLookup({
 
           <h3 className="mt-3 text-2xl font-bold text-white">{passage.label}</h3>
 
-          <p className="mt-4 text-sm leading-7 text-slate-200">{passage.text}</p>
+          <p className="mt-4 text-sm leading-7 text-slate-200">
+            <VerifiedVerseText
+              passage={passage}
+              onWordClick={(wordStudy) => openWordStudy(passage, wordStudy)}
+            />
+          </p>
 
           {note && (
             <p className="mt-4 text-xs font-semibold text-slate-300">{note}</p>
@@ -146,21 +180,18 @@ export default function BibleVerseLookup({
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-            >
-              Open Verse
-            </a>
+            >View Verse in Bible App</a>
 
             <a
               href={chapterUrl(passage)}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-            >
-              Read Chapter
-            </a>
+            >View Chapter in Bible App</a>
 
             <button
               type="button"
+              onClick={() => passage && openWordStudy(passage)}
               disabled={!deepDiveReady}
               title={
                 deepDiveReady
@@ -173,6 +204,15 @@ export default function BibleVerseLookup({
             </button>
           </div>
         </article>
+      )}
+
+      {activeWordStudy && (
+        <OriginalWordStudyModal
+          passage={activeWordStudy.passage}
+          wordStudy={activeWordStudy.wordStudy}
+          verseUrl={verseUrl(activeWordStudy.passage)}
+          onClose={() => setActiveWordStudy(null)}
+        />
       )}
     </section>
   );
