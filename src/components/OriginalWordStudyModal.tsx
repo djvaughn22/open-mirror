@@ -13,6 +13,22 @@ type OriginalWordStudyModalProps = {
   onClose: () => void;
 };
 
+function buildBibleHubStrongsUrl(strongs: string) {
+  const clean = strongs.trim().toUpperCase();
+  const match = clean.match(/^([HG])(\d+)$/);
+
+  if (!match) return "";
+
+  const [, language, number] = match;
+  const paddedNumber = number.padStart(4, "0");
+
+  if (language === "H") {
+    return `https://biblehub.com/hebrew/${paddedNumber}.htm`;
+  }
+
+  return `https://biblehub.com/greek/${paddedNumber}.htm`;
+}
+
 export default function OriginalWordStudyModal({
   passage,
   wordStudy,
@@ -20,6 +36,8 @@ export default function OriginalWordStudyModal({
   onClose,
 }: OriginalWordStudyModalProps) {
   const languageName = originalLanguageName(wordStudy.language);
+  const strongsUrl = buildBibleHubStrongsUrl(wordStudy.strongs);
+  const primarySourceUrl = wordStudy.sourceUrl || strongsUrl;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
@@ -76,42 +94,98 @@ export default function OriginalWordStudyModal({
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-                Morphology
+                Language
               </p>
-              <p className="mt-2 break-words font-semibold text-white">
-                {wordStudy.morphology}
-              </p>
+              <p className="mt-2 font-semibold text-white">{languageName}</p>
             </div>
           </div>
 
           <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Lexicon meaning
+              Meaning from source
             </p>
             <p className="mt-2 text-sm font-semibold leading-6 text-white">
               {wordStudy.lexiconMeaning}
             </p>
           </div>
 
-          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Source gloss
+          <div className="mt-3 rounded-2xl border border-sky-200/15 bg-sky-300/10 p-3">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-200">
+              No AI interpretation
             </p>
-            <p className="mt-2 text-sm leading-6 text-slate-200">
-              {wordStudy.sourceGloss}
+            <p className="mt-2 text-xs leading-5 text-slate-200">
+              Source-backed word data only. CrossHeartPray does not add AI
+              interpretation to this Deep Dive.
             </p>
           </div>
 
           <details className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
             <summary className="cursor-pointer text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Source
+              Sources
             </summary>
-            <p className="mt-3 text-xs leading-5 text-slate-300">
-              {wordStudy.sourceName}
-            </p>
-            <p className="mt-2 text-xs leading-5 text-slate-400">
-              {wordStudy.lexiconSourceName}
-            </p>
+
+            <div className="mt-3 space-y-3 text-xs leading-5">
+              <div>
+                <p className="font-bold text-slate-300">Original-language data</p>
+                <p className="mt-1 text-slate-400">{wordStudy.sourceName}</p>
+              </div>
+
+              <div>
+                <p className="font-bold text-slate-300">Lexicon data</p>
+                <p className="mt-1 text-slate-400">
+                  {wordStudy.lexiconSourceName}
+                </p>
+              </div>
+
+              {primarySourceUrl ? (
+                <a
+                  href={primarySourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-center font-semibold text-emerald-50 hover:bg-emerald-300/15"
+                >
+                  View word source
+                </a>
+              ) : null}
+
+              {strongsUrl && strongsUrl !== primarySourceUrl ? (
+                <a
+                  href={strongsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-center font-semibold text-slate-100 hover:bg-white/10"
+                >
+                  View Strong&apos;s entry
+                </a>
+              ) : null}
+            </div>
+          </details>
+
+          <details className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+            <summary className="cursor-pointer text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+              Advanced details
+            </summary>
+
+            <div className="mt-3 space-y-3 text-xs leading-5">
+              <div>
+                <p className="font-bold text-slate-300">Morphology</p>
+                <p className="mt-1 break-words text-slate-400">
+                  {wordStudy.morphology}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-bold text-slate-300">Source gloss</p>
+                <p className="mt-1 text-slate-400">{wordStudy.sourceGloss}</p>
+              </div>
+
+              <div>
+                <p className="font-bold text-slate-300">Lemma</p>
+                <p className="mt-1 break-words text-slate-400">
+                  {wordStudy.lemma}
+                </p>
+              </div>
+            </div>
           </details>
 
           <a
