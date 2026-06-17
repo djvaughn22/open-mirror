@@ -132,6 +132,7 @@ export default function OriginalWordStudyModal({
   const languageName = originalLanguageName(selectedWordStudy.language);
   const strongsUrl = buildBibleHubStrongsUrl(selectedWordStudy.strongs);
   const sourceLabel = deterministicWordLinkLabel(selectedWordStudy);
+  const isFocusedStudyWord = isUsefulVerifiedWordStudy(selectedWordStudy);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm sm:items-center">
@@ -218,6 +219,14 @@ export default function OriginalWordStudyModal({
             <p className="mt-2 text-sm font-semibold leading-6 text-white">
               {selectedWordStudy.lexiconMeaning}
             </p>
+
+            {mode === "all" && !isFocusedStudyWord ? (
+              <p className="mt-3 rounded-xl border border-amber-200/15 bg-amber-300/10 p-3 text-xs leading-5 text-amber-50">
+                Basic source gloss. Focused hides this kind of word because the
+                source meaning is mostly grammar, a simple connector, or a basic
+                translated word.
+              </p>
+            ) : null}
           </div>
 
           <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2">
