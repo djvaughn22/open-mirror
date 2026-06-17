@@ -45,7 +45,7 @@ export default function OriginalWordStudyModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
+            className="inline-flex items-center justify-center text-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
           >
             Close
           </button>
@@ -138,7 +138,7 @@ export default function OriginalWordStudyModal({
             href={verseUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
+            className="inline-flex items-center justify-center text-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
           >
             View Verse in Bible App
           </a>
@@ -146,7 +146,7 @@ export default function OriginalWordStudyModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
+            className="inline-flex items-center justify-center text-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
           >
             Close
           </button>
