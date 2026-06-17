@@ -1,6 +1,9 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import {
+  isUsefulVerifiedWordStudy,
+  normalizeStudyWord,
   originalLanguageName,
   type VerifiedWordStudy,
   type WordStudyPassage,
@@ -9,9 +12,12 @@ import {
 type OriginalWordStudyModalProps = {
   passage: WordStudyPassage;
   wordStudy: VerifiedWordStudy;
+  wordStudies: VerifiedWordStudy[];
   verseUrl: string;
   onClose: () => void;
 };
+
+type WordStudyMode = "focused" | "all";
 
 function buildBibleHubStrongsUrl(strongs: string) {
   const clean = strongs.trim().toUpperCase();
@@ -29,14 +35,103 @@ function buildBibleHubStrongsUrl(strongs: string) {
   return `https://biblehub.com/greek/${paddedNumber}.htm`;
 }
 
+function hasSourceBackedFields(wordStudy: VerifiedWordStudy) {
+  return Boolean(
+    wordStudy.englishWord.trim() &&
+      wordStudy.originalWord.trim() &&
+      wordStudy.strongs.trim() &&
+      wordStudy.lexiconMeaning.trim(),
+  );
+}
+
+function sameWordStudy(first: VerifiedWordStudy, second: VerifiedWordStudy) {
+  return (
+    normalizeStudyWord(first.englishWord) === normalizeStudyWord(second.englishWord) &&
+    first.originalWord.trim() === second.originalWord.trim() &&
+    first.strongs.trim().toUpperCase() === second.strongs.trim().toUpperCase()
+  );
+}
+
+function deterministicWordLinkLabel(wordStudy: VerifiedWordStudy) {
+  const englishWord = normalizeStudyWord(wordStudy.englishWord);
+  const sourceGloss = normalizeStudyWord(wordStudy.sourceGloss);
+  const lexiconMeaning = normalizeStudyWord(wordStudy.lexiconMeaning);
+
+  if (
+    englishWord &&
+    (englishWord === sourceGloss || englishWord === lexiconMeaning)
+  ) {
+    return "Straightforward source match";
+  }
+
+  return "Part of translated phrase";
+}
+
+function modeButtonClass(mode: WordStudyMode, activeMode: WordStudyMode) {
+  if (mode === activeMode) {
+    return "border-emerald-200/35 bg-emerald-300/15 text-emerald-50";
+  }
+
+  return "border-white/10 bg-white/[0.04] text-slate-300 hover:bg-white/10";
+}
+
+function wordButtonClass(wordStudy: VerifiedWordStudy, selectedWordStudy: VerifiedWordStudy) {
+  if (sameWordStudy(wordStudy, selectedWordStudy)) {
+    return "border-emerald-200/35 bg-emerald-300/15 text-emerald-50";
+  }
+
+  return "border-white/10 bg-white/[0.04] text-slate-300 hover:bg-white/10";
+}
+
 export default function OriginalWordStudyModal({
   passage,
   wordStudy,
+  wordStudies,
   verseUrl,
   onClose,
 }: OriginalWordStudyModalProps) {
-  const languageName = originalLanguageName(wordStudy.language);
-  const strongsUrl = buildBibleHubStrongsUrl(wordStudy.strongs);
+  const [mode, setMode] = useState<WordStudyMode>("focused");
+  const [selectedWordStudy, setSelectedWordStudy] = useState(wordStudy);
+
+  useEffect(() => {
+    setMode("focused");
+    setSelectedWordStudy(wordStudy);
+  }, [wordStudy]);
+
+  const allWordStudies = useMemo(() => {
+    const sourceBackedWordStudies = wordStudies.filter(hasSourceBackedFields);
+
+    if (sourceBackedWordStudies.some((study) => sameWordStudy(study, wordStudy))) {
+      return sourceBackedWordStudies;
+    }
+
+    return [wordStudy, ...sourceBackedWordStudies];
+  }, [wordStudy, wordStudies]);
+
+  const focusedWordStudies = useMemo(() => {
+    const usefulWordStudies = allWordStudies.filter(isUsefulVerifiedWordStudy);
+
+    if (usefulWordStudies.length > 0) {
+      return usefulWordStudies;
+    }
+
+    return [wordStudy];
+  }, [allWordStudies, wordStudy]);
+
+  const displayedWordStudies = mode === "focused" ? focusedWordStudies : allWordStudies;
+
+  useEffect(() => {
+    if (
+      displayedWordStudies.length > 0 &&
+      !displayedWordStudies.some((study) => sameWordStudy(study, selectedWordStudy))
+    ) {
+      setSelectedWordStudy(displayedWordStudies[0]);
+    }
+  }, [displayedWordStudies, selectedWordStudy]);
+
+  const languageName = originalLanguageName(selectedWordStudy.language);
+  const strongsUrl = buildBibleHubStrongsUrl(selectedWordStudy.strongs);
+  const sourceLabel = deterministicWordLinkLabel(selectedWordStudy);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
@@ -49,7 +144,7 @@ export default function OriginalWordStudyModal({
               </p>
 
               <h2 className="mt-2 truncate text-xl font-bold leading-tight text-white">
-                {wordStudy.englishWord}
+                {selectedWordStudy.englishWord}
               </h2>
 
               <p className="mt-1 truncate text-xs text-slate-400">
@@ -69,17 +164,61 @@ export default function OriginalWordStudyModal({
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4 text-left">
-          <div className="rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => setMode("focused")}
+              className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] ${modeButtonClass("focused", mode)}`}
+            >
+              Focused
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMode("all")}
+              className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] ${modeButtonClass("all", mode)}`}
+            >
+              All
+            </button>
+          </div>
+
+          <p className="mt-3 text-xs leading-5 text-slate-400">
+            Focused shows the clearest source-backed word links. All shows every
+            source-backed word link for this verse.
+          </p>
+
+          {displayedWordStudies.length > 1 ? (
+            <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+                Word links
+              </p>
+
+              <div className="mt-3 flex flex-wrap gap-2">
+                {displayedWordStudies.map((study, index) => (
+                  <button
+                    key={`${study.strongs}-${study.englishWord}-${index}`}
+                    type="button"
+                    onClick={() => setSelectedWordStudy(study)}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${wordButtonClass(study, selectedWordStudy)}`}
+                  >
+                    {study.englishWord}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
               Original word
             </p>
 
             <p className="mt-2 break-words text-2xl font-bold leading-snug text-white">
-              {wordStudy.originalWord}
+              {selectedWordStudy.originalWord}
             </p>
 
             <p className="mt-2 break-words text-sm leading-6 text-emerald-50">
-              {wordStudy.transliteration}
+              {selectedWordStudy.transliteration}
             </p>
           </div>
 
@@ -88,7 +227,21 @@ export default function OriginalWordStudyModal({
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
                 Strong&apos;s
               </p>
-              <p className="mt-2 font-semibold text-white">{wordStudy.strongs}</p>
+
+              {strongsUrl ? (
+                <a
+                  href={strongsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-50 hover:bg-emerald-300/15"
+                >
+                  {selectedWordStudy.strongs}
+                </a>
+              ) : (
+                <p className="mt-2 font-semibold text-white">
+                  {selectedWordStudy.strongs}
+                </p>
+              )}
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
@@ -104,8 +257,34 @@ export default function OriginalWordStudyModal({
               Meaning from source
             </p>
             <p className="mt-2 text-sm font-semibold leading-6 text-white">
-              {wordStudy.lexiconMeaning}
+              {selectedWordStudy.lexiconMeaning}
             </p>
+          </div>
+
+          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+              Source label
+            </p>
+
+            <p className="mt-2 text-sm font-semibold leading-6 text-white">
+              {sourceLabel}
+            </p>
+
+            <div className="mt-3 space-y-2 text-xs leading-5 text-slate-400">
+              <p>
+                Word source:{" "}
+                <span className="font-semibold text-slate-300">
+                  {selectedWordStudy.sourceName}
+                </span>
+              </p>
+
+              <p>
+                Meaning source:{" "}
+                <span className="font-semibold text-slate-300">
+                  {selectedWordStudy.lexiconSourceName}
+                </span>
+              </p>
+            </div>
           </div>
 
           <div className="mt-3 rounded-2xl border border-sky-200/15 bg-sky-300/10 p-3">
@@ -126,13 +305,13 @@ export default function OriginalWordStudyModal({
             <div className="mt-3 space-y-3 text-xs leading-5">
               <div>
                 <p className="font-bold text-slate-300">Word match source</p>
-                <p className="mt-1 text-slate-400">{wordStudy.sourceName}</p>
+                <p className="mt-1 text-slate-400">{selectedWordStudy.sourceName}</p>
               </div>
 
               <div>
                 <p className="font-bold text-slate-300">Meaning source</p>
                 <p className="mt-1 text-slate-400">
-                  {wordStudy.lexiconSourceName}
+                  {selectedWordStudy.lexiconSourceName}
                 </p>
               </div>
 
@@ -158,21 +337,37 @@ export default function OriginalWordStudyModal({
               <div>
                 <p className="font-bold text-slate-300">Morphology</p>
                 <p className="mt-1 break-words text-slate-400">
-                  {wordStudy.morphology}
+                  {selectedWordStudy.morphology}
                 </p>
               </div>
 
               <div>
                 <p className="font-bold text-slate-300">Source gloss</p>
-                <p className="mt-1 text-slate-400">{wordStudy.sourceGloss}</p>
+                <p className="mt-1 text-slate-400">
+                  {selectedWordStudy.sourceGloss}
+                </p>
               </div>
 
               <div>
                 <p className="font-bold text-slate-300">Lemma</p>
                 <p className="mt-1 break-words text-slate-400">
-                  {wordStudy.lemma}
+                  {selectedWordStudy.lemma}
                 </p>
               </div>
+
+              {selectedWordStudy.sourceUrl ? (
+                <div>
+                  <p className="font-bold text-slate-300">Source URL</p>
+                  <a
+                    href={selectedWordStudy.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex break-all text-emerald-200 underline decoration-emerald-200/40 underline-offset-4"
+                  >
+                    {selectedWordStudy.sourceUrl}
+                  </a>
+                </div>
+              ) : null}
             </div>
           </details>
 
