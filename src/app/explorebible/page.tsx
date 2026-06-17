@@ -493,7 +493,7 @@ export default function BibleExplorerPage() {
                 The odds show the size of that section&apos;s verse pool.
               </li>
               <li>
-                View Verse in Bible App opens the exact verse. View Chapter in Bible App opens the full chapter context.
+                Use the Bible app buttons below: View Verse opens this exact verse. View Chapter opens the full chapter.
               </li>
             </ul>
           </div>

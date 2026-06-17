@@ -117,7 +117,7 @@ export default function BibleVerseLookup({
 
       <p className="mt-3 text-xs text-slate-300">
         Searches the local complete Bible library first. After the verse appears,
-        press View Verse in Bible App for the exact verse or View Chapter in Bible App for the full chapter context.
+        use the Bible app buttons below: View Verse opens this exact verse. View Chapter opens the full chapter.
       </p>
 
       {error && (
