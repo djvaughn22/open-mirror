@@ -71,7 +71,7 @@ export default function WhatAmIAIPage() {
           </a>
 
           <details className="relative justify-self-end text-sm text-zinc-400">
-            <summary className="cursor-pointer list-none text-2xl leading-none">
+            <summary className=" list-none text-2xl leading-none">
               ☰
             </summary>
 
