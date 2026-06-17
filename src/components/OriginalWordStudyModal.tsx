@@ -37,7 +37,6 @@ export default function OriginalWordStudyModal({
 }: OriginalWordStudyModalProps) {
   const languageName = originalLanguageName(wordStudy.language);
   const strongsUrl = buildBibleHubStrongsUrl(wordStudy.strongs);
-  const primarySourceUrl = wordStudy.sourceUrl || strongsUrl;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
@@ -126,34 +125,23 @@ export default function OriginalWordStudyModal({
 
             <div className="mt-3 space-y-3 text-xs leading-5">
               <div>
-                <p className="font-bold text-slate-300">Original-language data</p>
+                <p className="font-bold text-slate-300">Word match source</p>
                 <p className="mt-1 text-slate-400">{wordStudy.sourceName}</p>
               </div>
 
               <div>
-                <p className="font-bold text-slate-300">Lexicon data</p>
+                <p className="font-bold text-slate-300">Meaning source</p>
                 <p className="mt-1 text-slate-400">
                   {wordStudy.lexiconSourceName}
                 </p>
               </div>
 
-              {primarySourceUrl ? (
-                <a
-                  href={primarySourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-center font-semibold text-emerald-50 hover:bg-emerald-300/15"
-                >
-                  View word source
-                </a>
-              ) : null}
-
-              {strongsUrl && strongsUrl !== primarySourceUrl ? (
+              {strongsUrl ? (
                 <a
                   href={strongsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-center font-semibold text-slate-100 hover:bg-white/10"
+                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-center font-semibold text-emerald-50 hover:bg-emerald-300/15"
                 >
                   View Strong&apos;s entry
                 </a>
