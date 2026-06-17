@@ -106,11 +106,11 @@ function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
 }
 
 function verseUrl(passage: Passage) {
-  return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.${passage.verse}.NIV`;
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
 
 function chapterUrl(passage: Passage) {
-  return `https://www.bible.com/bible/111/${passage.code}.${passage.chapter}.NIV`;
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
 function hasVerifiedWordLinks(_passage: Passage) {
@@ -437,9 +437,10 @@ export default function BibleExplorerPage() {
                 </p>
 
                 <p className="mt-4 text-sm leading-7 text-slate-300">
-                  CrossHeartPray will only show Hebrew or Greek word data when a
-                  local dataset proves the exact verse match. No AI translation.
-                  No guessing. No invented meanings.
+                  CrossHeartPray only shows Hebrew or Greek word data when a
+                  trusted local source proves the exact verse match. No guessing.
+                  No invented meanings. No pretending one English word always
+                  equals one Hebrew or Greek word.
                 </p>
               </div>
 
@@ -502,13 +503,73 @@ export default function BibleExplorerPage() {
           </div>
         </section>
 
-        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+        <footer className="border-t border-zinc-900 px-8 py-10 text-center text-sm text-zinc-500">
           <p>© 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.</p>
-          <p className="mx-auto mt-4 max-w-3xl text-xs leading-6 text-zinc-600">
-            Scripture quotations marked CSB have been taken from the Christian Standard Bible®,
-            Copyright © 2017 by Holman Bible Publishers. Used by permission.
-            Christian Standard Bible® and CSB® are federally registered trademarks of Holman Bible Publishers.
-          </p>
+
+          <div className="mx-auto mt-6 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 text-left text-xs leading-6 text-zinc-500">
+            <p className="text-center text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">
+              Bible Bingo receipts
+            </p>
+
+            <p className="mx-auto mt-4 max-w-3xl text-center text-zinc-400">
+              Quick version: the cards roll from a full local Bible verse library.
+              The words on the card are already in the app before you tap anything.
+              Deep Dive only unlocks when the original-language match can be verified.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p className="font-bold text-zinc-300">Bible text on the cards</p>
+                <p className="mt-2">
+                  The card text uses the public domain World English Bible, American
+                  English Edition, without Strong&apos;s Numbers (WEBUS), courtesy of
+                  eBible.org. Open Verse and Read Chapter point to the same WEBUS
+                  version in the Holy Bible app.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p className="font-bold text-zinc-300">Local verse library</p>
+                <p className="mt-2">
+                  31,103 / 31,103 verse records are stored locally in the app.
+                  Each record carries its book, Bible book code, chapter, verse,
+                  reference label, verse text, and Bible Bingo lane.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4 md:col-span-2">
+                <p className="font-bold text-zinc-300">The roll</p>
+                <p className="mt-2">
+                  Each square rolls one verse from its own local lane. That keeps the
+                  board balanced: wisdom can show up, Psalms can breathe, the Gospel
+                  stays easy to find, and Genesis and Revelation stay side by side.
+                </p>
+
+                <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                  <p>Old Testament: 1 / 18,237 ≈ 0.0055%</p>
+                  <p>Psalms: 1 / 2,461 ≈ 0.0406%</p>
+                  <p>Proverbs: 1 / 915 ≈ 0.1093%</p>
+                  <p>Gospel: 1 / 3,779 ≈ 0.0265%</p>
+                  <p>Epistles: 1 / 3,774 ≈ 0.0265%</p>
+                  <p>Genesis: 1 / 1,533 ≈ 0.0652%</p>
+                  <p>Revelation: 1 / 404 ≈ 0.2475%</p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/20 p-4 md:col-span-2">
+                <p className="font-bold text-zinc-300">Deep Dive trust rule</p>
+                <p className="mt-2">
+                  Deep Dive is for the original Bible languages behind the verse:
+                  Hebrew for Old Testament cards and Greek for New Testament cards.
+                  A word only gets underlined when a trusted local source can connect
+                  that exact English word in that exact verse to original-language
+                  data such as Strong&apos;s number, lemma, morphology, transliteration,
+                  or verified alignment. If the match is not proven, the word stays
+                  plain and Deep Dive stays locked.
+                </p>
+              </div>
+            </div>
+          </div>
         </footer>
       </div>
 
