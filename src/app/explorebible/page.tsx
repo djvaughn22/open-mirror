@@ -468,29 +468,34 @@ export default function BibleExplorerPage() {
 
         <BibleVerseLookup className="mt-8" />
 
-        <section className="mt-12 border-t border-zinc-900 px-4 py-12 text-center sm:mt-16 sm:px-6 sm:py-16">
-          <div className="mx-auto max-w-3xl space-y-4 pt-10 text-sm leading-7 text-zinc-400 sm:space-y-5 sm:pt-12 sm:text-base sm:leading-8 md:text-lg">
-            <p>Dear ✝️ ❤️ 🙏 Bible Bingo friends,</p>
+        <section className="mt-10 px-4 py-8 sm:mt-14 sm:px-6 sm:py-10">
+          <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-white/[0.04] px-6 py-7 text-left shadow-xl sm:px-8">
+            <div className="text-center">
+              <p className="text-3xl">✝️ ❤️ 🙏</p>
 
-            <p>
-              Each card rolls one verse from its own section of the Holy Bible.
-            </p>
+              <h2 className="mt-4 text-2xl font-bold text-white">
+                Bible Bingo friends
+              </h2>
 
-            <p>
-              The app uses a local complete Bible library, so the cards are ready
-              without waiting on a Bible text service.
-            </p>
+              <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-300">
+                Roll a card. Read the verse. Open the chapter. Keep going.
+              </p>
+            </div>
 
-            <p>
-              The odds on each card show the size of that section&apos;s verse pool.
-            </p>
-
-            <p>
-              Open the verse or chapter in the Holy Bible app to read the full
-              context and keep exploring.
-            </p>
-
-            <p>✝️ ❤️ 🙏</p>
+            <ul className="mt-6 list-disc space-y-3 pl-5 text-sm leading-7 text-slate-300">
+              <li>
+                Each card rolls one verse from its own section of the Holy Bible.
+              </li>
+              <li>
+                The cards use a local complete Bible library, so they load fast.
+              </li>
+              <li>
+                The odds show the size of that section&apos;s verse pool.
+              </li>
+              <li>
+                Open Verse and Read Chapter take you into the Holy Bible app for context.
+              </li>
+            </ul>
           </div>
         </section>
 
