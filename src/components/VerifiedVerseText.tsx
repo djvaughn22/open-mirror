@@ -31,7 +31,8 @@ export default function VerifiedVerseText({
         return (
           <button
             key={`${wordStudy.reference}-${wordStudy.englishWord}-${index}`}
-            type="button")}
+            type="button"
+            onClick={() => onWordClick({ ...wordStudy, englishWord: part })}
             title="Open Behind the Verse"
             className="font-bold text-emerald-100 underline decoration-emerald-200/70 decoration-2 underline-offset-4 transition hover:text-white"
           >
