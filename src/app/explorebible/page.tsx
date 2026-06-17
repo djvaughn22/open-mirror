@@ -472,31 +472,22 @@ export default function BibleExplorerPage() {
           <div className="mx-auto max-w-3xl space-y-4 pt-10 text-sm leading-7 text-zinc-400 sm:space-y-5 sm:pt-12 sm:text-base sm:leading-8 md:text-lg">
             <p>Dear ✝️ ❤️ 🙏 Bible Bingo friends,</p>
 
-            <p>Bible Bingo is simple.</p>
-
             <p>
-              Each card randomly picks one verse from its section of the Holy
-              Bible.
+              Each card rolls one verse from its own section of the Holy Bible.
             </p>
 
             <p>
-              The verse list is built into the app, and no AI is used to choose
-              or write the verses.
+              The app uses a local complete Bible library, so the cards are ready
+              without waiting on a Bible text service.
             </p>
 
             <p>
-              The odds shown on each card tell you how many possible verses are
-              in that Bible section.
+              The odds on each card show the size of that section&apos;s verse pool.
             </p>
 
             <p>
-              Tap the verse or chapter to open the Holy Bible app, read the
-              source text, and keep exploring the full context.
-            </p>
-
-            <p>
-              There are also well organized Bible reading plans and devotion
-              resources there to help you keep going.
+              Open the verse or chapter in the Holy Bible app to read the full
+              context and keep exploring.
             </p>
 
             <p>✝️ ❤️ 🙏</p>
