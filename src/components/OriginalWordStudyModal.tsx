@@ -72,10 +72,10 @@ export default function OriginalWordStudyModal({
 
             <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 sm:text-right">
               <p className="text-sm font-semibold text-slate-300">
-                Simple meaning
+                {originalLanguageName(wordStudy.language)} meaning
               </p>
               <p className="mt-1 text-base font-bold text-white">
-                {wordStudy.shortMeaning}
+                {wordStudy.lexiconMeaning || "Meaning not available yet"}
               </p>
             </div>
           </div>
@@ -109,6 +109,11 @@ export default function OriginalWordStudyModal({
             </div>
           </div>
 
+          <div className="mt-4 rounded-2xl border border-white/10 bg-black/15 p-3 text-sm leading-6 text-slate-300">
+            <p className="font-bold text-slate-100">Source gloss</p>
+            <p className="mt-1">{wordStudy.sourceGloss}</p>
+          </div>
+
           <p className="mt-4 text-xs leading-6 text-slate-400">
             Source receipt:{" "}
             <a
@@ -123,8 +128,9 @@ export default function OriginalWordStudyModal({
         </section>
 
         <p className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-xs leading-6 text-slate-400">
-          Underlined words are verified for this exact verse. No underline means
-          no guessing.
+          Underlined words are verified for this exact verse. Greek and Hebrew
+          meaning comes from Strong&apos;s / lexicon data when available. Source
+          gloss is shown separately as the alignment helper.
         </p>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">

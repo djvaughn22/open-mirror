@@ -6,6 +6,14 @@ const root = process.cwd();
 const localBiblePath = path.join(root, "src/lib/localBibleVerses.ts");
 const greekPath = path.join(root, ".source-data/macula-greek/SBLGNT/tsv/macula-greek-SBLGNT.tsv");
 const hebrewGlossPath = path.join(root, ".source-data/macula-hebrew/sources/Cherith/glosses/wlc-gloss.tsv");
+const greekLexiconPath = path.join(root, ".source-data/STEPBible-Data/Lexicons/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt");
+const hebrewLexiconPath = path.join(root, ".source-data/STEPBible-Data/Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt");
+const hebrewTahotPaths = [
+  path.join(root, ".source-data/STEPBible-Data/Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt"),
+  path.join(root, ".source-data/STEPBible-Data/Translators Amalgamated OT+NT/TAHOT Jos-Est - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt"),
+  path.join(root, ".source-data/STEPBible-Data/Translators Amalgamated OT+NT/TAHOT Job-Sng - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt"),
+  path.join(root, ".source-data/STEPBible-Data/Translators Amalgamated OT+NT/TAHOT Isa-Mal - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt"),
+];
 const outDir = path.join(root, "data/deep-dive");
 
 const HEBREW_BOOKS = {
@@ -15,6 +23,16 @@ const HEBREW_BOOKS = {
   23: "ISA", 24: "JER", 25: "LAM", 26: "EZK", 27: "DAN", 28: "HOS", 29: "JOL",
   30: "AMO", 31: "OBA", 32: "JON", 33: "MIC", 34: "NAM", 35: "HAB", 36: "ZEP",
   37: "HAG", 38: "ZEC", 39: "MAL",
+};
+
+const STEP_HEBREW_BOOK_CODES = {
+  Gen: "GEN", Exo: "EXO", Lev: "LEV", Num: "NUM", Deu: "DEU", Jos: "JOS",
+  Jdg: "JDG", Rut: "RUT", "1Sa": "1SA", "2Sa": "2SA", "1Ki": "1KI",
+  "2Ki": "2KI", "1Ch": "1CH", "2Ch": "2CH", Ezr: "EZR", Neh: "NEH",
+  Est: "EST", Job: "JOB", Psa: "PSA", Pro: "PRO", Ecc: "ECC", Sng: "SNG",
+  Isa: "ISA", Jer: "JER", Lam: "LAM", Ezk: "EZK", Dan: "DAN", Hos: "HOS",
+  Jol: "JOL", Amo: "AMO", Oba: "OBA", Jon: "JON", Mic: "MIC", Nam: "NAM",
+  Hab: "HAB", Zep: "ZEP", Hag: "HAG", Zec: "ZEC", Mal: "MAL",
 };
 
 const STOP_WORDS = new Set([
@@ -37,6 +55,26 @@ function normalizeWord(value) {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/['’`]/g, "")
     .replace(/[^a-z0-9]+/g, "")
+    .trim();
+}
+
+function normalizeStrongNumber(value) {
+  const match = String(value ?? "").match(/([GH])0*([0-9]+)/i);
+
+  if (!match) {
+    return "";
+  }
+
+  return `${match[1].toUpperCase()}${Number(match[2])}`;
+}
+
+function cleanLexiconMeaning(value) {
+  return String(value ?? "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\{[^}]*\}/g, " ")
+    .replace(/\[[^\]]*\]/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/^[-–—:;,\s]+/, "")
     .trim();
 }
 
@@ -113,6 +151,39 @@ function parseTsv(filePath) {
   });
 }
 
+function parseStepBriefLexicon(filePath, prefix) {
+  const entries = new Map();
+
+  for (const line of read(filePath).split(/\r?\n/)) {
+    const trimmed = line.trim();
+
+    if (!trimmed || trimmed.startsWith("#") || trimmed.startsWith("=")) {
+      continue;
+    }
+
+    const cells = trimmed.split("\t").map((cell) => cell.trim());
+    const baseStrong = normalizeStrongNumber(cells[0] ?? "");
+
+    if (!baseStrong || !baseStrong.startsWith(prefix)) {
+      continue;
+    }
+
+    const briefMeaning = cleanLexiconMeaning(cells[6] ?? "");
+    const fullMeaning = cleanLexiconMeaning(cells[7] ?? "");
+    const meaning = briefMeaning || fullMeaning;
+
+    if (!meaning) {
+      continue;
+    }
+
+    if (!entries.has(baseStrong)) {
+      entries.set(baseStrong, meaning);
+    }
+  }
+
+  return entries;
+}
+
 function wordsInDisplayedVerse(text) {
   const words = new Set();
 
@@ -171,13 +242,55 @@ function parseHebrewId(rawId) {
   };
 }
 
+
+function parseStepHebrewRef(ref) {
+  const match = String(ref).match(/^([1-3]?[A-Za-z]{2,3})\.(\d+)\.(\d+)#/);
+  if (!match) return null;
+
+  const code = STEP_HEBREW_BOOK_CODES[match[1]];
+  if (!code) return null;
+
+  return { code, chapter: match[2], verse: match[3] };
+}
+
+function primaryHebrewStrong(value) {
+  const strongs = [...String(value ?? "").matchAll(/\bH0*([0-9]+)[A-Z]?\b/g)]
+    .map((match) => `H${Number(match[1])}`)
+    .filter((strongs) => !/^H9\d{3,}$/.test(strongs));
+
+  return strongs[0] ?? "";
+}
+
+function extendedHebrewStrong(value) {
+  const match = String(value ?? "").match(/\bH0*([0-9]+)[A-Z]?\b/);
+  return match?.[0] ?? "";
+}
+
+function extractHebrewLemma(strongsDetail, fallbackOriginalWord) {
+  const extended = extendedHebrewStrong(strongsDetail);
+  if (!extended) return fallbackOriginalWord;
+
+  const escaped = extended.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = String(strongsDetail).match(new RegExp(`${escaped}=([^=}{/\\\\]+)=`));
+
+  return match?.[1]?.trim() || fallbackOriginalWord;
+}
+
+function cleanHebrewOriginalWord(value) {
+  return String(value ?? "")
+    .replace(/[\\/׃־|]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function sourceRecordKey(item) {
   return [
     item.originalWord,
     item.strongs,
     item.lemma,
     item.morphology,
-    item.shortMeaning,
+    item.sourceGloss,
+    item.lexiconMeaning,
   ].join("|");
 }
 
@@ -191,6 +304,12 @@ function addCandidate(candidates, localVerse, englishWord, data) {
     ...data,
   });
 }
+
+const greekLexicon = parseStepBriefLexicon(greekLexiconPath, "G");
+const hebrewLexicon = parseStepBriefLexicon(hebrewLexiconPath, "H");
+
+console.log(`Loaded ${greekLexicon.size.toLocaleString()} Greek lexicon meanings.`);
+console.log(`Loaded ${hebrewLexicon.size.toLocaleString()} Hebrew lexicon meanings.`);
 
 const localBible = parseLocalBible();
 console.log(`Loaded ${localBible.length.toLocaleString()} local Bible verses.`);
@@ -226,6 +345,8 @@ for (const row of parseTsv(greekPath)) {
   }
 
   const glossSource = row.english || row.gloss;
+  const strongs = normalizeStrongNumber(row.strong ? `G${row.strong}` : "");
+  const lexiconMeaning = greekLexicon.get(strongs) ?? "";
 
   for (const englishWord of glossTokens(glossSource)) {
     if (!verseWords.has(englishWord)) {
@@ -236,48 +357,58 @@ for (const row of parseTsv(greekPath)) {
       language: "greek",
       originalWord: row.text,
       transliteration: "",
-      strongs: row.strong ? `G${row.strong}` : "",
+      strongs,
       lemma: row.lemma,
       morphology: row.morph,
-      shortMeaning: row.english || row.gloss || englishWord,
-      sourceName: "MACULA Greek SBLGNT TSV exact English match",
+      sourceGloss: row.english || row.gloss || englishWord,
+      lexiconMeaning,
+      sourceName: "MACULA Greek SBLGNT alignment + STEPBible TBESG Strong's meaning",
       sourceUrl: "https://github.com/Clear-Bible/macula-greek",
+      lexiconSourceName: "STEPBible TBESG Greek brief lexicon",
     });
   }
 }
 
-for (const line of read(hebrewGlossPath).split(/\r?\n/).filter(Boolean)) {
-  const [rawId, originalWord, gloss] = line.split("\t");
-  const ref = parseHebrewId(rawId);
+for (const tahotPath of hebrewTahotPaths) {
+  for (const line of read(tahotPath).split(/\r?\n/).filter(Boolean)) {
+    if (line.startsWith("#")) continue;
 
-  if (!ref) {
-    continue;
-  }
+    const columns = line.split("	");
+    const ref = parseStepHebrewRef(columns[0]);
+    if (!ref) continue;
 
-  const key = verseKey(ref.code, ref.chapter, ref.verse);
-  const localVerse = localByKey.get(key);
-  const verseWords = verseWordsByKey.get(key);
+    const originalWord = cleanHebrewOriginalWord(columns[1] ?? "");
+    const transliteration = columns[2] ?? "";
+    const sourceGloss = columns[3] ?? "";
+    const strongsDetail = columns[4] ?? "";
+    const morphology = columns[5] ?? "";
+    const fallbackStrong = columns.find((column) => /H0*[0-9]+[A-Z]?/.test(column)) ?? "";
+    const strongs = primaryHebrewStrong(strongsDetail) || primaryHebrewStrong(fallbackStrong);
+    if (!strongs) continue;
 
-  if (!localVerse || !verseWords) {
-    continue;
-  }
+    const lexiconMeaning = hebrewLexicon.get(strongs) ?? "";
+    const key = verseKey(ref.code, ref.chapter, ref.verse);
+    const localVerse = localByKey.get(key);
+    const verseWords = verseWordsByKey.get(key);
+    if (!localVerse || !verseWords) continue;
 
-  for (const englishWord of glossTokens(gloss)) {
-    if (!verseWords.has(englishWord)) {
-      continue;
+    for (const englishWord of glossTokens(sourceGloss)) {
+      if (!verseWords.has(englishWord)) continue;
+
+      addCandidate(candidates, localVerse, englishWord, {
+        language: "hebrew",
+        originalWord,
+        transliteration,
+        strongs,
+        lemma: extractHebrewLemma(strongsDetail, originalWord),
+        morphology,
+        sourceGloss: sourceGloss || englishWord,
+        lexiconMeaning,
+        sourceName: "STEPBible TAHOT Hebrew alignment + TBESH Strong's meaning",
+        sourceUrl: "https://github.com/STEPBible/STEPBible-Data",
+        lexiconSourceName: "STEPBible TBESH Hebrew brief lexicon",
+      });
     }
-
-    addCandidate(candidates, localVerse, englishWord, {
-      language: "hebrew",
-      originalWord,
-      transliteration: "",
-      strongs: "",
-      lemma: "",
-      morphology: "",
-      shortMeaning: gloss || englishWord,
-      sourceName: "MACULA Hebrew WLC Cherith gloss exact English match",
-      sourceUrl: "https://github.com/Clear-Bible/macula-hebrew",
-    });
   }
 }
 
@@ -331,6 +462,10 @@ const manifest = {
   wordLinks: matches.length,
   coveredVerses: new Set(matches.map((match) => match.reference)).size,
   books: [...byBook.keys()].sort(),
+  lexiconMeaningCoverage: {
+    greek: matches.filter((match) => match.language === "greek" && match.lexiconMeaning).length,
+    hebrew: matches.filter((match) => match.language === "hebrew" && match.lexiconMeaning).length,
+  },
 };
 
 fs.writeFileSync(
@@ -340,4 +475,6 @@ fs.writeFileSync(
 
 console.log(`Generated ${matches.length.toLocaleString()} verified word links.`);
 console.log(`Covered ${manifest.coveredVerses.toLocaleString()} verses.`);
+console.log(`Greek links with lexicon meaning: ${manifest.lexiconMeaningCoverage.greek.toLocaleString()}.`);
+console.log(`Hebrew links with lexicon meaning: ${manifest.lexiconMeaningCoverage.hebrew.toLocaleString()}.`);
 console.log(`Wrote ${byBook.size} book files to data/deep-dive/.`);

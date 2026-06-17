@@ -20,8 +20,10 @@ export type VerifiedWordStudy = {
   strongs: string;
   lemma: string;
   morphology: string;
-  shortMeaning: string;
+  sourceGloss: string;
+  lexiconMeaning: string;
   sourceName: string;
+  lexiconSourceName: string;
   sourceUrl: string;
 };
 
