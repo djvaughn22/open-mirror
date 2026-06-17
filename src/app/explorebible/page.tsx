@@ -338,6 +338,77 @@ export default function BibleExplorerPage() {
             the center.
           </p>
 
+          <button
+            type="button"
+            onClick={spinAll}
+            className="mt-10 rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
+          >
+            New Bible Bingo Board
+          </button>
+        </section>
+
+        <p className="mb-5 text-center text-sm font-semibold text-slate-400">
+          Deep Dive opens when a verse has verified original-language word links.
+        </p>
+
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
+          {path.map(({ section, passage }, index) => (
+            <article
+              key={`${section.title}-${spinVersions[index]}`}
+              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
+              style={{
+                minHeight: "340px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div className="text-5xl">{section.emoji}</div>
+
+              <h2 className="mt-6 text-2xl font-bold">{section.title}</h2>
+
+              <p className="mt-4 leading-7 text-slate-300">{section.line}</p>
+
+              <p className="mt-6 text-2xl font-bold text-slate-100">
+                {passage.label}
+              </p>
+
+              <p className="mt-4 max-w-sm text-sm leading-7 text-slate-200">
+                <VerifiedVerseText
+                  passage={passage}
+                  wordStudies={wordStudiesForPassage(passage)}
+                  onWordClick={(wordStudy) => openWordStudy(section, passage, wordStudy)}
+                />
+              </p>
+
+              <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
+                <a
+                  href={verseUrl(passage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
+                >Verse</a>
+
+                <a
+                  href={chapterUrl(passage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
+                >Chapter</a>
+
+                <button
+                  type="button"
+                  onClick={() => openWordStudy(section, passage)}
+                  disabled={!hasVerifiedWordLinks(wordStudiesForPassage(passage))}
+                  title={
+                    hasVerifiedWordLinks(wordStudiesForPassage(passage))
+                      ? "Open verified original-language word study"
+                      : "Deep Dive opens when this verse has verified underlined word links."
+                  }
+                  className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 shadow-sm transition hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-zinc-700/70 disabled:bg-zinc-800/70 disabled:text-zinc-500 disabled:shadow-none disabled:hover:bg-zinc-800/70"
+                >
+                  Deep Dive
+                </button>
               </div>
 
               <button
@@ -408,7 +479,7 @@ export default function BibleExplorerPage() {
             <p className="mx-auto mt-4 max-w-3xl text-center text-zinc-400">
               Quick version: the cards roll from a full local Bible verse library.
               The words on the card are already in the app before you tap anything.
-              Underlined words open only when the original-language match can be verified.
+              Deep Dive only unlocks when the original-language match can be verified.
             </p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -451,15 +522,15 @@ export default function BibleExplorerPage() {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4 md:col-span-2">
-                <p className="font-bold text-zinc-300">Underlined word trust rule</p>
+                <p className="font-bold text-zinc-300">Deep Dive trust rule</p>
                 <p className="mt-2">
-                  Underlined words show the original Bible languages behind the
-                  verse: Hebrew for Old Testament cards and Greek for New Testament
-                  cards. A word only gets underlined when a trusted local source can
-                  connect that exact English word in that exact verse to
-                  original-language data such as Strong&apos;s number, lemma,
-                  morphology, transliteration, or verified alignment. If the match
-                  is not proven, the word stays plain.
+                  Deep Dive is for the original Bible languages behind the verse:
+                  Hebrew for Old Testament cards and Greek for New Testament cards.
+                  A word only gets underlined when a trusted local source can connect
+                  that exact English word in that exact verse to original-language
+                  data such as Strong&apos;s number, lemma, morphology, transliteration,
+                  or verified alignment. If the match is not proven, the word stays
+                  plain and Deep Dive stays locked.
                 </p>
               </div>
             </div>
