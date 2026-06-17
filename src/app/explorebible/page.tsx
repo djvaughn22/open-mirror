@@ -387,14 +387,14 @@ export default function BibleExplorerPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >View Verse in Bible App</a>
+                >Verse</a>
 
                 <a
                   href={chapterUrl(passage)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >View Chapter in Bible App</a>
+                >Chapter</a>
 
                 <button
                   type="button"
@@ -462,7 +462,7 @@ export default function BibleExplorerPage() {
                 The odds show the size of that section&apos;s verse pool.
               </li>
               <li>
-                Use the Bible app buttons below: View Verse opens this exact verse. View Chapter opens the full chapter.
+                Use the Bible app buttons below: Verse opens this exact verse. Chapter opens the full chapter.
               </li>
             </ul>
           </div>
@@ -488,7 +488,7 @@ export default function BibleExplorerPage() {
                 <p className="mt-2">
                   The card text uses the public domain World English Bible, American
                   English Edition, without Strong&apos;s Numbers (WEBUS), courtesy of
-                  eBible.org. View Verse in Bible App and View Chapter in Bible App point to the same
+                  eBible.org. Verse and Chapter point to the same
                   WEBUS version in the Holy Bible app.
                 </p>
               </div>

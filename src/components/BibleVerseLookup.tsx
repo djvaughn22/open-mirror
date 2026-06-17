@@ -197,7 +197,7 @@ export default function BibleVerseLookup({
 
       <p className="mt-3 text-xs text-slate-300">
         Searches the local complete Bible library first. After the verse appears,
-        use the Bible app buttons below: View Verse opens this exact verse. View Chapter opens the full chapter.
+        use the Bible app buttons below: Verse opens this exact verse. Chapter opens the full chapter.
       </p>
 
       {error && (
@@ -232,14 +232,14 @@ export default function BibleVerseLookup({
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-            >View Verse in Bible App</a>
+            >Verse</a>
 
             <a
               href={chapterUrl(passage)}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-            >View Chapter in Bible App</a>
+            >Chapter</a>
 
             <button
               type="button"
