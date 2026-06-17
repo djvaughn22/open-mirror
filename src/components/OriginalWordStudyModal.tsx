@@ -21,21 +21,25 @@ export default function OriginalWordStudyModal({
 }: OriginalWordStudyModalProps) {
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 py-8"
+      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/80 px-4 py-5 sm:items-center sm:py-8"
       role="dialog"
       aria-modal="true"
       aria-labelledby="word-study-title"
     >
-      <div className="w-full max-w-2xl rounded-[2rem] border border-emerald-200/20 bg-slate-950 p-6 text-left text-slate-100 shadow-2xl sm:p-8">
+      <div className="w-full max-w-xl rounded-[1.75rem] border border-emerald-200/20 bg-slate-950 p-5 text-left text-slate-100 shadow-2xl sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-200">
               Deep Dive
             </p>
 
-            <h2 id="word-study-title" className="mt-3 text-2xl font-bold">
+            <h2 id="word-study-title" className="mt-2 text-2xl font-bold">
               Behind the Verse
             </h2>
+
+            <p className="mt-2 text-sm font-semibold text-slate-300">
+              {passage.label}
+            </p>
           </div>
 
           <button
@@ -47,56 +51,65 @@ export default function OriginalWordStudyModal({
           </button>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
-          <p className="text-sm font-semibold text-slate-300">
-            Verse reference
-          </p>
-          <p className="mt-1 text-lg font-bold text-white">{passage.label}</p>
-          <p className="mt-3 text-sm leading-7 text-slate-300">{passage.text}</p>
+        <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+          <p className="text-sm leading-7 text-slate-300">{passage.text}</p>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">
+        <section className="mt-5 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-5">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-100">
             {originalLanguageName(wordStudy.language)} word link verified
           </p>
 
-          <h3 className="mt-4 text-3xl font-bold text-white">
-            {wordStudy.englishWord}
-          </h3>
-
-          <dl className="mt-5 grid gap-4 text-sm leading-6 text-slate-300 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <dt className="font-bold text-slate-100">Original word</dt>
-              <dd className="mt-2 text-2xl text-white">{wordStudy.originalWord}</dd>
+          <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
+            <div>
+              <p className="text-sm font-semibold text-slate-300">
+                English word
+              </p>
+              <h3 className="mt-1 text-3xl font-bold text-white">
+                {wordStudy.englishWord}
+              </h3>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <dt className="font-bold text-slate-100">Transliteration</dt>
-              <dd className="mt-2">{wordStudy.transliteration}</dd>
+            <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 sm:text-right">
+              <p className="text-sm font-semibold text-slate-300">
+                Simple meaning
+              </p>
+              <p className="mt-1 text-base font-bold text-white">
+                {wordStudy.shortMeaning}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
+            <p className="text-sm font-semibold text-slate-300">
+              Original word
+            </p>
+            <p className="mt-2 text-3xl font-bold leading-tight text-white">
+              {wordStudy.originalWord}
+            </p>
+            <p className="mt-2 text-sm text-slate-300">
+              {wordStudy.transliteration}
+            </p>
+          </div>
+
+          <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-300 sm:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
+              <p className="font-bold text-slate-100">Strong&apos;s</p>
+              <p className="mt-1">{wordStudy.strongs}</p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <dt className="font-bold text-slate-100">Strong&apos;s</dt>
-              <dd className="mt-2">{wordStudy.strongs}</dd>
+            <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
+              <p className="font-bold text-slate-100">Lemma</p>
+              <p className="mt-1 break-words">{wordStudy.lemma}</p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <dt className="font-bold text-slate-100">Lemma</dt>
-              <dd className="mt-2">{wordStudy.lemma}</dd>
+            <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
+              <p className="font-bold text-slate-100">Grammar</p>
+              <p className="mt-1">{wordStudy.morphology}</p>
             </div>
+          </div>
 
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <dt className="font-bold text-slate-100">Morphology</dt>
-              <dd className="mt-2">{wordStudy.morphology}</dd>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <dt className="font-bold text-slate-100">Simple meaning</dt>
-              <dd className="mt-2">{wordStudy.shortMeaning}</dd>
-            </div>
-          </dl>
-
-          <p className="mt-5 text-xs leading-6 text-slate-400">
+          <p className="mt-4 text-xs leading-6 text-slate-400">
             Source receipt:{" "}
             <a
               href={wordStudy.sourceUrl}
@@ -107,15 +120,14 @@ export default function OriginalWordStudyModal({
               {wordStudy.sourceName}
             </a>
           </p>
-        </div>
+        </section>
 
-        <p className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300">
-          CrossHeartPray only underlines a word when a trusted source can connect
-          that exact English word in that exact verse to original-language data.
-          No guessing.
+        <p className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-xs leading-6 text-slate-400">
+          Underlined words are verified for this exact verse. No underline means
+          no guessing.
         </p>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <a
             href={verseUrl}
             target="_blank"
