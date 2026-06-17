@@ -493,7 +493,7 @@ export default function BibleExplorerPage() {
                 The odds show the size of that section&apos;s verse pool.
               </li>
               <li>
-                Open Verse and Read Chapter take you into the Holy Bible app for context.
+                View Verse in Bible App opens the exact verse. View Chapter in Bible App opens the full chapter context.
               </li>
             </ul>
           </div>
@@ -519,8 +519,8 @@ export default function BibleExplorerPage() {
                 <p className="mt-2">
                   The card text uses the public domain World English Bible, American
                   English Edition, without Strong&apos;s Numbers (WEBUS), courtesy of
-                  eBible.org. Open Verse and Read Chapter point to the same WEBUS
-                  version in the Holy Bible app.
+                  eBible.org. View Verse in Bible App and View Chapter in Bible App point to the same
+                  WEBUS version in the Holy Bible app.
                 </p>
               </div>
 

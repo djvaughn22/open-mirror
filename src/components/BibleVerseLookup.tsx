@@ -116,8 +116,8 @@ export default function BibleVerseLookup({
       </form>
 
       <p className="mt-3 text-xs text-slate-300">
-        Searches the local complete Bible library first. Open the verse or chapter
-        to keep reading in the Holy Bible app.
+        Searches the local complete Bible library first. After the verse appears,
+        press View Verse in Bible App for the exact verse or View Chapter in Bible App for the full chapter context.
       </p>
 
       {error && (

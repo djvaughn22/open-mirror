@@ -106,7 +106,7 @@ function findLocalVerse(rawQuery: string) {
     verse,
     note: rawVerse
       ? ""
-      : `Showing ${verse.label}. Use Read Chapter to open the full chapter.`,
+      : `Showing ${verse.label}. Press View Verse in Bible App for this exact verse, or press View Chapter in Bible App for the full chapter context.`,
   };
 }
 
