@@ -134,8 +134,8 @@ export default function OriginalWordStudyModal({
   const sourceLabel = deterministicWordLinkLabel(selectedWordStudy);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
-      <div className="flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-hidden rounded-[1.5rem] border border-emerald-200/20 bg-slate-950 shadow-2xl sm:max-h-[560px]">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm sm:items-center">
+      <div className="my-auto flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-hidden rounded-[1.5rem] border border-emerald-200/20 bg-slate-950 shadow-2xl sm:max-h-[560px]">
         <div className="shrink-0 border-b border-white/10 px-5 py-4">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
@@ -163,7 +163,10 @@ export default function OriginalWordStudyModal({
           </div>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4 text-left">
+        <div
+          className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain px-5 py-4 text-left"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
@@ -208,17 +211,12 @@ export default function OriginalWordStudyModal({
             </div>
           ) : null}
 
-          <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
-              Original word
+          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+              Meaning from source
             </p>
-
-            <p className="mt-2 break-words text-2xl font-bold leading-snug text-white">
-              {selectedWordStudy.originalWord}
-            </p>
-
-            <p className="mt-2 break-words text-sm leading-6 text-emerald-50">
-              {selectedWordStudy.transliteration}
+            <p className="mt-2 text-sm font-semibold leading-6 text-white">
+              {selectedWordStudy.lexiconMeaning}
             </p>
           </div>
 
@@ -252,12 +250,17 @@ export default function OriginalWordStudyModal({
             </div>
           </div>
 
-          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Meaning from source
+          <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
+              Original word
             </p>
-            <p className="mt-2 text-sm font-semibold leading-6 text-white">
-              {selectedWordStudy.lexiconMeaning}
+
+            <p className="mt-2 break-words text-2xl font-bold leading-snug text-white">
+              {selectedWordStudy.originalWord}
+            </p>
+
+            <p className="mt-2 break-words text-sm leading-6 text-emerald-50">
+              {selectedWordStudy.transliteration}
             </p>
           </div>
 
