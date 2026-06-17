@@ -407,7 +407,7 @@ export default function BibleExplorerPage() {
                   }
                   className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 shadow-sm transition hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-zinc-700/70 disabled:bg-zinc-800/70 disabled:text-zinc-500 disabled:shadow-none disabled:hover:bg-zinc-800/70"
                 >
-                  Deep Dive*
+                  Deep Dive
                 </button>
               </div>
 
