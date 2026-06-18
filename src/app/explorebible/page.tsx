@@ -318,13 +318,13 @@ export default function BibleExplorerPage() {
 
     window.setTimeout(() => {
       setPath(nextPath);
-    }, 360);
+    }, 240);
 
     window.setTimeout(() => {
       setSpinningCards((current) =>
         current.map((isSpinning, index) => (cardIndexes.includes(index) ? false : isSpinning)),
       );
-    }, 920);
+    }, 680);
   }
 
   function spinAll() {
@@ -470,9 +470,11 @@ export default function BibleExplorerPage() {
             >
               {spinningCards[index] ? (
                 <div className="bible-card-back" aria-hidden="true">
-                  <div className="bible-card-back-icons">✝️ ❤️ 🙏</div>
-                  <div className="bible-card-back-title">Bible Bingo</div>
-                  <div className="bible-card-back-line">Finding your verse...</div>
+                  <div className="bible-card-back-pattern">
+                    <span>✝️</span>
+                    <span>❤️</span>
+                    <span>🙏</span>
+                  </div>
                 </div>
               ) : null}
 
@@ -597,64 +599,62 @@ export default function BibleExplorerPage() {
       <style>{`
         @keyframes bible-card-axis-spin {
           0% {
-            transform: translateY(0) rotateZ(0deg) scale(1);
+            transform: translate3d(0, -8px, 0) rotateZ(-1.1deg) scale(0.985);
           }
 
-          16% {
-            transform: translateY(-7px) rotateZ(-1.4deg) scale(1.025);
+          30% {
+            transform: translate3d(0, 4px, 0) rotateZ(0.9deg) scale(1.01);
           }
 
-          34% {
-            transform: translateY(3px) rotateZ(1.2deg) scale(0.99);
-          }
-
-          54% {
-            transform: translateY(-5px) rotateZ(-0.8deg) scale(1.018);
-          }
-
-          76% {
-            transform: translateY(2px) rotateZ(0.5deg) scale(1.006);
+          60% {
+            transform: translate3d(0, -2px, 0) rotateZ(-0.35deg) scale(1.004);
           }
 
           100% {
-            transform: translateY(0) rotateZ(0deg) scale(1);
+            transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
           }
         }
 
         @keyframes bible-card-back-reveal {
           0% {
             opacity: 0;
-            transform: scale(0.96);
+            transform: translate3d(0, -10px, 0) scale(0.98);
           }
 
-          16% {
+          18% {
             opacity: 1;
-            transform: scale(1.02);
+            transform: translate3d(0, 0, 0) scale(1);
           }
 
-          70% {
+          74% {
             opacity: 1;
-            transform: scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
           }
 
           100% {
             opacity: 0;
-            transform: scale(1.04);
+            transform: translate3d(0, 8px, 0) scale(0.995);
           }
         }
 
-        @keyframes bible-card-back-shine {
+        @keyframes bible-card-soft-sweep {
           0% {
-            transform: translateX(-140%) rotate(12deg);
+            transform: translateX(-130%) rotate(10deg);
+            opacity: 0;
+          }
+
+          25% {
+            opacity: 0.32;
           }
 
           100% {
-            transform: translateX(140%) rotate(12deg);
+            transform: translateX(130%) rotate(10deg);
+            opacity: 0;
           }
         }
 
         .bible-card-spin {
-          animation: bible-card-axis-spin 820ms cubic-bezier(0.2, 0.9, 0.25, 1.12);
+          animation: bible-card-axis-spin 680ms cubic-bezier(0.2, 0.9, 0.25, 1.05);
           transform-origin: center;
           will-change: transform;
         }
@@ -662,7 +662,7 @@ export default function BibleExplorerPage() {
         .bible-card-is-spinning {
           box-shadow:
             0 0 0 1px rgb(255 255 255 / 0.08),
-            0 20px 55px rgb(16 185 129 / 0.18);
+            0 18px 45px rgb(16 185 129 / 0.12);
         }
 
         .bible-card-back {
@@ -670,62 +670,48 @@ export default function BibleExplorerPage() {
           inset: 0;
           z-index: 20;
           display: flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 0.7rem;
           border-radius: 1.5rem;
           overflow: hidden;
-          border: 1px solid rgb(255 255 255 / 0.18);
+          border: 1px solid rgb(255 255 255 / 0.14);
           background:
-            radial-gradient(circle at 20% 15%, rgb(255 255 255 / 0.18), transparent 30%),
-            radial-gradient(circle at 80% 20%, rgb(16 185 129 / 0.22), transparent 34%),
-            linear-gradient(135deg, rgb(15 23 42 / 0.98), rgb(6 78 59 / 0.96), rgb(30 41 59 / 0.98));
+            radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.12), transparent 32%),
+            radial-gradient(circle at 80% 25%, rgb(52 211 153 / 0.14), transparent 34%),
+            linear-gradient(135deg, rgb(15 23 42 / 0.98), rgb(6 78 59 / 0.94), rgb(30 41 59 / 0.98));
           color: white;
           pointer-events: none;
-          animation: bible-card-back-reveal 920ms ease-in-out both;
+          animation: bible-card-back-reveal 680ms ease-in-out both;
         }
 
         .bible-card-back::after {
           content: "";
           position: absolute;
-          top: -20%;
-          bottom: -20%;
-          width: 36%;
+          top: -18%;
+          bottom: -18%;
+          width: 34%;
           background: linear-gradient(
             90deg,
             transparent,
-            rgb(255 255 255 / 0.22),
+            rgb(255 255 255 / 0.14),
             transparent
           );
-          animation: bible-card-back-shine 720ms ease-in-out;
+          animation: bible-card-soft-sweep 500ms ease-in-out;
         }
 
-        .bible-card-back-icons {
+        .bible-card-back-pattern {
           position: relative;
           z-index: 1;
-          font-size: 2.35rem;
-          letter-spacing: 0.25rem;
-        }
-
-        .bible-card-back-title {
-          position: relative;
-          z-index: 1;
-          font-family: Georgia, "Times New Roman", serif;
-          font-size: 1.65rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-        }
-
-        .bible-card-back-line {
-          position: relative;
-          z-index: 1;
-          font-size: 0.78rem;
-          font-weight: 800;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: rgb(209 250 229);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          border-radius: 999px;
+          border: 1px solid rgb(255 255 255 / 0.16);
+          background: rgb(15 23 42 / 0.34);
+          padding: 0.9rem 1.15rem;
+          font-size: 2rem;
+          box-shadow: inset 0 0 22px rgb(255 255 255 / 0.06);
         }
 
         @media (prefers-reduced-motion: reduce) {
