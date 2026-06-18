@@ -17,6 +17,7 @@ export type VerifiedWordStudy = {
   language: OriginalLanguage;
   originalWord: string;
   transliteration: string;
+  pronunciation?: string;
   strongs: string;
   lemma: string;
   morphology: string;
