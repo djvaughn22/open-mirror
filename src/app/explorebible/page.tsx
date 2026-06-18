@@ -364,40 +364,39 @@ export default function BibleExplorerPage() {
           </details>
         </nav>
 
-        <section className="mx-auto max-w-5xl py-24 text-center">
-          <p className="mb-8 flex items-center justify-center gap-8 text-6xl md:gap-14 md:text-7xl">
+        <section className="mx-auto max-w-5xl pt-10 pb-6 text-center sm:pt-12 sm:pb-8">
+          <p className="mb-4 flex items-center justify-center gap-6 text-4xl md:gap-10 md:text-5xl">
             <span>✝️</span>
             <span>❤️</span>
             <span>🙏</span>
           </p>
 
           <p className="text-center justify-center items-center mb-5 inline-flex rounded-full border border-white/15 bg-black/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-100">
-            Bible Bingo
+            Cross Heart Pray
           </p>
 
-          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
-            Holy Bible Explorer
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            7 Card Bible Bingo
           </h1>
 
-          <p className="mx-auto mt-8 max-w-4xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
-            Open the Bible. Pick a square. Read the verse. Explore the chapter.
+          <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-zinc-300 md:text-3xl">
+            Spin seven Bible cards from across the Holy Bible.
           </p>
 
-          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
-            Old Testament. Psalms. Proverbs. Gospel. Epistles. Genesis and
-            Revelation side by side — the beginning and the end, with Jesus at
-            the center.
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
+            Open each verse, read the chapter, and use Deep Dive when original
+            Hebrew or Greek word details are available.
           </p>
 
-          <button
-            type="button"
-            onClick={spinAll}
-            className="text-center justify-center items-center inline-flex mt-10 rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
-          >
-            New Bible Bingo Board
-          </button>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={spinAll}
+              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-7 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Spin 7 Cards
+            </button>
 
-          <div className="mx-auto mt-5 flex justify-center">
             <BibleBingoShareMenu
               boardHref={boardPath}
               boardUrl={boardUrl}
@@ -408,33 +407,33 @@ export default function BibleExplorerPage() {
           </div>
         </section>
 
-        <p className="mb-5 text-center text-sm font-semibold text-slate-400">
-          Deep Dive opens when a verse has verified original-language word links.
+        <p className="mb-4 text-center text-sm font-semibold text-slate-400">
+          Deep Dive opens when verified word details are available.
         </p>
 
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
           {path.map(({ section, passage }, index) => (
             <article
               key={`${section.title}-${spinVersions[index]}`}
-              className={`rounded-[2rem] border p-8 text-center text-slate-100 lg:col-span-2 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
+              className={`rounded-[1.5rem] border p-5 text-center text-slate-100 lg:col-span-2 sm:p-6 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
               style={{
-                minHeight: "340px",
+                minHeight: "285px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
             >
-              <div className="text-5xl">{section.emoji}</div>
+              <div className="text-4xl">{section.emoji}</div>
 
-              <h2 className="mt-6 text-2xl font-bold">{section.title}</h2>
+              <h2 className="mt-4 text-xl font-bold">{section.title}</h2>
 
-              <p className="mt-4 leading-7 text-slate-300">{section.line}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{section.line}</p>
 
-              <p className="mt-6 text-2xl font-bold text-slate-100">
+              <p className="mt-4 text-xl font-bold text-slate-100">
                 {passage.label}
               </p>
 
-              <p className="mt-4 max-w-sm text-sm leading-7 text-slate-200">
+              <p className="mt-3 max-w-sm text-sm leading-6 text-slate-200">
                 <VerifiedVerseText
                   passage={passage}
                   wordStudies={wordStudiesForPassage(passage)}
@@ -442,7 +441,7 @@ export default function BibleExplorerPage() {
                 />
               </p>
 
-              <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
+              <div className="mt-auto flex flex-col gap-2 pt-5 sm:flex-row">
                 <a
                   href={verseUrl(passage)}
                   target="_blank"
@@ -477,7 +476,7 @@ export default function BibleExplorerPage() {
                 onClick={() => spinOne(index)}
                 className="mt-4 text-sm font-semibold text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white"
               >
-                Pick another {section.title}
+                Spin this card
               </button>
 
               <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
@@ -499,104 +498,18 @@ export default function BibleExplorerPage() {
 
         <BibleVerseLookup className="mt-8" />
 
-        <section className="mt-10 px-4 py-8 sm:mt-14 sm:px-6 sm:py-10">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-white/[0.04] px-6 py-7 text-left shadow-xl sm:px-8">
-            <div className="text-center">
-              <p className="text-3xl">✝️ ❤️ 🙏</p>
-
-              <h2 className="mt-4 text-2xl font-bold text-white">
-                Bible Bingo friends
-              </h2>
-
-              <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-300">
-                Roll a card. Read the verse. Open the chapter. Keep going.
-              </p>
-            </div>
-
-            <ul className="mt-6 list-disc space-y-3 pl-5 text-sm leading-7 text-slate-300">
-              <li>
-                Each card rolls one verse from its own section of the Holy Bible.
-              </li>
-              <li>
-                The cards use a local complete Bible library, so they load fast.
-              </li>
-              <li>
-                The odds show the size of that section&apos;s verse pool.
-              </li>
-              <li>
-                Use the Bible app buttons below: Verse opens this exact verse. Chapter opens the full chapter.
-              </li>
-            </ul>
-          </div>
+        <section className="mt-8 border-t border-zinc-900 px-4 py-8 text-center">
+          <h2 className="text-xl font-bold text-white">How it works</h2>
+          <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-slate-400">
+            Each board rolls one verse from Old Testament, Psalms, Proverbs,
+            Gospel, Epistles, Genesis, and Revelation. Verse opens the exact
+            verse. Chapter opens the full chapter. Deep Dive opens when verified
+            Hebrew or Greek word details are available.
+          </p>
         </section>
 
-        <footer className="border-t border-zinc-900 px-8 py-10 text-center text-sm text-zinc-500">
-          <p>© 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.</p>
-
-          <div className="mx-auto mt-6 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 text-left text-xs leading-6 text-zinc-500">
-            <p className="text-center text-sm font-bold uppercase tracking-[0.2em] text-zinc-400">
-              Bible Bingo receipts
-            </p>
-
-            <p className="mx-auto mt-4 max-w-3xl text-center text-zinc-400">
-              Quick version: the cards roll from a full local Bible verse library.
-              The words on the card are already in the app before you tap anything.
-              Deep Dive only unlocks when the original-language match can be verified.
-            </p>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                <p className="font-bold text-zinc-300">Bible text on the cards</p>
-                <p className="mt-2">
-                  The card text uses the public domain World English Bible, American
-                  English Edition, without Strong&apos;s Numbers (WEBUS), courtesy of
-                  eBible.org. Verse and Chapter point to the same
-                  WEBUS version in the Holy Bible app.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                <p className="font-bold text-zinc-300">Local verse library</p>
-                <p className="mt-2">
-                  31,103 / 31,103 verse records are stored locally in the app.
-                  Each record carries its book, Bible book code, chapter, verse,
-                  reference label, verse text, and Bible Bingo lane.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4 md:col-span-2">
-                <p className="font-bold text-zinc-300">The roll</p>
-                <p className="mt-2">
-                  Each square rolls one verse from its own local lane. That keeps the
-                  board balanced: wisdom can show up, Psalms can breathe, the Gospel
-                  stays easy to find, and Genesis and Revelation stay side by side.
-                </p>
-
-                <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-                  <p>Old Testament: 1 / 18,237 ≈ 0.0055%</p>
-                  <p>Psalms: 1 / 2,461 ≈ 0.0406%</p>
-                  <p>Proverbs: 1 / 915 ≈ 0.1093%</p>
-                  <p>Gospel: 1 / 3,779 ≈ 0.0265%</p>
-                  <p>Epistles: 1 / 3,774 ≈ 0.0265%</p>
-                  <p>Genesis: 1 / 1,533 ≈ 0.0652%</p>
-                  <p>Revelation: 1 / 404 ≈ 0.2475%</p>
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4 md:col-span-2">
-                <p className="font-bold text-zinc-300">Deep Dive trust rule</p>
-                <p className="mt-2">
-                  Deep Dive is for the original Bible languages behind the verse:
-                  Hebrew for Old Testament cards and Greek for New Testament cards.
-                  A word only gets underlined when a trusted local source can connect
-                  that exact English word in that exact verse to original-language
-                  data such as Strong&apos;s number, lemma, morphology, transliteration,
-                  or verified alignment. If the match is not proven, the word stays
-                  plain and Deep Dive stays locked.
-                </p>
-              </div>
-            </div>
-          </div>
+        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
+          © 2026 Open Mirror LLC. Follow Jesus. Love God. Pray.
         </footer>
       </div>
 
