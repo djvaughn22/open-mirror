@@ -137,3 +137,45 @@ body {
 .single-card-server-view article button {
   white-space: nowrap;
 }
+
+/* Hard fix: ?card=N must render as one centered Bible Bingo card,
+   not as the first cell of the 7-card board grid. */
+.single-card-server-view {
+  width: min(100%, 38rem) !important;
+  max-width: 38rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.single-card-server-view > *,
+.single-card-server-view section,
+.single-card-server-view div {
+  max-width: 38rem !important;
+}
+
+.single-card-server-view .grid,
+.single-card-server-view section,
+.single-card-server-view div[class*="grid"] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  gap: 0 !important;
+}
+
+.single-card-server-view article {
+  grid-column: 1 / -1 !important;
+  justify-self: center !important;
+  width: 100% !important;
+  max-width: 34rem !important;
+  min-width: 0 !important;
+  min-height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.single-card-server-view article a,
+.single-card-server-view article button {
+  white-space: nowrap;
+}
