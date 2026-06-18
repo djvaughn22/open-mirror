@@ -125,7 +125,7 @@ export default function BibleBingoShareMenu({
             {itemLabel === "verse"
               ? "Open this verse"
               : itemLabel === "card"
-                ? "Open this card"
+                ? "Open live card"
                 : "Open live board"}
           </a>
 
@@ -137,7 +137,7 @@ export default function BibleBingoShareMenu({
             {itemLabel === "verse"
               ? "Text this verse"
               : itemLabel === "card"
-                ? "Text this card"
+                ? "Text card link"
                 : "Text board link"}
           </a>
 
@@ -149,7 +149,7 @@ export default function BibleBingoShareMenu({
             {itemLabel === "verse"
               ? "Email this verse"
               : itemLabel === "card"
-                ? "Email this card"
+                ? "Email card link"
                 : "Email board link"}
           </a>
 
@@ -160,7 +160,11 @@ export default function BibleBingoShareMenu({
               onClick={copyHtmlEmail}
               className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
             >
-              Copy HTML email board
+              {itemLabel === "card"
+                ? "Copy HTML email card"
+                : itemLabel === "verse"
+                  ? "Copy HTML email verse"
+                  : "Copy HTML email board"}
             </button>
           ) : null}
 
@@ -196,7 +200,9 @@ export default function BibleBingoShareMenu({
                 ? "Use the link for text. Copy HTML email board, then paste into an email body for the rich 7-card board view."
                 : itemLabel === "verse"
                   ? "Choose how to share this verse card."
-                  : "Choose how to share this card.")}
+                  : itemLabel === "card"
+                    ? "Use the link for text. Copy HTML email card, then paste into an email body for the rich card view."
+                    : "Choose how to share this card.")}
 
           </p>
         </div>
