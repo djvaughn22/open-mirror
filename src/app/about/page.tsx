@@ -23,7 +23,7 @@ export default function AboutPage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="/explorebible">Bible Bingo</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
           <p>One step at a time.</p>
 
-          <p>Bible Explorer helps you explore the Holy Bible by section with Bible Bingo cards that reveal random verses from Old Testament, Psalms, Proverbs, Gospel, Epistles, Genesis, and Revelation, then lets you regenerate the cards or click into the verse and chapter for context in the Holy Bible app.</p>
+          <p>Bible Bingo helps you explore the Holy Bible by section with Bible Bingo cards that reveal random verses from Old Testament, Psalms, Proverbs, Gospel, Epistles, Genesis, and Revelation, then lets you regenerate the cards or click into the verse and chapter for context in the Holy Bible app.</p>
 
           <p>CrossHeartPray doesn&apos;t replace the Bible.</p>
 

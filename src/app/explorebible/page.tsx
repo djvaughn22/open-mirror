@@ -355,7 +355,7 @@ export default function BibleExplorerPage() {
               <a href="/cross">Cross</a>
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
-              <a href="/explorebible">Holy Bible Explorer</a>
+              <a href="/explorebible">Bible Bingo</a>
               <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
                 Bible Portal
               </a>
