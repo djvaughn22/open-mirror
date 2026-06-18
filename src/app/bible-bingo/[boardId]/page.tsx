@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
-import {
-  passagesForBibleBingoBoardId,
-  type BibleBingoPassage,
-} from "../../../lib/bibleRandom";
+import BibleBingoShareBoard from "../../../components/BibleBingoShareBoard";
+import { passagesForBibleBingoBoardId } from "../../../lib/bibleRandom";
 
 type PageProps = {
   params: Promise<{
@@ -58,14 +56,6 @@ const cardTones = [
   "border-violet-200/15 bg-violet-300/10",
 ];
 
-function verseUrl(passage: BibleBingoPassage) {
-  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
-}
-
-function chapterUrl(passage: BibleBingoPassage) {
-  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
-}
-
 export default async function BibleBingoSharePage({ params }: PageProps) {
   const { boardId } = await params;
   const passages = passagesForBibleBingoBoardId(boardId);
@@ -79,12 +69,13 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
   const shareText = [
     "I rolled a Bible Bingo board on Cross Heart Pray:",
     "",
-    ...passages.map(
-      (passage, index) => `${index + 1}. ${shareSections[index].title}: ${passage.label}`,
-    ),
-    "",
+    ...passages.flatMap((passage, index) => [
+      `${index + 1}. ${shareSections[index].title}: ${passage.label}`,
+      passage.text,
+      "",
+    ]),
     boardUrl,
-  ].join("\\n");
+  ].join("\n");
   const encodedShareText = encodeURIComponent(shareText);
   const encodedShareSubject = encodeURIComponent("My Bible Bingo board");
 
@@ -154,56 +145,11 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl sm:p-8">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            {passages.map((passage, index) => {
-              const section = shareSections[index];
-
-              return (
-                <article
-                  key={`${section.title}-${passage.label}`}
-                  className={`rounded-[1.5rem] border p-5 text-center ${cardTones[index]}`}
-                >
-                  <div className="text-4xl">{section.emoji}</div>
-
-                  <h2 className="mt-4 text-xl font-bold">{section.title}</h2>
-
-                  <p className="mt-3 text-sm leading-6 text-slate-300">
-                    {section.line}
-                  </p>
-
-                  <p className="mt-5 text-2xl font-bold text-white">
-                    {passage.label}
-                  </p>
-
-                  <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-slate-200">
-                    {passage.text}
-                  </p>
-
-                  <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-                    <a
-                      href={verseUrl(passage)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                    >
-                      Verse
-                    </a>
-
-                    <a
-                      href={chapterUrl(passage)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                    >
-                      Chapter
-                    </a>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
+        <BibleBingoShareBoard
+          passages={passages}
+          shareSections={shareSections}
+          cardTones={cardTones}
+        />
 
         <footer className="px-8 py-10 text-center text-sm text-zinc-500">
           <p>© 2026 Open Mirror LLC. Cross Heart Pray.</p>

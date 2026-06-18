@@ -194,11 +194,11 @@ export default function BibleExplorerPage() {
   const boardShareText = [
     "I rolled a Bible Bingo board on Cross Heart Pray:",
     "",
-    ...path.map(
-      ({ section, passage }, index) =>
-        `${index + 1}. ${section.title}: ${passage.label}`,
-    ),
-    "",
+    ...path.flatMap(({ section, passage }, index) => [
+      `${index + 1}. ${section.title}: ${passage.label}`,
+      passage.text,
+      "",
+    ]),
     boardUrl,
   ].join("\n");
   const encodedBoardShareText = encodeURIComponent(boardShareText);
