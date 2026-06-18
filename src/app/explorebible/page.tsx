@@ -8,6 +8,7 @@ import {
 import BibleVerseLookup from "../../components/BibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
+import BibleBingoShareMenu from "../../components/BibleBingoShareMenu";
 import {
   buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
@@ -197,12 +198,15 @@ export default function BibleExplorerPage() {
     ...path.flatMap(({ section, passage }, index) => [
       `${index + 1}. ${section.title}: ${passage.label}`,
       passage.text,
+      `Card: ${boardUrl}#card-${index + 1}`,
+      `Verse: ${verseUrl(passage)}`,
+      `Chapter: ${chapterUrl(passage)}`,
       "",
     ]),
+    "Open the live 7-card board:",
     boardUrl,
   ].join("\n");
-  const encodedBoardShareText = encodeURIComponent(boardShareText);
-  const encodedBoardShareSubject = encodeURIComponent("My Bible Bingo board");
+  const boardShareSubject = "My Bible Bingo board";
 
   function wordStudiesForPassage(passage: Passage) {
     return wordStudiesByPassage[wordStudyLookupKey(passage)] ?? [];
@@ -368,27 +372,13 @@ export default function BibleExplorerPage() {
             New Bible Bingo Board
           </button>
 
-          <div className="mx-auto mt-4 flex max-w-2xl flex-col justify-center gap-3 sm:flex-row">
-            <a
-              href={boardPath}
-              className="text-center justify-center items-center inline-flex rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-300/15"
-            >
-              View share board
-            </a>
-
-            <a
-              href={`sms:?&body=${encodedBoardShareText}`}
-              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Text board
-            </a>
-
-            <a
-              href={`mailto:?subject=${encodedBoardShareSubject}&body=${encodedBoardShareText}`}
-              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Email board
-            </a>
+          <div className="mx-auto mt-5 flex justify-center">
+            <BibleBingoShareMenu
+              boardHref={boardPath}
+              boardUrl={boardUrl}
+              shareText={boardShareText}
+              emailSubject={boardShareSubject}
+            />
           </div>
         </section>
 

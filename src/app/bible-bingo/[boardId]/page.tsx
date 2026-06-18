@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import BibleBingoShareBoard from "../../../components/BibleBingoShareBoard";
+import BibleBingoShareMenu from "../../../components/BibleBingoShareMenu";
 import { passagesForBibleBingoBoardId } from "../../../lib/bibleRandom";
 
 type PageProps = {
@@ -72,12 +73,15 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
     ...passages.flatMap((passage, index) => [
       `${index + 1}. ${shareSections[index].title}: ${passage.label}`,
       passage.text,
+      `Card: ${boardUrl}#card-${index + 1}`,
+      `Verse: https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`,
+      `Chapter: https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`,
       "",
     ]),
+    "Open the live 7-card board:",
     boardUrl,
   ].join("\n");
-  const encodedShareText = encodeURIComponent(shareText);
-  const encodedShareSubject = encodeURIComponent("My Bible Bingo board");
+  const shareSubject = "My Bible Bingo board";
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
@@ -121,24 +125,17 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
             Read the verses, open the chapters, and share the same board with a friend.
           </p>
 
-          <div className="mx-auto mt-8 flex max-w-2xl flex-col justify-center gap-3 sm:flex-row">
-            <a
-              href={`sms:?&body=${encodedShareText}`}
-              className="text-center justify-center items-center inline-flex rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-300/15"
-            >
-              Text board
-            </a>
-
-            <a
-              href={`mailto:?subject=${encodedShareSubject}&body=${encodedShareText}`}
-              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Email board
-            </a>
+          <div className="mx-auto mt-8 flex flex-col items-center justify-center gap-3">
+            <BibleBingoShareMenu
+              boardHref={boardPath}
+              boardUrl={boardUrl}
+              shareText={shareText}
+              emailSubject={shareSubject}
+            />
 
             <a
               href="/explorebible"
-              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+              className="text-sm font-semibold text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white"
             >
               Roll new board
             </a>

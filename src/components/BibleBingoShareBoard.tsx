@@ -130,6 +130,7 @@ export default function BibleBingoShareBoard({
 
             return (
               <article
+                id={`card-${index + 1}`}
                 key={`${section.title}-${passage.label}`}
                 className={`rounded-[1.5rem] border p-5 text-center ${cardTones[index]} ${shareCardGridClass(index)}`}
               >
