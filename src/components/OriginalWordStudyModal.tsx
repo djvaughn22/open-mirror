@@ -67,6 +67,27 @@ function deterministicWordLinkLabel(wordStudy: VerifiedWordStudy) {
   return "Part of translated phrase";
 }
 
+function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
+  const sourceTransliteration = wordStudy.transliteration.trim();
+
+  if (sourceTransliteration) {
+    return sourceTransliteration;
+  }
+
+  const strongs = wordStudy.strongs.trim().toUpperCase();
+  const originalWord = wordStudy.originalWord.trim();
+
+  if (strongs === "G5547" || originalWord === "Χριστός") {
+    return "Christos";
+  }
+
+  if (strongs === "G1189" || originalWord === "δέομαι") {
+    return "deomai";
+  }
+
+  return "Not provided by source";
+}
+
 function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
   const explicitPronunciation = wordStudy.pronunciation?.trim();
 
@@ -86,7 +107,15 @@ function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
     return "khris-TOS";
   }
 
-  return "";
+  if (
+    strongs === "G1189" ||
+    transliteration === "deomai" ||
+    originalWord === "δέομαι"
+  ) {
+    return "deh-OM-ah-ee";
+  }
+
+  return "Not verified yet";
 }
 
 function modeButtonClass(mode: WordStudyMode, activeMode: WordStudyMode) {
@@ -154,6 +183,7 @@ export default function OriginalWordStudyModal({
   const languageName = originalLanguageName(selectedWordStudy.language);
   const strongsUrl = buildBibleHubStrongsUrl(selectedWordStudy.strongs);
   const sourceLabel = deterministicWordLinkLabel(selectedWordStudy);
+  const transliterationGuide = buildTransliterationGuide(selectedWordStudy);
   const pronunciationGuide = buildPronunciationGuide(selectedWordStudy);
   const isFocusedStudyWord = isUsefulVerifiedWordStudy(selectedWordStudy);
 
@@ -250,24 +280,22 @@ export default function OriginalWordStudyModal({
                   Transliteration
                 </p>
                 <p className="mt-1 break-words text-base font-semibold leading-6 text-emerald-50">
-                  {selectedWordStudy.transliteration}
+                  {transliterationGuide}
                 </p>
               </div>
 
-              {pronunciationGuide ? (
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
-                    Pronunciation
-                  </p>
-                  <p className="mt-1 break-words text-base font-semibold leading-6 text-emerald-50">
-                    {pronunciationGuide}
-                  </p>
-                </div>
-              ) : null}
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
+                  Pronunciation
+                </p>
+                <p className="mt-1 break-words text-base font-semibold leading-6 text-emerald-50">
+                  {pronunciationGuide}
+                </p>
+              </div>
 
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
-                  Meaning from source
+                  Meaning
                 </p>
                 <p className="mt-1 text-lg font-bold leading-7 text-white">
                   {selectedWordStudy.lexiconMeaning}
