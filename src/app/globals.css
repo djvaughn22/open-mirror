@@ -70,3 +70,14 @@ body {
     white-space: nowrap;
   }
 }
+
+/* Dynamic copy for shared single-card Bible Bingo links. */
+@supports selector(body:has(article[id^="card-"]:target)) {
+  body:has(article[id^="card-"]:target) .board-view-copy {
+    display: none !important;
+  }
+
+  body:has(article[id^="card-"]:target) .single-card-view-copy {
+    display: block !important;
+  }
+}
