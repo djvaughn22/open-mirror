@@ -147,7 +147,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         <p style="font-size: 34px; text-align: center; margin: 0 0 14px;">✝️ ❤️ 🙏</p>
         <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 34px; line-height: 1.15; color: #0f172a;">Bible Bingo Board</h1>
         <p style="text-align: center; color: #475569; font-size: 16px; line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto;">
-          Same 7 cards. Same verses.
+          Same 7 cards.
         </p>
         <p style="text-align: center; margin: 24px 0;">
           <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
@@ -237,7 +237,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
             {isSingleCardView
-              ? "This link opens one shared Bible Bingo card. Read the verse, use Deep Dive when available, or go back to all 7 cards."
+              ? "One Bible Bingo card."
               : "This link preserves the exact 7 cards. Read the verses, use Deep Dive, open the chapters, and play from here."}
           </p>
 
