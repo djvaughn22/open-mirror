@@ -193,17 +193,10 @@ export default function BibleExplorerPage() {
   const boardPath = `/bible-bingo/${boardId}`;
   const boardUrl = `https://crossheartpray.com${boardPath}`;
   const boardShareText = [
-    "I rolled a Bible Bingo board on Cross Heart Pray:",
+    "I rolled a 7-card Bible Bingo board on Cross Heart Pray.",
     "",
-    ...path.flatMap(({ section, passage }, index) => [
-      `${index + 1}. ${section.title}: ${passage.label}`,
-      passage.text,
-      `Card: ${boardUrl}#card-${index + 1}`,
-      `Verse: ${verseUrl(passage)}`,
-      `Chapter: ${chapterUrl(passage)}`,
-      "",
-    ]),
-    "Open the live 7-card board:",
+    "Open the live board to read the same verses, use Deep Dive, and play from there:",
+    "",
     boardUrl,
   ].join("\n");
   const boardShareSubject = "My Bible Bingo board";

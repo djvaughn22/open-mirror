@@ -68,17 +68,10 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
   const boardPath = `/bible-bingo/${encodeURIComponent(boardId)}`;
   const boardUrl = `https://crossheartpray.com${boardPath}`;
   const shareText = [
-    "I rolled a Bible Bingo board on Cross Heart Pray:",
+    "I rolled a 7-card Bible Bingo board on Cross Heart Pray.",
     "",
-    ...passages.flatMap((passage, index) => [
-      `${index + 1}. ${shareSections[index].title}: ${passage.label}`,
-      passage.text,
-      `Card: ${boardUrl}#card-${index + 1}`,
-      `Verse: https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`,
-      `Chapter: https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`,
-      "",
-    ]),
-    "Open the live 7-card board:",
+    "Open the live board to read the same verses, use Deep Dive, and play from there:",
+    "",
     boardUrl,
   ].join("\n");
   const shareSubject = "My Bible Bingo board";
@@ -122,7 +115,7 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-            Read the verses, open the chapters, and share the same board with a friend.
+            This link preserves the exact 7 cards. Read the verses, use Deep Dive, open the chapters, and play from here.
           </p>
 
           <div className="mx-auto mt-8 flex flex-col items-center justify-center gap-3">

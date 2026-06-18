@@ -86,7 +86,7 @@ export default function BibleBingoShareMenu({
             href={boardHref}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            Open 7-card board
+            Open live board
           </a>
 
           <a
@@ -94,7 +94,7 @@ export default function BibleBingoShareMenu({
             href={`sms:?&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            Text 7 cards
+            Text board link
           </a>
 
           <a
@@ -102,7 +102,7 @@ export default function BibleBingoShareMenu({
             href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            Email 7 cards
+            Email board link
           </a>
 
           <button
@@ -117,14 +117,14 @@ export default function BibleBingoShareMenu({
           <button
             type="button"
             role="menuitem"
-            onClick={() => copyValue(shareText, "7-card text copied")}
+            onClick={() => copyValue(shareText, "Invite text copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy 7-card text
+            Copy invite text
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
-            {copied || "Includes all 7 cards, the board link, and verse/chapter links."}
+            {copied || "Sends the live board link so people can open the exact 7 cards."}
           </p>
         </div>
       ) : null}
