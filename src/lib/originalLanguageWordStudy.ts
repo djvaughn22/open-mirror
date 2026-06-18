@@ -238,8 +238,51 @@ function normalizeMeaningRoot(value: string) {
 
   if (!normalized) return "";
 
+  const irregularRoots: Record<string, string> = {
+    said: "say",
+    says: "say",
+    saying: "say",
+    spoke: "speak",
+    spoken: "speak",
+    told: "tell",
+    went: "go",
+    gone: "go",
+    came: "come",
+    made: "make",
+    knew: "know",
+    known: "know",
+    gave: "give",
+    given: "give",
+  };
+
+  if (irregularRoots[normalized]) {
+    return irregularRoots[normalized];
+  }
+
   if (normalized.endsWith("ies") && normalized.length > 4) {
     return `${normalized.slice(0, -3)}y`;
+  }
+
+  if (normalized.endsWith("ing") && normalized.length > 5) {
+    const withoutIng = normalized.slice(0, -3);
+    const last = withoutIng.slice(-1);
+
+    if (last && withoutIng.endsWith(last.repeat(2))) {
+      return withoutIng.slice(0, -1);
+    }
+
+    return withoutIng;
+  }
+
+  if (normalized.endsWith("ed") && normalized.length > 4) {
+    const withoutEd = normalized.slice(0, -2);
+    const last = withoutEd.slice(-1);
+
+    if (last && withoutEd.endsWith(last.repeat(2))) {
+      return withoutEd.slice(0, -1);
+    }
+
+    return withoutEd;
   }
 
   if (normalized.endsWith("s") && !normalized.endsWith("ss") && normalized.length > 3) {
@@ -247,6 +290,35 @@ function normalizeMeaningRoot(value: string) {
   }
 
   return normalized;
+}
+
+function isBasicVerbInflection(value: string) {
+  const normalized = normalizeStudyWord(value);
+
+  if (!normalized) return false;
+
+  const irregularVerbs = new Set([
+    "said",
+    "says",
+    "saying",
+    "spoke",
+    "spoken",
+    "told",
+    "went",
+    "gone",
+    "came",
+    "made",
+    "knew",
+    "known",
+    "gave",
+    "given",
+  ]);
+
+  return (
+    irregularVerbs.has(normalized) ||
+    normalized.endsWith("ed") ||
+    normalized.endsWith("ing")
+  );
 }
 
 function meaningRoots(value: string) {
@@ -260,16 +332,28 @@ function meaningRoots(value: string) {
 }
 
 function hasSourceMeaningExpansion(wordStudy: VerifiedWordStudy) {
+  const englishWord = normalizeStudyWord(wordStudy.englishWord);
   const englishRoot = normalizeMeaningRoot(wordStudy.englishWord);
 
   if (!englishRoot) return false;
-  if (alwaysKeepDeepDiveWords.has(englishRoot)) return true;
+
+  if (alwaysKeepDeepDiveWords.has(englishWord)) {
+    return true;
+  }
+
+  if (
+    !isBasicVerbInflection(englishWord) &&
+    alwaysKeepDeepDiveWords.has(englishRoot)
+  ) {
+    return true;
+  }
 
   const roots = new Set([
     ...meaningRoots(wordStudy.lexiconMeaning),
     ...meaningRoots(wordStudy.sourceGloss),
   ]);
 
+  roots.delete(englishWord);
   roots.delete(englishRoot);
 
   return roots.size > 0;
