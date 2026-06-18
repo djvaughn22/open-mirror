@@ -225,7 +225,7 @@ export default function BibleExplorerPage() {
               &nbsp; | &nbsp;
               <a href="${chapterUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Chapter</a>
               &nbsp; | &nbsp;
-              <a href="${boardUrl}#card-${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Card</a>
+              <a href="${boardUrl}?card=${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Card</a>
             </p>
           </div>
         `).join("")}
@@ -243,7 +243,7 @@ export default function BibleExplorerPage() {
           <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
             <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${passage.text}</p>
             <p style="text-align: center; margin: 22px 0 0;">
-              <a href="${boardUrl}#card-${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Open Live Card</a>
+              <a href="${boardUrl}?card=${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Open Live Card</a>
               &nbsp; | &nbsp;
               <a href="${verseUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Verse</a>
               &nbsp; | &nbsp;
@@ -450,8 +450,8 @@ export default function BibleExplorerPage() {
             >
               <div className="absolute right-4 top-4">
                 <BibleBingoShareMenu
-                  boardHref={`${boardPath}#card-${index + 1}`}
-                  boardUrl={`${boardUrl}#card-${index + 1}`}
+                  boardHref={`${boardPath}?card=${index + 1}`}
+                  boardUrl={`${boardUrl}?card=${index + 1}`}
                   shareText={[
                     `I rolled this ${section.title} Bible Bingo card on Cross Heart Pray.`,
                     "",
@@ -459,7 +459,7 @@ export default function BibleExplorerPage() {
                     passage.text,
                     "",
                     "Open the live card:",
-                    `${boardUrl}#card-${index + 1}`,
+                    `${boardUrl}?card=${index + 1}`,
                     "",
                     "Open in the Holy Bible app:",
                     verseUrl(passage),

@@ -81,3 +81,27 @@ body {
     display: block !important;
   }
 }
+
+/* Server-rendered single-card Bible Bingo share page using ?card=N. */
+.single-card-server-view {
+  width: min(100%, 36rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.single-card-server-view section {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+}
+
+.single-card-server-view article {
+  width: 100% !important;
+  max-width: 36rem !important;
+  min-height: auto !important;
+}
+
+.single-card-server-view article a,
+.single-card-server-view article button {
+  white-space: nowrap;
+}

@@ -7,6 +7,9 @@ type PageProps = {
   params: Promise<{
     boardId: string;
   }>;
+  searchParams?: Promise<{
+    card?: string | string[];
+  }>;
 };
 
 const shareSections = [
@@ -57,24 +60,77 @@ const cardTones = [
   "border-violet-200/15 bg-violet-300/10",
 ];
 
-export default async function BibleBingoSharePage({ params }: PageProps) {
+function verseUrl(passage: { code: string; chapter: number; verse: number }) {
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
+}
+
+function chapterUrl(passage: { code: string; chapter: number }) {
+  return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
+}
+
+export default async function BibleBingoSharePage({ params, searchParams }: PageProps) {
   const { boardId } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const rawCardParam = Array.isArray(resolvedSearchParams.card)
+    ? resolvedSearchParams.card[0]
+    : resolvedSearchParams.card;
+
   const passages = passagesForBibleBingoBoardId(boardId);
 
   if (!passages) {
     notFound();
   }
 
+  const requestedCardNumber = rawCardParam ? Number(rawCardParam) : NaN;
+  const selectedCardIndex =
+    Number.isInteger(requestedCardNumber) &&
+    requestedCardNumber >= 1 &&
+    requestedCardNumber <= passages.length
+      ? requestedCardNumber - 1
+      : null;
+
+  const selectedPassage =
+    selectedCardIndex === null ? null : passages[selectedCardIndex] ?? null;
+  const selectedSection =
+    selectedCardIndex === null ? null : shareSections[selectedCardIndex] ?? null;
+  const selectedTone =
+    selectedCardIndex === null ? null : cardTones[selectedCardIndex] ?? null;
+  const isSingleCardView =
+    selectedCardIndex !== null && selectedPassage !== null && selectedSection !== null && selectedTone !== null;
+
+  const visiblePassages = isSingleCardView ? [selectedPassage] : passages;
+  const visibleShareSections = isSingleCardView ? [selectedSection] : shareSections;
+  const visibleCardTones = isSingleCardView ? [selectedTone] : cardTones;
+
   const boardPath = `/bible-bingo/${encodeURIComponent(boardId)}`;
   const boardUrl = `https://crossheartpray.com${boardPath}`;
-  const shareText = [
-    "I rolled a 7-card Bible Bingo board on Cross Heart Pray.",
-    "",
-    "Open the live board to read the same verses, use Deep Dive, and play from there:",
-    "",
-    boardUrl,
-  ].join("\n");
-  const shareSubject = "My Bible Bingo board";
+  const cardPath = isSingleCardView ? `${boardPath}?card=${selectedCardIndex + 1}` : boardPath;
+  const cardUrl = `https://crossheartpray.com${cardPath}`;
+
+  const shareText = isSingleCardView
+    ? [
+        `I rolled this ${selectedSection.title} Bible Bingo card on Cross Heart Pray.`,
+        "",
+        selectedPassage.label,
+        selectedPassage.text,
+        "",
+        "Open the live card:",
+        cardUrl,
+        "",
+        "Open the full 7-card board:",
+        boardUrl,
+      ].join("\n")
+    : [
+        "I rolled a 7-card Bible Bingo board on Cross Heart Pray.",
+        "",
+        "Open the live board to read the same verses, use Deep Dive, and play from there:",
+        "",
+        boardUrl,
+      ].join("\n");
+
+  const shareSubject = isSingleCardView
+    ? `${selectedPassage.label} Bible Bingo card`
+    : "My Bible Bingo board";
 
   const htmlEmail = `
     <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
@@ -96,17 +152,40 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
             <p style="font-family: Georgia, 'Times New Roman', serif; text-align: center; color: #0f172a; font-weight: bold; font-size: 24px; line-height: 1.25; margin: 10px 0 14px;">${passage.label}</p>
             <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${passage.text}</p>
             <p style="text-align: center;">
-              <a href="https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS" style="color: #065f46; font-weight: bold; text-decoration: none;">Verse</a>
+              <a href="${verseUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Verse</a>
               &nbsp; | &nbsp;
-              <a href="https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS" style="color: #065f46; font-weight: bold; text-decoration: none;">Chapter</a>
+              <a href="${chapterUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Chapter</a>
               &nbsp; | &nbsp;
-              <a href="${boardUrl}#card-${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Card</a>
+              <a href="${boardUrl}?card=${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Card</a>
             </p>
           </div>
         `).join("")}
       </div>
     </div>
   `;
+
+  const singleCardHtmlEmail = isSingleCardView
+    ? `
+      <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
+        <div style="max-width: 560px; margin: 0 auto;">
+          <p style="font-size: 32px; text-align: center; margin: 0 0 12px;">${selectedSection.emoji}</p>
+          <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 30px; line-height: 1.15; color: #0f172a;">${selectedSection.title} Bible Bingo Card</h1>
+          <p style="font-family: Georgia, 'Times New Roman', serif; text-align: center; color: #0f172a; font-weight: bold; font-size: 24px; line-height: 1.25; margin: 18px 0 12px;">${selectedPassage.label}</p>
+          <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
+            <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${selectedPassage.text}</p>
+            <p style="text-align: center; margin: 22px 0 0;">
+              <a href="${cardUrl}" style="color: #065f46; font-weight: bold; text-decoration: none;">Open Live Card</a>
+              &nbsp; | &nbsp;
+              <a href="${boardUrl}" style="color: #065f46; font-weight: bold; text-decoration: none;">All 7 Cards</a>
+            </p>
+          </div>
+          <p style="text-align: center; color: #64748b; font-size: 13px; line-height: 1.6;">
+            Cross Heart Pray · 7 Card Bible Bingo
+          </p>
+        </div>
+      </div>
+    `
+    : "";
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
@@ -139,24 +218,36 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
           </p>
 
           <p className="text-center justify-center items-center mb-5 inline-flex rounded-full border border-white/15 bg-black/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-100">
-            Shared Bible Bingo Board
+            {isSingleCardView ? "Shared Bible Bingo Card" : "Shared Bible Bingo Board"}
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            7 Bible Bingo Cards
+            {isSingleCardView ? "Bible Bingo Card" : "7 Bible Bingo Cards"}
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-            This link preserves the exact 7 cards. Read the verses, use Deep Dive, open the chapters, and play from here.
+            {isSingleCardView
+              ? "This link opens one shared Bible Bingo card. Read the verse, use Deep Dive when available, or go back to all 7 cards."
+              : "This link preserves the exact 7 cards. Read the verses, use Deep Dive, open the chapters, and play from here."}
           </p>
+
+          {isSingleCardView ? (
+            <a
+              href={boardPath}
+              className="mx-auto mt-6 inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-bold text-emerald-50 shadow-sm transition hover:bg-emerald-300/15"
+            >
+              Back to all 7 Bible Bingo cards
+            </a>
+          ) : null}
 
           <div className="mx-auto mt-8 flex flex-col items-center justify-center gap-3">
             <BibleBingoShareMenu
-              boardHref={boardPath}
-              boardUrl={boardUrl}
+              boardHref={isSingleCardView ? cardPath : boardPath}
+              boardUrl={isSingleCardView ? cardUrl : boardUrl}
               shareText={shareText}
               emailSubject={shareSubject}
-              htmlEmail={htmlEmail}
+              htmlEmail={isSingleCardView ? singleCardHtmlEmail : htmlEmail}
+              itemLabel={isSingleCardView ? "card" : "board"}
             />
 
             <a
@@ -168,11 +259,13 @@ export default async function BibleBingoSharePage({ params }: PageProps) {
           </div>
         </section>
 
-        <BibleBingoShareBoard
-          passages={passages}
-          shareSections={shareSections}
-          cardTones={cardTones}
-        />
+        <div className={isSingleCardView ? "single-card-server-view" : undefined}>
+          <BibleBingoShareBoard
+            passages={visiblePassages}
+            shareSections={visibleShareSections}
+            cardTones={visibleCardTones}
+          />
+        </div>
 
         <footer className="px-8 py-10 text-center text-sm text-zinc-500">
           <p>© 2026 Open Mirror LLC. Cross Heart Pray.</p>
