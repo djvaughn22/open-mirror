@@ -43,3 +43,30 @@ body {
     margin-right: auto;
   }
 }
+
+/* Fix shared single Bible Bingo card rendering.
+   The hash link hides the other 6 cards, so force the remaining card
+   into one full centered column instead of leaving it in a multi-column grid. */
+@supports selector(body:has(article[id^="card-"]:target)) {
+  body:has(article[id^="card-"]:target) section:has(article[id^="card-"]:target) {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: min(100%, 34rem) !important;
+    max-width: 34rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    gap: 0 !important;
+  }
+
+  body:has(article[id^="card-"]:target) article[id^="card-"]:target {
+    width: 100% !important;
+    max-width: 34rem !important;
+    min-height: auto !important;
+    scroll-margin-top: 2rem;
+  }
+
+  body:has(article[id^="card-"]:target) article[id^="card-"]:target a,
+  body:has(article[id^="card-"]:target) article[id^="card-"]:target button {
+    white-space: nowrap;
+  }
+}
