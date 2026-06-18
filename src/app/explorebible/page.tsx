@@ -380,12 +380,11 @@ export default function BibleExplorerPage() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-zinc-300 md:text-3xl">
-            Spin seven Bible cards from across the Holy Bible.
+            Spin seven Bible cards from across the Holy Bible. Open each verse and read the chapter.
           </p>
 
           <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
-            Open each verse, read the chapter, and use Deep Dive when original
-            Hebrew or Greek word details are available.
+            Deep Dive on original Hebrew and Greek when available.
           </p>
 
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
