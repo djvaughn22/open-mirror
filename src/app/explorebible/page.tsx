@@ -466,8 +466,7 @@ export default function BibleExplorerPage() {
                     "",
                     "Read the chapter:",
                     chapterUrl(passage),
-                  ].join("
-")}
+                  ].join("\n")}
                   emailSubject={`${passage.label} Bible Bingo card`}
                   htmlEmail={cardHtmlEmail(section, passage, index)}
                   align="right"
