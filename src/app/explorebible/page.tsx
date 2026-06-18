@@ -425,15 +425,18 @@ export default function BibleExplorerPage() {
             >
               <div className="absolute right-4 top-4">
                 <BibleBingoShareMenu
-                  boardHref={verseUrl(passage)}
-                  boardUrl={verseUrl(passage)}
+                  boardHref={`${boardPath}#card-${index + 1}`}
+                  boardUrl={`${boardUrl}#card-${index + 1}`}
                   shareText={[
                     `I rolled this ${section.title} Bible Bingo verse on Cross Heart Pray.`,
                     "",
                     passage.label,
                     passage.text,
                     "",
-                    "Open this verse:",
+                    "Open this verse card:",
+                    `${boardUrl}#card-${index + 1}`,
+                    "",
+                    "Open in the Holy Bible app:",
                     verseUrl(passage),
                     "",
                     "Read the chapter:",

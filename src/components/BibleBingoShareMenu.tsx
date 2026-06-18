@@ -193,9 +193,9 @@ export default function BibleBingoShareMenu({
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
             {copied ||
               (htmlEmail
-                ? "Use the link for text. Copy HTML email board, then paste into an email body for the rich card view."
+                ? "Use the link for text. Copy HTML email board, then paste into an email body for the rich 7-card board view."
                 : itemLabel === "verse"
-                  ? "Choose how to share this verse."
+                  ? "Choose how to share this verse card."
                   : "Choose how to share this card.")}
 
           </p>
