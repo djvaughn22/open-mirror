@@ -428,12 +428,12 @@ export default function BibleExplorerPage() {
                   boardHref={`${boardPath}#card-${index + 1}`}
                   boardUrl={`${boardUrl}#card-${index + 1}`}
                   shareText={[
-                    `I rolled this ${section.title} Bible Bingo verse on Cross Heart Pray.`,
+                    `I rolled this ${section.title} Bible Bingo card on Cross Heart Pray.`,
                     "",
                     passage.label,
                     passage.text,
                     "",
-                    "Open this verse card:",
+                    "Open the live card:",
                     `${boardUrl}#card-${index + 1}`,
                     "",
                     "Open in the Holy Bible app:",
@@ -441,11 +441,34 @@ export default function BibleExplorerPage() {
                     "",
                     "Read the chapter:",
                     chapterUrl(passage),
-                  ].join("\n")}
-                  emailSubject={`${passage.label} Bible Bingo verse`}
+                  ].join("
+")}
+                  emailSubject={`${passage.label} Bible Bingo card`}
+                  htmlEmail={`
+                    <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
+                      <div style="max-width: 560px; margin: 0 auto;">
+                        <p style="font-size: 32px; text-align: center; margin: 0 0 12px;">${section.emoji}</p>
+                        <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 30px; line-height: 1.15; color: #0f172a;">${section.title} Bible Bingo Card</h1>
+                        <p style="font-family: Georgia, 'Times New Roman', serif; text-align: center; color: #0f172a; font-weight: bold; font-size: 24px; line-height: 1.25; margin: 18px 0 12px;">${passage.label}</p>
+                        <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
+                          <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${passage.text}</p>
+                          <p style="text-align: center; margin: 22px 0 0;">
+                            <a href="${boardUrl}#card-${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Open Live Card</a>
+                            &nbsp; | &nbsp;
+                            <a href="${verseUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Verse</a>
+                            &nbsp; | &nbsp;
+                            <a href="${chapterUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Chapter</a>
+                          </p>
+                        </div>
+                        <p style="text-align: center; color: #64748b; font-size: 13px; line-height: 1.6;">
+                          Cross Heart Pray · 7 Card Bible Bingo
+                        </p>
+                      </div>
+                    </div>
+                  `}
                   align="right"
-                  itemLabel="verse"
-                  buttonLabel={`Share ${passage.label}`}
+                  itemLabel="card"
+                  buttonLabel={`Share ${section.title} card`}
                   iconOnly
                 />
               </div>

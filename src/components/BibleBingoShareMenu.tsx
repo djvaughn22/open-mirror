@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+type ShareItemLabel = "board" | "card" | "verse";
+
 type BibleBingoShareMenuProps = {
   boardHref: string;
   boardUrl: string;
@@ -9,7 +11,7 @@ type BibleBingoShareMenuProps = {
   emailSubject: string;
   htmlEmail?: string;
   align?: "center" | "right";
-  itemLabel?: "board" | "card" | "verse";
+  itemLabel?: ShareItemLabel;
   buttonLabel?: string;
   iconOnly?: boolean;
 };
@@ -43,6 +45,51 @@ function menuPositionClass(align: BibleBingoShareMenuProps["align"]) {
   return "left-1/2 -translate-x-1/2";
 }
 
+function shareLabels(itemLabel: ShareItemLabel) {
+  if (itemLabel === "card") {
+    return {
+      open: "Open live card",
+      text: "Text card link",
+      email: "Email card link",
+      html: "Copy HTML email card",
+      copyLink: "Copy card link",
+      copyText: "Copy card text",
+      copiedLink: "Card link copied",
+      copiedText: "Card text copied",
+      copiedHtml: "HTML email card copied",
+      help: "Use the link for text. Copy HTML email card, then paste into an email body for the rich card view.",
+    };
+  }
+
+  if (itemLabel === "verse") {
+    return {
+      open: "Open this verse",
+      text: "Text this verse",
+      email: "Email this verse",
+      html: "Copy HTML email verse",
+      copyLink: "Copy verse link",
+      copyText: "Copy verse text",
+      copiedLink: "Verse link copied",
+      copiedText: "Verse text copied",
+      copiedHtml: "HTML email verse copied",
+      help: "Choose how to share this verse.",
+    };
+  }
+
+  return {
+    open: "Open live board",
+    text: "Text board link",
+    email: "Email board link",
+    html: "Copy HTML email board",
+    copyLink: "Copy board link",
+    copyText: "Copy invite text",
+    copiedLink: "Board link copied",
+    copiedText: "Invite text copied",
+    copiedHtml: "HTML email board copied",
+    help: "Use the link for text. Copy HTML email board, then paste into an email body for the rich 7-card board view.",
+  };
+}
+
 export default function BibleBingoShareMenu({
   boardHref,
   boardUrl,
@@ -56,9 +103,8 @@ export default function BibleBingoShareMenu({
 }: BibleBingoShareMenuProps) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState("");
+  const labels = shareLabels(itemLabel);
 
-  const itemName =
-    itemLabel === "verse" ? "verse" : itemLabel === "card" ? "card" : "board";
   const encodedShareText = encodeURIComponent(shareText);
   const encodedEmailSubject = encodeURIComponent(emailSubject);
 
@@ -75,7 +121,7 @@ export default function BibleBingoShareMenu({
 
   async function copyHtmlEmail() {
     if (!htmlEmail) {
-      await copyValue(shareText, "Invite text copied");
+      await copyValue(shareText, labels.copiedText);
       return;
     }
 
@@ -87,10 +133,10 @@ export default function BibleBingoShareMenu({
         }),
       ]);
 
-      setCopied("HTML email board copied");
+      setCopied(labels.copiedHtml);
       window.setTimeout(() => setCopied(""), 1800);
     } catch {
-      await copyValue(shareText, "Invite text copied");
+      await copyValue(shareText, labels.copiedText);
     }
   }
 
@@ -122,11 +168,7 @@ export default function BibleBingoShareMenu({
             href={boardHref}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            {itemLabel === "verse"
-              ? "Open this verse"
-              : itemLabel === "card"
-                ? "Open live card"
-                : "Open live board"}
+            {labels.open}
           </a>
 
           <a
@@ -134,11 +176,7 @@ export default function BibleBingoShareMenu({
             href={`sms:?&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            {itemLabel === "verse"
-              ? "Text this verse"
-              : itemLabel === "card"
-                ? "Text card link"
-                : "Text board link"}
+            {labels.text}
           </a>
 
           <a
@@ -146,11 +184,7 @@ export default function BibleBingoShareMenu({
             href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            {itemLabel === "verse"
-              ? "Email this verse"
-              : itemLabel === "card"
-                ? "Email card link"
-                : "Email board link"}
+            {labels.email}
           </a>
 
           {htmlEmail ? (
@@ -160,50 +194,30 @@ export default function BibleBingoShareMenu({
               onClick={copyHtmlEmail}
               className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
             >
-              {itemLabel === "card"
-                ? "Copy HTML email card"
-                : itemLabel === "verse"
-                  ? "Copy HTML email verse"
-                  : "Copy HTML email board"}
+              {labels.html}
             </button>
           ) : null}
 
           <button
             type="button"
             role="menuitem"
-            onClick={() => copyValue(boardUrl, `${itemName[0].toUpperCase()}${itemName.slice(1)} link copied`)}
+            onClick={() => copyValue(boardUrl, labels.copiedLink)}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            {itemLabel === "verse"
-              ? "Copy verse link"
-              : itemLabel === "card"
-                ? "Copy card link"
-                : "Copy board link"}
+            {labels.copyLink}
           </button>
 
           <button
             type="button"
             role="menuitem"
-            onClick={() => copyValue(shareText, itemLabel === "card" ? "Card text copied" : "Invite text copied")}
+            onClick={() => copyValue(shareText, labels.copiedText)}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            {itemLabel === "verse"
-              ? "Copy verse text"
-              : itemLabel === "card"
-                ? "Copy card text"
-                : "Copy invite text"}
+            {labels.copyText}
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
-            {copied ||
-              (htmlEmail
-                ? "Use the link for text. Copy HTML email board, then paste into an email body for the rich 7-card board view."
-                : itemLabel === "verse"
-                  ? "Choose how to share this verse card."
-                  : itemLabel === "card"
-                    ? "Use the link for text. Copy HTML email card, then paste into an email body for the rich card view."
-                    : "Choose how to share this card.")}
-
+            {copied || labels.help}
           </p>
         </div>
       ) : null}
