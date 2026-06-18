@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { randomReferenceForSection } from "../../lib/bibleRandom";
+import {
+  bibleBingoBoardIdFromPassages,
+  randomReferenceForSection,
+} from "../../lib/bibleRandom";
 import BibleVerseLookup from "../../components/BibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
@@ -182,6 +185,25 @@ export default function BibleExplorerPage() {
     return `https://www.bible.com/verse-of-the-day`;
   }, []);
 
+  const boardId = useMemo(
+    () => bibleBingoBoardIdFromPassages(path.map(({ passage }) => passage)),
+    [path],
+  );
+  const boardPath = `/bible-bingo/${boardId}`;
+  const boardUrl = `https://crossheartpray.com${boardPath}`;
+  const boardShareText = [
+    "I rolled a Bible Bingo board on Cross Heart Pray:",
+    "",
+    ...path.map(
+      ({ section, passage }, index) =>
+        `${index + 1}. ${section.title}: ${passage.label}`,
+    ),
+    "",
+    boardUrl,
+  ].join("\n");
+  const encodedBoardShareText = encodeURIComponent(boardShareText);
+  const encodedBoardShareSubject = encodeURIComponent("My Bible Bingo board");
+
   function wordStudiesForPassage(passage: Passage) {
     return wordStudiesByPassage[wordStudyLookupKey(passage)] ?? [];
   }
@@ -345,6 +367,29 @@ export default function BibleExplorerPage() {
           >
             New Bible Bingo Board
           </button>
+
+          <div className="mx-auto mt-4 flex max-w-2xl flex-col justify-center gap-3 sm:flex-row">
+            <a
+              href={boardPath}
+              className="text-center justify-center items-center inline-flex rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-300/15"
+            >
+              View share board
+            </a>
+
+            <a
+              href={`sms:?&body=${encodedBoardShareText}`}
+              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Text board
+            </a>
+
+            <a
+              href={`mailto:?subject=${encodedBoardShareSubject}&body=${encodedBoardShareText}`}
+              className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Email board
+            </a>
+          </div>
         </section>
 
         <p className="mb-5 text-center text-sm font-semibold text-slate-400">

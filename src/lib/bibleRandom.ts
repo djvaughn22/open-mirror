@@ -1,6 +1,6 @@
 import { LOCAL_BIBLE_VERSES, type LocalBibleVerse } from "./localBibleVerses";
 
-type BibleBingoPassage = {
+export type BibleBingoPassage = {
   label: string;
   code: string;
   chapter: string;
@@ -8,12 +8,29 @@ type BibleBingoPassage = {
   text: string;
 };
 
+const BOARD_REFERENCE_SEPARATOR = "~";
+const BOARD_REFERENCE_PART_SEPARATOR = ".";
+
 const versesByBook = new Map<string, LocalBibleVerse[]>();
+const versesByBoardReference = new Map<string, LocalBibleVerse>();
+
+function boardReferenceKey(code: string, chapter: string, verse: string) {
+  return [
+    code.trim().toUpperCase(),
+    String(Number(chapter)),
+    String(Number(verse)),
+  ].join(BOARD_REFERENCE_PART_SEPARATOR);
+}
 
 for (const verse of LOCAL_BIBLE_VERSES) {
   const current = versesByBook.get(verse.book) ?? [];
   current.push(verse);
   versesByBook.set(verse.book, current);
+
+  versesByBoardReference.set(
+    boardReferenceKey(verse.code, verse.chapter, verse.verse),
+    verse,
+  );
 }
 
 const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => verse.group === "Gospel");
@@ -72,6 +89,55 @@ function toPassage(verse: LocalBibleVerse): BibleBingoPassage {
     verse: verse.verse,
     text: verse.text,
   };
+}
+
+export function bibleBingoBoardIdFromPassages(passages: BibleBingoPassage[]) {
+  return passages
+    .map((passage) =>
+      boardReferenceKey(passage.code, passage.chapter, passage.verse),
+    )
+    .join(BOARD_REFERENCE_SEPARATOR);
+}
+
+export function passagesForBibleBingoBoardId(boardId: string) {
+  const parts = decodeURIComponent(boardId)
+    .trim()
+    .split(BOARD_REFERENCE_SEPARATOR)
+    .filter(Boolean);
+
+  if (parts.length !== 7) {
+    return null;
+  }
+
+  const passages: BibleBingoPassage[] = [];
+
+  for (const part of parts) {
+    const referenceParts = part.split(BOARD_REFERENCE_PART_SEPARATOR);
+
+    if (referenceParts.length !== 3) {
+      return null;
+    }
+
+    const [code, chapter, verse] = referenceParts;
+    const chapterNumber = Number(chapter);
+    const verseNumber = Number(verse);
+
+    if (!code || !Number.isFinite(chapterNumber) || !Number.isFinite(verseNumber)) {
+      return null;
+    }
+
+    const match = versesByBoardReference.get(
+      boardReferenceKey(code, String(chapterNumber), String(verseNumber)),
+    );
+
+    if (!match) {
+      return null;
+    }
+
+    passages.push(toPassage(match));
+  }
+
+  return passages;
 }
 
 export function randomReferenceForSection(sectionTitle: string, avoidLabel?: string) {
