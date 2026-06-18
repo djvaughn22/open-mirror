@@ -201,6 +201,38 @@ export default function BibleExplorerPage() {
   ].join("\n");
   const boardShareSubject = "My Bible Bingo board";
 
+  const boardHtmlEmail = `
+    <div style="font-family: Arial, sans-serif; background: #020617; color: #f8fafc; padding: 24px;">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <p style="font-size: 32px; text-align: center; margin: 0 0 16px;">✝️ ❤️ 🙏</p>
+        <h1 style="text-align: center; margin: 0; font-size: 32px;">Bible Bingo Board</h1>
+        <p style="text-align: center; color: #cbd5e1; font-size: 16px; line-height: 1.6;">
+          Open the live board to use Deep Dive and the Bible app links.
+        </p>
+        <p style="text-align: center; margin: 24px 0;">
+          <a href="${boardUrl}" style="display: inline-block; background: #064e3b; color: #ecfdf5; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: bold;">
+            Open Live Bible Bingo Board
+          </a>
+        </p>
+        ${path.map(({ section, passage }, index) => `
+          <div style="border: 1px solid rgba(255,255,255,0.18); border-radius: 24px; padding: 18px; margin: 16px 0; background: rgba(255,255,255,0.06);">
+            <p style="font-size: 28px; text-align: center; margin: 0;">${section.emoji}</p>
+            <h2 style="text-align: center; margin: 12px 0 8px; font-size: 22px;">${section.title}</h2>
+            <p style="text-align: center; color: #e2e8f0; font-weight: bold; font-size: 20px; margin: 12px 0;">${passage.label}</p>
+            <p style="color: #cbd5e1; line-height: 1.7; font-size: 15px;">${passage.text}</p>
+            <p style="text-align: center;">
+              <a href="${verseUrl(passage)}" style="color: #a7f3d0; font-weight: bold;">Verse</a>
+              &nbsp; | &nbsp;
+              <a href="${chapterUrl(passage)}" style="color: #a7f3d0; font-weight: bold;">Chapter</a>
+              &nbsp; | &nbsp;
+              <a href="${boardUrl}#card-${index + 1}" style="color: #a7f3d0; font-weight: bold;">Card</a>
+            </p>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+
   function wordStudiesForPassage(passage: Passage) {
     return wordStudiesByPassage[wordStudyLookupKey(passage)] ?? [];
   }
@@ -371,6 +403,7 @@ export default function BibleExplorerPage() {
               boardUrl={boardUrl}
               shareText={boardShareText}
               emailSubject={boardShareSubject}
+              htmlEmail={boardHtmlEmail}
             />
           </div>
         </section>

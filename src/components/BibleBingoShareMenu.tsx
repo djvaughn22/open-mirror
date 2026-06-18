@@ -7,6 +7,7 @@ type BibleBingoShareMenuProps = {
   boardUrl: string;
   shareText: string;
   emailSubject: string;
+  htmlEmail?: string;
   align?: "center" | "right";
 };
 
@@ -44,6 +45,7 @@ export default function BibleBingoShareMenu({
   boardUrl,
   shareText,
   emailSubject,
+  htmlEmail,
   align = "center",
 }: BibleBingoShareMenuProps) {
   const [open, setOpen] = useState(false);
@@ -60,6 +62,27 @@ export default function BibleBingoShareMenu({
     } catch {
       setCopied("Copy failed");
       window.setTimeout(() => setCopied(""), 1800);
+    }
+  }
+
+  async function copyHtmlEmail() {
+    if (!htmlEmail) {
+      await copyValue(shareText, "Invite text copied");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "text/html": new Blob([htmlEmail], { type: "text/html" }),
+          "text/plain": new Blob([shareText], { type: "text/plain" }),
+        }),
+      ]);
+
+      setCopied("HTML email board copied");
+      window.setTimeout(() => setCopied(""), 1800);
+    } catch {
+      await copyValue(shareText, "Invite text copied");
     }
   }
 
@@ -108,6 +131,15 @@ export default function BibleBingoShareMenu({
           <button
             type="button"
             role="menuitem"
+            onClick={copyHtmlEmail}
+            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
+          >
+            Copy HTML email board
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
             onClick={() => copyValue(boardUrl, "Board link copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
@@ -124,7 +156,7 @@ export default function BibleBingoShareMenu({
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
-            {copied || "Sends the live board link so people can open the exact 7 cards."}
+            {copied || "Use the link for text. Copy HTML email board, then paste into an email body for the rich card view."}
           </p>
         </div>
       ) : null}
