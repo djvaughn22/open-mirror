@@ -172,6 +172,7 @@ function languageButtonClass(language: OriginalLanguage, activeLanguage: Origina
 export default function BibleExplorerPage() {
   const [path, setPath] = useState(() => buildPath());
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
+  const [spinningCards, setSpinningCards] = useState(() => sections.map(() => false));
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -306,29 +307,50 @@ export default function BibleExplorerPage() {
     };
   }, [path]);
 
-  function spinAll() {
-    setPath((current) => buildPath(current));
-    setSpinVersions((current) => current.map((version) => version + 1));
+  function revealBibleBingoCards(nextPath: typeof path, cardIndexes: number[]) {
+    setSpinVersions((current) =>
+      current.map((version, index) => (cardIndexes.includes(index) ? version + 1 : version)),
+    );
+
+    setSpinningCards((current) =>
+      current.map((isSpinning, index) => (cardIndexes.includes(index) ? true : isSpinning)),
+    );
+
+    window.setTimeout(() => {
+      setPath(nextPath);
+    }, 360);
+
+    window.setTimeout(() => {
+      setSpinningCards((current) =>
+        current.map((isSpinning, index) => (cardIndexes.includes(index) ? false : isSpinning)),
+      );
+    }, 920);
   }
+
+  function spinAll() {
+    revealBibleBingoCards(
+      sections.map((section) => ({
+        section,
+        passage: randomReferenceForSection(section.key),
+      })),
+      sections.map((_, index) => index),
+    );
+  }
+
 
   function spinOne(index: number) {
-    setPath((current) =>
-      current.map((item, itemIndex) =>
-        itemIndex === index
-          ? {
-              section: item.section,
-              passage: randomPassage(item.section, item.passage.label),
-            }
-          : item,
-      ),
+    const nextPath = path.map((item, itemIndex) =>
+      itemIndex === index
+        ? {
+            ...item,
+            passage: randomReferenceForSection(item.section.key),
+          }
+        : item,
     );
 
-    setSpinVersions((current) =>
-      current.map((version, itemIndex) =>
-        itemIndex === index ? version + 1 : version,
-      ),
-    );
+    revealBibleBingoCards(nextPath, [index]);
   }
+
 
   function openWordStudy(
     _section: Section,
@@ -440,7 +462,7 @@ export default function BibleExplorerPage() {
             <article
               id={`card-${index + 1}`}
               key={`${section.title}-${spinVersions[index]}`}
-              className={`relative rounded-[1.5rem] border p-5 text-center text-slate-100 lg:col-span-2 sm:p-6 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
+              className={`relative overflow-hidden rounded-[1.5rem] border p-5 text-center text-slate-100 lg:col-span-2 sm:p-6 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""}`}
               style={{
                 minHeight: "285px",
                 display: "flex",
@@ -448,6 +470,14 @@ export default function BibleExplorerPage() {
                 alignItems: "center",
               }}
             >
+              {spinningCards[index] ? (
+                <div className="bible-card-back" aria-hidden="true">
+                  <div className="bible-card-back-icons">✝️ ❤️ 🙏</div>
+                  <div className="bible-card-back-title">Bible Bingo</div>
+                  <div className="bible-card-back-line">Finding your verse...</div>
+                </div>
+              ) : null}
+
               <div className="absolute right-4 top-4">
                 <BibleBingoShareMenu
                   boardHref={`${boardPath}?card=${index + 1}`}
@@ -569,30 +599,141 @@ export default function BibleExplorerPage() {
       <style>{`
         @keyframes bible-card-axis-spin {
           0% {
-            opacity: 0.85;
-            transform: perspective(900px) rotateY(0deg) scale(0.98);
+            transform: translateY(0) rotateZ(0deg) scale(1);
           }
 
-          45% {
-            opacity: 0.45;
-            transform: perspective(900px) rotateY(88deg) scale(0.96);
+          16% {
+            transform: translateY(-7px) rotateZ(-1.4deg) scale(1.025);
+          }
+
+          34% {
+            transform: translateY(3px) rotateZ(1.2deg) scale(0.99);
+          }
+
+          54% {
+            transform: translateY(-5px) rotateZ(-0.8deg) scale(1.018);
+          }
+
+          76% {
+            transform: translateY(2px) rotateZ(0.5deg) scale(1.006);
           }
 
           100% {
+            transform: translateY(0) rotateZ(0deg) scale(1);
+          }
+        }
+
+        @keyframes bible-card-back-reveal {
+          0% {
+            opacity: 0;
+            transform: scale(0.96);
+          }
+
+          16% {
             opacity: 1;
-            transform: perspective(900px) rotateY(360deg) scale(1);
+            transform: scale(1.02);
+          }
+
+          70% {
+            opacity: 1;
+            transform: scale(1);
+          }
+
+          100% {
+            opacity: 0;
+            transform: scale(1.04);
+          }
+        }
+
+        @keyframes bible-card-back-shine {
+          0% {
+            transform: translateX(-140%) rotate(12deg);
+          }
+
+          100% {
+            transform: translateX(140%) rotate(12deg);
           }
         }
 
         .bible-card-spin {
-          animation: bible-card-axis-spin 700ms ease-in-out;
+          animation: bible-card-axis-spin 820ms cubic-bezier(0.2, 0.9, 0.25, 1.12);
           transform-origin: center;
-          transform-style: preserve-3d;
-          will-change: transform, opacity;
+          will-change: transform;
+        }
+
+        .bible-card-is-spinning {
+          box-shadow:
+            0 0 0 1px rgb(255 255 255 / 0.08),
+            0 20px 55px rgb(16 185 129 / 0.18);
+        }
+
+        .bible-card-back {
+          position: absolute;
+          inset: 0;
+          z-index: 20;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.7rem;
+          border-radius: 1.5rem;
+          overflow: hidden;
+          border: 1px solid rgb(255 255 255 / 0.18);
+          background:
+            radial-gradient(circle at 20% 15%, rgb(255 255 255 / 0.18), transparent 30%),
+            radial-gradient(circle at 80% 20%, rgb(16 185 129 / 0.22), transparent 34%),
+            linear-gradient(135deg, rgb(15 23 42 / 0.98), rgb(6 78 59 / 0.96), rgb(30 41 59 / 0.98));
+          color: white;
+          pointer-events: none;
+          animation: bible-card-back-reveal 920ms ease-in-out both;
+        }
+
+        .bible-card-back::after {
+          content: "";
+          position: absolute;
+          top: -20%;
+          bottom: -20%;
+          width: 36%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgb(255 255 255 / 0.22),
+            transparent
+          );
+          animation: bible-card-back-shine 720ms ease-in-out;
+        }
+
+        .bible-card-back-icons {
+          position: relative;
+          z-index: 1;
+          font-size: 2.35rem;
+          letter-spacing: 0.25rem;
+        }
+
+        .bible-card-back-title {
+          position: relative;
+          z-index: 1;
+          font-family: Georgia, "Times New Roman", serif;
+          font-size: 1.65rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .bible-card-back-line {
+          position: relative;
+          z-index: 1;
+          font-size: 0.78rem;
+          font-weight: 800;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgb(209 250 229);
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .bible-card-spin {
+          .bible-card-spin,
+          .bible-card-back,
+          .bible-card-back::after {
             animation: none;
           }
         }
