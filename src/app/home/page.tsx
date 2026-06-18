@@ -90,7 +90,7 @@ export default function HomePage() {
             Cross Heart Pray
           </h1>
 
-          <div className="mx-auto mt-8 max-w-4xl rounded-[2rem] border border-white/10 bg-white/[0.04] px-6 py-7 shadow-2xl shadow-black/20">
+          <div className="mx-auto mt-8 max-w-4xl">
             <p className="text-3xl font-extrabold leading-tight text-zinc-100 sm:text-5xl">
               Your Way
             </p>
