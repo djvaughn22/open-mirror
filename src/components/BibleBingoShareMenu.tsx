@@ -9,7 +9,7 @@ type BibleBingoShareMenuProps = {
   emailSubject: string;
   htmlEmail?: string;
   align?: "center" | "right";
-  itemLabel?: "board" | "card";
+  itemLabel?: "board" | "card" | "verse";
   buttonLabel?: string;
   iconOnly?: boolean;
 };
@@ -57,7 +57,8 @@ export default function BibleBingoShareMenu({
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState("");
 
-  const itemName = itemLabel === "card" ? "card" : "board";
+  const itemName =
+    itemLabel === "verse" ? "verse" : itemLabel === "card" ? "card" : "board";
   const encodedShareText = encodeURIComponent(shareText);
   const encodedEmailSubject = encodeURIComponent(emailSubject);
 
@@ -121,7 +122,11 @@ export default function BibleBingoShareMenu({
             href={boardHref}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            Open live board
+            {itemLabel === "verse"
+              ? "Open this verse"
+              : itemLabel === "card"
+                ? "Open this card"
+                : "Open live board"}
           </a>
 
           <a
@@ -129,7 +134,11 @@ export default function BibleBingoShareMenu({
             href={`sms:?&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            Text board link
+            {itemLabel === "verse"
+              ? "Text this verse"
+              : itemLabel === "card"
+                ? "Text this card"
+                : "Text board link"}
           </a>
 
           <a
@@ -137,7 +146,11 @@ export default function BibleBingoShareMenu({
             href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            Email board link
+            {itemLabel === "verse"
+              ? "Email this verse"
+              : itemLabel === "card"
+                ? "Email this card"
+                : "Email board link"}
           </a>
 
           {htmlEmail ? (
@@ -157,7 +170,11 @@ export default function BibleBingoShareMenu({
             onClick={() => copyValue(boardUrl, `${itemName[0].toUpperCase()}${itemName.slice(1)} link copied`)}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy board link
+            {itemLabel === "verse"
+              ? "Copy verse link"
+              : itemLabel === "card"
+                ? "Copy card link"
+                : "Copy board link"}
           </button>
 
           <button
@@ -166,14 +183,20 @@ export default function BibleBingoShareMenu({
             onClick={() => copyValue(shareText, itemLabel === "card" ? "Card text copied" : "Invite text copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy invite text
+            {itemLabel === "verse"
+              ? "Copy verse text"
+              : itemLabel === "card"
+                ? "Copy card text"
+                : "Copy invite text"}
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
             {copied ||
               (htmlEmail
                 ? "Use the link for text. Copy HTML email board, then paste into an email body for the rich card view."
-                : "Choose how to share this card.")}
+                : itemLabel === "verse"
+                  ? "Choose how to share this verse."
+                  : "Choose how to share this card.")}
 
           </p>
         </div>

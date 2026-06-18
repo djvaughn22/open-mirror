@@ -425,21 +425,24 @@ export default function BibleExplorerPage() {
             >
               <div className="absolute right-4 top-4">
                 <BibleBingoShareMenu
-                  boardHref={`${boardPath}#card-${index + 1}`}
-                  boardUrl={`${boardUrl}#card-${index + 1}`}
+                  boardHref={verseUrl(passage)}
+                  boardUrl={verseUrl(passage)}
                   shareText={[
-                    `I rolled this ${section.title} Bible Bingo card on Cross Heart Pray.`,
+                    `I rolled this ${section.title} Bible Bingo verse on Cross Heart Pray.`,
                     "",
                     passage.label,
                     passage.text,
                     "",
-                    "Open the card, verse, chapter, and Deep Dive from here:",
-                    `${boardUrl}#card-${index + 1}`,
+                    "Open this verse:",
+                    verseUrl(passage),
+                    "",
+                    "Read the chapter:",
+                    chapterUrl(passage),
                   ].join("\n")}
-                  emailSubject={`${passage.label} Bible Bingo card`}
+                  emailSubject={`${passage.label} Bible Bingo verse`}
                   align="right"
-                  itemLabel="card"
-                  buttonLabel={`Share ${section.title} card`}
+                  itemLabel="verse"
+                  buttonLabel={`Share ${passage.label}`}
                   iconOnly
                 />
               </div>
