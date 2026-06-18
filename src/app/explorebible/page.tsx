@@ -413,8 +413,9 @@ export default function BibleExplorerPage() {
         <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
           {path.map(({ section, passage }, index) => (
             <article
+              id={`card-${index + 1}`}
               key={`${section.title}-${spinVersions[index]}`}
-              className={`rounded-[1.5rem] border p-5 text-center text-slate-100 lg:col-span-2 sm:p-6 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
+              className={`relative rounded-[1.5rem] border p-5 text-center text-slate-100 lg:col-span-2 sm:p-6 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""}`}
               style={{
                 minHeight: "285px",
                 display: "flex",
@@ -422,6 +423,27 @@ export default function BibleExplorerPage() {
                 alignItems: "center",
               }}
             >
+              <div className="absolute right-4 top-4">
+                <BibleBingoShareMenu
+                  boardHref={`${boardPath}#card-${index + 1}`}
+                  boardUrl={`${boardUrl}#card-${index + 1}`}
+                  shareText={[
+                    `I rolled this ${section.title} Bible Bingo card on Cross Heart Pray.`,
+                    "",
+                    passage.label,
+                    passage.text,
+                    "",
+                    "Open the card, verse, chapter, and Deep Dive from here:",
+                    `${boardUrl}#card-${index + 1}`,
+                  ].join("\n")}
+                  emailSubject={`${passage.label} Bible Bingo card`}
+                  align="right"
+                  itemLabel="card"
+                  buttonLabel={`Share ${section.title} card`}
+                  iconOnly
+                />
+              </div>
+
               <div className="text-4xl">{section.emoji}</div>
 
               <h2 className="mt-4 text-xl font-bold">{section.title}</h2>

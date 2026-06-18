@@ -9,6 +9,9 @@ type BibleBingoShareMenuProps = {
   emailSubject: string;
   htmlEmail?: string;
   align?: "center" | "right";
+  itemLabel?: "board" | "card";
+  buttonLabel?: string;
+  iconOnly?: boolean;
 };
 
 function ShareIcon() {
@@ -47,10 +50,14 @@ export default function BibleBingoShareMenu({
   emailSubject,
   htmlEmail,
   align = "center",
+  itemLabel = "board",
+  buttonLabel = "Share",
+  iconOnly = false,
 }: BibleBingoShareMenuProps) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState("");
 
+  const itemName = itemLabel === "card" ? "card" : "board";
   const encodedShareText = encodeURIComponent(shareText);
   const encodedEmailSubject = encodeURIComponent(emailSubject);
 
@@ -93,10 +100,15 @@ export default function BibleBingoShareMenu({
         onClick={() => setOpen((current) => !current)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-bold text-emerald-50 shadow-sm transition hover:bg-emerald-300/15"
+        aria-label={buttonLabel}
+        className={
+          iconOnly
+            ? "inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/30 text-emerald-50 shadow-sm transition hover:bg-black/45"
+            : "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-bold text-emerald-50 shadow-sm transition hover:bg-emerald-300/15"
+        }
       >
         <ShareIcon />
-        <span>Share</span>
+        {iconOnly ? <span className="sr-only">{buttonLabel}</span> : <span>{buttonLabel}</span>}
       </button>
 
       {open ? (
@@ -128,19 +140,21 @@ export default function BibleBingoShareMenu({
             Email board link
           </a>
 
-          <button
-            type="button"
-            role="menuitem"
-            onClick={copyHtmlEmail}
-            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
-          >
-            Copy HTML email board
-          </button>
+          {htmlEmail ? (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={copyHtmlEmail}
+              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
+            >
+              Copy HTML email board
+            </button>
+          ) : null}
 
           <button
             type="button"
             role="menuitem"
-            onClick={() => copyValue(boardUrl, "Board link copied")}
+            onClick={() => copyValue(boardUrl, `${itemName[0].toUpperCase()}${itemName.slice(1)} link copied`)}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
             Copy board link
@@ -149,14 +163,18 @@ export default function BibleBingoShareMenu({
           <button
             type="button"
             role="menuitem"
-            onClick={() => copyValue(shareText, "Invite text copied")}
+            onClick={() => copyValue(shareText, itemLabel === "card" ? "Card text copied" : "Invite text copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
             Copy invite text
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
-            {copied || "Use the link for text. Copy HTML email board, then paste into an email body for the rich card view."}
+            {copied ||
+              (htmlEmail
+                ? "Use the link for text. Copy HTML email board, then paste into an email body for the rich card view."
+                : "Choose how to share this card.")}
+
           </p>
         </div>
       ) : null}
