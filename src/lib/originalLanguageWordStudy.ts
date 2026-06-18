@@ -381,24 +381,6 @@ function isUsefulGrammar(morphology: string) {
   return /(^|[^A-Z])[NVA]/.test(grammar) || /^[NVA]/.test(grammar);
 }
 
-function hasUsableTransliterationForFocusedDeepDive(transliteration: string) {
-  const value = transliteration.trim();
-
-  if (!value) return false;
-
-  // Source transliterations like "va./Me.lekh" are useful for raw transparency,
-  // but too ugly/confusing for the focused teaching card.
-  if (value.includes("/") || value.includes(".")) return false;
-
-  // Require at least one readable Latin letter.
-  if (!/[A-Za-z]/.test(value)) return false;
-
-  // Avoid malformed source fragments and accidental markup/noise.
-  if (/[_{}<>()[\]|]/.test(value)) return false;
-
-  return true;
-}
-
 export function isUsefulVerifiedWordStudy(wordStudy: VerifiedWordStudy) {
   const englishWord = normalizeStudyWord(wordStudy.englishWord);
   const englishRoot = normalizeMeaningRoot(wordStudy.englishWord);
@@ -409,10 +391,6 @@ export function isUsefulVerifiedWordStudy(wordStudy: VerifiedWordStudy) {
   }
 
   if (!wordStudy.originalWord || !wordStudy.strongs || !wordStudy.lexiconMeaning) {
-    return false;
-  }
-
-  if (!hasUsableTransliterationForFocusedDeepDive(wordStudy.transliteration)) {
     return false;
   }
 
