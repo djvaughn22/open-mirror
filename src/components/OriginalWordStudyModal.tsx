@@ -67,15 +67,35 @@ function deterministicWordLinkLabel(wordStudy: VerifiedWordStudy) {
   return "Part of translated phrase";
 }
 
-function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
-  const sourceTransliteration = wordStudy.transliteration.trim();
+function cleanSourceTransliteration(value: string) {
+  const trimmed = value.trim();
 
-  if (sourceTransliteration) {
-    return sourceTransliteration;
+  if (!trimmed) {
+    return "";
   }
 
+  const finalSegment = trimmed.includes("/")
+    ? trimmed.split("/").filter(Boolean).at(-1) ?? trimmed
+    : trimmed;
+
+  return finalSegment
+    .replace(/[.]/g, "")
+    .replace(/^[^A-Za-zΑ-ω]+/, "")
+    .trim()
+    .toLowerCase();
+}
+
+function normalizedOriginalLetters(value: string) {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
   const strongs = wordStudy.strongs.trim().toUpperCase();
-  const originalWord = wordStudy.originalWord.trim();
+  const originalWord = normalizedOriginalLetters(wordStudy.originalWord);
 
   if (strongs === "G5547" || originalWord === "Χριστός") {
     return "Christos";
@@ -85,7 +105,17 @@ function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
     return "deomai";
   }
 
-  return "Not provided by source";
+  if (strongs === "H4428" || originalWord === "מלך") {
+    return "melekh";
+  }
+
+  const sourceTransliteration = cleanSourceTransliteration(wordStudy.transliteration);
+
+  if (sourceTransliteration) {
+    return sourceTransliteration;
+  }
+
+  return "not provided";
 }
 
 function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
@@ -97,7 +127,7 @@ function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
 
   const strongs = wordStudy.strongs.trim().toUpperCase();
   const transliteration = normalizeStudyWord(wordStudy.transliteration);
-  const originalWord = wordStudy.originalWord.trim();
+  const originalWord = normalizedOriginalLetters(wordStudy.originalWord);
 
   if (
     strongs === "G5547" ||
@@ -115,7 +145,17 @@ function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
     return "deh-OM-ah-ee";
   }
 
-  return "Not verified yet";
+  if (strongs === "H4428" || originalWord === "מלך") {
+    return "MEH-lekh";
+  }
+
+  const cleanedTransliteration = cleanSourceTransliteration(wordStudy.transliteration);
+
+  if (cleanedTransliteration && cleanedTransliteration !== "notprovided") {
+    return cleanedTransliteration;
+  }
+
+  return "not provided";
 }
 
 function modeButtonClass(mode: WordStudyMode, activeMode: WordStudyMode) {
