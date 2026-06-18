@@ -93,20 +93,60 @@ function normalizedOriginalLetters(value: string) {
     .trim();
 }
 
-function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
+type WordDetailFallback = {
+  transliteration: string;
+  pronunciation: string;
+  meaning?: string;
+};
+
+const WORD_DETAIL_FALLBACKS: Record<string, WordDetailFallback> = {
+  G5547: {
+    transliteration: "Christos",
+    pronunciation: "khris-TOS",
+    meaning: "Anointed One",
+  },
+  G1189: {
+    transliteration: "deomai",
+    pronunciation: "deh-OM-ah-ee",
+    meaning: "to pray",
+  },
+  G1806: {
+    transliteration: "exegagen",
+    pronunciation: "ex-AY-gah-gen",
+    meaning: "led out",
+  },
+  H4428: {
+    transliteration: "melekh",
+    pronunciation: "MEH-lekh",
+    meaning: "king",
+  },
+};
+
+const ORIGINAL_WORD_DETAIL_FALLBACKS: Record<string, WordDetailFallback> = {
+  Χριστός: WORD_DETAIL_FALLBACKS.G5547,
+  δέομαι: WORD_DETAIL_FALLBACKS.G1189,
+  ἐξήγαγεν: WORD_DETAIL_FALLBACKS.G1806,
+  εξηγαγεν: WORD_DETAIL_FALLBACKS.G1806,
+  מלך: WORD_DETAIL_FALLBACKS.H4428,
+};
+
+function getWordDetailFallback(wordStudy: VerifiedWordStudy) {
   const strongs = wordStudy.strongs.trim().toUpperCase();
-  const originalWord = normalizedOriginalLetters(wordStudy.originalWord);
+  const normalizedOriginal = normalizedOriginalLetters(wordStudy.originalWord);
 
-  if (strongs === "G5547" || originalWord === "Χριστός") {
-    return "Christos";
-  }
+  return (
+    WORD_DETAIL_FALLBACKS[strongs] ??
+    ORIGINAL_WORD_DETAIL_FALLBACKS[wordStudy.originalWord.trim()] ??
+    ORIGINAL_WORD_DETAIL_FALLBACKS[normalizedOriginal] ??
+    null
+  );
+}
 
-  if (strongs === "G1189" || originalWord === "δέομαι") {
-    return "deomai";
-  }
+function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
+  const fallback = getWordDetailFallback(wordStudy);
 
-  if (strongs === "H4428" || originalWord === "מלך") {
-    return "melekh";
+  if (fallback?.transliteration) {
+    return fallback.transliteration;
   }
 
   const sourceTransliteration = cleanSourceTransliteration(wordStudy.transliteration);
@@ -117,7 +157,6 @@ function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
 
   return "not provided";
 }
-
 function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
   const explicitPronunciation = wordStudy.pronunciation?.trim();
 
@@ -125,28 +164,10 @@ function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
     return explicitPronunciation;
   }
 
-  const strongs = wordStudy.strongs.trim().toUpperCase();
-  const transliteration = normalizeStudyWord(wordStudy.transliteration);
-  const originalWord = normalizedOriginalLetters(wordStudy.originalWord);
+  const fallback = getWordDetailFallback(wordStudy);
 
-  if (
-    strongs === "G5547" ||
-    transliteration === "christos" ||
-    originalWord === "Χριστός"
-  ) {
-    return "khris-TOS";
-  }
-
-  if (
-    strongs === "G1189" ||
-    transliteration === "deomai" ||
-    originalWord === "δέομαι"
-  ) {
-    return "deh-OM-ah-ee";
-  }
-
-  if (strongs === "H4428" || originalWord === "מלך") {
-    return "MEH-lekh";
+  if (fallback?.pronunciation) {
+    return fallback.pronunciation;
   }
 
   const cleanedTransliteration = cleanSourceTransliteration(wordStudy.transliteration);
@@ -157,7 +178,6 @@ function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
 
   return "not provided";
 }
-
 function modeButtonClass(mode: WordStudyMode, activeMode: WordStudyMode) {
   if (mode === activeMode) {
     return "border-emerald-200/35 bg-emerald-300/15 text-emerald-50";
@@ -338,7 +358,7 @@ export default function OriginalWordStudyModal({
                   Meaning
                 </p>
                 <p className="mt-1 text-lg font-bold leading-7 text-white">
-                  {selectedWordStudy.lexiconMeaning}
+                  {getWordDetailFallback(selectedWordStudy)?.meaning ?? selectedWordStudy.lexiconMeaning}
                 </p>
               </div>
             </div>
