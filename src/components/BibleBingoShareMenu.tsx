@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type ShareItemLabel = "board" | "card" | "verse";
+type ShareItemLabel = "board" | "card";
 
 type BibleBingoShareMenuProps = {
   boardHref: string;
@@ -58,21 +58,6 @@ function shareLabels(itemLabel: ShareItemLabel) {
       copiedText: "Card text copied",
       copiedHtml: "HTML email card copied",
       help: "Use the link for text. Copy HTML email card, then paste into an email body for the rich card view.",
-    };
-  }
-
-  if (itemLabel === "verse") {
-    return {
-      open: "Open this verse",
-      text: "Text this verse",
-      email: "Email this verse",
-      html: "Copy HTML email verse",
-      copyLink: "Copy verse link",
-      copyText: "Copy verse text",
-      copiedLink: "Verse link copied",
-      copiedText: "Verse text copied",
-      copiedHtml: "HTML email verse copied",
-      help: "Choose how to share this verse.",
     };
   }
 
