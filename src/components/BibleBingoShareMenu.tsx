@@ -48,30 +48,30 @@ function menuPositionClass(align: BibleBingoShareMenuProps["align"]) {
 function shareLabels(itemLabel: ShareItemLabel) {
   if (itemLabel === "card") {
     return {
-      open: "Open live card",
-      text: "Text card link",
-      email: "Email card link",
+      open: "Open this Bible Bingo card",
+      text: "Text this card",
+      email: "Email this card",
       html: "Copy HTML email card",
       copyLink: "Copy card link",
       copyText: "Copy card text",
       copiedLink: "Card link copied",
       copiedText: "Card text copied",
       copiedHtml: "HTML email card copied",
-      help: "Use the link for text. Copy HTML email card, then paste into an email body for the rich card view.",
+      help: "Text or email the simple card link. Copy HTML email card, then paste into an email body for the rich card view.",
     };
   }
 
   return {
-    open: "Open live board",
-    text: "Text board link",
-    email: "Email board link",
+    open: "Open full Bible Bingo board",
+    text: "Text 7 cards",
+    email: "Email 7 cards",
     html: "Copy HTML email board",
     copyLink: "Copy board link",
-    copyText: "Copy invite text",
+    copyText: "Copy board text",
     copiedLink: "Board link copied",
-    copiedText: "Invite text copied",
+    copiedText: "Board text copied",
     copiedHtml: "HTML email board copied",
-    help: "Use the link for text. Copy HTML email board, then paste into an email body for the rich 7-card board view.",
+    help: "Text or email the simple board link. Copy HTML email board, then paste into an email body for the rich 7-card board view.",
   };
 }
 
