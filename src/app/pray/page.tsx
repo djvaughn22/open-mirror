@@ -43,12 +43,12 @@ export default function PrayPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Talk to God anytime anywhere
+            Talk to God. Let His will be done.
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
             Pray in the morning
             <br />
-            Pray all day and evenings
+            Pray all day and evening
             <br />
             Your Father is near
           </p>
