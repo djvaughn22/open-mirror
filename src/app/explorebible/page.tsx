@@ -329,21 +329,19 @@ export default function BibleExplorerPage() {
 
   function spinAll() {
     revealBibleBingoCards(
-      sections.map((section) => ({
-        section,
-        passage: randomReferenceForSection(section.key),
-      })),
+      buildPath(),
       sections.map((_, index) => index),
     );
   }
 
 
   function spinOne(index: number) {
+    const freshPath = buildPath();
     const nextPath = path.map((item, itemIndex) =>
       itemIndex === index
         ? {
             ...item,
-            passage: randomReferenceForSection(item.section.key),
+            passage: freshPath[itemIndex]?.passage ?? item.passage,
           }
         : item,
     );
