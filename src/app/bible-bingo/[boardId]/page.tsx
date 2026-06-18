@@ -123,7 +123,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         selectedCard.passage.label,
         selectedCard.passage.text,
         "",
-        "Open the live card:",
+        "Open this card:",
         cardUrl,
         "",
         "Open the full 7-card board:",
@@ -147,7 +147,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         <p style="font-size: 34px; text-align: center; margin: 0 0 14px;">✝️ ❤️ 🙏</p>
         <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 34px; line-height: 1.15; color: #0f172a;">Bible Bingo Board</h1>
         <p style="text-align: center; color: #475569; font-size: 16px; line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto;">
-          Same 7 cards. Same verses. Open the live board to keep playing, use Deep Dive, and open the Bible app links.
+          Same 7 cards. Same verses.
         </p>
         <p style="text-align: center; margin: 24px 0;">
           <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
