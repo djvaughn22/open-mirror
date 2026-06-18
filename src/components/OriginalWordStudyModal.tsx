@@ -212,6 +212,23 @@ export default function OriginalWordStudyModal({
             </div>
           ) : null}
 
+          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+              Meaning from source
+            </p>
+            <p className="mt-2 text-lg font-bold leading-7 text-white">
+              {selectedWordStudy.lexiconMeaning}
+            </p>
+
+            {mode === "all" && !isFocusedStudyWord ? (
+              <p className="mt-3 rounded-xl border border-amber-200/15 bg-amber-300/10 p-3 text-xs leading-5 text-amber-50">
+                Basic source gloss. Focused hides this kind of word because the
+                source meaning is mostly grammar, a simple connector, or a basic
+                translated word.
+              </p>
+            ) : null}
+          </div>
+
           <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
               Original {languageName} word
@@ -232,23 +249,6 @@ export default function OriginalWordStudyModal({
                 Source transliteration for reading and teaching the original word.
               </p>
             </div>
-          </div>
-
-          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Meaning from source
-            </p>
-            <p className="mt-2 text-lg font-bold leading-7 text-white">
-              {selectedWordStudy.lexiconMeaning}
-            </p>
-
-            {mode === "all" && !isFocusedStudyWord ? (
-              <p className="mt-3 rounded-xl border border-amber-200/15 bg-amber-300/10 p-3 text-xs leading-5 text-amber-50">
-                Basic source gloss. Focused hides this kind of word because the
-                source meaning is mostly grammar, a simple connector, or a basic
-                translated word.
-              </p>
-            ) : null}
           </div>
 
           <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
