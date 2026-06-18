@@ -212,11 +212,33 @@ export default function OriginalWordStudyModal({
             </div>
           ) : null}
 
+          <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
+              Original {languageName} word
+            </p>
+
+            <p className="mt-2 break-words text-3xl font-bold leading-snug text-white">
+              {selectedWordStudy.originalWord}
+            </p>
+
+            <div className="mt-4 rounded-xl border border-emerald-200/15 bg-black/20 p-3">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
+                Pronunciation guide
+              </p>
+              <p className="mt-2 break-words text-base font-semibold leading-6 text-emerald-50">
+                {selectedWordStudy.transliteration}
+              </p>
+              <p className="mt-2 text-xs leading-5 text-slate-300">
+                Source transliteration for reading and teaching the original word.
+              </p>
+            </div>
+          </div>
+
           <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
               Meaning from source
             </p>
-            <p className="mt-2 text-sm font-semibold leading-6 text-white">
+            <p className="mt-2 text-lg font-bold leading-7 text-white">
               {selectedWordStudy.lexiconMeaning}
             </p>
 
@@ -229,57 +251,34 @@ export default function OriginalWordStudyModal({
             ) : null}
           </div>
 
-          <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-                Strong&apos;s
-              </p>
-
-              {strongsUrl ? (
-                <a
-                  href={strongsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1.5 font-semibold text-emerald-50 hover:bg-emerald-300/15"
-                >
-                  {selectedWordStudy.strongs}
-                </a>
-              ) : (
-                <p className="mt-2 font-semibold text-white">
-                  {selectedWordStudy.strongs}
-                </p>
-              )}
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-                Language
-              </p>
-              <p className="mt-2 font-semibold text-white">{languageName}</p>
-            </div>
-          </div>
-
-          <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
-              Original word
+          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+              English word in this verse
             </p>
 
-            <p className="mt-2 break-words text-2xl font-bold leading-snug text-white">
-              {selectedWordStudy.originalWord}
+            <p className="mt-2 text-lg font-bold leading-7 text-white">
+              {selectedWordStudy.englishWord}
             </p>
 
-            <p className="mt-2 break-words text-sm leading-6 text-emerald-50">
-              {selectedWordStudy.transliteration}
+            <p className="mt-2 text-xs leading-5 text-slate-400">
+              {sourceLabel}
             </p>
           </div>
+
+          {strongsUrl ? (
+            <a
+              href={strongsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-center text-sm font-semibold text-emerald-50 hover:bg-emerald-300/15"
+            >
+              Open Strong&apos;s source
+            </a>
+          ) : null}
 
           <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Source label
-            </p>
-
-            <p className="mt-2 text-sm font-semibold leading-6 text-white">
-              {sourceLabel}
+              Source transparency
             </p>
 
             <div className="mt-3 space-y-2 text-xs leading-5 text-slate-400">
@@ -346,6 +345,20 @@ export default function OriginalWordStudyModal({
             </summary>
 
             <div className="mt-3 space-y-3 text-xs leading-5">
+              <div>
+                <p className="font-bold text-slate-300">Strong&apos;s number</p>
+                <p className="mt-1 break-words text-slate-400">
+                  {selectedWordStudy.strongs}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-bold text-slate-300">Language</p>
+                <p className="mt-1 break-words text-slate-400">
+                  {languageName}
+                </p>
+              </div>
+
               <div>
                 <p className="font-bold text-slate-300">Morphology</p>
                 <p className="mt-1 break-words text-slate-400">
