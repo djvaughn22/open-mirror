@@ -199,23 +199,24 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-5xl px-6 py-8">
-        <nav className="grid grid-cols-3 items-center">
-          <a href="/home" className="justify-self-start font-bold">
+        <nav className="flex flex-col items-center gap-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
+          <a href="/home" className="font-bold md:justify-self-start">
             Cross Heart Pray
           </a>
 
-          <a
-            href="/explorebible"
-            className="justify-self-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-          >
-            Bible Bingo
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-semibold text-slate-300">
+            <a href="/home" className="hover:text-white">Home</a>
+            <a href="/cross" className="hover:text-white">Cross</a>
+            <a href="/heart" className="hover:text-white">Heart</a>
+            <a href="/pray" className="hover:text-white">Pray</a>
+            <a href="/about" className="hover:text-white">About</a>
+          </div>
 
           <a
-            href="/about"
-            className="justify-self-end text-sm font-semibold text-slate-400 hover:text-white"
+            href="/explorebible"
+            className="justify-self-end rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
           >
-            About
+            Bible Bingo
           </a>
         </nav>
 
@@ -242,12 +243,21 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
 
           <div className="mx-auto mt-8 flex flex-col items-center justify-center gap-3">
             {isSingleCardView ? (
-              <a
-                href={boardPath}
-                className="inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-bold text-emerald-50 shadow-sm transition hover:bg-emerald-300/15"
-              >
-                Back to all 7 Bible Bingo cards
-              </a>
+              <>
+                <a
+                  href={boardPath}
+                  className="inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-bold text-emerald-50 shadow-sm transition hover:bg-emerald-300/15"
+                >
+                  Back to all 7 Bible Bingo cards
+                </a>
+
+                <a
+                  href="/explorebible"
+                  className="inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-bold text-emerald-50 shadow-sm transition hover:bg-emerald-300/15"
+                >
+                  Back to Bible Bingo
+                </a>
+              </>
             ) : (
               <a
                 href="/explorebible"
