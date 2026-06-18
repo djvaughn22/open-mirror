@@ -118,7 +118,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
 
   const shareText = isSingleCardView
     ? [
-        `I rolled this ${selectedCard.section.title} Bible Bingo card on Cross Heart Pray.`,
+        `I dealt this ${selectedCard.section.title} Bible Bingo card on Cross Heart Pray.`,
         "",
         selectedCard.passage.label,
         selectedCard.passage.text,
@@ -130,7 +130,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         boardUrl,
       ].join("\n")
     : [
-        "I rolled a 7-card Bible Bingo board on Cross Heart Pray.",
+        "I dealt a 7-card Bible Bingo board on Cross Heart Pray.",
         "",
         "Open the live board to read the same verses, use Deep Dive, and play from there:",
         "",
@@ -280,7 +280,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
               href="/explorebible"
               className="text-sm font-semibold text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white"
             >
-              Roll new board
+              Deal new board
             </a>
           </div>
         </section>

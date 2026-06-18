@@ -195,7 +195,7 @@ export default function BibleExplorerPage() {
   const boardPath = `/bible-bingo/${boardId}`;
   const boardUrl = `https://crossheartpray.com${boardPath}`;
   const boardShareText = [
-    "I rolled a 7-card Bible Bingo board on Cross Heart Pray.",
+    "I dealt a 7-card Bible Bingo board on Cross Heart Pray.",
     "",
     "Open the live board to read the same verses, use Deep Dive, and play from there:",
     "",
@@ -312,7 +312,7 @@ export default function BibleExplorerPage() {
     const delays = sections.map(() => 0);
 
     cardIndexes.forEach((cardIndex, dealIndex) => {
-      delays[cardIndex] = dealIndex * 85;
+      delays[cardIndex] = dealIndex * 105;
     });
 
     setSpinDelays(delays);
@@ -326,7 +326,7 @@ export default function BibleExplorerPage() {
     );
 
     cardIndexes.forEach((cardIndex, dealIndex) => {
-      const dealDelay = dealIndex * 85;
+      const dealDelay = dealIndex * 105;
 
       window.setTimeout(() => {
         setPath((currentPath) =>
@@ -334,13 +334,13 @@ export default function BibleExplorerPage() {
             itemIndex === cardIndex ? nextPath[itemIndex] ?? item : item,
           ),
         );
-      }, dealDelay + 340);
+      }, dealDelay + 315);
 
       window.setTimeout(() => {
         setSpinningCards((current) =>
           current.map((isSpinning, index) => (index === cardIndex ? false : isSpinning)),
         );
-      }, dealDelay + 900);
+      }, dealDelay + 860);
     });
   }
 
@@ -442,7 +442,7 @@ export default function BibleExplorerPage() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-zinc-300 md:text-3xl">
-            Spin seven Bible cards from across the Holy Bible. Open each verse and read the chapter.
+            Deal seven Bible cards from across the Holy Bible. Open each verse and read the chapter.
           </p>
 
           <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
@@ -492,7 +492,7 @@ export default function BibleExplorerPage() {
                   boardHref={`${boardPath}?card=${index + 1}`}
                   boardUrl={`${boardUrl}?card=${index + 1}`}
                   shareText={[
-                    `I rolled this ${section.title} Bible Bingo card on Cross Heart Pray.`,
+                    `I dealt this ${section.title} Bible Bingo card on Cross Heart Pray.`,
                     "",
                     passage.label,
                     passage.text,
@@ -608,39 +608,78 @@ export default function BibleExplorerPage() {
       <style>{`
         @keyframes bible-card-axis-spin {
           0% {
+            opacity: 0.96;
+            transform: perspective(950px) translate3d(-42px, -58px, 0) rotateY(-8deg) rotateZ(-7deg) scale(0.92);
+          }
+
+          18% {
             opacity: 1;
-            transform: perspective(900px) translate3d(0, 0, 0) rotateY(0deg) rotateZ(0deg) scale(1);
+            transform: perspective(950px) translate3d(-18px, -24px, 0) rotateY(42deg) rotateZ(-3deg) scale(0.985);
           }
 
-          14% {
-            transform: perspective(900px) translate3d(-12px, -6px, 0) rotateY(-32deg) rotateZ(-2.1deg) scale(1.025);
-          }
-
-          34% {
+          36% {
             opacity: 0.9;
-            transform: perspective(900px) translate3d(14px, 2px, 0) rotateY(102deg) rotateZ(1.5deg) scale(0.955);
+            transform: perspective(950px) translate3d(10px, 8px, 0) rotateY(118deg) rotateZ(2.2deg) scale(1.018);
           }
 
-          54% {
+          56% {
             opacity: 0.92;
-            transform: perspective(900px) translate3d(-10px, -2px, 0) rotateY(228deg) rotateZ(-1.2deg) scale(0.985);
+            transform: perspective(950px) translate3d(-7px, -4px, 0) rotateY(242deg) rotateZ(-1.4deg) scale(0.992);
           }
 
           78% {
             opacity: 1;
-            transform: perspective(900px) translate3d(7px, -5px, 0) rotateY(330deg) rotateZ(0.8deg) scale(1.018);
+            transform: perspective(950px) translate3d(4px, -6px, 0) rotateY(337deg) rotateZ(0.8deg) scale(1.012);
           }
 
           100% {
             opacity: 1;
-            transform: perspective(900px) translate3d(0, 0, 0) rotateY(360deg) rotateZ(0deg) scale(1);
+            transform: perspective(950px) translate3d(0, 0, 0) rotateY(360deg) rotateZ(0deg) scale(1);
+          }
+        }
+
+        @keyframes bible-card-solitaire-back {
+          0% {
+            opacity: 0;
+            transform: scale(0.98);
+          }
+
+          22% {
+            opacity: 0.88;
+            transform: scale(1);
+          }
+
+          62% {
+            opacity: 0.82;
+            transform: scale(1);
+          }
+
+          100% {
+            opacity: 0;
+            transform: scale(1.02);
+          }
+        }
+
+        @keyframes bible-card-solitaire-sheen {
+          0% {
+            opacity: 0;
+            transform: translateX(-135%) rotate(12deg);
+          }
+
+          28% {
+            opacity: 0.3;
+          }
+
+          100% {
+            opacity: 0;
+            transform: translateX(135%) rotate(12deg);
           }
         }
 
         .bible-card-spin {
           animation-name: bible-card-axis-spin;
-          animation-duration: 900ms;
-          animation-timing-function: cubic-bezier(0.18, 0.9, 0.22, 1.08);
+          animation-duration: 860ms;
+          animation-timing-function: cubic-bezier(0.16, 0.86, 0.24, 1.08);
           animation-fill-mode: both;
           transform-origin: center;
           transform-style: preserve-3d;
@@ -651,11 +690,59 @@ export default function BibleExplorerPage() {
         .bible-card-is-spinning {
           box-shadow:
             0 0 0 1px rgb(255 255 255 / 0.08),
-            0 18px 44px rgb(16 185 129 / 0.16);
+            0 20px 48px rgb(16 185 129 / 0.16);
+        }
+
+        .bible-card-is-spinning::before {
+          content: "✝️  ❤️  🙏";
+          position: absolute;
+          inset: 0;
+          z-index: 18;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1.5rem;
+          border: 1px solid rgb(255 255 255 / 0.14);
+          background:
+            radial-gradient(circle at 20% 18%, rgb(255 255 255 / 0.13), transparent 31%),
+            radial-gradient(circle at 78% 24%, rgb(52 211 153 / 0.15), transparent 34%),
+            repeating-linear-gradient(
+              135deg,
+              rgb(255 255 255 / 0.035) 0,
+              rgb(255 255 255 / 0.035) 8px,
+              transparent 8px,
+              transparent 18px
+            ),
+            linear-gradient(135deg, rgb(15 23 42 / 0.98), rgb(6 78 59 / 0.95), rgb(30 41 59 / 0.98));
+          color: rgb(240 253 250);
+          font-size: 2.15rem;
+          letter-spacing: 0.28rem;
+          pointer-events: none;
+          animation: bible-card-solitaire-back 620ms ease-in-out both;
+        }
+
+        .bible-card-is-spinning::after {
+          content: "";
+          position: absolute;
+          top: -20%;
+          bottom: -20%;
+          left: 0;
+          z-index: 19;
+          width: 34%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgb(255 255 255 / 0.16),
+            transparent
+          );
+          pointer-events: none;
+          animation: bible-card-solitaire-sheen 520ms ease-in-out both;
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .bible-card-spin {
+          .bible-card-spin,
+          .bible-card-is-spinning::before,
+          .bible-card-is-spinning::after {
             animation: none;
           }
         }
