@@ -253,6 +253,26 @@ function parseStepHebrewRef(ref) {
   return { code, chapter: match[2], verse: match[3] };
 }
 
+
+function transliterateGreek(value) {
+  const map = {
+    "α": "a", "β": "b", "γ": "g", "δ": "d", "ε": "e", "ζ": "z", "η": "e",
+    "θ": "th", "ι": "i", "κ": "k", "λ": "l", "μ": "m", "ν": "n", "ξ": "x",
+    "ο": "o", "π": "p", "ρ": "r", "σ": "s", "ς": "s", "τ": "t", "υ": "u",
+    "φ": "ph", "χ": "ch", "ψ": "ps", "ω": "o",
+  };
+
+  return String(value ?? "")
+    .normalize("NFD")
+    .replace(/[\\u0300-\\u036f]/g, "")
+    .toLowerCase()
+    .split("")
+    .map((char) => map[char] ?? "")
+    .join("")
+    .replace(/\\s+/g, " ")
+    .trim();
+}
+
 function primaryHebrewStrong(value) {
   const strongs = [...String(value ?? "").matchAll(/\bH0*([0-9]+)[A-Z]?\b/g)]
     .map((match) => `H${Number(match[1])}`)
@@ -356,7 +376,7 @@ for (const row of parseTsv(greekPath)) {
     addCandidate(candidates, localVerse, englishWord, {
       language: "greek",
       originalWord: row.text,
-      transliteration: "",
+      transliteration: transliterateGreek(row.lemma || row.text),
       strongs,
       lemma: row.lemma,
       morphology: row.morph,
