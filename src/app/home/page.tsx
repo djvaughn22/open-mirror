@@ -87,13 +87,13 @@ export default function HomePage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-3xl text-2xl font-semibold leading-snug text-zinc-300 md:text-4xl">
-            Your Way
+            your way all day
             <br />
-            in the HOLY BIBLE APP
+            with the Holy Bible
           </p>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-blue-400 md:text-2xl">
-            you will find true peace and joy
+            for true peace and joy
           </p>
         </section>
 
