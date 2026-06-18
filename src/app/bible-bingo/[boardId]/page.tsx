@@ -60,11 +60,11 @@ const cardTones = [
   "border-violet-200/15 bg-violet-300/10",
 ];
 
-function verseUrl(passage: { code: string; chapter: number; verse: number }) {
+function verseUrl(passage: { code: string; chapter: string | number; verse: string | number }) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
 
-function chapterUrl(passage: { code: string; chapter: number }) {
+function chapterUrl(passage: { code: string; chapter: string | number }) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
