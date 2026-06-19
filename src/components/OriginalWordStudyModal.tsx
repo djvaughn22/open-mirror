@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
-  isUsefulVerifiedWordStudy,
   normalizeStudyWord,
   originalLanguageName,
   type VerifiedWordStudy,
@@ -16,8 +15,6 @@ type OriginalWordStudyModalProps = {
   verseUrl: string;
   onClose: () => void;
 };
-
-type WordStudyMode = "focused" | "all";
 
 function buildBibleHubStrongsUrl(strongs: string) {
   const clean = strongs.trim().toUpperCase();
@@ -61,117 +58,12 @@ function sameWordStudy(first: VerifiedWordStudy, second: VerifiedWordStudy) {
   );
 }
 
-function deterministicWordLinkLabel(wordStudy: VerifiedWordStudy) {
-  const englishWord = normalizeStudyWord(wordStudy.englishWord);
-  const sourceGloss = normalizeStudyWord(wordStudy.sourceGloss);
-  const lexiconMeaning = normalizeStudyWord(wordStudy.lexiconMeaning);
-
-  if (
-    englishWord &&
-    (englishWord === sourceGloss || englishWord === lexiconMeaning)
-  ) {
-    return "Direct source match";
-  }
-
-  return "Translated phrase match";
-}
-
-
-function comparableStudyText(value: string) {
-  const words = value
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/['’`]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .filter(
-      (word) =>
-        !new Set([
-          "a",
-          "an",
-          "the",
-          "to",
-          "of",
-          "one",
-          "someone",
-          "something",
-        ]).has(word),
-    );
-
-  return words.join("");
-}
-
-function sameStudyMeaning(first: string, second: string) {
-  const firstComparable = comparableStudyText(first);
-  const secondComparable = comparableStudyText(second);
-
-  return Boolean(
-    firstComparable &&
-      secondComparable &&
-      firstComparable === secondComparable,
-  );
-}
-
-function meaningAddsStudyValue(wordStudy: VerifiedWordStudy, value: string) {
-  const trimmed = value.trim();
-
-  if (!trimmed) {
-    return false;
-  }
-
-  return ![
-    wordStudy.englishWord,
-    wordStudy.sourceGloss,
-    wordStudy.lexiconMeaning,
-  ].some(
-    (comparisonValue) =>
-      comparisonValue !== value && sameStudyMeaning(trimmed, comparisonValue),
-  );
-}
-
-function displayMeaningFor(wordStudy: VerifiedWordStudy) {
-  const fallbackMeaning = getWordDetailFallback(wordStudy)?.meaning ?? "";
-  const lexiconMeaning = wordStudy.lexiconMeaning.trim();
-
-  if (meaningAddsStudyValue(wordStudy, fallbackMeaning)) {
-    return fallbackMeaning.trim();
-  }
-
-  if (meaningAddsStudyValue(wordStudy, lexiconMeaning)) {
-    return lexiconMeaning;
-  }
-
-  return "";
-}
-
-function displayEnglishConnectionFor(
-  wordStudy: VerifiedWordStudy,
-  displayedMeaning: string,
-) {
-  const sourceGloss = wordStudy.sourceGloss.trim();
-
-  if (
-    !sourceGloss ||
-    sameStudyMeaning(sourceGloss, wordStudy.englishWord) ||
-    sameStudyMeaning(sourceGloss, displayedMeaning)
-  ) {
-    return "";
-  }
-
-  return sourceGloss;
-}
-
-function directSourceMatchNote(wordStudy: VerifiedWordStudy) {
-  const englishWord = wordStudy.englishWord.trim();
-
-  if (!englishWord) {
-    return "The source links this English phrase to the original-language word shown here.";
-  }
-
-  return `The source links “${englishWord}” directly to the original-language word shown here.`;
+function wordStudyKey(wordStudy: VerifiedWordStudy) {
+  return [
+    normalizeStudyWord(wordStudy.englishWord),
+    wordStudy.originalWord.trim(),
+    wordStudy.strongs.trim().toUpperCase(),
+  ].join("|");
 }
 
 function cleanSourceTransliteration(value: string) {
@@ -262,8 +154,9 @@ function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
     return sourceTransliteration;
   }
 
-  return "not provided";
+  return "";
 }
+
 function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
   const explicitPronunciation = wordStudy.pronunciation?.trim();
 
@@ -283,22 +176,39 @@ function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
     return cleanedTransliteration;
   }
 
-  return "not provided";
-}
-function modeButtonClass(mode: WordStudyMode, activeMode: WordStudyMode) {
-  if (mode === activeMode) {
-    return "border-emerald-200/35 bg-emerald-300/15 text-emerald-50";
-  }
-
-  return "border-white/10 bg-white/[0.04] text-slate-300 hover:bg-white/10";
+  return "";
 }
 
-function wordButtonClass(wordStudy: VerifiedWordStudy, selectedWordStudy: VerifiedWordStudy) {
+function displayMeaningFor(wordStudy: VerifiedWordStudy) {
+  return (
+    getWordDetailFallback(wordStudy)?.meaning ??
+    wordStudy.lexiconMeaning.trim() ??
+    wordStudy.sourceGloss.trim() ??
+    ""
+  );
+}
+
+function chipClass(wordStudy: VerifiedWordStudy, selectedWordStudy: VerifiedWordStudy) {
   if (sameWordStudy(wordStudy, selectedWordStudy)) {
-    return "border-emerald-200/35 bg-emerald-300/15 text-emerald-50";
+    return "border-emerald-200/40 bg-emerald-300/15 text-emerald-50";
   }
 
-  return "border-white/10 bg-white/[0.04] text-slate-300 hover:bg-white/10";
+  return "border-white/10 bg-white/[0.04] text-slate-300 hover:bg-white/10 hover:text-white";
+}
+
+function detailRow(label: string, value: string) {
+  if (!value.trim()) return null;
+
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+      <p className="text-[0.68rem] font-black uppercase tracking-[0.2em] text-emerald-200">
+        {label}
+      </p>
+      <p className="mt-2 break-words text-base font-semibold leading-snug text-white">
+        {value}
+      </p>
+    </div>
+  );
 }
 
 export default function OriginalWordStudyModal({
@@ -308,81 +218,67 @@ export default function OriginalWordStudyModal({
   verseUrl,
   onClose,
 }: OriginalWordStudyModalProps) {
-  const [mode, setMode] = useState<WordStudyMode>("focused");
   const [selectedWordStudy, setSelectedWordStudy] = useState(wordStudy);
 
   useEffect(() => {
-    setMode("focused");
     setSelectedWordStudy(wordStudy);
   }, [wordStudy]);
 
   const allWordStudies = useMemo(() => {
     const sourceBackedWordStudies = wordStudies.filter(hasSourceBackedFields);
+    const withSelected = sourceBackedWordStudies.some((study) =>
+      sameWordStudy(study, wordStudy),
+    )
+      ? sourceBackedWordStudies
+      : [wordStudy, ...sourceBackedWordStudies];
 
-    if (sourceBackedWordStudies.some((study) => sameWordStudy(study, wordStudy))) {
-      return sourceBackedWordStudies;
-    }
+    const seen = new Set<string>();
 
-    return [wordStudy, ...sourceBackedWordStudies];
+    return withSelected.filter((study) => {
+      const key = wordStudyKey(study);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return hasSourceBackedFields(study);
+    });
   }, [wordStudy, wordStudies]);
-
-  const focusedWordStudies = useMemo(() => {
-    const usefulWordStudies = allWordStudies.filter(isUsefulVerifiedWordStudy);
-
-    if (usefulWordStudies.length > 0) {
-      return usefulWordStudies;
-    }
-
-    return [wordStudy];
-  }, [allWordStudies, wordStudy]);
-
-  const displayedWordStudies = mode === "focused" ? focusedWordStudies : allWordStudies;
 
   useEffect(() => {
     if (
-      displayedWordStudies.length > 0 &&
-      !displayedWordStudies.some((study) => sameWordStudy(study, selectedWordStudy))
+      allWordStudies.length > 0 &&
+      !allWordStudies.some((study) => sameWordStudy(study, selectedWordStudy))
     ) {
-      setSelectedWordStudy(displayedWordStudies[0]);
+      setSelectedWordStudy(allWordStudies[0]);
     }
-  }, [displayedWordStudies, selectedWordStudy]);
+  }, [allWordStudies, selectedWordStudy]);
 
   const languageName = originalLanguageName(selectedWordStudy.language);
   const strongsUrl = buildBibleHubStrongsUrl(selectedWordStudy.strongs);
-  const sourceLabel = deterministicWordLinkLabel(selectedWordStudy);
   const transliterationGuide = buildTransliterationGuide(selectedWordStudy);
   const pronunciationGuide = buildPronunciationGuide(selectedWordStudy);
-  const isFocusedStudyWord = isUsefulVerifiedWordStudy(selectedWordStudy);
-  const displayedMeaning = displayMeaningFor(selectedWordStudy);
-  const englishConnection = displayEnglishConnectionFor(
-    selectedWordStudy,
-    displayedMeaning,
-  );
-  const meaningLine = displayedMeaning || directSourceMatchNote(selectedWordStudy);
+  const meaning = displayMeaningFor(selectedWordStudy);
+  const sourceGloss = selectedWordStudy.sourceGloss.trim();
+  const shouldShowSourceGloss =
+    sourceGloss && normalizeStudyWord(sourceGloss) !== normalizeStudyWord(selectedWordStudy.englishWord);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm sm:items-center">
-      <div className="my-auto flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-hidden rounded-[1.5rem] border border-emerald-200/20 bg-slate-950 shadow-2xl sm:max-h-[560px]">
-        <div className="shrink-0 border-b border-white/10 px-5 py-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm">
+      <div className="w-full max-w-2xl overflow-hidden rounded-[1.5rem] border border-emerald-200/20 bg-slate-950 shadow-2xl">
+        <div className="border-b border-white/10 px-5 py-4 sm:px-6">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-200">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-200">
                 {languageName} Deep Dive
               </p>
-
-              <h2 className="mt-2 truncate text-xl font-bold leading-tight text-white">
+              <h2 className="mt-2 truncate text-2xl font-black leading-tight text-white">
                 {selectedWordStudy.englishWord}
               </h2>
-
-              <p className="mt-1 truncate text-xs text-slate-400">
-                {passage.label}
-              </p>
+              <p className="mt-1 text-sm text-slate-400">{passage.label}</p>
             </div>
 
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-lg font-bold text-slate-200 hover:bg-white/10"
+              className="shrink-0 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-lg font-black text-white transition hover:bg-white/10"
               aria-label="Close Deep Dive"
             >
               ×
@@ -390,254 +286,97 @@ export default function OriginalWordStudyModal({
           </div>
         </div>
 
-        <div
-          className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain px-5 py-4 text-left"
-          style={{ WebkitOverflowScrolling: "touch" }}
-        >
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => setMode("focused")}
-              className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] ${modeButtonClass("focused", mode)}`}
-            >
-              Focused
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setMode("all")}
-              className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] ${modeButtonClass("all", mode)}`}
-            >
-              All
-            </button>
-          </div>
-
-          <p className="mt-3 text-xs leading-5 text-slate-400">
-            Focused shows the clearest source-backed word links. All shows every
-            source-backed word link for this verse.
-          </p>
-
-          {displayedWordStudies.length > 1 ? (
-            <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+        <div className="max-h-[calc(100dvh-8rem)] overflow-y-auto p-5 sm:p-6">
+          {allWordStudies.length > 1 ? (
+            <section className="mb-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <p className="mb-3 text-[0.68rem] font-black uppercase tracking-[0.2em] text-slate-400">
                 Word links
               </p>
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                {displayedWordStudies.map((study, index) => (
+              <div className="flex flex-wrap gap-2">
+                {allWordStudies.map((study) => (
                   <button
-                    key={`${study.strongs}-${study.englishWord}-${index}`}
+                    key={wordStudyKey(study)}
                     type="button"
                     onClick={() => setSelectedWordStudy(study)}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${wordButtonClass(study, selectedWordStudy)}`}
+                    className={`rounded-full border px-3 py-1.5 text-sm font-bold transition ${chipClass(
+                      study,
+                      selectedWordStudy,
+                    )}`}
                   >
                     {study.englishWord}
                   </button>
                 ))}
               </div>
-            </div>
+            </section>
           ) : null}
 
-          <div className="mt-3 rounded-2xl border border-emerald-200/15 bg-emerald-300/10 p-4">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">
-              Original {languageName} word
+          <section className="rounded-[1.25rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5">
+            <p className="text-[0.68rem] font-black uppercase tracking-[0.22em] text-emerald-200">
+              Original {languageName} Word
             </p>
-
-            <p className="mt-2 break-words text-3xl font-bold leading-snug text-white">
+            <p className="mt-3 break-words text-4xl font-black leading-tight text-white">
               {selectedWordStudy.originalWord}
             </p>
 
-            <div className="mt-4 space-y-3 rounded-xl border border-emerald-200/15 bg-black/20 p-3">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
-                  Transliteration
-                </p>
-                <p className="mt-1 break-words text-base font-semibold leading-6 text-emerald-50">
-                  {transliterationGuide}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
-                  Pronunciation
-                </p>
-                <p className="mt-1 break-words text-base font-semibold leading-6 text-emerald-50">
-                  {pronunciationGuide}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-200">
-                  Meaning
-                </p>
-                <p className="mt-1 text-lg font-bold leading-7 text-white">
-                  {meaningLine}
-                </p>
-              </div>
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {detailRow("English in verse", selectedWordStudy.englishWord)}
+              {detailRow("Strong’s", selectedWordStudy.strongs)}
+              {detailRow("Transliteration", transliterationGuide)}
+              {detailRow("Pronunciation", pronunciationGuide)}
+              {detailRow("Lexicon meaning", meaning)}
+              {shouldShowSourceGloss ? detailRow("Translated as", sourceGloss) : null}
             </div>
+          </section>
 
-            {mode === "all" && !isFocusedStudyWord ? (
-              <p className="mt-3 rounded-xl border border-amber-200/15 bg-amber-300/10 p-3 text-xs leading-5 text-amber-50">
-                Direct source match. Focused hides this kind of word when the
-                source meaning repeats the English word, is mostly grammar, or is a basic
-                translated word.
-              </p>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            {strongsUrl ? (
+              <a
+                href={strongsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/15"
+              >
+                Open Strong’s source
+              </a>
             ) : null}
-          </div>
 
-          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              English word in this verse
-            </p>
-
-            <p className="mt-2 text-lg font-bold leading-7 text-white">
-              {selectedWordStudy.englishWord}
-            </p>
-
-            <p className="mt-2 text-xs leading-5 text-slate-400">
-              {sourceLabel}
-            </p>
-          </div>
-
-          {strongsUrl ? (
             <a
-              href={strongsUrl}
+              href={verseUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-center text-sm font-semibold text-emerald-50 hover:bg-emerald-300/15"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-5 py-2 text-sm font-black text-slate-200 transition hover:bg-white/10 hover:text-white"
             >
-              Open Strong&apos;s source
+              Open verse
             </a>
-          ) : null}
-
-          <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Source transparency
-            </p>
-
-            <div className="mt-3 space-y-2 text-xs leading-5 text-slate-400">
-              <p>
-                Word source:{" "}
-                <span className="font-semibold text-slate-300">
-                  {selectedWordStudy.sourceName}
-                </span>
-              </p>
-
-              <p>
-                Meaning source:{" "}
-                <span className="font-semibold text-slate-300">
-                  {selectedWordStudy.lexiconSourceName}
-                </span>
-              </p>
-            </div>
           </div>
 
-          <div className="mt-3 rounded-2xl border border-sky-200/15 bg-sky-300/10 p-3">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-200">
-              No AI interpretation
-            </p>
-            <p className="mt-2 text-xs leading-5 text-slate-200">
-              Source-backed word data only. CrossHeartPray does not add AI
-              interpretation to this Deep Dive.
-            </p>
-          </div>
-
-          <details className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <summary className="cursor-pointer text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Sources
+          <details className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm text-slate-300">
+            <summary className="cursor-pointer text-[0.68rem] font-black uppercase tracking-[0.2em] text-slate-400">
+              Source proof
             </summary>
 
-            <div className="mt-3 space-y-3 text-xs leading-5">
-              <div>
-                <p className="font-bold text-slate-300">Word match source</p>
-                <p className="mt-1 text-slate-400">{selectedWordStudy.sourceName}</p>
-              </div>
-
-              <div>
-                <p className="font-bold text-slate-300">Meaning source</p>
-                <p className="mt-1 text-slate-400">
-                  {selectedWordStudy.lexiconSourceName}
-                </p>
-              </div>
-
-              {strongsUrl ? (
-                <a
-                  href={strongsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-10 w-full items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-center font-semibold text-emerald-50 hover:bg-emerald-300/15"
-                >
-                  View Strong&apos;s entry
-                </a>
-              ) : null}
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {detailRow("Lemma", selectedWordStudy.lemma)}
+              {detailRow("Morphology", selectedWordStudy.morphology)}
+              {detailRow("Source gloss", selectedWordStudy.sourceGloss)}
+              {detailRow("Lexicon source", selectedWordStudy.lexiconSourceName)}
             </div>
+
+            <p className="mt-4 text-xs leading-5 text-slate-500">
+              {selectedWordStudy.sourceName}
+            </p>
+
+            {selectedWordStudy.sourceUrl ? (
+              <a
+                href={selectedWordStudy.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex text-xs font-bold text-emerald-200 underline decoration-emerald-200/40 underline-offset-4 hover:text-white"
+              >
+                Open alignment/source data
+              </a>
+            ) : null}
           </details>
-
-          <details className="mt-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
-            <summary className="cursor-pointer text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-              Advanced details
-            </summary>
-
-            <div className="mt-3 space-y-3 text-xs leading-5">
-              <div>
-                <p className="font-bold text-slate-300">Strong&apos;s number</p>
-                <p className="mt-1 break-words text-slate-400">
-                  {selectedWordStudy.strongs}
-                </p>
-              </div>
-
-              <div>
-                <p className="font-bold text-slate-300">Language</p>
-                <p className="mt-1 break-words text-slate-400">
-                  {languageName}
-                </p>
-              </div>
-
-              <div>
-                <p className="font-bold text-slate-300">Morphology</p>
-                <p className="mt-1 break-words text-slate-400">
-                  {selectedWordStudy.morphology}
-                </p>
-              </div>
-
-              <div>
-                <p className="font-bold text-slate-300">English connection</p>
-                <p className="mt-1 text-slate-400">
-                  {englishConnection || directSourceMatchNote(selectedWordStudy)}
-                </p>
-              </div>
-
-              <div>
-                <p className="font-bold text-slate-300">Lemma</p>
-                <p className="mt-1 break-words text-slate-400">
-                  {selectedWordStudy.lemma}
-                </p>
-              </div>
-
-              {selectedWordStudy.sourceUrl ? (
-                <div>
-                  <p className="font-bold text-slate-300">Source URL</p>
-                  <a
-                    href={selectedWordStudy.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 inline-flex break-all text-emerald-200 underline decoration-emerald-200/40 underline-offset-4"
-                  >
-                    {selectedWordStudy.sourceUrl}
-                  </a>
-                </div>
-              ) : null}
-            </div>
-          </details>
-
-          <a
-            href={verseUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-2 text-center text-sm font-semibold text-white hover:bg-white/15"
-          >
-            Open verse in the Holy Bible app
-          </a>
         </div>
       </div>
     </div>
