@@ -108,6 +108,15 @@ function verseShareText(
   ].join("\n");
 }
 
+function dayShareText(day: DailyHopeDay, dayUrl: string) {
+  return [
+    `Daily Hope - ${day.day}`,
+    "",
+    ...day.items.flatMap((item) => [item.label, textForItem(item), ""]),
+    dayUrl,
+  ].join("\n");
+}
+
 function prayerHtmlEmail(prayer: DailyHopePrayerCard, pageUrl: string) {
   return `
     <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
@@ -146,6 +155,36 @@ function verseHtmlEmail(
         <p style="text-align: center; margin: 24px 0;">
           <a href="${cardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
             Open Daily Hope Card
+          </a>
+        </p>
+        <p style="text-align: center; color: #64748b; font-size: 13px;">Cross Heart Pray · Daily Hope</p>
+      </div>
+    </div>
+  `;
+}
+
+function dayHtmlEmail(day: DailyHopeDay, dayUrl: string) {
+  return `
+    <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <p style="font-size: 34px; text-align: center; margin: 0 0 14px;">✝️ ❤️ 🙏</p>
+        <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 34px; line-height: 1.15; color: #0f172a;">Daily Hope</h1>
+        <p style="text-align: center; color: #047857; font-size: 13px; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; margin: 12px 0 22px;">${escapeHtml(day.day)}</p>
+
+        ${day.items
+          .map(
+            (item) => `
+              <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
+                <h2 style="margin: 0 0 12px; font-size: 22px; color: #0f172a;">${escapeHtml(item.label)}</h2>
+                ${htmlForPassages(item)}
+              </div>
+            `,
+          )
+          .join("")}
+
+        <p style="text-align: center; margin: 24px 0;">
+          <a href="${dayUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
+            Open ${escapeHtml(day.day)} Daily Hope
           </a>
         </p>
         <p style="text-align: center; color: #64748b; font-size: 13px;">Cross Heart Pray · Daily Hope</p>
@@ -473,6 +512,7 @@ export default function DailyHopeRoutine({
         <section className="mt-12 space-y-8">
           {days.map((day, dayIndex) => {
             const isToday = todaySlug === day.slug;
+            const dayUrl = `${pageUrl}#${day.slug}`;
 
             return (
               <section
@@ -484,7 +524,7 @@ export default function DailyHopeRoutine({
                     : "border-white/10 bg-white/[0.03] shadow-black/20"
                 }`}
               >
-                <div className="flex flex-col gap-2 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
+                <div className="flex flex-col gap-4 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
                   <div>
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
                       {isToday ? "Today" : "Daily Hope"}
@@ -494,12 +534,25 @@ export default function DailyHopeRoutine({
                     </h2>
                   </div>
 
-                  <p className="text-sm font-semibold text-slate-300">
-                    Fixed cards for {day.day}
-                  </p>
+                  <div className="flex flex-col items-center gap-3 sm:items-end">
+                    <p className="text-sm font-semibold text-slate-300">
+                      Fixed cards for {day.day}
+                    </p>
+
+                    <BibleBingoShareMenu
+                      boardHref={`#${day.slug}`}
+                      boardUrl={dayUrl}
+                      shareText={dayShareText(day, dayUrl)}
+                      emailSubject={`Daily Hope - ${day.day}`}
+                      htmlEmail={dayHtmlEmail(day, dayUrl)}
+                      align="right"
+                      itemLabel="board"
+                      buttonLabel={`Share ${day.day}`}
+                    />
+                  </div>
                 </div>
 
-                <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-2">
+                <div className="mt-6 grid grid-cols-1 gap-5">
                   {day.items.map((item, itemIndex) => {
                     const firstPassage = item.passages[0];
                     const verifiedReady = itemHasVerifiedWordLinks(item);
