@@ -47,14 +47,16 @@ function shareLabels(itemLabel: ShareItemLabel) {
 
   return {
     open: `Open live ${itemName}`,
+    emailRendered: `Email ${itemName}`,
     copyLink: "Copy link",
     copyText: "Copy share text",
     copyEmail: `Copy email ${itemName}`,
-    emailDraft: "Open plain email draft",
+    emailTextOnly: "Email text only",
     copiedLink: "Link copied.",
     copiedText: "Share text copied.",
-    copiedHtml: `Formatted email ${itemName} copied. Paste it into Gmail.`,
-    help: `Use Copy link anywhere. Use Copy email ${itemName} to paste a formatted version into Gmail.`,
+    copiedHtml: `Email ${itemName} copied. Paste it into Gmail.`,
+    copiedHtmlAndOpened: `Gmail opened. Paste once to add the rendered ${itemName}.`,
+    help: `Email ${itemName} opens Gmail and puts the rendered email on your clipboard. Paste once in the body.`,
   };
 }
 
@@ -77,6 +79,7 @@ export default function BibleBingoShareMenu({
   const openHref = boardUrl || boardHref;
   const encodedShareText = encodeURIComponent(shareText);
   const encodedEmailSubject = encodeURIComponent(emailSubject);
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&su=${encodedEmailSubject}`;
 
   async function copyPlainText(value: string, label: string) {
     try {
@@ -89,7 +92,7 @@ export default function BibleBingoShareMenu({
     }
   }
 
-  async function copyRichHtmlEmail(value: string) {
+  async function copyRichHtmlEmail(value: string, successLabel = labels.copiedHtml) {
     try {
       if ("ClipboardItem" in window && navigator.clipboard.write) {
         await navigator.clipboard.write([
@@ -102,11 +105,29 @@ export default function BibleBingoShareMenu({
         await navigator.clipboard.writeText(value);
       }
 
-      setCopied(labels.copiedHtml);
-      window.setTimeout(() => setCopied(""), 3800);
+      setCopied(successLabel);
+      window.setTimeout(() => setCopied(""), 4200);
+      return true;
     } catch {
       setCopied("Copy failed.");
       window.setTimeout(() => setCopied(""), 2600);
+      return false;
+    }
+  }
+
+  async function emailRenderedCardOrBoard(value: string) {
+    const composeWindow = window.open("about:blank", "_blank");
+    const copiedEmail = await copyRichHtmlEmail(value, labels.copiedHtmlAndOpened);
+
+    if (!copiedEmail) {
+      composeWindow?.close();
+      return;
+    }
+
+    if (composeWindow) {
+      composeWindow.location.href = gmailComposeUrl;
+    } else {
+      window.open(gmailComposeUrl, "_blank");
     }
   }
 
@@ -143,6 +164,17 @@ export default function BibleBingoShareMenu({
             </a>
           ) : null}
 
+          {htmlEmail ? (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => emailRenderedCardOrBoard(htmlEmail)}
+              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
+            >
+              {labels.emailRendered}
+            </button>
+          ) : null}
+
           <button
             type="button"
             role="menuitem"
@@ -166,7 +198,7 @@ export default function BibleBingoShareMenu({
               type="button"
               role="menuitem"
               onClick={() => copyRichHtmlEmail(htmlEmail)}
-              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
+              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
             >
               {labels.copyEmail}
             </button>
@@ -177,7 +209,7 @@ export default function BibleBingoShareMenu({
             href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
             className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
           >
-            {labels.emailDraft}
+            {labels.emailTextOnly}
           </a>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
