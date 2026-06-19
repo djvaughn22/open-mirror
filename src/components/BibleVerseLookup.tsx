@@ -159,22 +159,22 @@ export default function BibleVerseLookup({
   const deepDiveReady = hasVerifiedWordLinks(wordStudies);
 
   return (
-    <section className={`${className} text-center text-slate-100`}>
-      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-100">
-        Bible Verse Lookup
+    <section className={`${className} mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 text-center text-slate-100 shadow-2xl shadow-black/25 sm:px-8 sm:py-10`}>
+      <p className="text-xs font-black uppercase tracking-[0.28em] text-zinc-400">
+        Bible Bingo 7
       </p>
 
-      <h2 className="mt-2 text-2xl font-bold text-slate-100">
-        Search Bible Verse
+      <h2 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">
+        Search a verse
       </h2>
 
-      <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-200">
-        Type a verse like John 3:16, Psalm 23:1, Romans 8:28, or Genesis 1:1.
+      <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-6 text-zinc-300 sm:text-base">
+        Open the verse, read the chapter, dive deeper, and share it.
       </p>
 
       <form
         onSubmit={lookupVerse}
-        className="mx-auto mt-5 flex max-w-xl flex-col gap-3 sm:flex-row"
+        className="mx-auto mt-6 flex max-w-2xl flex-col gap-3 sm:flex-row"
       >
         <input
           value={query}
@@ -183,21 +183,20 @@ export default function BibleVerseLookup({
           inputMode="text"
           placeholder="John 3:16"
           aria-label="Bible verse to search"
-          className="min-h-12 flex-1 rounded-2xl border border-white/15 bg-black/20 px-4 text-base text-white placeholder:text-white/40 outline-none ring-0 focus:border-emerald-200/50"
+          className="min-h-14 flex-1 rounded-2xl border border-white/15 bg-black/25 px-5 text-lg font-semibold text-white placeholder:text-white/35 outline-none ring-0 focus:border-white/40"
         />
 
         <button
           type="submit"
           disabled={isSearching}
-          className="min-h-12 rounded-2xl border border-white/15 bg-white/10 px-5 font-semibold text-slate-100 transition hover:bg-white/15 disabled:cursor-wait disabled:opacity-60"
+          className="min-h-14 rounded-2xl border border-white/20 bg-white/10 px-6 text-base font-black text-white shadow-lg shadow-black/20 transition hover:bg-white/15 disabled:cursor-wait disabled:opacity-60"
         >
-          {isSearching ? "Searching..." : "Search Bible Verse"}
+          {isSearching ? "Searching..." : "Search"}
         </button>
       </form>
 
-      <p className="mt-3 text-xs text-slate-300">
-        Searches the local complete Bible library first. After the verse appears,
-        use the Bible app buttons below: Verse opens this exact verse. Chapter opens the full chapter.
+      <p className="mt-4 text-xs font-semibold text-zinc-400">
+        Try John 3:16, Psalm 23:1, Romans 8:28, or Genesis 1:1.
       </p>
 
       {error && (
@@ -207,7 +206,7 @@ export default function BibleVerseLookup({
       )}
 
       {passage && (
-        <article className="mx-auto mt-6 max-w-2xl rounded-[2rem] border border-emerald-200/15 bg-emerald-300/10 p-6 text-center">
+        <article className="mx-auto mt-7 max-w-3xl rounded-[1.75rem] border border-white/10 bg-black/20 p-6 text-center shadow-xl shadow-black/20 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">
             Local Bible Library Match
           </p>
