@@ -17,6 +17,7 @@ type VersePayload = {
 const versesByLabel = new Map<string, LocalBibleVerse>();
 const versesByKey = new Map<string, LocalBibleVerse>();
 const booksByAlias = new Map<string, string>();
+
 const gospelBooks = new Set(["Matthew", "Mark", "Luke", "John"]);
 const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => gospelBooks.has(verse.book));
 
@@ -108,7 +109,7 @@ function findLocalVerse(rawQuery: string) {
     verse,
     note: rawVerse
       ? ""
-      : `Showing ${verse.label}. Use the Bible app buttons below: View Verse opens this exact verse. View Chapter opens the full chapter.`,
+      : `Showing ${verse.label}. View Verse opens this exact verse. Read Chapter opens the full chapter.`,
   };
 }
 
@@ -147,7 +148,7 @@ export function GET(request: Request) {
     return NextResponse.json(
       {
         error:
-          "No local verse match found. Try a reference like John 3:16, Psalm 23:1, Romans 8:28, or Genesis 1:1.",
+          "No local verse match found. Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, or 2 Corinthians 3:17.",
       },
       { status: 404 },
     );
