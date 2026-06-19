@@ -42,13 +42,13 @@ const DAY_SLUGS = [
 ];
 
 const CARD_TONES = [
-  "border-emerald-200/15 bg-emerald-300/10",
-  "border-yellow-200/15 bg-yellow-200/10",
-  "border-red-200/15 bg-red-300/10",
-  "border-sky-200/15 bg-sky-300/10",
-  "border-lime-200/15 bg-lime-300/10",
-  "border-orange-200/15 bg-orange-300/10",
-  "border-violet-200/15 bg-violet-300/10",
+  "border-slate-200/10 bg-slate-900/45",
+  "border-emerald-200/12 bg-emerald-950/25",
+  "border-sky-200/10 bg-sky-950/20",
+  "border-teal-200/10 bg-teal-950/20",
+  "border-indigo-200/10 bg-indigo-950/18",
+  "border-cyan-200/10 bg-cyan-950/18",
+  "border-zinc-200/10 bg-zinc-900/35",
 ];
 
 function cardTone(index: number) {
@@ -497,11 +497,11 @@ export default function DailyHopeRoutine({
                   Prayer Card
                 </p>
 
-                <h2 className="mt-4 pr-12 text-2xl font-black text-white">
+                <h2 className="mt-4 pr-12 text-2xl font-extrabold text-slate-50">
                   {prayer.title}
                 </h2>
 
-                <p className="mt-5 text-base font-semibold leading-8 text-slate-200">
+                <p className="mt-5 text-base font-medium leading-8 text-slate-300">
                   {prayer.body}
                 </p>
               </article>
@@ -563,7 +563,7 @@ export default function DailyHopeRoutine({
                       <article
                         id={item.id}
                         key={item.id}
-                        className={`relative overflow-visible rounded-[1.5rem] border p-5 text-center text-slate-100 sm:p-6 ${cardTone(globalCardIndex)}`}
+                        className={`relative overflow-visible rounded-[1.5rem] border p-5 text-center text-slate-100 shadow-lg shadow-black/15 sm:p-6 ${cardTone(globalCardIndex)}`}
                       >
                         <div className="absolute right-4 top-4">
                           <BibleBingoShareMenu
@@ -589,15 +589,15 @@ export default function DailyHopeRoutine({
                           Daily Hope Card
                         </p>
 
-                        <h3 className="mt-3 pr-10 text-2xl font-black text-white">
+                        <h3 className="mt-3 pr-10 text-xl font-extrabold text-slate-50 sm:text-2xl">
                           {item.label}
                         </h3>
 
-                        <div className="mt-5 space-y-5 rounded-[1.25rem] border border-white/10 bg-black/25 px-5 py-5 text-left text-lg font-bold leading-8 text-slate-100 sm:text-xl sm:leading-9">
+                        <div className="mt-5 space-y-5 rounded-[1.25rem] border border-white/8 bg-slate-950/35 px-5 py-5 text-left text-base font-medium leading-8 text-slate-200 sm:text-lg sm:leading-9">
                           {item.passages.map((passage) => (
                             <div key={passage.label}>
                               {item.passages.length > 1 ? (
-                                <p className="mb-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+                                <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-emerald-100/90">
                                   {passage.label}
                                 </p>
                               ) : null}
@@ -620,7 +620,7 @@ export default function DailyHopeRoutine({
                                 href={verseUrl(firstPassage)}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-black text-white shadow-sm transition hover:bg-white/30"
+                                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 shadow-sm transition hover:bg-white/15"
                               >
                                 Verse
                               </a>
@@ -629,7 +629,7 @@ export default function DailyHopeRoutine({
                                 href={chapterUrl(firstPassage)}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-black text-white shadow-sm transition hover:bg-white/30"
+                                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 shadow-sm transition hover:bg-white/15"
                               >
                                 Chapter
                               </a>
@@ -645,7 +645,7 @@ export default function DailyHopeRoutine({
                                 ? "Open verified original-language word study"
                                 : "Deep Dive opens when this verse has verified underlined word links."
                             }
-                            className="inline-flex items-center justify-center rounded-full border border-emerald-200/20 bg-emerald-300/10 px-5 py-2 text-sm font-black text-emerald-100 shadow-sm transition hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-zinc-700/70 disabled:bg-zinc-800/70 disabled:text-zinc-500 disabled:shadow-none disabled:hover:bg-zinc-800/70"
+                            className="inline-flex items-center justify-center rounded-full border border-emerald-200/18 bg-emerald-300/8 px-5 py-2 text-sm font-semibold text-emerald-100 shadow-sm transition hover:bg-emerald-300/12 disabled:cursor-not-allowed disabled:border-zinc-700/70 disabled:bg-zinc-800/70 disabled:text-zinc-500 disabled:shadow-none disabled:hover:bg-zinc-800/70"
                           >
                             Deep Dive
                           </button>
@@ -662,7 +662,7 @@ export default function DailyHopeRoutine({
         <section className="mt-10">
           <article
             id="live-in-the-moment"
-            className="relative mx-auto max-w-4xl rounded-[2rem] border border-emerald-200/20 bg-gradient-to-br from-emerald-950/55 via-slate-950/90 to-sky-950/45 p-6 text-center shadow-2xl shadow-black/25 sm:p-8"
+            className="relative mx-auto max-w-4xl rounded-[2rem] border border-emerald-200/14 bg-slate-900/45 p-6 text-center shadow-xl shadow-black/20 sm:p-8"
           >
             <div className="absolute right-5 top-5">
               <BibleBingoShareMenu
@@ -692,7 +692,7 @@ export default function DailyHopeRoutine({
               {closingPrayer.title}
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-200">
+            <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-8 text-slate-300">
               {closingPrayer.body}
             </p>
           </article>
