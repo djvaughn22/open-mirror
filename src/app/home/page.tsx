@@ -75,30 +75,29 @@ export default function HomePage() {
           </details>
         </nav>
 
-        <section className="mx-auto max-w-5xl py-20 text-center sm:py-24">
-          <p className="mb-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-lg font-black uppercase tracking-[0.18em] text-zinc-200 sm:text-xl">
-            <span className="inline-flex items-center gap-2"><span className="text-3xl">✝️</span><span>Cross</span></span>
-            <span className="inline-flex items-center gap-2"><span className="text-3xl">❤️</span><span>Heart</span></span>
-            <span className="inline-flex items-center gap-2"><span className="text-3xl">🙏</span><span>Pray</span></span>
+        <section className="mx-auto max-w-5xl pt-10 pb-12 text-center sm:pt-14 sm:pb-16">
+          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">
+            <span className="inline-flex items-center gap-2"><span className="text-2xl">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-2"><span className="text-2xl">❤️</span><span>Heart</span></span>
+            <span className="inline-flex items-center gap-2"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
-
-
 
           <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl">
             Bible Bingo 7
           </h1>
 
-          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight text-zinc-100 sm:text-4xl">
-            <p>Deal a board</p>
-            <p>Search a verse</p>
-            <p>Open the chapter</p>
-            <p>Dive deeper</p>
-            <p className="mx-auto max-w-2xl text-xl leading-snug text-zinc-300 sm:text-3xl">
-              Share the verse, your heart, and your prayer
-            </p>
+          <div className="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-3 text-base font-black text-zinc-100 sm:text-lg">
+            <p className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-2">Deal a board</p>
+            <p className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-2">Search a verse</p>
+            <p className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-2">Open the chapter</p>
+            <p className="rounded-full border border-white/10 bg-white/[0.06] px-5 py-2">Dive deeper</p>
           </div>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <p className="mx-auto mt-6 max-w-2xl text-xl font-extrabold leading-snug text-zinc-300 sm:text-2xl">
+            Share the verse, your heart, and your prayer
+          </p>
+
+          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="/explorebible"
               className="rounded-full border border-white/20 bg-white/10 px-8 py-3 text-center font-bold text-white shadow-lg shadow-black/20 transition hover:bg-white/15"
@@ -110,20 +109,20 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-6">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-6">
           {steps.map((step, index) => (
             <a
               key={step.title}
               href={step.href}
-              className={`rounded-[2rem] border p-8 text-center text-slate-100 transition duration-200 hover:-translate-y-1 hover:bg-white/[0.075] md:col-span-2 ${homeCardTone(index)}`}
+              className={`rounded-[1.5rem] border px-6 py-7 text-center text-slate-100 transition duration-200 hover:-translate-y-1 hover:bg-white/[0.075] md:col-span-2 ${homeCardTone(index)}`}
               style={{
-                minHeight: "300px",
+                minHeight: "205px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
             >
-              <div className="text-5xl">{step.emoji}</div>
+              <div className="text-4xl">{step.emoji}</div>
 
               {step.comingSoon && (
                 <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
@@ -131,26 +130,16 @@ export default function HomePage() {
                 </p>
               )}
 
-              <h2 className={step.comingSoon ? "mt-4 text-2xl font-black tracking-tight" : "mt-8 text-2xl font-black tracking-tight"}>
+              <h2 className={step.comingSoon ? "mt-3 text-xl font-black tracking-tight" : "mt-5 text-xl font-black tracking-tight"}>
                 {step.title}
               </h2>
 
-              <p className="mt-5 text-lg font-semibold leading-8 text-slate-200" style={{ flex: 1 }}>
+              <p className="mt-4 text-base font-semibold leading-7 text-slate-200" style={{ flex: 1 }}>
                 {step.text}
               </p>
             </a>
           ))}
         </section>
-
-        <section className="border-t border-zinc-900 px-6 pt-12 pb-4 text-center sm:pt-14 sm:pb-5">
-          <a
-            href="/explorebible"
-            className="rounded-full border border-white/20 bg-white/10 px-8 py-3 font-bold text-white shadow-lg shadow-black/20 transition hover:bg-white/15"
-          >
-            Bible Bingo
-          </a>
-        </section>
-
 
         <BibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
 
