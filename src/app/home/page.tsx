@@ -86,30 +86,10 @@ export default function HomePage() {
             Bible Bingo 7
           </h1>
 
-          <div className="mx-auto mt-7 max-w-4xl rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-7 shadow-2xl shadow-black/25 sm:px-8">
-            <a
-              href="https://www.bible.com/bible/111/LUK.24.45.NIV"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-sm font-black uppercase tracking-[0.22em] text-zinc-400 transition hover:text-white"
-            >
-              Luke 24:45
-            </a>
-
-            <p className="mx-auto mt-3 max-w-3xl text-2xl font-black leading-tight text-white sm:text-4xl">
-              Then he opened their minds so they could understand the Scriptures
-            </p>
-
-            <div className="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-3 text-sm font-black text-zinc-100 sm:text-base">
-              <p className="rounded-full border border-white/10 bg-black/20 px-5 py-2">Deal a board</p>
-              <p className="rounded-full border border-white/10 bg-black/20 px-5 py-2">Search a verse</p>
-              <p className="rounded-full border border-white/10 bg-black/20 px-5 py-2">Open the chapter</p>
-              <p className="rounded-full border border-white/10 bg-black/20 px-5 py-2">Dive deeper</p>
-            </div>
-
-            <p className="mx-auto mt-6 max-w-2xl text-lg font-extrabold leading-snug text-zinc-300 sm:text-xl">
-              Share the verse, your heart, and your prayer
-            </p>
+          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight text-zinc-100 sm:text-4xl">
+            <p>Deal 7 cards</p>
+            <p>Open the Bible</p>
+            <p>Share a verse</p>
           </div>
 
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
