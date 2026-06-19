@@ -154,7 +154,7 @@ export default function BibleBingoVerseCard({
 
         {spinOdds ? (
           <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-slate-300">
-            Spin odds: <span className="text-white">{spinOdds}</span>
+            Shuffled from: <span className="text-white">{spinOdds}</span>
           </p>
         ) : null}
 

@@ -560,8 +560,8 @@ export default function BibleExplorerPage() {
                 className="mt-4 text-sm font-semibold text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white"
               >Deal this card</button>
 
-              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                Odds: {section.odds}
+              <p className="mt-3 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+                Shuffled from: <span className="text-white">{section.odds}</span>
               </p>
             </article>
           ))}

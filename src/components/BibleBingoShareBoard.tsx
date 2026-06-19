@@ -16,6 +16,7 @@ type ShareSection = {
   title: string;
   emoji: string;
   line: string;
+  odds?: string;
 };
 
 type ActiveWordStudy = {
@@ -152,6 +153,10 @@ export default function BibleBingoShareBoard({
                     wordStudies={wordStudies}
                     onWordClick={(wordStudy) => openWordStudy(passage, wordStudy)}
                   />
+                </p>
+
+                <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+                  Shuffled from: <span className="text-white">{section.odds ?? section.title}</span>
                 </p>
 
                 <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
