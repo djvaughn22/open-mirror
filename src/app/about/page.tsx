@@ -62,6 +62,20 @@ export default function AboutPage() {
 
         
       </div>
-    </main>
+    
+        <section
+          aria-label="Cross Heart Pray memorial"
+          className="mx-auto mt-12 max-w-3xl border-t border-white/10 pt-8 text-center"
+        >
+          <p className="text-sm font-black uppercase tracking-[0.28em] text-zinc-300">
+            RIP Travis - VTL
+          </p>
+
+          <p className="mt-3 text-base font-black text-white sm:text-lg">
+            ✝️ Cross ❤️ Heart 🙏 Pray
+          </p>
+        </section>
+
+      </main>
   );
 }
