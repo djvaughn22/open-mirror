@@ -427,23 +427,15 @@ export default function BibleExplorerPage() {
         </nav>
 
         <section className="mx-auto max-w-5xl pt-10 pb-6 text-center sm:pt-12 sm:pb-8">
-          <p className="mb-4 flex items-center justify-center gap-6 text-4xl md:gap-10 md:text-5xl">
-            <span>✝️</span>
-            <span>❤️</span>
-            <span>🙏</span>
-          </p>
-
-          <p className="text-center justify-center items-center mb-5 inline-flex rounded-full border border-white/15 bg-black/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-100">
-            Cross Heart Pray
+          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">❤️</span><span>Heart</span></span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            7 Card Bible Bingo
+            Bible Bingo 7
           </h1>
-
-          <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-zinc-300 md:text-3xl">
-            Deal 7 cards. Explore the Bible. Share what you find.
-          </p>
 
           <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
             Deep Dive on original Hebrew and Greek when available.
