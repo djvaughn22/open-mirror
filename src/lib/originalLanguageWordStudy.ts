@@ -159,6 +159,10 @@ const lowValueEnglishWords = new Set([
   "than",
   "also",
   "only",
+  "commit",
+  "committed",
+  "commits",
+  "committing",
 ]);
 
 const alwaysKeepDeepDiveWords = new Set([
