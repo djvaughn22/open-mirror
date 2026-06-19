@@ -51,11 +51,10 @@ function shareLabels(itemLabel: ShareItemLabel) {
     return {
       open: "Open this card",
       text: "Text this card",
+      email: "Email this card",
       copyLink: "Copy card link",
-      copyText: "Copy post text",
       copyHtml: "Copy HTML email",
       copiedLink: "Card link copied",
-      copiedText: "Post text copied",
       copiedHtml: "HTML email copied",
       help: "Send a card. Start a Bible conversation.",
     };
@@ -64,11 +63,10 @@ function shareLabels(itemLabel: ShareItemLabel) {
   return {
     open: "Open this board",
     text: "Text 7 cards",
+    email: "Email 7 cards",
     copyLink: "Copy board link",
-    copyText: "Copy post text",
     copyHtml: "Copy HTML email",
     copiedLink: "Board link copied",
-    copiedText: "Post text copied",
     copiedHtml: "HTML email copied",
     help: "Ask someone: Which card should we explore?",
   };
@@ -78,6 +76,7 @@ export default function BibleBingoShareMenu({
   boardHref,
   boardUrl,
   shareText,
+  emailSubject,
   htmlEmail,
   align = "center",
   itemLabel = "board",
@@ -90,6 +89,7 @@ export default function BibleBingoShareMenu({
   const labels = shareLabels(itemLabel);
 
   const encodedShareText = encodeURIComponent(shareText);
+  const encodedEmailSubject = encodeURIComponent(emailSubject);
 
   async function copyValue(value: string, label: string) {
     try {
@@ -143,6 +143,14 @@ export default function BibleBingoShareMenu({
             {labels.text}
           </a>
 
+          <a
+            role="menuitem"
+            href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
+            className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
+          >
+            {labels.email}
+          </a>
+
           <button
             type="button"
             role="menuitem"
@@ -150,15 +158,6 @@ export default function BibleBingoShareMenu({
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
             {labels.copyLink}
-          </button>
-
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => copyValue(shareText, labels.copiedText)}
-            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
-          >
-            {labels.copyText}
           </button>
 
           {htmlEmail ? (
