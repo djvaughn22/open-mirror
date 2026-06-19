@@ -32,82 +32,48 @@ export default function AboutPage() {
           </details>
         </nav>
 
-        <section className="mx-auto max-w-3xl space-y-6 text-lg leading-8 text-zinc-300">
-          <h1 className="text-4xl font-bold text-white">About CrossHeartPray</h1>
-
-          <p className="mt-4 text-lg font-semibold text-blue-300">
-            A formula for Truth, Joy and Peace.
+        <section className="mx-auto max-w-3xl text-center">
+          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">❤️</span><span>Heart</span></span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
 
-          <p>CrossHeartPray is about action.</p>
+          <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl">
+            For all people
+          </h1>
 
-          <p>Coming to the Cross.</p>
-
-          <p>Opening your heart to God&apos;s love.</p>
-
-          <p>Praying through the good, the bad, and the ugly.</p>
-
-          <p>The micro moments and the macro moments.</p>
-
-          <p>The daily decisions and the life-changing ones.</p>
-
-          <p>One step at a time.</p>
-
-          <p>Bible Bingo helps you explore the Holy Bible by section with Bible Bingo cards that reveal random verses from Old Testament, Psalms, Proverbs, Gospel, Epistles, Genesis, and Revelation, then lets you regenerate the cards or click into the verse and chapter for context in the Holy Bible app.</p>
-
-          <p>CrossHeartPray doesn&apos;t replace the Bible.</p>
-
-          <p>It doesn&apos;t replace prayer.</p>
-
-          <p>It doesn&apos;t replace church, family, or community.</p>
-
-          <p>It is simply a reminder.</p>
-
-          <p>Cross Heart Pray your way through it.</p>
-
-          <p>✝️ In the name of the Father, Son and Holy Ghost.</p>
-
-          <p>❤️ Touch your heart and receive God&apos;s love.</p>
-
-          <p>🙏 Put your hands together and Pray.</p>
-
-          <p>Then take the next step.</p>
-
-          <p>The Bible is the guide.</p>
-
-          <p>Jesus is the destination.</p>
+          <div className="mx-auto mt-7 max-w-2xl space-y-4 text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
+            <p>Cross Heart Pray is a simple way back to the Bible.</p>
+            <p>Bible Bingo 7 is a daily board for discovery, context, deep dives, and sharing.</p>
+            <p>Deal a board. Search a verse. Open the chapter. Dive deeper.</p>
+            <p className="font-bold text-white">Share the verse, your heart, and your prayer.</p>
+          </div>
         </section>
 
         <BibleVerseLookup />
 
-        <section className="mx-auto mt-12 max-w-3xl space-y-4 border-t border-zinc-800 pt-10 text-center">
-          <p className="text-2xl font-bold text-white">Cross Heart Pray</p>
-
-          <div className="mx-auto max-w-2xl space-y-3 text-base leading-7 text-zinc-300">
-            <a
-              href="/resources/52-week-bible-reading-plan.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              52 Week Bible Reading Plan
-            </a>
-
-            <p>
-              Read through the Holy Bible in one year, one week at a time.
-            </p>
-
-            <p>
-              The plan includes readings from Epistles, The Law, History,
-              Psalms, Poetry, Prophecy, and Gospels.
-            </p>
-          </div>
-
-          <p className="pt-2 text-5xl">✝️ ❤️ 🙏</p>
-
-          <p className="text-base font-semibold tracking-wide text-zinc-400">
-            RIP Travis. VTL.
+        <section className="mx-auto mt-12 max-w-3xl border-t border-zinc-800 pt-10 text-center">
+          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">❤️</span><span>Heart</span></span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
+
+          <p className="text-base font-black uppercase tracking-[0.2em] text-zinc-400">
+            RIP Nerf
+          </p>
+
+          <a
+            href="https://www.bible.com/bible/206/PSA.34.18.WEBUS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mx-auto mt-5 block max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-6 py-6 text-lg font-semibold leading-8 text-zinc-200 shadow-2xl shadow-black/20 transition hover:bg-white/[0.075]"
+          >
+            Psalm 34:18
+            <br />
+            The Lord is close to the brokenhearted and saves those who are crushed in spirit.
+          </a>
         </section>
       </div>
     </main>
