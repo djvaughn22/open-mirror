@@ -55,6 +55,26 @@ function defaultSpinLabel(spinMode: SpinMode) {
   return "Spin Gospel/Epistles";
 }
 
+function defaultSpinOdds(spinMode: SpinMode) {
+  if (spinMode === "proverbs") {
+    return "Proverbs";
+  }
+
+  if (spinMode === "gospel") {
+    return "Gospel";
+  }
+
+  if (spinMode === "epistles") {
+    return "Epistles";
+  }
+
+  if (spinMode === "all") {
+    return "Whole Bible";
+  }
+
+  return "Gospel + Epistles";
+}
+
 function defaultDescription(spinMode: SpinMode) {
   if (spinMode === "proverbs") {
     return "Open a Proverbs card, spin another proverb, and share what stands out.";
@@ -336,6 +356,7 @@ export default function BibleVerseLookup({
           isLoadingWordStudies={isLoadingWordStudies}
           isSpinning={isSpinning}
           spinLabel={spinLabel ?? defaultSpinLabel(spinMode)}
+          spinOdds={defaultSpinOdds(spinMode)}
           note={note}
           onSpinVerse={spinVerse}
           onOpenDeepDive={() => openWordStudy()}

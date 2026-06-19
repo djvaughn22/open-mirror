@@ -23,6 +23,7 @@ type BibleBingoVerseCardProps = {
   isLoadingWordStudies: boolean;
   isSpinning: boolean;
   spinLabel: string;
+  spinOdds?: string;
   note?: string;
   onSpinVerse: () => Promise<void> | void;
   onOpenDeepDive: () => void;
@@ -55,6 +56,7 @@ export default function BibleBingoVerseCard({
   isLoadingWordStudies,
   isSpinning,
   spinLabel,
+  spinOdds,
   note = "",
   onSpinVerse,
   onOpenDeepDive,
@@ -149,6 +151,12 @@ export default function BibleBingoVerseCard({
             {shareStatus}
           </p>
         )}
+
+        {spinOdds ? (
+          <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-slate-300">
+            Spin odds: <span className="text-white">{spinOdds}</span>
+          </p>
+        ) : null}
 
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
           <button
