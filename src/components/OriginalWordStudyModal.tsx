@@ -319,7 +319,7 @@ export default function OriginalWordStudyModal({
             </p>
 
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {detailRow("English in verse", selectedWordStudy.englishWord)}
+              {detailRow("Translated here as", selectedWordStudy.englishWord)}
               {detailRow("Strong’s", selectedWordStudy.strongs)}
               {detailRow("Transliteration", transliterationGuide)}
               {detailRow("Pronunciation", pronunciationGuide)}
