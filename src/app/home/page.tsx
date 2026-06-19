@@ -76,31 +76,33 @@ export default function HomePage() {
         </nav>
 
         <section className="mx-auto max-w-5xl py-20 text-center sm:py-24">
-          <p className="mb-7 flex items-center justify-center gap-6 text-5xl md:gap-12 md:text-6xl">
-            <span className="rounded-3xl border border-emerald-200/15 bg-emerald-300/10 px-4 py-3 shadow-lg shadow-emerald-950/20">✝️</span>
-            <span className="rounded-3xl border border-red-200/15 bg-red-300/10 px-4 py-3 shadow-lg shadow-red-950/20">❤️</span>
-            <span className="rounded-3xl border border-sky-200/15 bg-sky-300/10 px-4 py-3 shadow-lg shadow-sky-950/20">🙏</span>
+          <p className="mb-7 flex items-center justify-center gap-7 text-5xl md:gap-12 md:text-6xl">
+            <span>✝️</span>
+            <span>❤️</span>
+            <span>🙏</span>
           </p>
 
-          <p className="mx-auto mb-5 inline-flex rounded-full border border-white/15 bg-white/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.24em] text-blue-200">
-            7 Card Bible Bingo
-          </p>
+
 
           <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl">
             Cross Heart Pray
           </h1>
 
           <div className="mx-auto mt-8 max-w-4xl">
-            <p className="text-3xl font-extrabold leading-tight text-zinc-100 sm:text-5xl">
-              Remember Jesus
+            <p className="text-4xl font-black leading-tight text-white sm:text-6xl">
+              Bible Bingo 7
             </p>
 
-            <p className="mt-3 text-2xl font-bold leading-tight text-zinc-300 sm:text-4xl">
-              Receive God&apos;s love
+            <p className="mx-auto mt-7 max-w-3xl text-2xl font-extrabold leading-tight text-zinc-100 sm:text-4xl">
+              Deal a board for fun, exploration, and Scripture that stays with you
             </p>
 
-            <p className="mt-4 text-xl font-bold leading-snug text-zinc-100 sm:text-3xl">
-              Pray
+            <p className="mx-auto mt-7 max-w-2xl text-lg font-semibold leading-8 text-zinc-300 sm:text-xl sm:leading-9">
+              Read the chapter for context
+              <br />
+              Dive into Hebrew or Greek in one click
+              <br />
+              Share the board or card that stayed with you and why
             </p>
           </div>
 
@@ -129,7 +131,7 @@ export default function HomePage() {
                 alignItems: "center",
               }}
             >
-              <div className="rounded-3xl border border-white/10 bg-black/15 px-5 py-4 text-5xl shadow-lg shadow-black/20">{step.emoji}</div>
+              <div className="text-5xl">{step.emoji}</div>
 
               {step.comingSoon && (
                 <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
