@@ -302,11 +302,11 @@ export default function OriginalWordStudyModal({
 
         <div className="max-h-[calc(100dvh-8rem)] overflow-y-auto p-5 sm:p-6">
           {allWordStudies.length > 1 ? (
-            <section className="mb-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="mb-3 text-[0.68rem] font-black uppercase tracking-[0.2em] text-slate-400">
-                Word links
-              </p>
-              <div className="flex flex-wrap gap-2">
+            <details className="mb-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <summary className="cursor-pointer text-[0.68rem] font-black uppercase tracking-[0.2em] text-slate-400">
+                Other verified words
+              </summary>
+              <div className="mt-4 flex flex-wrap gap-2">
                 {allWordStudies.map((study) => (
                   <button
                     key={wordStudyKey(study)}
@@ -321,7 +321,7 @@ export default function OriginalWordStudyModal({
                   </button>
                 ))}
               </div>
-            </section>
+            </details>
           ) : null}
 
           <section className="rounded-[1.25rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5">
