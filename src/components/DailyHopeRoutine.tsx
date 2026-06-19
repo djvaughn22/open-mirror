@@ -344,7 +344,7 @@ export default function DailyHopeRoutine({
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
-        <nav className="grid grid-cols-3 items-center">
+        <nav className="mb-10 grid grid-cols-3 items-center sm:mb-12">
           <a href="/home" className="justify-self-start font-bold">
             CrossHeartPray
           </a>
@@ -385,17 +385,17 @@ export default function DailyHopeRoutine({
           </div>
         </nav>
         <div className="text-center">
-          <div className="flex justify-center gap-4 text-3xl" aria-hidden="true">
+          <div className="flex justify-center gap-3 text-2xl sm:text-3xl" aria-hidden="true">
             <span>✝️</span>
             <span>❤️</span>
             <span>🙏</span>
           </div>
 
-          <h1 className="mt-5 text-5xl font-black tracking-tight text-white sm:text-7xl">
+          <h1 className="mt-4 text-4xl font-black tracking-tight text-white sm:text-6xl">
             Daily Hope
           </h1>
 
-          <p className="mt-4 text-2xl font-black text-emerald-100 sm:text-3xl">
+          <p className="mt-3 text-xl font-black text-emerald-100 sm:text-3xl">
             Don’t just hope. Know.
           </p>
 
