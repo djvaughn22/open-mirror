@@ -50,11 +50,17 @@ export default function AboutPage() {
               <br />
               One board. Seven verses.
               <br />
-              Fresh discovery, context, deep dive word study, and easy sharing.
+              Fresh discovery. Clear context.
+              <br />
+              Deep dive word study. Easy sharing.
               <br />
               <br />
               <span className="font-bold text-white">
-                Deal your board, follow what stands out, and Cross, Heart, Pray through it!
+                Deal your board.
+                <br />
+                Follow what stands out.
+                <br />
+                Cross, Heart, Pray through it!
               </span>
             </p>
           </div>
