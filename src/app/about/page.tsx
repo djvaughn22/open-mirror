@@ -53,27 +53,30 @@ export default function AboutPage() {
 
         <BibleVerseLookup />
 
-        <section className="mx-auto mt-12 max-w-3xl border-t border-zinc-800 pt-10 text-center">
-          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">
-            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">✝️</span><span>Cross</span></span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">❤️</span><span>Heart</span></span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
-          </p>
+        <section className="mx-auto mt-12 max-w-3xl border-t border-zinc-900 pt-10 text-center">
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] px-6 py-8 shadow-2xl shadow-black/20 sm:px-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-zinc-500">
+              RIP Nerf
+            </p>
 
-          <p className="text-base font-black uppercase tracking-[0.2em] text-zinc-400">
-            RIP Nerf
-          </p>
+            <p className="mt-4 text-3xl font-black tracking-tight text-white sm:text-4xl">
+              For the brokenhearted
+            </p>
 
-          <a
-            href="https://www.bible.com/bible/206/PSA.34.18.WEBUS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-auto mt-5 block max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-6 py-6 text-lg font-semibold leading-8 text-zinc-200 shadow-2xl shadow-black/20 transition hover:bg-white/[0.075]"
-          >
-            Psalm 34:18
-            <br />
-            The Lord is close to the brokenhearted and saves those who are crushed in spirit.
-          </a>
+            <a
+              href="https://www.bible.com/bible/206/PSA.34.18.WEBUS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto mt-6 block max-w-2xl rounded-[1.5rem] border border-white/10 bg-black/20 px-6 py-6 text-lg font-semibold leading-8 text-zinc-200 transition hover:bg-white/[0.07]"
+            >
+              <span className="block text-sm font-black uppercase tracking-[0.2em] text-zinc-400">
+                Psalm 34:18
+              </span>
+              <span className="mt-3 block">
+                The Lord is close to the brokenhearted and saves those who are crushed in spirit.
+              </span>
+            </a>
+          </div>
         </section>
       </div>
     </main>
