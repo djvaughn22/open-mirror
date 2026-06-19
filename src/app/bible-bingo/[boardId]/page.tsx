@@ -74,6 +74,14 @@ function chapterUrl(passage: Omit<PassageForUrl, "verse">) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
+function escapeHtmlForEmail(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
 export default async function BibleBingoSharePage({ params, searchParams }: PageProps) {
   const { boardId } = await params;
   const resolvedSearchParams = searchParams ? await searchParams : {};
@@ -142,55 +150,71 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
     : "My Bible Bingo board";
 
   const htmlEmail = `
-    <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
-      <div style="max-width: 720px; margin: 0 auto;">
-        <p style="font-size: 34px; text-align: center; margin: 0 0 14px;">✝️ ❤️ 🙏</p>
-        <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 34px; line-height: 1.15; color: #0f172a;">Bible Bingo Board</h1>
-        <p style="text-align: center; color: #475569; font-size: 16px; line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto;">
-          Same 7 cards.
-        </p>
-        <p style="text-align: center; margin: 24px 0;">
-          <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
-            Open Bible Bingo Board
-          </a>
-        </p>
-        ${passages.map((passage, index) => `
-          <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
-            <p style="font-size: 30px; text-align: center; margin: 0 0 8px;">${shareSections[index].emoji}</p>
-            <h2 style="font-family: Arial, Helvetica, sans-serif; text-align: center; margin: 8px 0 6px; font-size: 13px; line-height: 1.4; letter-spacing: 0.12em; text-transform: uppercase; color: #047857;">${shareSections[index].title}</h2>
-            <p style="font-family: Georgia, 'Times New Roman', serif; text-align: center; color: #0f172a; font-weight: bold; font-size: 24px; line-height: 1.25; margin: 10px 0 14px;">${passage.label}</p>
-            <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${passage.text}</p>
-            <p style="text-align: center;">
-              <a href="${verseUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Verse</a>
-              &nbsp; | &nbsp;
-              <a href="${chapterUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Chapter</a>
-              &nbsp; | &nbsp;
-              <a href="${boardUrl}?card=${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Card</a>
+    <div style="margin:0; padding:0; background:#eef2f7;">
+      <div style="font-family: Arial, Helvetica, sans-serif; background:#eef2f7; color:#0f172a; padding:28px 10px;">
+        <div style="max-width:760px; margin:0 auto;">
+          <div style="text-align:center; margin:0 0 22px;">
+            <div style="font-size:34px; line-height:1; margin-bottom:12px;">✝️ ❤️ 🙏</div>
+            <div style="font-size:12px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#047857; margin-bottom:8px;">Cross Heart Pray</div>
+            <h1 style="font-family: Georgia, 'Times New Roman', serif; margin:0; font-size:36px; line-height:1.12; color:#0f172a;">Bible Bingo 7</h1>
+            <p style="margin:12px auto 0; max-width:560px; color:#475569; font-size:16px; line-height:1.6; font-weight:600;">
+              I dealt 7 Bible Bingo cards. Which card should we explore?
+            </p>
+            <p style="text-align:center; margin:22px 0 0;">
+              <a href="${boardUrl}" style="display:inline-block; background:#047857; color:#ffffff; padding:13px 22px; border-radius:999px; text-decoration:none; font-weight:800; font-size:15px;">
+                Open the 7-card board
+              </a>
             </p>
           </div>
-        `).join("")}
+
+          <div style="font-size:0; text-align:center;">
+            ${passages.map((passage, index) => `
+              <div style="display:inline-block; width:100%; max-width:336px; vertical-align:top; margin:8px; font-size:16px;">
+                <div style="min-height:315px; border:1px solid #dbe3ee; border-radius:22px; padding:22px; background:#ffffff; box-shadow:0 12px 30px rgba(15,23,42,0.10);">
+                  <div style="font-size:30px; text-align:center; margin:0 0 10px;">${shareSections[index].emoji}</div>
+                  <div style="text-align:center; font-size:11px; line-height:1.4; letter-spacing:0.18em; text-transform:uppercase; color:#047857; font-weight:900; margin:0 0 8px;">Card ${index + 1} · ${escapeHtmlForEmail(shareSections[index].title)}</div>
+                  <h2 style="font-family: Georgia, 'Times New Roman', serif; text-align:center; color:#0f172a; font-size:23px; line-height:1.2; margin:8px 0 14px;">${escapeHtmlForEmail(passage.label)}</h2>
+                  <p style="font-family: Georgia, 'Times New Roman', serif; color:#334155; line-height:1.65; font-size:17px; margin:0 0 18px;">${escapeHtmlForEmail(passage.text)}</p>
+                  <p style="text-align:center; margin:0;">
+                    <a href="${verseUrl(passage)}" style="color:#065f46; font-weight:800; text-decoration:none;">Verse</a>
+                    &nbsp; | &nbsp;
+                    <a href="${chapterUrl(passage)}" style="color:#065f46; font-weight:800; text-decoration:none;">Chapter</a>
+                    &nbsp; | &nbsp;
+                    <a href="${boardUrl}?card=${index + 1}" style="color:#065f46; font-weight:800; text-decoration:none;">Open card</a>
+                  </p>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+
+          <p style="text-align:center; color:#64748b; font-size:13px; line-height:1.6; margin:22px 0 0;">
+            Bible Bingo 7 · Open the link to flip through the same 7 cards.
+          </p>
+        </div>
       </div>
     </div>
   `;
 
   const singleCardHtmlEmail = isSingleCardView
     ? `
-      <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
-        <div style="max-width: 560px; margin: 0 auto;">
-          <p style="font-size: 32px; text-align: center; margin: 0 0 12px;">${selectedCard.section.emoji}</p>
-          <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 30px; line-height: 1.15; color: #0f172a;">${selectedCard.section.title} Bible Bingo Card</h1>
-          <p style="font-family: Georgia, 'Times New Roman', serif; text-align: center; color: #0f172a; font-weight: bold; font-size: 24px; line-height: 1.25; margin: 18px 0 12px;">${selectedCard.passage.label}</p>
-          <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
-            <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${selectedCard.passage.text}</p>
-            <p style="text-align: center; margin: 22px 0 0;">
-              <a href="${cardUrl}" style="color: #065f46; font-weight: bold; text-decoration: none;">Open Live Card</a>
-              &nbsp; | &nbsp;
-              <a href="${boardUrl}" style="color: #065f46; font-weight: bold; text-decoration: none;">All 7 Cards</a>
+      <div style="margin:0; padding:0; background:#eef2f7;">
+        <div style="font-family: Arial, Helvetica, sans-serif; background:#eef2f7; color:#0f172a; padding:28px 10px;">
+          <div style="max-width:560px; margin:0 auto;">
+            <div style="border:1px solid #dbe3ee; border-radius:24px; padding:26px 22px; background:#ffffff; box-shadow:0 12px 30px rgba(15,23,42,0.10);">
+              <p style="font-size:34px; text-align:center; margin:0 0 12px;">${selectedCard.section.emoji}</p>
+              <p style="text-align:center; font-size:11px; line-height:1.4; letter-spacing:0.18em; text-transform:uppercase; color:#047857; font-weight:900; margin:0 0 10px;">${escapeHtmlForEmail(selectedCard.section.title)} Bible Bingo Card</p>
+              <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align:center; margin:0 0 16px; font-size:30px; line-height:1.15; color:#0f172a;">${escapeHtmlForEmail(selectedCard.passage.label)}</h1>
+              <p style="font-family: Georgia, 'Times New Roman', serif; color:#334155; line-height:1.7; font-size:18px; margin:0 0 22px;">${escapeHtmlForEmail(selectedCard.passage.text)}</p>
+              <p style="text-align:center; margin:0;">
+                <a href="${cardUrl}" style="color:#065f46; font-weight:800; text-decoration:none;">Open live card</a>
+                &nbsp; | &nbsp;
+                <a href="${boardUrl}" style="color:#065f46; font-weight:800; text-decoration:none;">All 7 cards</a>
+              </p>
+            </div>
+            <p style="text-align:center; color:#64748b; font-size:13px; line-height:1.6; margin:18px 0 0;">
+              Bible Bingo 7 · Cross Heart Pray
             </p>
           </div>
-          <p style="text-align: center; color: #64748b; font-size: 13px; line-height: 1.6;">
-            Cross Heart Pray · 7 Card Bible Bingo
-          </p>
         </div>
       </div>
     `
