@@ -24,9 +24,9 @@ const steps = [
   },
 ];
 const HOME_CARD_TONES = [
-  "border-emerald-200/15 bg-emerald-300/10",
-  "border-red-200/15 bg-red-300/10",
-  "border-sky-200/15 bg-sky-300/10",
+  "border-emerald-100/20 bg-white/[0.055] shadow-2xl shadow-emerald-950/20",
+  "border-red-100/20 bg-white/[0.055] shadow-2xl shadow-red-950/20",
+  "border-sky-100/20 bg-white/[0.055] shadow-2xl shadow-sky-950/20",
 ];
 
 function homeCardTone(index: number) {
@@ -99,7 +99,7 @@ export default function HomePage() {
               Receive God&apos;s love
             </p>
 
-            <p className="mt-4 text-xl font-bold leading-snug text-blue-400 sm:text-3xl">
+            <p className="mt-4 text-xl font-bold leading-snug text-zinc-100 sm:text-3xl">
               Pray
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="/explorebible"
-              className="rounded-full border border-blue-200/25 bg-blue-400/15 px-8 py-3 text-center font-bold text-blue-100 shadow-lg shadow-blue-950/20 transition hover:bg-blue-400/20"
+              className="rounded-full border border-white/20 bg-white/10 px-8 py-3 text-center font-bold text-white shadow-lg shadow-black/20 transition hover:bg-white/15"
             >
               Deal Bible Bingo 7
             </a>
@@ -121,7 +121,7 @@ export default function HomePage() {
             <a
               key={step.title}
               href={step.href}
-              className={`rounded-[2rem] border p-8 text-center text-slate-100 transition hover:bg-white/15 md:col-span-2 ${homeCardTone(index)}`}
+              className={`rounded-[2rem] border p-8 text-center text-slate-100 transition duration-200 hover:-translate-y-1 hover:bg-white/[0.075] md:col-span-2 ${homeCardTone(index)}`}
               style={{
                 minHeight: "300px",
                 display: "flex",
@@ -129,7 +129,7 @@ export default function HomePage() {
                 alignItems: "center",
               }}
             >
-              <div className="text-5xl">{step.emoji}</div>
+              <div className="rounded-3xl border border-white/10 bg-black/15 px-5 py-4 text-5xl shadow-lg shadow-black/20">{step.emoji}</div>
 
               {step.comingSoon && (
                 <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
@@ -137,11 +137,11 @@ export default function HomePage() {
                 </p>
               )}
 
-              <h2 className={step.comingSoon ? "mt-4 text-2xl font-bold" : "mt-8 text-2xl font-bold"}>
+              <h2 className={step.comingSoon ? "mt-4 text-2xl font-black tracking-tight" : "mt-8 text-2xl font-black tracking-tight"}>
                 {step.title}
               </h2>
 
-              <p className="mt-4 leading-7 text-slate-300" style={{ flex: 1 }}>
+              <p className="mt-5 text-lg font-semibold leading-8 text-slate-200" style={{ flex: 1 }}>
                 {step.text}
               </p>
             </a>
@@ -151,7 +151,7 @@ export default function HomePage() {
         <section className="border-t border-zinc-900 px-6 pt-12 pb-4 text-center sm:pt-14 sm:pb-5">
           <a
             href="/explorebible"
-            className="rounded-full border border-white/15 bg-white/10 px-8 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
+            className="rounded-full border border-white/20 bg-white/10 px-8 py-3 font-bold text-white shadow-lg shadow-black/20 transition hover:bg-white/15"
           >
             Bible Bingo
           </a>
