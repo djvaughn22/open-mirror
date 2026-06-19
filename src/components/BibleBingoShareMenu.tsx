@@ -53,8 +53,10 @@ function shareLabels(itemLabel: ShareItemLabel) {
       text: "Text this card",
       copyLink: "Copy card link",
       copyText: "Copy post text",
+      copyHtml: "Copy HTML email",
       copiedLink: "Card link copied",
       copiedText: "Post text copied",
+      copiedHtml: "HTML email copied",
       help: "Send a card. Start a Bible conversation.",
     };
   }
@@ -64,8 +66,10 @@ function shareLabels(itemLabel: ShareItemLabel) {
     text: "Text 7 cards",
     copyLink: "Copy board link",
     copyText: "Copy post text",
+    copyHtml: "Copy HTML email",
     copiedLink: "Board link copied",
     copiedText: "Post text copied",
+    copiedHtml: "HTML email copied",
     help: "Ask someone: Which card should we explore?",
   };
 }
@@ -74,6 +78,7 @@ export default function BibleBingoShareMenu({
   boardHref,
   boardUrl,
   shareText,
+  htmlEmail,
   align = "center",
   itemLabel = "board",
   buttonLabel = "Share",
@@ -155,6 +160,17 @@ export default function BibleBingoShareMenu({
           >
             {labels.copyText}
           </button>
+
+          {htmlEmail ? (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => copyValue(htmlEmail, labels.copiedHtml)}
+              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
+            >
+              {labels.copyHtml}
+            </button>
+          ) : null}
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
             {copied || labels.help}
