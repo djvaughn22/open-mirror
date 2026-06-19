@@ -2,7 +2,7 @@ import BibleVerseLookup from "../../components/BibleVerseLookup";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-black px-6 py-12 text-white">
+    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
       <div className="mx-auto max-w-5xl">
         <nav className="mb-16 grid grid-cols-3 items-center">
           <a href="/home" className="justify-self-start font-bold">
