@@ -356,9 +356,11 @@ export default function DailyHopeRoutine({
             aria-label="Open Bible.com Verse of the Day"
             className="justify-self-center"
           >
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-xl shadow-sm">
-              📖
-            </span>
+            <img
+              src="/holy-bible-logo.svg"
+              alt="Holy Bible"
+              className="h-12 w-12 rounded-lg shadow-sm"
+            />
           </a>
 
           <div className="relative justify-self-end">
@@ -385,13 +387,19 @@ export default function DailyHopeRoutine({
           </div>
         </nav>
         <div className="text-center">
-          <div className="flex justify-center gap-3 text-2xl sm:text-3xl" aria-hidden="true">
-            <span>✝️</span>
-            <span>❤️</span>
-            <span>🙏</span>
+          <div
+            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base font-black uppercase tracking-[0.24em] text-white sm:text-lg"
+            aria-hidden="true"
+          >
+            <span className="text-3xl">✝️</span>
+            <span>Cross</span>
+            <span className="text-3xl">❤️</span>
+            <span>Heart</span>
+            <span className="text-3xl">🙏</span>
+            <span>Pray</span>
           </div>
 
-          <h1 className="mt-4 text-4xl font-black tracking-tight text-white sm:text-6xl">
+          <h1 className="mt-6 text-5xl font-black tracking-tight text-white sm:text-7xl">
             Daily Hope
           </h1>
 
