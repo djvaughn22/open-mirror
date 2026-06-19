@@ -43,28 +43,18 @@ function menuPositionClass(align: BibleBingoShareMenuProps["align"]) {
 }
 
 function shareLabels(itemLabel: ShareItemLabel) {
-  if (itemLabel === "card") {
-    return {
-      open: "Open this card",
-      text: "Text card link",
-      email: "Open email with link",
-      prettyEmail: "Copy pretty card email",
-      copyLink: "Copy card link",
-      copiedLink: "Card link copied",
-      copiedHtml: "Pretty card email copied. Paste it into Gmail.",
-      help: "Text sends a card link. Pretty email copies a formatted card for Gmail paste.",
-    };
-  }
+  const itemName = itemLabel === "card" ? "card" : "board";
 
   return {
-    open: "Open this board",
-    text: "Text board link",
-    email: "Open email with link",
-    prettyEmail: "Copy pretty board email",
-    copyLink: "Copy board link",
-    copiedLink: "Board link copied",
-    copiedHtml: "Pretty board email copied. Paste it into Gmail.",
-    help: "Text sends one board link. Pretty email copies all 7 formatted cards for Gmail paste.",
+    open: `Open live ${itemName}`,
+    copyLink: "Copy link",
+    copyText: "Copy share text",
+    copyEmail: `Copy email ${itemName}`,
+    emailDraft: "Open plain email draft",
+    copiedLink: "Link copied.",
+    copiedText: "Share text copied.",
+    copiedHtml: `Formatted email ${itemName} copied. Paste it into Gmail.`,
+    help: `Use Copy link anywhere. Use Copy email ${itemName} to paste a formatted version into Gmail.`,
   };
 }
 
@@ -84,6 +74,7 @@ export default function BibleBingoShareMenu({
   const [copied, setCopied] = useState("");
   const labels = shareLabels(itemLabel);
 
+  const openHref = boardUrl || boardHref;
   const encodedShareText = encodeURIComponent(shareText);
   const encodedEmailSubject = encodeURIComponent(emailSubject);
 
@@ -93,7 +84,7 @@ export default function BibleBingoShareMenu({
       setCopied(label);
       window.setTimeout(() => setCopied(""), 2600);
     } catch {
-      setCopied("Copy failed");
+      setCopied("Copy failed.");
       window.setTimeout(() => setCopied(""), 2600);
     }
   }
@@ -114,7 +105,7 @@ export default function BibleBingoShareMenu({
       setCopied(labels.copiedHtml);
       window.setTimeout(() => setCopied(""), 3800);
     } catch {
-      setCopied("Copy failed");
+      setCopied("Copy failed.");
       window.setTimeout(() => setCopied(""), 2600);
     }
   }
@@ -145,39 +136,12 @@ export default function BibleBingoShareMenu({
           {showOpenOption ? (
             <a
               role="menuitem"
-              href={boardHref}
+              href={openHref}
               className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
             >
               {labels.open}
             </a>
           ) : null}
-
-          {htmlEmail ? (
-            <button
-              type="button"
-              role="menuitem"
-              onClick={() => copyRichHtmlEmail(htmlEmail)}
-              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
-            >
-              {labels.prettyEmail}
-            </button>
-          ) : null}
-
-          <a
-            role="menuitem"
-            href={`sms:?&body=${encodedShareText}`}
-            className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
-          >
-            {labels.text}
-          </a>
-
-          <a
-            role="menuitem"
-            href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
-            className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
-          >
-            {labels.email}
-          </a>
 
           <button
             type="button"
@@ -187,6 +151,34 @@ export default function BibleBingoShareMenu({
           >
             {labels.copyLink}
           </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => copyPlainText(shareText, labels.copiedText)}
+            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
+          >
+            {labels.copyText}
+          </button>
+
+          {htmlEmail ? (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => copyRichHtmlEmail(htmlEmail)}
+              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
+            >
+              {labels.copyEmail}
+            </button>
+          ) : null}
+
+          <a
+            role="menuitem"
+            href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
+            className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
+          >
+            {labels.emailDraft}
+          </a>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
             {copied || labels.help}
