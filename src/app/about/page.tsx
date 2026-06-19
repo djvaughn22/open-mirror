@@ -40,7 +40,7 @@ export default function AboutPage() {
           </p>
 
           <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl">
-            For all people
+            Cross Heart Pray
           </h1>
 
           <div className="mx-auto mt-7 max-w-2xl space-y-4 text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
