@@ -112,12 +112,7 @@ export default function HomePage() {
               Deal Bible Bingo 7
             </a>
 
-            <a
-              href="/cross"
-              className="rounded-full border border-white/15 bg-white/10 px-8 py-3 text-center font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Cross Heart Pray
-            </a>
+
           </div>
         </section>
 
