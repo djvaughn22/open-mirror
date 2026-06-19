@@ -11,8 +11,17 @@ import {
   type VerifiedWordStudy,
 } from "../lib/originalLanguageWordStudy";
 
+type SpinMode = "gospel" | "proverbs";
+
 type BibleVerseLookupProps = {
   className?: string;
+  initialReference?: string;
+  initialTextOverride?: string;
+  showSearch?: boolean;
+  spinMode?: SpinMode;
+  spinLabel?: string;
+  title?: string;
+  description?: string;
 };
 
 type ActiveLookupWordStudy = {
@@ -20,51 +29,74 @@ type ActiveLookupWordStudy = {
   wordStudy: VerifiedWordStudy;
 };
 
-const SIGNATURE_REFERENCE = "2 Corinthians 3:17";
+const DEFAULT_REFERENCE = "2 Corinthians 3:17";
 
 function verseUrl(passage: BibleBingoCardPassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
 
+function defaultSpinLabel(spinMode: SpinMode) {
+  return spinMode === "proverbs" ? "Spin Proverbs" : "Spin Gospel Verse";
+}
+
+function defaultDescription(spinMode: SpinMode) {
+  return spinMode === "proverbs"
+    ? "Open a Proverbs card, spin another proverb, and share what stands out."
+    : "Open with 2 Corinthians 3:17, search any verse, or spin a Gospel verse from Matthew, Mark, Luke, or John.";
+}
+
 export default function BibleVerseLookup({
   className = "mt-12",
+  initialReference = DEFAULT_REFERENCE,
+  initialTextOverride,
+  showSearch = true,
+  spinMode = "gospel",
+  spinLabel,
+  title = "Search a Verse. Share a Card.",
+  description,
 }: BibleVerseLookupProps) {
   const [query, setQuery] = useState("");
   const [passage, setPassage] = useState<BibleBingoCardPassage | null>(null);
   const [wordStudies, setWordStudies] = useState<VerifiedWordStudy[]>([]);
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
-  const [isOpeningSignature, setIsOpeningSignature] = useState(true);
+  const [isOpeningInitialVerse, setIsOpeningInitialVerse] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [isLoadingWordStudies, setIsLoadingWordStudies] = useState(false);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveLookupWordStudy | null>(null);
 
-  const loadPassageByReference = useCallback(async (reference: string) => {
-    const response = await fetch(
-      `/api/local-verse-lookup?q=${encodeURIComponent(reference)}`,
-    );
+  const loadPassageByReference = useCallback(
+    async (reference: string, textOverride?: string) => {
+      const response = await fetch(
+        `/api/local-verse-lookup?q=${encodeURIComponent(reference)}`,
+      );
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(data.error ?? "No local verse match found.");
-    }
+      if (!response.ok) {
+        throw new Error(data.error ?? "No local verse match found.");
+      }
 
-    setPassage(data.passage);
-    setNote(data.note ?? "");
-    setError("");
-  }, []);
+      setPassage({
+        ...data.passage,
+        text: textOverride ?? data.passage.text,
+      });
+      setNote(data.note ?? "");
+      setError("");
+    },
+    [],
+  );
 
   useEffect(() => {
     let cancelled = false;
 
-    async function openSignatureVerse() {
-      setIsOpeningSignature(true);
+    async function openInitialVerse() {
+      setIsOpeningInitialVerse(true);
 
       try {
         const response = await fetch(
-          `/api/local-verse-lookup?q=${encodeURIComponent(SIGNATURE_REFERENCE)}`,
+          `/api/local-verse-lookup?q=${encodeURIComponent(initialReference)}`,
         );
 
         const data = await response.json();
@@ -74,29 +106,32 @@ export default function BibleVerseLookup({
         }
 
         if (!response.ok) {
-          throw new Error(data.error ?? "Unable to open signature verse.");
+          throw new Error(data.error ?? "Unable to open initial verse.");
         }
 
-        setPassage(data.passage);
+        setPassage({
+          ...data.passage,
+          text: initialTextOverride ?? data.passage.text,
+        });
         setNote("");
         setError("");
       } catch {
         if (!cancelled) {
-          setError("Unable to open 2 Corinthians 3:17 right now.");
+          setError(`Unable to open ${initialReference} right now.`);
         }
       } finally {
         if (!cancelled) {
-          setIsOpeningSignature(false);
+          setIsOpeningInitialVerse(false);
         }
       }
     }
 
-    openSignatureVerse();
+    openInitialVerse();
 
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [initialReference, initialTextOverride]);
 
   useEffect(() => {
     if (!passage) {
@@ -170,27 +205,27 @@ export default function BibleVerseLookup({
     }
   }
 
-  async function spinGospelVerse() {
+  async function spinVerse() {
     setIsSpinning(true);
     setError("");
     setNote("");
 
     try {
-      const response = await fetch("/api/local-verse-lookup?random=gospel", {
+      const response = await fetch(`/api/local-verse-lookup?random=${spinMode}`, {
         cache: "no-store",
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error ?? "Unable to spin a Gospel verse.");
+        throw new Error(data.error ?? "Unable to spin a verse.");
       }
 
       setPassage(data.passage);
       setNote(data.note ?? "");
       setQuery("");
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Unable to spin a Gospel verse right now.");
+      setError(caught instanceof Error ? caught.message : "Unable to spin a verse right now.");
     } finally {
       setIsSpinning(false);
     }
@@ -220,43 +255,47 @@ export default function BibleVerseLookup({
       </p>
 
       <h2 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">
-        Search a Verse. Share a Card.
+        {title}
       </h2>
 
       <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-6 text-zinc-300 sm:text-base">
-        Open with 2 Corinthians 3:17, search any verse, or spin a Gospel verse from Matthew, Mark, Luke, or John.
+        {description ?? defaultDescription(spinMode)}
       </p>
 
-      <form
-        onSubmit={lookupVerse}
-        className="mx-auto mt-6 flex max-w-2xl flex-col gap-3 sm:flex-row"
-      >
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          type="text"
-          inputMode="text"
-          placeholder="Romans 8:8"
-          aria-label="Bible verse to search"
-          className="min-h-14 flex-1 rounded-2xl border border-white/15 bg-black/25 px-5 text-lg font-semibold text-white placeholder:text-white/35 outline-none ring-0 focus:border-white/40"
-        />
+      {showSearch && (
+        <>
+          <form
+            onSubmit={lookupVerse}
+            className="mx-auto mt-6 flex max-w-2xl flex-col gap-3 sm:flex-row"
+          >
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              inputMode="text"
+              placeholder="Romans 8:8"
+              aria-label="Bible verse to search"
+              className="min-h-14 flex-1 rounded-2xl border border-white/15 bg-black/25 px-5 text-lg font-semibold text-white placeholder:text-white/35 outline-none ring-0 focus:border-white/40"
+            />
 
-        <button
-          type="submit"
-          disabled={isSearching}
-          className="min-h-14 rounded-2xl border border-white/20 bg-white/10 px-6 text-base font-black text-white shadow-lg shadow-black/20 transition hover:bg-white/15 disabled:cursor-wait disabled:opacity-60"
-        >
-          {isSearching ? "Searching..." : "Search Verse"}
-        </button>
-      </form>
+            <button
+              type="submit"
+              disabled={isSearching}
+              className="min-h-14 rounded-2xl border border-white/20 bg-white/10 px-6 text-base font-black text-white shadow-lg shadow-black/20 transition hover:bg-white/15 disabled:cursor-wait disabled:opacity-60"
+            >
+              {isSearching ? "Searching..." : "Search Verse"}
+            </button>
+          </form>
 
-      <p className="mt-4 text-xs font-semibold text-zinc-400">
-        Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, or 2 Corinthians 3:17.
-      </p>
+          <p className="mt-4 text-xs font-semibold text-zinc-400">
+            Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, Proverbs 17:22, or 2 Corinthians 3:17.
+          </p>
+        </>
+      )}
 
-      {isOpeningSignature && !passage && (
+      {isOpeningInitialVerse && !passage && (
         <article className="mx-auto mt-7 max-w-3xl rounded-[1.75rem] border border-white/10 bg-black/20 p-6 text-center shadow-xl shadow-black/20 sm:p-8">
-          <p className="text-sm font-bold text-slate-200">Opening 2 Corinthians 3:17...</p>
+          <p className="text-sm font-bold text-slate-200">Opening {initialReference}...</p>
         </article>
       )}
 
@@ -266,8 +305,9 @@ export default function BibleVerseLookup({
           wordStudies={wordStudies}
           isLoadingWordStudies={isLoadingWordStudies}
           isSpinning={isSpinning}
+          spinLabel={spinLabel ?? defaultSpinLabel(spinMode)}
           note={note}
-          onSpinGospelVerse={spinGospelVerse}
+          onSpinVerse={spinVerse}
           onOpenDeepDive={() => openWordStudy()}
           onWordClick={(wordStudy) => openWordStudy(wordStudy)}
         />

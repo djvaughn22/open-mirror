@@ -20,6 +20,7 @@ const booksByAlias = new Map<string, string>();
 
 const gospelBooks = new Set(["Matthew", "Mark", "Luke", "John"]);
 const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => gospelBooks.has(verse.book));
+const proverbsVerses = LOCAL_BIBLE_VERSES.filter((verse) => verse.book === "Proverbs");
 
 function normalizeText(value: string) {
   return value
@@ -65,6 +66,8 @@ booksByAlias.set("ps", "Psalms");
 booksByAlias.set("psa", "Psalms");
 booksByAlias.set("jn", "John");
 booksByAlias.set("jhn", "John");
+booksByAlias.set("prov", "Proverbs");
+booksByAlias.set("pr", "Proverbs");
 booksByAlias.set("rev", "Revelation");
 booksByAlias.set("re", "Revelation");
 
@@ -109,35 +112,40 @@ function findLocalVerse(rawQuery: string) {
     verse,
     note: rawVerse
       ? ""
-      : `Showing ${verse.label}. View Verse opens this exact verse. Read Chapter opens the full chapter.`,
+      : `Showing ${verse.label}. Go to Verse opens this exact verse. Go to Chapter opens the full chapter.`,
   };
 }
 
-function getRandomGospelVerse() {
-  if (gospelVerses.length === 0) {
+function getRandomVerse(mode: string) {
+  const source = mode === "proverbs" ? proverbsVerses : gospelVerses;
+
+  if (source.length === 0) {
     return null;
   }
 
-  return gospelVerses[Math.floor(Math.random() * gospelVerses.length)];
+  return source[Math.floor(Math.random() * source.length)];
 }
 
 export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const random = (searchParams.get("random") ?? "").toLowerCase();
 
-  if (random === "gospel") {
-    const verse = getRandomGospelVerse();
+  if (random === "gospel" || random === "proverbs") {
+    const verse = getRandomVerse(random);
 
     if (!verse) {
       return NextResponse.json(
-        { error: "No Gospel verses are available in the local Bible library." },
+        { error: `No ${random} verses are available in the local Bible library.` },
         { status: 404 },
       );
     }
 
     return NextResponse.json({
       passage: toPayload(verse),
-      note: "Random Gospel verse from Matthew, Mark, Luke, or John.",
+      note:
+        random === "proverbs"
+          ? "Random Proverbs verse."
+          : "Random Gospel verse from Matthew, Mark, Luke, or John.",
     });
   }
 
@@ -148,7 +156,7 @@ export function GET(request: Request) {
     return NextResponse.json(
       {
         error:
-          "No local verse match found. Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, or 2 Corinthians 3:17.",
+          "No local verse match found. Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, Proverbs 17:22, or 2 Corinthians 3:17.",
       },
       { status: 404 },
     );

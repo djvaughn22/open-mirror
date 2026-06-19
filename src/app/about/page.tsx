@@ -50,7 +50,15 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <BibleVerseLookup />
+        <BibleVerseLookup
+          initialReference="Proverbs 17:22"
+          initialTextOverride="A joyful heart is good medicine, but a crushed spirit dries up the bones."
+          showSearch={false}
+          spinMode="proverbs"
+          spinLabel="Spin Proverbs"
+          title="Good Medicine"
+          description="A joyful heart is good medicine, but a crushed spirit dries up the bones. — Proverbs 17:22"
+        />
 
         
       </div>

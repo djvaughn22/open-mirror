@@ -22,8 +22,9 @@ type BibleBingoVerseCardProps = {
   wordStudies: VerifiedWordStudy[];
   isLoadingWordStudies: boolean;
   isSpinning: boolean;
+  spinLabel: string;
   note?: string;
-  onSpinGospelVerse: () => void;
+  onSpinVerse: () => void;
   onOpenDeepDive: () => void;
   onWordClick: (wordStudy: VerifiedWordStudy) => void;
 };
@@ -53,8 +54,9 @@ export default function BibleBingoVerseCard({
   wordStudies,
   isLoadingWordStudies,
   isSpinning,
+  spinLabel,
   note = "",
-  onSpinGospelVerse,
+  onSpinVerse,
   onOpenDeepDive,
   onWordClick,
 }: BibleBingoVerseCardProps) {
@@ -120,11 +122,11 @@ export default function BibleBingoVerseCard({
       <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
         <button
           type="button"
-          onClick={onSpinGospelVerse}
+          onClick={onSpinVerse}
           disabled={isSpinning}
           className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 bg-yellow-200/15 px-5 py-2 text-sm font-black text-yellow-50 shadow-sm transition hover:bg-yellow-200/25 disabled:cursor-wait disabled:opacity-60"
         >
-          {isSpinning ? "Spinning..." : "Spin Gospel Verse"}
+          {isSpinning ? "Spinning..." : spinLabel}
         </button>
 
         <a
@@ -133,7 +135,16 @@ export default function BibleBingoVerseCard({
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-black text-white shadow-sm transition hover:bg-white/30"
         >
-          Open Bible.com
+          Go to Verse
+        </a>
+
+        <a
+          href={shareLinks.chapter}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-black text-white shadow-sm transition hover:bg-white/30"
+        >
+          Go to Chapter
         </a>
 
         <button
@@ -184,15 +195,6 @@ export default function BibleBingoVerseCard({
                 className="block rounded-xl px-3 py-2 text-sm font-bold text-white transition hover:bg-white/10"
               >
                 Email card
-              </a>
-
-              <a
-                href={shareLinks.chapter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl px-3 py-2 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                Read chapter
               </a>
             </div>
           )}
