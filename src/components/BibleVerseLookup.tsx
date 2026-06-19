@@ -11,7 +11,7 @@ import {
   type VerifiedWordStudy,
 } from "../lib/originalLanguageWordStudy";
 
-type SpinMode = "all" | "gospel" | "proverbs";
+type SpinMode = "gospel-epistles" | "gospel" | "epistles" | "proverbs" | "all";
 
 type BibleVerseLookupProps = {
   className?: string;
@@ -44,7 +44,15 @@ function defaultSpinLabel(spinMode: SpinMode) {
     return "Spin Gospel Verse";
   }
 
-  return "Spin Any Verse";
+  if (spinMode === "epistles") {
+    return "Spin Epistles";
+  }
+
+  if (spinMode === "all") {
+    return "Spin Any Verse";
+  }
+
+  return "Spin Gospel/Epistles";
 }
 
 function defaultDescription(spinMode: SpinMode) {
@@ -56,7 +64,15 @@ function defaultDescription(spinMode: SpinMode) {
     return "Open with Romans 15:7, search any verse, or spin a Gospel verse from Matthew, Mark, Luke, or John.";
   }
 
-  return "Open with Romans 15:7, search any verse, or spin anywhere in the Holy Bible.";
+  if (spinMode === "epistles") {
+    return "Open with Romans 15:7, search any verse, or spin an Epistles verse.";
+  }
+
+  if (spinMode === "all") {
+    return "Open with Romans 15:7, search any verse, or spin anywhere in the Holy Bible.";
+  }
+
+  return "Open with Romans 15:7, search any verse, or spin a Gospel or Epistles verse.";
 }
 
 export default function BibleVerseLookup({
@@ -64,7 +80,7 @@ export default function BibleVerseLookup({
   initialReference = DEFAULT_REFERENCE,
   initialTextOverride,
   showSearch = true,
-  spinMode = "all",
+  spinMode = "gospel-epistles",
   spinLabel,
   title = "Search a Verse. Share a Card.",
   description,

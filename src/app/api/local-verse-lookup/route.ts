@@ -19,7 +19,41 @@ const versesByKey = new Map<string, LocalBibleVerse>();
 const booksByAlias = new Map<string, string>();
 
 const gospelBooks = new Set(["Matthew", "Mark", "Luke", "John"]);
+
+const epistleBooks = new Set([
+  "Romans",
+  "1 Corinthians",
+  "2 Corinthians",
+  "Galatians",
+  "Ephesians",
+  "Philippians",
+  "Colossians",
+  "1 Thessalonians",
+  "2 Thessalonians",
+  "1 Timothy",
+  "2 Timothy",
+  "Titus",
+  "Philemon",
+  "Hebrews",
+  "James",
+  "1 Peter",
+  "2 Peter",
+  "1 John",
+  "2 John",
+  "3 John",
+  "Jude",
+]);
+
 const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => gospelBooks.has(verse.book));
+const epistleVerses = LOCAL_BIBLE_VERSES.filter(
+  (verse) => epistleBooks.has(verse.book) || verse.group === "Epistles",
+);
+const gospelOrEpistleVerses = LOCAL_BIBLE_VERSES.filter(
+  (verse) =>
+    gospelBooks.has(verse.book) ||
+    epistleBooks.has(verse.book) ||
+    verse.group === "Epistles",
+);
 const proverbsVerses = LOCAL_BIBLE_VERSES.filter((verse) => verse.book === "Proverbs");
 
 function normalizeText(value: string) {
@@ -122,7 +156,11 @@ function getRandomVerse(mode: string) {
       ? proverbsVerses
       : mode === "gospel"
         ? gospelVerses
-        : LOCAL_BIBLE_VERSES;
+        : mode === "epistles"
+          ? epistleVerses
+          : mode === "gospel-epistles"
+            ? gospelOrEpistleVerses
+            : LOCAL_BIBLE_VERSES;
 
   if (source.length === 0) {
     return null;
@@ -131,11 +169,37 @@ function getRandomVerse(mode: string) {
   return source[Math.floor(Math.random() * source.length)];
 }
 
+function randomNote(mode: string) {
+  if (mode === "proverbs") {
+    return "Random Proverbs verse.";
+  }
+
+  if (mode === "gospel") {
+    return "Random Gospel verse from Matthew, Mark, Luke, or John.";
+  }
+
+  if (mode === "epistles") {
+    return "Random Epistles verse.";
+  }
+
+  if (mode === "gospel-epistles") {
+    return "Random Gospel or Epistles verse.";
+  }
+
+  return "Random Bible verse.";
+}
+
 export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const random = (searchParams.get("random") ?? "").toLowerCase();
 
-  if (random === "all" || random === "gospel" || random === "proverbs") {
+  if (
+    random === "all" ||
+    random === "gospel" ||
+    random === "epistles" ||
+    random === "gospel-epistles" ||
+    random === "proverbs"
+  ) {
     const verse = getRandomVerse(random);
 
     if (!verse) {
@@ -147,12 +211,7 @@ export function GET(request: Request) {
 
     return NextResponse.json({
       passage: toPayload(verse),
-      note:
-        random === "proverbs"
-          ? "Random Proverbs verse."
-          : random === "gospel"
-            ? "Random Gospel verse from Matthew, Mark, Luke, or John."
-            : "Random Bible verse.",
+      note: randomNote(random),
     });
   }
 
