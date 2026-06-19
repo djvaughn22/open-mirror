@@ -24,9 +24,7 @@ export default function AboutPage() {
               <a href="/heart">Heart</a>
               <a href="/pray">Pray</a>
               <a href="/explorebible">Bible Bingo</a>
-              <a href="https://www.bibleportal.com/" target="_blank" rel="noopener noreferrer">
-                Bible Portal
-              </a>
+              <a href="/daily-hope">Daily Hope</a>
               <a href="/about">About</a>
             </div>
           </details>

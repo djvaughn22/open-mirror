@@ -221,6 +221,7 @@ export default function DailyHopeRoutine({
   missingReferences,
 }: DailyHopeRoutineProps) {
   const [todaySlug, setTodaySlug] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -343,6 +344,46 @@ export default function DailyHopeRoutine({
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
+        <nav className="grid grid-cols-3 items-center">
+          <a href="/home" className="justify-self-start font-bold">
+            CrossHeartPray
+          </a>
+
+          <a
+            href="https://www.bible.com/verse-of-the-day"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Bible.com Verse of the Day"
+            className="justify-self-center"
+          >
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-xl shadow-sm">
+              📖
+            </span>
+          </a>
+
+          <div className="relative justify-self-end">
+            <button
+              type="button"
+              onClick={() => setMenuOpen((current) => !current)}
+              aria-expanded={menuOpen}
+              className="text-sm font-semibold text-zinc-300 hover:text-white"
+            >
+              Menu
+            </button>
+
+            {menuOpen ? (
+              <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
+                <a href="/home">Home</a>
+                <a href="/cross">Cross</a>
+                <a href="/heart">Heart</a>
+                <a href="/pray">Pray</a>
+                <a href="/explorebible">Bible Bingo</a>
+                <a href="/daily-hope">Daily Hope</a>
+                <a href="/about">About</a>
+              </div>
+            ) : null}
+          </div>
+        </nav>
         <div className="text-center">
           <div className="flex justify-center gap-4 text-3xl" aria-hidden="true">
             <span>✝️</span>
