@@ -76,33 +76,25 @@ export default function HomePage() {
         </nav>
 
         <section className="mx-auto max-w-5xl py-20 text-center sm:py-24">
-          <p className="mb-7 flex items-center justify-center gap-7 text-5xl md:gap-12 md:text-6xl">
-            <span>✝️</span>
-            <span>❤️</span>
-            <span>🙏</span>
+          <p className="mb-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-lg font-black uppercase tracking-[0.18em] text-zinc-200 sm:text-xl">
+            <span className="inline-flex items-center gap-2"><span className="text-3xl">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-2"><span className="text-3xl">❤️</span><span>Heart</span></span>
+            <span className="inline-flex items-center gap-2"><span className="text-3xl">🙏</span><span>Pray</span></span>
           </p>
 
 
 
           <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl">
-            Cross Heart Pray
+            Bible Bingo 7
           </h1>
 
-          <div className="mx-auto mt-8 max-w-4xl">
-            <p className="text-4xl font-black leading-tight text-white sm:text-6xl">
-              Bible Bingo 7
-            </p>
-
-            <p className="mx-auto mt-7 max-w-3xl text-2xl font-extrabold leading-tight text-zinc-100 sm:text-4xl">
-              Deal a board for fun, exploration, and Scripture that stays with you
-            </p>
-
-            <p className="mx-auto mt-7 max-w-2xl text-lg font-semibold leading-8 text-zinc-300 sm:text-xl sm:leading-9">
-              Read the chapter for context
-              <br />
-              Dive into Hebrew or Greek in one click
-              <br />
-              Share the board or card that stayed with you and why
+          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight text-zinc-100 sm:text-4xl">
+            <p>Deal a board</p>
+            <p>Search a verse</p>
+            <p>Open the chapter</p>
+            <p>Dive deeper</p>
+            <p className="mx-auto max-w-2xl text-xl leading-snug text-zinc-300 sm:text-3xl">
+              Share the verse, your heart, and your prayer
             </p>
           </div>
 
