@@ -6,21 +6,21 @@ const steps = [
     emoji: "✝️",
     href: "/cross",
     comingSoon: false,
-    text: <>Bring it to Jesus<br />The good, the bad<br />and the ugly</>,
+    text: <>Jesus,<br />Son of God</>,
   },
   {
     title: "Heart",
     emoji: "❤️",
     href: "/heart",
     comingSoon: false,
-    text: <>Open your heart<br />Receive God&apos;s everlasting<br />unconditional love</>,
+    text: <>God&apos;s<br />Love</>,
   },
   {
     title: "Pray",
     emoji: "🙏",
     href: "/pray",
     comingSoon: false,
-    text: <>Just talk to God<br />Let His will be done<br />Follow His lead</>,
+    text: <>Starts<br />with you</>,
   },
 ];
 const HOME_CARD_TONES = [
@@ -92,15 +92,15 @@ export default function HomePage() {
 
           <div className="mx-auto mt-8 max-w-4xl">
             <p className="text-3xl font-extrabold leading-tight text-zinc-100 sm:text-5xl">
-              Your Way
+              Deal 7 cards.
             </p>
 
             <p className="mt-3 text-2xl font-bold leading-tight text-zinc-300 sm:text-4xl">
-              into the Holy Bible
+              Explore the Bible.
             </p>
 
             <p className="mt-4 text-xl font-bold leading-snug text-blue-400 sm:text-3xl">
-              with 7 Card Bible Bingo
+              Share what you find.
             </p>
           </div>
 
@@ -109,14 +109,14 @@ export default function HomePage() {
               href="/explorebible"
               className="rounded-full border border-blue-200/25 bg-blue-400/15 px-8 py-3 text-center font-bold text-blue-100 shadow-lg shadow-blue-950/20 transition hover:bg-blue-400/20"
             >
-              Play 7 Card Bible Bingo
+              Start Bible Bingo
             </a>
 
             <a
               href="/cross"
               className="rounded-full border border-white/15 bg-white/10 px-8 py-3 text-center font-semibold text-slate-100 transition hover:bg-white/15"
             >
-              Start with Cross
+              Cross Heart Pray
             </a>
           </div>
         </section>
