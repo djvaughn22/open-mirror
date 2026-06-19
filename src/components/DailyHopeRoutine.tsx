@@ -468,7 +468,7 @@ export default function DailyHopeRoutine({
           </div>
         ) : null}
 
-        <section className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <section className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5">
           {openingPrayers.map((prayer, index) => {
             const prayerId = `prayer-${index + 1}`;
             const prayerUrl = `${pageUrl}#${prayerId}`;
