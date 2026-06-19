@@ -44,20 +44,25 @@ export default function AboutPage() {
           </h1>
 
           <div className="mx-auto mt-7 max-w-2xl space-y-4 text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
-            <p>A simple, joyful way to open the Holy Bible.</p>
-            <p>One board. Seven verses. Fresh discovery, context, Deep Dive word study, and easy sharing.</p>
-            <p className="font-bold text-white">Deal your board, follow what stands out, and share a verse, a thought, or a prayer.</p>
+            <p>
+              A simple, joyful way to open the Holy Bible.
+              <br />
+              One board. Seven verses. Fresh discovery, context, Deep Dive word study, and easy sharing.
+              <br />
+              <span className="font-bold text-white">
+                Deal your board, follow what stands out, and share a verse, a thought, or a prayer.
+              </span>
+            </p>
           </div>
         </section>
 
         <BibleVerseLookup
-          initialReference="Proverbs 17:22"
-          initialTextOverride="A joyful heart is good medicine, but a crushed spirit dries up the bones."
+          initialReference="Proverbs 24:14"
           showSearch={false}
           spinMode="proverbs"
           spinLabel="Spin Proverbs"
-          title="Good Medicine"
-          description="A joyful heart is good medicine, but a crushed spirit dries up the bones. — Proverbs 17:22"
+          title="Wisdom for Your Soul"
+          description="Open Proverbs 24:14, spin another proverb, and share what stands out."
         />
 
         
