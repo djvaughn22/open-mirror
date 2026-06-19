@@ -92,15 +92,15 @@ export default function HomePage() {
 
           <div className="mx-auto mt-8 max-w-4xl">
             <p className="text-3xl font-extrabold leading-tight text-zinc-100 sm:text-5xl">
-              Deal 7 cards.
+              Remember Jesus
             </p>
 
             <p className="mt-3 text-2xl font-bold leading-tight text-zinc-300 sm:text-4xl">
-              Explore the Bible.
+              Receive God&apos;s love
             </p>
 
             <p className="mt-4 text-xl font-bold leading-snug text-blue-400 sm:text-3xl">
-              Share what you find.
+              Pray
             </p>
           </div>
 
@@ -109,7 +109,7 @@ export default function HomePage() {
               href="/explorebible"
               className="rounded-full border border-blue-200/25 bg-blue-400/15 px-8 py-3 text-center font-bold text-blue-100 shadow-lg shadow-blue-950/20 transition hover:bg-blue-400/20"
             >
-              Start Bible Bingo
+              Deal Bible Bingo 7
             </a>
 
             <a
