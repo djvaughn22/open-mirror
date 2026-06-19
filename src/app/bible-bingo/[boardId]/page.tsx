@@ -130,7 +130,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         boardUrl,
       ].join("\n")
     : [
-        "I dealt a 7-card Bible Bingo board on Cross Heart Pray.",
+        "I dealt a 7-card Bible Bingo board. Explore the verses with me.",
         "",
         "Open the live board to read the same verses, use Deep Dive, and play from there:",
         "",

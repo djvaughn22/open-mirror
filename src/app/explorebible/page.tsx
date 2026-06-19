@@ -195,7 +195,7 @@ export default function BibleExplorerPage() {
   const boardPath = `/bible-bingo/${boardId}`;
   const boardUrl = `https://crossheartpray.com${boardPath}`;
   const boardShareText = [
-    "I dealt a 7-card Bible Bingo board on Cross Heart Pray.",
+    "I dealt a 7-card Bible Bingo board. Explore the verses with me.",
     "",
     "Open the live board to read the same verses, use Deep Dive, and play from there:",
     "",
@@ -209,7 +209,7 @@ export default function BibleExplorerPage() {
         <p style="font-size: 34px; text-align: center; margin: 0 0 14px;">✝️ ❤️ 🙏</p>
         <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 34px; line-height: 1.15; color: #0f172a;">Bible Bingo Board</h1>
         <p style="text-align: center; color: #475569; font-size: 16px; line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto;">
-          Same 7 cards. Same verses.
+          Same 7 cards. Explore and share.
         </p>
         <p style="text-align: center; margin: 24px 0;">
           <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
@@ -442,7 +442,7 @@ export default function BibleExplorerPage() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-3xl text-xl font-semibold leading-snug text-zinc-300 md:text-3xl">
-            Deal. Tap. Find your verse.
+            Deal 7 cards. Explore the Bible. Share what you find.
           </p>
 
           <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
@@ -589,8 +589,7 @@ export default function BibleExplorerPage() {
         <section className="mt-8 border-t border-zinc-900 px-4 py-8 text-center">
           <h2 className="text-xl font-bold text-white">How it works</h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-slate-400">
-            Each board rolls one verse from Old Testament, Psalms, Proverbs,
-            Gospel, Epistles, Genesis, and Revelation. Verse opens the exact
+            Every board opens a fresh path through the Bible. Verse opens the exact
             verse. Chapter opens the full chapter. Deep Dive opens when verified
             Hebrew or Greek word details are available.
           </p>
