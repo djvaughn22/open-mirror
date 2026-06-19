@@ -126,13 +126,13 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         "Open this card:",
         cardUrl,
         "",
-        "Open the full 7-card board:",
+        "Open all 7 cards:",
         boardUrl,
       ].join("\n")
     : [
-        "I dealt a 7-card Bible Bingo board. Explore the verses with me.",
+        "I dealt 7 Bible Bingo cards.",
         "",
-        "Open the live board to read the same verses, use Deep Dive, and play from there:",
+        "Which card should we explore?",
         "",
         boardUrl,
       ].join("\n");
@@ -151,7 +151,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         </p>
         <p style="text-align: center; margin: 24px 0;">
           <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
-            Open Live Bible Bingo Board
+            Open Bible Bingo Board
           </a>
         </p>
         ${passages.map((passage, index) => `
@@ -237,8 +237,8 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
             {isSingleCardView
-              ? "One Bible Bingo card."
-              : "This link preserves the exact 7 cards. Read the verses, use Deep Dive, open the chapters, and play from here."}
+              ? "Share this card. Ask someone what they notice."
+              : "Share your board. Ask someone: Which card should we explore?"}
           </p>
 
           <div className="mx-auto mt-8 flex flex-col items-center justify-center gap-3">
@@ -274,6 +274,8 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
               emailSubject={shareSubject}
               htmlEmail={isSingleCardView ? singleCardHtmlEmail : htmlEmail}
               itemLabel={isSingleCardView ? "card" : "board"}
+              buttonLabel={isSingleCardView ? "Share this card" : "Share this board"}
+              showOpenOption={false}
             />
 
             <a

@@ -195,9 +195,9 @@ export default function BibleExplorerPage() {
   const boardPath = `/bible-bingo/${boardId}`;
   const boardUrl = `https://crossheartpray.com${boardPath}`;
   const boardShareText = [
-    "I dealt a 7-card Bible Bingo board. Explore the verses with me.",
+    "I dealt 7 Bible Bingo cards.",
     "",
-    "Open the live board to read the same verses, use Deep Dive, and play from there:",
+    "Which card should we explore?",
     "",
     boardUrl,
   ].join("\n");
@@ -213,7 +213,7 @@ export default function BibleExplorerPage() {
         </p>
         <p style="text-align: center; margin: 24px 0;">
           <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
-            Open Live Bible Bingo Board
+            Open Bible Bingo Board
           </a>
         </p>
         ${path.map(({ section, passage }, index) => `
@@ -462,6 +462,7 @@ export default function BibleExplorerPage() {
               shareText={boardShareText}
               emailSubject={boardShareSubject}
               htmlEmail={boardHtmlEmail}
+              buttonLabel="Share board"
             />
           </div>
         </section>

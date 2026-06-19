@@ -14,6 +14,7 @@ type BibleBingoShareMenuProps = {
   itemLabel?: ShareItemLabel;
   buttonLabel?: string;
   iconOnly?: boolean;
+  showOpenOption?: boolean;
 };
 
 function ShareIcon() {
@@ -48,30 +49,24 @@ function menuPositionClass(align: BibleBingoShareMenuProps["align"]) {
 function shareLabels(itemLabel: ShareItemLabel) {
   if (itemLabel === "card") {
     return {
-      open: "Open this Bible Bingo card",
+      open: "Open this card",
       text: "Text this card",
-      email: "Email this card",
-      html: "Copy HTML email card",
       copyLink: "Copy card link",
-      copyText: "Copy card text",
+      copyText: "Copy post text",
       copiedLink: "Card link copied",
-      copiedText: "Card text copied",
-      copiedHtml: "HTML email card copied",
-      help: "Text or email the simple card link. Copy HTML email card, then paste into an email body for the rich card view.",
+      copiedText: "Post text copied",
+      help: "Send a card. Start a Bible conversation.",
     };
   }
 
   return {
-    open: "Open full Bible Bingo board",
+    open: "Open this board",
     text: "Text 7 cards",
-    email: "Email 7 cards",
-    html: "Copy HTML email board",
     copyLink: "Copy board link",
-    copyText: "Copy board text",
+    copyText: "Copy post text",
     copiedLink: "Board link copied",
-    copiedText: "Board text copied",
-    copiedHtml: "HTML email board copied",
-    help: "Text or email the simple board link. Copy HTML email board, then paste into an email body for the rich 7-card board view.",
+    copiedText: "Post text copied",
+    help: "Ask someone: Which card should we explore?",
   };
 }
 
@@ -79,19 +74,17 @@ export default function BibleBingoShareMenu({
   boardHref,
   boardUrl,
   shareText,
-  emailSubject,
-  htmlEmail,
   align = "center",
   itemLabel = "board",
   buttonLabel = "Share",
   iconOnly = false,
+  showOpenOption = true,
 }: BibleBingoShareMenuProps) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState("");
   const labels = shareLabels(itemLabel);
 
   const encodedShareText = encodeURIComponent(shareText);
-  const encodedEmailSubject = encodeURIComponent(emailSubject);
 
   async function copyValue(value: string, label: string) {
     try {
@@ -101,27 +94,6 @@ export default function BibleBingoShareMenu({
     } catch {
       setCopied("Copy failed");
       window.setTimeout(() => setCopied(""), 1800);
-    }
-  }
-
-  async function copyHtmlEmail() {
-    if (!htmlEmail) {
-      await copyValue(shareText, labels.copiedText);
-      return;
-    }
-
-    try {
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          "text/html": new Blob([htmlEmail], { type: "text/html" }),
-          "text/plain": new Blob([shareText], { type: "text/plain" }),
-        }),
-      ]);
-
-      setCopied(labels.copiedHtml);
-      window.setTimeout(() => setCopied(""), 1800);
-    } catch {
-      await copyValue(shareText, labels.copiedText);
     }
   }
 
@@ -148,13 +120,15 @@ export default function BibleBingoShareMenu({
           role="menu"
           className={`absolute top-full z-50 mt-3 w-72 rounded-2xl border border-white/15 bg-slate-950 p-3 text-left shadow-2xl ${menuPositionClass(align)}`}
         >
-          <a
-            role="menuitem"
-            href={boardHref}
-            className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
-          >
-            {labels.open}
-          </a>
+          {showOpenOption ? (
+            <a
+              role="menuitem"
+              href={boardHref}
+              className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              {labels.open}
+            </a>
+          ) : null}
 
           <a
             role="menuitem"
@@ -163,25 +137,6 @@ export default function BibleBingoShareMenu({
           >
             {labels.text}
           </a>
-
-          <a
-            role="menuitem"
-            href={`mailto:?subject=${encodedEmailSubject}&body=${encodedShareText}`}
-            className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
-          >
-            {labels.email}
-          </a>
-
-          {htmlEmail ? (
-            <button
-              type="button"
-              role="menuitem"
-              onClick={copyHtmlEmail}
-              className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
-            >
-              {labels.html}
-            </button>
-          ) : null}
 
           <button
             type="button"
