@@ -76,10 +76,10 @@ export default function HomePage() {
         </nav>
 
         <section className="mx-auto max-w-5xl pt-10 pb-12 text-center sm:pt-14 sm:pb-16">
-          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-blue-400 sm:text-base">
-            <span className="inline-flex items-center gap-2"><span className="text-2xl text-white">✝️</span><span>Cross</span></span>
-            <span className="inline-flex items-center gap-2"><span className="text-2xl">❤️</span><span>Heart</span></span>
-            <span className="inline-flex items-center gap-2"><span className="text-2xl">🙏</span><span>Pray</span></span>
+          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] sm:text-base text-white">
+            <span className="inline-flex items-center gap-2 text-white"><span className="text-2xl text-white">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-2 text-white"><span className="text-2xl text-white">❤️</span><span>Heart</span></span>
+            <span className="inline-flex items-center gap-2 text-white"><span className="text-2xl text-white">🙏</span><span>Pray</span></span>
           </p>
 
           <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl">
