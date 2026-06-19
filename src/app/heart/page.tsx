@@ -43,7 +43,7 @@ export default function HeartPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            God&apos;s Love.
+            God&apos;s Love
           </p>
         </div>
 
@@ -55,19 +55,19 @@ export default function HeartPage() {
           <div className="mx-auto mt-10 grid max-w-4xl gap-10 md:grid-cols-3">
             <div>
               <div className="text-4xl">❤️</div>
-              <h2 className="mt-5 text-2xl font-bold">God loves you.</h2>
+              <h2 className="mt-5 text-2xl font-bold">God loves you</h2>
 
             </div>
 
             <div>
               <div className="text-4xl">🕊️</div>
-              <h2 className="mt-5 text-2xl font-bold">God&apos;s mercy is yours.</h2>
+              <h2 className="mt-5 text-2xl font-bold">God&apos;s mercy is yours</h2>
 
             </div>
 
             <div>
               <div className="text-4xl">📖</div>
-              <h2 className="mt-5 text-2xl font-bold">Get to know Him.</h2>
+              <h2 className="mt-5 text-2xl font-bold">Get to know Him</h2>
 
             </div>
           </div>
