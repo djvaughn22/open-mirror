@@ -40,13 +40,13 @@ export default function AboutPage() {
           </p>
 
           <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl">
-            Cross Heart Pray
+            Bible Bingo 7
           </h1>
 
           <div className="mx-auto mt-7 max-w-2xl space-y-4 text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
-            <p>Cross Heart Pray is a simple way back to the Bible.</p>
-            <p>Bible Bingo 7 is a daily board for discovery, context, deep dives, and sharing.</p>
-            <p className="font-bold text-white">Share the verse, your heart, and your prayer.</p>
+            <p>A simple, joyful way to open the Holy Bible.</p>
+            <p>One board. Seven verses. Fresh discovery, context, Deep Dive word study, and easy sharing.</p>
+            <p className="font-bold text-white">Deal your board, follow what stands out, and share a verse, a thought, or a prayer.</p>
           </div>
         </section>
 
