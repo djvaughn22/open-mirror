@@ -39,14 +39,14 @@ export default function AboutPage() {
             <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
 
-          <div className="mx-auto mt-7 max-w-xl rounded-[2rem] border border-white/10 bg-white/[0.045] px-6 py-7 shadow-2xl shadow-black/20">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-zinc-500">
-              Bible Bingo 7
-            </p>
+          <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl">
+            Cross Heart Pray
+          </h1>
 
-            <p className="mt-4 text-2xl font-black tracking-tight text-white sm:text-3xl">
-              Deal · Search · Open · Share
-            </p>
+          <div className="mx-auto mt-7 max-w-2xl space-y-4 text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
+            <p>Cross Heart Pray is a simple way back to the Bible.</p>
+            <p>Bible Bingo 7 is a daily board for discovery, context, deep dives, and sharing.</p>
+            <p className="font-bold text-white">Share the verse, your heart, and your prayer.</p>
           </div>
         </section>
 
@@ -54,16 +54,16 @@ export default function AboutPage() {
 
         <section className="mx-auto mt-12 max-w-3xl border-t border-zinc-900 pt-10 text-center">
           <a
-            href="https://www.bible.com/bible/206/JHN.8.31-32.WEBUS"
+            href="https://www.bible.com/bible/206/2CO.3.17.WEBUS"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-auto block max-w-2xl rounded-[2rem] border border-white/10 bg-white/[0.045] px-6 py-7 text-lg font-semibold leading-8 text-zinc-200 shadow-2xl shadow-black/20 transition hover:bg-white/[0.07]"
           >
             <span className="block text-sm font-black uppercase tracking-[0.2em] text-zinc-400">
-              John 8:31-32
+              2 Corinthians 3:17
             </span>
             <span className="mt-3 block">
-              You will know the truth, and the truth will make you free.
+              Now the Lord is the Spirit, and where the Spirit of the Lord is, there is liberty.
             </span>
           </a>
 
