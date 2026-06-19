@@ -56,14 +56,7 @@ export default function CrossPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Bring it to Jesus. The good, the bad, and the ugly.
-          </p>
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
-            Jesus loves you so
-            <br />
-            He laid down His life for you
-            <br />
-            Believe and be saved
+            Jesus, Son of God.
           </p>
         </div>
 
@@ -78,31 +71,19 @@ export default function CrossPage() {
     <div>
       <div className="text-4xl">✝️</div>
       <h2 className="mt-5 text-2xl font-bold">Jesus Died</h2>
-      <p className="mt-4 leading-7 text-slate-300">
-        On the Cross
-        <br />
-        for you
-      </p>
+
     </div>
 
     <div>
       <div className="text-4xl">⬇️</div>
       <h2 className="mt-5 text-2xl font-bold">He Descended</h2>
-      <p className="mt-4 leading-7 text-slate-300">
-        Into hell
-        <br />
-        so you do not have to
-      </p>
+
     </div>
 
     <div>
       <div className="text-4xl">☀️</div>
       <h2 className="mt-5 text-2xl font-bold">He Rose Again</h2>
-      <p className="mt-4 leading-7 text-slate-300">
-        And ascended into Heaven
-        <br />
-        so you can too
-      </p>
+
     </div>
   </div>
 </section>

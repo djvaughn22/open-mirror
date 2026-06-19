@@ -43,14 +43,7 @@ export default function PrayPage() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
-            Talk to God. Let His will be done.
-          </p>
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-300 sm:text-2xl sm:leading-10">
-            Pray in the morning
-            <br />
-            Pray all day and evening
-            <br />
-            Your Father is near
+            Starts with you.
           </p>
         </div>
 
@@ -63,31 +56,19 @@ export default function PrayPage() {
             <div>
               <div className="text-4xl">🙌</div>
               <h2 className="mt-5 text-2xl font-bold">Praise God</h2>
-              <p className="mt-4 leading-7 text-slate-300">
-                The Almighty
-                <br />
-                Open the Bible
-              </p>
+
             </div>
 
             <div>
               <div className="text-4xl">❤️</div>
               <h2 className="mt-5 text-2xl font-bold">Thank God</h2>
-              <p className="mt-4 leading-7 text-slate-300">
-                For His love
-                <br />
-                Open the Bible
-              </p>
+
             </div>
 
             <div>
               <div className="text-4xl">🙏</div>
               <h2 className="mt-5 text-2xl font-bold">Ask God</h2>
-              <p className="mt-4 leading-7 text-slate-300">
-                For guidance
-                <br />
-                Open the Bible
-              </p>
+
             </div>
           </div>
         </section>
