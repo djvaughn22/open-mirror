@@ -381,31 +381,33 @@ function isUsefulGrammar(morphology: string) {
   return /(^|[^A-Z])[NVA]/.test(grammar) || /^[NVA]/.test(grammar);
 }
 
+export function hasSourceBackedOriginalLanguageBridge(wordStudy: VerifiedWordStudy) {
+  const hasOriginalLanguageBridge = Boolean(
+    wordStudy.englishWord.trim() &&
+      wordStudy.originalWord.trim() &&
+      wordStudy.strongs.trim(),
+  );
+
+  const hasSourceProof = Boolean(
+    wordStudy.sourceGloss.trim() ||
+      wordStudy.lexiconMeaning.trim() ||
+      wordStudy.sourceName.trim() ||
+      wordStudy.lexiconSourceName.trim() ||
+      wordStudy.sourceUrl.trim(),
+  );
+
+  return hasOriginalLanguageBridge && hasSourceProof;
+}
+
 export function isUsefulVerifiedWordStudy(wordStudy: VerifiedWordStudy) {
-  const englishWord = normalizeStudyWord(wordStudy.englishWord);
-  const englishRoot = normalizeMeaningRoot(wordStudy.englishWord);
-
-  if (!englishWord) return false;
-  if (lowValueEnglishWords.has(englishWord) || lowValueEnglishWords.has(englishRoot)) {
-    return false;
-  }
-
-  if (!wordStudy.originalWord || !wordStudy.strongs || !wordStudy.lexiconMeaning) {
-    return false;
-  }
-
-  if (!isUsefulGrammar(wordStudy.morphology)) {
-    return false;
-  }
-
-  // Avoid underlining words where the displayed source meaning adds no study value.
-  // Examples: English "years" -> meaning "year"; English "seven" -> meaning "seven".
-  // Keep high-value Bible words and words where the source gives expanded meaning.
-  if (!hasSourceMeaningExpansion(wordStudy)) {
-    return false;
-  }
-
-  return true;
+  // Deep Dive is a source-backed original-language bridge:
+  // English word -> Hebrew/Greek word -> transliteration -> Strong's/source proof.
+  //
+  // Do not hide verified records just because the source gloss or lexicon
+  // meaning repeats the English word. Repeated words like God/God,
+  // heaven/heavens, earth/earth, love/love, grace/grace, and faith/faith
+  // are still valuable when they expose the original word and Strong's link.
+  return hasSourceBackedOriginalLanguageBridge(wordStudy);
 }
 
 export function hasVerifiedWordStudies(wordStudies: VerifiedWordStudy[]) {

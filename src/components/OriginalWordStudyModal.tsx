@@ -36,12 +36,21 @@ function buildBibleHubStrongsUrl(strongs: string) {
 }
 
 function hasSourceBackedFields(wordStudy: VerifiedWordStudy) {
-  return Boolean(
+  const hasOriginalLanguageBridge = Boolean(
     wordStudy.englishWord.trim() &&
       wordStudy.originalWord.trim() &&
-      wordStudy.strongs.trim() &&
-      wordStudy.lexiconMeaning.trim(),
+      wordStudy.strongs.trim(),
   );
+
+  const hasSourceProof = Boolean(
+    wordStudy.sourceGloss.trim() ||
+      wordStudy.lexiconMeaning.trim() ||
+      wordStudy.sourceName.trim() ||
+      wordStudy.lexiconSourceName.trim() ||
+      wordStudy.sourceUrl.trim(),
+  );
+
+  return hasOriginalLanguageBridge && hasSourceProof;
 }
 
 function sameWordStudy(first: VerifiedWordStudy, second: VerifiedWordStudy) {
