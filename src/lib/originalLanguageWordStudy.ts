@@ -159,10 +159,6 @@ const lowValueEnglishWords = new Set([
   "than",
   "also",
   "only",
-  "commit",
-  "committed",
-  "commits",
-  "committing",
 ]);
 
 const alwaysKeepDeepDiveWords = new Set([
@@ -433,6 +429,39 @@ export function getVerifiedWordStudyForWord(
         normalizeStudyWord(wordStudy.englishWord) === normalizedWord,
     ) ?? null
   );
+}
+
+export function getVerifiedWordStudyForPhrase(
+  wordStudies: VerifiedWordStudy[],
+  englishPhrase: string,
+) {
+  const phraseRoots = meaningRoots(englishPhrase);
+
+  if (phraseRoots.length < 2) return null;
+
+  return (
+    wordStudies.find((wordStudy) => {
+      if (!isUsefulVerifiedWordStudy(wordStudy)) return false;
+
+      const studyRoots = new Set([
+        ...meaningRoots(wordStudy.englishWord),
+        ...meaningRoots(wordStudy.sourceGloss),
+        ...meaningRoots(wordStudy.lexiconMeaning),
+      ]);
+
+      return phraseRoots.every((root) => studyRoots.has(root));
+    }) ?? null
+  );
+}
+
+export function verifiedWordStudyKey(wordStudy: VerifiedWordStudy) {
+  return [
+    wordStudy.reference,
+    wordStudy.strongs,
+    wordStudy.originalWord,
+    wordStudy.lemma,
+    wordStudy.englishWord,
+  ].join("|");
 }
 
 export function originalLanguageName(language: OriginalLanguage) {
