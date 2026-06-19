@@ -44,13 +44,17 @@ export default function AboutPage() {
           </h1>
 
           <div className="mx-auto mt-7 max-w-2xl space-y-4 text-xl font-semibold leading-8 text-zinc-300 sm:text-2xl sm:leading-9">
-            <p>
+            <p className="leading-8">
               A simple, joyful way to open the Holy Bible.
               <br />
-              One board. Seven verses. Fresh discovery, context, Deep Dive word study, and easy sharing.
+              <br />
+              One board. Seven verses.
+              <br />
+              Fresh discovery, context, deep dive word study, and easy sharing.
+              <br />
               <br />
               <span className="font-bold text-white">
-                Deal your board, follow what stands out, and share a verse, a thought, or a prayer.
+                Deal your board, follow what stands out, and Cross, Heart, Pray through it!
               </span>
             </p>
           </div>
