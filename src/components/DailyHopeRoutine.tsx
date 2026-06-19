@@ -392,13 +392,13 @@ export default function DailyHopeRoutine({
             href="https://www.bible.com/verse-of-the-day"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open Bible.com Verse of the Day"
+            aria-label="Open today's Bible verse"
             className="justify-self-center"
           >
             <img
-              src="/holy-bible-logo.svg"
+              src="/brand/youversion-bible-app.png"
               alt="Holy Bible"
-              className="h-12 w-12 rounded-lg shadow-sm"
+              className="h-10 w-10 rounded-lg"
             />
           </a>
 
@@ -535,11 +535,7 @@ export default function DailyHopeRoutine({
                   </div>
 
                   <div className="flex flex-col items-center gap-3 sm:items-end">
-                    <p className="text-sm font-semibold text-slate-300">
-                      Fixed cards for {day.day}
-                    </p>
-
-                    <BibleBingoShareMenu
+<BibleBingoShareMenu
                       boardHref={`#${day.slug}`}
                       boardUrl={dayUrl}
                       shareText={dayShareText(day, dayUrl)}
