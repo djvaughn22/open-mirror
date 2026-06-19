@@ -77,7 +77,7 @@ export default function HomePage() {
 
         <section className="mx-auto max-w-5xl pt-10 pb-12 text-center sm:pt-14 sm:pb-16">
           <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-blue-400 sm:text-base">
-            <span className="inline-flex items-center gap-2"><span className="text-2xl">✝️</span><span>Cross</span></span>
+            <span className="inline-flex items-center gap-2"><span className="text-2xl text-white">✝️</span><span>Cross</span></span>
             <span className="inline-flex items-center gap-2"><span className="text-2xl">❤️</span><span>Heart</span></span>
             <span className="inline-flex items-center gap-2"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
@@ -86,7 +86,7 @@ export default function HomePage() {
             Bible Bingo 7
           </h1>
 
-          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight text-blue-400 sm:text-4xl">
+          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight sm:text-4xl text-blue-300">
             <p>Deal 7 cards</p>
             <p>Open the Bible</p>
             <p>Share a verse</p>
@@ -104,7 +104,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-5 md:grid-cols-6">
+        <section className="grid grid-cols-1 gap-5 md:grid-cols-6 text-white">
           {steps.map((step, index) => (
             <a
               key={step.title}
@@ -117,10 +117,10 @@ export default function HomePage() {
                 alignItems: "center",
               }}
             >
-              <div className="text-4xl">{step.emoji}</div>
+              <div className="text-4xl text-white">{step.emoji}</div>
 
               {step.comingSoon && (
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
+                <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400 text-white">
                   Coming Soon
                 </p>
               )}
@@ -129,7 +129,7 @@ export default function HomePage() {
                 {step.title}
               </h2>
 
-              <p className="mt-4 text-base font-semibold leading-7 text-blue-400" style={{ flex: 1 }}>
+              <p className="mt-4 text-base font-semibold leading-7 text-blue-300" style={{ flex: 1 }}>
                 {step.text}
               </p>
             </a>
