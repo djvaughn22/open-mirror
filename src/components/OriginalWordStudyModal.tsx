@@ -334,12 +334,17 @@ export default function OriginalWordStudyModal({
 
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {detailRow("Translated here as", selectedWordStudy.englishWord)}
-              {detailRow("Strong’s", selectedWordStudy.strongs)}
-              {detailRow("Transliteration", transliterationGuide)}
-              {detailRow("Pronunciation", pronunciationGuide)}
               {detailRow("Lexicon meaning", meaning)}
+              {detailRow("Transliteration", transliterationGuide)}
+              {detailRow("Say it", pronunciationGuide)}
               {shouldShowSourceGloss ? detailRow("Translated as", sourceGloss) : null}
             </div>
+
+            {selectedWordStudy.strongs.trim() ? (
+              <p className="mt-4 text-xs font-semibold leading-relaxed text-slate-400">
+                Source reference: Strong’s {selectedWordStudy.strongs}
+              </p>
+            ) : null}
           </section>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
