@@ -117,7 +117,12 @@ function findLocalVerse(rawQuery: string) {
 }
 
 function getRandomVerse(mode: string) {
-  const source = mode === "proverbs" ? proverbsVerses : gospelVerses;
+  const source =
+    mode === "proverbs"
+      ? proverbsVerses
+      : mode === "gospel"
+        ? gospelVerses
+        : LOCAL_BIBLE_VERSES;
 
   if (source.length === 0) {
     return null;
@@ -130,7 +135,7 @@ export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const random = (searchParams.get("random") ?? "").toLowerCase();
 
-  if (random === "gospel" || random === "proverbs") {
+  if (random === "all" || random === "gospel" || random === "proverbs") {
     const verse = getRandomVerse(random);
 
     if (!verse) {
@@ -145,7 +150,9 @@ export function GET(request: Request) {
       note:
         random === "proverbs"
           ? "Random Proverbs verse."
-          : "Random Gospel verse from Matthew, Mark, Luke, or John.",
+          : random === "gospel"
+            ? "Random Gospel verse from Matthew, Mark, Luke, or John."
+            : "Random Bible verse.",
     });
   }
 
@@ -156,7 +163,7 @@ export function GET(request: Request) {
     return NextResponse.json(
       {
         error:
-          "No local verse match found. Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, Proverbs 17:22, or 2 Corinthians 3:17.",
+          "No local verse match found. Try Romans 15:7, John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, Proverbs 17:22, or 2 Corinthians 3:17.",
       },
       { status: 404 },
     );

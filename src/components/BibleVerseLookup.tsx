@@ -11,7 +11,7 @@ import {
   type VerifiedWordStudy,
 } from "../lib/originalLanguageWordStudy";
 
-type SpinMode = "gospel" | "proverbs";
+type SpinMode = "all" | "gospel" | "proverbs";
 
 type BibleVerseLookupProps = {
   className?: string;
@@ -29,20 +29,34 @@ type ActiveLookupWordStudy = {
   wordStudy: VerifiedWordStudy;
 };
 
-const DEFAULT_REFERENCE = "2 Corinthians 3:17";
+const DEFAULT_REFERENCE = "Romans 15:7";
 
 function verseUrl(passage: BibleBingoCardPassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
 
 function defaultSpinLabel(spinMode: SpinMode) {
-  return spinMode === "proverbs" ? "Spin Proverbs" : "Spin Gospel Verse";
+  if (spinMode === "proverbs") {
+    return "Spin Proverbs";
+  }
+
+  if (spinMode === "gospel") {
+    return "Spin Gospel Verse";
+  }
+
+  return "Spin Any Verse";
 }
 
 function defaultDescription(spinMode: SpinMode) {
-  return spinMode === "proverbs"
-    ? "Open a Proverbs card, spin another proverb, and share what stands out."
-    : "Open with 2 Corinthians 3:17, search any verse, or spin a Gospel verse from Matthew, Mark, Luke, or John.";
+  if (spinMode === "proverbs") {
+    return "Open a Proverbs card, spin another proverb, and share what stands out.";
+  }
+
+  if (spinMode === "gospel") {
+    return "Open with Romans 15:7, search any verse, or spin a Gospel verse from Matthew, Mark, Luke, or John.";
+  }
+
+  return "Open with Romans 15:7, search any verse, or spin anywhere in the Holy Bible.";
 }
 
 export default function BibleVerseLookup({
@@ -50,7 +64,7 @@ export default function BibleVerseLookup({
   initialReference = DEFAULT_REFERENCE,
   initialTextOverride,
   showSearch = true,
-  spinMode = "gospel",
+  spinMode = "all",
   spinLabel,
   title = "Search a Verse. Share a Card.",
   description,
@@ -273,7 +287,7 @@ export default function BibleVerseLookup({
               onChange={(event) => setQuery(event.target.value)}
               type="text"
               inputMode="text"
-              placeholder="Romans 8:8"
+              placeholder="Romans 15:7"
               aria-label="Bible verse to search"
               className="min-h-14 flex-1 rounded-2xl border border-white/15 bg-black/25 px-5 text-lg font-semibold text-white placeholder:text-white/35 outline-none ring-0 focus:border-white/40"
             />
@@ -288,7 +302,7 @@ export default function BibleVerseLookup({
           </form>
 
           <p className="mt-4 text-xs font-semibold text-zinc-400">
-            Try John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, Proverbs 17:22, or 2 Corinthians 3:17.
+            Try Romans 15:7, John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, or Proverbs 17:22.
           </p>
         </>
       )}
