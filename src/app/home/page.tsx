@@ -84,7 +84,7 @@ export default function HomePage() {
             Bible Bingo 7
           </h1>
 
-          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight sm:text-4xl text-blue-300">
+          <div className="mx-auto mt-7 max-w-3xl space-y-3 text-2xl font-extrabold leading-tight sm:text-4xl text-emerald-100">
             <p>Deal 7 cards</p>
             <p>Open the Bible</p>
             <p>Share a verse</p>
@@ -127,7 +127,7 @@ export default function HomePage() {
                 {step.title}
               </h2>
 
-              <p className="mt-4 text-base font-semibold leading-7 text-blue-300" style={{ flex: 1 }}>
+              <p className="mt-4 text-base font-semibold leading-7 text-emerald-100" style={{ flex: 1 }}>
                 {step.text}
               </p>
             </a>

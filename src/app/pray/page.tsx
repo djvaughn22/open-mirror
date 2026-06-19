@@ -40,13 +40,13 @@ export default function PrayPage() {
             Pray
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-blue-300 sm:text-2xl sm:leading-10">
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
             Starts with you
           </p>
         </div>
 
         <section className="mt-16 rounded-[2rem] border border-sky-200/15 bg-sky-300/10 px-8 py-12 text-center text-slate-100">
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-sky-100">
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-emerald-100">
             Prayer
           </p>
 
