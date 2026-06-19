@@ -234,8 +234,14 @@ const alwaysKeepDeepDiveWords = new Set([
   "fear",
 ]);
 
+function expandNegationContractions(value: string) {
+  return value
+    .replace(/\b(?:don|doesn|didn|isn|aren|wasn|weren|haven|hasn|hadn|couldn|shouldn|wouldn|won|can)['’]?t\b/gi, "not")
+    .replace(/\bcannot\b/gi, "not");
+}
+
 function normalizeMeaningRoot(value: string) {
-  const normalized = normalizeStudyWord(value);
+  const normalized = normalizeStudyWord(expandNegationContractions(value));
 
   if (!normalized) return "";
 
@@ -323,7 +329,7 @@ function isBasicVerbInflection(value: string) {
 }
 
 function meaningRoots(value: string) {
-  return value
+  return expandNegationContractions(value)
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")

@@ -33,7 +33,7 @@ export default function VerifiedVerseText({
   wordStudies,
   onWordClick,
 }: VerifiedVerseTextProps) {
-  const parts = passage.text.split(/([A-Za-z]+(?:'[A-Za-z]+)?)/g);
+  const parts = passage.text.split(/([A-Za-z]+(?:['’][A-Za-z]+)?)/g);
   const phraseMatches = new Map<number, PhraseMatch>();
   const phraseCoveredIndexes = new Set<number>();
   const phraseStudyKeys = new Set<string>();
