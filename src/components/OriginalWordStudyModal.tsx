@@ -283,8 +283,10 @@ export default function OriginalWordStudyModal({
               <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-200">
                 {languageName} Deep Dive
               </p>
-              <h2 className="mt-2 truncate text-2xl font-black leading-tight text-white">
-                {selectedWordStudy.englishWord}
+              <h2 className="mt-2 text-2xl font-black leading-tight text-white">
+                {meaning && normalizeStudyWord(meaning) !== normalizeStudyWord(selectedWordStudy.englishWord)
+                  ? `${selectedWordStudy.englishWord} — ${meaning}`
+                  : selectedWordStudy.englishWord}
               </h2>
               <p className="mt-1 text-sm text-slate-400">{passage.label}</p>
             </div>
