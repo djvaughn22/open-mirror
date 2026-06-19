@@ -62,7 +62,8 @@ export default function AboutPage() {
 
         
       </div>
-    
+
+      
         <section
           aria-label="Cross Heart Pray memorial"
           className="mx-auto mt-12 max-w-3xl border-t border-white/10 pt-8 text-center"
