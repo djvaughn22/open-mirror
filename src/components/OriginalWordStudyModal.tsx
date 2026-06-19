@@ -157,23 +157,37 @@ function buildTransliterationGuide(wordStudy: VerifiedWordStudy) {
   return "";
 }
 
+function samePronunciationGuideValue(first: string, second: string) {
+  const clean = (value: string) =>
+    value
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "");
+
+  const left = clean(first);
+  const right = clean(second);
+
+  return Boolean(left && right && left === right);
+}
+
 function buildPronunciationGuide(wordStudy: VerifiedWordStudy) {
+  const transliterationGuide = buildTransliterationGuide(wordStudy);
   const explicitPronunciation = wordStudy.pronunciation?.trim();
 
-  if (explicitPronunciation) {
+  if (
+    explicitPronunciation &&
+    !samePronunciationGuideValue(explicitPronunciation, transliterationGuide)
+  ) {
     return explicitPronunciation;
   }
 
-  const fallback = getWordDetailFallback(wordStudy);
+  const fallback = WORD_DETAIL_FALLBACKS[wordStudy.strongs.trim().toUpperCase()];
 
-  if (fallback?.pronunciation) {
+  if (
+    fallback?.pronunciation &&
+    !samePronunciationGuideValue(fallback.pronunciation, transliterationGuide)
+  ) {
     return fallback.pronunciation;
-  }
-
-  const cleanedTransliteration = cleanSourceTransliteration(wordStudy.transliteration);
-
-  if (cleanedTransliteration && cleanedTransliteration !== "notprovided") {
-    return cleanedTransliteration;
   }
 
   return "";
