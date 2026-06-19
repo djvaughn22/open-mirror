@@ -61,10 +61,108 @@ function deterministicWordLinkLabel(wordStudy: VerifiedWordStudy) {
     englishWord &&
     (englishWord === sourceGloss || englishWord === lexiconMeaning)
   ) {
-    return "Straightforward source match";
+    return "Direct source match";
   }
 
-  return "Part of translated phrase";
+  return "Translated phrase match";
+}
+
+
+function comparableStudyText(value: string) {
+  const words = value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/['’`]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter(
+      (word) =>
+        !new Set([
+          "a",
+          "an",
+          "the",
+          "to",
+          "of",
+          "one",
+          "someone",
+          "something",
+        ]).has(word),
+    );
+
+  return words.join("");
+}
+
+function sameStudyMeaning(first: string, second: string) {
+  const firstComparable = comparableStudyText(first);
+  const secondComparable = comparableStudyText(second);
+
+  return Boolean(
+    firstComparable &&
+      secondComparable &&
+      firstComparable === secondComparable,
+  );
+}
+
+function meaningAddsStudyValue(wordStudy: VerifiedWordStudy, value: string) {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return false;
+  }
+
+  return ![
+    wordStudy.englishWord,
+    wordStudy.sourceGloss,
+    wordStudy.lexiconMeaning,
+  ].some(
+    (comparisonValue) =>
+      comparisonValue !== value && sameStudyMeaning(trimmed, comparisonValue),
+  );
+}
+
+function displayMeaningFor(wordStudy: VerifiedWordStudy) {
+  const fallbackMeaning = getWordDetailFallback(wordStudy)?.meaning ?? "";
+  const lexiconMeaning = wordStudy.lexiconMeaning.trim();
+
+  if (meaningAddsStudyValue(wordStudy, fallbackMeaning)) {
+    return fallbackMeaning.trim();
+  }
+
+  if (meaningAddsStudyValue(wordStudy, lexiconMeaning)) {
+    return lexiconMeaning;
+  }
+
+  return "";
+}
+
+function displayEnglishConnectionFor(
+  wordStudy: VerifiedWordStudy,
+  displayedMeaning: string,
+) {
+  const sourceGloss = wordStudy.sourceGloss.trim();
+
+  if (
+    !sourceGloss ||
+    sameStudyMeaning(sourceGloss, wordStudy.englishWord) ||
+    sameStudyMeaning(sourceGloss, displayedMeaning)
+  ) {
+    return "";
+  }
+
+  return sourceGloss;
+}
+
+function directSourceMatchNote(wordStudy: VerifiedWordStudy) {
+  const englishWord = wordStudy.englishWord.trim();
+
+  if (!englishWord) {
+    return "The source links this English phrase to the original-language word shown here.";
+  }
+
+  return `The source links “${englishWord}” directly to the original-language word shown here.`;
 }
 
 function cleanSourceTransliteration(value: string) {
@@ -246,6 +344,12 @@ export default function OriginalWordStudyModal({
   const transliterationGuide = buildTransliterationGuide(selectedWordStudy);
   const pronunciationGuide = buildPronunciationGuide(selectedWordStudy);
   const isFocusedStudyWord = isUsefulVerifiedWordStudy(selectedWordStudy);
+  const displayedMeaning = displayMeaningFor(selectedWordStudy);
+  const englishConnection = displayEnglishConnectionFor(
+    selectedWordStudy,
+    displayedMeaning,
+  );
+  const meaningLine = displayedMeaning || directSourceMatchNote(selectedWordStudy);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm sm:items-center">
@@ -358,15 +462,15 @@ export default function OriginalWordStudyModal({
                   Meaning
                 </p>
                 <p className="mt-1 text-lg font-bold leading-7 text-white">
-                  {getWordDetailFallback(selectedWordStudy)?.meaning ?? selectedWordStudy.lexiconMeaning}
+                  {meaningLine}
                 </p>
               </div>
             </div>
 
             {mode === "all" && !isFocusedStudyWord ? (
               <p className="mt-3 rounded-xl border border-amber-200/15 bg-amber-300/10 p-3 text-xs leading-5 text-amber-50">
-                Basic source gloss. Focused hides this kind of word because the
-                source meaning is mostly grammar, a simple connector, or a basic
+                Direct source match. Focused hides this kind of word when the
+                source meaning repeats the English word, is mostly grammar, or is a basic
                 translated word.
               </p>
             ) : null}
@@ -488,9 +592,9 @@ export default function OriginalWordStudyModal({
               </div>
 
               <div>
-                <p className="font-bold text-slate-300">Source gloss</p>
+                <p className="font-bold text-slate-300">English connection</p>
                 <p className="mt-1 text-slate-400">
-                  {selectedWordStudy.sourceGloss}
+                  {englishConnection || directSourceMatchNote(selectedWordStudy)}
                 </p>
               </div>
 
