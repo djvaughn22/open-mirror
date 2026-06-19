@@ -17,6 +17,8 @@ type VersePayload = {
 const versesByLabel = new Map<string, LocalBibleVerse>();
 const versesByKey = new Map<string, LocalBibleVerse>();
 const booksByAlias = new Map<string, string>();
+const gospelBooks = new Set(["Matthew", "Mark", "Luke", "John"]);
+const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => gospelBooks.has(verse.book));
 
 function normalizeText(value: string) {
   return value
@@ -110,8 +112,34 @@ function findLocalVerse(rawQuery: string) {
   };
 }
 
+function getRandomGospelVerse() {
+  if (gospelVerses.length === 0) {
+    return null;
+  }
+
+  return gospelVerses[Math.floor(Math.random() * gospelVerses.length)];
+}
+
 export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
+  const random = (searchParams.get("random") ?? "").toLowerCase();
+
+  if (random === "gospel") {
+    const verse = getRandomGospelVerse();
+
+    if (!verse) {
+      return NextResponse.json(
+        { error: "No Gospel verses are available in the local Bible library." },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json({
+      passage: toPayload(verse),
+      note: "Random Gospel verse from Matthew, Mark, Luke, or John.",
+    });
+  }
+
   const query = searchParams.get("q") ?? "";
   const result = findLocalVerse(query);
 

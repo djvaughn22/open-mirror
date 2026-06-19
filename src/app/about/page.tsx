@@ -52,29 +52,7 @@ export default function AboutPage() {
 
         <BibleVerseLookup />
 
-        <section className="mx-auto mt-12 max-w-3xl border-t border-zinc-900 pt-10 text-center">
-          <a
-            href="https://www.bible.com/bible/206/2CO.3.17.WEBUS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-auto block max-w-2xl rounded-[2rem] border border-white/10 bg-white/[0.045] px-6 py-7 text-lg font-semibold leading-8 text-zinc-200 shadow-2xl shadow-black/20 transition hover:bg-white/[0.07]"
-          >
-            <span className="block text-sm font-black uppercase tracking-[0.2em] text-zinc-400">
-              2 Corinthians 3:17
-            </span>
-            <span className="mt-3 block">
-              Now the Lord is the Spirit, and where the Spirit of the Lord is, there is liberty.
-            </span>
-          </a>
-
-          <p className="mt-8 text-sm font-black uppercase tracking-[0.22em] text-zinc-500">
-            RIP Travis - VTL
-          </p>
-
-          <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-zinc-400">
-            ✝️ Cross · ❤️ Heart · 🙏 Pray
-          </p>
-        </section>
+        
       </div>
     </main>
   );
