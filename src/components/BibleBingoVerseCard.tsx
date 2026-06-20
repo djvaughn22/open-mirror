@@ -167,7 +167,7 @@ export default function BibleBingoVerseCard({
             disabled={spinningNow}
             className="inline-flex items-center justify-center rounded-full border border-yellow-200/30 bg-yellow-200/15 px-5 py-2 text-sm font-black text-yellow-50 shadow-sm transition hover:bg-yellow-200/25 disabled:cursor-wait disabled:opacity-70"
           >
-            {spinningNow ? "Spinning..." : spinLabel}
+            {spinningNow ? "Shuffling..." : spinLabel}
           </button>
 
           <a

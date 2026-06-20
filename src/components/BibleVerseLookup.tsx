@@ -37,22 +37,22 @@ function verseUrl(passage: BibleBingoCardPassage) {
 
 function defaultSpinLabel(spinMode: SpinMode) {
   if (spinMode === "proverbs") {
-    return "Spin Proverbs";
+    return "Shuffle Proverbs";
   }
 
   if (spinMode === "gospel") {
-    return "Spin Gospel Verse";
+    return "Shuffle Gospel Verse";
   }
 
   if (spinMode === "epistles") {
-    return "Spin Epistles";
+    return "Shuffle Epistles";
   }
 
   if (spinMode === "all") {
-    return "Spin Any Verse";
+    return "Shuffle Any Verse";
   }
 
-  return "Spin Gospel/Epistles";
+  return "Shuffle Gospel/Epistles";
 }
 
 function defaultSpinOdds(spinMode: SpinMode) {
@@ -77,22 +77,22 @@ function defaultSpinOdds(spinMode: SpinMode) {
 
 function defaultDescription(spinMode: SpinMode) {
   if (spinMode === "proverbs") {
-    return "Open a Proverbs card, spin another proverb, and share what stands out.";
+    return "Open a Proverbs card, shuffle another proverb, and share what stands out.";
   }
 
   if (spinMode === "gospel") {
-    return "Open with Romans 15:7, search any verse, or spin a Gospel verse from Matthew, Mark, Luke, or John.";
+    return "Open with Romans 15:7, search any verse, or shuffle a Gospel verse from Matthew, Mark, Luke, or John.";
   }
 
   if (spinMode === "epistles") {
-    return "Open with Romans 15:7, search any verse, or spin an Epistles verse.";
+    return "Open with Romans 15:7, search any verse, or shuffle an Epistles verse.";
   }
 
   if (spinMode === "all") {
-    return "Open with Romans 15:7, search any verse, or spin anywhere in the Holy Bible.";
+    return "Open with Romans 15:7, search any verse, or shuffle anywhere in the Holy Bible.";
   }
 
-  return "Open with Romans 15:7, search any verse, or spin a Gospel or Epistles verse.";
+  return "Open with Romans 15:7, search any verse, or shuffle a Gospel or Epistles verse.";
 }
 
 export default function BibleVerseLookup({
