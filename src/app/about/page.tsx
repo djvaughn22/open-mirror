@@ -47,15 +47,15 @@ export default function AboutPage() {
           </p>
 
           <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-6xl">
-            What am I looking at?
+            A simple plan to come to Jesus.
           </h1>
 
           <p className="mt-7 max-w-3xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
-            CrossHeartPray is a simple path back to Jesus: bring it to Him, receive God’s love, pray, then open the Holy Bible.
+            CrossHeartPray is simple: Cross — bring it to Jesus. Heart — receive God’s love. Pray — talk to God. Then open the Holy Bible with Bible Bingo, Daily Hope, and the Bible Reading Plan.
           </p>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-            This site is for the moment when you want to begin again, but you do not know what to do first.
+            Start with Cross Heart Pray. Then keep going with Bible Bingo, Daily Hope, and the Bible Reading Plan.
           </p>
         </section>
 
