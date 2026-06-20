@@ -1,6 +1,70 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+
+function makeDeepDivePronunciationGuide(transliteration?: string | null) {
+  const cleaned = transliteration
+    ?.trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  if (!cleaned) {
+    return "";
+  }
+
+  if (cleaned.includes("-")) {
+    return cleaned;
+  }
+
+  return cleaned
+    .split("-")
+    .join(" ")
+    .split(/\s+/)
+    .map((word) => {
+      const plain = word.replace(/[^A-Za-zāēīōūĀĒĪŌŪ]/g, "");
+
+      if (plain.length <= 4) {
+        return plain;
+      }
+
+      const pieces: string[] = [];
+      let current = "";
+
+      for (let index = 0; index < plain.length; index += 1) {
+        const char = plain[index];
+        const next = plain[index + 1] ?? "";
+        const previous = plain[index - 1] ?? "";
+
+        const isVowel = (value: string) => /[aeiouyāēīōūAEIOUYĀĒĪŌŪ]/.test(value);
+        const charIsLetter = /[A-Za-zāēīōūĀĒĪŌŪ]/.test(char);
+        const charIsConsonant = charIsLetter && !isVowel(char);
+        const nextIsVowel = isVowel(next);
+        const previousIsVowel = isVowel(previous);
+
+        if (
+          current &&
+          charIsConsonant &&
+          nextIsVowel &&
+          (previousIsVowel || current.length >= 2)
+        ) {
+          pieces.push(current);
+          current = char;
+        } else {
+          current += char;
+        }
+      }
+
+      if (current) {
+        pieces.push(current);
+      }
+
+      return pieces.join("-");
+    })
+    .filter(Boolean)
+    .join("-");
+}
+
 import {
   normalizeStudyWord,
   originalLanguageName,
@@ -132,6 +196,17 @@ const ORIGINAL_WORD_DETAIL_FALLBACKS: Record<string, WordDetailFallback> = {
 function getWordDetailFallback(wordStudy: VerifiedWordStudy) {
   const strongs = wordStudy.strongs.trim().toUpperCase();
   const normalizedOriginal = normalizedOriginalLetters(wordStudy.originalWord);
+
+  {makeDeepDivePronunciationGuide(wordStudy?.transliteration) ? (
+    <div className="deep-dive-pronunciation-card mx-auto mt-5 max-w-md rounded-2xl border border-emerald-200/20 bg-slate-950/60 px-5 py-4 text-center">
+      <p className="text-[11px] font-black uppercase tracking-[0.24em] text-emerald-100">
+        PRONUNCIATION
+      </p>
+      <p className="mt-2 text-xl font-black text-white">
+        {makeDeepDivePronunciationGuide(wordStudy?.transliteration)}
+      </p>
+    </div>
+  ) : null}
 
   return (
     WORD_DETAIL_FALLBACKS[strongs] ??
