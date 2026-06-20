@@ -287,6 +287,10 @@ export default function DailyHopeRoutine({
   const pageUrl = "https://crossheartpray.com/daily-hope";
 
   const visibleDays = useMemo(() => {
+    if (activeDaySlug === "all-minimized") {
+      return days;
+    }
+
     const activeDay =
       days.find((day) => day.slug === activeDaySlug) ??
       days.find((day) => day.slug === todaySlug) ??
@@ -381,6 +385,11 @@ export default function DailyHopeRoutine({
     }
 
     chooseDay(todaySlug);
+  }
+
+  function minimizeDays() {
+    setActiveDaySlug("all-minimized");
+    window.history.replaceState(null, "", pagePath);
   }
 
   function togglePrayer(prayerId: string) {
@@ -611,16 +620,13 @@ export default function DailyHopeRoutine({
                   </div>
 
                   <div className="flex flex-col items-center gap-3 sm:items-end">
-<BibleBingoShareMenu
-                      boardHref={`#${day.slug}`}
-                      boardUrl={dayUrl}
-                      shareText={dayShareText(day, dayUrl)}
-                      emailSubject={`Daily Hope - ${day.day}`}
-                      htmlEmail={dayHtmlEmail(day, dayUrl)}
-                      align="right"
-                      itemLabel="board"
-                      buttonLabel={`Share ${day.day}`}
-                    />
+                    <button
+                      type="button"
+                      onClick={() => (isActiveDay ? minimizeDays() : chooseDay(day.slug))}
+                      className="rounded-full border border-white/15 bg-white/5 px-5 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-200 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50"
+                    >
+                      {isActiveDay ? "Minimize" : "Expand"}
+                    </button>
                   </div>
                 </div>
 
