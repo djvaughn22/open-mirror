@@ -523,7 +523,7 @@ export default function DailyHopeRoutine({
               shareText={boardShareText}
               emailSubject="Daily Hope"
               htmlEmail={boardHtml}
-              buttonLabel="Share Daily Hope"
+              buttonLabel="Share"
             />
           </div>
         </div>
@@ -613,7 +613,7 @@ export default function DailyHopeRoutine({
                 <div className="flex flex-col gap-4 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
                   <div>
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
-                      {isActiveDay ? (isToday ? "Today" : "Open") : isToday ? "Today" : "Daily Hope"}
+                      {isToday ? "Today" : "Daily Hope"}
                     </p>
                     <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
                       {day.day}

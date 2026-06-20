@@ -188,7 +188,7 @@ export default function BibleBingoShareMenu({
         }
       >
         <ShareIcon />
-        {iconOnly ? <span className="sr-only">{buttonLabel}</span> : <span>{buttonLabel}</span>}
+        {iconOnly ? <span className="sr-only">{buttonLabel}</span> : <span>Share</span>}
       </button>
 
       {open ? (
@@ -230,7 +230,7 @@ export default function BibleBingoShareMenu({
             onClick={() => handleCopy(shareTextForCopy(), "Text copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy Text
+            Copy text
           </button>
 
           <button
@@ -239,7 +239,7 @@ export default function BibleBingoShareMenu({
             onClick={() => handleCopy(boardUrl, `${titleName} URL copied`)}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy {titleName} URL
+            Copy link
           </button>
 
           <button
@@ -248,11 +248,11 @@ export default function BibleBingoShareMenu({
             onClick={handleCopyHtml}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
           >
-            Copy HTML for Email
+            Copy email
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
-            {copied || "Copy and paste anywhere."}
+            {copied || "Ready to paste."}
           </p>
         </div>
       ) : null}

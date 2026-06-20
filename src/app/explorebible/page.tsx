@@ -439,7 +439,7 @@ export default function BibleExplorerPage() {
               type="button"
               onClick={spinAll}
               className="text-center justify-center items-center inline-flex rounded-full border border-white/15 bg-white/10 px-7 py-3 font-semibold text-slate-100 transition hover:bg-white/15"
-            >Deal 7 Cards</button>
+            >Deal 7</button>
 
             <BibleBingoShareMenu
               boardHref={boardPath}
@@ -447,7 +447,7 @@ export default function BibleExplorerPage() {
               shareText={boardShareText}
               emailSubject={boardShareSubject}
               htmlEmail={boardHtmlEmail}
-              buttonLabel="Share Board"
+              buttonLabel="Share"
               enableSignature
             />
           </div>
@@ -492,7 +492,7 @@ export default function BibleExplorerPage() {
                   htmlEmail={cardHtmlEmail(section, passage, index)}
                   align="right"
                   itemLabel="card"
-                  buttonLabel={`Share ${section.title} card`}
+                  buttonLabel="Share"
                   enableSignature
                   iconOnly
                 />
@@ -549,7 +549,7 @@ export default function BibleExplorerPage() {
                 type="button"
                 onClick={() => spinOne(index)}
                 className="mt-4 text-sm font-semibold text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white"
-              >Deal this card</button>
+              >Deal</button>
 
               <p className="mt-3 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
                 Shuffled from: <span className="text-white">{section.odds}</span>

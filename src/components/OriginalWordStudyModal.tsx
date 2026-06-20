@@ -442,7 +442,7 @@ export default function OriginalWordStudyModal({
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-2 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/15"
               >
-                Open Strong’s source
+                Strong’s
               </a>
             ) : null}
 
@@ -452,7 +452,7 @@ export default function OriginalWordStudyModal({
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-5 py-2 text-sm font-black text-slate-200 transition hover:bg-white/10 hover:text-white"
             >
-              Open verse
+              Verse
             </a>
           </div>
 
@@ -479,7 +479,7 @@ export default function OriginalWordStudyModal({
                 rel="noopener noreferrer"
                 className="mt-3 inline-flex text-xs font-bold text-emerald-200 underline decoration-emerald-200/40 underline-offset-4 hover:text-white"
               >
-                Open alignment/source data
+                Source data
               </a>
             ) : null}
           </details>

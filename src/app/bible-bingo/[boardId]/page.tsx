@@ -244,8 +244,8 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
             {isSingleCardView
-              ? "Share Card. Ask someone what they notice."
-              : "Share your board. Ask someone: Which card should we explore?"}
+              ? "Share this card."
+              : "Share this board."}
           </p>
 
           <div className="mx-auto mt-8 flex flex-col items-center justify-center gap-3">
@@ -281,7 +281,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
               emailSubject={shareSubject}
               htmlEmail={isSingleCardView ? singleCardHtmlEmail : htmlEmail}
               itemLabel={isSingleCardView ? "card" : "board"}
-              buttonLabel={isSingleCardView ? "Share Card" : "Share Board"}
+              buttonLabel="Share"
               enableSignature
             />
 
@@ -289,7 +289,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
               href="/explorebible"
               className="text-sm font-semibold text-slate-400 underline decoration-white/20 underline-offset-4 hover:text-white"
             >
-              Deal new board
+              Deal 7
             </a>
           </div>
         </section>

@@ -176,7 +176,7 @@ export default function BibleBingoVerseCard({
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-black text-white shadow-sm transition hover:bg-white/30"
           >
-            Go to Verse
+            Verse
           </a>
 
           <a
@@ -185,7 +185,7 @@ export default function BibleBingoVerseCard({
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-black text-white shadow-sm transition hover:bg-white/30"
           >
-            Go to Chapter
+            Chapter
           </a>
 
           <button
@@ -212,7 +212,7 @@ export default function BibleBingoVerseCard({
             htmlEmail={cardHtmlEmailFor(passage)}
             align="right"
             itemLabel="card"
-            buttonLabel="Share Card"
+            buttonLabel="Share"
             enableSignature
             showOpenOption={false}
           />
