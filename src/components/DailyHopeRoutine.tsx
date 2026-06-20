@@ -392,7 +392,7 @@ export default function DailyHopeRoutine({
             href="https://www.bible.com/verse-of-the-day"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open today's Bible verse"
+            aria-label="Open YouVersion Bible App"
             className="justify-self-center"
           >
             <img

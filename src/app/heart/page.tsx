@@ -12,9 +12,19 @@ export default function HeartPage() {
           <span aria-hidden="true" />
 
           <div className="justify-self-end flex items-center gap-4">
-            <a href="https://www.bible.com/verse-of-the-day" target="_blank" rel="noopener noreferrer" aria-label="Open YouVersion Bible App">
-              <img src="/brand/youversion-bible-app.png" alt="YouVersion Bible App" className="h-9 w-9 rounded-lg" />
-            </a>
+            <a
+            href="https://www.bible.com/verse-of-the-day"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open YouVersion Bible App"
+            className="justify-self-center"
+          >
+            <img
+              src="/brand/youversion-bible-app.png"
+              alt="Holy Bible"
+              className="h-10 w-10 rounded-lg"
+            />
+          </a>
 
             <details className="relative text-sm text-zinc-400">
               <summary className="cursor-pointer list-none text-2xl leading-none">☰</summary>
