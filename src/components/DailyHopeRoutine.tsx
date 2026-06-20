@@ -572,11 +572,12 @@ export default function DailyHopeRoutine({
                   <button
                     type="button"
                     onClick={() => togglePrayer(prayerId)}
+                    aria-label={isPrayerExpanded ? `Hide ${prayer.title}` : `Read ${prayer.title}`}
                     aria-expanded={isPrayerExpanded}
                     aria-controls={`${prayerId}-body`}
-                    className="self-start rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-300 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50 sm:self-auto"
+                    className="inline-flex h-10 w-10 items-center justify-center self-start rounded-full border border-white/12 bg-white/[0.03] text-xl font-black leading-none text-slate-300 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50 sm:self-auto"
                   >
-                    {isPrayerExpanded ? "Hide prayer" : "Read prayer"}
+                    {isPrayerExpanded ? "−" : "+"}
                   </button>
                 </div>
 
@@ -623,9 +624,10 @@ export default function DailyHopeRoutine({
                     <button
                       type="button"
                       onClick={() => (isActiveDay ? minimizeDays() : chooseDay(day.slug))}
-                      className="rounded-full border border-white/15 bg-white/5 px-5 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-200 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50"
+                      aria-label={isActiveDay ? `Minimize ${day.day}` : `Expand ${day.day}`}
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-2xl font-black leading-none text-slate-200 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50"
                     >
-                      {isActiveDay ? "Minimize" : "Expand"}
+                      {isActiveDay ? "−" : "+"}
                     </button>
                   </div>
                 </div>
