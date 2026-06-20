@@ -1,0 +1,25 @@
+60e5af4 Clean original word display marks
+2d17dd2 Simplify Bible Bingo share menu
+676fe7f Remove unrequested CrossHeartPray intro copy
+7658de6 Remove unrequested Bible Bingo intro copy
+511d0ab Make Bible Bingo shuffle animation global
+9deff53 Fix Gmail-safe Bible Bingo email sharing
+9957b34 Change visible spin wording to shuffle
+43161bf Update share option language
+abbf6d2 Fix Gmail HTML share copy flow
+6ed23c2 Render Bible verse lookup without client-only loading
+7b7f018 Restore Deep Dive pronunciation display
+419b8a5 Restore HTML email draft share flow
+9315d50 Open email draft from HTML share option
+df4b6b8 Standardize share menu options
+fd4449a Lazy load Bible verse lookup
+a03b139 Add real break before search verse card
+0392ecb Force footer and search divider fixes
+80edbbb Add visible divider before search sections
+cabaf5c Add separation before search sections
+9f78294 Normalize site header footer and spacing
+6dc5dc1 Unify site footers
+8b86701 Unify site headers
+ad25928 Rewrite About page letter
+4f15bf8 Fix About opening message
+b7741d3 Rewrite About page message

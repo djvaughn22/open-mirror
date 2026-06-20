@@ -1,0 +1,46 @@
+
+> open-mirror@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 29.5s
+  Running TypeScript ...
+  Finished TypeScript in 6.9s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/20) ...
+  Generating static pages using 7 workers (5/20) 
+  Generating static pages using 7 workers (10/20) 
+  Generating static pages using 7 workers (15/20) 
+✓ Generating static pages using 7 workers (20/20) in 1169ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /api/deep-dive-word-studies
+├ ƒ /api/local-verse-lookup
+├ ƒ /api/reflect
+├ ƒ /api/verse-explanation
+├ ƒ /api/waitlist
+├ ƒ /api/youversion/languages
+├ ƒ /bible-bingo/[boardId]
+├ ○ /cross
+├ ○ /daily-hope
+├ ○ /explorebible
+├ ○ /heart
+├ ○ /home
+├ ○ /pray
+├ ○ /reflect
+├ ○ /the-dj-cares
+└ ○ /what-am-i-ai
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
