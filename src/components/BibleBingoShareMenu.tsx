@@ -51,19 +51,19 @@ function shareLabels(itemLabel: ShareItemLabel) {
     textUrl: `Text ${name} URL`,
     copyUrl: `Copy ${name} URL`,
     copiedUrl: `${titleName} URL copied`,
-    openedEmail: `Email opened. Rendered ${name} copied. Paste it into the email body if needed.`,
-    help: `Email HTML opens an email draft and copies the rendered ${name}. Text URL sends the link. Copy URL copies the link.`,
+    openedHtmlEmail: `${titleName} HTML email opened`,
+    copiedHtmlBackup: `${titleName} HTML copied as backup`,
+    help: `Email HTML opens the rendered ${name} in Gmail. Text URL sends the link. Copy URL copies the link.`,
   };
 }
 
-function emailBodyFor(shareText: string, boardUrl: string) {
-  const cleanShareText = shareText.trim();
-  const hasUrl = cleanShareText.includes(boardUrl);
-
-  return hasUrl ? cleanShareText : `${cleanShareText}\n\n${boardUrl}`;
+function gmailComposeUrl(subject: string, htmlBody: string) {
+  return `https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(
+    subject,
+  )}&body=${encodeURIComponent(htmlBody)}`;
 }
 
-function mailtoUrl(subject: string, body: string) {
+function mailtoFallbackUrl(subject: string, body: string) {
   return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -96,30 +96,40 @@ export default function BibleBingoShareMenu({
   }
 
   async function copyRichHtmlEmail(value: string) {
-    if ("ClipboardItem" in window && navigator.clipboard.write) {
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          "text/html": new Blob([value], { type: "text/html" }),
-          "text/plain": new Blob([shareText], { type: "text/plain" }),
-        }),
-      ]);
+    try {
+      if ("ClipboardItem" in window && navigator.clipboard.write) {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            "text/html": new Blob([value], { type: "text/html" }),
+            "text/plain": new Blob([shareText], { type: "text/plain" }),
+          }),
+        ]);
+      } else {
+        await navigator.clipboard.writeText(value);
+      }
+    } catch {
+      // Email still opens even if clipboard backup fails.
+    }
+  }
+
+  async function openHtmlEmailDraft(value: string) {
+    await copyRichHtmlEmail(value);
+
+    const openedWindow = window.open(
+      gmailComposeUrl(emailSubject, value),
+      "_blank",
+      "noopener,noreferrer",
+    );
+
+    if (openedWindow) {
+      setCopied(labels.openedHtmlEmail);
+      window.setTimeout(() => setCopied(""), 3600);
       return;
     }
 
-    await navigator.clipboard.writeText(value);
-  }
-
-  async function openEmailWithRichCard(value: string) {
-    try {
-      await copyRichHtmlEmail(value);
-      setCopied(labels.openedEmail);
-      window.setTimeout(() => setCopied(""), 5200);
-    } catch {
-      setCopied("Email opened. Copy failed, but the URL is in the email body.");
-      window.setTimeout(() => setCopied(""), 4200);
-    }
-
-    window.location.href = mailtoUrl(emailSubject, emailBodyFor(shareText, boardUrl));
+    window.location.href = mailtoFallbackUrl(emailSubject, shareText);
+    setCopied(labels.copiedHtmlBackup);
+    window.setTimeout(() => setCopied(""), 3600);
   }
 
   return (
@@ -149,7 +159,7 @@ export default function BibleBingoShareMenu({
             <button
               type="button"
               role="menuitem"
-              onClick={() => openEmailWithRichCard(htmlEmail)}
+              onClick={() => openHtmlEmailDraft(htmlEmail)}
               className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
             >
               {labels.htmlEmail}
