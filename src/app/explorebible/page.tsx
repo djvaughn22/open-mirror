@@ -419,6 +419,7 @@ export default function BibleExplorerPage() {
               <a href="/pray">Pray</a>
               <a href="/explorebible">Bible Bingo</a>
               <a href="/daily-hope">Daily Hope</a>
+              <a href="/resources/52-week-bible-reading-plan.pdf" target="_blank" rel="noopener noreferrer">Bible Reading Plan</a>
               <a href="/about">About</a>
             </div>
           </details>
