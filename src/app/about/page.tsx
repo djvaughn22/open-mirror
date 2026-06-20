@@ -41,64 +41,56 @@ export default function AboutPage() {
           </details>
         </nav>
 
-        <section className="mx-auto max-w-4xl text-left">
+        <section className="max-w-4xl text-left">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-100">
             About CrossHeartPray
           </p>
 
           <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-6xl">
-            A simple plan to come to Jesus.
+            A plan to come to Jesus.
           </h1>
 
           <p className="mt-7 max-w-3xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
-            CrossHeartPray is simple: Cross — bring it to Jesus. Heart — receive God’s love. Pray — talk to God. Then open the Holy Bible with Bible Bingo, Daily Hope, and the Bible Reading Plan.
+            CrossHeartPray points people toward Jesus, prayer, and the Holy Bible.
           </p>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-            Start with Cross Heart Pray. Then keep going with Bible Bingo, Daily Hope, and the Bible Reading Plan.
+            Start with Cross Heart Pray. Then open Scripture with Bible Bingo, Daily Hope, and the Bible Reading Plan.
           </p>
         </section>
 
-        <section className="mx-auto mt-14 max-w-4xl space-y-6 text-left">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-xl shadow-black/10 sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">
-              Start here
-            </p>
-
-            <h2 className="mt-3 text-2xl font-black text-white">
-              Cross. Heart. Pray.
+        <section className="mt-14 max-w-4xl space-y-8 text-left">
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">
+              Cross Heart Pray
             </h2>
 
-            <div className="mt-6 space-y-5 text-base leading-8">
-              <p className="text-slate-300">
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>
                 <span className="font-black text-white">✝️ Cross:</span>{" "}
                 <span className="font-semibold text-emerald-100">Bring it to Jesus.</span>
-              </p>
-
-              <p className="text-slate-300">
+              </li>
+              <li>
                 <span className="font-black text-white">❤️ Heart:</span>{" "}
                 <span className="font-semibold text-emerald-100">Receive God’s love.</span>
-              </p>
-
-              <p className="text-slate-300">
+              </li>
+              <li>
                 <span className="font-black text-white">🙏 Pray:</span>{" "}
                 <span className="font-semibold text-emerald-100">Talk to God.</span>
-              </p>
-            </div>
-          </div>
+              </li>
+            </ul>
+          </section>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-xl shadow-black/10 sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">
-              Then open the Bible
-            </p>
-
-            <h2 className="mt-3 text-2xl font-black text-white">
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">
               Bible Bingo
             </h2>
 
-            <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
-              Bible Bingo is a simple, joyful way to open the Holy Bible: one board, seven verses, with source-backed Deep Dive word study when available.
-            </p>
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>One board.</li>
+              <li>Seven Bible verses.</li>
+              <li>Deep Dive word study when source-backed original-language data is available.</li>
+            </ul>
 
             <a
               href="/explorebible"
@@ -106,41 +98,38 @@ export default function AboutPage() {
             >
               Open Bible Bingo
             </a>
-          </div>
+          </section>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-xl shadow-black/10 sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">
-              If you do not know where to start
-            </p>
-
-            <h2 className="mt-3 text-2xl font-black text-white">
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">
               Daily Hope
             </h2>
 
-            <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
-              Daily Hope begins with the Sinner Prayer and Salvation Prayer, then gives you fixed daily hope verses and a closing prayer to help you keep going.
-            </p>
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>Begin with the Sinner Prayer.</li>
+              <li>Continue with the Salvation Prayer.</li>
+              <li>Read the fixed hope verses for the day.</li>
+              <li>Close with prayer.</li>
+            </ul>
 
             <a
               href="/daily-hope"
               className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
             >
-              Start with Daily Hope
+              Start Daily Hope
             </a>
-          </div>
+          </section>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-xl shadow-black/10 sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">
-              Keep reading
-            </p>
-
-            <h2 className="mt-3 text-2xl font-black text-white">
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">
               Bible Reading Plan
             </h2>
 
-            <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
-              The Bible Reading Plan is a one-page PDF you can open anytime to keep moving through Scripture with a steady rhythm.
-            </p>
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>Open the one-page PDF.</li>
+              <li>Follow a steady rhythm through Scripture.</li>
+              <li>Return anytime from the menu.</li>
+            </ul>
 
             <a
               href="/resources/52-week-bible-reading-plan.pdf"
@@ -150,10 +139,10 @@ export default function AboutPage() {
             >
               Open Bible Reading Plan
             </a>
-          </div>
+          </section>
         </section>
 
-        <section className="mx-auto mt-14 max-w-4xl border-t border-white/10 pt-8 text-left">
+        <section className="mt-14 max-w-4xl border-t border-white/10 pt-8 text-left">
           <p className="text-sm font-semibold tracking-[0.24em] text-slate-400">
             ✝️ CROSS ❤️ HEART 🙏 PRAY
           </p>
