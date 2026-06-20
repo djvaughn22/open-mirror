@@ -411,9 +411,6 @@ export default function BibleExplorerPage() {
             </a>
             : Cross — bring it to Jesus. Heart — receive God’s love. Pray — talk to God.
           </p>
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
-            Then Bible Bingo: one board, seven verses, and a simple, joyful way to open the Holy Bible.
-          </p>
           <p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-300">
             If you don’t know where to start, start with{" "}
             <a href="/daily-hope" className="underline decoration-slate-300/40 underline-offset-4">
