@@ -466,6 +466,7 @@ export default function BibleExplorerPage() {
                   align="right"
                   itemLabel="card"
                   buttonLabel={`Share ${section.title} card`}
+                  enableSignature
                   iconOnly
                 />
               </div>

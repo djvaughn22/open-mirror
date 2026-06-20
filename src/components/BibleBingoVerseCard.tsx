@@ -213,6 +213,7 @@ export default function BibleBingoVerseCard({
             align="right"
             itemLabel="card"
             buttonLabel="Share Card"
+            enableSignature
             showOpenOption={false}
           />
         </div>

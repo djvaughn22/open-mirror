@@ -282,7 +282,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
               htmlEmail={isSingleCardView ? singleCardHtmlEmail : htmlEmail}
               itemLabel={isSingleCardView ? "card" : "board"}
               buttonLabel={isSingleCardView ? "Share Card" : "Share Board"}
-              enableSignature={!isSingleCardView}
+              enableSignature
             />
 
             <a
