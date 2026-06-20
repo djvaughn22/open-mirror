@@ -505,7 +505,8 @@ export default function BibleExplorerPage() {
                 />
               </p>
 
-              <div className="mt-auto flex flex-col gap-2 pt-5 sm:flex-row">
+                            <div className="search-utility-divider mt-16 border-t border-white/10 pt-14" aria-hidden="true" />
+<div className="mt-auto flex flex-col gap-2 pt-5 sm:flex-row">
                 <a
                   href={verseUrl(passage)}
                   target="_blank"

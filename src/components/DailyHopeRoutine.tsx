@@ -388,7 +388,8 @@ export default function DailyHopeRoutine({
       <section className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader className="mb-10 sm:mb-12" />
         <div className="text-center">
-          <div
+                    <div className="search-utility-divider mt-16 border-t border-white/10 pt-14" aria-hidden="true" />
+<div
             className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base font-black uppercase tracking-[0.24em] text-white sm:text-lg"
             aria-hidden="true"
           >
