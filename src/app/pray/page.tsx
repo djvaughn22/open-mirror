@@ -55,7 +55,7 @@ export default function PrayPage() {
         </div>
 
         <LazyBibleVerseLookup
-          initialReference="1 Thessalonians 5:16-18"
+          initialReference="1 Thessalonians 5:16"
           suggestedReferences={["Philippians 4:6-7", "Matthew 6:10", "Psalm 46:10"]}
         />
       </section>
