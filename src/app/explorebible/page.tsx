@@ -421,6 +421,7 @@ export default function BibleExplorerPage() {
               emailSubject={boardShareSubject}
               htmlEmail={boardHtmlEmail}
               buttonLabel="Share Board"
+              enableSignature
             />
           </div>
         </section>

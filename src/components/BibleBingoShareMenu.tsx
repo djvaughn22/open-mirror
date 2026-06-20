@@ -15,6 +15,7 @@ type BibleBingoShareMenuProps = {
   buttonLabel?: string;
   iconOnly?: boolean;
   showOpenOption?: boolean;
+  enableSignature?: boolean;
 };
 
 function ShareIcon() {
@@ -48,6 +49,24 @@ function titleNameFor(itemLabel: ShareItemLabel) {
 
 function plainTextWithUrl(shareText: string, boardUrl: string) {
   return shareText.includes(boardUrl) ? shareText : `${shareText}\n\n${boardUrl}`;
+}
+
+
+function timestampLabel() {
+  return new Date().toLocaleString(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
+
+function signedShareText(shareText: string, toName: string, fromName: string) {
+  const signatureLines = [
+    toName.trim() ? `To: ${toName.trim()}` : "",
+    fromName.trim() ? `From: ${fromName.trim()}` : "",
+    `Shared: ${timestampLabel()}`,
+  ].filter(Boolean);
+
+  return `${signatureLines.join("\n")}\n\n${shareText}`;
 }
 
 function escapeHtml(value: string) {
@@ -112,11 +131,20 @@ export default function BibleBingoShareMenu({
   buttonLabel = "Share",
   iconOnly = false,
   showOpenOption: _showOpenOption = false,
+  enableSignature = false,
 }: BibleBingoShareMenuProps) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState("");
+  const [toName, setToName] = useState("");
+  const [fromName, setFromName] = useState("");
   const titleName = titleNameFor(itemLabel);
   const plainShareText = plainTextWithUrl(shareText, boardUrl);
+
+  function shareTextForCopy() {
+    return enableSignature
+      ? signedShareText(plainShareText, toName, fromName)
+      : plainShareText;
+  }
 
   async function handleCopy(value: string, label: string) {
     try {
@@ -131,9 +159,11 @@ export default function BibleBingoShareMenu({
 
   async function handleCopyHtml() {
     try {
+      const textForCopy = shareTextForCopy();
+
       await copyHtmlForEmail(
-        buildEmailHtml(emailSubject, plainShareText, boardUrl, itemLabel),
-        plainShareText,
+        buildEmailHtml(emailSubject, textForCopy, boardUrl, itemLabel),
+        textForCopy,
       );
       setCopied("HTML copied for email");
       window.setTimeout(() => setCopied(""), 2600);
@@ -166,10 +196,38 @@ export default function BibleBingoShareMenu({
           role="menu"
           className={`absolute top-full z-50 mt-3 w-72 rounded-2xl border border-white/15 bg-slate-950 p-3 text-left shadow-2xl ${menuPositionClass(align)}`}
         >
+          {enableSignature ? (
+            <div className="mb-2 space-y-2 rounded-xl border border-white/10 bg-white/[0.03] p-3">
+              <label className="block text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+                To
+                <input
+                  value={toName}
+                  onChange={(event) => setToName(event.target.value)}
+                  placeholder="Name"
+                  className="mt-1 w-full rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-sm font-semibold normal-case tracking-normal text-white outline-none placeholder:text-slate-500"
+                />
+              </label>
+
+              <label className="block text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
+                From
+                <input
+                  value={fromName}
+                  onChange={(event) => setFromName(event.target.value)}
+                  placeholder="Your name"
+                  className="mt-1 w-full rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-sm font-semibold normal-case tracking-normal text-white outline-none placeholder:text-slate-500"
+                />
+              </label>
+
+              <p className="text-xs leading-5 text-slate-500">
+                Timestamp is added when copied.
+              </p>
+            </div>
+          ) : null}
+
           <button
             type="button"
             role="menuitem"
-            onClick={() => handleCopy(plainShareText, "Text copied")}
+            onClick={() => handleCopy(shareTextForCopy(), "Text copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
             Copy Text
