@@ -382,6 +382,13 @@ export default function BibleExplorerPage() {
   }
 
 
+  function revealDailyBoardOnOpen() {
+    revealBibleBingoCards(
+      path,
+      sections.map((_, index) => index),
+    );
+  }
+
   function spinOne(index: number) {
     const freshPath = buildPath();
     const nextPath = path.map((item, itemIndex) =>
@@ -414,6 +421,14 @@ export default function BibleExplorerPage() {
       wordStudy,
     });
   }
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      revealDailyBoardOnOpen();
+    }, 250);
+
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
