@@ -1,4 +1,4 @@
-import BibleVerseLookup from "../../components/BibleVerseLookup";
+import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -104,7 +104,7 @@ export default function HomePage() {
           ))}
         </section>
 
-        <BibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
+        <LazyBibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
 </div>
           <SiteFooter />
     </main>

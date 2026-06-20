@@ -1,4 +1,4 @@
-import BibleVerseLookup from "../../components/BibleVerseLookup";
+import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
@@ -61,7 +61,7 @@ export default function CrossPage() {
           </a>
         </div>
 
-        <BibleVerseLookup />
+        <LazyBibleVerseLookup />
       </section>
   <SiteFooter />
 </main>

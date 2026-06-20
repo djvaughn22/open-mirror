@@ -10,7 +10,7 @@ import {
   bibleBingoBoardIdFromPassages,
   randomReferenceForSection,
 } from "../../lib/bibleRandom";
-import BibleVerseLookup from "../../components/BibleVerseLookup";
+import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
 import BibleBingoShareMenu from "../../components/BibleBingoShareMenu";
@@ -558,9 +558,7 @@ export default function BibleExplorerPage() {
           />
         )}
 
-        <section className="search-lookup-separator mt-20 border-t border-white/10 pt-14">
-        <BibleVerseLookup className="mt-8" />
-        </section>
+        <LazyBibleVerseLookup className="mt-8" />
 
         <section className="mt-16 border-t border-white/10 px-4 pt-14 pb-8 text-center">
           <h2 className="text-xl font-bold text-white">How it works</h2>
