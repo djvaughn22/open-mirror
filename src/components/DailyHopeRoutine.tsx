@@ -292,7 +292,14 @@ export default function DailyHopeRoutine({
       days.find((day) => day.slug === todaySlug) ??
       days[0];
 
-    return activeDay ? [activeDay] : days;
+    if (!activeDay) {
+      return days;
+    }
+
+    return [
+      activeDay,
+      ...days.filter((day) => day.slug !== activeDay.slug),
+    ];
   }, [activeDaySlug, days, todaySlug]);
 
   const allPassages = useMemo(() => {
@@ -580,6 +587,7 @@ export default function DailyHopeRoutine({
         <section className="mt-12 space-y-8">
           {visibleDays.map((day, dayIndex) => {
             const isToday = todaySlug === day.slug;
+            const isActiveDay = activeDaySlug === day.slug || (!activeDaySlug && isToday);
             const dayUrl = `${pageUrl}#${day.slug}`;
 
             return (
@@ -595,7 +603,7 @@ export default function DailyHopeRoutine({
                 <div className="flex flex-col gap-4 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
                   <div>
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
-                      {isToday ? "Today" : "Daily Hope"}
+                      {isActiveDay ? (isToday ? "Today" : "Open") : isToday ? "Today" : "Daily Hope"}
                     </p>
                     <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
                       {day.day}
@@ -616,8 +624,9 @@ export default function DailyHopeRoutine({
                   </div>
                 </div>
 
-                <div className="mt-6 grid grid-cols-1 gap-5">
-                  {day.items.map((item, itemIndex) => {
+                {isActiveDay ? (
+                  <div className="mt-6 grid grid-cols-1 gap-5">
+                    {day.items.map((item, itemIndex) => {
                     const firstPassage = item.passages[0];
                     const verifiedReady = itemHasVerifiedWordLinks(item);
                     const cardUrl = `${pageUrl}#${item.id}`;
@@ -717,7 +726,8 @@ export default function DailyHopeRoutine({
                       </article>
                     );
                   })}
-                </div>
+                  </div>
+                ) : null}
               </section>
             );
           })}
