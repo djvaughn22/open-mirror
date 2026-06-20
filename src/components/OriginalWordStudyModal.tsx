@@ -2,6 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+function cleanOriginalScriptDisplay(value?: string | null) {
+  return (value ?? "")
+    .normalize("NFD")
+    .replace(/[\u0591-\u05BD\u05BF-\u05C7\u0300-\u036f]/g, "")
+    .replace(/[\u25A0-\u25FF\uFFFD]/g, "")
+    .normalize("NFC")
+    .trim();
+}
+
+
 function makeDeepDivePronunciationGuide(transliteration?: string | null) {
   const cleaned = transliteration
     ?.trim()
@@ -406,7 +416,7 @@ export default function OriginalWordStudyModal({
               Original {languageName} Word
             </p>
             <p className="mt-3 break-words text-4xl font-black leading-tight text-white">
-              {selectedWordStudy.originalWord}
+              {cleanOriginalScriptDisplay(selectedWordStudy.originalWord)}
             </p>
 
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
