@@ -299,7 +299,7 @@ export default function BibleVerseLookup({
   }
 
   return (
-    <section className={`search-verse-lookup-section mt-16 border-t border-white/10 pt-14 ${className} mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 text-center text-slate-100 shadow-2xl shadow-black/25 sm:px-8 sm:py-10`}>
+    <section className={`${className} mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.055] px-5 py-8 text-center text-slate-100 shadow-2xl shadow-black/25 sm:px-8 sm:py-10`}>
       <p className="text-xs font-black uppercase tracking-[0.28em] text-zinc-400">
         Bible Bingo 7
       </p>
