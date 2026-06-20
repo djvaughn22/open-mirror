@@ -7,8 +7,8 @@ const STORAGE_KEY = "crossheartpray-visual-theme";
 
 const visualThemes: { value: VisualTheme; label: string }[] = [
   { value: "classic", label: "Classic" },
-  { value: "warm", label: "Warm" },
-  { value: "bright", label: "Bright" },
+  { value: "warm", label: "Calm" },
+  { value: "bright", label: "Fresh" },
 ];
 
 function cleanTheme(value: string | null | undefined): VisualTheme {
