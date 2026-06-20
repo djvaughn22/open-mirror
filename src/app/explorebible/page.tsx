@@ -14,6 +14,7 @@ import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
 import BibleBingoShareMenu from "../../components/BibleBingoShareMenu";
+import CentralTimeBadge from "../../components/CentralTimeBadge";
 import {
   buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
@@ -405,6 +406,8 @@ export default function BibleExplorerPage() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
             Bible Bingo 7
           </h1>
+
+          <CentralTimeBadge className="mt-5" />
 
 
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
