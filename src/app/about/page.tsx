@@ -1,5 +1,7 @@
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
+import SourceBackedTrustNote from "@/components/SourceBackedTrustNote";
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
@@ -107,7 +109,9 @@ export default function AboutPage() {
           </section>
         </section>
 </div>
-          <SiteFooter />
+        <SourceBackedTrustNote />
+
+        <SiteFooter />
     </main>
   );
 }
