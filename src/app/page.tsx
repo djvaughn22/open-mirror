@@ -1,78 +1,46 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function EmailGatePage() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
+export default function WelcomePage() {
+  const router = useRouter();
+  const [isOpening, setIsOpening] = useState(false);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("saving");
+  async function welcome() {
+    setIsOpening(true);
 
-    const response = await fetch("/api/waitlist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-
-    if (!response.ok) {
-      setStatus("error");
-      return;
+    try {
+      await fetch("/api/site-entry", {
+        method: "POST",
+      });
+    } catch {
+      // Do not block entry.
     }
 
-    window.location.href = "/home";
+    router.push("/home");
   }
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 text-center">
+    <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-slate-100">
+      <section className="mx-auto flex max-w-xl flex-col items-center text-center">
         <div
-          aria-label="Cross Heart Pray"
-          className="mb-12 flex items-center justify-center gap-10 text-7xl md:gap-16 md:text-8xl"
+          className="flex flex-wrap items-center justify-center gap-5 text-6xl sm:text-7xl"
+          aria-hidden="true"
         >
           <span>✝️</span>
           <span>❤️</span>
           <span>🙏</span>
         </div>
 
-        <div className="mb-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-zinc-500">
-            Email Gate
-          </p>
-          <p className="mt-3 text-sm text-zinc-500">
-            temporary testing access
-          </p>
-        </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="flex w-full max-w-xl flex-col gap-4 sm:flex-row"
+        <button
+          type="button"
+          onClick={welcome}
+          disabled={isOpening}
+          className="mt-10 rounded-full border border-white/15 bg-white/10 px-10 py-4 text-lg font-black uppercase tracking-[0.22em] text-white transition hover:bg-white/15 disabled:cursor-wait disabled:opacity-70"
         >
-          <input
-            type="email"
-            name="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Enter your email"
-            className="min-h-12 flex-1 rounded-full border border-zinc-800 bg-zinc-950 px-6 text-white outline-none placeholder:text-zinc-600 focus:border-zinc-500"
-          />
-
-          <button
-            type="submit"
-            disabled={status === "saving"}
-            className="rounded-full bg-white px-8 py-3 font-semibold text-black disabled:opacity-60"
-          >
-            {status === "saving" ? "Opening..." : "Enter Test Site"}
-          </button>
-        </form>
-
-        {status === "error" && (
-          <p className="mt-6 max-w-lg text-sm leading-6 text-red-300">
-            Something went wrong. Please try again.
-          </p>
-        )}
+          {isOpening ? "Opening" : "Welcome"}
+        </button>
       </section>
     </main>
   );
