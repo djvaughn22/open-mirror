@@ -62,7 +62,7 @@ export default function SourceBackedTrustNote() {
         </p>
 
         <p className="font-semibold text-white">
-          If a word cannot be verified, we do not guess.
+          If a word cannot be verified, Cross Heart Pray does not guess.
         </p>
       </div>
 
