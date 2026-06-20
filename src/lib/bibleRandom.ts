@@ -152,3 +152,23 @@ export function randomReferenceForSection(sectionTitle: string, avoidLabel?: str
 
   return toPassage(pool[index]);
 }
+
+
+function hashSeed(value: string) {
+  let hash = 2166136261;
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+export function seededReferenceForSection(sectionTitle: string, seed: string) {
+  const candidates = candidatesForSection(sectionTitle);
+  const pool = candidates.length ? candidates : LOCAL_BIBLE_VERSES;
+  const index = hashSeed(`${seed}|${sectionTitle}`) % pool.length;
+
+  return toPassage(pool[index]);
+}

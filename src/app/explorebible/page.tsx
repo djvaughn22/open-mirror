@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   bibleBingoBoardIdFromPassages,
   randomReferenceForSection,
+  seededReferenceForSection,
 } from "../../lib/bibleRandom";
 import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
@@ -123,6 +124,29 @@ function buildPath(currentPath?: { section: Section; passage: Passage }[]) {
   });
 }
 
+function centralDateSeed() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+
+  const value = (type: string) =>
+    parts.find((part) => part.type === type)?.value ?? "";
+
+  return `${value("year")}-${value("month")}-${value("day")}`;
+}
+
+function buildDailyPath() {
+  const seed = centralDateSeed();
+
+  return sections.map((section) => ({
+    section,
+    passage: seededReferenceForSection(section.title, seed),
+  }));
+}
+
 function verseUrl(passage: Passage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
@@ -176,7 +200,7 @@ function languageButtonClass(language: OriginalLanguage, activeLanguage: Origina
 }
 
 export default function BibleExplorerPage() {
-  const [path, setPath] = useState(() => buildPath());
+  const [path, setPath] = useState(() => buildDailyPath());
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
   const [spinningCards, setSpinningCards] = useState(() => sections.map(() => false));
   const [spinDelays, setSpinDelays] = useState(() => sections.map(() => 0));
@@ -407,7 +431,7 @@ export default function BibleExplorerPage() {
             Bible Bingo 7
           </h1>
 
-          <CentralTimeBadge className="mt-5" />
+          <CentralTimeBadge className="mt-5" showReadingPlan={false} />
 
 
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">

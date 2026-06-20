@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 type CentralTimeBadgeProps = {
   className?: string;
+  showReadingPlan?: boolean;
 };
 
 const READING_PLAN_HREF = "/resources/52-week-bible-reading-plan.pdf";
@@ -63,7 +64,10 @@ function getCentralParts(): CentralParts {
   };
 }
 
-export default function CentralTimeBadge({ className = "" }: CentralTimeBadgeProps) {
+export default function CentralTimeBadge({
+  className = "",
+  showReadingPlan = true,
+}: CentralTimeBadgeProps) {
   const [parts, setParts] = useState<CentralParts | null>(null);
 
   useEffect(() => {
@@ -96,15 +100,19 @@ export default function CentralTimeBadge({ className = "" }: CentralTimeBadgePro
       </span>
       <span aria-hidden="true">·</span>
       <span>Week {parts.week}</span>
-      <span aria-hidden="true">·</span>
-      <a
-        href={READING_PLAN_HREF}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-slate-300 underline decoration-white/20 underline-offset-4 transition hover:text-emerald-100 hover:decoration-emerald-100/60"
-      >
-        Bible reading plan
-      </a>
+      {showReadingPlan ? (
+        <>
+          <span aria-hidden="true">·</span>
+          <a
+            href={READING_PLAN_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-300 underline decoration-white/20 underline-offset-4 transition hover:text-emerald-100 hover:decoration-emerald-100/60"
+          >
+            Bible reading plan
+          </a>
+        </>
+      ) : null}
     </div>
   );
 }
