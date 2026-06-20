@@ -3,6 +3,7 @@ type SiteHeaderProps = {
 };
 
 const menuLinks = [
+  { href: "/", label: "Welcome" },
   { href: "/home", label: "Home" },
   { href: "/cross", label: "Cross" },
   { href: "/heart", label: "Heart" },
@@ -20,7 +21,11 @@ const menuLinks = [
 export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
   return (
     <nav className={`${className} grid grid-cols-3 items-center`}>
-      <a href="/home" className="justify-self-start font-bold text-slate-100">
+      <a
+        href="/"
+        aria-label="Open CrossHeartPray Welcome"
+        className="justify-self-start font-bold text-slate-100"
+      >
         CrossHeartPray
       </a>
 
