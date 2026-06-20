@@ -47,9 +47,9 @@ function shareLabels(itemLabel: ShareItemLabel) {
   const titleName = itemLabel === "card" ? "Card" : "Board";
 
   return {
-    htmlEmail: `Email ${name} HTML`,
-    textUrl: `Text ${name} URL`,
-    copyUrl: `Copy ${name} URL`,
+    htmlEmail: `Email ${titleName} HTML`,
+    textUrl: `Text ${titleName} URL`,
+    copyUrl: `Copy ${titleName} URL`,
     copiedUrl: `${titleName} URL copied`,
     copiedHtml: `${titleName} copied. Gmail opened. Paste into the email body.`,
     help: `Email HTML copies the rendered ${name} and opens Gmail. Paste once into the body. Text URL sends the link. Copy URL copies the link.`,
