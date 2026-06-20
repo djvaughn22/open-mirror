@@ -560,7 +560,7 @@ export default function BibleExplorerPage() {
 
         <BibleVerseLookup className="mt-8" />
 
-        <section className="mt-8 border-t border-zinc-900 px-4 py-8 text-center">
+        <section className="mt-16 border-t border-white/10 px-4 pt-14 pb-8 text-center">
           <h2 className="text-xl font-bold text-white">How it works</h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-7 text-slate-400">
             Every board opens a fresh path through the Bible. Verse opens the exact
