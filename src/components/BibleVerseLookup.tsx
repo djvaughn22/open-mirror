@@ -16,6 +16,7 @@ type SpinMode = "gospel-epistles" | "gospel" | "epistles" | "proverbs" | "all";
 type BibleVerseLookupProps = {
   className?: string;
   initialReference?: string;
+  suggestedReferences?: string[];
   initialTextOverride?: string;
   showSearch?: boolean;
   spinMode?: SpinMode;
@@ -95,9 +96,21 @@ function defaultDescription(spinMode: SpinMode) {
   return "Open with Romans 15:7, search any verse, or shuffle a Gospel or Epistles verse.";
 }
 
+
+function formatReferenceList(references: string[]) {
+  if (references.length === 0) return "";
+  if (references.length === 1) return references[0];
+
+  const allButLast = references.slice(0, -1).join(", ");
+  const last = references[references.length - 1];
+
+  return `${allButLast}, or ${last}`;
+}
+
 export default function BibleVerseLookup({
   className = "mt-12",
   initialReference = DEFAULT_REFERENCE,
+  suggestedReferences,
   initialTextOverride,
   showSearch = true,
   spinMode = "gospel-epistles",
@@ -338,7 +351,9 @@ export default function BibleVerseLookup({
           </form>
 
           <p className="mt-4 text-xs font-semibold text-zinc-400">
-            Try Romans 15:7, John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, or Proverbs 17:22.
+            {suggestedReferences
+              ? `Try ${formatReferenceList(suggestedReferences)}.`
+              : "Try Romans 15:7, John 3:16, Psalm 23:1, Romans 8:28, Genesis 1:1, or Proverbs 17:22."}
           </p>
         </>
       )}

@@ -54,7 +54,10 @@ export default function HeartPage() {
           </a>
         </div>
 
-        <LazyBibleVerseLookup />
+        <LazyBibleVerseLookup
+          initialReference="1 John 4:16"
+          suggestedReferences={["Jeremiah 31:3", "Romans 5:5", "Ezekiel 36:26"]}
+        />
       </section>
   <SiteFooter />
 </main>

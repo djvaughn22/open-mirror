@@ -61,7 +61,10 @@ export default function CrossPage() {
           </a>
         </div>
 
-        <LazyBibleVerseLookup />
+        <LazyBibleVerseLookup
+          initialReference="Galatians 2:20"
+          suggestedReferences={["Romans 5:8", "1 Peter 2:24", "Isaiah 53:5"]}
+        />
       </section>
   <SiteFooter />
 </main>

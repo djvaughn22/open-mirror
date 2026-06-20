@@ -4,6 +4,8 @@ import BibleVerseLookup from "./BibleVerseLookup";
 
 type LazyBibleVerseLookupProps = {
   className?: string;
+  initialReference?: string;
+  suggestedReferences?: string[];
 };
 
 export default function LazyBibleVerseLookup(props: LazyBibleVerseLookupProps) {

@@ -405,13 +405,6 @@ export default function BibleExplorerPage() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
             Bible Bingo 7
           </h1>
-          <p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-300">
-            If you don’t know where to start, start with{" "}
-            <a href="/daily-hope" className="underline decoration-slate-300/40 underline-offset-4">
-              Daily Hope
-            </a>
-            .
-          </p>
 
 
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -432,9 +425,6 @@ export default function BibleExplorerPage() {
           </div>
         </section>
 
-        <p className="mb-4 text-center text-sm font-semibold text-slate-400">
-          Deep Dive opens when verified word details are available.
-        </p>
 
         <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
           {path.map(({ section, passage }, index) => (
