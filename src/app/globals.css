@@ -168,3 +168,76 @@ body {
   }
 }
 
+
+
+/* CHP_COUNTRY_COLOR_THEMES
+   Local-only visual personalization. Scripture, messaging, routing, and meaning do not change.
+   Applies country color palettes only to safe UI surfaces. */
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) {
+  --background: var(--chp-country-bg);
+  --foreground: var(--chp-country-text);
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) body {
+  background:
+    radial-gradient(circle at top left, var(--chp-country-accent) 0, transparent 32rem),
+    radial-gradient(circle at bottom right, var(--chp-country-accent-2) 0, transparent 30rem),
+    var(--chp-country-bg) !important;
+  color: var(--chp-country-text) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) main[class*="bg-"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) section[class*="bg-slate"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) section[class*="bg-black"] {
+  background: transparent !important;
+  color: var(--chp-country-text) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) article[class*="bg-"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) div[class*="bg-white"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) div[class*="bg-black"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) div[class*="bg-slate"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) section[class*="bg-white"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) section[class*="bg-emerald"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) section[class*="bg-yellow"] {
+  background-color: var(--chp-country-surface-soft) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) a[class*="bg-"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) button[class*="bg-"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) summary[class*="bg-"] {
+  background-color: var(--chp-country-surface) !important;
+  border-color: var(--chp-country-border) !important;
+  color: var(--chp-country-text) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="border-white"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="border-emerald"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="border-yellow"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="border-slate"] {
+  border-color: var(--chp-country-border) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="text-slate"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="text-white"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="text-emerald"],
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) [class*="text-yellow"] {
+  color: var(--chp-country-text) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) .text-slate-300,
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) .text-slate-400,
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) .text-slate-500 {
+  color: var(--chp-country-muted) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) a,
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) .underline {
+  text-decoration-color: var(--chp-country-accent-2) !important;
+}
+
+html[data-country-theme]:not([data-country-theme="DEFAULT"]) select {
+  background: var(--chp-country-bg) !important;
+  color: var(--chp-country-text) !important;
+  border-color: var(--chp-country-border) !important;
+}

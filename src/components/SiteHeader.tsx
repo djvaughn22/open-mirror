@@ -1,3 +1,5 @@
+import CountryColorPicker from "./CountryColorPicker";
+
 type SiteHeaderProps = {
   className?: string;
 };
@@ -51,7 +53,9 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
           <span aria-hidden="true">☰</span>
         </summary>
 
-        <div className="absolute right-0 z-50 mt-4 flex w-64 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right text-sm font-semibold text-slate-100 shadow-2xl">
+        <div className="absolute right-0 z-50 mt-4 flex w-72 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right text-sm font-semibold text-slate-100 shadow-2xl">
+          <CountryColorPicker />
+
           {menuLinks.map((link) => (
             <a
               key={link.href}
