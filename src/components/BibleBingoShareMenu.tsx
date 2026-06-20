@@ -195,6 +195,48 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
 </html>`;
 }
 
+function printableDocument(title: string, bodyHtml: string) {
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${escapeHtml(title)}</title>
+  <style>
+    @page { margin: 0.45in; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: #ffffff !important;
+      color: #111827 !important;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+      padding: 0;
+    }
+    a {
+      color: #065f46 !important;
+      text-decoration: underline;
+    }
+    img {
+      max-width: 100%;
+    }
+    @media print {
+      body {
+        background: #ffffff !important;
+      }
+      div, section, article, table, tr, td {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  ${bodyHtml}
+</body>
+</html>`;
+}
+
 function printHtml(html: string) {
   const frame = document.createElement("iframe");
 
@@ -346,15 +388,10 @@ export default function BibleBingoShareMenu({
   }
 
   function handlePrintPdf() {
-    const opened = printHtml(lightPrintHtml());
+    const cardHtml = htmlEmail || buildEmailHtml(emailSubject, shareTextForCopy(), boardUrl, itemLabel);
+    const opened = printHtml(printableDocument(emailSubject, cardHtml));
 
     setCopied(opened ? "Print opened" : "Print blocked");
-    window.setTimeout(() => setCopied(""), 2600);
-  }
-
-  function handleDownloadHtml() {
-    downloadHtml(`${filenameSafe(emailSubject)}.html`, lightPrintHtml());
-    setCopied("File downloaded");
     window.setTimeout(() => setCopied(""), 2600);
   }
 
@@ -445,14 +482,6 @@ export default function BibleBingoShareMenu({
             Print / Save PDF
           </button>
 
-          <button
-            type="button"
-            role="menuitem"
-            onClick={handleDownloadHtml}
-            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
-          >
-            Download file
-          </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
             {copied || "Ready to paste."}
