@@ -311,8 +311,8 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
             cardTones={cardTones}
           />
         )}
-        <SiteFooter />
-      </div>
+</div>
+          <SiteFooter />
     </main>
   );
 }

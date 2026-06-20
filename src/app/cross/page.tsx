@@ -63,7 +63,7 @@ export default function CrossPage() {
 
         <BibleVerseLookup />
       </section>
-        <SiteFooter />
-    </main>
+  <SiteFooter />
+</main>
   );
 }

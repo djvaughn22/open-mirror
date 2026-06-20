@@ -105,8 +105,8 @@ export default function HomePage() {
         </section>
 
         <BibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
-        <SiteFooter />
-      </div>
+</div>
+          <SiteFooter />
     </main>
   );
 }

@@ -2,6 +2,7 @@
 
 import SiteFooter from "../../components/SiteFooter";
 
+
 import SiteHeader from "../../components/SiteHeader";
 
 import { useEffect, useMemo, useState } from "react";
@@ -504,8 +505,6 @@ export default function BibleExplorerPage() {
                   onWordClick={(wordStudy) => openWordStudy(section, passage, wordStudy)}
                 />
               </p>
-
-                            <div className="search-utility-divider mt-16 border-t border-white/10 pt-14" aria-hidden="true" />
 <div className="mt-auto flex flex-col gap-2 pt-5 sm:flex-row">
                 <a
                   href={verseUrl(passage)}
@@ -569,8 +568,7 @@ export default function BibleExplorerPage() {
             Hebrew or Greek word details are available.
           </p>
         </section>
-        <SiteFooter />
-      </div>
+</div>
 
       <style>{`
         @keyframes bible-card-axis-spin {
@@ -723,6 +721,7 @@ export default function BibleExplorerPage() {
           }
         }
       `}</style>
+          <SiteFooter />
     </main>
   );
 }

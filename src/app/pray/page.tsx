@@ -56,7 +56,7 @@ export default function PrayPage() {
 
         <BibleVerseLookup />
       </section>
-        <SiteFooter />
-    </main>
+  <SiteFooter />
+</main>
   );
 }

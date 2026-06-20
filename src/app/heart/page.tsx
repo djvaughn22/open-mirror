@@ -56,7 +56,7 @@ export default function HeartPage() {
 
         <BibleVerseLookup />
       </section>
-        <SiteFooter />
-    </main>
+  <SiteFooter />
+</main>
   );
 }
