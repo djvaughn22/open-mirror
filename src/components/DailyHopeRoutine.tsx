@@ -277,6 +277,7 @@ export default function DailyHopeRoutine({
 }: DailyHopeRoutineProps) {
   const [todaySlug, setTodaySlug] = useState("");
   const [activeDaySlug, setActiveDaySlug] = useState("");
+  const [expandedPrayerIds, setExpandedPrayerIds] = useState<Record<string, boolean>>({});
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -373,6 +374,13 @@ export default function DailyHopeRoutine({
     }
 
     chooseDay(todaySlug);
+  }
+
+  function togglePrayer(prayerId: string) {
+    setExpandedPrayerIds((current) => ({
+      ...current,
+      [prayerId]: !current[prayerId],
+    }));
   }
 
   useEffect(() => {
@@ -514,6 +522,7 @@ export default function DailyHopeRoutine({
           {openingPrayers.map((prayer, index) => {
             const prayerId = `prayer-${index + 1}`;
             const prayerUrl = `${pageUrl}#${prayerId}`;
+            const isPrayerExpanded = Boolean(expandedPrayerIds[prayerId]);
 
             return (
               <article
@@ -539,13 +548,30 @@ export default function DailyHopeRoutine({
                   Prayer Card
                 </p>
 
-                <h2 className="mt-4 pr-12 text-2xl font-extrabold text-slate-50">
-                  {prayer.title}
-                </h2>
+                <div className="mt-4 flex flex-col gap-3 pr-12 sm:flex-row sm:items-center sm:justify-between">
+                  <h2 className="text-2xl font-extrabold text-slate-50">
+                    {prayer.title}
+                  </h2>
 
-                <p className="mt-5 text-base font-medium leading-8 text-slate-300">
-                  {prayer.body}
-                </p>
+                  <button
+                    type="button"
+                    onClick={() => togglePrayer(prayerId)}
+                    aria-expanded={isPrayerExpanded}
+                    aria-controls={`${prayerId}-body`}
+                    className="self-start rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-300 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50 sm:self-auto"
+                  >
+                    {isPrayerExpanded ? "Hide prayer" : "Read prayer"}
+                  </button>
+                </div>
+
+                {isPrayerExpanded ? (
+                  <p
+                    id={`${prayerId}-body`}
+                    className="mt-5 text-base font-medium leading-8 text-slate-300"
+                  >
+                    {prayer.body}
+                  </p>
+                ) : null}
               </article>
             );
           })}
