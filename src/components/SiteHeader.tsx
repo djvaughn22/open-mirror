@@ -20,7 +20,7 @@ const menuLinks = [
 export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
   return (
     <nav className={`${className} grid grid-cols-3 items-center`}>
-      <a href="/home" className="justify-self-start font-bold">
+      <a href="/home" className="justify-self-start font-bold text-slate-100">
         CrossHeartPray
       </a>
 
@@ -41,7 +41,7 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
       <details className="relative justify-self-end text-right">
         <summary
           aria-label="Open menu"
-          className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-white/15 bg-white/10 text-2xl font-semibold leading-none text-slate-100 transition hover:bg-white/15 [&::-webkit-details-marker]:hidden"
+          className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-white/15 bg-white/10 text-xl font-semibold leading-none text-slate-100 transition hover:bg-white/15 [&::-webkit-details-marker]:hidden"
         >
           <span aria-hidden="true">☰</span>
         </summary>

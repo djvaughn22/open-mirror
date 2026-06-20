@@ -1,10 +1,11 @@
 import BibleVerseLookup from "../../components/BibleVerseLookup";
 import SiteHeader from "../../components/SiteHeader";
+import SiteFooter from "../../components/SiteFooter";
 
 export default function CrossPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
-      <section className="mx-auto max-w-4xl px-6 py-10">
+      <section className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader />
 
         <div className="text-center">
@@ -62,9 +63,7 @@ export default function CrossPage() {
 
         <BibleVerseLookup />
       </section>
-      <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-        © 2026 Open Mirror LLC · Follow Jesus · Love God · Pray
-      </footer>
+        <SiteFooter />
     </main>
   );
 }

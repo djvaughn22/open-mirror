@@ -1,5 +1,7 @@
 "use client";
 
+import SiteFooter from "./SiteFooter";
+
 import SiteHeader from "./SiteHeader";
 
 import { useEffect, useMemo, useState } from "react";
@@ -383,7 +385,7 @@ export default function DailyHopeRoutine({
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
-      <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
+      <section className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader className="mb-10 sm:mb-12" />
         <div className="text-center">
           <div
@@ -664,6 +666,7 @@ export default function DailyHopeRoutine({
           onClose={() => setActiveWordStudy(null)}
         />
       ) : null}
+        <SiteFooter />
     </main>
   );
 }

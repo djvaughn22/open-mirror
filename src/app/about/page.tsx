@@ -1,8 +1,9 @@
 import SiteHeader from "../../components/SiteHeader";
+import SiteFooter from "../../components/SiteFooter";
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
-      <div className="mx-auto max-w-5xl">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader />
 
         <section className="max-w-4xl text-left">
@@ -105,15 +106,7 @@ export default function AboutPage() {
             </a>
           </section>
         </section>
-
-        <section className="mt-14 max-w-4xl border-t border-white/10 pt-8 text-left">
-          <p className="text-sm font-semibold tracking-[0.24em] text-slate-400">
-            ✝️ CROSS ❤️ HEART 🙏 PRAY
-          </p>
-          <p className="mt-4 text-sm font-semibold text-slate-300">
-            RIP Travis - VTL
-          </p>
-        </section>
+        <SiteFooter />
       </div>
     </main>
   );

@@ -3,6 +3,7 @@ import BibleBingoShareBoard from "../../../components/BibleBingoShareBoard";
 import BibleBingoShareMenu from "../../../components/BibleBingoShareMenu";
 import { passagesForBibleBingoBoardId } from "../../../lib/bibleRandom";
 import SiteHeader from "../../../components/SiteHeader";
+import SiteFooter from "../../../components/SiteFooter";
 
 type PageProps = {
   params: Promise<{
@@ -310,10 +311,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
             cardTones={cardTones}
           />
         )}
-
-        <footer className="px-8 py-10 text-center text-sm text-zinc-500">
-          <p>© 2026 Open Mirror LLC. Cross Heart Pray.</p>
-        </footer>
+        <SiteFooter />
       </div>
     </main>
   );

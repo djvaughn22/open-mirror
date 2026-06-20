@@ -1,5 +1,6 @@
 import BibleVerseLookup from "../../components/BibleVerseLookup";
 import SiteHeader from "../../components/SiteHeader";
+import SiteFooter from "../../components/SiteFooter";
 
 const steps = [
   {
@@ -104,10 +105,7 @@ export default function HomePage() {
         </section>
 
         <BibleVerseLookup className="mt-6 pb-12 sm:mt-7 sm:pb-14" />
-
-        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          © 2026 Open Mirror LLC · Follow Jesus · Love God · Pray
-        </footer>
+        <SiteFooter />
       </div>
     </main>
   );
