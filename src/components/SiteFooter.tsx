@@ -5,7 +5,7 @@ export default function SiteFooter() {
         <p>© 2026</p>
 
         <p className="text-right font-semibold tracking-[0.08em] text-slate-400">
-          VTLTS · ✝️ ❤️ 🙏
+          VTLT · ✝️ ❤️ 🙏
         </p>
       </div>
     </footer>
