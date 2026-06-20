@@ -7,6 +7,7 @@ import SiteHeader from "./SiteHeader";
 
 import { useEffect, useMemo, useState } from "react";
 import BibleBingoShareMenu from "./BibleBingoShareMenu";
+import CentralTimeBadge from "./CentralTimeBadge";
 import OriginalWordStudyModal from "./OriginalWordStudyModal";
 import VerifiedVerseText from "./VerifiedVerseText";
 import {
@@ -412,6 +413,8 @@ export default function DailyHopeRoutine({
           <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-slate-300 sm:text-base">
             Same prayers. Same hope verses. Same order. No shuffle.
           </p>
+
+          <CentralTimeBadge className="mt-5" />
 
           <div className="mt-7">
             <BibleBingoShareMenu
