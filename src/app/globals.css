@@ -172,73 +172,40 @@ body {
 
 
 
+
 /* CHP_VISUAL_THEMES
-   Classic is the original CrossHeartPray look.
-   Warm and Bright are flat, readable visual layers only:
-   no Scripture, messaging, routing, Bible data, sharing logic, or meaning changes.
-   The Welcome hero at "/" stays Classic. */
+   Dark is the original CrossHeartPray look.
+   Light is flat, readable, gray-light, and not transparent.
+   No Scripture, messaging, routing, Bible data, sharing logic, or meaning changes.
+   The Welcome hero at "/" stays Dark. */
 
-html[data-chp-visual-theme="warm"] {
-  --background: #fbfaf6;
-  --foreground: #14231d;
-  color-scheme: light;
-}
-
-html[data-chp-visual-theme="bright"] {
+html[data-chp-visual-theme="light"] {
   --background: #edf1f5;
   --foreground: #172033;
   color-scheme: light;
 }
 
-html[data-chp-visual-theme="warm"] body,
-html[data-chp-visual-theme="warm"] main[class*="bg-slate-950"],
-html[data-chp-visual-theme="warm"] main[class*="bg-black"] {
-  background: #fbfaf6 !important;
-  background-image: none !important;
-  color: #14231d !important;
-}
-
-html[data-chp-visual-theme="bright"] body,
-html[data-chp-visual-theme="bright"] main[class*="bg-slate-950"],
-html[data-chp-visual-theme="bright"] main[class*="bg-black"] {
+html[data-chp-visual-theme="light"] body,
+html[data-chp-visual-theme="light"] main[class*="bg-slate-950"],
+html[data-chp-visual-theme="light"] main[class*="bg-black"] {
   background: #edf1f5 !important;
   background-image: none !important;
   color: #172033 !important;
 }
 
-html[data-chp-visual-theme="warm"] article,
-html[data-chp-visual-theme="warm"] section[class*="bg-"],
-html[data-chp-visual-theme="warm"] div[class*="bg-"] {
-  background: #ffffff !important;
-  background-image: none !important;
-  border-color: #d9e2dc !important;
-  box-shadow: none !important;
-  color: #14231d !important;
-}
-
-html[data-chp-visual-theme="bright"] article,
-html[data-chp-visual-theme="bright"] section[class*="bg-"],
-html[data-chp-visual-theme="bright"] div[class*="bg-"] {
-  background: #f7f9fb !important;
+html[data-chp-visual-theme="light"] article,
+html[data-chp-visual-theme="light"] section[class*="bg-"],
+html[data-chp-visual-theme="light"] div[class*="bg-"] {
+  background: #f8fafc !important;
   background-image: none !important;
   border-color: #cfd8e3 !important;
   box-shadow: none !important;
   color: #172033 !important;
 }
 
-html[data-chp-visual-theme="warm"] a[class*="bg-"],
-html[data-chp-visual-theme="warm"] button[class*="bg-"],
-html[data-chp-visual-theme="warm"] summary[class*="bg-"] {
-  background: #eef5ef !important;
-  background-image: none !important;
-  border-color: #cdded2 !important;
-  box-shadow: none !important;
-  color: #14231d !important;
-}
-
-html[data-chp-visual-theme="bright"] a[class*="bg-"],
-html[data-chp-visual-theme="bright"] button[class*="bg-"],
-html[data-chp-visual-theme="bright"] summary[class*="bg-"] {
+html[data-chp-visual-theme="light"] a[class*="bg-"],
+html[data-chp-visual-theme="light"] button[class*="bg-"],
+html[data-chp-visual-theme="light"] summary[class*="bg-"] {
   background: #e2e8ef !important;
   background-image: none !important;
   border-color: #c5d0dc !important;
@@ -246,97 +213,116 @@ html[data-chp-visual-theme="bright"] summary[class*="bg-"] {
   color: #172033 !important;
 }
 
-html[data-chp-visual-theme="warm"] a[class*="bg-"]:hover,
-html[data-chp-visual-theme="warm"] button[class*="bg-"]:hover,
-html[data-chp-visual-theme="warm"] summary[class*="bg-"]:hover {
-  background: #e2eee6 !important;
-}
-
-html[data-chp-visual-theme="bright"] a[class*="bg-"]:hover,
-html[data-chp-visual-theme="bright"] button[class*="bg-"]:hover,
-html[data-chp-visual-theme="bright"] summary[class*="bg-"]:hover {
+html[data-chp-visual-theme="light"] a[class*="bg-"]:hover,
+html[data-chp-visual-theme="light"] button[class*="bg-"]:hover,
+html[data-chp-visual-theme="light"] summary[class*="bg-"]:hover {
   background: #d8e0e9 !important;
 }
 
-html[data-chp-visual-theme="warm"] [class*="text-white"],
-html[data-chp-visual-theme="warm"] [class*="text-slate-50"],
-html[data-chp-visual-theme="warm"] [class*="text-slate-100"],
-html[data-chp-visual-theme="warm"] [class*="text-emerald"],
-html[data-chp-visual-theme="warm"] [class*="text-yellow"],
-html[data-chp-visual-theme="warm"] [class*="text-red"],
-html[data-chp-visual-theme="warm"] [class*="text-sky"] {
-  color: #14231d !important;
-}
-
-html[data-chp-visual-theme="bright"] [class*="text-white"],
-html[data-chp-visual-theme="bright"] [class*="text-slate-50"],
-html[data-chp-visual-theme="bright"] [class*="text-slate-100"],
-html[data-chp-visual-theme="bright"] [class*="text-emerald"],
-html[data-chp-visual-theme="bright"] [class*="text-yellow"],
-html[data-chp-visual-theme="bright"] [class*="text-red"],
-html[data-chp-visual-theme="bright"] [class*="text-sky"] {
+html[data-chp-visual-theme="light"] [class*="text-white"],
+html[data-chp-visual-theme="light"] [class*="text-slate-50"],
+html[data-chp-visual-theme="light"] [class*="text-slate-100"],
+html[data-chp-visual-theme="light"] [class*="text-emerald"],
+html[data-chp-visual-theme="light"] [class*="text-yellow"],
+html[data-chp-visual-theme="light"] [class*="text-red"],
+html[data-chp-visual-theme="light"] [class*="text-sky"] {
   color: #172033 !important;
 }
 
-html[data-chp-visual-theme="warm"] [class*="text-slate-200"],
-html[data-chp-visual-theme="warm"] [class*="text-slate-300"],
-html[data-chp-visual-theme="warm"] [class*="text-slate-400"],
-html[data-chp-visual-theme="warm"] [class*="text-slate-500"],
-html[data-chp-visual-theme="warm"] [class*="text-white/"] {
-  color: #52685d !important;
-}
-
-html[data-chp-visual-theme="bright"] [class*="text-slate-200"],
-html[data-chp-visual-theme="bright"] [class*="text-slate-300"],
-html[data-chp-visual-theme="bright"] [class*="text-slate-400"],
-html[data-chp-visual-theme="bright"] [class*="text-slate-500"],
-html[data-chp-visual-theme="bright"] [class*="text-white/"] {
+html[data-chp-visual-theme="light"] [class*="text-slate-200"],
+html[data-chp-visual-theme="light"] [class*="text-slate-300"],
+html[data-chp-visual-theme="light"] [class*="text-slate-400"],
+html[data-chp-visual-theme="light"] [class*="text-slate-500"],
+html[data-chp-visual-theme="light"] [class*="text-white/"] {
   color: #4b5563 !important;
 }
 
-html[data-chp-visual-theme="warm"] [class*="border-"] {
-  border-color: #d9e2dc !important;
-}
-
-html[data-chp-visual-theme="bright"] [class*="border-"] {
+html[data-chp-visual-theme="light"] [class*="border-"] {
   border-color: #cfd8e3 !important;
 }
 
-html[data-chp-visual-theme="warm"] input,
-html[data-chp-visual-theme="warm"] textarea,
-html[data-chp-visual-theme="warm"] select {
-  background: #ffffff !important;
-  background-image: none !important;
-  border-color: #cdded2 !important;
-  color: #14231d !important;
-  box-shadow: none !important;
-}
-
-html[data-chp-visual-theme="bright"] input,
-html[data-chp-visual-theme="bright"] textarea,
-html[data-chp-visual-theme="bright"] select {
-  background: #f7f9fb !important;
+html[data-chp-visual-theme="light"] input,
+html[data-chp-visual-theme="light"] textarea,
+html[data-chp-visual-theme="light"] select {
+  background: #f8fafc !important;
   background-image: none !important;
   border-color: #c5d0dc !important;
   color: #172033 !important;
   box-shadow: none !important;
 }
 
-html[data-chp-visual-theme="warm"] .underline {
-  text-decoration-color: #92ad9d !important;
-}
-
-html[data-chp-visual-theme="bright"] .underline {
+html[data-chp-visual-theme="light"] .underline {
   text-decoration-color: #8fa0b3 !important;
 }
 
-html[data-chp-visual-theme="warm"] .bible-bingo-bottom-card-spin::after,
-html[data-chp-visual-theme="warm"] .bible-bingo-card-spin::after,
-html[data-chp-visual-theme="warm"] .bible-bingo-board-card-spin::after,
-html[data-chp-visual-theme="warm"] .bible-bingo-shuffle-standard::after,
-html[data-chp-visual-theme="bright"] .bible-bingo-bottom-card-spin::after,
-html[data-chp-visual-theme="bright"] .bible-bingo-card-spin::after,
-html[data-chp-visual-theme="bright"] .bible-bingo-board-card-spin::after,
-html[data-chp-visual-theme="bright"] .bible-bingo-shuffle-standard::after {
+html[data-chp-visual-theme="light"] .bible-bingo-bottom-card-spin::after,
+html[data-chp-visual-theme="light"] .bible-bingo-card-spin::after,
+html[data-chp-visual-theme="light"] .bible-bingo-board-card-spin::after,
+html[data-chp-visual-theme="light"] .bible-bingo-shuffle-standard::after {
   background: none !important;
+}
+
+/* CHP_THEME_TOGGLE */
+.theme-toggle-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.theme-toggle-label {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(148 163 184);
+}
+
+.theme-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  border: 1px solid rgb(51 65 85);
+  border-radius: 999px;
+  background: rgb(15 23 42);
+  padding: 0.25rem;
+}
+
+.theme-toggle-option {
+  min-height: 2.25rem;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: rgb(203 213 225);
+  font-size: 0.86rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.theme-toggle-option[aria-pressed="true"] {
+  background: rgb(226 232 240);
+  color: rgb(15 23 42);
+}
+
+.theme-toggle-option:focus-visible {
+  outline: 2px solid rgb(110 231 183);
+  outline-offset: 2px;
+}
+
+html[data-chp-visual-theme="light"] .theme-toggle-label {
+  color: #64748b !important;
+}
+
+html[data-chp-visual-theme="light"] .theme-toggle {
+  border-color: #c5d0dc !important;
+  background: #dce3eb !important;
+}
+
+html[data-chp-visual-theme="light"] .theme-toggle-option {
+  color: #334155 !important;
+}
+
+html[data-chp-visual-theme="light"] .theme-toggle-option[aria-pressed="true"] {
+  background: #172033 !important;
+  color: #f8fafc !important;
 }

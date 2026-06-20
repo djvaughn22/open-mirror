@@ -5,14 +5,20 @@ import { usePathname } from "next/navigation";
 
 const STORAGE_KEY = "crossheartpray-visual-theme";
 
-export type VisualTheme = "classic" | "warm" | "bright";
+export type VisualTheme = "dark" | "light";
 
 function cleanTheme(value: string | null | undefined): VisualTheme {
-  if (value === "warm" || value === "bright") {
-    return value;
+  if (
+    value === "light" ||
+    value === "bright" ||
+    value === "fresh" ||
+    value === "medium" ||
+    value === "warm"
+  ) {
+    return "light";
   }
 
-  return "classic";
+  return "dark";
 }
 
 function applyTheme(theme: VisualTheme) {
@@ -30,7 +36,7 @@ export default function VisualThemeProvider({
     // The Welcome hero at "/" is the locked front door.
     // It must always keep the original CrossHeartPray dark style.
     if (pathname === "/") {
-      applyTheme("classic");
+      applyTheme("dark");
       return;
     }
 

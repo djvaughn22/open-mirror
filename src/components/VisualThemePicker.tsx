@@ -5,28 +5,28 @@ import type { VisualTheme } from "./VisualThemeProvider";
 
 const STORAGE_KEY = "crossheartpray-visual-theme";
 
-const visualThemes: { value: VisualTheme; label: string }[] = [
-  { value: "classic", label: "Classic" },
-  { value: "warm", label: "Calm" },
-  { value: "bright", label: "Fresh" },
-];
-
 function cleanTheme(value: string | null | undefined): VisualTheme {
-  if (value === "warm" || value === "bright") {
-    return value;
+  if (
+    value === "light" ||
+    value === "bright" ||
+    value === "fresh" ||
+    value === "medium" ||
+    value === "warm"
+  ) {
+    return "light";
   }
 
-  return "classic";
+  return "dark";
 }
 
 function updateUrlTheme(theme: VisualTheme) {
   const url = new URL(window.location.href);
 
-  if (theme === "classic") {
+  if (theme === "dark") {
     url.searchParams.delete("color");
     url.searchParams.delete("theme");
   } else {
-    url.searchParams.set("color", theme);
+    url.searchParams.set("color", "light");
     url.searchParams.delete("theme");
   }
 
@@ -34,7 +34,7 @@ function updateUrlTheme(theme: VisualTheme) {
 }
 
 export default function VisualThemePicker() {
-  const [theme, setTheme] = useState<VisualTheme>("classic");
+  const [theme, setTheme] = useState<VisualTheme>("dark");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -61,22 +61,28 @@ export default function VisualThemePicker() {
   }
 
   return (
-    <label className="flex flex-col gap-2 rounded-2xl border border-slate-700 bg-slate-900 p-3 text-left">
-      <span className="text-[0.68rem] font-black uppercase tracking-[0.22em] text-slate-400">
-        Color Theme
-      </span>
+    <div className="theme-toggle-wrap">
+      <p className="theme-toggle-label">Color Theme</p>
 
-      <select
-        value={theme}
-        onChange={(event) => chooseTheme(event.target.value as VisualTheme)}
-        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm font-bold text-slate-100 outline-none"
-      >
-        {visualThemes.map((item) => (
-          <option key={item.value} value={item.value}>
-            {item.label}
-          </option>
-        ))}
-      </select>
-    </label>
+      <div className="theme-toggle" role="group" aria-label="Color Theme">
+        <button
+          type="button"
+          onClick={() => chooseTheme("dark")}
+          aria-pressed={theme === "dark"}
+          className="theme-toggle-option"
+        >
+          Dark
+        </button>
+
+        <button
+          type="button"
+          onClick={() => chooseTheme("light")}
+          aria-pressed={theme === "light"}
+          className="theme-toggle-option"
+        >
+          Light
+        </button>
+      </div>
+    </div>
   );
 }
