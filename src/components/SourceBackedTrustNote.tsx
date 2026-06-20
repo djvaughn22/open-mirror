@@ -72,8 +72,8 @@ export default function SourceBackedTrustNote() {
         </p>
         <p className="mt-2 text-sm leading-6 text-white/86 sm:text-base">
           Bible Bingo is local. Deep Dive is sourced. AI does not interpret
-          Scripture here. If we can verify the original word, we show the
-          source. If we cannot, we do not guess.
+          Scripture here. Verified original words are shown with sources.
+          Unverified words are left alone.
         </p>
       </div>
 

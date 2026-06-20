@@ -146,7 +146,7 @@ function findLocalVerse(rawQuery: string) {
     verse,
     note: rawVerse
       ? ""
-      : `Showing ${verse.label}. Go to Verse opens this exact verse. Go to Chapter opens the full chapter.`,
+      : `Showing ${verse.label}. Verse opens this exact verse. Chapter opens the full chapter.`,
   };
 }
 
