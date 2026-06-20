@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import BibleBingoShareMenu from "./BibleBingoShareMenu";
 import VerifiedVerseText from "./VerifiedVerseText";
 import {
   hasVerifiedWordStudies,
@@ -38,16 +39,38 @@ function chapterUrl(passage: BibleBingoCardPassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.WEBUS`;
 }
 
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function shareTextFor(passage: BibleBingoCardPassage) {
   return `${passage.label}\n\n${passage.text}\n\n${verseUrl(passage)}`;
 }
 
-function smsUrlFor(passage: BibleBingoCardPassage) {
-  return `sms:?&body=${encodeURIComponent(shareTextFor(passage))}`;
-}
+function cardHtmlEmailFor(passage: BibleBingoCardPassage) {
+  const cardUrl = verseUrl(passage);
 
-function emailUrlFor(passage: BibleBingoCardPassage) {
-  return `mailto:?subject=${encodeURIComponent(`Bible Bingo 7 - ${passage.label}`)}&body=${encodeURIComponent(shareTextFor(passage))}`;
+  return `
+    <div style="font-family: Arial, Helvetica, sans-serif; background:#f1f5f9; color:#0f172a; padding:28px 12px;">
+      <div style="max-width:640px; margin:0 auto; background:#ffffff; border:1px solid #dbe3ee; border-radius:22px; padding:26px;">
+        <p style="font-size:32px; text-align:center; margin:0 0 12px;">✝️ ❤️ 🙏</p>
+        <p style="text-align:center; font-size:11px; line-height:1.4; letter-spacing:0.18em; text-transform:uppercase; color:#047857; font-weight:900; margin:0 0 10px;">Bible Bingo Card</p>
+        <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align:center; margin:0 0 16px; font-size:30px; line-height:1.15; color:#0f172a;">${escapeHtml(passage.label)}</h1>
+        <p style="font-family: Georgia, 'Times New Roman', serif; color:#334155; line-height:1.7; font-size:18px; margin:0 0 22px;">${escapeHtml(passage.text)}</p>
+        <p style="text-align:center; margin:22px 0;">
+          <a href="${cardUrl}" style="display:inline-block; background:#047857; color:#ffffff; padding:13px 22px; border-radius:999px; text-decoration:none; font-weight:800; font-size:15px;">
+            Open Verse
+          </a>
+        </p>
+        <p style="text-align:center; color:#64748b; font-size:13px;">Cross Heart Pray · Bible Bingo 7</p>
+      </div>
+    </div>
+  `;
 }
 
 export default function BibleBingoVerseCard({
@@ -62,8 +85,6 @@ export default function BibleBingoVerseCard({
   onOpenDeepDive,
   onWordClick,
 }: BibleBingoVerseCardProps) {
-  const [shareOpen, setShareOpen] = useState(false);
-  const [shareStatus, setShareStatus] = useState("");
   const [isCardSpinning, setIsCardSpinning] = useState(false);
 
   const deepDiveReady = hasVerifiedWordStudies(wordStudies);
@@ -71,29 +92,16 @@ export default function BibleBingoVerseCard({
 
   const shareLinks = useMemo(() => {
     return {
-      sms: smsUrlFor(passage),
-      email: emailUrlFor(passage),
       verse: verseUrl(passage),
       chapter: chapterUrl(passage),
     };
   }, [passage]);
-
-  async function copyCard() {
-    try {
-      await navigator.clipboard.writeText(shareTextFor(passage));
-      setShareStatus("Card copied.");
-    } catch {
-      setShareStatus("Copy failed.");
-    }
-  }
 
   async function spinCard() {
     if (spinningNow) {
       return;
     }
 
-    setShareOpen(false);
-    setShareStatus("");
     setIsCardSpinning(true);
 
     const startedAt = performance.now();
@@ -143,12 +151,6 @@ export default function BibleBingoVerseCard({
         {note && (
           <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-slate-300">
             {note}
-          </p>
-        )}
-
-        {shareStatus && (
-          <p className="mt-4 text-xs font-bold text-emerald-100">
-            {shareStatus}
           </p>
         )}
 
@@ -202,78 +204,19 @@ export default function BibleBingoVerseCard({
             Deep Dive
           </button>
 
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setShareOpen((current) => !current)}
-              aria-expanded={shareOpen}
-              className="inline-flex w-full items-center justify-center rounded-full border border-sky-200/25 bg-sky-300/10 px-5 py-2 text-sm font-black text-sky-50 shadow-sm transition hover:bg-sky-300/20 sm:w-auto"
-            >
-              Share Card
-            </button>
-
-            {shareOpen && (
-              <div className="absolute right-0 z-30 mt-2 w-56 rounded-2xl border border-white/15 bg-slate-950/95 p-2 text-left shadow-2xl shadow-black/40 backdrop-blur">
-                <button
-                  type="button"
-                  onClick={copyCard}
-                  className="block w-full rounded-xl px-3 py-2 text-left text-sm font-bold text-white transition hover:bg-white/10"
-                >
-                  Copy card
-                </button>
-
-                <a
-                  href={shareLinks.sms}
-                  className="block rounded-xl px-3 py-2 text-sm font-bold text-white transition hover:bg-white/10"
-                >
-                  Text card
-                </a>
-
-                <a
-                  href={shareLinks.email}
-                  className="block rounded-xl px-3 py-2 text-sm font-bold text-white transition hover:bg-white/10"
-                >
-                  Email card
-                </a>
-              </div>
-            )}
-          </div>
+          <BibleBingoShareMenu
+            boardHref={shareLinks.verse}
+            boardUrl={shareLinks.verse}
+            shareText={shareTextFor(passage)}
+            emailSubject={`Bible Bingo 7 - ${passage.label}`}
+            htmlEmail={cardHtmlEmailFor(passage)}
+            align="right"
+            itemLabel="card"
+            buttonLabel="Share Card"
+            showOpenOption={false}
+          />
         </div>
       </article>
-
-      <style>{`
-        @keyframes bibleBingoBottomCardSpin {
-          0% {
-            transform: perspective(1200px) rotateY(0deg) scale(1);
-            filter: brightness(1);
-          }
-
-          35% {
-            transform: perspective(1200px) rotateY(110deg) scale(0.96);
-            filter: brightness(1.15);
-          }
-
-          65% {
-            transform: perspective(1200px) rotateY(250deg) scale(0.98);
-            filter: brightness(1.08);
-          }
-
-          100% {
-            transform: perspective(1200px) rotateY(360deg) scale(1);
-            filter: brightness(1);
-          }
-        }
-
-        .bible-bingo-bottom-card-spin {
-          animation: bibleBingoBottomCardSpin 760ms cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .bible-bingo-bottom-card-spin {
-            animation: none;
-          }
-        }
-      `}</style>
     </>
   );
 }

@@ -244,7 +244,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
             {isSingleCardView
-              ? "Share this card. Ask someone what they notice."
+              ? "Share Card. Ask someone what they notice."
               : "Share your board. Ask someone: Which card should we explore?"}
           </p>
 
@@ -281,8 +281,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
               emailSubject={shareSubject}
               htmlEmail={isSingleCardView ? singleCardHtmlEmail : htmlEmail}
               itemLabel={isSingleCardView ? "card" : "board"}
-              buttonLabel={isSingleCardView ? "Share this card" : "Share this board"}
-              showOpenOption={false}
+              buttonLabel={isSingleCardView ? "Share Card" : "Share Board"}
             />
 
             <a

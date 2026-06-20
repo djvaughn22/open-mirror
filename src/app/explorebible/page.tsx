@@ -436,7 +436,7 @@ export default function BibleExplorerPage() {
               shareText={boardShareText}
               emailSubject={boardShareSubject}
               htmlEmail={boardHtmlEmail}
-              buttonLabel="Share board"
+              buttonLabel="Share Board"
             />
           </div>
         </section>
