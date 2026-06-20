@@ -61,15 +61,15 @@ export default function VisualThemePicker() {
   }
 
   return (
-    <label className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-left">
-      <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+    <label className="flex flex-col gap-2 rounded-2xl border border-slate-700 bg-slate-900 p-3 text-left">
+      <span className="text-[0.68rem] font-black uppercase tracking-[0.22em] text-slate-400">
         Color Theme
       </span>
 
       <select
         value={theme}
         onChange={(event) => chooseTheme(event.target.value as VisualTheme)}
-        className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-bold text-white outline-none"
+        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm font-bold text-slate-100 outline-none"
       >
         {visualThemes.map((item) => (
           <option key={item.value} value={item.value}>
