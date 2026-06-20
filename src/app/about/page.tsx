@@ -1,45 +1,9 @@
+import SiteHeader from "../../components/SiteHeader";
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
       <div className="mx-auto max-w-5xl">
-        <nav className="mb-16 grid grid-cols-3 items-center">
-          <a href="/home" className="justify-self-start font-bold">
-            CrossHeartPray
-          </a>
-
-          <a
-            href="https://www.bible.com/verse-of-the-day"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open YouVersion Bible App"
-            className="justify-self-center"
-          >
-            <img
-              src="/brand/youversion-bible-app.png"
-              alt="Holy Bible"
-              className="h-10 w-10 rounded-lg"
-            />
-          </a>
-
-          <details className="relative justify-self-end text-right">
-            <summary className="cursor-pointer list-none rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15">
-              Menu
-            </summary>
-
-            <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-              <a href="/home">Home</a>
-              <a href="/cross">Cross</a>
-              <a href="/heart">Heart</a>
-              <a href="/pray">Pray</a>
-              <a href="/explorebible">Bible Bingo</a>
-              <a href="/daily-hope">Daily Hope</a>
-              <a href="/resources/52-week-bible-reading-plan.pdf" target="_blank" rel="noopener noreferrer">
-                Bible Reading Plan
-              </a>
-              <a href="/about">About</a>
-            </div>
-          </details>
-        </nav>
+        <SiteHeader />
 
         <section className="max-w-4xl text-left">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-100">

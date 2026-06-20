@@ -1,5 +1,7 @@
 "use client";
 
+import SiteHeader from "./SiteHeader";
+
 import { useEffect, useMemo, useState } from "react";
 import BibleBingoShareMenu from "./BibleBingoShareMenu";
 import OriginalWordStudyModal from "./OriginalWordStudyModal";
@@ -260,7 +262,6 @@ export default function DailyHopeRoutine({
   missingReferences,
 }: DailyHopeRoutineProps) {
   const [todaySlug, setTodaySlug] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -383,49 +384,7 @@ export default function DailyHopeRoutine({
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
-        <nav className="mb-10 grid grid-cols-3 items-center sm:mb-12">
-          <a href="/home" className="justify-self-start font-bold">
-            CrossHeartPray
-          </a>
-
-          <a
-            href="https://www.bible.com/verse-of-the-day"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open YouVersion Bible App"
-            className="justify-self-center"
-          >
-            <img
-              src="/brand/youversion-bible-app.png"
-              alt="Holy Bible"
-              className="h-10 w-10 rounded-lg"
-            />
-          </a>
-
-          <div className="relative justify-self-end">
-            <button
-              type="button"
-              onClick={() => setMenuOpen((current) => !current)}
-              aria-expanded={menuOpen}
-              className="text-sm font-semibold text-zinc-300 hover:text-white"
-            >
-              Menu
-            </button>
-
-            {menuOpen ? (
-              <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-                <a href="/home">Home</a>
-                <a href="/cross">Cross</a>
-                <a href="/heart">Heart</a>
-                <a href="/pray">Pray</a>
-                <a href="/explorebible">Bible Bingo</a>
-                <a href="/daily-hope">Daily Hope</a>
-                <a href="/resources/52-week-bible-reading-plan.pdf" target="_blank" rel="noopener noreferrer">Bible Reading Plan</a>
-              <a href="/about">About</a>
-              </div>
-            ) : null}
-          </div>
-        </nav>
+        <SiteHeader className="mb-10 sm:mb-12" />
         <div className="text-center">
           <div
             className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base font-black uppercase tracking-[0.24em] text-white sm:text-lg"

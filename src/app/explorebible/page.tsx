@@ -1,5 +1,7 @@
 "use client";
 
+import SiteHeader from "../../components/SiteHeader";
+
 import { useEffect, useMemo, useState } from "react";
 import {
   bibleBingoBoardIdFromPassages,
@@ -388,42 +390,7 @@ export default function BibleExplorerPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-8">
-        <nav className="grid grid-cols-3 items-center">
-          <a href="/home" className="justify-self-start font-bold">
-            Cross Heart Pray
-          </a>
-
-          <a
-            href="https://www.bible.com/verse-of-the-day"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open YouVersion Bible App"
-            className="justify-self-center"
-          >
-            <img
-              src="/brand/youversion-bible-app.png"
-              alt="Holy Bible"
-              className="h-10 w-10 rounded-lg"
-            />
-          </a>
-
-          <details className="relative justify-self-end text-sm text-zinc-400">
-            <summary className="cursor-pointer list-none text-2xl leading-none">
-              ☰
-            </summary>
-
-            <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-              <a href="/home">Home</a>
-              <a href="/cross">Cross</a>
-              <a href="/heart">Heart</a>
-              <a href="/pray">Pray</a>
-              <a href="/explorebible">Bible Bingo</a>
-              <a href="/daily-hope">Daily Hope</a>
-              <a href="/resources/52-week-bible-reading-plan.pdf" target="_blank" rel="noopener noreferrer">Bible Reading Plan</a>
-              <a href="/about">About</a>
-            </div>
-          </details>
-        </nav>
+        <SiteHeader />
 
         <section className="mx-auto max-w-5xl pt-10 pb-6 text-center sm:pt-12 sm:pb-8">
           <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">

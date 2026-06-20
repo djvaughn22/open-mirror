@@ -1,46 +1,11 @@
 import BibleVerseLookup from "../../components/BibleVerseLookup";
+import SiteHeader from "../../components/SiteHeader";
 
 export default function PrayPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-4xl px-6 py-10">
-        <nav className="mb-16 grid grid-cols-3 items-center">
-          <a href="/home" className="justify-self-start font-bold">
-            CrossHeartPray
-          </a>
-
-          <span aria-hidden="true" />
-
-          <div className="justify-self-end flex items-center gap-4">
-            <a
-            href="https://www.bible.com/verse-of-the-day"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open YouVersion Bible App"
-            className="justify-self-center"
-          >
-            <img
-              src="/brand/youversion-bible-app.png"
-              alt="Holy Bible"
-              className="h-10 w-10 rounded-lg"
-            />
-          </a>
-
-            <details className="relative text-sm text-zinc-400">
-              <summary className="cursor-pointer list-none text-2xl leading-none">☰</summary>
-              <div className="absolute right-0 z-50 mt-4 flex w-56 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right shadow-2xl">
-              <a href="/home">Home</a>
-              <a href="/cross">Cross</a>
-              <a href="/heart">Heart</a>
-              <a href="/pray">Pray</a>
-              <a href="/explorebible">Bible Bingo</a>
-              <a href="/daily-hope">Daily Hope</a>
-              <a href="/resources/52-week-bible-reading-plan.pdf" target="_blank" rel="noopener noreferrer">Bible Reading Plan</a>
-              <a href="/about">About</a>
-            </div>
-            </details>
-          </div>
-        </nav>
+        <SiteHeader />
 
         <div className="text-center">
           <div className="mb-8 text-7xl">🙏</div>

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import BibleBingoShareBoard from "../../../components/BibleBingoShareBoard";
 import BibleBingoShareMenu from "../../../components/BibleBingoShareMenu";
 import { passagesForBibleBingoBoardId } from "../../../lib/bibleRandom";
+import SiteHeader from "../../../components/SiteHeader";
 
 type PageProps = {
   params: Promise<{
@@ -223,26 +224,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-5xl px-6 py-8">
-        <nav className="flex flex-col items-center gap-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
-          <a href="/home" className="font-bold md:justify-self-start">
-            Cross Heart Pray
-          </a>
-
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-semibold text-slate-300">
-            <a href="/home" className="hover:text-white">Home</a>
-            <a href="/cross" className="hover:text-white">Cross</a>
-            <a href="/heart" className="hover:text-white">Heart</a>
-            <a href="/pray" className="hover:text-white">Pray</a>
-            <a href="/about" className="hover:text-white">About</a>
-          </div>
-
-          <a
-            href="/explorebible"
-            className="justify-self-end rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-          >
-            Bible Bingo
-          </a>
-        </nav>
+        <SiteHeader />
 
         <section className="mx-auto max-w-4xl py-16 text-center">
           <p className="mb-8 flex items-center justify-center gap-8 text-5xl md:gap-14 md:text-6xl">
