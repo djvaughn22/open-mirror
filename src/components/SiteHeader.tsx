@@ -6,7 +6,6 @@ type SiteHeaderProps = {
 
 const menuLinks = [
   { href: "/", label: "Welcome" },
-  { href: "/home", label: "Home" },
   { href: "/cross", label: "Cross" },
   { href: "/heart", label: "Heart" },
   { href: "/pray", label: "Pray" },
@@ -53,20 +52,24 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
           <span aria-hidden="true">☰</span>
         </summary>
 
-        <div className="absolute right-0 z-50 mt-4 flex w-72 flex-col gap-4 rounded-2xl border border-zinc-800 bg-black p-5 text-right text-sm font-semibold text-slate-100 shadow-2xl">
-          <VisualThemePicker />
+        <div className="absolute right-0 z-50 mt-4 flex w-64 flex-col rounded-2xl border border-zinc-800 bg-black p-4 text-right text-sm font-semibold text-slate-100 shadow-2xl">
+          <div className="flex flex-col gap-3">
+            {menuLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="transition hover:text-emerald-100"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-          {menuLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              className="transition hover:text-emerald-100"
-            >
-              {link.label}
-            </a>
-          ))}
+          <div className="mt-4 border-t border-white/10 pt-4">
+            <VisualThemePicker />
+          </div>
         </div>
       </details>
     </nav>
