@@ -24,6 +24,29 @@ export default function AboutPage() {
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
             Start with Cross Heart Pray. Then open Scripture with Bible Bingo, Daily Hope, and the Bible Reading Plan.
           </p>
+              <div className="mt-5 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
+                  Why 7 cards?
+                </p>
+
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+                  One board. Seven places in Scripture. Each card has a purpose.
+                </p>
+
+                <ul className="mt-4 space-y-2 text-sm font-semibold leading-6 text-slate-300">
+                  <li>Old Testament — beginning, history, prophecy</li>
+                  <li>Psalms — praise and prayer</li>
+                  <li>Proverbs — wisdom</li>
+                  <li>Gospel — Jesus</li>
+                  <li>Epistles — the Church</li>
+                  <li>Genesis + Revelation — the beginning and the end together</li>
+                </ul>
+
+                <p className="mt-4 text-base font-black text-emerald-50">
+                  God&apos;s master plan, on one board.
+                </p>
+              </div>
+
         </section>
 
         <section className="mt-14 max-w-4xl space-y-8 text-left">
@@ -109,33 +132,6 @@ export default function AboutPage() {
           </section>
         </section>
 </div>
-
-        <section className="mt-8 rounded-[2rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-6 text-left shadow-xl shadow-black/20 sm:p-8">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-            Bible Bingo 7
-          </p>
-
-          <h2 className="mt-3 text-2xl font-black text-white">
-            7 second version for 7 cards
-          </h2>
-
-          <ul className="mt-5 space-y-3 text-base font-semibold leading-7 text-slate-300">
-            <li>Old Testament — the beginning</li>
-            <li>Psalms — prayer</li>
-            <li>Proverbs — wisdom</li>
-            <li>Gospel — Jesus</li>
-            <li>Epistles — the Church</li>
-            <li>Genesis + Revelation — the beginning and the end together</li>
-          </ul>
-
-          <p className="mt-5 text-lg font-black text-emerald-50">
-            God&apos;s master plan, on one board.
-          </p>
-
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-300">
-            Deal 7. Notice one. Open Scripture.
-          </p>
-        </section>
 
         <SourceBackedTrustNote />
 
