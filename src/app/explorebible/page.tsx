@@ -435,10 +435,23 @@ export default function BibleExplorerPage() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
             Bible Bingo 7
           </h1>
-
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
-            Deep Dive on original Hebrew and Greek when available.
+          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-emerald-100">
+            <a href="/about" className="underline decoration-emerald-100/40 underline-offset-4">
+              About CrossHeartPray
+            </a>
+            : Cross — bring it to Jesus. Heart — receive God’s love. Pray — talk to God.
           </p>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-zinc-400">
+            Then Bible Bingo: one board, seven verses, and a simple, joyful way to open the Holy Bible.
+          </p>
+          <p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-300">
+            If you don’t know where to start, start with{" "}
+            <a href="/daily-hope" className="underline decoration-slate-300/40 underline-offset-4">
+              Daily Hope
+            </a>
+            .
+          </p>
+
 
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <button
