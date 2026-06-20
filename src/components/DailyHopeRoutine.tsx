@@ -47,6 +47,16 @@ const DAY_SLUGS = [
   "saturday",
 ];
 
+const DAY_SHORT_LABELS: Record<string, string> = {
+  sunday: "S",
+  monday: "M",
+  tuesday: "T",
+  wednesday: "W",
+  thursday: "T",
+  friday: "F",
+  saturday: "S",
+};
+
 const CARD_TONES = [
   "border-slate-200/10 bg-slate-900/45",
   "border-emerald-200/12 bg-emerald-950/25",
@@ -266,6 +276,7 @@ export default function DailyHopeRoutine({
   missingReferences,
 }: DailyHopeRoutineProps) {
   const [todaySlug, setTodaySlug] = useState("");
+  const [activeDaySlug, setActiveDaySlug] = useState("");
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -273,6 +284,15 @@ export default function DailyHopeRoutine({
 
   const pagePath = "/daily-hope";
   const pageUrl = "https://crossheartpray.com/daily-hope";
+
+  const visibleDays = useMemo(() => {
+    const activeDay =
+      days.find((day) => day.slug === activeDaySlug) ??
+      days.find((day) => day.slug === todaySlug) ??
+      days[0];
+
+    return activeDay ? [activeDay] : days;
+  }, [activeDaySlug, days, todaySlug]);
 
   const allPassages = useMemo(() => {
     const uniquePassages = new Map<string, DailyHopePassage>();
@@ -342,9 +362,29 @@ export default function DailyHopeRoutine({
     );
   }
 
+  function chooseDay(daySlug: string) {
+    setActiveDaySlug(daySlug);
+    window.history.replaceState(null, "", `#${daySlug}`);
+  }
+
+  function chooseToday() {
+    if (!todaySlug) {
+      return;
+    }
+
+    chooseDay(todaySlug);
+  }
+
   useEffect(() => {
-    setTodaySlug(DAY_SLUGS[new Date().getDay()] ?? "");
-  }, []);
+    const currentDaySlug = DAY_SLUGS[new Date().getDay()] ?? "";
+    const hashSlug = window.location.hash.replace("#", "");
+    const initialDaySlug = days.some((day) => day.slug === hashSlug)
+      ? hashSlug
+      : currentDaySlug;
+
+    setTodaySlug(currentDaySlug);
+    setActiveDaySlug(initialDaySlug);
+  }, [days]);
 
   useEffect(() => {
     let cancelled = false;
@@ -416,7 +456,43 @@ export default function DailyHopeRoutine({
 
           <CentralTimeBadge className="mt-5" />
 
-          <div className="mt-7">
+          <div className="mt-7 flex flex-col items-center gap-4">
+            <div
+              aria-label="Quick day view"
+              className="flex flex-wrap items-center justify-center gap-2"
+            >
+              <button
+                type="button"
+                onClick={chooseToday}
+                className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-50 transition hover:bg-emerald-300/18"
+              >
+                Today
+              </button>
+
+              {days.map((day) => {
+                const isActive = activeDaySlug === day.slug;
+                const isToday = todaySlug === day.slug;
+
+                return (
+                  <button
+                    key={day.slug}
+                    type="button"
+                    onClick={() => chooseDay(day.slug)}
+                    aria-label={day.day}
+                    className={`h-10 w-10 rounded-full border text-sm font-black transition ${
+                      isActive
+                        ? "border-white/45 bg-white text-slate-950"
+                        : isToday
+                          ? "border-emerald-200/35 bg-emerald-300/10 text-emerald-50 hover:bg-emerald-300/18"
+                          : "border-white/15 bg-white/5 text-slate-200 hover:bg-white/10"
+                    }`}
+                  >
+                    {DAY_SHORT_LABELS[day.slug] ?? day.day.slice(0, 1)}
+                  </button>
+                );
+              })}
+            </div>
+
             <BibleBingoShareMenu
               boardHref={pagePath}
               boardUrl={pageUrl}
@@ -476,7 +552,7 @@ export default function DailyHopeRoutine({
         </section>
 
         <section className="mt-12 space-y-8">
-          {days.map((day, dayIndex) => {
+          {visibleDays.map((day, dayIndex) => {
             const isToday = todaySlug === day.slug;
             const dayUrl = `${pageUrl}#${day.slug}`;
 
