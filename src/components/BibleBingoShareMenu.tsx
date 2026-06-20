@@ -51,16 +51,27 @@ function shareLabels(itemLabel: ShareItemLabel) {
     textUrl: `Text ${name} URL`,
     copyUrl: `Copy ${name} URL`,
     copiedUrl: `${titleName} URL copied`,
-    copiedHtml: `${titleName} email HTML copied. Paste it into Gmail.`,
-    help: `Email HTML copies a Gmail-ready ${name}. Text URL sends the link. Copy URL copies the link.`,
+    openedEmail: `Email opened. Rendered ${name} copied. Paste it into the email body if needed.`,
+    help: `Email HTML opens an email draft and copies the rendered ${name}. Text URL sends the link. Copy URL copies the link.`,
   };
+}
+
+function emailBodyFor(shareText: string, boardUrl: string) {
+  const cleanShareText = shareText.trim();
+  const hasUrl = cleanShareText.includes(boardUrl);
+
+  return hasUrl ? cleanShareText : `${cleanShareText}\n\n${boardUrl}`;
+}
+
+function mailtoUrl(subject: string, body: string) {
+  return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function BibleBingoShareMenu({
   boardHref: _boardHref,
   boardUrl,
   shareText,
-  emailSubject: _emailSubject,
+  emailSubject,
   htmlEmail,
   align = "center",
   itemLabel = "board",
@@ -85,24 +96,30 @@ export default function BibleBingoShareMenu({
   }
 
   async function copyRichHtmlEmail(value: string) {
-    try {
-      if ("ClipboardItem" in window && navigator.clipboard.write) {
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            "text/html": new Blob([value], { type: "text/html" }),
-            "text/plain": new Blob([shareText], { type: "text/plain" }),
-          }),
-        ]);
-      } else {
-        await navigator.clipboard.writeText(value);
-      }
-
-      setCopied(labels.copiedHtml);
-      window.setTimeout(() => setCopied(""), 3800);
-    } catch {
-      setCopied("Copy failed");
-      window.setTimeout(() => setCopied(""), 2600);
+    if ("ClipboardItem" in window && navigator.clipboard.write) {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "text/html": new Blob([value], { type: "text/html" }),
+          "text/plain": new Blob([shareText], { type: "text/plain" }),
+        }),
+      ]);
+      return;
     }
+
+    await navigator.clipboard.writeText(value);
+  }
+
+  async function openEmailWithRichCard(value: string) {
+    try {
+      await copyRichHtmlEmail(value);
+      setCopied(labels.openedEmail);
+      window.setTimeout(() => setCopied(""), 5200);
+    } catch {
+      setCopied("Email opened. Copy failed, but the URL is in the email body.");
+      window.setTimeout(() => setCopied(""), 4200);
+    }
+
+    window.location.href = mailtoUrl(emailSubject, emailBodyFor(shareText, boardUrl));
   }
 
   return (
@@ -132,7 +149,7 @@ export default function BibleBingoShareMenu({
             <button
               type="button"
               role="menuitem"
-              onClick={() => copyRichHtmlEmail(htmlEmail)}
+              onClick={() => openEmailWithRichCard(htmlEmail)}
               className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
             >
               {labels.htmlEmail}
