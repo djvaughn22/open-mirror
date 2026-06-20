@@ -168,3 +168,146 @@ body {
   }
 }
 
+
+
+/* CHP_VISUAL_THEMES
+   Classic is the original CrossHeartPray look.
+   Warm and Bright are safe visual layers only:
+   no Scripture, messaging, routing, Bible data, sharing logic, or meaning changes. */
+
+html[data-chp-visual-theme="warm"] {
+  --background: #211a16;
+  --foreground: #fff7ed;
+  color-scheme: dark;
+}
+
+html[data-chp-visual-theme="bright"] {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  color-scheme: light;
+}
+
+html[data-chp-visual-theme="warm"] body {
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.22) 0, transparent 27rem),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.16) 0, transparent 31rem),
+    #211a16 !important;
+  color: #fff7ed !important;
+}
+
+html[data-chp-visual-theme="bright"] body {
+  background:
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.16) 0, transparent 28rem),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.14) 0, transparent 30rem),
+    #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html[data-chp-visual-theme="warm"] main[class*="bg-slate-950"],
+html[data-chp-visual-theme="warm"] main[class*="bg-black"],
+html[data-chp-visual-theme="bright"] main[class*="bg-slate-950"],
+html[data-chp-visual-theme="bright"] main[class*="bg-black"] {
+  background: transparent !important;
+}
+
+html[data-chp-visual-theme="warm"] article,
+html[data-chp-visual-theme="warm"] section[class*="bg-"],
+html[data-chp-visual-theme="warm"] div[class*="bg-"] {
+  background: rgba(255, 255, 255, 0.09) !important;
+  background-image: none !important;
+  border-color: rgba(255, 247, 237, 0.18) !important;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22) !important;
+}
+
+html[data-chp-visual-theme="bright"] article,
+html[data-chp-visual-theme="bright"] section[class*="bg-"],
+html[data-chp-visual-theme="bright"] div[class*="bg-"] {
+  background: rgba(255, 255, 255, 0.78) !important;
+  background-image: none !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-chp-visual-theme="warm"] a[class*="bg-"],
+html[data-chp-visual-theme="warm"] button[class*="bg-"],
+html[data-chp-visual-theme="warm"] summary[class*="bg-"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 247, 237, 0.20) !important;
+  color: #fff7ed !important;
+}
+
+html[data-chp-visual-theme="bright"] a[class*="bg-"],
+html[data-chp-visual-theme="bright"] button[class*="bg-"],
+html[data-chp-visual-theme="bright"] summary[class*="bg-"] {
+  background: rgba(255, 255, 255, 0.86) !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+  color: #0f172a !important;
+}
+
+html[data-chp-visual-theme="warm"] [class*="text-white"],
+html[data-chp-visual-theme="warm"] [class*="text-slate-50"],
+html[data-chp-visual-theme="warm"] [class*="text-slate-100"],
+html[data-chp-visual-theme="warm"] [class*="text-emerald"],
+html[data-chp-visual-theme="warm"] [class*="text-yellow"],
+html[data-chp-visual-theme="warm"] [class*="text-red"],
+html[data-chp-visual-theme="warm"] [class*="text-sky"] {
+  color: #fff7ed !important;
+}
+
+html[data-chp-visual-theme="bright"] [class*="text-white"],
+html[data-chp-visual-theme="bright"] [class*="text-slate-50"],
+html[data-chp-visual-theme="bright"] [class*="text-slate-100"],
+html[data-chp-visual-theme="bright"] [class*="text-emerald"],
+html[data-chp-visual-theme="bright"] [class*="text-yellow"],
+html[data-chp-visual-theme="bright"] [class*="text-red"],
+html[data-chp-visual-theme="bright"] [class*="text-sky"] {
+  color: #0f172a !important;
+}
+
+html[data-chp-visual-theme="warm"] [class*="text-slate-200"],
+html[data-chp-visual-theme="warm"] [class*="text-slate-300"],
+html[data-chp-visual-theme="warm"] [class*="text-slate-400"],
+html[data-chp-visual-theme="warm"] [class*="text-slate-500"],
+html[data-chp-visual-theme="warm"] [class*="text-white/"] {
+  color: #fed7aa !important;
+}
+
+html[data-chp-visual-theme="bright"] [class*="text-slate-200"],
+html[data-chp-visual-theme="bright"] [class*="text-slate-300"],
+html[data-chp-visual-theme="bright"] [class*="text-slate-400"],
+html[data-chp-visual-theme="bright"] [class*="text-slate-500"],
+html[data-chp-visual-theme="bright"] [class*="text-white/"] {
+  color: #334155 !important;
+}
+
+html[data-chp-visual-theme="warm"] [class*="border-"] {
+  border-color: rgba(255, 247, 237, 0.18) !important;
+}
+
+html[data-chp-visual-theme="bright"] [class*="border-"] {
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
+
+html[data-chp-visual-theme="warm"] input,
+html[data-chp-visual-theme="warm"] textarea,
+html[data-chp-visual-theme="warm"] select {
+  background: rgba(33, 26, 22, 0.94) !important;
+  border-color: rgba(255, 247, 237, 0.18) !important;
+  color: #fff7ed !important;
+}
+
+html[data-chp-visual-theme="bright"] input,
+html[data-chp-visual-theme="bright"] textarea,
+html[data-chp-visual-theme="bright"] select {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(15, 23, 42, 0.18) !important;
+  color: #0f172a !important;
+}
+
+html[data-chp-visual-theme="warm"] .underline {
+  text-decoration-color: rgba(253, 186, 116, 0.55) !important;
+}
+
+html[data-chp-visual-theme="bright"] .underline {
+  text-decoration-color: rgba(15, 23, 42, 0.35) !important;
+}
