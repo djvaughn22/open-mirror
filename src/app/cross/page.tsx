@@ -17,11 +17,12 @@ export default function CrossPage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open YouVersion Bible App"
+            className="justify-self-center"
           >
             <img
               src="/brand/youversion-bible-app.png"
-              alt="YouVersion Bible App"
-              className="h-9 w-9 rounded-lg"
+              alt="Holy Bible"
+              className="h-10 w-10 rounded-lg"
             />
           </a>
 
