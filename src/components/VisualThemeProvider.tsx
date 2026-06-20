@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
 const STORAGE_KEY = "crossheartpray-visual-theme";
 
@@ -23,7 +24,16 @@ export default function VisualThemeProvider({
 }: {
   children: ReactNode;
 }) {
+  const pathname = usePathname();
+
   useEffect(() => {
+    // The Welcome hero at "/" is the locked front door.
+    // It must always keep the original CrossHeartPray dark style.
+    if (pathname === "/") {
+      applyTheme("classic");
+      return;
+    }
+
     const params = new URLSearchParams(window.location.search);
     const fromUrl = cleanTheme(params.get("color") || params.get("theme"));
     const fromStorage = cleanTheme(window.localStorage.getItem(STORAGE_KEY));
@@ -45,7 +55,7 @@ export default function VisualThemeProvider({
     return () => {
       window.removeEventListener("crossheartpray-visual-theme", handleThemeChange);
     };
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }
