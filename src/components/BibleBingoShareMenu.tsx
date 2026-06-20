@@ -196,19 +196,37 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
 }
 
 function printHtml(html: string) {
-  const printWindow = window.open("", "_blank", "noopener,noreferrer");
+  const frame = document.createElement("iframe");
 
-  if (!printWindow) {
+  frame.style.position = "fixed";
+  frame.style.right = "0";
+  frame.style.bottom = "0";
+  frame.style.width = "0";
+  frame.style.height = "0";
+  frame.style.border = "0";
+  frame.setAttribute("aria-hidden", "true");
+
+  document.body.appendChild(frame);
+
+  const frameWindow = frame.contentWindow;
+  const frameDocument = frame.contentDocument;
+
+  if (!frameWindow || !frameDocument) {
+    frame.remove();
     return false;
   }
 
-  printWindow.document.open();
-  printWindow.document.write(html);
-  printWindow.document.close();
-  printWindow.focus();
+  frameDocument.open();
+  frameDocument.write(html);
+  frameDocument.close();
 
   window.setTimeout(() => {
-    printWindow.print();
+    frameWindow.focus();
+    frameWindow.print();
+
+    window.setTimeout(() => {
+      frame.remove();
+    }, 1200);
   }, 300);
 
   return true;
@@ -330,19 +348,13 @@ export default function BibleBingoShareMenu({
   function handlePrintPdf() {
     const opened = printHtml(lightPrintHtml());
 
-    if (opened) {
-      setCopied("Print/PDF opened");
-    } else {
-      downloadHtml(`${filenameSafe(emailSubject)}.html`, lightPrintHtml());
-      setCopied("HTML downloaded");
-    }
-
+    setCopied(opened ? "Print opened" : "Print blocked");
     window.setTimeout(() => setCopied(""), 2600);
   }
 
   function handleDownloadHtml() {
     downloadHtml(`${filenameSafe(emailSubject)}.html`, lightPrintHtml());
-    setCopied("HTML downloaded");
+    setCopied("File downloaded");
     window.setTimeout(() => setCopied(""), 2600);
   }
 
@@ -430,7 +442,7 @@ export default function BibleBingoShareMenu({
             onClick={handlePrintPdf}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Print / PDF
+            Print / Save PDF
           </button>
 
           <button
@@ -439,7 +451,7 @@ export default function BibleBingoShareMenu({
             onClick={handleDownloadHtml}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Download HTML
+            Download file
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
