@@ -51,16 +51,13 @@ function shareLabels(itemLabel: ShareItemLabel) {
     textUrl: `Text ${name} URL`,
     copyUrl: `Copy ${name} URL`,
     copiedUrl: `${titleName} URL copied`,
-    openedHtmlEmail: `${titleName} HTML email opened`,
-    copiedHtmlBackup: `${titleName} HTML copied as backup`,
-    help: `Email HTML opens the rendered ${name} in Gmail. Text URL sends the link. Copy URL copies the link.`,
+    copiedHtml: `${titleName} copied. Gmail opened. Paste into the email body.`,
+    help: `Email HTML copies the rendered ${name} and opens Gmail. Paste once into the body. Text URL sends the link. Copy URL copies the link.`,
   };
 }
 
-function gmailComposeUrl(subject: string, htmlBody: string) {
-  return `https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(
-    subject,
-  )}&body=${encodeURIComponent(htmlBody)}`;
+function gmailComposeUrl(subject: string) {
+  return `https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(subject)}`;
 }
 
 function mailtoFallbackUrl(subject: string, body: string) {
@@ -96,40 +93,36 @@ export default function BibleBingoShareMenu({
   }
 
   async function copyRichHtmlEmail(value: string) {
-    try {
-      if ("ClipboardItem" in window && navigator.clipboard.write) {
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            "text/html": new Blob([value], { type: "text/html" }),
-            "text/plain": new Blob([shareText], { type: "text/plain" }),
-          }),
-        ]);
-      } else {
-        await navigator.clipboard.writeText(value);
-      }
-    } catch {
-      // Email still opens even if clipboard backup fails.
-    }
-  }
-
-  async function openHtmlEmailDraft(value: string) {
-    await copyRichHtmlEmail(value);
-
-    const openedWindow = window.open(
-      gmailComposeUrl(emailSubject, value),
-      "_blank",
-      "noopener,noreferrer",
-    );
-
-    if (openedWindow) {
-      setCopied(labels.openedHtmlEmail);
-      window.setTimeout(() => setCopied(""), 3600);
+    if ("ClipboardItem" in window && navigator.clipboard.write) {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "text/html": new Blob([value], { type: "text/html" }),
+          "text/plain": new Blob([shareText], { type: "text/plain" }),
+        }),
+      ]);
       return;
     }
 
-    window.location.href = mailtoFallbackUrl(emailSubject, shareText);
-    setCopied(labels.copiedHtmlBackup);
-    window.setTimeout(() => setCopied(""), 3600);
+    await navigator.clipboard.writeText(value);
+  }
+
+  async function openHtmlEmailDraft(value: string) {
+    try {
+      await copyRichHtmlEmail(value);
+      setCopied(labels.copiedHtml);
+      window.setTimeout(() => setCopied(""), 5200);
+    } catch {
+      setCopied("Copy failed. Opening email with plain text link.");
+      window.setTimeout(() => setCopied(""), 4200);
+      window.location.href = mailtoFallbackUrl(emailSubject, shareText);
+      return;
+    }
+
+    const openedWindow = window.open(gmailComposeUrl(emailSubject), "_blank", "noopener,noreferrer");
+
+    if (!openedWindow) {
+      window.location.href = mailtoFallbackUrl(emailSubject, shareText);
+    }
   }
 
   return (
