@@ -107,6 +107,7 @@ export default function CentralTimeBadge({
             href={READING_PLAN_HREF}
             target="_blank"
             rel="noopener noreferrer"
+            download
             className="text-slate-300 underline decoration-white/20 underline-offset-4 transition hover:text-emerald-100 hover:decoration-emerald-100/60"
           >
             Bible reading plan

@@ -78,6 +78,156 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#039;");
 }
 
+function filenameSafe(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 72) || "cross-heart-pray";
+}
+
+function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
+  const safeTitle = escapeHtml(title || titleNameFor(itemLabel));
+  const safeKind = escapeHtml(itemLabel === "card" ? "Card" : "Board");
+  const safeUrl = escapeHtml(boardUrl);
+  const lines = shareText
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const body = lines
+    .map((line) => {
+      const isUrl = /^https?:\/\//i.test(line);
+      return isUrl
+        ? `<p class="line url"><a href="${escapeHtml(line)}">${escapeHtml(line)}</a></p>`
+        : `<p class="line">${escapeHtml(line)}</p>`;
+    })
+    .join("");
+
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${safeTitle}</title>
+  <style>
+    @page { margin: 0.45in; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: #111827;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.32;
+    }
+    .sheet {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0;
+    }
+    .brand {
+      text-align: center;
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+    .kind {
+      text-align: center;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+      color: #374151;
+    }
+    h1 {
+      margin: 0 0 12px;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.15;
+      color: #111827;
+    }
+    .content {
+      column-count: 2;
+      column-gap: 24px;
+      border-top: 1px solid #d1d5db;
+      border-bottom: 1px solid #d1d5db;
+      padding: 12px 0;
+    }
+    .line {
+      break-inside: avoid;
+      margin: 0 0 7px;
+      color: #1f2937;
+    }
+    .url {
+      font-size: 10px;
+      overflow-wrap: anywhere;
+      color: #374151;
+    }
+    a {
+      color: #111827;
+      text-decoration: underline;
+    }
+    .footer {
+      margin: 10px 0 0;
+      text-align: center;
+      font-size: 10px;
+      color: #4b5563;
+    }
+    @media screen {
+      body { background: #f3f4f6; padding: 24px; }
+      .sheet { background: #ffffff; padding: 28px; border: 1px solid #d1d5db; }
+    }
+    @media print {
+      .content { column-count: 2; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <p class="brand">✝️ ❤️ 🙏</p>
+    <p class="kind">Cross Heart Pray · Bible Bingo 7 · ${safeKind}</p>
+    <h1>${safeTitle}</h1>
+    <section class="content">${body}</section>
+    <p class="footer">Open online: <a href="${safeUrl}">${safeUrl}</a></p>
+  </main>
+</body>
+</html>`;
+}
+
+function printHtml(html: string) {
+  const printWindow = window.open("", "_blank", "noopener,noreferrer");
+
+  if (!printWindow) {
+    return false;
+  }
+
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.focus();
+
+  window.setTimeout(() => {
+    printWindow.print();
+  }, 300);
+
+  return true;
+}
+
+function downloadHtml(filename: string, html: string) {
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 function buildEmailHtml(emailSubject: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
   const title = itemLabel === "card" ? "Bible Bingo Card" : "Bible Bingo Board";
   const safeTitle = escapeHtml(title);
@@ -125,7 +275,7 @@ export default function BibleBingoShareMenu({
   boardUrl,
   shareText,
   emailSubject,
-  htmlEmail: _htmlEmail,
+  htmlEmail,
   align = "center",
   itemLabel = "board",
   buttonLabel = "Share",
@@ -162,15 +312,38 @@ export default function BibleBingoShareMenu({
       const textForCopy = shareTextForCopy();
 
       await copyHtmlForEmail(
-        buildEmailHtml(emailSubject, textForCopy, boardUrl, itemLabel),
+        htmlEmail || buildEmailHtml(emailSubject, textForCopy, boardUrl, itemLabel),
         textForCopy,
       );
-      setCopied("HTML copied for email");
+      setCopied("Email copied");
       window.setTimeout(() => setCopied(""), 2600);
     } catch {
       setCopied("Copy failed");
       window.setTimeout(() => setCopied(""), 2600);
     }
+  }
+
+  function lightPrintHtml() {
+    return buildLightPrintHtml(emailSubject, shareTextForCopy(), boardUrl, itemLabel);
+  }
+
+  function handlePrintPdf() {
+    const opened = printHtml(lightPrintHtml());
+
+    if (opened) {
+      setCopied("Print/PDF opened");
+    } else {
+      downloadHtml(`${filenameSafe(emailSubject)}.html`, lightPrintHtml());
+      setCopied("HTML downloaded");
+    }
+
+    window.setTimeout(() => setCopied(""), 2600);
+  }
+
+  function handleDownloadHtml() {
+    downloadHtml(`${filenameSafe(emailSubject)}.html`, lightPrintHtml());
+    setCopied("HTML downloaded");
+    window.setTimeout(() => setCopied(""), 2600);
   }
 
   return (
@@ -249,6 +422,24 @@ export default function BibleBingoShareMenu({
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
           >
             Copy email
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={handlePrintPdf}
+            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
+          >
+            Print / PDF
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={handleDownloadHtml}
+            className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
+          >
+            Download HTML
           </button>
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
