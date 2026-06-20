@@ -51,17 +51,69 @@ function shareLabels(itemLabel: ShareItemLabel) {
     textUrl: `Text ${titleName} URL`,
     copyUrl: `Copy ${titleName} URL`,
     copiedUrl: `${titleName} URL copied`,
-    copiedHtml: `${titleName} copied. Gmail opened. Paste into the email body.`,
-    help: `Email HTML copies the rendered ${name} and opens Gmail. Paste once into the body. Text URL sends the link. Copy URL copies the link.`,
+    copiedHtml: `${titleName} copied. Gmail opened. Click the email body and paste once.`,
+    help: `Email HTML copies a Gmail-safe ${name} and opens Gmail. Click the email body and paste once. Text URL sends the link. Copy URL copies the link.`,
   };
 }
 
 function gmailComposeUrl(subject: string) {
-  return `https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(subject)}`;
+  return `https://mail.google.com/mail/?view=cm&fs=1&tf=cm&su=${encodeURIComponent(subject)}`;
 }
 
 function mailtoFallbackUrl(subject: string, body: string) {
   return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function plainTextWithUrl(shareText: string, boardUrl: string) {
+  return shareText.includes(boardUrl) ? shareText : `${shareText}\n\n${boardUrl}`;
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function buildGmailSafeHtml(subject: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
+  const titleName = itemLabel === "card" ? "Bible Bingo Card" : "Bible Bingo Board";
+  const safeSubject = escapeHtml(subject);
+  const safeUrl = escapeHtml(boardUrl);
+  const safeLines = shareText
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => `<p style="margin:0 0 10px 0;color:#1f2937;font-size:16px;line-height:1.55;">${escapeHtml(line)}</p>`)
+    .join("");
+
+  return `
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;padding:24px;background:#f8fafc;">
+  <div style="border:1px solid #d1d5db;border-radius:22px;background:#ffffff;padding:28px;text-align:center;box-shadow:0 10px 30px rgba(15,23,42,0.12);">
+    <div style="font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:800;color:#047857;margin-bottom:12px;">${titleName}</div>
+    <h1 style="margin:0 0 18px 0;color:#0f172a;font-size:24px;line-height:1.25;">${safeSubject}</h1>
+    <div style="text-align:left;margin:0 auto 22px auto;max-width:470px;">
+      ${safeLines}
+    </div>
+    <a href="${safeUrl}" style="display:inline-block;background:#065f46;color:#ffffff;text-decoration:none;font-weight:800;border-radius:999px;padding:13px 22px;">Open ${titleName}</a>
+    <p style="margin:20px 0 0 0;color:#64748b;font-size:13px;line-height:1.45;">✝️ Cross ❤️ Heart 🙏 Pray</p>
+  </div>
+</div>`.trim();
+}
+
+async function copyRenderedHtmlToClipboard(html: string, plainText: string) {
+  if (!("ClipboardItem" in window) || !navigator.clipboard.write) {
+    await navigator.clipboard.writeText(plainText);
+    return;
+  }
+
+  await navigator.clipboard.write([
+    new ClipboardItem({
+      "text/html": new Blob([html], { type: "text/html" }),
+      "text/plain": new Blob([plainText], { type: "text/plain" }),
+    }),
+  ]);
 }
 
 export default function BibleBingoShareMenu({
@@ -80,6 +132,7 @@ export default function BibleBingoShareMenu({
   const [copied, setCopied] = useState("");
   const labels = shareLabels(itemLabel);
   const encodedBoardUrl = encodeURIComponent(boardUrl);
+  const plainShareText = plainTextWithUrl(shareText, boardUrl);
 
   async function copyPlainText(value: string, label: string) {
     try {
@@ -92,36 +145,28 @@ export default function BibleBingoShareMenu({
     }
   }
 
-  async function copyRichHtmlEmail(value: string) {
-    if ("ClipboardItem" in window && navigator.clipboard.write) {
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          "text/html": new Blob([value], { type: "text/html" }),
-          "text/plain": new Blob([shareText], { type: "text/plain" }),
-        }),
-      ]);
+  async function openHtmlEmailDraft() {
+    if (!htmlEmail) {
       return;
     }
 
-    await navigator.clipboard.writeText(value);
-  }
+    const gmailSafeHtml = buildGmailSafeHtml(emailSubject, plainShareText, boardUrl, itemLabel);
 
-  async function openHtmlEmailDraft(value: string) {
     try {
-      await copyRichHtmlEmail(value);
+      await copyRenderedHtmlToClipboard(gmailSafeHtml, plainShareText);
       setCopied(labels.copiedHtml);
       window.setTimeout(() => setCopied(""), 5200);
     } catch {
       setCopied("Copy failed. Opening email with plain text link.");
       window.setTimeout(() => setCopied(""), 4200);
-      window.location.href = mailtoFallbackUrl(emailSubject, shareText);
+      window.location.href = mailtoFallbackUrl(emailSubject, plainShareText);
       return;
     }
 
     const openedWindow = window.open(gmailComposeUrl(emailSubject), "_blank", "noopener,noreferrer");
 
     if (!openedWindow) {
-      window.location.href = mailtoFallbackUrl(emailSubject, shareText);
+      window.location.href = mailtoFallbackUrl(emailSubject, plainShareText);
     }
   }
 
@@ -152,7 +197,7 @@ export default function BibleBingoShareMenu({
             <button
               type="button"
               role="menuitem"
-              onClick={() => openHtmlEmailDraft(htmlEmail)}
+              onClick={openHtmlEmailDraft}
               className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
             >
               {labels.htmlEmail}
