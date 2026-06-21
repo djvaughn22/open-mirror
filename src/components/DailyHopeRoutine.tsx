@@ -286,25 +286,7 @@ export default function DailyHopeRoutine({
   const pagePath = "/daily-hope";
   const pageUrl = "https://crossheartpray.com/daily-hope";
 
-  const visibleDays = useMemo(() => {
-    if (activeDaySlug === "all-minimized") {
-      return days;
-    }
-
-    const activeDay =
-      days.find((day) => day.slug === activeDaySlug) ??
-      days.find((day) => day.slug === todaySlug) ??
-      days[0];
-
-    if (!activeDay) {
-      return days;
-    }
-
-    return [
-      activeDay,
-      ...days.filter((day) => day.slug !== activeDay.slug),
-    ];
-  }, [activeDaySlug, days, todaySlug]);
+  const visibleDays = days;
 
   const allPassages = useMemo(() => {
     const uniquePassages = new Map<string, DailyHopePassage>();
@@ -376,7 +358,11 @@ export default function DailyHopeRoutine({
 
   function chooseDay(daySlug: string) {
     setActiveDaySlug(daySlug);
-    window.history.replaceState(null, "", `#${daySlug}`);
+
+    window.requestAnimationFrame(() => {
+      document.getElementById(daySlug)?.scrollIntoView({ block: "start" });
+      window.history.replaceState(null, "", `#${daySlug}`);
+    });
   }
 
   function chooseToday() {
@@ -604,7 +590,7 @@ export default function DailyHopeRoutine({
               <section
                 id={day.slug}
                 key={day.slug}
-                className={`rounded-[2rem] border p-5 shadow-2xl sm:p-7 ${
+                className={`scroll-mt-24 rounded-[2rem] border p-5 shadow-2xl sm:p-7 ${
                   isToday
                     ? "border-emerald-200/35 bg-emerald-300/[0.08] shadow-emerald-950/25"
                     : "border-white/10 bg-white/[0.03] shadow-black/20"
