@@ -318,6 +318,8 @@ export default function DailyHopeRoutine({
     pageUrl,
   );
 
+  const allDaysExpanded = activeDaySlug === "all-expanded";
+
   function wordStudiesForPassage(passage: DailyHopePassage) {
     return wordStudiesByPassage[wordStudyLookupKey(passage)] ?? [];
   }
@@ -376,6 +378,15 @@ export default function DailyHopeRoutine({
   function minimizeDays() {
     setActiveDaySlug("all-minimized");
     window.history.replaceState(null, "", pagePath);
+  }
+
+  function expandAllDays() {
+    setActiveDaySlug("all-expanded");
+
+    window.requestAnimationFrame(() => {
+      document.getElementById("daily-hope-days")?.scrollIntoView({ block: "start" });
+      window.history.replaceState(null, "", pagePath);
+    });
   }
 
   function togglePrayer(prayerId: string) {
@@ -503,6 +514,15 @@ export default function DailyHopeRoutine({
               })}
             </div>
 
+            <button
+              type="button"
+              onClick={allDaysExpanded ? minimizeDays : expandAllDays}
+              aria-expanded={allDaysExpanded}
+              className="w-full max-w-sm rounded-full border border-emerald-200/30 bg-emerald-300/15 px-6 py-3 text-sm font-black uppercase tracking-[0.18em] text-emerald-50 shadow-lg shadow-emerald-950/20 transition hover:bg-emerald-300/22"
+            >
+              {allDaysExpanded ? "Collapse all days" : "Expand all days"}
+            </button>
+
             <BibleBingoShareMenu
               boardHref={pagePath}
               boardUrl={pageUrl}
@@ -580,10 +600,11 @@ export default function DailyHopeRoutine({
           })}
         </section>
 
-        <section className="mt-12 space-y-8">
+        <section id="daily-hope-days" className="mt-12 scroll-mt-24 space-y-8">
           {visibleDays.map((day, dayIndex) => {
             const isToday = todaySlug === day.slug;
-            const isActiveDay = activeDaySlug === day.slug || (!activeDaySlug && isToday);
+            const isActiveDay =
+              allDaysExpanded || activeDaySlug === day.slug || (!activeDaySlug && isToday);
             const dayUrl = `${pageUrl}#${day.slug}`;
 
             return (
