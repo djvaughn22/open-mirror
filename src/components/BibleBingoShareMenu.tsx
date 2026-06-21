@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type ShareItemLabel = "board" | "card";
 
@@ -344,6 +344,54 @@ export default function BibleBingoShareMenu({
   enableSignature = false,
 }: BibleBingoShareMenuProps) {
   const [open, setOpen] = useState(false);
+
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+
+  useEffect(() => {
+
+    if (!open) return;
+
+
+    function handlePointerDown(event: PointerEvent) {
+
+      const target = event.target;
+
+      if (!(target instanceof Node)) return;
+
+      if (menuRef.current?.contains(target)) return;
+
+      setOpen(false);
+
+    }
+
+
+    function handleEscape(event: KeyboardEvent) {
+
+      if (event.key === "Escape") {
+
+        setOpen(false);
+
+      }
+
+    }
+
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    document.addEventListener("keydown", handleEscape);
+
+
+    return () => {
+
+      document.removeEventListener("pointerdown", handlePointerDown);
+
+      document.removeEventListener("keydown", handleEscape);
+
+    };
+
+  }, [open]);
+
   const [copied, setCopied] = useState("");
   const [toName, setToName] = useState("");
   const [fromName, setFromName] = useState("");
@@ -396,7 +444,7 @@ export default function BibleBingoShareMenu({
   }
 
   return (
-    <div className="relative inline-flex">
+    <div ref={menuRef} className="relative inline-flex">
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
