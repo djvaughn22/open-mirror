@@ -327,3 +327,46 @@ html[data-chp-visual-theme="light"] .theme-toggle-option[aria-pressed="true"] {
   background: #172033 !important;
   color: #f8fafc !important;
 }
+
+
+/* CHP_DEEP_DIVE_WORD_DOTS
+   In Light theme, verified Deep Dive words should feel like subtle dotted links,
+   not highlighted blocks. Dark theme stays original. */
+
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="underline"][class*="bg-"],
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="decoration-dotted"],
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-dotted"],
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"][class*="bg-"] {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-radius: 0.2rem !important;
+  padding-left: 0.03em !important;
+  padding-right: 0.03em !important;
+  color: #172033 !important;
+  text-decoration-line: underline !important;
+  text-decoration-style: dotted !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.24em !important;
+  text-decoration-color: rgba(51, 65, 85, 0.48) !important;
+}
+
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="underline"][class*="bg-"]:hover,
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="decoration-dotted"]:hover,
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-dotted"]:hover,
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"][class*="bg-"]:hover {
+  background: rgba(148, 163, 184, 0.18) !important;
+  color: #0f172a !important;
+  text-decoration-color: rgba(15, 23, 42, 0.75) !important;
+}
+
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="underline"][class*="bg-"]:focus-visible,
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="decoration-dotted"]:focus-visible,
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-dotted"]:focus-visible,
+html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"][class*="bg-"]:focus-visible {
+  outline: 2px solid rgba(15, 23, 42, 0.28) !important;
+  outline-offset: 3px !important;
+  background: rgba(148, 163, 184, 0.18) !important;
+}
