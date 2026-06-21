@@ -136,24 +136,6 @@ export default function AboutPage() {
         <SourceBackedTrustNote />
 
         <SiteFooter />
-    
-          <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-center">
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-slate-400">
-              Questions or encouragement?
-            </p>
-
-            <a
-              href="mailto:hello@crossheartpray.com?subject=CrossHeartPray"
-              className="mt-4 inline-flex items-center justify-center rounded-full border border-emerald-300/30 bg-emerald-400/10 px-6 py-3 text-sm font-black text-emerald-100 transition hover:border-emerald-200/60 hover:bg-emerald-300/20"
-            >
-              Contact Us
-            </a>
-
-            <p className="mt-3 text-xs font-semibold text-slate-400">
-              hello@crossheartpray.com
-            </p>
-          </section>
-
-        </main>
+</main>
   );
 }
