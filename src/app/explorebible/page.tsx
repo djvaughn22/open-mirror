@@ -461,17 +461,15 @@ export default function BibleExplorerPage() {
         </section>
 
 
-        <section className="mt-2">
+        <section className="mt-4">
           <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[0.035] px-4 py-6 shadow-2xl shadow-black/25 sm:px-6 sm:py-8">
             <p className="text-center text-xs font-black uppercase tracking-[0.22em] text-slate-400">
-              Choose a day card · preview each verse
+              Choose a day card
             </p>
 
-            <div className="mt-6 flex min-h-[315px] items-stretch justify-start overflow-x-auto px-3 pb-8 pt-5 sm:justify-center">
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-7">
               {path.map(({ section, passage }, index) => {
                 const isFocused = index === focusedIndex;
-                const rotation = (index - 3) * 2.5;
-                const lift = isFocused ? -18 : Math.abs(index - 3) * 1.5;
 
                 return (
                   <button
@@ -479,15 +477,11 @@ export default function BibleExplorerPage() {
                     key={`${section.title}-${passage.label}-${index}`}
                     onClick={() => setFocusedCardIndex(index)}
                     aria-pressed={isFocused}
-                    className={`relative flex min-h-[270px] min-w-[210px] max-w-[210px] flex-col rounded-[1.35rem] border p-4 text-center shadow-2xl transition duration-200 sm:min-w-[225px] sm:max-w-[225px] ${cardTone(index)} ${
+                    className={`relative flex min-h-[230px] flex-col rounded-[1.35rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${
                       isFocused
-                        ? "z-30 scale-105 border-white/40 shadow-emerald-900/40"
-                        : "z-10 opacity-85 hover:-translate-y-2 hover:opacity-100"
+                        ? "border-white/45 bg-white/15 ring-2 ring-white/25"
+                        : "border-white/10 opacity-90 hover:opacity-100"
                     }`}
-                    style={{
-                      marginLeft: index === 0 ? "0" : "-22px",
-                      transform: `translateY(${lift}px) rotate(${rotation}deg)`,
-                    }}
                   >
                     <div className="flex justify-center gap-2 text-lg" aria-hidden="true">
                       <span>✝️</span>
@@ -513,11 +507,13 @@ export default function BibleExplorerPage() {
                       {passage.text}
                     </p>
 
-                    {isFocused ? (
-                      <p className="mt-auto rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] text-white">
-                        Focus
-                      </p>
-                    ) : null}
+                    <p className={`mt-auto rounded-full border px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] ${
+                      isFocused
+                        ? "border-white/25 bg-white/20 text-white"
+                        : "border-white/10 bg-black/15 text-slate-300"
+                    }`}>
+                      {isFocused ? "Focused" : "Focus"}
+                    </p>
                   </button>
                 );
               })}
