@@ -42,7 +42,7 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
 
           <div className="mx-auto mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-center print:border-black print:bg-white">
             <p className="text-sm font-black text-slate-100 print:text-black sm:text-base">
-              Finish Week 1, then keep the rhythm.
+              Start any day. Finish Week 1 first, then keep the rhythm.
             </p>
             <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-emerald-100 print:text-black sm:text-xs">
               Sunday Epistles · Monday Law · Tuesday History · Wednesday Psalms · Thursday Poetry · Friday Prophecy · Saturday Gospels

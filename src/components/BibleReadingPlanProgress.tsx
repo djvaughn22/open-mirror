@@ -306,12 +306,10 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   }, [done, loaded, startDateKey]);
 
   const flatDays = useMemo(() => weeks.flatMap((week) => week.days), [weeks]);
-
-  const todayPlanIndex = daysBetween(startDateKey, todayDateKey);
-  const todayPlanDay =
-    todayPlanIndex >= 0 && todayPlanIndex < flatDays.length
-      ? flatDays[todayPlanIndex]
-      : null;
+  const nextPlanDay = flatDays.find((day) => !done[doneKey(day)]) ?? null;
+  const activeWeekNumber = nextPlanDay?.week ?? weeks.length;
+  const activeWeek = weeks.find((week) => week.week === activeWeekNumber) ?? weeks[weeks.length - 1];
+  const visibleWeeks = activeWeek ? [activeWeek] : [];
 
   const completedCount = Object.values(done).filter(Boolean).length;
   const percentComplete = Math.round((completedCount / totalDays) * 100);
@@ -362,7 +360,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
           </h2>
 
           <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-            Pick any calendar day. That day becomes Week 1, Day 1. Your checks save on this device only.
+            Pick when you started. The tracker shows the next unfinished reading so you finish one week before moving to the next.
           </p>
 
           <label className="mt-5 block text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
@@ -399,28 +397,19 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
           <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-                Today’s Reading
+                Next Reading
               </p>
 
-              {todayPlanDay ? (
+              {nextPlanDay ? (
                 <>
                   <h2 className="mt-4 text-3xl font-black text-white">
-                    Week {todayPlanDay.week} • {todayPlanDay.dayLabel}
+                    Week {nextPlanDay.week} • {nextPlanDay.dayLabel}
                   </h2>
                   <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                    {readingPlanCategory(todayPlanDay)}
+                    {readingPlanCategory(nextPlanDay)}
                   </p>
                   <p className="mt-5 text-3xl font-black text-white">
-                    {todayPlanDay.reading}
-                  </p>
-                </>
-              ) : todayPlanIndex < 0 ? (
-                <>
-                  <h2 className="mt-4 text-3xl font-black text-white">
-                    Not started yet
-                  </h2>
-                  <p className="mt-5 text-base font-semibold leading-7 text-slate-200">
-                    Your selected start date is in the future.
+                    {nextPlanDay.reading}
                   </p>
                 </>
               ) : (
@@ -444,10 +433,10 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
             </div>
           </div>
 
-          {todayPlanDay ? (
+          {nextPlanDay ? (
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a
-                href={bibleSearchUrl(todayPlanDay.reading)}
+                href={bibleSearchUrl(nextPlanDay.reading)}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-emerald-50 transition hover:bg-emerald-300/30"
@@ -457,10 +446,10 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
               <button
                 type="button"
-                onClick={() => toggleDone(todayPlanDay)}
+                onClick={() => toggleDone(nextPlanDay)}
                 className="rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-slate-100 transition hover:bg-white/15"
               >
-                {done[doneKey(todayPlanDay)] ? "Mark not done" : "Mark done"}
+                {done[doneKey(nextPlanDay)] ? "Mark not done" : "Mark done"}
               </button>
             </div>
           ) : null}
@@ -470,18 +459,18 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
         <div className="mb-6 text-center print:mb-3">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
-            PDF-Style Tracker
+            Current Week
           </p>
           <h2 className="mt-3 text-3xl font-black text-white print:text-black">
-            52 Week Checklist
+            Week {activeWeekNumber} Checklist
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
-            Follow the plan rhythm, start any day, and keep going.
+            Check each section in order. Finish this week, then move to the next.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 print:gap-2">
-          {weeks.map((week) => (
+          {visibleWeeks.map((week) => (
             <article
               key={week.week}
               className="rounded-[1.5rem] border border-white/10 bg-black/10 p-4 print:break-inside-avoid print:border-black print:bg-white print:p-3"
