@@ -7,7 +7,7 @@ type CentralTimeBadgeProps = {
   showReadingPlan?: boolean;
 };
 
-const READING_PLAN_HREF = "/resources/52-week-bible-reading-plan.pdf";
+const READING_PLAN_HREF = "/bible-reading-plan";
 
 type CentralParts = {
   weekday: string;
