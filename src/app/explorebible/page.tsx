@@ -192,6 +192,7 @@ export default function BibleExplorerPage() {
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
   const [spinningCards, setSpinningCards] = useState(() => sections.map(() => false));
   const [spinDelays, setSpinDelays] = useState(() => sections.map(() => 0));
+  const [focusedCardIndex, setFocusedCardIndex] = useState(0);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -418,6 +419,9 @@ export default function BibleExplorerPage() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  const focusedIndex = path[focusedCardIndex] ? focusedCardIndex : 0;
+  const focusedCard = path[focusedIndex] ?? path[0];
+
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-8">
@@ -457,42 +461,99 @@ export default function BibleExplorerPage() {
         </section>
 
 
-        <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
-          {path.map(({ section, passage }, index) => (
+        <section className="mt-2">
+          <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[0.035] px-4 py-6 shadow-2xl shadow-black/25 sm:px-6 sm:py-8">
+            <p className="text-center text-xs font-black uppercase tracking-[0.22em] text-slate-400">
+              Choose a day card
+            </p>
+
+            <div className="mt-6 flex min-h-[205px] items-end justify-start overflow-x-auto px-3 pb-8 pt-5 sm:justify-center">
+              {path.map(({ section, passage }, index) => {
+                const isFocused = index === focusedIndex;
+                const rotation = (index - 3) * 4;
+                const lift = isFocused ? -26 : Math.abs(index - 3) * 2;
+
+                return (
+                  <button
+                    type="button"
+                    key={`${section.title}-${passage.label}-${index}`}
+                    onClick={() => setFocusedCardIndex(index)}
+                    aria-pressed={isFocused}
+                    className={`relative min-w-[148px] max-w-[148px] rounded-[1.35rem] border p-4 text-center shadow-2xl transition duration-200 sm:min-w-[165px] sm:max-w-[165px] ${cardTone(index)} ${
+                      isFocused
+                        ? "z-30 scale-105 border-white/40 shadow-emerald-900/40"
+                        : "z-10 opacity-85 hover:-translate-y-2 hover:opacity-100"
+                    }`}
+                    style={{
+                      marginLeft: index === 0 ? "0" : "-34px",
+                      transform: `translateY(${lift}px) rotate(${rotation}deg)`,
+                    }}
+                  >
+                    <div className="flex justify-center gap-2 text-xl" aria-hidden="true">
+                      <span>✝️</span>
+                      <span>❤️</span>
+                      <span>🙏</span>
+                    </div>
+
+                    <div className="mt-3 text-3xl">{section.emoji}</div>
+
+                    <p className="mt-3 text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-300">
+                      Card {index + 1}
+                    </p>
+
+                    <h2 className="mt-2 text-sm font-black leading-5 text-white">
+                      {section.title}
+                    </h2>
+
+                    <p className="mt-3 line-clamp-2 text-xs font-semibold leading-5 text-slate-300">
+                      {passage.label}
+                    </p>
+
+                    {isFocused ? (
+                      <p className="mt-3 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] text-white">
+                        Focus
+                      </p>
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {focusedCard ? (
             <article
-              id={`card-${index + 1}`}
-              key={`${section.title}-${spinVersions[index]}`}
-              className={`relative overflow-hidden rounded-[1.5rem] border p-5 text-center text-slate-100 lg:col-span-2 sm:p-6 ${section.gridClass ?? ""} ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""}`}
+              id={`card-${focusedIndex + 1}`}
+              key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}`}
+              className={`relative mx-auto mt-6 max-w-3xl overflow-hidden rounded-[2rem] border p-6 text-center text-slate-100 shadow-2xl shadow-black/30 sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
               style={{
-                minHeight: "285px",
+                minHeight: "430px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                animationDelay: spinningCards[index] ? `${spinDelays[index]}ms` : "0ms",
+                animationDelay: spinningCards[focusedIndex] ? `${spinDelays[focusedIndex]}ms` : "0ms",
               }}
             >
-
-              <div className="absolute right-4 top-4">
+              <div className="absolute right-5 top-5">
                 <BibleBingoShareMenu
-                  boardHref={`${boardPath}?card=${index + 1}`}
-                  boardUrl={`${boardUrl}?card=${index + 1}`}
+                  boardHref={`${boardPath}?card=${focusedIndex + 1}`}
+                  boardUrl={`${boardUrl}?card=${focusedIndex + 1}`}
                   shareText={[
-                    `I dealt this ${section.title} Bible Bingo card on Cross Heart Pray.`,
+                    `I dealt this ${focusedCard.section.title} Bible Bingo card on Cross Heart Pray.`,
                     "",
-                    passage.label,
-                    passage.text,
+                    focusedCard.passage.label,
+                    focusedCard.passage.text,
                     "",
                     "Open this card:",
-                    `${boardUrl}?card=${index + 1}`,
+                    `${boardUrl}?card=${focusedIndex + 1}`,
                     "",
                     "Open in the Holy Bible app:",
-                    verseUrl(passage),
+                    verseUrl(focusedCard.passage),
                     "",
                     "Read the chapter:",
-                    chapterUrl(passage),
+                    chapterUrl(focusedCard.passage),
                   ].join("\n")}
-                  emailSubject={`${passage.label} Bible Bingo card`}
-                  htmlEmail={cardHtmlEmail(section, passage, index)}
+                  emailSubject={`${focusedCard.passage.label} Bible Bingo card`}
+                  htmlEmail={cardHtmlEmail(focusedCard.section, focusedCard.passage, focusedIndex)}
                   align="right"
                   itemLabel="card"
                   buttonLabel="Share"
@@ -501,44 +562,63 @@ export default function BibleExplorerPage() {
                 />
               </div>
 
-              <div className="text-4xl">{section.emoji}</div>
+              <div className="flex justify-center gap-4 text-3xl" aria-hidden="true">
+                <span>✝️</span>
+                <span>❤️</span>
+                <span>🙏</span>
+              </div>
 
-              <h2 className="mt-4 text-xl font-bold">{section.title}</h2>
+              <div className="mt-5 text-5xl">{focusedCard.section.emoji}</div>
 
-              <p className="mt-3 text-sm leading-6 text-slate-300">{section.line}</p>
-
-              <p className="mt-4 text-xl font-bold text-slate-100">
-                {passage.label}
+              <p className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-slate-300">
+                Bible Bingo Card {focusedIndex + 1}
               </p>
 
-              <p className="mt-3 max-w-sm text-sm leading-6 text-slate-200">
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
+                {focusedCard.section.title}
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-slate-300">
+                {focusedCard.section.line}
+              </p>
+
+              <p className="mt-6 text-2xl font-black text-white">
+                {focusedCard.passage.label}
+              </p>
+
+              <div className="mt-5 w-full rounded-[1.5rem] border border-white/10 bg-black/25 px-5 py-5 text-lg font-bold leading-8 text-slate-100 sm:text-xl sm:leading-9">
                 <VerifiedVerseText
-                  passage={passage}
-                  wordStudies={wordStudiesForPassage(passage)}
-                  onWordClick={(wordStudy) => openWordStudy(section, passage, wordStudy)}
+                  passage={focusedCard.passage}
+                  wordStudies={wordStudiesForPassage(focusedCard.passage)}
+                  onWordClick={(wordStudy) => openWordStudy(focusedCard.section, focusedCard.passage, wordStudy)}
                 />
-              </p>
-<div className="mt-auto flex flex-col gap-2 pt-5 sm:flex-row">
+              </div>
+
+              <div className="mt-auto flex flex-col gap-2 pt-6 sm:flex-row sm:flex-wrap sm:justify-center">
                 <a
-                  href={verseUrl(passage)}
+                  href={verseUrl(focusedCard.passage)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >Verse</a>
+                >
+                  Verse
+                </a>
 
                 <a
-                  href={chapterUrl(passage)}
+                  href={chapterUrl(focusedCard.passage)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
-                >Chapter</a>
+                >
+                  Chapter
+                </a>
 
                 <button
                   type="button"
-                  onClick={() => openWordStudy(section, passage)}
-                  disabled={!hasVerifiedWordLinks(wordStudiesForPassage(passage))}
+                  onClick={() => openWordStudy(focusedCard.section, focusedCard.passage)}
+                  disabled={!hasVerifiedWordLinks(wordStudiesForPassage(focusedCard.passage))}
                   title={
-                    hasVerifiedWordLinks(wordStudiesForPassage(passage))
+                    hasVerifiedWordLinks(wordStudiesForPassage(focusedCard.passage))
                       ? "Open verified original-language word study"
                       : "Deep Dive opens when this verse has verified underlined word links."
                   }
@@ -546,19 +626,21 @@ export default function BibleExplorerPage() {
                 >
                   Deep Dive
                 </button>
+
+                <button
+                  type="button"
+                  onClick={() => spinOne(focusedIndex)}
+                  className="text-center justify-center items-center inline-flex rounded-full border border-yellow-200/30 bg-yellow-200/15 px-5 py-2 text-sm font-black text-yellow-50 shadow-sm transition hover:bg-yellow-200/25"
+                >
+                  Deal This Card
+                </button>
               </div>
 
-              <button
-                type="button"
-                onClick={() => spinOne(index)}
-                className="mt-4 text-sm font-semibold text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white"
-              >Deal</button>
-
-              <p className="mt-3 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
-                Shuffled from: <span className="text-white">{section.odds}</span>
+              <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+                Shuffled from: <span className="text-white">{focusedCard.section.odds}</span>
               </p>
             </article>
-          ))}
+          ) : null}
         </section>
 
         {activeWordStudy && (
