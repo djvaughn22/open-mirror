@@ -15,7 +15,7 @@ const menuLinks = [
   { href: "/explorebible", label: "Bible Bingo" },
   { href: "/daily-hope", label: "Daily Hope" },
   {
-    href: "/resources/52-week-bible-reading-plan.pdf",
+    href: "/bible-reading-plan",
     label: "Bible Reading Plan",
     external: true,
   },
