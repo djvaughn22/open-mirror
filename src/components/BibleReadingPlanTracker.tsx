@@ -40,9 +40,14 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             Start Week 1 any day.
           </p>
 
-          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-slate-300 print:text-black sm:text-base">
-            A simple 52-week Bible reading tracker with local progress, PDF download, and Bible App links.
-          </p>
+          <div className="mx-auto mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-center print:border-black print:bg-white">
+            <p className="text-sm font-black text-slate-100 print:text-black sm:text-base">
+              Finish Week 1, then keep the rhythm.
+            </p>
+            <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-emerald-100 print:text-black sm:text-xs">
+              Sunday Epistles · Monday Law · Tuesday History · Wednesday Psalms · Thursday Poetry · Friday Prophecy · Saturday Gospels
+            </p>
+          </div>
 
           <p className="mx-auto mt-5 max-w-2xl text-xs font-semibold leading-6 text-slate-400 print:text-black">
             Source: {BIBLE_READING_PLAN_SOURCE}. {BIBLE_READING_PLAN_SOURCE_NOTE}
