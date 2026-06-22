@@ -49,50 +49,46 @@ type ActiveWordStudy = {
 
 const sections: Section[] = [
   {
-    title: "Old Testament",
+    title: "Sunday — Epistles",
+    emoji: "✉️",
+    line: "Letters to the Church: faith, grace, love, endurance, and life in Christ.",
+    odds: "Sunday • Epistles",
+  },
+  {
+    title: "Monday — Law",
     emoji: "📜",
-    line: "Open the story of promise, rescue, wisdom, prophets, and God’s faithfulness.",
-    odds: "1 in 18,237",
+    line: "The beginning, covenant, commandments, rescue, worship, and God’s holy way.",
+    odds: "Monday • Law",
   },
   {
-    title: "Psalms",
+    title: "Tuesday — History",
+    emoji: "🏛️",
+    line: "God’s people in real stories of courage, failure, mercy, kings, and return.",
+    odds: "Tuesday • History",
+  },
+  {
+    title: "Wednesday — Psalms",
     emoji: "🎶",
-    line: "Pray, praise, cry out, worship, and hope through Scripture.",
-    odds: "1 in 2,461",
+    line: "Prayer, praise, lament, worship, hope, and honest words with God.",
+    odds: "Wednesday • Psalms",
   },
   {
-    title: "Proverbs",
+    title: "Thursday — Poetry",
     emoji: "💡",
-    line: "Find wisdom for words, choices, friendship, work, and the heart.",
-    odds: "1 in 915",
+    line: "Wisdom, suffering, words, choices, work, wonder, and the heart.",
+    odds: "Thursday • Poetry",
   },
   {
-    title: "Gospel",
-    gridClass: "lg:col-start-2",
+    title: "Friday — Prophecy",
+    emoji: "🔥",
+    line: "Warnings, promises, restoration, justice, hope, and God making all things new.",
+    odds: "Friday • Prophecy",
+  },
+  {
+    title: "Saturday — Gospels",
     emoji: "✝️",
     line: "Walk with Jesus through His words, works, cross, and resurrection.",
-    odds: "1 in 3,779",
-  },
-  {
-    title: "Epistles",
-    gridClass: "lg:col-start-4",
-    emoji: "✉️",
-    line: "Read how the Church learns to live, love, serve, endure, and grow.",
-    odds: "1 in 3,774",
-  },
-  {
-    title: "Genesis",
-    gridClass: "lg:col-start-2",
-    emoji: "🌅",
-    line: "The beginning: creation, fall, promise, covenant, and God’s story opening.",
-    odds: "1 in 1,533",
-  },
-  {
-    title: "Revelation",
-    gridClass: "lg:col-start-4",
-    emoji: "👑",
-    line: "The end: worship, victory, restoration, and Jesus making all things new.",
-    odds: "1 in 404",
+    odds: "Saturday • Gospels",
   },
 ];
 const CARD_TONES = [
@@ -160,11 +156,7 @@ function hasVerifiedWordLinks(wordStudies: VerifiedWordStudy[]) {
 }
 
 function defaultOriginalLanguage(section: Section): OriginalLanguage {
-  if (
-    section.title === "Gospel" ||
-    section.title === "Epistles" ||
-    section.title === "Revelation"
-  ) {
+  if (section.title.includes("Epistles") || section.title.includes("Gospels")) {
     return "greek";
   }
 
@@ -176,11 +168,7 @@ function originalLanguageName(language: OriginalLanguage) {
 }
 
 function availableOriginalLanguages(sectionTitle: string): OriginalLanguage[] {
-  if (
-    sectionTitle === "Gospel" ||
-    sectionTitle === "Epistles" ||
-    sectionTitle === "Revelation"
-  ) {
+  if (sectionTitle.includes("Epistles") || sectionTitle.includes("Gospels")) {
     return ["greek"];
   }
 

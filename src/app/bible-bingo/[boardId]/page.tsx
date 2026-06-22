@@ -22,39 +22,39 @@ type PassageForUrl = {
 
 const shareSections = [
   {
-    title: "Old Testament",
+    title: "Sunday — Epistles",
+    emoji: "✉️",
+    line: "Letters to the Church: faith, grace, love, endurance, and life in Christ.",
+  },
+  {
+    title: "Monday — Law",
     emoji: "📜",
-    line: "Promise, rescue, wisdom, prophets, and God’s faithfulness.",
+    line: "The beginning, covenant, commandments, rescue, worship, and God’s holy way.",
   },
   {
-    title: "Psalms",
+    title: "Tuesday — History",
+    emoji: "🏛️",
+    line: "God’s people in real stories of courage, failure, mercy, kings, and return.",
+  },
+  {
+    title: "Wednesday — Psalms",
     emoji: "🎶",
-    line: "Prayer, praise, crying out, and hope through Scripture.",
+    line: "Prayer, praise, lament, worship, hope, and honest words with God.",
   },
   {
-    title: "Proverbs",
+    title: "Thursday — Poetry",
     emoji: "💡",
-    line: "Wisdom for words, choices, friendship, work, and the heart.",
+    line: "Wisdom, suffering, words, choices, work, wonder, and the heart.",
   },
   {
-    title: "Gospel",
+    title: "Friday — Prophecy",
+    emoji: "🔥",
+    line: "Warnings, promises, restoration, justice, hope, and God making all things new.",
+  },
+  {
+    title: "Saturday — Gospels",
     emoji: "✝️",
     line: "Walk with Jesus through His words, works, cross, and resurrection.",
-  },
-  {
-    title: "Epistles",
-    emoji: "✉️",
-    line: "The Church learning to live, love, serve, endure, and grow.",
-  },
-  {
-    title: "Genesis",
-    emoji: "🌅",
-    line: "Creation, fall, promise, covenant, and God’s story opening.",
-  },
-  {
-    title: "Revelation",
-    emoji: "👑",
-    line: "Victory, restoration, and Jesus making all things new.",
   },
 ];
 
@@ -140,9 +140,9 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
         boardUrl,
       ].join("\n")
     : [
-        "I dealt 7 Bible Bingo cards.",
+        "I dealt 7 Bible Bingo cards through the weekly Bible rhythm.",
         "",
-        "Which card should we explore?",
+        "Which day should we explore?",
         "",
         boardUrl,
       ].join("\n");
@@ -160,7 +160,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
             <div style="font-size:12px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#047857; margin-bottom:8px;">Cross Heart Pray</div>
             <h1 style="font-family: Georgia, 'Times New Roman', serif; margin:0; font-size:36px; line-height:1.12; color:#0f172a;">Bible Bingo 7</h1>
             <p style="margin:12px auto 0; max-width:560px; color:#475569; font-size:16px; line-height:1.6; font-weight:600;">
-              I dealt 7 Bible Bingo cards. Which card should we explore?
+              I dealt 7 Bible Bingo cards through the weekly Bible rhythm. Which day should we explore?
             </p>
             <p style="text-align:center; margin:22px 0 0;">
               <a href="${boardUrl}" style="display:inline-block; background:#047857; color:#ffffff; padding:13px 22px; border-radius:999px; text-decoration:none; font-weight:800; font-size:15px;">
