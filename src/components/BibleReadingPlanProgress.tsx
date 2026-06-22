@@ -276,6 +276,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const [startDateKey, setStartDateKey] = useState(() => centralDateKey());
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
+  const [showAllWeeks, setShowAllWeeks] = useState(false);
 
   const todayDateKey = centralDateKey();
   const totalDays = weeks.length * 7;
@@ -308,8 +309,11 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const flatDays = useMemo(() => weeks.flatMap((week) => week.days), [weeks]);
   const nextPlanDay = flatDays.find((day) => !done[doneKey(day)]) ?? null;
   const activeWeekNumber = nextPlanDay?.week ?? weeks.length;
-  const activeWeek = weeks.find((week) => week.week === activeWeekNumber) ?? weeks[weeks.length - 1];
-  const visibleWeeks = activeWeek ? [activeWeek] : [];
+  const activeBlockStart = Math.floor((activeWeekNumber - 1) / 4) * 4 + 1;
+  const activeBlockEnd = Math.min(activeBlockStart + 3, weeks.length);
+  const visibleWeeks = showAllWeeks
+    ? weeks
+    : weeks.filter((week) => week.week >= activeBlockStart && week.week <= activeBlockEnd);
 
   const completedCount = Object.values(done).filter(Boolean).length;
   const percentComplete = Math.round((completedCount / totalDays) * 100);
@@ -352,27 +356,24 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       <section className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] print:hidden">
         <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 sm:p-7">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-            Plan Start
+            Progress
           </p>
 
           <h2 className="mt-4 text-2xl font-extrabold text-slate-50">
-            Start Week 1
+            Week 1 First
           </h2>
 
           <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-            Pick when you started. The tracker shows the next unfinished reading so you finish one week before moving to the next.
+            Start with Week 1. Check each reading as you finish it. The plan shows four weeks at a time and moves forward when those weeks are complete.
           </p>
-
-          <label className="mt-5 block text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-            Start date
-          </label>
-
-          <input
-            type="date"
-            value={startDateKey}
-            onChange={(event) => setStartDateKey(event.target.value)}
-            className="mt-2 w-full rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base font-bold text-white outline-none transition focus:border-emerald-200/50"
-          />
+            <div className="mt-5 rounded-2xl border border-white/10 bg-black/15 p-4">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+                Current View
+              </p>
+              <p className="mt-2 text-base font-black text-white">
+                {showAllWeeks ? `Weeks 1-${weeks.length}` : `Weeks ${activeBlockStart}-${activeBlockEnd}`}
+              </p>
+            </div>
 
           <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
@@ -380,7 +381,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               onClick={resetToToday}
               className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/25"
             >
-              Restart today
+              Start over
             </button>
 
             <button
@@ -388,8 +389,16 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               onClick={clearProgress}
               className="rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-black text-slate-100 transition hover:bg-white/10"
             >
-              Clear checks
+              Clear progress
             </button>
+
+              <button
+                type="button"
+                onClick={() => setShowAllWeeks((current) => !current)}
+                className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/18 sm:col-span-2"
+              >
+                {showAllWeeks ? "Show current 4 weeks" : "Expand all 52 weeks"}
+              </button>
           </div>
         </div>
 
@@ -459,13 +468,13 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
         <div className="mb-6 text-center print:mb-3">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
-            Current Week
+            Current Block
           </p>
           <h2 className="mt-3 text-3xl font-black text-white print:text-black">
-            Week {activeWeekNumber} Checklist
+            {showAllWeeks ? "All 52 Weeks" : `Weeks ${activeBlockStart}-${activeBlockEnd}`}
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
-            Check each section in order. Finish this week, then move to the next.
+            Check each section in order. Finish this block, then move to the next.
           </p>
         </div>
 
