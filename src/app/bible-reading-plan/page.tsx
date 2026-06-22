@@ -1,4 +1,6 @@
 import BibleReadingPlanTracker from "../../components/BibleReadingPlanTracker";
+import SiteFooter from "../../components/SiteFooter";
+import SiteHeader from "../../components/SiteHeader";
 import { BIBLE_READING_PLAN_WEEKS } from "../../lib/bibleReadingPlan";
 
 export const metadata = {
@@ -11,5 +13,11 @@ export const metadata = {
 };
 
 export default function BibleReadingPlanPage() {
-  return <BibleReadingPlanTracker weeks={BIBLE_READING_PLAN_WEEKS} />;
+  return (
+    <div className="min-h-screen bg-[#020617] text-slate-100">
+      <SiteHeader />
+      <BibleReadingPlanTracker weeks={BIBLE_READING_PLAN_WEEKS} />
+      <SiteFooter />
+    </div>
+  );
 }

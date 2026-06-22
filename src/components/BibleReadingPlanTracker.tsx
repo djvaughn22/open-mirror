@@ -144,57 +144,72 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
   }
 
   return (
-    <main className="min-h-screen bg-[#07120f] px-4 py-8 text-slate-100 print:bg-white print:px-0 print:py-0 print:text-black sm:px-6 lg:px-8">
-      <section className="mx-auto max-w-6xl print:max-w-none">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 print:border-black print:bg-white print:shadow-none sm:p-8">
-          <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100 print:text-black">
-            Cross Heart Pray
+    <main className="px-4 pb-16 pt-10 print:bg-white print:px-0 print:py-0 print:text-black sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-5xl print:max-w-none">
+        <div className="text-center print:text-black">
+          <img
+            src="/holy-bible-logo.svg"
+            alt="Holy Bible"
+            className="mx-auto h-12 w-auto opacity-90 print:hidden"
+          />
+
+          <p className="mt-8 text-sm font-black uppercase tracking-[0.45em] text-slate-100 print:text-black">
+            ✝ Cross ❤️ Heart 🙏 Pray
           </p>
 
-          <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <h1 className="text-4xl font-black tracking-tight text-white print:text-black sm:text-5xl">
-                Bible Reading Plan
-              </h1>
-              <p className="mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-300 print:text-black sm:text-base">
-                A digital, PDF-style tracker for the 52-week Bible reading plan. Start Week 1 any day, mark readings done, and open each day in the Bible App.
-              </p>
-            </div>
+          <h1 className="mt-6 text-5xl font-black tracking-tight text-white print:text-black sm:text-6xl">
+            Bible Reading Plan
+          </h1>
 
-            <div className="flex flex-col gap-2 sm:flex-row print:hidden">
-              <a
-                href={BIBLE_READING_PLAN_PDF_HREF}
-                download
-                className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-emerald-50 transition hover:bg-emerald-300/25"
-              >
-                Download PDF
-              </a>
+          <p className="mx-auto mt-4 max-w-2xl text-xl font-black text-emerald-100 print:text-black sm:text-2xl">
+            Start Week 1 any day.
+          </p>
 
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-slate-100 transition hover:bg-white/15"
-              >
-                Print / Save PDF
-              </button>
-            </div>
-          </div>
+          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-slate-300 print:text-black sm:text-base">
+            A simple 52-week Bible reading tracker with local progress, PDF download, and Bible App links.
+          </p>
 
-          <p className="mt-5 text-xs font-semibold leading-6 text-slate-400 print:text-black">
+          <p className="mx-auto mt-5 max-w-3xl text-xs font-semibold leading-6 text-slate-400 print:text-black">
             Source: {BIBLE_READING_PLAN_SOURCE}. {BIBLE_READING_PLAN_SOURCE_NOTE}
           </p>
+
+          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row print:hidden">
+            <a
+              href={BIBLE_READING_PLAN_PDF_HREF}
+              download
+              className="w-full max-w-xs rounded-full border border-emerald-200/30 bg-emerald-300/15 px-6 py-3 text-center text-sm font-black uppercase tracking-[0.18em] text-emerald-50 shadow-lg shadow-emerald-950/20 transition hover:bg-emerald-300/25 sm:w-auto"
+            >
+              Download PDF
+            </a>
+
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="w-full max-w-xs rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/15 sm:w-auto"
+            >
+              Print / Save PDF
+            </button>
+          </div>
         </div>
 
-        <section className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-[1fr_1.4fr] print:hidden">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-xl shadow-black/15">
-            <h2 className="text-xl font-black text-white">Start Week 1</h2>
-            <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-              Pick any calendar day. That day becomes Week 1, Day 1. Progress saves on this device only.
+        <section className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] print:hidden">
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 sm:p-7">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
+              Plan Start
+            </p>
+
+            <h2 className="mt-4 text-2xl font-extrabold text-slate-50">
+              Start Week 1
+            </h2>
+
+            <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+              Pick any calendar day. That day becomes Week 1, Day 1. Your checks save on this device only.
             </p>
 
             <label className="mt-5 block text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
               Start date
             </label>
+
             <input
               type="date"
               value={startDateKey}
@@ -221,40 +236,40 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-emerald-200/25 bg-emerald-300/[0.08] p-6 shadow-xl shadow-emerald-950/20">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="rounded-[2rem] border border-emerald-200/25 bg-emerald-300/[0.08] p-6 shadow-2xl shadow-emerald-950/20 sm:p-7">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-                  Today’s reading
+                  Today’s Reading
                 </p>
 
                 {todayPlanDay ? (
                   <>
-                    <h2 className="mt-3 text-3xl font-black text-white">
+                    <h2 className="mt-4 text-3xl font-black text-white">
                       Week {todayPlanDay.week} • {todayPlanDay.dayLabel}
                     </h2>
-                    <p className="mt-2 text-sm font-black uppercase tracking-[0.18em] text-emerald-100">
+                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
                       {todayPlanDay.category}
                     </p>
-                    <p className="mt-4 text-2xl font-black text-white">
+                    <p className="mt-5 text-3xl font-black text-white">
                       {todayPlanDay.reading}
                     </p>
                   </>
                 ) : todayPlanIndex < 0 ? (
                   <>
-                    <h2 className="mt-3 text-3xl font-black text-white">
+                    <h2 className="mt-4 text-3xl font-black text-white">
                       Not started yet
                     </h2>
-                    <p className="mt-4 text-base font-semibold leading-7 text-slate-200">
+                    <p className="mt-5 text-base font-semibold leading-7 text-slate-200">
                       Your selected start date is in the future.
                     </p>
                   </>
                 ) : (
                   <>
-                    <h2 className="mt-3 text-3xl font-black text-white">
+                    <h2 className="mt-4 text-3xl font-black text-white">
                       Plan complete
                     </h2>
-                    <p className="mt-4 text-base font-semibold leading-7 text-slate-200">
+                    <p className="mt-5 text-base font-semibold leading-7 text-slate-200">
                       You have passed the 52-week plan window. Restart any day to begin again.
                     </p>
                   </>
@@ -271,7 +286,7 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             </div>
 
             {todayPlanDay ? (
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={bibleSearchUrl(todayPlanDay.reading)}
                   target="_blank"
@@ -293,16 +308,17 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
           </div>
         </section>
 
-        <section className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.035] p-4 shadow-2xl shadow-black/20 print:mt-4 print:border-black print:bg-white print:p-0 print:shadow-none sm:p-6">
-          <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between print:mb-3">
-            <div>
-              <h2 className="text-2xl font-black text-white print:text-black">
-                52 Week Checklist
-              </h2>
-              <p className="mt-1 text-sm font-semibold text-slate-400 print:text-black">
-                The day labels follow the plan rhythm. Start any day and keep going.
-              </p>
-            </div>
+        <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
+          <div className="mb-6 text-center print:mb-3">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
+              PDF-Style Tracker
+            </p>
+            <h2 className="mt-3 text-3xl font-black text-white print:text-black">
+              52 Week Checklist
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
+              Follow the plan rhythm, start any day, and keep going.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 print:gap-2">
