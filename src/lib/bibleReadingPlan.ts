@@ -26,7 +26,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 1,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 1-2"
       },
       {
@@ -80,7 +80,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 2,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 3-4"
       },
       {
@@ -134,7 +134,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 3,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 5-6"
       },
       {
@@ -188,7 +188,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 4,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 7-8"
       },
       {
@@ -242,7 +242,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 5,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 9-10"
       },
       {
@@ -296,7 +296,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 6,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 11-12"
       },
       {
@@ -350,7 +350,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 7,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 13-14"
       },
       {
@@ -404,7 +404,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 8,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Rom 15-16"
       },
       {
@@ -458,7 +458,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 9,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 1-2"
       },
       {
@@ -512,7 +512,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 10,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 3-4"
       },
       {
@@ -566,7 +566,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 11,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 5-6"
       },
       {
@@ -620,7 +620,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 12,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 7-8"
       },
       {
@@ -674,7 +674,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 13,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 9-10"
       },
       {
@@ -728,7 +728,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 14,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 11-12"
       },
       {
@@ -782,7 +782,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 15,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 13-14"
       },
       {
@@ -836,7 +836,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 16,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Cor 15-16"
       },
       {
@@ -890,7 +890,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 17,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Cor 1-3"
       },
       {
@@ -944,7 +944,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 18,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Cor 4-5"
       },
       {
@@ -998,7 +998,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 19,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Cor 6-8"
       },
       {
@@ -1052,7 +1052,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 20,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Cor 9-10"
       },
       {
@@ -1106,7 +1106,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 21,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Cor 11-13"
       },
       {
@@ -1160,7 +1160,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 22,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Gal 1-3"
       },
       {
@@ -1214,7 +1214,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 23,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Gal 4-6"
       },
       {
@@ -1268,7 +1268,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 24,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Eph 1-3"
       },
       {
@@ -1322,7 +1322,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 25,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Eph 4-6"
       },
       {
@@ -1376,7 +1376,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 26,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Phil 1-2"
       },
       {
@@ -1430,7 +1430,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 27,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Phil 3-4"
       },
       {
@@ -1484,7 +1484,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 28,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Col 1-2"
       },
       {
@@ -1538,7 +1538,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 29,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Col 3-4"
       },
       {
@@ -1592,7 +1592,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 30,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Thes 1-3"
       },
       {
@@ -1646,7 +1646,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 31,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Thes 4-5"
       },
       {
@@ -1700,7 +1700,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 32,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Thes"
       },
       {
@@ -1754,7 +1754,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 33,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Tim 1-3"
       },
       {
@@ -1808,7 +1808,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 34,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Tim 4-6"
       },
       {
@@ -1862,7 +1862,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 35,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Tim 1-2"
       },
       {
@@ -1916,7 +1916,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 36,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Tim 3-4"
       },
       {
@@ -1970,7 +1970,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 37,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Titus"
       },
       {
@@ -2024,7 +2024,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 38,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Philemon"
       },
       {
@@ -2078,7 +2078,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 39,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Heb 1-4"
       },
       {
@@ -2132,7 +2132,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 40,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Heb 5-7"
       },
       {
@@ -2186,7 +2186,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 41,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Heb 8-10"
       },
       {
@@ -2240,7 +2240,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 42,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Heb 11-13"
       },
       {
@@ -2294,7 +2294,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 43,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "James 1-3"
       },
       {
@@ -2348,7 +2348,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 44,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "James 4-5"
       },
       {
@@ -2402,7 +2402,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 45,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Pet 1-3"
       },
       {
@@ -2456,7 +2456,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 46,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1Pet 4-5"
       },
       {
@@ -2510,7 +2510,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 47,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2Pet"
       },
       {
@@ -2564,7 +2564,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 48,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1John 1-3"
       },
       {
@@ -2618,7 +2618,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 49,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "1John 4-5"
       },
       {
@@ -2672,7 +2672,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 50,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "2John"
       },
       {
@@ -2726,7 +2726,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 51,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "3John"
       },
       {
@@ -2780,7 +2780,7 @@ export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
         "week": 52,
         "daySlug": "sunday",
         "dayLabel": "Sunday",
-        "category": "Week",
+        "category": "Epistles",
         "reading": "Jude"
       },
       {

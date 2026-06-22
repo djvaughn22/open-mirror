@@ -120,14 +120,117 @@ const BIBLE_COM_BOOK_CODES: Record<string, string> = {
   "3 John": "3JN",
   Jude: "JUD",
   Revelation: "REV",
+  "Gen": "GEN",
+  "Exod": "EXO",
+  "Exo": "EXO",
+  "Ex": "EXO",
+  "Lev": "LEV",
+  "Num": "NUM",
+  "Deut": "DEU",
+  "Dt": "DEU",
+  "Josh": "JOS",
+  "Jos": "JOS",
+  "Judg": "JDG",
+  "Jdg": "JDG",
+  "1 Sam": "1SA",
+  "2 Sam": "2SA",
+  "1Sam": "1SA",
+  "2Sam": "2SA",
+  "1 Kgs": "1KI",
+  "2 Kgs": "2KI",
+  "1 Ki": "1KI",
+  "2 Ki": "2KI",
+  "1 Chr": "1CH",
+  "2 Chr": "2CH",
+  "Neh": "NEH",
+  "Esth": "EST",
+  "Ps": "PSA",
+  "Psa": "PSA",
+  "Prov": "PRO",
+  "Pr": "PRO",
+  "Eccl": "ECC",
+  "Eccles": "ECC",
+  "Song": "SNG",
+  "Isa": "ISA",
+  "Jer": "JER",
+  "Lam": "LAM",
+  "Ezek": "EZK",
+  "Ezk": "EZK",
+  "Dan": "DAN",
+  "Hos": "HOS",
+  "Obad": "OBA",
+  "Mic": "MIC",
+  "Nah": "NAM",
+  "Hab": "HAB",
+  "Zeph": "ZEP",
+  "Hag": "HAG",
+  "Zech": "ZEC",
+  "Mal": "MAL",
+  "Matt": "MAT",
+  "Mt": "MAT",
+  "Mk": "MRK",
+  "Lk": "LUK",
+  "Jn": "JHN",
+  "Rom": "ROM",
+  "1 Cor": "1CO",
+  "2 Cor": "2CO",
+  "1Cor": "1CO",
+  "2Cor": "2CO",
+  "Gal": "GAL",
+  "Eph": "EPH",
+  "Phil": "PHP",
+  "Php": "PHP",
+  "Col": "COL",
+  "1 Thess": "1TH",
+  "2 Thess": "2TH",
+  "1 Thes": "1TH",
+  "2 Thes": "2TH",
+  "1Thess": "1TH",
+  "2Thess": "2TH",
+  "1 Tim": "1TI",
+  "2 Tim": "2TI",
+  "1Tim": "1TI",
+  "2Tim": "2TI",
+  "Philem": "PHM",
+  "Heb": "HEB",
+  "Jas": "JAS",
+  "1 Pet": "1PE",
+  "2 Pet": "2PE",
+  "1Pet": "1PE",
+  "2Pet": "2PE",
+  "Rev": "REV",
 };
 
 const BIBLE_COM_BOOK_NAMES = Object.keys(BIBLE_COM_BOOK_CODES).sort(
   (left, right) => right.length - left.length,
 );
 
+const DAY_CATEGORY_BY_NAME: Record<string, string> = {
+  sunday: "Epistles",
+  sun: "Epistles",
+  monday: "Law",
+  mon: "Law",
+  tuesday: "History",
+  tue: "History",
+  wednesday: "Psalms",
+  wed: "Psalms",
+  thursday: "Poetry",
+  thu: "Poetry",
+  friday: "Prophecy",
+  fri: "Prophecy",
+  saturday: "Gospels",
+  sat: "Gospels",
+};
+
+function readingPlanCategory(day: BibleReadingPlanDay) {
+  const labelKey = day.dayLabel.trim().toLowerCase();
+  const slugKey = day.daySlug.trim().toLowerCase();
+
+  return DAY_CATEGORY_BY_NAME[labelKey] ?? DAY_CATEGORY_BY_NAME[slugKey] ?? day.category;
+}
+
 function bibleSearchUrl(reading: string) {
-  const normalizedReading = reading.trim().replace(/\s+/g, " ");
+  const normalizedReading = reading.trim().replace(/\./g, "").replace(/\s+/g, " ");
   const bookName = BIBLE_COM_BOOK_NAMES.find(
     (name) =>
       normalizedReading === name ||
@@ -305,7 +408,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                     Week {todayPlanDay.week} • {todayPlanDay.dayLabel}
                   </h2>
                   <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                    {todayPlanDay.category}
+                    {readingPlanCategory(todayPlanDay)}
                   </p>
                   <p className="mt-5 text-3xl font-black text-white">
                     {todayPlanDay.reading}
@@ -394,7 +497,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                     className="hidden rounded-2xl border border-emerald-200/20 bg-emerald-300/10 p-3 text-center md:block print:block print:border-black print:bg-white"
                   >
                     <p className="text-[10px] font-black uppercase tracking-[0.12em] text-emerald-100 print:text-black">
-                      {day.category}
+                      {readingPlanCategory(day)}
                     </p>
                     <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400 print:text-black">
                       {day.dayLabel}
@@ -417,7 +520,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                     >
                       <div className="md:hidden print:hidden">
                         <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100">
-                          {day.category}
+                          {readingPlanCategory(day)}
                         </p>
                         <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
                           {day.dayLabel}
