@@ -144,24 +144,18 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
   }
 
   return (
-    <main className="px-4 pb-16 pt-10 print:bg-white print:px-0 print:py-0 print:text-black sm:px-6 lg:px-8">
-      <section className="mx-auto max-w-5xl print:max-w-none">
+    <main className="px-4 pb-16 pt-6 print:bg-white print:px-0 print:py-0 print:text-black sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-4xl print:max-w-none">
         <div className="text-center print:text-black">
-          <img
-            src="/holy-bible-logo.svg"
-            alt="Holy Bible"
-            className="mx-auto h-12 w-auto opacity-90 print:hidden"
-          />
-
-          <p className="mt-8 text-sm font-black uppercase tracking-[0.45em] text-slate-100 print:text-black">
+          <p className="mt-2 text-sm font-black uppercase tracking-[0.45em] text-slate-100 print:text-black">
             ✝ Cross ❤️ Heart 🙏 Pray
           </p>
 
-          <h1 className="mt-6 text-5xl font-black tracking-tight text-white print:text-black sm:text-6xl">
+          <h1 className="mt-5 text-5xl font-black tracking-tight text-white print:text-black sm:text-6xl">
             Bible Reading Plan
           </h1>
 
-          <p className="mx-auto mt-4 max-w-2xl text-xl font-black text-emerald-100 print:text-black sm:text-2xl">
+          <p className="mx-auto mt-3 max-w-2xl text-xl font-black text-emerald-100 print:text-black sm:text-2xl">
             Start Week 1 any day.
           </p>
 
