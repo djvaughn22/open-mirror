@@ -5,7 +5,7 @@ export default function SiteFooter() {
         <p>© 2026</p>
 
         <a
-          href="https://www.bible.com/bible/compare/MAT.22.35-40"
+          href="https://www.bible.com/bible/206/MAT.22.35-40.WEBUS"
           target="_blank"
           rel="noopener noreferrer"
           className="justify-self-center font-semibold text-slate-300 underline decoration-white/20 underline-offset-4 transition hover:text-emerald-100 hover:decoration-emerald-100/60"
