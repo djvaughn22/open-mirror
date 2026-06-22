@@ -297,6 +297,20 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               </h3>
 
               <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-7 print:grid-cols-7">
+                {week.days.map((day) => (
+                  <div
+                    key={`${week.week}-${day.daySlug}-header`}
+                    className="hidden rounded-2xl border border-emerald-200/20 bg-emerald-300/10 p-3 text-center md:block print:block print:border-black print:bg-white"
+                  >
+                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-emerald-100 print:text-black">
+                      {day.category}
+                    </p>
+                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400 print:text-black">
+                      {day.dayLabel}
+                    </p>
+                  </div>
+                ))}
+
                 {week.days.map((day) => {
                   const key = doneKey(day);
                   const isDone = Boolean(done[key]);
@@ -304,44 +318,45 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                   return (
                     <div
                       key={key}
-                      className={`rounded-2xl border p-3 print:border-black ${
+                      className={`flex min-h-[10.5rem] flex-col rounded-2xl border p-3 print:min-h-0 print:border-black ${
                         isDone
                           ? "border-emerald-200/35 bg-emerald-300/15"
                           : "border-white/10 bg-white/[0.03]"
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-2">
-                        <div>
-                          <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100 print:text-black">
-                            {day.dayLabel}
-                          </p>
-                          <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400 print:text-black">
-                            {day.category}
-                          </p>
-                        </div>
+                      <div className="md:hidden print:hidden">
+                        <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100">
+                          {day.category}
+                        </p>
+                        <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                          {day.dayLabel}
+                        </p>
+                      </div>
 
+                      <p className="mt-3 text-base font-black leading-snug text-white print:mt-0 print:text-black">
+                        {day.reading}
+                      </p>
+
+                      <div className="mt-auto flex items-end justify-between gap-2 pt-4 print:hidden">
                         <button
                           type="button"
                           onClick={() => toggleDone(day)}
                           aria-pressed={isDone}
-                          className="h-8 w-8 shrink-0 rounded-full border border-white/15 bg-white/10 text-sm font-black text-white transition hover:bg-white/15 print:hidden"
+                          aria-label={`${isDone ? "Mark not done" : "Mark done"}: Week ${day.week} ${day.dayLabel} ${day.reading}`}
+                          className="h-8 w-8 shrink-0 rounded-full border border-white/20 bg-white/10 text-sm font-black text-white transition hover:bg-white/15"
                         >
                           {isDone ? "✓" : ""}
                         </button>
+
+                        <a
+                          href={bibleSearchUrl(day.reading)}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100 underline underline-offset-4"
+                        >
+                          Open
+                        </a>
                       </div>
-
-                      <p className="mt-3 text-base font-black text-white print:text-black">
-                        {day.reading}
-                      </p>
-
-                      <a
-                        href={bibleSearchUrl(day.reading)}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-3 inline-flex text-xs font-black uppercase tracking-[0.14em] text-emerald-100 underline underline-offset-4 print:hidden"
-                      >
-                        Open
-                      </a>
 
                       <p className="mt-2 hidden text-xs font-black print:block">
                         {isDone ? "Done" : "Not done"}
