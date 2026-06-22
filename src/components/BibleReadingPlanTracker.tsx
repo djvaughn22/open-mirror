@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import SiteFooter from "./SiteFooter";
+import SiteHeader from "./SiteHeader";
 import {
   BIBLE_READING_PLAN_PDF_HREF,
   BIBLE_READING_PLAN_SOURCE,
@@ -144,14 +146,17 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
   }
 
   return (
-    <main className="px-4 pb-16 pt-6 print:bg-white print:px-0 print:py-0 print:text-black sm:px-6 lg:px-8">
-      <section className="mx-auto max-w-4xl print:max-w-none">
-        <div className="text-center print:text-black">
-          <p className="mt-2 text-sm font-black uppercase tracking-[0.45em] text-slate-100 print:text-black">
-            ✝ Cross ❤️ Heart 🙏 Pray
+    <div className="min-h-screen bg-[#020617] text-slate-100">
+      <SiteHeader />
+
+      <main className="px-4 pb-16 pt-12 print:bg-white print:px-0 print:py-0 print:text-black sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-4xl print:max-w-none">
+          <div className="text-center print:text-black">
+          <p className="text-sm font-black uppercase tracking-[0.45em] text-slate-100 print:text-black">
+            ✝️ Cross ❤️ Heart 🙏 Pray
           </p>
 
-          <h1 className="mt-5 text-5xl font-black tracking-tight text-white print:text-black sm:text-6xl">
+          <h1 className="mt-6 text-5xl font-black tracking-tight text-white print:text-black sm:text-6xl">
             Bible Reading Plan
           </h1>
 
@@ -159,11 +164,11 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             Start Week 1 any day.
           </p>
 
-          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-slate-300 print:text-black sm:text-base">
+          <p className="mx-auto mt-5 max-w-xl text-sm font-semibold leading-7 text-slate-300 print:text-black sm:text-base">
             A simple 52-week Bible reading tracker with local progress, PDF download, and Bible App links.
           </p>
 
-          <p className="mx-auto mt-5 max-w-3xl text-xs font-semibold leading-6 text-slate-400 print:text-black">
+          <p className="mx-auto mt-5 max-w-2xl text-xs font-semibold leading-6 text-slate-400 print:text-black">
             Source: {BIBLE_READING_PLAN_SOURCE}. {BIBLE_READING_PLAN_SOURCE_NOTE}
           </p>
 
@@ -383,7 +388,10 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             ))}
           </div>
         </section>
-      </section>
-    </main>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </div>
   );
 }
