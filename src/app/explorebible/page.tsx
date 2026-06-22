@@ -464,14 +464,14 @@ export default function BibleExplorerPage() {
         <section className="mt-2">
           <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-white/[0.035] px-4 py-6 shadow-2xl shadow-black/25 sm:px-6 sm:py-8">
             <p className="text-center text-xs font-black uppercase tracking-[0.22em] text-slate-400">
-              Choose a day card
+              Choose a day card · preview each verse
             </p>
 
-            <div className="mt-6 flex min-h-[205px] items-end justify-start overflow-x-auto px-3 pb-8 pt-5 sm:justify-center">
+            <div className="mt-6 flex min-h-[315px] items-stretch justify-start overflow-x-auto px-3 pb-8 pt-5 sm:justify-center">
               {path.map(({ section, passage }, index) => {
                 const isFocused = index === focusedIndex;
-                const rotation = (index - 3) * 4;
-                const lift = isFocused ? -26 : Math.abs(index - 3) * 2;
+                const rotation = (index - 3) * 2.5;
+                const lift = isFocused ? -18 : Math.abs(index - 3) * 1.5;
 
                 return (
                   <button
@@ -479,25 +479,25 @@ export default function BibleExplorerPage() {
                     key={`${section.title}-${passage.label}-${index}`}
                     onClick={() => setFocusedCardIndex(index)}
                     aria-pressed={isFocused}
-                    className={`relative min-w-[148px] max-w-[148px] rounded-[1.35rem] border p-4 text-center shadow-2xl transition duration-200 sm:min-w-[165px] sm:max-w-[165px] ${cardTone(index)} ${
+                    className={`relative flex min-h-[270px] min-w-[210px] max-w-[210px] flex-col rounded-[1.35rem] border p-4 text-center shadow-2xl transition duration-200 sm:min-w-[225px] sm:max-w-[225px] ${cardTone(index)} ${
                       isFocused
                         ? "z-30 scale-105 border-white/40 shadow-emerald-900/40"
                         : "z-10 opacity-85 hover:-translate-y-2 hover:opacity-100"
                     }`}
                     style={{
-                      marginLeft: index === 0 ? "0" : "-34px",
+                      marginLeft: index === 0 ? "0" : "-22px",
                       transform: `translateY(${lift}px) rotate(${rotation}deg)`,
                     }}
                   >
-                    <div className="flex justify-center gap-2 text-xl" aria-hidden="true">
+                    <div className="flex justify-center gap-2 text-lg" aria-hidden="true">
                       <span>✝️</span>
                       <span>❤️</span>
                       <span>🙏</span>
                     </div>
 
-                    <div className="mt-3 text-3xl">{section.emoji}</div>
+                    <div className="mt-2 text-3xl">{section.emoji}</div>
 
-                    <p className="mt-3 text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-300">
+                    <p className="mt-3 text-[0.62rem] font-black uppercase tracking-[0.16em] text-slate-300">
                       Card {index + 1}
                     </p>
 
@@ -505,12 +505,16 @@ export default function BibleExplorerPage() {
                       {section.title}
                     </h2>
 
-                    <p className="mt-3 line-clamp-2 text-xs font-semibold leading-5 text-slate-300">
+                    <p className="mt-3 text-xs font-black leading-5 text-white">
                       {passage.label}
                     </p>
 
+                    <p className="bible-card-verse-preview mt-3 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
+                      {passage.text}
+                    </p>
+
                     {isFocused ? (
-                      <p className="mt-3 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] text-white">
+                      <p className="mt-auto rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] text-white">
                         Focus
                       </p>
                     ) : null}
@@ -806,6 +810,13 @@ export default function BibleExplorerPage() {
           animation-timing-function: ease-in-out;
           animation-fill-mode: both;
           animation-delay: inherit;
+        }
+
+        .bible-card-verse-preview {
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         @media (prefers-reduced-motion: reduce) {
