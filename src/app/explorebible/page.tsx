@@ -477,11 +477,15 @@ export default function BibleExplorerPage() {
                     key={`${section.title}-${passage.label}-${index}`}
                     onClick={() => setFocusedCardIndex(index)}
                     aria-pressed={isFocused}
-                    className={`relative flex min-h-[230px] flex-col rounded-[1.35rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${
+                    aria-busy={spinningCards[index]}
+                    className={`relative flex min-h-[230px] flex-col overflow-hidden rounded-[1.35rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
                       isFocused
                         ? "border-white/45 bg-white/15 ring-2 ring-white/25"
                         : "border-white/10 opacity-90 hover:opacity-100"
                     }`}
+                    style={{
+                      animationDelay: spinningCards[index] ? `${spinDelays[index]}ms` : "0ms",
+                    }}
                   >
                     <div className="flex justify-center gap-2 text-lg" aria-hidden="true">
                       <span>✝️</span>
