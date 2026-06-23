@@ -8,6 +8,7 @@ import SiteHeader from "../../components/SiteHeader";
 import { useEffect, useMemo, useState } from "react";
 import {
   bibleBingoBoardIdFromPassages,
+  bibleBingoOddsForSection,
   randomReferenceForSection,
   seededReferenceForSection,
 } from "../../lib/bibleRandom";
@@ -134,6 +135,33 @@ function centralDateSeed() {
   return `${value("year")}-${value("month")}-${value("day")}`;
 }
 
+function centralDayIndex() {
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    weekday: "long",
+  }).format(new Date());
+
+  return [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ].indexOf(weekday);
+}
+
+function displayIndexesStartingWith(startIndex: number) {
+  const safeStart = startIndex >= 0 ? startIndex : 0;
+
+  return sections.map((_, offset) => (safeStart + offset) % sections.length);
+}
+
+function oddsText(section: Section) {
+  return `${section.odds} · ${bibleBingoOddsForSection(section.title).label}`;
+}
+
 function buildDailyPath() {
   const seed = centralDateSeed();
 
@@ -192,7 +220,7 @@ export default function BibleExplorerPage() {
   const [spinVersions, setSpinVersions] = useState(() => sections.map(() => 0));
   const [spinningCards, setSpinningCards] = useState(() => sections.map(() => false));
   const [spinDelays, setSpinDelays] = useState(() => sections.map(() => 0));
-  const [focusedCardIndex, setFocusedCardIndex] = useState(0);
+  const [focusedCardIndex, setFocusedCardIndex] = useState(() => centralDayIndex());
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -421,6 +449,8 @@ export default function BibleExplorerPage() {
 
   const focusedIndex = path[focusedCardIndex] ? focusedCardIndex : 0;
   const focusedCard = path[focusedIndex] ?? path[0];
+  const todayStartIndex = centralDayIndex();
+  const displayIndexes = displayIndexesStartingWith(todayStartIndex);
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
@@ -468,7 +498,15 @@ export default function BibleExplorerPage() {
             </p>
 
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-7">
-              {path.map(({ section, passage }, index) => {
+              {displayIndexes.map((cardIndex) => {
+                const item = path[cardIndex];
+
+                if (!item) {
+                  return null;
+                }
+
+                const { section, passage } = item;
+                const index = cardIndex;
                 const isFocused = index === focusedIndex;
 
                 return (
@@ -509,6 +547,10 @@ export default function BibleExplorerPage() {
 
                     <p className="bible-card-verse-preview mt-3 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
                       {passage.text}
+                    </p>
+
+                    <p className="mt-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+                      {bibleBingoOddsForSection(section.title).label}
                     </p>
 
                     <p className={`mt-auto rounded-full border px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] ${
@@ -641,7 +683,7 @@ export default function BibleExplorerPage() {
               </div>
 
               <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
-                Shuffled from: <span className="text-white">{focusedCard.section.odds}</span>
+                Odds: <span className="text-white">{oddsText(focusedCard.section)}</span>
               </p>
             </article>
           ) : null}

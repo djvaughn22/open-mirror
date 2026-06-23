@@ -1215,6 +1215,20 @@ export function randomReferenceForSection(sectionTitle: string, avoidLabel?: str
 }
 
 
+
+export function bibleBingoOddsForSection(sectionTitle: string) {
+  const count = candidatesForSection(sectionTitle).length;
+  const percent = count > 0 ? 100 / count : 0;
+  const percentLabel =
+    percent >= 1 ? `${percent.toFixed(1)}%` : `${percent.toFixed(2)}%`;
+
+  return {
+    count,
+    label: count > 0 ? `1 of ${count.toLocaleString()} • ${percentLabel}` : "Whole Bible",
+  };
+}
+
+
 function hashSeed(value: string) {
   let hash = 2166136261;
 
