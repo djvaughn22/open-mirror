@@ -32,6 +32,16 @@ function centralDateKey(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
+function centralWeekdaySlug(date = new Date()) {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    weekday: "long",
+  })
+    .format(date)
+    .trim()
+    .toLowerCase();
+}
+
 function dateKeyToUtcMs(dateKey: string) {
   const [year, month, day] = dateKey.split("-").map(Number);
 
@@ -276,7 +286,6 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const [startDateKey, setStartDateKey] = useState(() => centralDateKey());
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
-  const [showAllWeeks, setShowAllWeeks] = useState(false);
 
   const todayDateKey = centralDateKey();
   const totalDays = weeks.length * 7;
@@ -309,14 +318,20 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const flatDays = useMemo(() => weeks.flatMap((week) => week.days), [weeks]);
   const nextPlanDay = flatDays.find((day) => !done[doneKey(day)]) ?? null;
   const activeWeekNumber = nextPlanDay?.week ?? weeks.length;
-  const activeBlockStart = Math.floor((activeWeekNumber - 1) / 4) * 4 + 1;
-  const activeBlockEnd = Math.min(activeBlockStart + 3, weeks.length);
-  const visibleWeeks = showAllWeeks
-    ? weeks
-    : weeks.filter((week) => week.week >= activeBlockStart && week.week <= activeBlockEnd);
+  const activeWeek = weeks.find((week) => week.week === activeWeekNumber) ?? weeks[0] ?? null;
+  const todaySlug = centralWeekdaySlug();
+  const todayPlanDay =
+    activeWeek?.days.find((day) => day.daySlug === todaySlug) ??
+    activeWeek?.days[0] ??
+    nextPlanDay;
 
   const completedCount = Object.values(done).filter(Boolean).length;
   const percentComplete = Math.round((completedCount / totalDays) * 100);
+  const activeWeekCompletedCount =
+    activeWeek?.days.filter((day) => done[doneKey(day)]).length ?? 0;
+  const activeWeekPercent = activeWeek
+    ? Math.round((activeWeekCompletedCount / activeWeek.days.length) * 100)
+    : 0;
 
   function toggleDone(day: BibleReadingPlanDay) {
     const key = doneKey(day);
@@ -353,214 +368,288 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
   return (
     <>
-      <section className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] print:hidden">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 sm:p-7">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-            Progress
-          </p>
-
-          <h2 className="mt-4 text-2xl font-extrabold text-slate-50">
-            Week 1 First
-          </h2>
-
-          <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-            Start with Week 1. Check each reading as you finish it. The plan shows four weeks at a time and moves forward when those weeks are complete.
-          </p>
-            <div className="mt-5 rounded-2xl border border-white/10 bg-black/15 p-4">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                Current View
-              </p>
-              <p className="mt-2 text-base font-black text-white">
-                {showAllWeeks ? `Weeks 1-${weeks.length}` : `Weeks ${activeBlockStart}-${activeBlockEnd}`}
-              </p>
-            </div>
-
-          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <button
-              type="button"
-              onClick={resetToToday}
-              className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/25"
-            >
-              Start over
-            </button>
-
-            <button
-              type="button"
-              onClick={clearProgress}
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-black text-slate-100 transition hover:bg-white/10"
-            >
-              Clear progress
-            </button>
-
-              <button
-                type="button"
-                onClick={() => setShowAllWeeks((current) => !current)}
-                className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/18 sm:col-span-2"
-              >
-                {showAllWeeks ? "Show current 4 weeks" : "Expand all 52 weeks"}
-              </button>
-          </div>
-        </div>
-
-        <div className="rounded-[2rem] border border-emerald-200/25 bg-emerald-300/[0.08] p-6 shadow-2xl shadow-emerald-950/20 sm:p-7">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+      <section className="mx-auto mt-10 max-w-5xl print:hidden">
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 sm:p-7">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_1.2fr]">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-                Next Reading
+                Saved on this device
               </p>
 
-              {nextPlanDay ? (
-                <>
-                  <h2 className="mt-4 text-3xl font-black text-white">
-                    Week {nextPlanDay.week} • {nextPlanDay.dayLabel}
-                  </h2>
-                  <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                    {readingPlanCategory(nextPlanDay)}
+              <h2 className="mt-4 text-3xl font-black text-white">
+                Week {activeWeekNumber}
+              </h2>
+
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+                This plan starts at Week 1 whenever you begin. Check readings as you finish them. Progress saves automatically in this browser on this device.
+              </p>
+
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4 text-center">
+                  <p className="text-3xl font-black text-white">{completedCount}</p>
+                  <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+                    of {totalDays} done
                   </p>
-                  <p className="mt-5 text-3xl font-black text-white">
-                    {nextPlanDay.reading}
+                  <p className="mt-1 text-xs font-bold text-emerald-100">{percentComplete}%</p>
+                </div>
+
+                <div className="rounded-2xl border border-emerald-200/20 bg-emerald-300/10 p-4 text-center">
+                  <p className="text-3xl font-black text-white">{activeWeekCompletedCount}/7</p>
+                  <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+                    this week
                   </p>
-                </>
-              ) : (
-                <>
-                  <h2 className="mt-4 text-3xl font-black text-white">
-                    Plan complete
-                  </h2>
-                  <p className="mt-5 text-base font-semibold leading-7 text-slate-200">
-                    You have passed the 52-week plan window. Restart any day to begin again.
-                  </p>
-                </>
-              )}
+                  <p className="mt-1 text-xs font-bold text-emerald-100">{activeWeekPercent}%</p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={resetToToday}
+                  className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/25"
+                >
+                  Start Week 1 Today
+                </button>
+
+                <button
+                  type="button"
+                  onClick={clearProgress}
+                  className="rounded-full border border-red-200/20 bg-red-300/10 px-4 py-3 text-sm font-black text-red-100 transition hover:bg-red-300/15"
+                >
+                  Clear All Progress
+                </button>
+              </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4 text-center">
-              <p className="text-3xl font-black text-white">{completedCount}</p>
-              <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
-                of {totalDays} done
+            <div className="rounded-[1.5rem] border border-emerald-200/25 bg-emerald-300/[0.08] p-5">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
+                Today
               </p>
-              <p className="mt-1 text-xs font-bold text-emerald-100">{percentComplete}%</p>
+
+              {todayPlanDay ? (
+                <>
+                  <h2 className="mt-4 text-3xl font-black text-white">
+                    Week {todayPlanDay.week} • {todayPlanDay.dayLabel}
+                  </h2>
+                  <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+                    {readingPlanCategory(todayPlanDay)}
+                  </p>
+                  <p className="mt-5 text-3xl font-black text-white">
+                    {todayPlanDay.reading}
+                  </p>
+
+                  {nextPlanDay && nextPlanDay !== todayPlanDay ? (
+                    <p className="mt-3 text-xs font-semibold leading-6 text-slate-300">
+                      Next unfinished: Week {nextPlanDay.week} • {nextPlanDay.dayLabel} • {nextPlanDay.reading}
+                    </p>
+                  ) : null}
+
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                    <a
+                      href={bibleSearchUrl(todayPlanDay.reading)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-emerald-50 transition hover:bg-emerald-300/30"
+                    >
+                      Open in Bible App
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={() => toggleDone(todayPlanDay)}
+                      className="rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-slate-100 transition hover:bg-white/15"
+                    >
+                      {done[doneKey(todayPlanDay)] ? "Mark Not Done" : "Mark Done"}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <p className="mt-5 text-base font-semibold leading-7 text-slate-200">
+                  Plan complete. Clear all progress to begin again.
+                </p>
+              )}
             </div>
           </div>
 
-          {nextPlanDay ? (
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={bibleSearchUrl(nextPlanDay.reading)}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-emerald-50 transition hover:bg-emerald-300/30"
-              >
-                Open in Bible App
-              </a>
+          <div className="mt-7">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
+              52 Week Board
+            </p>
 
-              <button
-                type="button"
-                onClick={() => toggleDone(nextPlanDay)}
-                className="rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-slate-100 transition hover:bg-white/15"
-              >
-                {done[doneKey(nextPlanDay)] ? "Mark not done" : "Mark done"}
-              </button>
-            </div>
-          ) : null}
-        </div>
-      </section>
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-8 lg:grid-cols-[repeat(13,minmax(0,1fr))]">
+              {weeks.map((week) => {
+                const weekDoneCount = week.days.filter((day) => done[doneKey(day)]).length;
+                const isActive = week.week === activeWeekNumber;
+                const isComplete = weekDoneCount === week.days.length;
 
-      <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
-        <div className="mb-6 text-center print:mb-3">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
-            Current Block
-          </p>
-          <h2 className="mt-3 text-3xl font-black text-white print:text-black">
-            {showAllWeeks ? "All 52 Weeks" : `Weeks ${activeBlockStart}-${activeBlockEnd}`}
-          </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
-            Check each section in order. Finish this block, then move to the next.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 print:gap-2">
-          {visibleWeeks.map((week) => (
-            <article
-              key={week.week}
-              className="rounded-[1.5rem] border border-white/10 bg-black/10 p-4 print:break-inside-avoid print:border-black print:bg-white print:p-3"
-            >
-              <h3 className="text-lg font-black text-white print:text-black">
-                Week {week.week}
-              </h3>
-
-              <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-7 print:grid-cols-7">
-                {week.days.map((day) => (
+                return (
                   <div
-                    key={`${week.week}-${day.daySlug}-header`}
-                    className="hidden rounded-2xl border border-emerald-200/20 bg-emerald-300/10 p-3 text-center md:block print:block print:border-black print:bg-white"
+                    key={`board-week-${week.week}`}
+                    className={`rounded-xl border px-2 py-2 text-center ${
+                      isActive
+                        ? "border-emerald-200/50 bg-emerald-300/20"
+                        : isComplete
+                          ? "border-emerald-200/25 bg-emerald-300/10"
+                          : "border-white/10 bg-black/15"
+                    }`}
                   >
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-emerald-100 print:text-black">
-                      {readingPlanCategory(day)}
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.12em] text-slate-300">
+                      Week
                     </p>
-                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400 print:text-black">
-                      {day.dayLabel}
-                    </p>
+                    <p className="text-base font-black text-white">{week.week}</p>
+                    <p className="text-[0.65rem] font-bold text-emerald-100">{weekDoneCount}/7</p>
                   </div>
-                ))}
-
-                {week.days.map((day) => {
-                  const key = doneKey(day);
-                  const isDone = Boolean(done[key]);
-
-                  return (
-                    <div
-                      key={key}
-                      className={`flex min-h-[10.5rem] flex-col rounded-2xl border p-3 print:min-h-0 print:border-black ${
-                        isDone
-                          ? "border-emerald-200/35 bg-emerald-300/15"
-                          : "border-white/10 bg-white/[0.03]"
-                      }`}
-                    >
-                      <div className="md:hidden print:hidden">
-                        <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100">
-                          {readingPlanCategory(day)}
-                        </p>
-                        <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
-                          {day.dayLabel}
-                        </p>
-                      </div>
-
-                      <p className="mt-3 text-base font-black leading-snug text-white print:mt-0 print:text-black">
-                        {day.reading}
-                      </p>
-
-                      <div className="mt-auto flex items-end justify-between gap-2 pt-4 print:hidden">
-                        <button
-                          type="button"
-                          onClick={() => toggleDone(day)}
-                          aria-pressed={isDone}
-                          aria-label={`${isDone ? "Mark not done" : "Mark done"}: Week ${day.week} ${day.dayLabel} ${day.reading}`}
-                          className="h-8 w-8 shrink-0 rounded-full border border-white/20 bg-white/10 text-sm font-black text-white transition hover:bg-white/15"
-                        >
-                          {isDone ? "✓" : ""}
-                        </button>
-
-                        <a
-                          href={bibleSearchUrl(day.reading)}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100 underline underline-offset-4"
-                        >
-                          Open
-                        </a>
-                      </div>
-
-                      <p className="mt-2 hidden text-xs font-black print:block">
-                        {isDone ? "Done" : "Not done"}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-          ))}
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
+
+      {activeWeek ? (
+        <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
+          <div className="mb-6 text-center print:mb-3">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
+              Current Week
+            </p>
+            <h2 className="mt-3 text-3xl font-black text-white print:text-black">
+              Week {activeWeek.week}
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
+              Start with today, then fill the rest of the week.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-7 print:grid-cols-7">
+            {activeWeek.days.map((day) => {
+              const key = doneKey(day);
+              const isDone = Boolean(done[key]);
+              const isToday = day.daySlug === todaySlug;
+              const isNext = nextPlanDay ? doneKey(nextPlanDay) === key : false;
+
+              return (
+                <div
+                  key={key}
+                  className={`flex min-h-[12rem] flex-col rounded-2xl border p-3 print:min-h-0 print:border-black ${
+                    isToday
+                      ? "border-emerald-200/50 bg-emerald-300/18"
+                      : isDone
+                        ? "border-emerald-200/35 bg-emerald-300/12"
+                        : isNext
+                          ? "border-yellow-200/35 bg-yellow-300/10"
+                          : "border-white/10 bg-white/[0.03]"
+                  }`}
+                >
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100 print:text-black">
+                    {readingPlanCategory(day)}
+                  </p>
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400 print:text-black">
+                    {day.dayLabel}
+                  </p>
+
+                  {isToday ? (
+                    <p className="mt-3 rounded-full border border-emerald-200/30 bg-emerald-300/15 px-3 py-1 text-center text-[0.65rem] font-black uppercase tracking-[0.14em] text-emerald-50 print:hidden">
+                      Today
+                    </p>
+                  ) : null}
+
+                  <p className="mt-3 text-xl font-black leading-snug text-white print:mt-0 print:text-black">
+                    {day.reading}
+                  </p>
+
+                  <div className="mt-auto flex items-end justify-between gap-2 pt-4 print:hidden">
+                    <button
+                      type="button"
+                      onClick={() => toggleDone(day)}
+                      aria-pressed={isDone}
+                      aria-label={`${isDone ? "Mark not done" : "Mark done"}: Week ${day.week} ${day.dayLabel} ${day.reading}`}
+                      className="h-9 w-9 shrink-0 rounded-full border border-white/20 bg-white/10 text-sm font-black text-white transition hover:bg-white/15"
+                    >
+                      {isDone ? "✓" : ""}
+                    </button>
+
+                    <a
+                      href={bibleSearchUrl(day.reading)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100 underline underline-offset-4"
+                    >
+                      Open
+                    </a>
+                  </div>
+
+                  <p className="mt-2 hidden text-xs font-black print:block">
+                    {isDone ? "Done" : "Not done"}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <details className="mt-8 rounded-2xl border border-white/10 bg-black/10 p-4 print:hidden">
+            <summary className="cursor-pointer text-sm font-black uppercase tracking-[0.16em] text-emerald-100">
+              Full 52-week checklist
+            </summary>
+
+            <div className="mt-5 grid grid-cols-1 gap-4">
+              {weeks.map((week) => (
+                <article
+                  key={`full-week-${week.week}`}
+                  className="rounded-[1.25rem] border border-white/10 bg-white/[0.025] p-3"
+                >
+                  <h3 className="text-sm font-black text-white">
+                    Week {week.week}
+                  </h3>
+
+                  <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-7">
+                    {week.days.map((day) => {
+                      const key = doneKey(day);
+                      const isDone = Boolean(done[key]);
+
+                      return (
+                        <div
+                          key={`full-${key}`}
+                          className={`rounded-xl border p-2 ${
+                            isDone
+                              ? "border-emerald-200/35 bg-emerald-300/15"
+                              : "border-white/10 bg-black/10"
+                          }`}
+                        >
+                          <p className="text-[0.65rem] font-black uppercase tracking-[0.12em] text-emerald-100">
+                            {day.dayLabel}
+                          </p>
+                          <p className="mt-1 text-sm font-black text-white">{day.reading}</p>
+
+                          <div className="mt-3 flex items-center justify-between gap-2">
+                            <button
+                              type="button"
+                              onClick={() => toggleDone(day)}
+                              aria-pressed={isDone}
+                              className="h-7 w-7 rounded-full border border-white/20 bg-white/10 text-xs font-black text-white"
+                            >
+                              {isDone ? "✓" : ""}
+                            </button>
+
+                            <a
+                              href={bibleSearchUrl(day.reading)}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[0.65rem] font-black uppercase tracking-[0.12em] text-emerald-100 underline underline-offset-4"
+                            >
+                              Open
+                            </a>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </details>
+        </section>
+      ) : null}
     </>
   );
+
 }
