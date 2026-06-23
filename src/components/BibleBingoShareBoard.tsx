@@ -181,7 +181,6 @@ export default function BibleBingoShareBoard({
                   <button
                     type="button"
                     onClick={() => openWordStudy(passage)}
-                    disabled={!hasVerifiedWordLinks(wordStudies)}
                     title={
                       hasVerifiedWordLinks(wordStudies)
                         ? "Open verified original-language word study"

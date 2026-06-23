@@ -923,7 +923,6 @@ export default function BibleExplorerPage() {
                 <button
                   type="button"
                   onClick={() => openWordStudy(focusedCard.section, focusedCard.passage)}
-                  disabled={!hasVerifiedWordLinks(wordStudiesForPassage(focusedCard.passage))}
                   title={
                     hasVerifiedWordLinks(wordStudiesForPassage(focusedCard.passage))
                       ? "Open verified original-language word study"

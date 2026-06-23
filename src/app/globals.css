@@ -472,4 +472,18 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 }
 /* END FOCUSED BIBLE BINGO CARD ARRIVAL */
 
+/* DEEP DIVE MEANING UPGRADE */
+.deep-dive-strongs-detail-card {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 60px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 640px) {
+  .deep-dive-strongs-detail-card {
+    border-radius: 1.1rem;
+    padding: 0.9rem;
+  }
+}
+/* END DEEP DIVE MEANING UPGRADE */
 

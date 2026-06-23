@@ -310,6 +310,76 @@ function detailRow(label: string, value: string) {
   );
 }
 
+
+type DeepDiveStrongDetailStudy = {
+  sourceGloss?: string;
+  lexiconMeaning?: string;
+  strongs?: string;
+  morphology?: string;
+  originalWord?: string;
+  transliteration?: string;
+  pronunciation?: string;
+};
+
+function DeepDiveStrongDetailCard({
+  study,
+}: {
+  study: DeepDiveStrongDetailStudy | null | undefined;
+}) {
+  if (!study) {
+    return (
+      <section className="deep-dive-strongs-detail-card mt-5 rounded-[1.5rem] border border-yellow-200/20 bg-yellow-300/[0.06] p-4 sm:p-5">
+        <p className="text-[0.68rem] font-black uppercase tracking-[0.24em] text-yellow-100">
+          Original-language detail
+        </p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
+          No verified original-language word record is selected for this verse yet.
+        </p>
+      </section>
+    );
+  }
+
+  const transliterationPronunciation = [study.transliteration, study.pronunciation]
+    .filter(Boolean)
+    .join(" · ");
+
+  const detailRows = [
+    { label: "Original word", value: study.originalWord },
+    { label: "Transliteration / pronunciation", value: transliterationPronunciation },
+    { label: "Source gloss", value: study.sourceGloss },
+    { label: "Lexicon meaning", value: study.lexiconMeaning },
+    { label: "Strong’s number", value: study.strongs },
+    { label: "Morphology", value: study.morphology },
+  ].filter((item): item is { label: string; value: string } =>
+    Boolean(item.value && item.value.trim().length),
+  );
+
+  return (
+    <section className="deep-dive-strongs-detail-card mt-5 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-4 sm:p-5">
+      <p className="text-[0.68rem] font-black uppercase tracking-[0.24em] text-emerald-100">
+        Strong’s / Lexicon Detail
+      </p>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {detailRows.map((item) => (
+          <div key={item.label} className="rounded-2xl border border-white/10 bg-black/20 p-3">
+            <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+              {item.label}
+            </p>
+            <p className="mt-2 text-sm font-black leading-6 text-white">
+              {item.value}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-4 text-xs font-semibold leading-6 text-slate-400">
+        Verified local Strong’s and lexicon fields only. No AI interpretation is added here.
+      </p>
+    </section>
+  );
+}
+
 export default function OriginalWordStudyModal({
   passage,
   wordStudy,
@@ -467,6 +537,7 @@ export default function OriginalWordStudyModal({
               {detailRow("Source gloss", selectedWordStudy.sourceGloss)}
               {detailRow("Lexicon source", selectedWordStudy.lexiconSourceName)}
             </div>
+        <DeepDiveStrongDetailCard study={selectedWordStudy} />
 
             <p className="mt-4 text-xs leading-5 text-slate-500">
               {selectedWordStudy.sourceName}

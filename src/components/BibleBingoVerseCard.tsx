@@ -191,7 +191,6 @@ export default function BibleBingoVerseCard({
           <button
             type="button"
             onClick={onOpenDeepDive}
-            disabled={!deepDiveReady}
             title={
               isLoadingWordStudies
                 ? "Checking for verified original-language word links."

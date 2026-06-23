@@ -727,7 +727,6 @@ export default function DailyHopeRoutine({
                           <button
                             type="button"
                             onClick={() => openWordStudyForItem(item)}
-                            disabled={!verifiedReady}
                             title={
                               verifiedReady
                                 ? "Open verified original-language word study"
