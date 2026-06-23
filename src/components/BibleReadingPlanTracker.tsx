@@ -27,8 +27,8 @@ const READING_PLAN_LANES = [
 export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrackerProps) {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 print:bg-white print:text-black">
-      <section className="mx-auto max-w-6xl px-6 py-8 print:max-w-none print:px-0 print:py-0">
-        <SiteHeader className="mb-10 sm:mb-12 print:hidden" />
+      <section className="mx-auto max-w-6xl px-4 py-5 print:max-w-none print:px-0 print:py-0 sm:px-6 sm:py-8">
+        <SiteHeader className="mb-5 sm:mb-12 print:hidden" />
 
         <div className="text-center">
           <div
@@ -43,27 +43,27 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             <span>Pray</span>
           </div>
 
-          <h1 className="mt-6 text-5xl font-black tracking-tight text-white print:text-black sm:text-7xl">
+          <h1 className="mt-4 text-3xl font-black tracking-tight text-white print:text-black sm:mt-6 sm:text-7xl">
             Bible Reading Plan
           </h1>
 
-          <p className="mt-3 text-xl font-black text-emerald-100 print:text-black sm:text-3xl">
+          <p className="mt-2 text-lg font-black text-emerald-100 print:text-black sm:mt-3 sm:text-3xl">
             Fill the 52-week board.
           </p>
 
-          <div className="mx-auto mt-5 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] px-4 py-4 text-center print:border-black print:bg-white sm:px-5 sm:py-5">
+          <div className="mx-auto mt-4 max-w-5xl rounded-[1.4rem] border border-white/10 bg-white/[0.035] px-3 py-3 text-center print:border-black print:bg-white sm:mt-5 sm:rounded-[2rem] sm:px-5 sm:py-5">
             <p className="text-sm font-black text-slate-100 print:text-black sm:text-base">
               One full-year board. Read, check, and watch it fill.
             </p>
-            <p className="mx-auto mt-2 max-w-2xl text-xs font-semibold leading-6 text-slate-300 print:text-black sm:text-sm">
+            <p className="mx-auto mt-2 hidden max-w-2xl text-xs font-semibold leading-6 text-slate-300 print:text-black sm:block sm:text-sm">
               Each day follows its own lane so the whole Bible opens in a simple weekly rhythm.
             </p>
 
-            <div className="mt-4 grid grid-cols-1 gap-2 text-left sm:grid-cols-2 lg:grid-cols-7 print:grid-cols-2">
+            <div className="mt-4 flex snap-x gap-2 overflow-x-auto pb-2 text-left sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-7 print:grid-cols-2">
               {READING_PLAN_LANES.map((lane) => (
                 <div
                   key={lane.day}
-                  className="rounded-2xl border border-white/10 bg-black/15 px-3 py-3 print:border-black print:bg-white"
+                  className="min-w-[9.25rem] snap-start rounded-2xl border border-white/10 bg-black/15 px-3 py-3 print:border-black print:bg-white sm:min-w-0"
                 >
                   <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-100 print:text-black">
                     {lane.day}
@@ -71,7 +71,7 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
                   <p className="mt-1 text-sm font-black text-white print:text-black">
                     {lane.lane}
                   </p>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-300 print:text-black">
+                  <p className="mt-1 hidden text-xs font-semibold leading-5 text-slate-300 print:text-black sm:block">
                     {lane.note}
                   </p>
                 </div>

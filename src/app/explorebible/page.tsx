@@ -733,7 +733,7 @@ export default function BibleExplorerPage() {
                     onClick={() => focusDayCard(index)}
                     aria-pressed={isFocused}
                     aria-busy={spinningCards[index]}
-                    className={`relative bible-bingo-deck-card flex min-h-[235px] flex-col overflow-hidden rounded-[1.5rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
+                    className={`relative bible-bingo-deck-card flex min-h-[124px] min-w-[10.5rem] snap-start flex-col overflow-hidden rounded-[1.15rem] border p-3 text-center shadow-xl transition duration-200 sm:min-h-[235px] sm:min-w-0 sm:rounded-[1.5rem] sm:p-4 sm:hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
                       isFocused
                         ? "border-white/50 bg-white/15 ring-2 ring-white/25"
                         : "border-white/10 opacity-90 hover:opacity-100"
@@ -773,7 +773,7 @@ export default function BibleExplorerPage() {
                           </span>
                         ) : null}
                       </div>
-                      <p className="bible-card-verse-preview mt-2 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
+                      <p className="hidden sm:block bible-card-verse-preview mt-2 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
                         {passage.text}
                       </p>
                     </div>
@@ -791,7 +791,7 @@ export default function BibleExplorerPage() {
             <article
               id={`card-${focusedIndex + 1}`}
               key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}-${focusedFlipVersion}`}
-              className={`relative bible-bingo-focused-card bible-card-focus-flip mx-auto mt-6 max-w-3xl overflow-hidden rounded-[2rem] border p-6 text-center text-slate-100 shadow-2xl shadow-black/30 sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
+              className={`relative bible-bingo-focused-card bible-card-focus-flip mx-auto mt-4 max-w-3xl overflow-hidden rounded-[1.35rem] border p-4 text-center text-slate-100 shadow-2xl shadow-black/30 sm:mt-6 sm:rounded-[2rem] sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
               style={{
                 minHeight: "430px",
                 display: "flex",
@@ -835,7 +835,7 @@ export default function BibleExplorerPage() {
                 <span>🙏</span>
               </div>
 
-              <div className="mt-5 text-5xl">{focusedCard.section.emoji}</div>
+              <div className="hidden sm:mt-5 sm:block sm:text-5xl">{focusedCard.section.emoji}</div>
 
               <p className="mt-5 text-xs font-black uppercase tracking-[0.22em] text-slate-300">
                 Bible Bingo Card {focusedIndex + 1}
@@ -855,12 +855,12 @@ export default function BibleExplorerPage() {
                 {focusedTitle?.title ?? focusedCard.section.title}
               </h2>
 
-              <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-slate-300">
+              <p className="hidden sm:block mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-slate-300">
                 {focusedCard.section.line}
               </p>
 
               {focusedBookLinks.length ? (
-                <div className="mt-5 w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-4 text-center">
+                <div className="hidden sm:block mt-5 w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-4 text-center">
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
                     Books in this lane
                   </p>
