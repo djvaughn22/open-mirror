@@ -111,6 +111,112 @@ function cardTone(index: number) {
   return CARD_TONES[index % CARD_TONES.length];
 }
 
+
+type BibleBookLink = {
+  label: string;
+  href: string;
+};
+
+function bibleBookHref(code: string) {
+  return `https://www.bible.com/bible/206/${code}.1.WEBUS`;
+}
+
+const BIBLE_BINGO_BOOK_LINKS: Record<string, BibleBookLink[]> = {
+  epistles: [
+    { label: "Romans", href: bibleBookHref("ROM") },
+    { label: "1 Corinthians", href: bibleBookHref("1CO") },
+    { label: "2 Corinthians", href: bibleBookHref("2CO") },
+    { label: "Galatians", href: bibleBookHref("GAL") },
+    { label: "Ephesians", href: bibleBookHref("EPH") },
+    { label: "Philippians", href: bibleBookHref("PHP") },
+    { label: "Colossians", href: bibleBookHref("COL") },
+    { label: "1 Thessalonians", href: bibleBookHref("1TH") },
+    { label: "2 Thessalonians", href: bibleBookHref("2TH") },
+    { label: "1 Timothy", href: bibleBookHref("1TI") },
+    { label: "2 Timothy", href: bibleBookHref("2TI") },
+    { label: "Titus", href: bibleBookHref("TIT") },
+    { label: "Philemon", href: bibleBookHref("PHM") },
+    { label: "Hebrews", href: bibleBookHref("HEB") },
+    { label: "James", href: bibleBookHref("JAS") },
+    { label: "1 Peter", href: bibleBookHref("1PE") },
+    { label: "2 Peter", href: bibleBookHref("2PE") },
+    { label: "1 John", href: bibleBookHref("1JN") },
+    { label: "2 John", href: bibleBookHref("2JN") },
+    { label: "3 John", href: bibleBookHref("3JN") },
+    { label: "Jude", href: bibleBookHref("JUD") },
+  ],
+  law: [
+    { label: "Genesis", href: bibleBookHref("GEN") },
+    { label: "Exodus", href: bibleBookHref("EXO") },
+    { label: "Leviticus", href: bibleBookHref("LEV") },
+    { label: "Numbers", href: bibleBookHref("NUM") },
+    { label: "Deuteronomy", href: bibleBookHref("DEU") },
+  ],
+  history: [
+    { label: "Joshua", href: bibleBookHref("JOS") },
+    { label: "Judges", href: bibleBookHref("JDG") },
+    { label: "Ruth", href: bibleBookHref("RUT") },
+    { label: "1 Samuel", href: bibleBookHref("1SA") },
+    { label: "2 Samuel", href: bibleBookHref("2SA") },
+    { label: "1 Kings", href: bibleBookHref("1KI") },
+    { label: "2 Kings", href: bibleBookHref("2KI") },
+    { label: "1 Chronicles", href: bibleBookHref("1CH") },
+    { label: "2 Chronicles", href: bibleBookHref("2CH") },
+    { label: "Ezra", href: bibleBookHref("EZR") },
+    { label: "Nehemiah", href: bibleBookHref("NEH") },
+    { label: "Esther", href: bibleBookHref("EST") },
+  ],
+  psalms: [
+    { label: "Psalms", href: bibleBookHref("PSA") },
+  ],
+  poetry: [
+    { label: "Job", href: bibleBookHref("JOB") },
+    { label: "Proverbs", href: bibleBookHref("PRO") },
+    { label: "Ecclesiastes", href: bibleBookHref("ECC") },
+    { label: "Song of Solomon", href: bibleBookHref("SNG") },
+  ],
+  prophecy: [
+    { label: "Isaiah", href: bibleBookHref("ISA") },
+    { label: "Jeremiah", href: bibleBookHref("JER") },
+    { label: "Lamentations", href: bibleBookHref("LAM") },
+    { label: "Ezekiel", href: bibleBookHref("EZK") },
+    { label: "Daniel", href: bibleBookHref("DAN") },
+    { label: "Hosea", href: bibleBookHref("HOS") },
+    { label: "Joel", href: bibleBookHref("JOL") },
+    { label: "Amos", href: bibleBookHref("AMO") },
+    { label: "Obadiah", href: bibleBookHref("OBA") },
+    { label: "Jonah", href: bibleBookHref("JON") },
+    { label: "Micah", href: bibleBookHref("MIC") },
+    { label: "Nahum", href: bibleBookHref("NAM") },
+    { label: "Habakkuk", href: bibleBookHref("HAB") },
+    { label: "Zephaniah", href: bibleBookHref("ZEP") },
+    { label: "Haggai", href: bibleBookHref("HAG") },
+    { label: "Zechariah", href: bibleBookHref("ZEC") },
+    { label: "Malachi", href: bibleBookHref("MAL") },
+  ],
+  gospels: [
+    { label: "Matthew", href: bibleBookHref("MAT") },
+    { label: "Mark", href: bibleBookHref("MRK") },
+    { label: "Luke", href: bibleBookHref("LUK") },
+    { label: "John", href: bibleBookHref("JHN") },
+  ],
+};
+
+function bibleBingoBookLinksForSection(sectionTitle: string) {
+  const cleanTitle = splitBibleBingoSectionTitle(sectionTitle).title.toLowerCase();
+
+  if (cleanTitle.includes("epistles")) return BIBLE_BINGO_BOOK_LINKS.epistles;
+  if (cleanTitle.includes("law")) return BIBLE_BINGO_BOOK_LINKS.law;
+  if (cleanTitle.includes("history")) return BIBLE_BINGO_BOOK_LINKS.history;
+  if (cleanTitle.includes("psalms")) return BIBLE_BINGO_BOOK_LINKS.psalms;
+  if (cleanTitle.includes("poetry")) return BIBLE_BINGO_BOOK_LINKS.poetry;
+  if (cleanTitle.includes("prophecy")) return BIBLE_BINGO_BOOK_LINKS.prophecy;
+  if (cleanTitle.includes("gospels")) return BIBLE_BINGO_BOOK_LINKS.gospels;
+
+  return [];
+}
+
+
 function randomPassage(section: Section, avoidLabel?: string) {
   return randomReferenceForSection(section.title, avoidLabel);
 }
@@ -543,6 +649,9 @@ export default function BibleExplorerPage() {
   const focusedReadInPlan = focusedCard
     ? isBingoReadingPlanDone(bingoReadingPlanDone, focusedCard.passage.code, focusedCard.passage.chapter)
     : false;
+  const focusedBookLinks = focusedCard
+    ? bibleBingoBookLinksForSection(focusedCard.section.title)
+    : [];
   const todayStartIndex = centralDayIndex();
   const displayIndexes = displayIndexesStartingWith(todayStartIndex);
 
@@ -749,6 +858,27 @@ export default function BibleExplorerPage() {
               <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-slate-300">
                 {focusedCard.section.line}
               </p>
+
+              {focusedBookLinks.length ? (
+                <div className="mt-5 w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-4 text-center">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+                    Books in this lane
+                  </p>
+                  <div className="mt-3 flex flex-wrap justify-center gap-2">
+                    {focusedBookLinks.map((book) => (
+                      <a
+                        key={book.label}
+                        href={book.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex rounded-full border border-white/15 bg-black/20 px-3 py-1.5 text-xs font-bold text-slate-100 transition hover:bg-white/10"
+                      >
+                        {book.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
 
               <p className="mt-6 text-2xl font-black text-white">
                 {focusedCard.passage.label}

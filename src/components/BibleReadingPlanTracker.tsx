@@ -13,6 +13,17 @@ type BibleReadingPlanTrackerProps = {
   weeks: BibleReadingPlanWeek[];
 };
 
+const READING_PLAN_LANES = [
+  { day: "Sunday", lane: "Epistles", note: "Letters for faith and life in Christ." },
+  { day: "Monday", lane: "Law", note: "Beginnings, covenant, and God’s way." },
+  { day: "Tuesday", lane: "History", note: "Real stories of God with His people." },
+  { day: "Wednesday", lane: "Psalms", note: "Prayer, praise, and honest worship." },
+  { day: "Thursday", lane: "Poetry", note: "Wisdom, wonder, and the heart." },
+  { day: "Friday", lane: "Prophecy", note: "Warnings, promises, and hope." },
+  { day: "Saturday", lane: "Gospels", note: "Jesus—His words, works, and way." },
+];
+
+
 export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrackerProps) {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 print:bg-white print:text-black">
@@ -40,13 +51,32 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             Fill the 52-week board.
           </p>
 
-          <div className="mx-auto mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-center print:border-black print:bg-white">
+          <div className="mx-auto mt-5 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] px-4 py-4 text-center print:border-black print:bg-white sm:px-5 sm:py-5">
             <p className="text-sm font-black text-slate-100 print:text-black sm:text-base">
               One full-year board. Read, check, and watch it fill.
             </p>
-            <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-emerald-100 print:text-black sm:text-xs">
-              Sunday Epistles: letters · Monday Law: beginnings · Tuesday History: stories · Wednesday Psalms: prayer · Thursday Poetry: wisdom · Friday Prophecy: promises · Saturday Gospels: Jesus
+            <p className="mx-auto mt-2 max-w-2xl text-xs font-semibold leading-6 text-slate-300 print:text-black sm:text-sm">
+              Each day follows its own lane so the whole Bible opens in a simple weekly rhythm.
             </p>
+
+            <div className="mt-4 grid grid-cols-1 gap-2 text-left sm:grid-cols-2 lg:grid-cols-7 print:grid-cols-2">
+              {READING_PLAN_LANES.map((lane) => (
+                <div
+                  key={lane.day}
+                  className="rounded-2xl border border-white/10 bg-black/15 px-3 py-3 print:border-black print:bg-white"
+                >
+                  <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-100 print:text-black">
+                    {lane.day}
+                  </p>
+                  <p className="mt-1 text-sm font-black text-white print:text-black">
+                    {lane.lane}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-300 print:text-black">
+                    {lane.note}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <p className="mx-auto mt-5 max-w-2xl text-xs font-semibold leading-6 text-slate-400 print:text-black">
