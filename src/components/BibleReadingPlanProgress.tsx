@@ -276,6 +276,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const [startDateKey, setStartDateKey] = useState(() => centralDateKey());
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
+  const [saveMessage, setSaveMessage] = useState("");
   const [targetDayKey, setTargetDayKey] = useState("");
 
   const todayDateKey = centralDateKey();
@@ -335,13 +336,158 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     }));
   }
 
+  function saveProgressNow() {
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        startDateKey,
+        done,
+      }),
+    );
+
+    setSaveMessage("Saved on this device.");
+  }
+
   function resetToToday() {
-    setStartDateKey(centralDateKey());
+    const confirmed = window.confirm(
+      "Start over and clear all Bible Reading Plan progress saved on this device?",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    const todayKey = centralDateKey();
+    setStartDateKey(todayKey);
     setDone({});
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        startDateKey: todayKey,
+        done: {},
+      }),
+    );
+    setSaveMessage("Started over on this device.");
   }
 
   function clearProgress() {
+    const confirmed = window.confirm(
+      "Clear all Bible Reading Plan progress saved on this device?",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
     setDone({});
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        startDateKey,
+        done: {},
+      }),
+    );
+    setSaveMessage("Progress cleared on this device.");
+  }
+
+  function progressBackupPayload() {
+    return {
+      version: 1,
+      savedAt: new Date().toISOString(),
+      startDateKey,
+      done,
+    };
+  }
+
+  function encodeProgressBackup() {
+    const json = JSON.stringify(progressBackupPayload());
+    const bytes = new TextEncoder().encode(json);
+    let binary = "";
+
+    for (const byte of bytes) {
+      binary += String.fromCharCode(byte);
+    }
+
+    return "crossheartpray-reading-plan-v1:" + window.btoa(binary);
+  }
+
+  function decodeProgressBackup(code: string): StoredProgress | null {
+    try {
+      const cleaned = code.trim().replace(/^crossheartpray-reading-plan-v1:/i, "");
+      const binary = window.atob(cleaned);
+      const bytes = Uint8Array.from(binary, function(character) {
+        return character.charCodeAt(0);
+      });
+      const json = new TextDecoder().decode(bytes);
+      const parsed = JSON.parse(json) as Partial<StoredProgress>;
+
+      if (!parsed.startDateKey || !parsed.done) {
+        return null;
+      }
+
+      return {
+        startDateKey: parsed.startDateKey,
+        done: parsed.done,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function emailProgressBackup() {
+    saveProgressNow();
+
+    const subject = "Cross Heart Pray Bible Reading Plan Backup";
+    const body = [
+      "Cross Heart Pray Bible Reading Plan Backup",
+      "",
+      "Saved: " + new Date().toLocaleString(),
+      "Progress: " + completedCount + "/" + totalDays,
+      "",
+      "Restore code:",
+      encodeProgressBackup(),
+      "",
+      "To restore later: open the Bible Reading Plan, tap Restore Backup, and paste the restore code.",
+    ].join("\n");
+
+    window.location.href =
+      "mailto:?subject=" +
+      encodeURIComponent(subject) +
+      "&body=" +
+      encodeURIComponent(body);
+
+    setSaveMessage("Email backup opened. Send it to yourself.");
+  }
+
+  async function copyProgressBackup() {
+    saveProgressNow();
+
+    try {
+      await navigator.clipboard.writeText(encodeProgressBackup());
+      setSaveMessage("Backup code copied.");
+    } catch {
+      setSaveMessage("Copy failed. Use Email Backup.");
+    }
+  }
+
+  function restoreProgressBackup() {
+    const code = window.prompt("Paste your Cross Heart Pray backup code:");
+
+    if (!code) {
+      return;
+    }
+
+    const restored = decodeProgressBackup(code);
+
+    if (!restored) {
+      setSaveMessage("Backup code was not valid.");
+      return;
+    }
+
+    setStartDateKey(restored.startDateKey);
+    setDone(restored.done);
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(restored));
+    setSaveMessage("Backup restored on this device.");
   }
 
   if (!loaded) {
@@ -386,20 +532,58 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
           <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
               type="button"
-              onClick={resetToToday}
-              className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/25"
+              onClick={saveProgressNow}
+              className="min-h-[44px] rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/25"
             >
-              Start over
+              Save Progress
+            </button>
+
+            <button
+              type="button"
+              onClick={emailProgressBackup}
+              className="min-h-[44px] rounded-full border border-sky-200/30 bg-sky-300/15 px-4 py-3 text-sm font-black text-sky-50 transition hover:bg-sky-300/25"
+            >
+              Email Backup
+            </button>
+
+            <button
+              type="button"
+              onClick={copyProgressBackup}
+              className="min-h-[44px] rounded-full border border-white/15 bg-white/10 px-4 py-3 text-sm font-black text-slate-100 transition hover:bg-white/15"
+            >
+              Copy Backup
+            </button>
+
+            <button
+              type="button"
+              onClick={restoreProgressBackup}
+              className="min-h-[44px] rounded-full border border-yellow-200/25 bg-yellow-300/10 px-4 py-3 text-sm font-black text-yellow-50 transition hover:bg-yellow-300/15"
+            >
+              Restore Backup
+            </button>
+
+            <button
+              type="button"
+              onClick={resetToToday}
+              className="min-h-[44px] rounded-full border border-orange-200/25 bg-orange-300/10 px-4 py-3 text-sm font-black text-orange-50 transition hover:bg-orange-300/15"
+            >
+              Start Over
             </button>
 
             <button
               type="button"
               onClick={clearProgress}
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm font-black text-slate-100 transition hover:bg-white/10"
+              className="min-h-[44px] rounded-full border border-red-200/25 bg-red-300/10 px-4 py-3 text-sm font-black text-red-100 transition hover:bg-red-300/15"
             >
-              Clear progress
+              Clear Progress
             </button>
           </div>
+
+          {saveMessage ? (
+            <p className="mt-3 text-sm font-black text-emerald-100" role="status">
+              {saveMessage}
+            </p>
+          ) : null}
         </div>
 
         <div className="rounded-[2rem] border border-emerald-200/25 bg-emerald-300/[0.08] p-6 shadow-2xl shadow-emerald-950/20 sm:p-7">
