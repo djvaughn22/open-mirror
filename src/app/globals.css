@@ -416,3 +416,60 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 }
 /* END MOBILE EXPERIENCE: Bible Bingo focus + Reading Plan */
 
+/* FOCUSED BIBLE BINGO CARD ARRIVAL */
+@keyframes chp-focused-bible-card-arrive {
+  0% {
+    opacity: 0.74;
+    transform: translateY(18px) scale(0.985);
+    filter: brightness(0.92);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.006);
+    filter: brightness(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+.bible-bingo-focused-card {
+  scroll-margin-top: 1.25rem;
+}
+
+.bible-bingo-focus-arrive {
+  transform-origin: top center;
+  animation: chp-focused-bible-card-arrive 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bible-bingo-focused-lane-books {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 640px) {
+  .bible-bingo-focused-card {
+    scroll-margin-top: 0.75rem;
+  }
+
+  .bible-bingo-focused-lane-books {
+    margin-top: 1rem;
+  }
+
+  .bible-bingo-focused-lane-books a {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.72rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bible-bingo-focus-arrive {
+    animation: none;
+  }
+}
+/* END FOCUSED BIBLE BINGO CARD ARRIVAL */
+
+

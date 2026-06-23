@@ -5,7 +5,7 @@ import SiteFooter from "../../components/SiteFooter";
 
 import SiteHeader from "../../components/SiteHeader";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import {
   bibleBingoBoardIdFromPassages,
   bibleBingoOddsForSection,
@@ -395,6 +395,8 @@ export default function BibleExplorerPage() {
   const [focusedCardIndex, setFocusedCardIndex] = useState(() => centralDayIndex());
   const [bingoReadingPlanDone, setBingoReadingPlanDone] = useState<Record<string, boolean>>({});
   const [focusedFlipVersion, setFocusedFlipVersion] = useState(0);
+  const focusedCardRef = useRef<HTMLElement | null>(null);
+  const hasFocusedCardMountedRef = useRef(false);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -652,6 +654,24 @@ export default function BibleExplorerPage() {
   const focusedBookLinks = focusedCard
     ? bibleBingoBookLinksForSection(focusedCard.section.title)
     : [];
+
+  useEffect(() => {
+    if (!focusedCardRef.current) return;
+
+    if (!hasFocusedCardMountedRef.current) {
+      hasFocusedCardMountedRef.current = true;
+      return;
+    }
+
+    const handle = window.setTimeout(() => {
+      focusedCardRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
+
+    return () => window.clearTimeout(handle);
+  }, [focusedCardIndex]);
   const todayStartIndex = centralDayIndex();
   const displayIndexes = displayIndexesStartingWith(todayStartIndex);
 
@@ -790,8 +810,9 @@ export default function BibleExplorerPage() {
           {focusedCard ? (
             <article
               id={`card-${focusedIndex + 1}`}
+              ref={focusedCardRef}
               key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}-${focusedFlipVersion}`}
-              className={`relative bible-bingo-focused-card bible-card-focus-flip mx-auto mt-4 max-w-3xl overflow-hidden rounded-[1.35rem] border p-4 text-center text-slate-100 shadow-2xl shadow-black/30 sm:mt-6 sm:rounded-[2rem] sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
+              className={`relative bible-bingo-focused-card bible-card-focus-flip bible-bingo-focus-arrive mx-auto mt-4 max-w-3xl overflow-hidden rounded-[1.35rem] border p-4 text-center text-slate-100 shadow-2xl shadow-black/30 sm:mt-6 sm:rounded-[2rem] sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
               style={{
                 minHeight: "430px",
                 display: "flex",
@@ -860,7 +881,7 @@ export default function BibleExplorerPage() {
               </p>
 
               {focusedBookLinks.length ? (
-                <div className="hidden sm:block mt-5 w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-4 text-center">
+                <div className="bible-bingo-focused-lane-books-top hidden hidden sm:block mt-5 w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-4 text-center">
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
                     Books in this lane
                   </p>
@@ -944,6 +965,27 @@ export default function BibleExplorerPage() {
               <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
                 Odds: <span className="text-white">{oddsText(focusedCard.section)}</span>
               </p>
+              {focusedBookLinks.length ? (
+                <div className="bible-bingo-focused-lane-books mt-6 rounded-[1.35rem] border border-white/10 bg-black/15 px-4 py-4 text-center sm:mt-7 sm:rounded-[2rem] sm:px-5 sm:py-5">
+                  <p className="text-[10px] font-black uppercase tracking-[0.28em] text-emerald-100">
+                    Books in this lane
+                  </p>
+                  <div className="mt-3 flex flex-wrap justify-center gap-2">
+                    {focusedBookLinks.map((book) => (
+                      <a
+                        key={book.label}
+                        href={book.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-black text-slate-100 transition hover:border-emerald-200/60 hover:bg-emerald-200/10"
+                      >
+                        {book.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
             </article>
           ) : null}
         </section>
