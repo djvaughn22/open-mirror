@@ -880,26 +880,7 @@ export default function BibleExplorerPage() {
                 {focusedCard.section.line}
               </p>
 
-              {focusedBookLinks.length ? (
-                <div className="bible-bingo-focused-lane-books-top hidden hidden sm:block mt-5 w-full max-w-2xl rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-4 text-center">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                    Books in this lane
-                  </p>
-                  <div className="mt-3 flex flex-wrap justify-center gap-2">
-                    {focusedBookLinks.map((book) => (
-                      <a
-                        key={book.label}
-                        href={book.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex rounded-full border border-white/15 bg-black/20 px-3 py-1.5 text-xs font-bold text-slate-100 transition hover:bg-white/10"
-                      >
-                        {book.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
+              
 
               <p className="mt-6 text-2xl font-black text-white">
                 {focusedCard.passage.label}
