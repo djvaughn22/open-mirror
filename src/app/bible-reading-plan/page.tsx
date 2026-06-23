@@ -3,7 +3,7 @@ import { BIBLE_READING_PLAN_WEEKS } from "../../lib/bibleReadingPlan";
 
 export const metadata = {
   title: "Bible Reading Plan | Cross Heart Pray",
-  description: "A digital 52-week Bible reading plan tracker with Bible App links.",
+  description: "A full-year digital Bible Reading Plan board that fills as you read.",
   robots: {
     index: false,
     follow: false,

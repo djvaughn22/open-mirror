@@ -37,15 +37,15 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
           </h1>
 
           <p className="mt-3 text-xl font-black text-emerald-100 print:text-black sm:text-3xl">
-            Start with Week 1.
+            Fill the 52-week board.
           </p>
 
           <div className="mx-auto mt-5 max-w-2xl rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-center print:border-black print:bg-white">
             <p className="text-sm font-black text-slate-100 print:text-black sm:text-base">
-              Four weeks at a time. Finish each week, then keep the rhythm.
+              One full-year board. Read, check, and watch it fill.
             </p>
             <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-emerald-100 print:text-black sm:text-xs">
-              Sunday Epistles · Monday Law · Tuesday History · Wednesday Psalms · Thursday Poetry · Friday Prophecy · Saturday Gospels
+              Sunday Epistles: letters · Monday Law: beginnings · Tuesday History: stories · Wednesday Psalms: prayer · Thursday Poetry: wisdom · Friday Prophecy: promises · Saturday Gospels: Jesus
             </p>
           </div>
 
