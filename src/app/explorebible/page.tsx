@@ -12,6 +12,7 @@ import {
   randomReferenceForSection,
   seededReferenceForSection,
 } from "../../lib/bibleRandom";
+import { bibleReadingPlanHrefForReference, bibleReadingPlanLabelForReference } from "../../lib/bibleReadingPlan";
 import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
@@ -470,6 +471,10 @@ export default function BibleExplorerPage() {
 
           <CentralTimeBadge className="mt-5" showReadingPlan={false} />
 
+          <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-7 text-slate-300 sm:text-base">
+            Deal a Bible Bingo 7 hand, then tap any card to see where it lands in the 52-week Bible Reading Plan.
+          </p>
+
 
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <button
@@ -664,6 +669,13 @@ export default function BibleExplorerPage() {
                   className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
                 >
                   Chapter
+                </a>
+
+                <a
+                  href={bibleReadingPlanHrefForReference(focusedCard.passage.code, focusedCard.passage.chapter)}
+                  className="text-center justify-center items-center inline-flex min-h-[44px] rounded-full border border-sky-200/25 bg-sky-300/10 px-5 py-2 text-sm font-semibold text-sky-100 shadow-sm transition hover:bg-sky-300/15 touch-manipulation"
+                >
+                  {bibleReadingPlanLabelForReference(focusedCard.passage.code, focusedCard.passage.chapter)}
                 </a>
 
                 <button

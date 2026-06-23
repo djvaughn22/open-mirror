@@ -277,6 +277,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
   const [showAllWeeks, setShowAllWeeks] = useState(false);
+  const [targetDayKey, setTargetDayKey] = useState("");
 
   const todayDateKey = centralDateKey();
   const totalDays = weeks.length * 7;
@@ -287,6 +288,23 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     if (saved) {
       setStartDateKey(saved.startDateKey);
       setDone(saved.done);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const targetWeek = params.get("week");
+    const targetDay = params.get("day");
+
+    if (targetWeek && targetDay) {
+      const key = `week-${targetWeek}-${targetDay}`;
+      setTargetDayKey(key);
+      setShowAllWeeks(true);
+
+      window.setTimeout(() => {
+        document.getElementById(key)?.scrollIntoView({
+          block: "center",
+          behavior: "smooth",
+        });
+      }, 300);
     }
 
     setLoaded(true);
@@ -311,9 +329,14 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const activeWeekNumber = nextPlanDay?.week ?? weeks.length;
   const activeBlockStart = Math.floor((activeWeekNumber - 1) / 4) * 4 + 1;
   const activeBlockEnd = Math.min(activeBlockStart + 3, weeks.length);
+  const targetWeekNumber = Number(targetDayKey.match(/^week-(\d+)-/)?.[1] ?? 0);
   const visibleWeeks = showAllWeeks
     ? weeks
-    : weeks.filter((week) => week.week >= activeBlockStart && week.week <= activeBlockEnd);
+    : weeks.filter(
+        (week) =>
+          (week.week >= activeBlockStart && week.week <= activeBlockEnd) ||
+          week.week === targetWeekNumber,
+      );
 
   const completedCount = Object.values(done).filter(Boolean).length;
   const percentComplete = Math.round((completedCount / totalDays) * 100);
@@ -506,14 +529,18 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 {week.days.map((day) => {
                   const key = doneKey(day);
                   const isDone = Boolean(done[key]);
+                  const isTarget = key === targetDayKey;
 
                   return (
                     <div
+                      id={key}
                       key={key}
-                      className={`flex min-h-[10.5rem] flex-col rounded-2xl border p-3 print:min-h-0 print:border-black ${
-                        isDone
-                          ? "border-emerald-200/35 bg-emerald-300/15"
-                          : "border-white/10 bg-white/[0.03]"
+                      className={`scroll-mt-28 flex min-h-[10.5rem] flex-col rounded-2xl border p-3 print:min-h-0 print:border-black ${
+                        isTarget
+                          ? "border-yellow-200/50 bg-yellow-300/15 ring-2 ring-yellow-200/35"
+                          : isDone
+                            ? "border-emerald-200/35 bg-emerald-300/15"
+                            : "border-white/10 bg-white/[0.03]"
                       }`}
                     >
                       <div className="md:hidden print:hidden">
@@ -525,6 +552,12 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                         </p>
                       </div>
 
+                      {isTarget ? (
+                        <p className="mt-3 rounded-full border border-yellow-200/30 bg-yellow-300/15 px-3 py-1 text-center text-[0.65rem] font-black uppercase tracking-[0.14em] text-yellow-50 print:hidden">
+                          From Bingo
+                        </p>
+                      ) : null}
+
                       <p className="mt-3 text-base font-black leading-snug text-white print:mt-0 print:text-black">
                         {day.reading}
                       </p>
@@ -535,7 +568,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                           onClick={() => toggleDone(day)}
                           aria-pressed={isDone}
                           aria-label={`${isDone ? "Mark not done" : "Mark done"}: Week ${day.week} ${day.dayLabel} ${day.reading}`}
-                          className="h-8 w-8 shrink-0 rounded-full border border-white/20 bg-white/10 text-sm font-black text-white transition hover:bg-white/15"
+                          className="h-11 w-11 shrink-0 rounded-full border border-white/20 bg-white/10 text-sm font-black text-white transition hover:bg-white/15"
                         >
                           {isDone ? "✓" : ""}
                         </button>

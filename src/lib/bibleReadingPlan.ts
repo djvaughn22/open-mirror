@@ -18,6 +18,148 @@ export const BIBLE_READING_PLAN_SOURCE = "52 Week Bible Reading Plan";
 export const BIBLE_READING_PLAN_SOURCE_NOTE =
   "Original PDF source is preserved for download. Progress is saved locally on this device.";
 
+
+const BIBLE_READING_PLAN_BOOK_CODES: Record<string, string> = {
+  Genesis: "GEN", Gen: "GEN",
+  Exodus: "EXO", Exod: "EXO", Exo: "EXO", Ex: "EXO",
+  Leviticus: "LEV", Lev: "LEV",
+  Numbers: "NUM", Num: "NUM",
+  Deuteronomy: "DEU", Deut: "DEU", Dt: "DEU",
+  Joshua: "JOS", Josh: "JOS", Jos: "JOS",
+  Judges: "JDG", Judg: "JDG", Jdg: "JDG",
+  Ruth: "RUT",
+  "1 Samuel": "1SA", "1 Sam": "1SA", "1Sam": "1SA",
+  "2 Samuel": "2SA", "2 Sam": "2SA", "2Sam": "2SA",
+  "1 Kings": "1KI", "1 Kgs": "1KI", "1 Ki": "1KI",
+  "2 Kings": "2KI", "2 Kgs": "2KI", "2 Ki": "2KI",
+  "1 Chronicles": "1CH", "1 Chr": "1CH",
+  "2 Chronicles": "2CH", "2 Chr": "2CH",
+  Ezra: "EZR", Nehemiah: "NEH", Neh: "NEH", Esther: "EST", Esth: "EST",
+  Job: "JOB",
+  Psalm: "PSA", Psalms: "PSA", Ps: "PSA", Psa: "PSA",
+  Proverbs: "PRO", Prov: "PRO", Pr: "PRO",
+  Ecclesiastes: "ECC", Eccl: "ECC", Eccles: "ECC",
+  "Song of Solomon": "SNG", "Song of Songs": "SNG", Song: "SNG",
+  Isaiah: "ISA", Isa: "ISA",
+  Jeremiah: "JER", Jer: "JER",
+  Lamentations: "LAM", Lam: "LAM",
+  Ezekiel: "EZK", Ezek: "EZK", Ezk: "EZK",
+  Daniel: "DAN", Dan: "DAN",
+  Hosea: "HOS", Hos: "HOS",
+  Joel: "JOL",
+  Amos: "AMO",
+  Obadiah: "OBA", Obad: "OBA",
+  Jonah: "JON",
+  Micah: "MIC", Mic: "MIC",
+  Nahum: "NAM", Nah: "NAM",
+  Habakkuk: "HAB", Hab: "HAB",
+  Zephaniah: "ZEP", Zeph: "ZEP",
+  Haggai: "HAG", Hag: "HAG",
+  Zechariah: "ZEC", Zech: "ZEC",
+  Malachi: "MAL", Mal: "MAL",
+  Matthew: "MAT", Matt: "MAT", Mt: "MAT",
+  Mark: "MRK", Mk: "MRK",
+  Luke: "LUK", Lk: "LUK",
+  John: "JHN", Jn: "JHN",
+  Acts: "ACT",
+  Romans: "ROM", Rom: "ROM",
+  "1 Corinthians": "1CO", "1 Cor": "1CO", "1Cor": "1CO",
+  "2 Corinthians": "2CO", "2 Cor": "2CO", "2Cor": "2CO",
+  Galatians: "GAL", Gal: "GAL",
+  Ephesians: "EPH", Eph: "EPH",
+  Philippians: "PHP", Phil: "PHP", Php: "PHP",
+  Colossians: "COL", Col: "COL",
+  "1 Thessalonians": "1TH", "1 Thess": "1TH", "1 Thes": "1TH", "1Thess": "1TH",
+  "2 Thessalonians": "2TH", "2 Thess": "2TH", "2 Thes": "2TH", "2Thess": "2TH",
+  "1 Timothy": "1TI", "1 Tim": "1TI", "1Tim": "1TI",
+  "2 Timothy": "2TI", "2 Tim": "2TI", "2Tim": "2TI",
+  Titus: "TIT",
+  Philemon: "PHM", Philem: "PHM",
+  Hebrews: "HEB", Heb: "HEB",
+  James: "JAS", Jas: "JAS",
+  "1 Peter": "1PE", "1 Pet": "1PE", "1Pet": "1PE",
+  "2 Peter": "2PE", "2 Pet": "2PE", "2Pet": "2PE",
+  "1 John": "1JN",
+  "2 John": "2JN",
+  "3 John": "3JN",
+  Jude: "JUD",
+  Revelation: "REV", Rev: "REV",
+};
+
+const BIBLE_READING_PLAN_BOOK_NAMES = Object.keys(BIBLE_READING_PLAN_BOOK_CODES).sort(
+  (left, right) => right.length - left.length,
+);
+
+function bibleReadingPlanRange(reading: string) {
+  const normalizedReading = reading.trim().replace(/\./g, "").replace(/\s+/g, " ");
+  const bookName = BIBLE_READING_PLAN_BOOK_NAMES.find(
+    (name) =>
+      normalizedReading === name ||
+      normalizedReading.startsWith(`${name} `),
+  );
+
+  if (!bookName) {
+    return null;
+  }
+
+  const remaining = normalizedReading.slice(bookName.length).trim();
+  const numbers = remaining.match(/\d+/g) ?? [];
+  const startChapter = Number(numbers[0] ?? "1");
+  const endChapter = Number(numbers[numbers.length - 1] ?? numbers[0] ?? "1");
+
+  return {
+    code: BIBLE_READING_PLAN_BOOK_CODES[bookName],
+    startChapter,
+    endChapter,
+  };
+}
+
+export function bibleReadingPlanDayForReference(code: string, chapter: string | number) {
+  const passageCode = code.trim().toUpperCase();
+  const passageChapter = Number(chapter);
+
+  if (!passageCode || !passageChapter) {
+    return null;
+  }
+
+  for (const week of BIBLE_READING_PLAN_WEEKS) {
+    for (const day of week.days) {
+      const range = bibleReadingPlanRange(day.reading);
+
+      if (
+        range &&
+        range.code === passageCode &&
+        passageChapter >= range.startChapter &&
+        passageChapter <= range.endChapter
+      ) {
+        return day;
+      }
+    }
+  }
+
+  return null;
+}
+
+export function bibleReadingPlanHrefForReference(code: string, chapter: string | number) {
+  const day = bibleReadingPlanDayForReference(code, chapter);
+
+  if (!day) {
+    return "/bible-reading-plan";
+  }
+
+  return `/bible-reading-plan?week=${day.week}&day=${day.daySlug}#week-${day.week}-${day.daySlug}`;
+}
+
+export function bibleReadingPlanLabelForReference(code: string, chapter: string | number) {
+  const day = bibleReadingPlanDayForReference(code, chapter);
+
+  if (!day) {
+    return "Reading Plan";
+  }
+
+  return `Lands in Week ${day.week} · ${day.dayLabel}`;
+}
+
 export const BIBLE_READING_PLAN_WEEKS: BibleReadingPlanWeek[] = [
   {
     "week": 1,
