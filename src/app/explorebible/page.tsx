@@ -487,6 +487,13 @@ export default function BibleExplorerPage() {
               buttonLabel="Share"
               enableSignature
             />
+
+            <a
+              href="/bible-reading-plan"
+              className="text-center justify-center items-center inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-7 py-3 font-semibold text-emerald-100 transition hover:bg-emerald-300/15"
+            >
+              Bible Reading Plan
+            </a>
           </div>
         </section>
 
@@ -516,7 +523,7 @@ export default function BibleExplorerPage() {
                     onClick={() => setFocusedCardIndex(index)}
                     aria-pressed={isFocused}
                     aria-busy={spinningCards[index]}
-                    className={`relative flex min-h-[230px] flex-col overflow-hidden rounded-[1.35rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
+                    className={`relative bible-bingo-deck-card flex min-h-[230px] flex-col overflow-hidden rounded-[1.35rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
                       isFocused
                         ? "border-white/45 bg-white/15 ring-2 ring-white/25"
                         : "border-white/10 opacity-90 hover:opacity-100"
@@ -570,7 +577,7 @@ export default function BibleExplorerPage() {
             <article
               id={`card-${focusedIndex + 1}`}
               key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}`}
-              className={`relative mx-auto mt-6 max-w-3xl overflow-hidden rounded-[2rem] border p-6 text-center text-slate-100 shadow-2xl shadow-black/30 sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
+              className={`relative bible-bingo-focused-card mx-auto mt-6 max-w-3xl overflow-hidden rounded-[2rem] border p-6 text-center text-slate-100 shadow-2xl shadow-black/30 sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
               style={{
                 minHeight: "430px",
                 display: "flex",
@@ -859,6 +866,28 @@ export default function BibleExplorerPage() {
           -webkit-line-clamp: 5;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+
+        .bible-bingo-deck-card.bible-card-is-spinning::before,
+        .bible-bingo-focused-card.bible-card-is-spinning::before {
+          content: "✝️  ❤️  🙏\\A Cross Heart Pray";
+          white-space: pre-line;
+          flex-direction: column;
+          gap: 0.65rem;
+          font-family: Georgia, "Times New Roman", serif;
+          font-weight: 900;
+          line-height: 1.25;
+          text-align: center;
+        }
+
+        .bible-bingo-deck-card.bible-card-is-spinning::before {
+          font-size: 1.2rem;
+          letter-spacing: 0.08rem;
+        }
+
+        .bible-bingo-focused-card.bible-card-is-spinning::before {
+          font-size: 2.35rem;
+          letter-spacing: 0.14rem;
         }
 
         @media (prefers-reduced-motion: reduce) {
