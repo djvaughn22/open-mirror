@@ -472,7 +472,7 @@ export default function BibleExplorerPage() {
           <CentralTimeBadge className="mt-5" showReadingPlan={false} />
 
           <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-7 text-slate-300 sm:text-base">
-            Deal a Bible Bingo 7 hand, then tap any card to see where it lands in the 52-week Bible Reading Plan.
+            Deal 7 cards. See where they land. Read and fill the 52-week board.
           </p>
 
 

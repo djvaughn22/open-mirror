@@ -376,10 +376,10 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
           </p>
             <div className="mt-5 rounded-2xl border border-white/10 bg-black/15 p-4">
               <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                Current View
+                Progress Board
               </p>
               <p className="mt-2 text-base font-black text-white">
-                All 52 Weeks
+                Full 52-Week Board
               </p>
             </div>
 
@@ -471,7 +471,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
             Full Year Board
           </p>
           <h2 className="mt-3 text-3xl font-black text-white print:text-black">
-            All 52 Weeks
+            Full 52-Week Board
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
             Check each section in order. Finish this block, then move to the next.
