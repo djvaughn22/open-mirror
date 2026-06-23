@@ -136,6 +136,22 @@ function centralDateSeed() {
   return `${value("year")}-${value("month")}-${value("day")}`;
 }
 
+function splitBibleBingoSectionTitle(title: string) {
+  const parts = title.split("—").map((part) => part.trim()).filter(Boolean);
+
+  if (parts.length >= 2) {
+    return {
+      dayLabel: parts[0],
+      title: parts.slice(1).join(" — "),
+    };
+  }
+
+  return {
+    dayLabel: "",
+    title,
+  };
+}
+
 function centralDayIndex() {
   const weekday = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Chicago",
@@ -450,6 +466,7 @@ export default function BibleExplorerPage() {
 
   const focusedIndex = path[focusedCardIndex] ? focusedCardIndex : 0;
   const focusedCard = path[focusedIndex] ?? path[0];
+  const focusedTitle = focusedCard ? splitBibleBingoSectionTitle(focusedCard.section.title) : null;
   const todayStartIndex = centralDayIndex();
   const displayIndexes = displayIndexesStartingWith(todayStartIndex);
 
@@ -520,6 +537,7 @@ export default function BibleExplorerPage() {
                 const { section, passage } = item;
                 const index = cardIndex;
                 const isFocused = index === focusedIndex;
+                const cardTitle = splitBibleBingoSectionTitle(section.title);
 
                 return (
                   <button
@@ -528,9 +546,9 @@ export default function BibleExplorerPage() {
                     onClick={() => setFocusedCardIndex(index)}
                     aria-pressed={isFocused}
                     aria-busy={spinningCards[index]}
-                    className={`relative bible-bingo-deck-card flex min-h-[230px] flex-col overflow-hidden rounded-[1.35rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
+                    className={`relative bible-bingo-deck-card flex min-h-[260px] flex-col overflow-hidden rounded-[1.5rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
                       isFocused
-                        ? "border-white/45 bg-white/15 ring-2 ring-white/25"
+                        ? "border-white/50 bg-white/15 ring-2 ring-white/25"
                         : "border-white/10 opacity-90 hover:opacity-100"
                     }`}
                     style={{
@@ -543,15 +561,19 @@ export default function BibleExplorerPage() {
                       <span>🙏</span>
                     </div>
 
-                    <div className="mt-2 text-3xl">{section.emoji}</div>
-
-                    <p className="mt-3 text-[0.62rem] font-black uppercase tracking-[0.16em] text-slate-300">
-                      Card {index + 1}
+                    <p className="mt-3 text-[0.72rem] font-black uppercase tracking-[0.24em] text-emerald-100">
+                      {cardTitle.dayLabel}
                     </p>
 
-                    <h2 className="mt-2 text-sm font-black leading-5 text-white">
-                      {section.title}
+                    <div className="mt-3 text-3xl">{section.emoji}</div>
+
+                    <h2 className="mt-2 text-base font-black leading-5 text-white">
+                      {cardTitle.title}
                     </h2>
+
+                    <p className="mt-2 min-h-[42px] text-[0.66rem] font-semibold leading-5 text-slate-300">
+                      {section.line}
+                    </p>
 
                     <p className="mt-3 text-xs font-black leading-5 text-white">
                       {passage.label}
@@ -632,8 +654,12 @@ export default function BibleExplorerPage() {
                 Bible Bingo Card {focusedIndex + 1}
               </p>
 
+              <p className="mt-4 text-sm font-black uppercase tracking-[0.24em] text-emerald-100">
+                {focusedTitle?.dayLabel}
+              </p>
+
               <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
-                {focusedCard.section.title}
+                {focusedTitle?.title ?? focusedCard.section.title}
               </h2>
 
               <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-slate-300">
