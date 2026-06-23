@@ -487,3 +487,18 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 }
 /* END DEEP DIVE MEANING UPGRADE */
 
+/* DEEP DIVE VISIBLE CONCORDANCE */
+.deep-dive-visible-concordance {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 60px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 640px) {
+  .deep-dive-visible-concordance {
+    border-radius: 1rem;
+    padding: 0.9rem;
+  }
+}
+/* END DEEP DIVE VISIBLE CONCORDANCE */
+

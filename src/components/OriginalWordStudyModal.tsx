@@ -380,6 +380,108 @@ function DeepDiveStrongDetailCard({
   );
 }
 
+
+type DeepDiveVisibleConcordanceStudy = {
+  sourceGloss?: string;
+  lexiconMeaning?: string;
+  strongs?: string;
+  morphology?: string;
+  originalWord?: string;
+  transliteration?: string;
+  pronunciation?: string;
+};
+
+function DeepDiveVisibleConcordanceCard({
+  study,
+}: {
+  study: DeepDiveVisibleConcordanceStudy | null | undefined;
+}) {
+  if (!study) {
+    return (
+      <section className="deep-dive-visible-concordance mt-5 rounded-[1.5rem] border border-yellow-200/20 bg-yellow-300/[0.06] p-4 text-left sm:p-5">
+        <p className="text-[0.68rem] font-black uppercase tracking-[0.24em] text-yellow-100">
+          Original-language detail
+        </p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
+          No verified original-language word record is selected for this verse yet.
+        </p>
+      </section>
+    );
+  }
+
+  const transliterationPronunciation = [study.transliteration, study.pronunciation]
+    .filter(Boolean)
+    .join(" · ");
+
+  return (
+    <section className="deep-dive-visible-concordance mt-5 rounded-[1.5rem] border border-amber-200/25 bg-amber-300/[0.07] p-4 text-left sm:p-5">
+      <p className="text-[0.68rem] font-black uppercase tracking-[0.24em] text-amber-100">
+        Strong’s Exhaustive Concordance
+      </p>
+
+      <div className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+          Full meaning
+        </p>
+        <p className="mt-2 text-base font-black leading-7 text-white">
+          {study.lexiconMeaning || study.sourceGloss || "Not verified in this local record."}
+        </p>
+      </div>
+
+      <div className="mt-3 rounded-2xl border border-white/10 bg-black/25 p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+          Strong’s wording / source gloss
+        </p>
+        <p className="mt-2 text-base font-black leading-7 text-white">
+          {study.sourceGloss || "Not verified in this local record."}
+        </p>
+      </div>
+
+      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+          <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+            Original word
+          </p>
+          <p className="mt-2 text-2xl font-black leading-7 text-white">
+            {study.originalWord || "Not verified"}
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+          <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+            Transliteration / pronunciation
+          </p>
+          <p className="mt-2 text-sm font-black leading-6 text-white">
+            {transliterationPronunciation || "Not verified"}
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+          <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+            Strong’s number
+          </p>
+          <p className="mt-2 text-sm font-black leading-6 text-white">
+            {study.strongs || "Not verified"}
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+          <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-slate-400">
+            Morphology
+          </p>
+          <p className="mt-2 text-sm font-black leading-6 text-white">
+            {study.morphology || "Not verified in this local record."}
+          </p>
+        </div>
+      </div>
+
+      <p className="mt-4 text-xs font-semibold leading-6 text-slate-400">
+        Verified local Strong’s and lexicon fields only. No AI interpretation is added here.
+      </p>
+    </section>
+  );
+}
+
 export default function OriginalWordStudyModal({
   passage,
   wordStudy,
@@ -503,6 +605,7 @@ export default function OriginalWordStudyModal({
               </p>
             ) : null}
           </section>
+        <DeepDiveVisibleConcordanceCard study={selectedWordStudy} />
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             {strongsUrl ? (
@@ -537,7 +640,6 @@ export default function OriginalWordStudyModal({
               {detailRow("Source gloss", selectedWordStudy.sourceGloss)}
               {detailRow("Lexicon source", selectedWordStudy.lexiconSourceName)}
             </div>
-        <DeepDiveStrongDetailCard study={selectedWordStudy} />
 
             <p className="mt-4 text-xs leading-5 text-slate-500">
               {selectedWordStudy.sourceName}
