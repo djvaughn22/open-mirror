@@ -166,6 +166,51 @@ function shortBibleBingoSectionLine(title: string) {
   return "Open Scripture.";
 }
 
+const BINGO_READING_PLAN_STORAGE_KEY = "crossheartpray:bible-reading-plan:v1";
+
+function loadBingoReadingPlanDone() {
+  if (typeof window === "undefined") return {};
+
+  try {
+    const raw = window.localStorage.getItem(BINGO_READING_PLAN_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as { done?: Record<string, boolean> };
+    return parsed.done ?? {};
+  } catch {
+    return {};
+  }
+}
+
+function bingoReadingPlanTargetForPassage(code: string, chapter: string | number) {
+  const href = bibleReadingPlanHrefForReference(code, chapter);
+  const label = bibleReadingPlanLabelForReference(code, chapter);
+  const hrefMatch = href.match(/week=([^&]+)&day=([^#&]+)/);
+  const labelMatch = label.match(/Week\s+(\d+)\s+[·•]\s+(.+)$/i);
+
+  return {
+    label,
+    week: hrefMatch?.[1] ?? labelMatch?.[1] ?? "",
+    daySlug: hrefMatch?.[2] ? decodeURIComponent(hrefMatch[2]) : "",
+    dayLabel: labelMatch?.[2] ?? "",
+  };
+}
+
+function isBingoReadingPlanDone(done: Record<string, boolean>, target: ReturnType<typeof bingoReadingPlanTargetForPassage>) {
+  if (!target.week || !target.daySlug) return false;
+
+  const dayName = target.dayLabel.toLowerCase().trim().replace(/\s+/g, "-");
+  const keys = [
+    target.week + "-" + target.daySlug,
+    target.week + "-" + dayName,
+    "week-" + target.week + "-" + target.daySlug,
+    "week-" + target.week + "-" + dayName,
+    target.week + ":" + target.daySlug,
+    "week-" + target.week + ":" + target.daySlug,
+  ];
+
+  return keys.some((key) => Boolean(done[key]));
+}
+
 function centralDayIndex() {
   const weekday = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Chicago",
@@ -252,6 +297,7 @@ export default function BibleExplorerPage() {
   const [spinningCards, setSpinningCards] = useState(() => sections.map(() => false));
   const [spinDelays, setSpinDelays] = useState(() => sections.map(() => 0));
   const [focusedCardIndex, setFocusedCardIndex] = useState(() => centralDayIndex());
+  const [bingoReadingPlanDone, setBingoReadingPlanDone] = useState<Record<string, boolean>>({});
   const [focusedFlipVersion, setFocusedFlipVersion] = useState(0);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
@@ -477,6 +523,23 @@ export default function BibleExplorerPage() {
   }
 
   useEffect(() => {
+    function refreshBingoReadingPlanDone() {
+      setBingoReadingPlanDone(loadBingoReadingPlanDone());
+    }
+
+    refreshBingoReadingPlanDone();
+    window.addEventListener("focus", refreshBingoReadingPlanDone);
+    window.addEventListener("storage", refreshBingoReadingPlanDone);
+    document.addEventListener("visibilitychange", refreshBingoReadingPlanDone);
+
+    return () => {
+      window.removeEventListener("focus", refreshBingoReadingPlanDone);
+      window.removeEventListener("storage", refreshBingoReadingPlanDone);
+      document.removeEventListener("visibilitychange", refreshBingoReadingPlanDone);
+    };
+  }, []);
+
+  useEffect(() => {
     const timer = window.setTimeout(() => {
       revealDailyBoardOnOpen();
     }, 250);
@@ -487,6 +550,12 @@ export default function BibleExplorerPage() {
   const focusedIndex = path[focusedCardIndex] ? focusedCardIndex : 0;
   const focusedCard = path[focusedIndex] ?? path[0];
   const focusedTitle = focusedCard ? splitBibleBingoSectionTitle(focusedCard.section.title) : null;
+  const focusedReadingPlanTarget = focusedCard
+    ? bingoReadingPlanTargetForPassage(focusedCard.passage.code, focusedCard.passage.chapter)
+    : null;
+  const focusedReadInPlan = focusedReadingPlanTarget
+    ? isBingoReadingPlanDone(bingoReadingPlanDone, focusedReadingPlanTarget)
+    : false;
   const todayStartIndex = centralDayIndex();
   const displayIndexes = displayIndexesStartingWith(todayStartIndex);
 
@@ -559,6 +628,8 @@ export default function BibleExplorerPage() {
                 const isFocused = index === focusedIndex;
                 const cardTitle = splitBibleBingoSectionTitle(section.title);
                 const cardSummary = shortBibleBingoSectionLine(section.title);
+                const readingPlanTarget = bingoReadingPlanTargetForPassage(passage.code, passage.chapter);
+                const readInPlan = isBingoReadingPlanDone(bingoReadingPlanDone, readingPlanTarget);
 
                 return (
                   <button
@@ -608,6 +679,11 @@ export default function BibleExplorerPage() {
                       <p className="mt-1 text-xs font-black leading-5 text-white">
                         {passage.label}
                       </p>
+                      {readInPlan ? (
+                        <p className="mt-2 inline-flex rounded-full border border-emerald-200/30 bg-emerald-300/15 px-3 py-1 text-[0.58rem] font-black uppercase tracking-[0.14em] text-emerald-50">
+                          Read in Plan
+                        </p>
+                      ) : null}
                       <p className="bible-card-verse-preview mt-2 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
                         {passage.text}
                       </p>
@@ -687,6 +763,12 @@ export default function BibleExplorerPage() {
               <p className="mt-4 text-sm font-black uppercase tracking-[0.24em] text-emerald-100">
                 {focusedTitle?.dayLabel}
               </p>
+
+              {focusedReadInPlan ? (
+                <p className="mt-3 rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-1 text-xs font-black uppercase tracking-[0.16em] text-emerald-50">
+                  Read in Plan
+                </p>
+              ) : null}
 
               <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
                 {focusedTitle?.title ?? focusedCard.section.title}
