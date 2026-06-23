@@ -12,7 +12,11 @@ import {
   randomReferenceForSection,
   seededReferenceForSection,
 } from "../../lib/bibleRandom";
-import { bibleReadingPlanHrefForReference, bibleReadingPlanLabelForReference } from "../../lib/bibleReadingPlan";
+import {
+  bibleReadingPlanDayForReference,
+  bibleReadingPlanHrefForReference,
+  bibleReadingPlanLabelForReference,
+} from "../../lib/bibleReadingPlan";
 import LazyBibleVerseLookup from "../../components/LazyBibleVerseLookup";
 import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
@@ -168,7 +172,7 @@ function shortBibleBingoSectionLine(title: string) {
 
 const BINGO_READING_PLAN_STORAGE_KEY = "crossheartpray:bible-reading-plan:v1";
 
-function loadBingoReadingPlanDone() {
+function loadBingoReadingPlanDone(): Record<string, boolean> {
   if (typeof window === "undefined") return {};
 
   try {
@@ -181,34 +185,20 @@ function loadBingoReadingPlanDone() {
   }
 }
 
-function bingoReadingPlanTargetForPassage(code: string, chapter: string | number) {
-  const href = bibleReadingPlanHrefForReference(code, chapter);
-  const label = bibleReadingPlanLabelForReference(code, chapter);
-  const hrefMatch = href.match(/week=([^&]+)&day=([^#&]+)/);
-  const labelMatch = label.match(/Week\s+(\d+)\s+[·•]\s+(.+)$/i);
+function bingoReadingPlanDoneKeyForPassage(code: string, chapter: string | number) {
+  const day = bibleReadingPlanDayForReference(code, chapter);
 
-  return {
-    label,
-    week: hrefMatch?.[1] ?? labelMatch?.[1] ?? "",
-    daySlug: hrefMatch?.[2] ? decodeURIComponent(hrefMatch[2]) : "",
-    dayLabel: labelMatch?.[2] ?? "",
-  };
+  if (!day) {
+    return "";
+  }
+
+  return `week-${day.week}-${day.daySlug}`;
 }
 
-function isBingoReadingPlanDone(done: Record<string, boolean>, target: ReturnType<typeof bingoReadingPlanTargetForPassage>) {
-  if (!target.week || !target.daySlug) return false;
+function isBingoReadingPlanDone(done: Record<string, boolean>, code: string, chapter: string | number) {
+  const key = bingoReadingPlanDoneKeyForPassage(code, chapter);
 
-  const dayName = target.dayLabel.toLowerCase().trim().replace(/\s+/g, "-");
-  const keys = [
-    target.week + "-" + target.daySlug,
-    target.week + "-" + dayName,
-    "week-" + target.week + "-" + target.daySlug,
-    "week-" + target.week + "-" + dayName,
-    target.week + ":" + target.daySlug,
-    "week-" + target.week + ":" + target.daySlug,
-  ];
-
-  return keys.some((key) => Boolean(done[key]));
+  return Boolean(key && done[key]);
 }
 
 function centralDayIndex() {
@@ -550,11 +540,8 @@ export default function BibleExplorerPage() {
   const focusedIndex = path[focusedCardIndex] ? focusedCardIndex : 0;
   const focusedCard = path[focusedIndex] ?? path[0];
   const focusedTitle = focusedCard ? splitBibleBingoSectionTitle(focusedCard.section.title) : null;
-  const focusedReadingPlanTarget = focusedCard
-    ? bingoReadingPlanTargetForPassage(focusedCard.passage.code, focusedCard.passage.chapter)
-    : null;
-  const focusedReadInPlan = focusedReadingPlanTarget
-    ? isBingoReadingPlanDone(bingoReadingPlanDone, focusedReadingPlanTarget)
+  const focusedReadInPlan = focusedCard
+    ? isBingoReadingPlanDone(bingoReadingPlanDone, focusedCard.passage.code, focusedCard.passage.chapter)
     : false;
   const todayStartIndex = centralDayIndex();
   const displayIndexes = displayIndexesStartingWith(todayStartIndex);
@@ -628,8 +615,7 @@ export default function BibleExplorerPage() {
                 const isFocused = index === focusedIndex;
                 const cardTitle = splitBibleBingoSectionTitle(section.title);
                 const cardSummary = shortBibleBingoSectionLine(section.title);
-                const readingPlanTarget = bingoReadingPlanTargetForPassage(passage.code, passage.chapter);
-                const readInPlan = isBingoReadingPlanDone(bingoReadingPlanDone, readingPlanTarget);
+                const readInPlan = isBingoReadingPlanDone(bingoReadingPlanDone, passage.code, passage.chapter);
 
                 return (
                   <button
@@ -638,7 +624,7 @@ export default function BibleExplorerPage() {
                     onClick={() => focusDayCard(index)}
                     aria-pressed={isFocused}
                     aria-busy={spinningCards[index]}
-                    className={`relative bible-bingo-deck-card flex min-h-[260px] flex-col overflow-hidden rounded-[1.5rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
+                    className={`relative bible-bingo-deck-card flex min-h-[235px] flex-col overflow-hidden rounded-[1.5rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
                       isFocused
                         ? "border-white/50 bg-white/15 ring-2 ring-white/25"
                         : "border-white/10 opacity-90 hover:opacity-100"
@@ -663,42 +649,28 @@ export default function BibleExplorerPage() {
                       {cardTitle.title}
                     </h2>
 
-                    <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-2">
-                      <p className="text-[0.56rem] font-black uppercase tracking-[0.16em] text-slate-400">
-                        Day Theme
-                      </p>
-                      <p className="mt-1 text-[0.68rem] font-bold leading-5 text-slate-200">
-                        {cardSummary}
-                      </p>
-                    </div>
+                    <p className="mt-3 min-h-[2.25rem] text-[0.72rem] font-semibold leading-5 text-slate-300">
+                      {cardSummary}
+                    </p>
 
                     <div className="mt-3 rounded-2xl border border-white/10 bg-black/25 px-3 py-3 text-left">
-                      <p className="text-[0.56rem] font-black uppercase tracking-[0.16em] text-slate-400">
-                        Verse
-                      </p>
-                      <p className="mt-1 text-xs font-black leading-5 text-white">
-                        {passage.label}
-                      </p>
-                      {readInPlan ? (
-                        <p className="mt-2 inline-flex rounded-full border border-emerald-200/30 bg-emerald-300/15 px-3 py-1 text-[0.58rem] font-black uppercase tracking-[0.14em] text-emerald-50">
-                          Read in Plan
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="text-xs font-black leading-5 text-white">
+                          {passage.label}
                         </p>
-                      ) : null}
+                        {readInPlan ? (
+                          <span className="shrink-0 rounded-full border border-emerald-200/25 bg-emerald-300/12 px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-[0.12em] text-emerald-50">
+                            Read
+                          </span>
+                        ) : null}
+                      </div>
                       <p className="bible-card-verse-preview mt-2 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
                         {passage.text}
                       </p>
                     </div>
 
-                    <p className="mt-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+                    <p className="mt-auto pt-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100">
                       {bibleBingoOddsForSection(section.title).label}
-                    </p>
-
-                    <p className={`mt-auto rounded-full border px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.14em] ${
-                      isFocused
-                        ? "border-white/25 bg-white/20 text-white"
-                        : "border-white/10 bg-black/15 text-slate-300"
-                    }`}>
-                      {isFocused ? "Focused" : "Focus"}
                     </p>
                   </button>
                 );
@@ -719,7 +691,7 @@ export default function BibleExplorerPage() {
                 animationDelay: spinningCards[focusedIndex] ? `${spinDelays[focusedIndex]}ms` : "0ms",
               }}
             >
-              <div className="mb-4 flex w-full justify-end">
+              <div className="mb-4 flex w-full justify-center sm:justify-end">
                 <BibleBingoShareMenu
                   boardHref={`${boardPath}?card=${focusedIndex + 1}`}
                   boardUrl={`${boardUrl}?card=${focusedIndex + 1}`}
@@ -797,7 +769,7 @@ export default function BibleExplorerPage() {
                   rel="noopener noreferrer"
                   className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
                 >
-                  Verse
+                  Open Verse
                 </a>
 
                 <a
@@ -806,14 +778,14 @@ export default function BibleExplorerPage() {
                   rel="noopener noreferrer"
                   className="text-center justify-center items-center inline-flex rounded-full border border-white/25 bg-white/20 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-white/30"
                 >
-                  Chapter
+                  Read Chapter
                 </a>
 
                 <a
                   href={bibleReadingPlanHrefForReference(focusedCard.passage.code, focusedCard.passage.chapter)}
                   className="text-center justify-center items-center inline-flex min-h-[44px] rounded-full border border-sky-200/25 bg-sky-300/10 px-5 py-2 text-sm font-semibold text-sky-100 shadow-sm transition hover:bg-sky-300/15 touch-manipulation"
                 >
-                  {bibleReadingPlanLabelForReference(focusedCard.passage.code, focusedCard.passage.chapter)}
+                  Open Reading Plan
                 </a>
 
                 <button

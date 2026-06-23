@@ -569,53 +569,53 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
             </>
           ) : null}
 
-          <button
-            type="button"
-            onClick={saveProgressNow}
-            className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 transition hover:bg-emerald-300/20"
-          >
-            Save
-          </button>
+          <details className="w-full text-center sm:w-auto sm:text-left">
+            <summary className="inline-flex cursor-pointer list-none rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-300 transition hover:bg-white/10 [&::-webkit-details-marker]:hidden">
+              Progress Tools
+            </summary>
 
-          <button
-            type="button"
-            onClick={emailProgressBackup}
-            className="rounded-full border border-sky-200/25 bg-sky-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-sky-50 transition hover:bg-sky-300/20"
-          >
-            Email Backup
-          </button>
+            <div className="mt-3 flex flex-wrap justify-center gap-2 rounded-2xl border border-white/10 bg-black/20 p-3 sm:justify-start">
+              <button
+                type="button"
+                onClick={emailProgressBackup}
+                className="rounded-full border border-sky-200/25 bg-sky-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-sky-50 transition hover:bg-sky-300/20"
+              >
+                Email Backup
+              </button>
 
-          <button
-            type="button"
-            onClick={copyProgressBackup}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-100 transition hover:bg-white/15"
-          >
-            Copy Backup
-          </button>
+              <button
+                type="button"
+                onClick={copyProgressBackup}
+                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-100 transition hover:bg-white/15"
+              >
+                Copy Backup
+              </button>
 
-          <button
-            type="button"
-            onClick={restoreProgressBackup}
-            className="rounded-full border border-yellow-200/25 bg-yellow-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-yellow-50 transition hover:bg-yellow-300/15"
-          >
-            Restore
-          </button>
+              <button
+                type="button"
+                onClick={restoreProgressBackup}
+                className="rounded-full border border-yellow-200/25 bg-yellow-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-yellow-50 transition hover:bg-yellow-300/15"
+              >
+                Restore
+              </button>
 
-          <button
-            type="button"
-            onClick={resetToToday}
-            className="rounded-full border border-orange-200/25 bg-orange-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-orange-50 transition hover:bg-orange-300/15"
-          >
-            Start Over
-          </button>
+              <button
+                type="button"
+                onClick={resetToToday}
+                className="rounded-full border border-orange-200/25 bg-orange-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-orange-50 transition hover:bg-orange-300/15"
+              >
+                Start Over
+              </button>
 
-          <button
-            type="button"
-            onClick={clearProgress}
-            className="rounded-full border border-red-200/25 bg-red-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-red-100 transition hover:bg-red-300/15"
-          >
-            Clear
-          </button>
+              <button
+                type="button"
+                onClick={clearProgress}
+                className="rounded-full border border-red-200/25 bg-red-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-red-100 transition hover:bg-red-300/15"
+              >
+                Clear
+              </button>
+            </div>
+          </details>
         </div>
 
         {saveMessage ? (

@@ -55,15 +55,15 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
 
           <div className="mt-7 flex flex-col items-center gap-4 print:hidden">
             <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+              <PrintButton />
+
               <a
                 href={BIBLE_READING_PLAN_PDF_HREF}
                 download
-                className="w-full max-w-sm rounded-full border border-emerald-200/30 bg-emerald-300/15 px-6 py-3 text-center text-sm font-black uppercase tracking-[0.18em] text-emerald-50 shadow-lg shadow-emerald-950/20 transition hover:bg-emerald-300/22 sm:w-auto"
+                className="w-full max-w-sm rounded-full border border-white/15 bg-white/10 px-6 py-3 text-center text-sm font-black uppercase tracking-[0.18em] text-slate-100 shadow-lg shadow-black/15 transition hover:bg-white/15 sm:w-auto"
               >
                 Download PDF
               </a>
-
-<PrintButton />
             </div>
           </div>
         </div>
