@@ -6,10 +6,139 @@ export type BibleBingoPassage = {
   chapter: string;
   verse: string;
   text: string;
+  laneIndex?: number;
+  laneTotal?: number;
+  lanePositionLabel?: string;
 };
 
 const BOARD_REFERENCE_SEPARATOR = "~";
 const BOARD_REFERENCE_PART_SEPARATOR = ".";
+
+const BIBLE_BINGO_EXACT_OLD_TESTAMENT_BOOKS = new Set([
+  "Exodus",
+  "Leviticus",
+  "Numbers",
+  "Deuteronomy",
+  "Joshua",
+  "Judges",
+  "Ruth",
+  "1 Samuel",
+  "2 Samuel",
+  "1 Kings",
+  "2 Kings",
+  "1 Chronicles",
+  "2 Chronicles",
+  "Ezra",
+  "Nehemiah",
+  "Esther",
+  "Job",
+  "Ecclesiastes",
+  "Song of Solomon",
+  "Isaiah",
+  "Jeremiah",
+  "Lamentations",
+  "Ezekiel",
+  "Daniel",
+  "Hosea",
+  "Joel",
+  "Amos",
+  "Obadiah",
+  "Jonah",
+  "Micah",
+  "Nahum",
+  "Habakkuk",
+  "Zephaniah",
+  "Haggai",
+  "Zechariah",
+  "Malachi",
+]);
+
+const BIBLE_BINGO_EXACT_GOSPEL_BOOKS = new Set([
+  "Matthew",
+  "Mark",
+  "Luke",
+  "John",
+]);
+
+const BIBLE_BINGO_EXACT_EPISTLE_BOOKS = new Set([
+  "Romans",
+  "1 Corinthians",
+  "2 Corinthians",
+  "Galatians",
+  "Ephesians",
+  "Philippians",
+  "Colossians",
+  "1 Thessalonians",
+  "2 Thessalonians",
+  "1 Timothy",
+  "2 Timothy",
+  "Titus",
+  "Philemon",
+  "Hebrews",
+  "James",
+  "1 Peter",
+  "2 Peter",
+  "1 John",
+  "2 John",
+  "3 John",
+  "Jude",
+]);
+
+function exactBooksForBibleBingoLane(sectionTitle: string) {
+  const lane = sectionTitle.split(" · ")[0].toLowerCase();
+
+  if (lane.includes("genesis")) return new Set(["Genesis"]);
+  if (lane.includes("old testament")) return BIBLE_BINGO_EXACT_OLD_TESTAMENT_BOOKS;
+  if (lane.includes("psalm")) return new Set(["Psalms"]);
+  if (lane.includes("proverb")) return new Set(["Proverbs"]);
+  if (lane.includes("gospel")) return BIBLE_BINGO_EXACT_GOSPEL_BOOKS;
+  if (lane.includes("epistle")) return BIBLE_BINGO_EXACT_EPISTLE_BOOKS;
+  if (lane.includes("revelation")) return new Set(["Revelation"]);
+
+  return null;
+}
+
+function lockBibleBingoLaneCandidates(sectionTitle: string, candidates: LocalBibleVerse[]) {
+  const exactBooks = exactBooksForBibleBingoLane(sectionTitle);
+  if (!exactBooks) return candidates;
+  return candidates.filter((verse) => exactBooks.has(verse.book));
+}
+
+function toLanePositionPassage(
+  passage: BibleBingoPassage,
+  verse: LocalBibleVerse,
+  sectionTitle: string
+): BibleBingoPassage {
+  const cleanSectionTitle = sectionTitle.split(" · ")[0];
+  const candidates = lockBibleBingoLaneCandidates(
+    cleanSectionTitle,
+    rawCandidatesForSection(cleanSectionTitle)
+  );
+
+  const laneIndex = candidates.findIndex(
+    (candidate) =>
+      candidate.book === verse.book &&
+      candidate.chapter === verse.chapter &&
+      candidate.verse === verse.verse
+  );
+
+  const laneTotal = candidates.length;
+
+  if (laneIndex < 0 || laneTotal < 1) {
+    return passage;
+  }
+
+  const lanePositionLabel = `${laneIndex + 1} of ${laneTotal}`;
+
+  return {
+    ...passage,
+    label: `${passage.label} · ${lanePositionLabel}`,
+    laneIndex: laneIndex + 1,
+    laneTotal,
+    lanePositionLabel,
+  };
+}
+
 
 const versesByBook = new Map<string, LocalBibleVerse[]>();
 const versesByBoardReference = new Map<string, LocalBibleVerse>();
@@ -33,16 +162,16 @@ for (const verse of LOCAL_BIBLE_VERSES) {
   );
 }
 
-const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => verse.group === "Gospel");
+const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) =>
+  BIBLE_BINGO_EXACT_GOSPEL_BOOKS.has(verse.book)
+);
 
-const epistleVerses = LOCAL_BIBLE_VERSES.filter((verse) => verse.group === "Epistles");
+const epistleVerses = LOCAL_BIBLE_VERSES.filter((verse) =>
+  BIBLE_BINGO_EXACT_EPISTLE_BOOKS.has(verse.book)
+);
 
-const oldTestamentVerses = LOCAL_BIBLE_VERSES.filter(
-  (verse) =>
-    verse.group === "Old Testament" &&
-    verse.book !== "Genesis" &&
-    verse.book !== "Psalms" &&
-    verse.book !== "Proverbs",
+const oldTestamentVerses = LOCAL_BIBLE_VERSES.filter((verse) =>
+  BIBLE_BINGO_EXACT_OLD_TESTAMENT_BOOKS.has(verse.book)
 );
 
 const sundayEpistlesChapterKeys = new Set([
@@ -1108,7 +1237,7 @@ function versesForBook(book: string) {
   return versesByBook.get(book) ?? [];
 }
 
-function candidatesForSection(sectionTitle: string) {
+function rawCandidatesForSection(sectionTitle: string) {
   const key = sectionKey(sectionTitle);
 
   if (key.includes("sunday") || key.includes("epistles")) {
@@ -1140,6 +1269,10 @@ function candidatesForSection(sectionTitle: string) {
   }
 
   return LOCAL_BIBLE_VERSES;
+}
+
+function candidatesForSection(sectionTitle: string) {
+  return lockBibleBingoLaneCandidates(sectionTitle, rawCandidatesForSection(sectionTitle));
 }
 
 function toPassage(verse: LocalBibleVerse): BibleBingoPassage {
@@ -1211,7 +1344,7 @@ export function randomReferenceForSection(sectionTitle: string, avoidLabel?: str
   const pool = usableCandidates.length ? usableCandidates : LOCAL_BIBLE_VERSES;
   const index = Math.floor(Math.random() * pool.length);
 
-  return toPassage(pool[index]);
+  return toLanePositionPassage(toPassage(pool[index]), pool[index], sectionTitle);
 }
 
 
@@ -1245,5 +1378,5 @@ export function seededReferenceForSection(sectionTitle: string, seed: string) {
   const pool = candidates.length ? candidates : LOCAL_BIBLE_VERSES;
   const index = hashSeed(`${seed}|${sectionTitle}`) % pool.length;
 
-  return toPassage(pool[index]);
+  return toLanePositionPassage(toPassage(pool[index]), pool[index], sectionTitle);
 }

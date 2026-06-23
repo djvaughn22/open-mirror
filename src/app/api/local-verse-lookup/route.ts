@@ -45,14 +45,9 @@ const epistleBooks = new Set([
 ]);
 
 const gospelVerses = LOCAL_BIBLE_VERSES.filter((verse) => gospelBooks.has(verse.book));
-const epistleVerses = LOCAL_BIBLE_VERSES.filter(
-  (verse) => epistleBooks.has(verse.book) || verse.group === "Epistles",
-);
+const epistleVerses = LOCAL_BIBLE_VERSES.filter((verse) => epistleBooks.has(verse.book));
 const gospelOrEpistleVerses = LOCAL_BIBLE_VERSES.filter(
-  (verse) =>
-    gospelBooks.has(verse.book) ||
-    epistleBooks.has(verse.book) ||
-    verse.group === "Epistles",
+  (verse) => gospelBooks.has(verse.book) || epistleBooks.has(verse.book),
 );
 const proverbsVerses = LOCAL_BIBLE_VERSES.filter((verse) => verse.book === "Proverbs");
 
