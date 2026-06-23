@@ -507,146 +507,122 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
   return (
     <>
-      <section className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] print:hidden">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 sm:p-7">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-            Progress
-          </p>
+      <section className="mx-auto mt-8 max-w-5xl rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4 shadow-xl shadow-black/15 print:hidden sm:p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
+              Next Reading
+            </p>
 
-          <h2 className="mt-4 text-2xl font-extrabold text-slate-50">
-            Week 1 First
-          </h2>
-
-          <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-            Use the full-year board. Read, check, and watch it fill.
-          </p>
-            <div className="mt-5 rounded-2xl border border-white/10 bg-black/15 p-4">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                Progress Board
-              </p>
-              <p className="mt-2 text-base font-black text-white">
-                Full 52-Week Board
-              </p>
-            </div>
-
-          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <button
-              type="button"
-              onClick={saveProgressNow}
-              className="min-h-[44px] rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-3 text-sm font-black text-emerald-50 transition hover:bg-emerald-300/25"
-            >
-              Save Progress
-            </button>
-
-            <button
-              type="button"
-              onClick={emailProgressBackup}
-              className="min-h-[44px] rounded-full border border-sky-200/30 bg-sky-300/15 px-4 py-3 text-sm font-black text-sky-50 transition hover:bg-sky-300/25"
-            >
-              Email Backup
-            </button>
-
-            <button
-              type="button"
-              onClick={copyProgressBackup}
-              className="min-h-[44px] rounded-full border border-white/15 bg-white/10 px-4 py-3 text-sm font-black text-slate-100 transition hover:bg-white/15"
-            >
-              Copy Backup
-            </button>
-
-            <button
-              type="button"
-              onClick={restoreProgressBackup}
-              className="min-h-[44px] rounded-full border border-yellow-200/25 bg-yellow-300/10 px-4 py-3 text-sm font-black text-yellow-50 transition hover:bg-yellow-300/15"
-            >
-              Restore Backup
-            </button>
-
-            <button
-              type="button"
-              onClick={resetToToday}
-              className="min-h-[44px] rounded-full border border-orange-200/25 bg-orange-300/10 px-4 py-3 text-sm font-black text-orange-50 transition hover:bg-orange-300/15"
-            >
-              Start Over
-            </button>
-
-            <button
-              type="button"
-              onClick={clearProgress}
-              className="min-h-[44px] rounded-full border border-red-200/25 bg-red-300/10 px-4 py-3 text-sm font-black text-red-100 transition hover:bg-red-300/15"
-            >
-              Clear Progress
-            </button>
+            {nextPlanDay ? (
+              <>
+                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
+                  Week {nextPlanDay.week} • {nextPlanDay.dayLabel}
+                </h2>
+                <p className="mt-1 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+                  {readingPlanCategory(nextPlanDay)}
+                </p>
+                <p className="mt-2 text-2xl font-black text-white">
+                  {nextPlanDay.reading}
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
+                  Plan complete
+                </h2>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
+                  Restart any day to begin again.
+                </p>
+              </>
+            )}
           </div>
 
-          {saveMessage ? (
-            <p className="mt-3 text-sm font-black text-emerald-100" role="status">
-              {saveMessage}
+          <div className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-center">
+            <p className="text-3xl font-black text-white">{completedCount}</p>
+            <p className="mt-1 text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-300">
+              of {totalDays} done
             </p>
-          ) : null}
+            <p className="mt-1 text-xs font-bold text-emerald-100">{percentComplete}%</p>
+          </div>
         </div>
 
-        <div className="rounded-[2rem] border border-emerald-200/25 bg-emerald-300/[0.08] p-6 shadow-2xl shadow-emerald-950/20 sm:p-7">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-                Next Reading
-              </p>
-
-              {nextPlanDay ? (
-                <>
-                  <h2 className="mt-4 text-3xl font-black text-white">
-                    Week {nextPlanDay.week} • {nextPlanDay.dayLabel}
-                  </h2>
-                  <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                    {readingPlanCategory(nextPlanDay)}
-                  </p>
-                  <p className="mt-5 text-3xl font-black text-white">
-                    {nextPlanDay.reading}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h2 className="mt-4 text-3xl font-black text-white">
-                    Plan complete
-                  </h2>
-                  <p className="mt-5 text-base font-semibold leading-7 text-slate-200">
-                    You have passed the 52-week plan window. Restart any day to begin again.
-                  </p>
-                </>
-              )}
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4 text-center">
-              <p className="text-3xl font-black text-white">{completedCount}</p>
-              <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
-                of {totalDays} done
-              </p>
-              <p className="mt-1 text-xs font-bold text-emerald-100">{percentComplete}%</p>
-            </div>
-          </div>
-
+        <div className="mt-5 flex flex-wrap justify-center gap-2 sm:justify-start">
           {nextPlanDay ? (
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <>
               <a
                 href={bibleSearchUrl(nextPlanDay.reading)}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-emerald-50 transition hover:bg-emerald-300/30"
+                className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 transition hover:bg-emerald-300/30"
               >
-                Open in Bible App
+                Open Bible
               </a>
 
               <button
                 type="button"
                 onClick={() => toggleDone(nextPlanDay)}
-                className="rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-slate-100 transition hover:bg-white/15"
+                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-100 transition hover:bg-white/15"
               >
-                {done[doneKey(nextPlanDay)] ? "Mark not done" : "Mark done"}
+                {done[doneKey(nextPlanDay)] ? "Uncheck" : "Mark Done"}
               </button>
-            </div>
+            </>
           ) : null}
+
+          <button
+            type="button"
+            onClick={saveProgressNow}
+            className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 transition hover:bg-emerald-300/20"
+          >
+            Save
+          </button>
+
+          <button
+            type="button"
+            onClick={emailProgressBackup}
+            className="rounded-full border border-sky-200/25 bg-sky-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-sky-50 transition hover:bg-sky-300/20"
+          >
+            Email Backup
+          </button>
+
+          <button
+            type="button"
+            onClick={copyProgressBackup}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-100 transition hover:bg-white/15"
+          >
+            Copy Backup
+          </button>
+
+          <button
+            type="button"
+            onClick={restoreProgressBackup}
+            className="rounded-full border border-yellow-200/25 bg-yellow-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-yellow-50 transition hover:bg-yellow-300/15"
+          >
+            Restore
+          </button>
+
+          <button
+            type="button"
+            onClick={resetToToday}
+            className="rounded-full border border-orange-200/25 bg-orange-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-orange-50 transition hover:bg-orange-300/15"
+          >
+            Start Over
+          </button>
+
+          <button
+            type="button"
+            onClick={clearProgress}
+            className="rounded-full border border-red-200/25 bg-red-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-red-100 transition hover:bg-red-300/15"
+          >
+            Clear
+          </button>
         </div>
+
+        {saveMessage ? (
+          <p className="mt-3 text-center text-sm font-black text-emerald-100 sm:text-left" role="status">
+            {saveMessage}
+          </p>
+        ) : null}
       </section>
 
       <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
