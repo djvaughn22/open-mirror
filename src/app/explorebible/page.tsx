@@ -152,6 +152,20 @@ function splitBibleBingoSectionTitle(title: string) {
   };
 }
 
+function shortBibleBingoSectionLine(title: string) {
+  const cleanTitle = splitBibleBingoSectionTitle(title).title.toLowerCase();
+
+  if (cleanTitle.includes("law")) return "Law and covenant.";
+  if (cleanTitle.includes("history")) return "God’s people.";
+  if (cleanTitle.includes("psalms")) return "Prayer and praise.";
+  if (cleanTitle.includes("poetry")) return "Wisdom and wonder.";
+  if (cleanTitle.includes("prophecy")) return "Warning and hope.";
+  if (cleanTitle.includes("gospels")) return "Jesus and good news.";
+  if (cleanTitle.includes("epistles")) return "Letters for faith.";
+
+  return "Open Scripture.";
+}
+
 function centralDayIndex() {
   const weekday = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Chicago",
@@ -238,6 +252,7 @@ export default function BibleExplorerPage() {
   const [spinningCards, setSpinningCards] = useState(() => sections.map(() => false));
   const [spinDelays, setSpinDelays] = useState(() => sections.map(() => 0));
   const [focusedCardIndex, setFocusedCardIndex] = useState(() => centralDayIndex());
+  const [focusedFlipVersion, setFocusedFlipVersion] = useState(0);
   const [activeWordStudy, setActiveWordStudy] = useState<ActiveWordStudy | null>(null);
   const [wordStudiesByPassage, setWordStudiesByPassage] = useState<
     Record<string, VerifiedWordStudy[]>
@@ -438,6 +453,11 @@ export default function BibleExplorerPage() {
   }
 
 
+  function focusDayCard(index: number) {
+    setFocusedFlipVersion((version) => version + 1);
+    setFocusedCardIndex(index);
+  }
+
   function openWordStudy(
     _section: Section,
     passage: Passage,
@@ -538,12 +558,13 @@ export default function BibleExplorerPage() {
                 const index = cardIndex;
                 const isFocused = index === focusedIndex;
                 const cardTitle = splitBibleBingoSectionTitle(section.title);
+                const cardSummary = shortBibleBingoSectionLine(section.title);
 
                 return (
                   <button
                     type="button"
                     key={`${section.title}-${passage.label}-${index}`}
-                    onClick={() => setFocusedCardIndex(index)}
+                    onClick={() => focusDayCard(index)}
                     aria-pressed={isFocused}
                     aria-busy={spinningCards[index]}
                     className={`relative bible-bingo-deck-card flex min-h-[260px] flex-col overflow-hidden rounded-[1.5rem] border p-4 text-center shadow-xl transition duration-200 hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
@@ -572,7 +593,7 @@ export default function BibleExplorerPage() {
                     </h2>
 
                     <p className="mt-2 min-h-[42px] text-[0.66rem] font-semibold leading-5 text-slate-300">
-                      {section.line}
+                      {cardSummary}
                     </p>
 
                     <p className="mt-3 text-xs font-black leading-5 text-white">
@@ -603,8 +624,8 @@ export default function BibleExplorerPage() {
           {focusedCard ? (
             <article
               id={`card-${focusedIndex + 1}`}
-              key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}`}
-              className={`relative bible-bingo-focused-card mx-auto mt-6 max-w-3xl overflow-hidden rounded-[2rem] border p-6 text-center text-slate-100 shadow-2xl shadow-black/30 sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
+              key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}-${focusedFlipVersion}`}
+              className={`relative bible-bingo-focused-card bible-card-focus-flip mx-auto mt-6 max-w-3xl overflow-hidden rounded-[2rem] border p-6 text-center text-slate-100 shadow-2xl shadow-black/30 sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
               style={{
                 minHeight: "430px",
                 display: "flex",
@@ -897,6 +918,69 @@ export default function BibleExplorerPage() {
           animation-timing-function: ease-in-out;
           animation-fill-mode: both;
           animation-delay: inherit;
+        }
+
+
+        @keyframes bible-focus-card-flip {
+          0% {
+            opacity: 0;
+            transform: perspective(1100px) rotateY(-78deg) translateY(12px) scale(0.96);
+            filter: blur(5px);
+          }
+
+          45% {
+            opacity: 1;
+            transform: perspective(1100px) rotateY(8deg) translateY(0) scale(1.01);
+            filter: blur(0);
+          }
+
+          100% {
+            opacity: 1;
+            transform: perspective(1100px) rotateY(0deg) translateY(0) scale(1);
+            filter: blur(0);
+          }
+        }
+
+        @keyframes bible-focus-card-symbols {
+          0% {
+            opacity: 0;
+            transform: scale(0.86) translateY(10px);
+          }
+
+          35% {
+            opacity: 0.95;
+            transform: scale(1.04) translateY(0);
+          }
+
+          100% {
+            opacity: 0;
+            transform: scale(1.12) translateY(-10px);
+          }
+        }
+
+        .bible-card-focus-flip {
+          transform-style: preserve-3d;
+          animation: bible-focus-card-flip 620ms ease-out both;
+        }
+
+        .bible-card-focus-flip::before {
+          content: "✝️  ❤️  🙏";
+          position: absolute;
+          inset: 0;
+          z-index: 8;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: radial-gradient(circle at center, rgb(15 23 42 / 0.76), rgb(15 23 42 / 0));
+          font-size: clamp(2.4rem, 9vw, 5.25rem);
+          letter-spacing: 0.22em;
+          pointer-events: none;
+          animation: bible-focus-card-symbols 620ms ease-out both;
+        }
+
+        .bible-card-focus-flip > * {
+          position: relative;
+          z-index: 1;
         }
 
         .bible-card-verse-preview {
