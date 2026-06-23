@@ -592,17 +592,26 @@ export default function BibleExplorerPage() {
                       {cardTitle.title}
                     </h2>
 
-                    <p className="mt-2 min-h-[42px] text-[0.66rem] font-semibold leading-5 text-slate-300">
-                      {cardSummary}
-                    </p>
+                    <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-2">
+                      <p className="text-[0.56rem] font-black uppercase tracking-[0.16em] text-slate-400">
+                        Day Theme
+                      </p>
+                      <p className="mt-1 text-[0.68rem] font-bold leading-5 text-slate-200">
+                        {cardSummary}
+                      </p>
+                    </div>
 
-                    <p className="mt-3 text-xs font-black leading-5 text-white">
-                      {passage.label}
-                    </p>
-
-                    <p className="bible-card-verse-preview mt-3 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
-                      {passage.text}
-                    </p>
+                    <div className="mt-3 rounded-2xl border border-white/10 bg-black/25 px-3 py-3 text-left">
+                      <p className="text-[0.56rem] font-black uppercase tracking-[0.16em] text-slate-400">
+                        Verse
+                      </p>
+                      <p className="mt-1 text-xs font-black leading-5 text-white">
+                        {passage.label}
+                      </p>
+                      <p className="bible-card-verse-preview mt-2 text-[0.72rem] font-semibold leading-5 text-slate-100/90">
+                        {passage.text}
+                      </p>
+                    </div>
 
                     <p className="mt-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100">
                       {bibleBingoOddsForSection(section.title).label}
@@ -634,7 +643,7 @@ export default function BibleExplorerPage() {
                 animationDelay: spinningCards[focusedIndex] ? `${spinDelays[focusedIndex]}ms` : "0ms",
               }}
             >
-              <div className="absolute right-5 top-5">
+              <div className="mb-4 flex w-full justify-end">
                 <BibleBingoShareMenu
                   boardHref={`${boardPath}?card=${focusedIndex + 1}`}
                   boardUrl={`${boardUrl}?card=${focusedIndex + 1}`}
