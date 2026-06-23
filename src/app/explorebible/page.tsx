@@ -202,19 +202,125 @@ const BIBLE_BINGO_BOOK_LINKS: Record<string, BibleBookLink[]> = {
   ],
 };
 
-function bibleBingoBookLinksForSection(sectionTitle: string) {
-  const cleanTitle = splitBibleBingoSectionTitle(sectionTitle).title.toLowerCase();
+/* BIBLE BINGO READING PLAN BOOK LINKS */
+const BIBLE_BINGO_READING_PLAN_BOOK_LINKS: Record<string, BibleBookLink[]> = {
+  law: [
+    { label: "Genesis", href: "https://www.bible.com/bible/206/GEN.1.WEBUS" },
+    { label: "Exodus", href: "https://www.bible.com/bible/206/EXO.1.WEBUS" },
+    { label: "Leviticus", href: "https://www.bible.com/bible/206/LEV.1.WEBUS" },
+    { label: "Numbers", href: "https://www.bible.com/bible/206/NUM.1.WEBUS" },
+    { label: "Deuteronomy", href: "https://www.bible.com/bible/206/DEU.1.WEBUS" },
+  ],
+  history: [
+    { label: "Joshua", href: "https://www.bible.com/bible/206/JOS.1.WEBUS" },
+    { label: "Judges", href: "https://www.bible.com/bible/206/JDG.1.WEBUS" },
+    { label: "Ruth", href: "https://www.bible.com/bible/206/RUT.1.WEBUS" },
+    { label: "1 Samuel", href: "https://www.bible.com/bible/206/1SA.1.WEBUS" },
+    { label: "2 Samuel", href: "https://www.bible.com/bible/206/2SA.1.WEBUS" },
+    { label: "1 Kings", href: "https://www.bible.com/bible/206/1KI.1.WEBUS" },
+    { label: "2 Kings", href: "https://www.bible.com/bible/206/2KI.1.WEBUS" },
+    { label: "1 Chronicles", href: "https://www.bible.com/bible/206/1CH.1.WEBUS" },
+    { label: "2 Chronicles", href: "https://www.bible.com/bible/206/2CH.1.WEBUS" },
+    { label: "Ezra", href: "https://www.bible.com/bible/206/EZR.1.WEBUS" },
+    { label: "Nehemiah", href: "https://www.bible.com/bible/206/NEH.1.WEBUS" },
+    { label: "Esther", href: "https://www.bible.com/bible/206/EST.1.WEBUS" },
+    { label: "Acts", href: "https://www.bible.com/bible/206/ACT.1.WEBUS" },
+  ],
+  psalms: [
+    { label: "Psalms", href: "https://www.bible.com/bible/206/PSA.1.WEBUS" },
+  ],
+  poetry: [
+    { label: "Job", href: "https://www.bible.com/bible/206/JOB.1.WEBUS" },
+    { label: "Proverbs", href: "https://www.bible.com/bible/206/PRO.1.WEBUS" },
+    { label: "Ecclesiastes", href: "https://www.bible.com/bible/206/ECC.1.WEBUS" },
+    { label: "Song of Solomon", href: "https://www.bible.com/bible/206/SNG.1.WEBUS" },
+  ],
+  prophecy: [
+    { label: "Isaiah", href: "https://www.bible.com/bible/206/ISA.1.WEBUS" },
+    { label: "Jeremiah", href: "https://www.bible.com/bible/206/JER.1.WEBUS" },
+    { label: "Lamentations", href: "https://www.bible.com/bible/206/LAM.1.WEBUS" },
+    { label: "Ezekiel", href: "https://www.bible.com/bible/206/EZK.1.WEBUS" },
+    { label: "Daniel", href: "https://www.bible.com/bible/206/DAN.1.WEBUS" },
+    { label: "Hosea", href: "https://www.bible.com/bible/206/HOS.1.WEBUS" },
+    { label: "Joel", href: "https://www.bible.com/bible/206/JOL.1.WEBUS" },
+    { label: "Amos", href: "https://www.bible.com/bible/206/AMO.1.WEBUS" },
+    { label: "Obadiah", href: "https://www.bible.com/bible/206/OBA.1.WEBUS" },
+    { label: "Jonah", href: "https://www.bible.com/bible/206/JON.1.WEBUS" },
+    { label: "Micah", href: "https://www.bible.com/bible/206/MIC.1.WEBUS" },
+    { label: "Nahum", href: "https://www.bible.com/bible/206/NAM.1.WEBUS" },
+    { label: "Habakkuk", href: "https://www.bible.com/bible/206/HAB.1.WEBUS" },
+    { label: "Zephaniah", href: "https://www.bible.com/bible/206/ZEP.1.WEBUS" },
+    { label: "Haggai", href: "https://www.bible.com/bible/206/HAG.1.WEBUS" },
+    { label: "Zechariah", href: "https://www.bible.com/bible/206/ZEC.1.WEBUS" },
+    { label: "Malachi", href: "https://www.bible.com/bible/206/MAL.1.WEBUS" },
+    { label: "Revelation", href: "https://www.bible.com/bible/206/REV.1.WEBUS" },
+  ],
+  gospels: [
+    { label: "Matthew", href: "https://www.bible.com/bible/206/MAT.1.WEBUS" },
+    { label: "Mark", href: "https://www.bible.com/bible/206/MRK.1.WEBUS" },
+    { label: "Luke", href: "https://www.bible.com/bible/206/LUK.1.WEBUS" },
+    { label: "John", href: "https://www.bible.com/bible/206/JHN.1.WEBUS" },
+  ],
+  epistles: [
+    { label: "Romans", href: "https://www.bible.com/bible/206/ROM.1.WEBUS" },
+    { label: "1 Corinthians", href: "https://www.bible.com/bible/206/1CO.1.WEBUS" },
+    { label: "2 Corinthians", href: "https://www.bible.com/bible/206/2CO.1.WEBUS" },
+    { label: "Galatians", href: "https://www.bible.com/bible/206/GAL.1.WEBUS" },
+    { label: "Ephesians", href: "https://www.bible.com/bible/206/EPH.1.WEBUS" },
+    { label: "Philippians", href: "https://www.bible.com/bible/206/PHP.1.WEBUS" },
+    { label: "Colossians", href: "https://www.bible.com/bible/206/COL.1.WEBUS" },
+    { label: "1 Thessalonians", href: "https://www.bible.com/bible/206/1TH.1.WEBUS" },
+    { label: "2 Thessalonians", href: "https://www.bible.com/bible/206/2TH.1.WEBUS" },
+    { label: "1 Timothy", href: "https://www.bible.com/bible/206/1TI.1.WEBUS" },
+    { label: "2 Timothy", href: "https://www.bible.com/bible/206/2TI.1.WEBUS" },
+    { label: "Titus", href: "https://www.bible.com/bible/206/TIT.1.WEBUS" },
+    { label: "Philemon", href: "https://www.bible.com/bible/206/PHM.1.WEBUS" },
+    { label: "Hebrews", href: "https://www.bible.com/bible/206/HEB.1.WEBUS" },
+    { label: "James", href: "https://www.bible.com/bible/206/JAS.1.WEBUS" },
+    { label: "1 Peter", href: "https://www.bible.com/bible/206/1PE.1.WEBUS" },
+    { label: "2 Peter", href: "https://www.bible.com/bible/206/2PE.1.WEBUS" },
+    { label: "1 John", href: "https://www.bible.com/bible/206/1JN.1.WEBUS" },
+    { label: "2 John", href: "https://www.bible.com/bible/206/2JN.1.WEBUS" },
+    { label: "3 John", href: "https://www.bible.com/bible/206/3JN.1.WEBUS" },
+    { label: "Jude", href: "https://www.bible.com/bible/206/JUD.1.WEBUS" },
+  ],
+};
 
-  if (cleanTitle.includes("epistles")) return BIBLE_BINGO_BOOK_LINKS.epistles;
-  if (cleanTitle.includes("law")) return BIBLE_BINGO_BOOK_LINKS.law;
-  if (cleanTitle.includes("history")) return BIBLE_BINGO_BOOK_LINKS.history;
-  if (cleanTitle.includes("psalms")) return BIBLE_BINGO_BOOK_LINKS.psalms;
-  if (cleanTitle.includes("poetry")) return BIBLE_BINGO_BOOK_LINKS.poetry;
-  if (cleanTitle.includes("prophecy")) return BIBLE_BINGO_BOOK_LINKS.prophecy;
-  if (cleanTitle.includes("gospels")) return BIBLE_BINGO_BOOK_LINKS.gospels;
+function bibleBingoBookLinksForSection(sectionTitle: string): BibleBookLink[] {
+  const normalized = sectionTitle.toLowerCase();
+
+  if (normalized.includes("law") || normalized.includes("genesis")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.law;
+  }
+
+  if (normalized.includes("history") || normalized.includes("old testament")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.history;
+  }
+
+  if (normalized.includes("psalm")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.psalms;
+  }
+
+  if (normalized.includes("poetry") || normalized.includes("proverb")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.poetry;
+  }
+
+  if (normalized.includes("prophecy") || normalized.includes("revelation")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.prophecy;
+  }
+
+  if (normalized.includes("gospel")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.gospels;
+  }
+
+  if (normalized.includes("epistle")) {
+    return BIBLE_BINGO_READING_PLAN_BOOK_LINKS.epistles;
+  }
 
   return [];
 }
+/* END BIBLE BINGO READING PLAN BOOK LINKS */
+
 
 
 function randomPassage(section: Section, avoidLabel?: string) {
