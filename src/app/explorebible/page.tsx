@@ -146,7 +146,7 @@ const BIBLE_BINGO_BOOK_LINKS: Record<string, BibleBookLink[]> = {
     { label: "Jude", href: bibleBookHref("JUD") },
   ],
   law: [
-    { label: "Genesis", href: bibleBookHref("GEN") },
+    { label: "The Law", href: bibleBookHref("GEN") },
     { label: "Exodus", href: bibleBookHref("EXO") },
     { label: "Leviticus", href: bibleBookHref("LEV") },
     { label: "Numbers", href: bibleBookHref("NUM") },
@@ -171,7 +171,7 @@ const BIBLE_BINGO_BOOK_LINKS: Record<string, BibleBookLink[]> = {
   ],
   poetry: [
     { label: "Job", href: bibleBookHref("JOB") },
-    { label: "Proverbs", href: bibleBookHref("PRO") },
+    { label: "Poetry", href: bibleBookHref("PRO") },
     { label: "Ecclesiastes", href: bibleBookHref("ECC") },
     { label: "Song of Solomon", href: bibleBookHref("SNG") },
   ],

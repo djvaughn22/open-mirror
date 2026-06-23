@@ -84,16 +84,85 @@ const BIBLE_BINGO_EXACT_EPISTLE_BOOKS = new Set([
   "Jude",
 ]);
 
+
+const BIBLE_READING_PLAN_LAW_BOOKS = new Set([
+  "Genesis",
+  "Exodus",
+  "Leviticus",
+  "Numbers",
+  "Deuteronomy",
+]);
+
+const BIBLE_READING_PLAN_HISTORY_BOOKS = new Set([
+  "Joshua",
+  "Judges",
+  "Ruth",
+  "1 Samuel",
+  "2 Samuel",
+  "1 Kings",
+  "2 Kings",
+  "1 Chronicles",
+  "2 Chronicles",
+  "Ezra",
+  "Nehemiah",
+  "Esther",
+  "Acts",
+]);
+
+const BIBLE_READING_PLAN_PSALMS_BOOKS = new Set(["Psalms"]);
+
+const BIBLE_READING_PLAN_POETRY_BOOKS = new Set([
+  "Job",
+  "Proverbs",
+  "Ecclesiastes",
+  "Song of Solomon",
+]);
+
+const BIBLE_READING_PLAN_PROPHECY_BOOKS = new Set([
+  "Isaiah",
+  "Jeremiah",
+  "Lamentations",
+  "Ezekiel",
+  "Daniel",
+  "Hosea",
+  "Joel",
+  "Amos",
+  "Obadiah",
+  "Jonah",
+  "Micah",
+  "Nahum",
+  "Habakkuk",
+  "Zephaniah",
+  "Haggai",
+  "Zechariah",
+  "Malachi",
+  "Revelation",
+]);
+
 function exactBooksForBibleBingoLane(sectionTitle: string) {
   const lane = sectionTitle.split(" · ")[0].toLowerCase();
 
-  if (lane.includes("genesis")) return new Set(["Genesis"]);
-  if (lane.includes("old testament")) return BIBLE_BINGO_EXACT_OLD_TESTAMENT_BOOKS;
-  if (lane.includes("psalm")) return new Set(["Psalms"]);
-  if (lane.includes("proverb")) return new Set(["Proverbs"]);
-  if (lane.includes("gospel")) return BIBLE_BINGO_EXACT_GOSPEL_BOOKS;
   if (lane.includes("epistle")) return BIBLE_BINGO_EXACT_EPISTLE_BOOKS;
-  if (lane.includes("revelation")) return new Set(["Revelation"]);
+
+  if (lane.includes("law") || lane.includes("genesis")) {
+    return BIBLE_READING_PLAN_LAW_BOOKS;
+  }
+
+  if (lane.includes("history") || lane.includes("old testament")) {
+    return BIBLE_READING_PLAN_HISTORY_BOOKS;
+  }
+
+  if (lane.includes("psalm")) return BIBLE_READING_PLAN_PSALMS_BOOKS;
+
+  if (lane.includes("poetry") || lane.includes("proverb")) {
+    return BIBLE_READING_PLAN_POETRY_BOOKS;
+  }
+
+  if (lane.includes("prophecy") || lane.includes("revelation")) {
+    return BIBLE_READING_PLAN_PROPHECY_BOOKS;
+  }
+
+  if (lane.includes("gospel")) return BIBLE_BINGO_EXACT_GOSPEL_BOOKS;
 
   return null;
 }
