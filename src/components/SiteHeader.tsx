@@ -8,17 +8,16 @@ type SiteHeaderProps = {
 };
 
 const menuLinks = [
-  { href: "/", label: "Welcome" },
-  { href: "/cross", label: "Cross" },
-  { href: "/heart", label: "Heart" },
-  { href: "/pray", label: "Pray" },
-  { href: "/explorebible", label: "Bible Bingo" },
-  { href: "/daily-hope", label: "Daily Hope" },
+  { href: "/", label: "Bible Bingo 7" },
   {
     href: "/bible-reading-plan",
     label: "Bible Reading Plan",
     external: true,
   },
+  { href: "/daily-hope", label: "Daily Hope" },
+  { href: "/cross", label: "Cross" },
+  { href: "/heart", label: "Heart" },
+  { href: "/pray", label: "Pray" },
   { href: "/about", label: "About" },
 ];
 
@@ -64,10 +63,10 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
     <nav className={`${className} grid grid-cols-3 items-center`}>
       <a
         href="/"
-        aria-label="Open CrossHeartPray Welcome"
+        aria-label="Open ✝️ ❤️ 🙏 Welcome"
         className="justify-self-start font-bold text-slate-100"
       >
-        CrossHeartPray
+        ✝️ ❤️ 🙏
       </a>
 
       <a

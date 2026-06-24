@@ -27,8 +27,9 @@ import {
   buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
   hasVerifiedWordStudies,
-  /* BIBLE BINGO LANE VERSE POSITION LABEL */
-type ChpLocalBibleVerseRecord = Record<string, unknown>;
+  type VerifiedWordStudy,
+  wordStudyLookupKey,
+} from "../../lib/originalLanguageWordStudy";
 
 const CHP_BOOK_CODE_BY_NAME: Record<string, string> = {
   Genesis: "GEN", Exodus: "EXO", Leviticus: "LEV", Numbers: "NUM", Deuteronomy: "DEU",
@@ -46,6 +47,9 @@ const CHP_BOOK_CODE_BY_NAME: Record<string, string> = {
   Philemon: "PHM", Hebrews: "HEB", James: "JAS", "1 Peter": "1PE", "2 Peter": "2PE",
   "1 John": "1JN", "2 John": "2JN", "3 John": "3JN", Jude: "JUD", Revelation: "REV",
 };
+
+/* BIBLE BINGO LANE VERSE POSITION LABEL */
+type ChpLocalBibleVerseRecord = Record<string, unknown>;
 
 const CHP_LANE_BOOKS: Record<string, string[]> = {
   law: ["GEN", "EXO", "LEV", "NUM", "DEU"],
@@ -189,12 +193,6 @@ function bibleBingoLaneVerseLabel(card: unknown) {
   return `${total.toLocaleString()} verses in this lane`;
 }
 /* END BIBLE BINGO LANE VERSE POSITION LABEL */
-
-
-type VerifiedWordStudy,
-  wordStudyLookupKey,
-} from "../../lib/originalLanguageWordStudy";
-
 type Passage = {
   label: string;
   code: string;

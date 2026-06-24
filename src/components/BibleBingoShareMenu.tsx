@@ -186,7 +186,7 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
 <body>
   <main class="sheet">
     <p class="brand">✝️ ❤️ 🙏</p>
-    <p class="kind">Cross Heart Pray · Bible Bingo 7 · ${safeKind}</p>
+    <p class="kind">✝️ ❤️ 🙏 · Bible Bingo 7 · ${safeKind}</p>
     <h1>${safeTitle}</h1>
     <section class="content">${body}</section>
     <p class="footer">Open online: <a href="${safeUrl}">${safeUrl}</a></p>
@@ -307,7 +307,7 @@ function buildEmailHtml(emailSubject: string, shareText: string, boardUrl: strin
     <h1 style="margin:0 0 18px 0;color:#0f172a;font-size:24px;line-height:1.25;">${safeSubject}</h1>
     <div style="text-align:left;margin:0 auto 22px auto;max-width:470px;">${safeLines}</div>
     <a href="${safeUrl}" style="display:inline-block;background:#065f46;color:#ffffff;text-decoration:none;font-weight:800;border-radius:999px;padding:13px 22px;">Open ${safeTitle}</a>
-    <p style="margin:20px 0 0 0;color:#64748b;font-size:13px;line-height:1.45;">✝️ Cross ❤️ Heart 🙏 Pray</p>
+    <p style="margin:20px 0 0 0;color:#64748b;font-size:13px;line-height:1.45;">✝️ ❤️ 🙏</p>
   </div>
 </div>`.trim();
 }

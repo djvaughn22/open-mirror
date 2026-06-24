@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CrossHeartPray",
+  title: "✝️ ❤️ 🙏",
   description: "Look in the mirror. Tell the truth. Return to God.",
 };
 
