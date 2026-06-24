@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
+import BibleBingoKingCard from "../components/BibleBingoKingCard";
 import CrossHeartPrayHero from "../components/CrossHeartPrayHero";
 
 export const metadata = {
@@ -30,7 +31,7 @@ const dailyWays = [
   },
   {
     href: "/explorebible",
-    icon: "🃏",
+    icon: "king-of-hearts",
     eyebrow: "7-card deck",
     title: "Bible Bingo 7",
     body:
@@ -81,7 +82,11 @@ export default function WelcomePage() {
               className="group rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-7 text-left shadow-2xl shadow-slate-950/30 transition hover:-translate-y-1 hover:border-emerald-200/40 hover:bg-slate-900"
             >
               <div className="flex items-center justify-between gap-4">
-                <p className="text-5xl">{item.icon}</p>
+                {item.icon === "king-of-hearts" ? (
+                  <BibleBingoKingCard className="h-16 w-12" />
+                ) : (
+                  <p className="text-5xl">{item.icon}</p>
+                )}
                 <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.7rem] font-black uppercase tracking-[0.2em] text-emerald-100">
                   {item.eyebrow}
                 </span>

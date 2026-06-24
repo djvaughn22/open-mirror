@@ -5,6 +5,7 @@ import SiteFooter from "../../components/SiteFooter";
 
 
 import SiteHeader from "../../components/SiteHeader";
+import BibleBingoKingCard from "../../components/BibleBingoKingCard";
 
 import { useEffect, useMemo, useState, useRef } from "react";
 import {
@@ -960,9 +961,12 @@ export default function BibleExplorerPage() {
             <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
           </p>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Bible Bingo 7
-          </h1>
+          <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <BibleBingoKingCard className="h-16 w-12 sm:h-20 sm:w-14" />
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+              Bible Bingo 7
+            </h1>
+          </div>
 
           <CentralTimeBadge className="mt-5" showReadingPlan={false} />
 
