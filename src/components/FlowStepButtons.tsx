@@ -3,10 +3,10 @@
 import { usePathname } from "next/navigation";
 
 const steps = [
-  { href: "/", label: "Welcome" },
-  { href: "/explorebible", label: "Bible Bingo 7" },
-  { href: "/bible-reading-plan", label: "Bible Reading Plan" },
+  { href: "/", label: "Home" },
+  { href: "/bible-reading-plan", label: "52 Week Reading" },
   { href: "/daily-hope", label: "Daily Hope" },
+  { href: "/explorebible", label: "Bible Bingo 7" },
   { href: "/about", label: "About" },
 ];
 
