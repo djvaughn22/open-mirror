@@ -24,10 +24,10 @@ const dailyWays = [
     href: "/daily-hope",
     icon: "🌅",
     eyebrow: "Daily",
-    title: "Hope",
+    title: "Daily Hope",
     body:
       "A short prayer and Scripture routine for the day, ready whenever you want to slow down and come back to the Word.",
-    cta: "Open Hope",
+    cta: "Open Daily Hope",
   },
   {
     href: "/explorebible",
@@ -40,18 +40,18 @@ const dailyWays = [
   },
 ];
 
-const studyDetails = [
+const deepDiveLinks = [
   {
-    title: "Open the chapter",
-    body: "A verse can turn into context, chapter reading, and related Bible app study.",
+    label: "Open Bible Bingo 7",
+    href: "/explorebible",
   },
   {
-    title: "Follow the trail",
-    body: "Bible Bingo connects a random card back into the bigger Bible reading rhythm.",
+    label: "Study the verse in the Bible app",
+    href: "https://www.bible.com/bible/206/JHN.1.1.WEBUS",
   },
   {
-    title: "Deep Dive the words",
-    body: "When verified data is available, open Strong’s-linked Hebrew and Greek meaning.",
+    label: "Original word example",
+    href: "https://biblehub.com/greek/3056.htm",
   },
 ];
 
@@ -109,67 +109,113 @@ export default function WelcomePage() {
           ))}
         </section>
 
-        <section className="mx-auto mt-12 max-w-5xl rounded-[2rem] border border-emerald-200/15 bg-gradient-to-br from-emerald-300/[0.10] via-slate-900 to-slate-950 p-5 shadow-2xl shadow-emerald-950/15 sm:mt-14 sm:p-6 lg:p-7">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
+        <section className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-slate-950/35 shadow-2xl shadow-emerald-950/15 sm:mt-14">
+          <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="border-b border-white/10 bg-emerald-300/[0.08] p-6 lg:border-b-0 lg:border-r lg:border-white/10">
               <p className="text-xs font-black uppercase tracking-[0.26em] text-emerald-100">
-                Open a verse. Keep going.
+                Brand the Deep Dive
               </p>
 
               <h2 className="mt-3 text-3xl font-black leading-tight text-white sm:text-4xl">
-                One verse can open a whole trail.
+                Behind the Verse
               </h2>
 
-              <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-200 sm:text-base">
-                Bible Bingo starts with a 7-card deal, then opens into chapter
-                context, Bible app study, related verses, and original word
-                study when verified data is available.
+              <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-slate-200 sm:text-base">
+                Start with one verse. Open the Bible. Check the chapter. When
+                the data is verified, look behind the English word into the
+                Hebrew or Greek source.
               </p>
             </div>
 
-            <div className="shrink-0">
-              <Link
-                href="/explorebible"
-                className="inline-flex w-full items-center justify-center rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-emerald-200 sm:w-auto"
-              >
-                Deal Bible Bingo 7 →
-              </Link>
+            <div className="p-6">
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p className="text-[0.66rem] font-black uppercase tracking-[0.2em] text-emerald-100">
+                    1 verse
+                  </p>
+                  <a
+                    href="https://www.bible.com/bible/206/JHN.1.1.WEBUS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex text-lg font-black text-white underline decoration-emerald-300/45 decoration-2 underline-offset-4 transition hover:text-emerald-100"
+                  >
+                    John 1:1
+                  </a>
+                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-400">
+                    Placeholder verse. Easy to update later.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[0.66rem] font-black uppercase tracking-[0.2em] text-emerald-100">
+                    Bible study
+                  </p>
+                  <Link
+                    href="/explorebible"
+                    className="mt-2 inline-flex text-lg font-black text-white underline decoration-emerald-300/45 decoration-2 underline-offset-4 transition hover:text-emerald-100"
+                  >
+                    Explore Bible
+                  </Link>
+                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-400">
+                    Deal a verse, open the chapter, keep moving.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[0.66rem] font-black uppercase tracking-[0.2em] text-emerald-100">
+                    Strong’s
+                  </p>
+                  <a
+                    href="https://biblehub.com/greek/3056.htm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex text-lg font-black text-white underline decoration-emerald-300/45 decoration-2 underline-offset-4 transition hover:text-emerald-100"
+                  >
+                    Logos · G3056
+                  </a>
+                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-400">
+                    Source-backed word study, not a guess.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+                {deepDiveLinks.map((item) => {
+                  const external = item.href.startsWith("http");
+
+                  return external ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-200 transition hover:border-emerald-200/30 hover:bg-emerald-300/10 hover:text-emerald-50"
+                    >
+                      {item.label} →
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 transition hover:bg-emerald-300/18"
+                    >
+                      {item.label} →
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {studyDetails.map((detail) => (
-              <div
-                key={detail.title}
-                className="rounded-[1.35rem] border border-white/10 bg-slate-950/55 p-4 sm:p-5"
-              >
-                <h3 className="text-base font-black text-white">
-                  {detail.title}
-                </h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-                  {detail.body}
-                </p>
-              </div>
-            ))}
-          </div>
         </section>
-        <section className="mx-auto mt-14 max-w-5xl rounded-[2rem] bg-white/[0.03] p-7">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
-              The simple flow underneath
-            </p>
-          </div>
-
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
+        <section className="mx-auto mt-12 max-w-5xl">
+          <div className="flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-center">
             {crossHeartPrayCards.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[1.5rem] bg-slate-950/45 p-6 text-center"
+                className="inline-flex items-center gap-2 text-sm font-black text-white"
               >
-                <p className="text-4xl">{item.icon}</p>
-                <h3 className="mt-4 text-xl font-black text-white">
-                  {item.title}
-                </h3>
+                <span className="text-xl">{item.icon}</span>
+                <span>{item.title}</span>
               </div>
             ))}
           </div>
