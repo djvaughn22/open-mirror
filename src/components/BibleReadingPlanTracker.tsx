@@ -22,19 +22,19 @@ const READING_PLAN_LANES = [
 
 export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrackerProps) {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 print:bg-white print:text-black">
+    <main className="chp-manuscript-page chp-reading-page min-h-screen bg-slate-950 text-slate-100 print:bg-white print:text-black">
       <section className="mx-auto max-w-7xl px-4 py-5 print:max-w-none print:px-0 print:py-0 sm:px-6 sm:py-8">
-        <SiteHeader className="mb-5 sm:mb-12 print:hidden" />
+        <SiteHeader className="mb-4 sm:mb-8 print:hidden" />
 
-        <div className="text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <CrossHeartPrayHero compact className="print:hidden" />
 
-          <h1 className="mt-4 text-3xl font-black tracking-tight text-white print:text-black sm:mt-6 sm:text-7xl">
+          <h1 className="mt-3 text-5xl font-black tracking-tight text-white print:text-black sm:mt-5 sm:text-7xl">
             Bible Reading Plan
           </h1>
 
-          <p className="mt-2 text-lg font-black text-emerald-100 print:text-black sm:mt-3 sm:text-3xl">
-            Daily Bible reading.
+          <p className="mt-2 text-lg font-black text-emerald-100 print:text-black sm:mt-3 sm:text-2xl">
+            The daily path through the Holy Bible.
           </p>
 <div className="mt-7 flex flex-col items-center gap-4 print:hidden">
             <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
