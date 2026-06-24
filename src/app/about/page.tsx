@@ -19,10 +19,10 @@ export default function AboutPage() {
           </p>
 
           <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-6xl">
-            ✝️ ❤️ 🙏
+            ✝️ Cross ❤️ Heart 🙏 Pray
           </h1>
 
-          <div className="mx-auto mt-5 max-w-3xl space-y-3">
+          <div className="mt-5 max-w-3xl space-y-3">
             <p className="text-base font-semibold leading-8 text-slate-200 sm:text-lg sm:leading-9">
               CrossHeartPray brings the Bible everywhere.
             </p>
@@ -35,49 +35,11 @@ export default function AboutPage() {
           </div>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Home → Bible Reading → Hope → Bible Bingo 7 → About
+            Home → Bible Reading Plan → Daily Hope → Bible Bingo 7 → About
           </p>
         </section>
 
         <section className="mt-14 max-w-4xl space-y-8 text-left">
-          <section className="border-t border-white/10 pt-8">
-            <h2 className="text-2xl font-black text-white">Bible Bingo</h2>
-
-            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
-              <li>One board.</li>
-              <li>Seven Bible verses.</li>
-              <li>Deep Dive word study when source-backed original-language data is available.</li>
-            </ul>
-
-            <div className="mt-6 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">Why 7 cards?</p>
-
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-                One board. Seven places in Scripture. Each card has a purpose.
-              </p>
-
-              <ul className="mt-4 space-y-2 text-sm font-semibold leading-6 text-slate-300">
-                <li>Old Testament — beginning, history, prophecy</li>
-                <li>Psalms — praise and prayer</li>
-                <li>Proverbs — wisdom</li>
-                <li>Gospel — Jesus</li>
-                <li>Epistles — the Church</li>
-                <li>Genesis + Revelation — the beginning and the end together</li>
-              </ul>
-
-              <p className="mt-4 text-base font-black text-emerald-50">
-                God&apos;s master plan, on one board.
-              </p>
-            </div>
-
-            <Link
-              href="/"
-              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Open Bible Bingo
-            </Link>
-          </section>
-
           <section className="border-t border-white/10 pt-8">
             <h2 className="text-2xl font-black text-white">Bible Reading Plan</h2>
 
@@ -120,6 +82,53 @@ export default function AboutPage() {
               className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
             >
               Start Daily Hope
+            </Link>
+          </section>
+
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Bible Bingo 7</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>One board.</li>
+              <li>Seven Bible verses.</li>
+              <li>Deep Dive word study when source-backed original-language data is available.</li>
+            </ul>
+
+            <div className="mt-6 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">Why 7 cards?</p>
+
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+                One board. Seven places in Scripture. Each card has a purpose.
+              </p>
+
+              <ul className="mt-4 space-y-2 text-sm font-semibold leading-6 text-slate-300">
+                <li>Old Testament — beginning, history, prophecy</li>
+                <li>Psalms — praise and prayer</li>
+                <li>Proverbs — wisdom</li>
+                <li>Gospel — Jesus</li>
+                <li>Epistles — the Church</li>
+                <li>Genesis + Revelation — the beginning and the end together</li>
+              </ul>
+
+              <p className="mt-4 text-base font-black text-emerald-50">
+                God&apos;s master plan, on one board.
+              </p>
+            </div>
+
+            <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.035] p-4">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
+                More card games to come
+              </p>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-300">
+                Same Bible-first idea: cards, verses, context, sharing, and Deep Dive.
+              </p>
+            </div>
+
+            <Link
+              href="/"
+              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Open Bible Bingo
             </Link>
           </section>
 
