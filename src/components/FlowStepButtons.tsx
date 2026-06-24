@@ -27,33 +27,31 @@ export default function FlowStepButtons() {
   if (!previous && !next) return null;
 
   return (
-    <div className="fixed bottom-5 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 shadow-2xl shadow-black/40 backdrop-blur-md print:hidden">
+    <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-3 text-xs font-black uppercase tracking-[0.14em] print:hidden">
       {previous ? (
         <a
           href={previous.href}
           aria-label={`Previous: ${previous.label}`}
-          title={previous.label}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-xl font-black text-slate-100 transition hover:-translate-x-0.5 hover:bg-white/15"
+          className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/80 bg-white px-4 py-2 text-slate-950 shadow-lg shadow-black/20 transition hover:-translate-x-0.5 hover:bg-slate-100"
         >
-          ←
+          <span aria-hidden="true">←</span>
+          <span>{previous.label}</span>
         </a>
       ) : (
-        <span className="h-11 w-11" aria-hidden="true" />
+        <span aria-hidden="true" />
       )}
-
-      <span className="h-2 w-2 rounded-full bg-emerald-200/70" aria-hidden="true" />
 
       {next ? (
         <a
           href={next.href}
           aria-label={`Next: ${next.label}`}
-          title={next.label}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200/30 bg-emerald-300/15 text-xl font-black text-emerald-100 transition hover:translate-x-0.5 hover:bg-emerald-300/25"
+          className="inline-flex min-h-10 items-center gap-2 rounded-full border border-emerald-100 bg-emerald-200 px-4 py-2 text-slate-950 shadow-lg shadow-emerald-950/25 transition hover:translate-x-0.5 hover:bg-emerald-100"
         >
-          →
+          <span>{next.label}</span>
+          <span aria-hidden="true">→</span>
         </a>
       ) : (
-        <span className="h-11 w-11" aria-hidden="true" />
+        <span aria-hidden="true" />
       )}
     </div>
   );
