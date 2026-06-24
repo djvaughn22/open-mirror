@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-      default: "✝️ ❤️ 🙏 CrossHeartPray",
-      template: "✝️ ❤️ 🙏 %s",
-    },
+    default: "✝️ ❤️ 🙏 CrossHeartPray",
+    template: "✝️ ❤️ 🙏 %s",
+  },
   icons: {
       icon: "/crossheartpray-icon.svg",
       shortcut: "/crossheartpray-icon.svg",

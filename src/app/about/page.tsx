@@ -3,7 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 export const metadata = {
-  title: "✝️ ❤️ 🙏 About",
+  title: "About",
   description: "The CrossHeartPray Bible reading and discovery flow.",
 };
 
@@ -22,9 +22,17 @@ export default function AboutPage() {
             ✝️ ❤️ 🙏
           </h1>
 
-          <p className="mt-7 max-w-3xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
-            CrossHeartPray brings the Bible everywhere: discover one verse from 31,103, open the chapter for context, use Deep Dive, follow Daily Hope, track your Bible Reading Plan, and share what you find.
-          </p>
+          <div className="mx-auto mt-5 max-w-3xl space-y-3">
+            <p className="text-base font-semibold leading-8 text-slate-200 sm:text-lg sm:leading-9">
+              CrossHeartPray brings the Bible everywhere.
+            </p>
+            <p className="text-sm font-semibold leading-7 text-slate-300 sm:text-base sm:leading-8">
+              Discover one verse from 31,103. Open the chapter for context. Use Deep Dive.
+            </p>
+            <p className="text-sm font-semibold leading-7 text-slate-300 sm:text-base sm:leading-8">
+              Follow Daily Hope. Track your Bible Reading Plan. Share what you find.
+            </p>
+          </div>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
             Bible Bingo 7 → Bible Reading Plan → Daily Hope → Cross → Heart → Pray → About

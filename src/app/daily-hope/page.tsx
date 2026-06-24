@@ -7,7 +7,7 @@ import {
 } from "../../lib/dailyHopeRoutine";
 
 export const metadata = {
-  title: "✝️ ❤️ 🙏 Daily Hope",
+  title: "Daily Hope",
   description: "A fixed Daily Hope prayer and Scripture routine.",
   robots: {
     index: false,

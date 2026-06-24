@@ -218,43 +218,43 @@ type ActiveWordStudy = {
 
 const sections: Section[] = [
   {
-    title: "✝️ ❤️ 🙏 Sunday — Epistles",
+    title: "Sunday — Epistles",
     emoji: "✉️",
     line: "Letters to the Church: faith, grace, love, endurance, and life in Christ.",
     odds: "Sunday • Epistles",
   },
   {
-    title: "✝️ ❤️ 🙏 Monday — Law",
+    title: "Monday — Law",
     emoji: "📜",
     line: "The beginning, covenant, commandments, rescue, worship, and God’s holy way.",
     odds: "Monday • Law",
   },
   {
-    title: "✝️ ❤️ 🙏 Tuesday — History",
+    title: "Tuesday — History",
     emoji: "🏛️",
     line: "God’s people in real stories of courage, failure, mercy, kings, and return.",
     odds: "Tuesday • History",
   },
   {
-    title: "✝️ ❤️ 🙏 Wednesday — Psalms",
+    title: "Wednesday — Psalms",
     emoji: "🎶",
     line: "Prayer, praise, lament, worship, hope, and honest words with God.",
     odds: "Wednesday • Psalms",
   },
   {
-    title: "✝️ ❤️ 🙏 Thursday — Poetry",
+    title: "Thursday — Poetry",
     emoji: "💡",
     line: "Wisdom, suffering, words, choices, work, wonder, and the heart.",
     odds: "Thursday • Poetry",
   },
   {
-    title: "✝️ ❤️ 🙏 Friday — Prophecy",
+    title: "Friday — Prophecy",
     emoji: "🔥",
     line: "Warnings, promises, restoration, justice, hope, and God making all things new.",
     odds: "Friday • Prophecy",
   },
   {
-    title: "✝️ ❤️ 🙏 Saturday — Gospels",
+    title: "Saturday — Gospels",
     emoji: "✝️",
     line: "Walk with Jesus through His words, works, cross, and resurrection.",
     odds: "Saturday • Gospels",
