@@ -1,9 +1,4 @@
-import {
-  BIBLE_READING_PLAN_PDF_HREF,
-  BIBLE_READING_PLAN_SOURCE,
-  BIBLE_READING_PLAN_SOURCE_NOTE,
-  type BibleReadingPlanWeek,
-} from "../lib/bibleReadingPlan";
+import { type BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 import BibleReadingPlanProgress from "./BibleReadingPlanProgress";
 import PrintButton from "./PrintButton";
 import SiteFooter from "./SiteFooter";
@@ -50,22 +45,10 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
           <p className="mt-2 text-lg font-black text-emerald-100 print:text-black sm:mt-3 sm:text-3xl">
             Daily Bible reading.
           </p>
-<p className="mx-auto mt-5 max-w-2xl text-xs font-semibold leading-6 text-slate-400 print:text-black">
-            Source: {BIBLE_READING_PLAN_SOURCE}. {BIBLE_READING_PLAN_SOURCE_NOTE}
-          </p>
-
-          <div className="mt-7 flex flex-col items-center gap-4 print:hidden">
+<div className="mt-7 flex flex-col items-center gap-4 print:hidden">
             <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
               <PrintButton />
-
-              <a
-                href={BIBLE_READING_PLAN_PDF_HREF}
-                download
-                className="w-full max-w-sm rounded-full border border-white/15 bg-white/10 px-6 py-3 text-center text-sm font-black uppercase tracking-[0.18em] text-slate-100 shadow-lg shadow-black/15 transition hover:bg-white/15 sm:w-auto"
-              >
-                Download PDF
-              </a>
-            </div>
+</div>
           </div>
         </div>
 

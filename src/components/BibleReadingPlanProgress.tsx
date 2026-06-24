@@ -570,73 +570,43 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               </button>
             </>
           ) : null}
-
-          <button
-            type="button"
-            onClick={saveProgressNow}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
-          >
-            Save
-          </button>
-
-          <button
-            type="button"
-            onClick={emailProgressBackup}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
-          >
-            Email Backup
-          </button>
-
-          <button
-            type="button"
-            onClick={copyProgressBackup}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
-          >
-            Copy Backup
-          </button>
-
-          <button
-            type="button"
-            onClick={restoreProgressBackup}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
-          >
-            Restore
-          </button>
-
-          <button
-            type="button"
-            onClick={resetToToday}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
-          >
-            Start Today
-          </button>
-
-          <button
-            type="button"
-            onClick={clearProgress}
-            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
-          >
-            Clear
-          </button>
         </div>
 
-        {saveMessage ? (
-          <p className="mt-4 text-center text-xs font-bold text-emerald-100 sm:text-left">
-            {saveMessage}
-          </p>
-        ) : null}
+        <details className="mt-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+          <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.16em] text-slate-300">
+            Progress tools
+          </summary>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button type="button" onClick={saveProgressNow} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
+              Save
+            </button>
+            <button type="button" onClick={emailProgressBackup} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
+              Email Backup
+            </button>
+            <button type="button" onClick={copyProgressBackup} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
+              Copy Backup
+            </button>
+            <button type="button" onClick={restoreProgressBackup} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
+              Restore
+            </button>
+            <button type="button" onClick={resetToToday} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
+              Start Today
+            </button>
+            <button type="button" onClick={clearProgress} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
+              Clear
+            </button>
+          </div>
+
+          {saveMessage ? (
+            <p className="mt-4 text-xs font-bold text-emerald-100">
+              {saveMessage}
+            </p>
+          ) : null}
+        </details>
       </section>
 
       <section className="mx-auto mt-8 max-w-7xl print:mt-6">
-        <div className="mb-4 flex flex-col gap-2 text-center print:text-left sm:text-left">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
-            7 Bible lanes across • 52 weeks down
-          </p>
-          <h2 className="text-2xl font-black text-white print:text-black sm:text-4xl">
-            Follow the columns. Keep the weeks.
-          </h2>
-        </div>
-
         <div className="overflow-x-auto rounded-[1.5rem] border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/20 print:overflow-visible print:border-black print:bg-white print:shadow-none">
           <table className="min-w-[1120px] w-full border-separate border-spacing-0 text-left print:min-w-0">
             <thead>

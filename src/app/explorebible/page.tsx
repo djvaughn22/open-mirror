@@ -484,8 +484,6 @@ function bibleBingoBookLinksForSection(sectionTitle: string): BibleBookLink[] {
 }
 /* END BIBLE BINGO READING PLAN BOOK LINKS */
 
-
-
 function randomPassage(section: Section, avoidLabel?: string) {
   return randomReferenceForSection(section.title, avoidLabel);
 }
@@ -714,10 +712,7 @@ export default function BibleExplorerPage() {
           Same 7 cards. Explore and share.
         </p>
         <p style="text-align: center; margin: 24px 0;">
-          <a href="${boardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
-            Open Bible Bingo Board
-          </a>
-        </p>
+</p>
         ${path.map(({ section, passage }, index) => `
           <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 16px 0; background: #ffffff;">
             <p style="font-size: 30px; text-align: center; margin: 0 0 8px;">${section.emoji}</p>
@@ -725,8 +720,7 @@ export default function BibleExplorerPage() {
             <p style="font-family: Georgia, 'Times New Roman', serif; text-align: center; color: #0f172a; font-weight: bold; font-size: 24px; line-height: 1.25; margin: 10px 0 14px;">${passage.label}</p>
             <p style="font-family: Georgia, 'Times New Roman', serif; color: #334155; line-height: 1.7; font-size: 17px;">${passage.text}</p>
             <p style="text-align: center;">
-              <a href="${verseUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Verse</a>
-              &nbsp; | &nbsp;
+&nbsp; | &nbsp;
               <a href="${chapterUrl(passage)}" style="color: #065f46; font-weight: bold; text-decoration: none;">Chapter</a>
               &nbsp; | &nbsp;
               <a href="${boardUrl}?card=${index + 1}" style="color: #065f46; font-weight: bold; text-decoration: none;">Card</a>
