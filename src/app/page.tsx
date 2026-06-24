@@ -153,7 +153,7 @@ export default function WelcomePage() {
             ))}
           </div>
         </section>
-        <section className="mx-auto mt-14 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-7">
+        <section className="mx-auto mt-14 max-w-5xl rounded-[2rem] bg-white/[0.03] p-7">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
               The simple flow underneath
@@ -164,7 +164,7 @@ export default function WelcomePage() {
             {crossHeartPrayCards.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-6 text-center"
+                className="rounded-[1.5rem] bg-slate-950/45 p-6 text-center"
               >
                 <p className="text-4xl">{item.icon}</p>
                 <h3 className="mt-4 text-xl font-black text-white">
