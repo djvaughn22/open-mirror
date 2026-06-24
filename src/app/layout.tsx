@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       shortcut: "/crossheartpray-icon.svg",
       apple: "/crossheartpray-icon.svg",
     },
-  description: "Look in the mirror. Tell the truth. Return to God.",
+  description: "A simple Bible web app for Bible Bingo 7, a Bible Reading Plan, and Daily Hope.",
 };
 
 export default function RootLayout({

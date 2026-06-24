@@ -9,12 +9,10 @@ type SiteHeaderProps = {
 };
 
 const menuLinks = [
-  { href: "/", label: "Bible Bingo 7" },
+  { href: "/", label: "Welcome" },
+  { href: "/explorebible", label: "Bible Bingo 7" },
   { href: "/bible-reading-plan", label: "Bible Reading Plan" },
   { href: "/daily-hope", label: "Daily Hope" },
-  { href: "/cross", label: "Cross" },
-  { href: "/heart", label: "Heart" },
-  { href: "/pray", label: "Pray" },
   { href: "/about", label: "About" },
 ];
 
