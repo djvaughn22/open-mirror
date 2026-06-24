@@ -2,6 +2,11 @@ import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
+export const metadata = {
+  title: "About",
+  description: "The CrossHeartPray Bible reading and discovery flow.",
+};
+
 const flowCards = [
   {
     title: "Bible Bingo 7",
@@ -36,7 +41,7 @@ const flowCards = [
   {
     title: "About",
     href: "/about",
-    line: "The 7-second version of the whole flow.",
+    line: "The simple flow in seven seconds.",
   },
 ];
 
@@ -56,18 +61,12 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-7 max-w-3xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
-            CrossHeartPray helps you read the Bible, find specific verses, open chapters for context, track your Bible Reading Plan, and share anything with anyone.
+            CrossHeartPray is for anyone without a physical Bible nearby who wants daily Bible reading, Daily Hope, verse discovery, chapter context, a Bible Reading Plan, and simple sharing.
           </p>
 
-          <div className="mt-8 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
-              The flow
-            </p>
-
-            <p className="mt-3 text-base font-semibold leading-8 text-slate-300">
-              Bible Bingo 7 → Bible Reading Plan → Daily Hope → Cross → Heart → Pray → About
-            </p>
-          </div>
+          <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
+            Bible Bingo 7 → Bible Reading Plan → Daily Hope → Cross → Heart → Pray → About
+          </p>
         </section>
 
         <section className="mt-12 grid gap-4 md:grid-cols-2">

@@ -14,7 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "✝️ ❤️ 🙏",
+  title: {
+      default: "✝️ ❤️ 🙏 CrossHeartPray",
+      template: "✝️ ❤️ 🙏 %s",
+    },
+  icons: {
+      icon: "/crossheartpray-icon.svg",
+      shortcut: "/crossheartpray-icon.svg",
+      apple: "/crossheartpray-icon.svg",
+    },
   description: "Look in the mirror. Tell the truth. Return to God.",
 };
 

@@ -27,7 +27,6 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
 
     function closeOnOutsideClick(event: MouseEvent | TouchEvent) {
       const target = event.target;
-
       if (!(target instanceof Node)) return;
 
       if (!menuRef.current?.contains(target)) {

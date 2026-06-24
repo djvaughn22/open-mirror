@@ -40,45 +40,30 @@ export default function FlowStepButtons() {
   if (index < 0) return null;
 
   const previous = index > 0 ? steps[index - 1] : null;
-  const current = steps[index];
   const next = index < steps.length - 1 ? steps[index + 1] : null;
 
   return (
-    <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.035] p-3 text-xs font-semibold text-slate-200">
-      <div className="grid grid-cols-3 items-center gap-2">
-        <div className="text-left">
-          {previous ? (
-            <Link
-              href={previous.href}
-              className="inline-flex rounded-full border border-white/15 px-3 py-2 transition hover:bg-white/10"
-            >
-              ← {previous.label}
-            </Link>
-          ) : (
-            <span className="inline-flex rounded-full border border-white/10 px-3 py-2 text-slate-500">
-              Start
-            </span>
-          )}
-        </div>
+    <div className="mt-4 flex items-center justify-between gap-3 text-xs font-semibold">
+      <div className="min-w-0 flex-1 text-left">
+        {previous ? (
+          <Link
+            href={previous.href}
+            className="inline-flex rounded-full border border-white/15 px-3 py-2 text-slate-200 transition hover:bg-white/10 hover:text-white"
+          >
+            ← {previous.label}
+          </Link>
+        ) : null}
+      </div>
 
-        <div className="text-center text-sky-200">
-          {current.label}
-        </div>
-
-        <div className="text-right">
-          {next ? (
-            <Link
-              href={next.href}
-              className="inline-flex rounded-full border border-sky-300/35 bg-sky-300/10 px-3 py-2 text-sky-100 transition hover:bg-sky-300/20"
-            >
-              {next.label} →
-            </Link>
-          ) : (
-            <span className="inline-flex rounded-full border border-white/10 px-3 py-2 text-slate-500">
-              Done
-            </span>
-          )}
-        </div>
+      <div className="min-w-0 flex-1 text-right">
+        {next ? (
+          <Link
+            href={next.href}
+            className="inline-flex rounded-full border border-sky-300/35 bg-sky-300/10 px-3 py-2 text-sky-100 transition hover:bg-sky-300/20"
+          >
+            {next.label} →
+          </Link>
+        ) : null}
       </div>
     </div>
   );
