@@ -19,7 +19,7 @@ export default function FlowStepButtons() {
   const currentPath = normalizePath(usePathname());
   const index = steps.findIndex((step) => step.href === currentPath);
 
-  if (index < 0) return null;
+  if (index < 0 || currentPath === "/") return null;
 
   const previous = index > 0 ? steps[index - 1] : null;
   const next = index < steps.length - 1 ? steps[index + 1] : null;
