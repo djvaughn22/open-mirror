@@ -469,24 +469,34 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
   return (
     <section className="chp-reading-sheet overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35">
-      <div className="chp-plan-progress-summary grid grid-cols-3 border-b border-white/10 bg-slate-950/50 text-center print:hidden">
-        <div className="border-r border-white/10 px-2 py-2">
-          <p className="text-xl font-black leading-none text-white">{weeksLeft}</p>
-          <p className="mt-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
-            Weeks left
-          </p>
-        </div>
-        <div className="border-r border-white/10 px-2 py-2">
-          <p className="text-xl font-black leading-none text-white">{daysLeft}</p>
-          <p className="mt-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
-            Days left
-          </p>
-        </div>
-        <div className="px-2 py-2">
-          <p className="text-xl font-black leading-none text-white">{percent}%</p>
-          <p className="mt-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
-            Done
-          </p>
+      <div className="chp-plan-progress-summary border-b border-white/10 bg-slate-950/45 p-3 print:hidden">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2">
+            <span className="text-lg font-black leading-none text-white">{weeksLeft}</span>
+            <span className="text-[0.58rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+              weeks left
+            </span>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <div className="mb-1 flex items-center justify-between gap-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-300">
+              <span>{doneCount} read</span>
+              <span className="text-emerald-100">{percent}% done</span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full border border-white/10 bg-white/10">
+              <div
+                className="h-full rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.35)] transition-all"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
+          </div>
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/20 bg-sky-300/10 px-3 py-2">
+            <span className="text-lg font-black leading-none text-white">{daysLeft}</span>
+            <span className="text-[0.58rem] font-black uppercase tracking-[0.14em] text-sky-100">
+              days left
+            </span>
+          </div>
         </div>
       </div>
 
@@ -516,7 +526,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
             </a>
 
             <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-              <label className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 text-[0.66rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15">
+              <label className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.66rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:bg-emerald-300/18">
                 <input
                   type="checkbox"
                   checked={Boolean(progress[nextReading.id])}
@@ -529,7 +539,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               <button
                 type="button"
                 onClick={() => exportPlan(false)}
-                className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15"
+                className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
               >
                 Export clean
               </button>
@@ -537,7 +547,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               <button
                 type="button"
                 onClick={() => exportPlan(true)}
-                className="inline-flex h-8 items-center rounded-full border border-emerald-200/25 bg-emerald-300/12 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:bg-emerald-300/20"
+                className="inline-flex h-8 items-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18"
               >
                 Export with checks
               </button>
@@ -550,7 +560,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 {copied ? "Copied" : "Copy link"}
               </button>
 
-              <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">
+              <div className="rounded-xl border border-white/10 bg-slate-950/40 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">
                 {daysLeft} left • {percent}% done
               </div>
             </div>
@@ -559,7 +569,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       ) : null}
 
       <div className="chp-reading-table overflow-x-auto">
-        <table className="min-w-[1120px] w-full border-collapse text-center">
+        <table className="min-w-[1120px] w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
               <th className="w-12 border-r border-white/10 px-2 py-3 text-center text-[0.6rem] font-black uppercase tracking-[0.14em] text-slate-300">
@@ -609,11 +619,11 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                     return (
                       <td
                         key={lane.key}
-                        className={`border-r border-white/[0.07] px-1.5 py-1.5 text-center last:border-r-0 ${
+                        className={`border-r border-white/[0.07] px-3 py-1.5 text-left last:border-r-0 ${
                           isRead ? "bg-emerald-300/[0.075]" : "bg-white/[0.015]"
                         }`}
                       >
-                        <div className="flex min-h-[2.15rem] items-center justify-center gap-1.5">
+                        <div className="flex min-h-[2.15rem] items-center justify-start gap-2">
                           <input
                             type="checkbox"
                             checked={isRead}
@@ -626,7 +636,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block min-w-0 max-w-[8.8rem] truncate text-center text-[0.94rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
+                            className="block min-w-0 max-w-[9.5rem] truncate text-left text-[0.98rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
                             title={label}
                           >
                             {label}

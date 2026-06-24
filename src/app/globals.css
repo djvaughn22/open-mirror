@@ -1243,3 +1243,44 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 }
 /* CHP_READING_PLAN_ONE_PAGE_PRINT_END */
 
+/* CHP_READING_PLAN_STYLE_TUNE_START */
+.chp-plan-progress-summary {
+  background:
+    radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.12), transparent 18rem),
+    radial-gradient(circle at 82% 50%, rgba(59, 130, 246, 0.10), transparent 18rem),
+    rgba(2, 6, 23, 0.46) !important;
+}
+
+.chp-reading-table td {
+  vertical-align: middle !important;
+}
+
+.chp-reading-table td a {
+  display: inline-block !important;
+  min-height: auto !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  text-align: left !important;
+  font-size: 0.98rem !important;
+  line-height: 1.15 !important;
+  letter-spacing: normal !important;
+  text-decoration-line: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+@media print {
+  .chp-plan-progress-summary {
+    display: none !important;
+  }
+
+  .chp-reading-table td div {
+    justify-content: flex-start !important;
+  }
+
+  .chp-reading-table td a {
+    text-align: left !important;
+  }
+}
+/* CHP_READING_PLAN_STYLE_TUNE_END */
+
