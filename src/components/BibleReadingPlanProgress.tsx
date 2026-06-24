@@ -505,9 +505,11 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     );
   }
 
+  const laneColumns = weeks[0]?.days ?? [];
+
   return (
     <>
-      <section className="mx-auto mt-8 max-w-5xl rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4 shadow-xl shadow-black/15 print:hidden sm:p-5">
+      <section className="mx-auto mt-8 max-w-6xl rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4 shadow-xl shadow-black/15 print:hidden sm:p-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
@@ -562,173 +564,188 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               <button
                 type="button"
                 onClick={() => toggleDone(nextPlanDay)}
-                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-100 transition hover:bg-white/15"
+                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
               >
-                {done[doneKey(nextPlanDay)] ? "Uncheck" : "Mark Done"}
+                {done[doneKey(nextPlanDay)] ? "Unread" : "Mark Read"}
               </button>
             </>
           ) : null}
 
-          <details className="w-full text-center sm:w-auto sm:text-left">
-            <summary className="inline-flex cursor-pointer list-none rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-300 transition hover:bg-white/10 [&::-webkit-details-marker]:hidden">
-              Progress Tools
-            </summary>
+          <button
+            type="button"
+            onClick={saveProgressNow}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+          >
+            Save
+          </button>
 
-            <div className="mt-3 flex flex-wrap justify-center gap-2 rounded-2xl border border-white/10 bg-black/20 p-3 sm:justify-start">
-              <button
-                type="button"
-                onClick={emailProgressBackup}
-                className="rounded-full border border-sky-200/25 bg-sky-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-sky-50 transition hover:bg-sky-300/20"
-              >
-                Email Backup
-              </button>
+          <button
+            type="button"
+            onClick={emailProgressBackup}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+          >
+            Email Backup
+          </button>
 
-              <button
-                type="button"
-                onClick={copyProgressBackup}
-                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-100 transition hover:bg-white/15"
-              >
-                Copy Backup
-              </button>
+          <button
+            type="button"
+            onClick={copyProgressBackup}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+          >
+            Copy Backup
+          </button>
 
-              <button
-                type="button"
-                onClick={restoreProgressBackup}
-                className="rounded-full border border-yellow-200/25 bg-yellow-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-yellow-50 transition hover:bg-yellow-300/15"
-              >
-                Restore
-              </button>
+          <button
+            type="button"
+            onClick={restoreProgressBackup}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+          >
+            Restore
+          </button>
 
-              <button
-                type="button"
-                onClick={resetToToday}
-                className="rounded-full border border-orange-200/25 bg-orange-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-orange-50 transition hover:bg-orange-300/15"
-              >
-                Start Over
-              </button>
+          <button
+            type="button"
+            onClick={resetToToday}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+          >
+            Start Today
+          </button>
 
-              <button
-                type="button"
-                onClick={clearProgress}
-                className="rounded-full border border-red-200/25 bg-red-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-red-100 transition hover:bg-red-300/15"
-              >
-                Clear
-              </button>
-            </div>
-          </details>
+          <button
+            type="button"
+            onClick={clearProgress}
+            className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+          >
+            Clear
+          </button>
         </div>
 
         {saveMessage ? (
-          <p className="mt-3 text-center text-sm font-black text-emerald-100 sm:text-left" role="status">
+          <p className="mt-4 text-center text-xs font-bold text-emerald-100 sm:text-left">
             {saveMessage}
           </p>
         ) : null}
       </section>
 
-      <section className="mx-auto mt-10 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/20 print:mt-4 print:max-w-none print:border-black print:bg-white print:p-0 print:shadow-none sm:p-7">
-        <div className="mb-6 text-center print:mb-3">
+      <section className="mx-auto mt-8 max-w-7xl print:mt-6">
+        <div className="mb-4 flex flex-col gap-2 text-center print:text-left sm:text-left">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100 print:text-black">
-            Full Year Board
+            7 Bible lanes across • 52 weeks down
           </p>
-          <h2 className="mt-3 text-3xl font-black text-white print:text-black">
-            Full 52-Week Board
+          <h2 className="text-2xl font-black text-white print:text-black sm:text-4xl">
+            Follow the columns. Keep the weeks.
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-400 print:text-black">
-            Check each section in order. Finish this block, then move to the next.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 print:gap-2">
-          {weeks.map((week) => (
-            <article
-              key={week.week}
-              className="rounded-[1.5rem] border border-white/10 bg-black/10 p-4 print:break-inside-avoid print:border-black print:bg-white print:p-3"
-            >
-              <h3 className="text-lg font-black text-white print:text-black">
-                Week {week.week}
-              </h3>
+        <div className="overflow-x-auto rounded-[1.5rem] border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/20 print:overflow-visible print:border-black print:bg-white print:shadow-none">
+          <table className="min-w-[1120px] w-full border-separate border-spacing-0 text-left print:min-w-0">
+            <thead>
+              <tr>
+                <th className="sticky left-0 z-20 w-20 border-b border-r border-white/10 bg-slate-950/95 px-3 py-4 text-center text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-300 print:static print:border-black print:bg-white print:text-black">
+                  Week
+                </th>
 
-              <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-7 print:grid-cols-7">
-                {week.days.map((day) => (
-                  <div
-                    key={`${week.week}-${day.daySlug}-header`}
-                    className="hidden rounded-2xl border border-emerald-200/20 bg-emerald-300/10 p-3 text-center md:block print:block print:border-black print:bg-white"
+                {laneColumns.map((lane) => (
+                  <th
+                    key={lane.daySlug}
+                    className="w-[14.28%] border-b border-white/10 bg-slate-900/70 px-3 py-4 align-top print:border-black print:bg-white"
                   >
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-emerald-100 print:text-black">
-                      {readingPlanCategory(day)}
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-emerald-100 print:text-black">
+                      {lane.dayLabel}
                     </p>
-                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400 print:text-black">
-                      {day.dayLabel}
+                    <p className="mt-1 text-base font-black text-white print:text-black">
+                      {readingPlanCategory(lane)}
                     </p>
-                  </div>
+                  </th>
                 ))}
+              </tr>
+            </thead>
 
-                {week.days.map((day) => {
-                  const key = doneKey(day);
-                  const isDone = Boolean(done[key]);
-                  const isTarget = key === targetDayKey;
+            <tbody>
+              {weeks.map((week) => (
+                <tr key={week.week} className="align-top">
+                  <th className="sticky left-0 z-10 border-b border-r border-white/10 bg-slate-950/95 px-3 py-4 text-center print:static print:border-black print:bg-white">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-400 print:text-black">
+                      Week
+                    </p>
+                    <p className="text-xl font-black text-white print:text-black">
+                      {week.week}
+                    </p>
+                  </th>
 
-                  return (
-                    <div
-                      id={key}
-                      key={key}
-                      className={`scroll-mt-28 flex min-h-[10.5rem] flex-col rounded-2xl border p-3 print:min-h-0 print:border-black ${
-                        isTarget
-                          ? "border-yellow-200/50 bg-yellow-300/15 ring-2 ring-yellow-200/35"
-                          : isDone
-                            ? "border-emerald-200/35 bg-emerald-300/15"
-                            : "border-white/10 bg-white/[0.03]"
-                      }`}
-                    >
-                      <div className="md:hidden print:hidden">
-                        <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100">
-                          {readingPlanCategory(day)}
-                        </p>
-                        <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
-                          {day.dayLabel}
-                        </p>
-                      </div>
+                  {laneColumns.map((lane) => {
+                    const day =
+                      week.days.find((candidate) => candidate.daySlug === lane.daySlug) ??
+                      week.days.find((candidate) => candidate.dayLabel === lane.dayLabel);
 
-                      {isTarget ? (
-                        <p className="mt-3 rounded-full border border-yellow-200/30 bg-yellow-300/15 px-3 py-1 text-center text-[0.65rem] font-black uppercase tracking-[0.14em] text-yellow-50 print:hidden">
-                          From Bingo
-                        </p>
-                      ) : null}
+                    if (!day) {
+                      return (
+                        <td
+                          key={`${week.week}-${lane.daySlug}`}
+                          className="border-b border-white/10 px-3 py-4 print:border-black"
+                        />
+                      );
+                    }
 
-                      <p className="mt-3 text-base font-black leading-snug text-white print:mt-0 print:text-black">
-                        {day.reading}
-                      </p>
+                    const key = doneKey(day);
+                    const isDone = Boolean(done[key]);
+                    const isTarget = key === targetDayKey;
 
-                      <div className="mt-auto flex items-end justify-between gap-2 pt-4 print:hidden">
-                        <button
-                          type="button"
-                          onClick={() => toggleDone(day)}
-                          aria-pressed={isDone}
-                          aria-label={`${isDone ? "Mark not done" : "Mark done"}: Week ${day.week} ${day.dayLabel} ${day.reading}`}
-                          className="h-11 w-11 shrink-0 rounded-full border border-white/20 bg-white/10 text-sm font-black text-white transition hover:bg-white/15"
-                        >
-                          {isDone ? "✓" : ""}
-                        </button>
+                    return (
+                      <td
+                        key={key}
+                        id={key}
+                        className={`border-b border-white/10 px-3 py-4 print:border-black ${
+                          isTarget ? "bg-emerald-300/10 ring-2 ring-emerald-200/40" : ""
+                        }`}
+                      >
+                        <div className={`flex h-full min-h-[8.5rem] flex-col rounded-2xl border px-3 py-3 ${
+                          isDone
+                            ? "border-emerald-200/35 bg-emerald-300/10"
+                            : "border-white/10 bg-black/20"
+                        } print:border-black print:bg-white`}>
+                          <p className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100 print:text-black">
+                            {day.dayLabel}
+                          </p>
 
-                        <a
-                          href={bibleSearchUrl(day.reading)}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-xs font-black uppercase tracking-[0.14em] text-emerald-100 underline underline-offset-4"
-                        >
-                          Open
-                        </a>
-                      </div>
+                          <p className="mt-1 text-sm font-black leading-5 text-white print:text-black">
+                            {day.reading}
+                          </p>
 
-                      <p className="mt-2 hidden text-xs font-black print:block">
-                        {isDone ? "Done" : "Not done"}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-          ))}
+                          <p className="mt-1 text-[0.68rem] font-bold leading-5 text-slate-300 print:text-black">
+                            {readingPlanCategory(day)}
+                          </p>
+
+                          <div className="mt-auto flex flex-col gap-2 pt-3 print:hidden">
+                            <a
+                              href={bibleSearchUrl(day.reading)}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-center text-[0.62rem] font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/15"
+                            >
+                              Open
+                            </a>
+
+                            <button
+                              type="button"
+                              onClick={() => toggleDone(day)}
+                              className={`rounded-full border px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.12em] transition ${
+                                isDone
+                                  ? "border-emerald-200/35 bg-emerald-300/20 text-emerald-50 hover:bg-emerald-300/30"
+                                  : "border-white/15 bg-white/10 text-white hover:bg-white/15"
+                              }`}
+                            >
+                              {isDone ? "Read" : "Mark Read"}
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     </>

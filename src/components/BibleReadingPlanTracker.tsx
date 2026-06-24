@@ -27,7 +27,7 @@ const READING_PLAN_LANES = [
 export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrackerProps) {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 print:bg-white print:text-black">
-      <section className="mx-auto max-w-6xl px-4 py-5 print:max-w-none print:px-0 print:py-0 sm:px-6 sm:py-8">
+      <section className="mx-auto max-w-7xl px-4 py-5 print:max-w-none print:px-0 print:py-0 sm:px-6 sm:py-8">
         <SiteHeader className="mb-5 sm:mb-12 print:hidden" />
 
         <div className="text-center">
