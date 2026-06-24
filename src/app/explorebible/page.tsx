@@ -599,8 +599,18 @@ function displayIndexesStartingWith(startIndex: number) {
   return sections.map((_, offset) => (safeStart + offset) % sections.length);
 }
 
-function oddsText(section: Section) {
-  return `${section.odds} · ${bibleBingoOddsForSection(section.title).label}`;
+
+function chpBingoVerseOnlyLabel(label: string) {
+  return label.replace(/\s+[·•-]\s+\d[\d,]*\s+of\s+\d[\d,]*\s*$/i, "").trim();
+}
+
+function chpBingoCountOnlyLabel(label: string) {
+  const match = label.match(/\d[\d,]*\s+of\s+\d[\d,]*\s*$/i);
+  return match ? match[0].trim() : "";
+}
+
+function oddsText(_section: Section) {
+  return "";
 }
 
 function buildDailyPath() {
@@ -1054,7 +1064,7 @@ export default function BibleExplorerPage() {
                     <div className="mt-3 rounded-2xl border border-white/10 bg-black/25 px-3 py-3 text-left">
                       <div className="flex items-start justify-between gap-2">
                         <p className="text-xs font-black leading-5 text-white">
-                          {passage.label}
+                          {chpBingoVerseOnlyLabel(passage.label)}
                         </p>
                         {readInPlan ? (
                           <span className="shrink-0 rounded-full border border-emerald-200/25 bg-emerald-300/12 px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-[0.12em] text-emerald-50">
@@ -1067,9 +1077,13 @@ export default function BibleExplorerPage() {
                       </p>
                     </div>
 
-                    <p className="mt-auto pt-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100">
-                      {bibleBingoOddsForSection(section.title).label}
-                    </p>
+                    {chpBingoCountOnlyLabel(passage.label) ? (
+                      <div className="mt-auto flex justify-start pt-3">
+                        <span className="rounded-full border border-white/15 bg-black/25 px-2.5 py-1 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-100">
+                          {chpBingoCountOnlyLabel(passage.label)}
+                        </span>
+                      </div>
+                    ) : null}
                   </button>
                 );
               })}
@@ -1151,8 +1165,16 @@ export default function BibleExplorerPage() {
 
               
 
-              <p className="mt-6 text-2xl font-black text-white">
-                {focusedCard.passage.label}
+              {chpBingoCountOnlyLabel(focusedCard.passage.label) ? (
+                <div className="mt-6 flex justify-start">
+                  <span className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-slate-100">
+                    {chpBingoCountOnlyLabel(focusedCard.passage.label)}
+                  </span>
+                </div>
+              ) : null}
+
+              <p className="mt-3 text-2xl font-black text-white">
+                {chpBingoVerseOnlyLabel(focusedCard.passage.label)}
               </p>
 
               <div className="mt-5 w-full rounded-[1.5rem] border border-white/10 bg-black/25 px-5 py-5 text-lg font-bold leading-8 text-slate-100 sm:text-xl sm:leading-9">
