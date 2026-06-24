@@ -142,7 +142,7 @@ export default function WelcomePage() {
                     John 1:1
                   </a>
                   <p className="mt-2 text-xs font-semibold leading-5 text-slate-400">
-                    Placeholder verse. Easy to update later.
+                    A perfect place to begin.
                   </p>
                 </div>
 
