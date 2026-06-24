@@ -441,31 +441,11 @@ export default function DailyHopeRoutine({
     <main className="chp-lively-dark-page min-h-screen bg-slate-950 text-slate-100">
       <section className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader className="mb-10 sm:mb-12" />
-        <div className="text-center">
-<div
-            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base font-black uppercase tracking-[0.24em] text-white sm:text-lg"
-            aria-hidden="true"
-          >
-            <span className="text-3xl">✝️</span>
-            <span>Cross</span>
-            <span className="text-3xl">❤️</span>
-            <span>Heart</span>
-            <span className="text-3xl">🙏</span>
-            <span>Pray</span>
-          </div>
-
-          <h1 className="mt-6 text-5xl font-black tracking-tight text-white sm:text-7xl">
-            Daily Hope
-          </h1>
-
-          <p className="mt-3 text-xl font-black text-emerald-100 sm:text-3xl">
-            Don’t just hope. Know.
-          </p>
-
-          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-slate-300 sm:text-base">
-            Same prayers. Same hope verses. Same order. No shuffle.
-          </p>
-
+        <PageNucleusHero
+          title="Daily Hope"
+          subhead="A prayer and Scripture rhythm for the day."
+          body="Open the same hope routine, slow down, and come back to the Word."
+        >
           <CentralTimeBadge className="mt-5" />
 
           <div className="mt-7 flex flex-col items-center gap-4">
@@ -523,14 +503,13 @@ export default function DailyHopeRoutine({
               buttonLabel="Share"
             />
           </div>
-        </div>
+        </PageNucleusHero>
 
         {missingReferences.length > 0 ? (
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-yellow-200/30 bg-yellow-200/10 p-4 text-sm font-semibold leading-6 text-yellow-50">
             References to verify: {missingReferences.join(", ")}
           </div>
         ) : null}
-
         <section className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5">
           {openingPrayers.map((prayer, index) => {
             const prayerId = `prayer-${index + 1}`;
