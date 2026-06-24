@@ -368,9 +368,62 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   const readings = useMemo(() => flattenPlan(weeks), [weeks]);
   const [progress, setProgress] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
+  const [highlightedReadingId, setHighlightedReadingId] = useState("");
 
   useEffect(() => {
     setProgress(loadProgress());
+  }, []);
+
+  useEffect(() => {
+    let clearHighlightTimer: number | undefined;
+
+    function targetIdFromUrl() {
+      const hashTarget = window.location.hash.replace(/^#/, "").trim();
+      if (hashTarget) return hashTarget;
+
+      const params = new URLSearchParams(window.location.search);
+      const week = params.get("week")?.trim();
+      const day = params.get("day")?.trim();
+
+      return week && day ? `week-${week}-${day}` : "";
+    }
+
+    function highlightTargetCell() {
+      const targetId = targetIdFromUrl();
+      if (!targetId) return;
+
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      if (clearHighlightTimer) {
+        window.clearTimeout(clearHighlightTimer);
+      }
+
+      setHighlightedReadingId(targetId);
+
+      window.setTimeout(() => {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
+      }, 80);
+
+      clearHighlightTimer = window.setTimeout(() => {
+        setHighlightedReadingId((current) => (current === targetId ? "" : current));
+      }, 5200);
+    }
+
+    highlightTargetCell();
+    window.addEventListener("hashchange", highlightTargetCell);
+
+    return () => {
+      if (clearHighlightTimer) {
+        window.clearTimeout(clearHighlightTimer);
+      }
+
+      window.removeEventListener("hashchange", highlightTargetCell);
+    };
   }, []);
 
   const doneCount = readings.filter((reading) => progress[reading.id]).length;
@@ -618,9 +671,14 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
                     return (
                       <td
+                        id={id}
                         key={lane.key}
-                        className={`border-r border-white/[0.07] px-3 py-1.5 text-left last:border-r-0 ${
-                          isRead ? "bg-emerald-300/[0.075]" : "bg-white/[0.015]"
+                        className={`chp-reading-plan-cell scroll-mt-36 border-r border-white/[0.07] px-3 py-1.5 text-left transition duration-500 last:border-r-0 ${
+                          highlightedReadingId === id
+                            ? "chp-reading-target-cell bg-emerald-300/[0.18]"
+                            : isRead
+                              ? "bg-emerald-300/[0.075]"
+                              : "bg-white/[0.015]"
                         }`}
                       >
                         <div className="flex min-h-[2.15rem] items-center justify-start gap-2">
