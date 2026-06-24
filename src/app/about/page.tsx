@@ -1,6 +1,44 @@
+import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
-import SourceBackedTrustNote from "@/components/SourceBackedTrustNote";
+
+const flowCards = [
+  {
+    title: "Bible Bingo 7",
+    href: "/",
+    line: "Discover a specific Bible verse.",
+  },
+  {
+    title: "Bible Reading Plan",
+    href: "/bible-reading-plan",
+    line: "Open the chapter, understand the context, and track your way through the Bible.",
+  },
+  {
+    title: "Daily Hope",
+    href: "/daily-hope",
+    line: "Return to daily prayers and hope verses.",
+  },
+  {
+    title: "Cross",
+    href: "/cross",
+    line: "Bring it to Jesus.",
+  },
+  {
+    title: "Heart",
+    href: "/heart",
+    line: "Receive God’s everlasting, unconditional love.",
+  },
+  {
+    title: "Pray",
+    href: "/pray",
+    line: "Talk to God and let His will be done.",
+  },
+  {
+    title: "About",
+    href: "/about",
+    line: "The 7-second version of the whole flow.",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -10,132 +48,62 @@ export default function AboutPage() {
 
         <section className="max-w-4xl text-left">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-100">
-            About CrossHeartPray
+            About
           </p>
 
           <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-6xl">
-            A plan to come to Jesus.
+            ✝️ ❤️ 🙏
           </h1>
 
           <p className="mt-7 max-w-3xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
-            CrossHeartPray points people toward Jesus, prayer, and the Holy Bible.
+            CrossHeartPray helps you read the Bible, find specific verses, open chapters for context, track your Bible Reading Plan, and share anything with anyone.
           </p>
 
-          <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-            Start with Cross Heart Pray. Then open Scripture with Bible Bingo, Daily Hope, and the Bible Reading Plan.
+          <div className="mt-8 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
+              The flow
+            </p>
+
+            <p className="mt-3 text-base font-semibold leading-8 text-slate-300">
+              Bible Bingo 7 → Bible Reading Plan → Daily Hope → Cross → Heart → Pray → About
+            </p>
+          </div>
+        </section>
+
+        <section className="mt-12 grid gap-4 md:grid-cols-2">
+          {flowCards.map((card) => (
+            <Link
+              key={card.title}
+              href={card.href}
+              className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-5 text-left transition hover:border-emerald-200/40 hover:bg-white/[0.07]"
+            >
+              <h2 className="text-2xl font-black text-white">
+                {card.title}
+              </h2>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+                {card.line}
+              </p>
+            </Link>
+          ))}
+        </section>
+
+        <section className="mt-12 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 text-center">
+          <p className="text-lg font-black text-white">
+            Cross Heart Pray your way through it.
           </p>
-              <div className="mt-5 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
-                  Why 7 cards?
-                </p>
-
-                <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-                  One board. Seven places in Scripture. Each card has a purpose.
-                </p>
-
-                <ul className="mt-4 space-y-2 text-sm font-semibold leading-6 text-slate-300">
-                  <li>Old Testament — beginning, history, prophecy</li>
-                  <li>Psalms — praise and prayer</li>
-                  <li>Proverbs — wisdom</li>
-                  <li>Gospel — Jesus</li>
-                  <li>Epistles — the Church</li>
-                  <li>Genesis + Revelation — the beginning and the end together</li>
-                </ul>
-
-                <p className="mt-4 text-base font-black text-emerald-50">
-                  God&apos;s master plan, on one board.
-                </p>
-              </div>
-
+          <p className="mt-2 text-sm font-semibold text-slate-300">
+            A simple formula for Truth, Joy and Peace.
+          </p>
+          <p className="mt-6 text-sm font-semibold text-slate-400">
+            RIP Travis - VTL
+          </p>
+          <p className="mt-1 text-xl">
+            ✝️ ❤️ 🙏
+          </p>
         </section>
+      </div>
 
-        <section className="mt-14 max-w-4xl space-y-8 text-left">
-          <section className="border-t border-white/10 pt-8">
-            <h2 className="text-2xl font-black text-white">
-              Cross Heart Pray
-            </h2>
-
-            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
-              <li>
-                <span className="font-black text-white">✝️ Cross:</span>{" "}
-                <span className="font-semibold text-emerald-100">Bring it to Jesus.</span>
-              </li>
-              <li>
-                <span className="font-black text-white">❤️ Heart:</span>{" "}
-                <span className="font-semibold text-emerald-100">Receive God’s love.</span>
-              </li>
-              <li>
-                <span className="font-black text-white">🙏 Pray:</span>{" "}
-                <span className="font-semibold text-emerald-100">Talk to God.</span>
-              </li>
-            </ul>
-          </section>
-
-          <section className="border-t border-white/10 pt-8">
-            <h2 className="text-2xl font-black text-white">
-              Bible Bingo
-            </h2>
-
-            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
-              <li>One board.</li>
-              <li>Seven Bible verses.</li>
-              <li>Deep Dive word study when source-backed original-language data is available.</li>
-            </ul>
-
-            <a
-              href="/explorebible"
-              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Open Bible Bingo
-            </a>
-          </section>
-
-          <section className="border-t border-white/10 pt-8">
-            <h2 className="text-2xl font-black text-white">
-              Daily Hope
-            </h2>
-
-            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
-              <li>Begin with the Sinner Prayer.</li>
-              <li>Continue with the Salvation Prayer.</li>
-              <li>Read the fixed hope verses for the day.</li>
-              <li>Close with prayer.</li>
-            </ul>
-
-            <a
-              href="/daily-hope"
-              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Start Daily Hope
-            </a>
-          </section>
-
-          <section className="border-t border-white/10 pt-8">
-            <h2 className="text-2xl font-black text-white">
-              Bible Reading Plan
-            </h2>
-
-            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
-              <li>Open the one-page PDF.</li>
-              <li>Follow a steady rhythm through Scripture.</li>
-              <li>Return anytime from the menu.</li>
-            </ul>
-
-            <a
-              href="/bible-reading-plan"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
-            >
-              Open Bible Reading Plan
-            </a>
-          </section>
-        </section>
-</div>
-
-        <SourceBackedTrustNote />
-
-        <SiteFooter />
-</main>
+      <SiteFooter />
+    </main>
   );
 }
