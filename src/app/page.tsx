@@ -12,60 +12,51 @@ const dailyWays = [
   {
     href: "/bible-reading-plan",
     icon: "📖",
-    eyebrow: "Read steady",
+    eyebrow: "Structured",
     title: "52-week Bible Reading Plan",
     body:
-      "A simple path through the Bible, week by week. Seven lanes, one daily rhythm, easy to return to.",
-    cta: "Open the plan",
+      "A steady path through Scripture with seven lanes across each week and a simple rhythm to return to every day.",
+    cta: "Open Reading Plan",
   },
   {
     href: "/daily-hope",
     icon: "🌅",
-    eyebrow: "Start with hope",
+    eyebrow: "Repeatable",
     title: "Daily Hope",
     body:
-      "A short prayer and Scripture routine for the day. Same verses, same rhythm, ready whenever you are.",
+      "A short prayer and Scripture routine for the day, ready whenever you want to slow down and come back to the Word.",
     cta: "Open Daily Hope",
   },
   {
     href: "/explorebible",
     icon: "🎲",
-    eyebrow: "Shuffle and explore",
+    eyebrow: "Fun shuffle",
     title: "Bible Bingo 7",
     body:
-      "Deal seven Bible cards, pick what stands out, open the chapter, and follow the verse deeper.",
-    cta: "Shuffle cards",
+      "Deal seven Bible cards, pick what stands out, open the chapter, and keep exploring where the verse leads.",
+    cta: "Shuffle 7 Cards",
   },
 ];
 
 const studyDetails = [
   {
-    title: "Open the Bible app",
-    body: "Every verse can lead into the Bible app for the chapter and related reading.",
+    title: "Open the chapter",
+    body: "A verse can quickly turn into context, chapter reading, and related Bible app study.",
   },
   {
-    title: "Follow the thread",
-    body: "Bible Bingo connects random discovery back into the weekly reading rhythm.",
+    title: "Keep following the thread",
+    body: "Bible Bingo connects discovery back into the bigger Bible reading rhythm.",
   },
   {
     title: "Deep Dive the words",
-    body: "When verified data is available, open Strong’s-linked Hebrew and Greek word study.",
+    body: "When verified data is available, open Strong’s-linked Hebrew and Greek meaning.",
   },
 ];
 
 const crossHeartPrayCards = [
-  {
-    icon: "✝️",
-    title: "Call out to Jesus",
-  },
-  {
-    icon: "❤️",
-    title: "Receive God’s love",
-  },
-  {
-    icon: "🙏",
-    title: "Pray nonstop",
-  },
+  { icon: "✝️", title: "Call out to Jesus" },
+  { icon: "❤️", title: "Receive God’s love" },
+  { icon: "🙏", title: "Pray nonstop" },
 ];
 
 export default function WelcomePage() {
@@ -75,39 +66,45 @@ export default function WelcomePage() {
         <SiteHeader />
 
         <section className="mx-auto max-w-5xl text-center">
-          <p className="text-6xl font-black tracking-tight text-white sm:text-7xl">
-            ✝️ ❤️ 🙏
-          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-5 text-sm font-black uppercase tracking-[0.34em] text-white sm:text-base">
+            <span className="inline-flex items-center gap-3">
+              <span className="text-4xl tracking-normal">✝️</span>
+              <span>Cross</span>
+            </span>
+            <span className="inline-flex items-center gap-3">
+              <span className="text-4xl tracking-normal">❤️</span>
+              <span>Heart</span>
+            </span>
+            <span className="inline-flex items-center gap-3">
+              <span className="text-4xl tracking-normal">🙏</span>
+              <span>Pray</span>
+            </span>
+          </div>
 
-          <p className="mt-5 text-lg font-black tracking-[0.22em] text-emerald-100 sm:text-xl">
-            CrossHeartPray
-          </p>
-
-          <h1 className="mx-auto mt-7 max-w-5xl text-4xl font-black tracking-tight text-white sm:text-6xl">
-            Your way through the Bible daily.
+          <h1 className="mt-8 text-5xl font-black tracking-tight text-white sm:text-7xl">
+            Cross Heart Pray all day.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            A simple place to read, pray, shuffle, explore, and come back
-            tomorrow.
+          <p className="mt-4 text-2xl font-black text-emerald-100 sm:text-3xl">
+            Your way through the Bible daily.
           </p>
 
-          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Built for daily access to a Bible routine — and to share with
-            family, friends, and the world.
+          <p className="mx-auto mt-8 max-w-3xl text-base font-semibold leading-8 text-slate-300 sm:text-lg">
+            Follow the 52-week Bible Reading Plan, pray through Daily Hope, or
+            shuffle Bible Bingo 7 and see where the Word leads.
           </p>
         </section>
 
-        <section className="mt-12 grid gap-5 lg:grid-cols-3">
+        <section className="mt-14 grid gap-6 lg:grid-cols-3">
           {dailyWays.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.025] p-7 text-left shadow-2xl shadow-slate-950/20 transition hover:-translate-y-1 hover:border-emerald-200/45 hover:from-emerald-300/[0.12] hover:to-white/[0.04]"
+              className="group rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-7 text-left shadow-2xl shadow-slate-950/30 transition hover:-translate-y-1 hover:border-emerald-200/40 hover:bg-slate-900"
             >
               <div className="flex items-center justify-between gap-4">
                 <p className="text-5xl">{item.icon}</p>
-                <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.18em] text-emerald-100">
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.7rem] font-black uppercase tracking-[0.2em] text-emerald-100">
                   {item.eyebrow}
                 </span>
               </div>
@@ -120,29 +117,30 @@ export default function WelcomePage() {
                 {item.body}
               </p>
 
-              <p className="mt-7 inline-flex rounded-full border border-emerald-200/30 bg-emerald-300/10 px-5 py-3 text-sm font-black text-emerald-100 transition group-hover:bg-emerald-300/20">
-                {item.cta} →
-              </p>
+              <div className="mt-7">
+                <span className="inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-3 text-sm font-black text-emerald-100 transition group-hover:bg-emerald-300/20">
+                  {item.cta} →
+                </span>
+              </div>
             </Link>
           ))}
         </section>
 
-        <section className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-emerald-300/[0.07]">
-          <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-            <div className="p-7 lg:p-8">
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
+        <section className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-gradient-to-r from-emerald-300/[0.12] to-slate-900">
+          <div className="grid gap-0 lg:grid-cols-[1fr_1.05fr]">
+            <div className="p-8">
+              <p className="text-xs font-black uppercase tracking-[0.26em] text-emerald-100">
                 Open a verse. Keep going.
               </p>
 
               <h2 className="mt-4 text-3xl font-black text-white">
-                One verse can become a whole study.
+                One verse can open a whole trail.
               </h2>
 
               <p className="mt-4 text-sm font-semibold leading-7 text-slate-200">
-                Bible Bingo can start random, but it does not have to stay
-                random. Open the verse, read the chapter, follow related Bible
-                app study, and Deep Dive the original words when source-backed
-                data is available.
+                Bible Bingo starts with a shuffle, but it can lead into chapter
+                context, Bible app study, related verse reading, and a deeper
+                look at the original words.
               </p>
 
               <Link
@@ -153,11 +151,11 @@ export default function WelcomePage() {
               </Link>
             </div>
 
-            <div className="grid gap-3 border-t border-emerald-200/10 bg-slate-950/35 p-5 lg:border-l lg:border-t-0">
+            <div className="grid gap-4 bg-slate-950/45 p-6">
               {studyDetails.map((detail) => (
                 <div
                   key={detail.title}
-                  className="rounded-2xl border border-white/10 bg-slate-950/55 p-5"
+                  className="rounded-[1.4rem] border border-white/10 bg-slate-950/55 p-5"
                 >
                   <h3 className="text-base font-black text-white">
                     {detail.title}
@@ -194,6 +192,13 @@ export default function WelcomePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="mx-auto mt-10 max-w-4xl text-center">
+          <p className="text-sm font-semibold leading-7 text-slate-400">
+            Built for personal daily access to a Bible routine and to share with
+            family, friends, and the world.
+          </p>
         </section>
       </div>
 
