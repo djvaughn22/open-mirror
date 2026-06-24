@@ -558,7 +558,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 rel="noreferrer"
                 className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 transition hover:bg-emerald-300/30"
               >
-                Open Bible
+                Go
               </a>
 
               <button
@@ -566,7 +566,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={() => toggleDone(nextPlanDay)}
                 className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
               >
-                {done[doneKey(nextPlanDay)] ? "Unread" : "Mark Read"}
+                {done[doneKey(nextPlanDay)] ? "Unread" : "☐ Read"}
               </button>
             </>
           ) : null}
@@ -693,7 +693,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                               rel="noreferrer"
                               className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-center text-[0.62rem] font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/15"
                             >
-                              Open
+                              Go
                             </a>
 
                             <button
@@ -705,7 +705,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                                   : "border-white/15 bg-white/10 text-white hover:bg-white/15"
                               }`}
                             >
-                              {isDone ? "Read" : "Mark Read"}
+                              {isDone ? "Read" : "☐ Read"}
                             </button>
                           </div>
                         </div>
