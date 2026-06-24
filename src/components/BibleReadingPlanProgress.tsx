@@ -12,13 +12,55 @@ type AnyRecord = Record<string, unknown>;
 const STORAGE_KEY = "crossheartpray:bible-reading-plan:v1";
 
 const LANES = [
-  { key: "sunday", day: "Sunday", short: "Sun", lane: "Epistles" },
-  { key: "monday", day: "Monday", short: "Mon", lane: "Law" },
-  { key: "tuesday", day: "Tuesday", short: "Tue", lane: "History" },
-  { key: "wednesday", day: "Wednesday", short: "Wed", lane: "Psalms" },
-  { key: "thursday", day: "Thursday", short: "Thu", lane: "Poetry" },
-  { key: "friday", day: "Friday", short: "Fri", lane: "Prophecy" },
-  { key: "saturday", day: "Saturday", short: "Sat", lane: "Gospels" },
+  {
+    key: "sunday",
+    day: "Sunday",
+    short: "Sun",
+    lane: "Epistles",
+    summary: "Letters to the Church",
+  },
+  {
+    key: "monday",
+    day: "Monday",
+    short: "Mon",
+    lane: "Law",
+    summary: "Beginnings and covenant",
+  },
+  {
+    key: "tuesday",
+    day: "Tuesday",
+    short: "Tue",
+    lane: "History",
+    summary: "God's people in real stories",
+  },
+  {
+    key: "wednesday",
+    day: "Wednesday",
+    short: "Wed",
+    lane: "Psalms",
+    summary: "Prayer, praise, and hope",
+  },
+  {
+    key: "thursday",
+    day: "Thursday",
+    short: "Thu",
+    lane: "Poetry",
+    summary: "Wisdom and wonder",
+  },
+  {
+    key: "friday",
+    day: "Friday",
+    short: "Fri",
+    lane: "Prophecy",
+    summary: "Warnings and promises",
+  },
+  {
+    key: "saturday",
+    day: "Saturday",
+    short: "Sat",
+    lane: "Gospels",
+    summary: "Walk with Jesus",
+  },
 ];
 
 const BOOK_CODES: Record<string, string> = {
@@ -488,17 +530,26 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       <div className="chp-reading-table overflow-x-auto">
         <table className="min-w-[900px] w-full border-collapse text-left">
           <thead>
-            <tr className="border-b border-white/10 bg-slate-900/70">
-              <th className="w-12 border-r border-white/10 px-2 py-1.5 text-[0.58rem] font-black uppercase tracking-[0.14em] text-slate-300">
+            <tr className="border-b border-white/10 bg-slate-900/75">
+              <th className="w-12 border-r border-white/10 px-2 py-3 text-center text-[0.6rem] font-black uppercase tracking-[0.14em] text-slate-300">
                 Week
               </th>
               {LANES.map((lane) => (
                 <th
                   key={lane.key}
-                  className="border-r border-white/10 px-2 py-1.5 text-[0.58rem] font-black uppercase tracking-[0.12em] text-slate-200 last:border-r-0"
+                  className="border-r border-white/10 px-2.5 py-3 text-left last:border-r-0"
                 >
-                  <span className="text-emerald-100">{lane.short}</span>{" "}
-                  <span>{lane.lane}</span>
+                  <div className="flex min-h-[3.25rem] flex-col justify-center gap-0.5">
+                    <p className="text-[0.58rem] font-black uppercase tracking-[0.16em] text-emerald-100">
+                      {lane.day}
+                    </p>
+                    <p className="text-xs font-black uppercase tracking-[0.12em] text-white">
+                      {lane.lane}
+                    </p>
+                    <p className="text-[0.62rem] font-bold normal-case tracking-normal text-slate-400">
+                      {lane.summary}
+                    </p>
+                  </div>
                 </th>
               ))}
             </tr>

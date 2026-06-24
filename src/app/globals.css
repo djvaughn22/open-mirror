@@ -1120,7 +1120,8 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     padding-bottom: 0.75rem !important;
   }
 }
-/* CHP_MINIMAL_READING_SHEET_END */\n
+/* CHP_MINIMAL_READING_SHEET_END */
+
 /* Bible Reading Plan: keep chapter references as plain underlined links, not pill buttons. */
 .chp-reading-table td a {
   display: inline !important;
