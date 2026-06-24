@@ -10,6 +10,7 @@ import BibleBingoShareMenu from "./BibleBingoShareMenu";
 import CentralTimeBadge from "./CentralTimeBadge";
 import OriginalWordStudyModal from "./OriginalWordStudyModal";
 import VerifiedVerseText from "./VerifiedVerseText";
+import PageNucleusHero from "./PageNucleusHero";
 import {
   buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
@@ -160,21 +161,11 @@ function verseHtmlEmail(
 ) {
   return `
     <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
-      <div style="max-width: 720px; margin: 0 auto;">
-        <p style="font-size: 34px; text-align: center; margin: 0 0 14px;">✝️ ❤️ 🙏</p>
-        <h1 style="font-family: Georgia, 'Times New Roman', serif; text-align: center; margin: 0; font-size: 30px; line-height: 1.15; color: #0f172a;">Daily Hope</h1>
-        <p style="text-align: center; color: #047857; font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;">${escapeHtml(day.day)}</p>
-        <div style="border: 1px solid #dbe3ee; border-radius: 18px; padding: 22px; margin: 18px 0; background: #ffffff;">
-          <h2 style="margin: 0 0 12px; font-size: 22px; color: #0f172a;">${escapeHtml(item.label)}</h2>
-          ${htmlForPassages(item)}
-        </div>
-        <p style="text-align: center; margin: 24px 0;">
-          <a href="${cardUrl}" style="display: inline-block; background: #059669; color: #ffffff; padding: 13px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 15px;">
-            Open Daily Hope Card
-          </a>
-        </p>
-        <p style="text-align: center; color: #64748b; font-size: 13px;">Cross Heart Pray · Daily Hope</p>
-      </div>
+      <PageNucleusHero
+          title="Daily Hope"
+          subhead="$"
+          body="Open Daily Hope Card"
+        />
     </div>
   `;
 }

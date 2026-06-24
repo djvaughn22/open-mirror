@@ -24,6 +24,7 @@ import OriginalWordStudyModal from "../../components/OriginalWordStudyModal";
 import VerifiedVerseText from "../../components/VerifiedVerseText";
 import BibleBingoShareMenu from "../../components/BibleBingoShareMenu";
 import CentralTimeBadge from "../../components/CentralTimeBadge";
+import PageNucleusHero from "../../components/PageNucleusHero";
 import {
   buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
@@ -954,28 +955,12 @@ export default function BibleExplorerPage() {
       <div className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader />
 
-        <section className="mx-auto max-w-5xl pt-10 pb-6 text-center sm:pt-12 sm:pb-8">
-          <p className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.14em] text-zinc-300 sm:text-base">
-            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">✝️</span><span>Cross</span></span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">❤️</span><span>Heart</span></span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-2xl">🙏</span><span>Pray</span></span>
-          </p>
-
-          <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <BibleBingoKingCard className="h-16 w-12 sm:h-20 sm:w-14" />
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-              Bible Bingo 7
-            </h1>
-          </div>
-
-          <CentralTimeBadge className="mt-5" showReadingPlan={false} />
-
-          <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-7 text-slate-300 sm:text-base">
-            Deal 7 cards. See where they land. Read and fill the 52-week board.
-          </p>
-
-
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <PageNucleusHero
+          title="Bible Bingo 7"
+          subhead="Deal 7 cards. See where they land. Read and fill the 52-week board."
+          body="Read and fill the 52-week board."
+        >
+<div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <button
               type="button"
               onClick={spinAll}
@@ -999,7 +984,7 @@ export default function BibleExplorerPage() {
               Bible Reading Plan
             </a>
           </div>
-        </section>
+        </PageNucleusHero>
 
 
         <section className="mt-4">
