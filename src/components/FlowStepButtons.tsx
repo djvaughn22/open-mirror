@@ -27,15 +27,17 @@ export default function FlowStepButtons() {
   if (!previous && !next) return null;
 
   return (
-    <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-3 text-xs font-black uppercase tracking-[0.14em] print:hidden">
+    <div className="mt-4 grid grid-cols-2 gap-2 border-t border-white/10 pt-3 text-[0.68rem] font-black uppercase tracking-[0.12em] print:hidden sm:flex sm:items-center sm:justify-between sm:text-xs">
       {previous ? (
         <a
           href={previous.href}
           aria-label={`Previous: ${previous.label}`}
-          className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/80 bg-white px-4 py-2 text-slate-950 shadow-lg shadow-black/20 transition hover:-translate-x-0.5 hover:bg-slate-100"
+          className="group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/80 bg-white px-4 py-2 text-slate-950 shadow-lg shadow-black/25 transition hover:-translate-x-0.5 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-white/70"
         >
-          <span aria-hidden="true">←</span>
-          <span>{previous.label}</span>
+          <span aria-hidden="true" className="text-sm transition group-hover:-translate-x-0.5">
+            ←
+          </span>
+          <span className="truncate">Back: {previous.label}</span>
         </a>
       ) : (
         <span aria-hidden="true" />
@@ -45,10 +47,12 @@ export default function FlowStepButtons() {
         <a
           href={next.href}
           aria-label={`Next: ${next.label}`}
-          className="inline-flex min-h-10 items-center gap-2 rounded-full border border-emerald-100 bg-emerald-200 px-4 py-2 text-slate-950 shadow-lg shadow-emerald-950/25 transition hover:translate-x-0.5 hover:bg-emerald-100"
+          className="group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-emerald-100 bg-emerald-200 px-4 py-2 text-slate-950 shadow-lg shadow-emerald-950/25 transition hover:translate-x-0.5 hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-100/80"
         >
-          <span>{next.label}</span>
-          <span aria-hidden="true">→</span>
+          <span className="truncate">Next: {next.label}</span>
+          <span aria-hidden="true" className="text-sm transition group-hover:translate-x-0.5">
+            →
+          </span>
         </a>
       ) : (
         <span aria-hidden="true" />
