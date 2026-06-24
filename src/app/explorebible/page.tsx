@@ -1,5 +1,6 @@
 "use client";
 
+import * as CHPLocalBibleData from "../../lib/localBibleVerses";
 import SiteFooter from "../../components/SiteFooter";
 
 
@@ -26,7 +27,171 @@ import {
   buildDeepDiveWordStudiesUrl,
   getDefaultWordStudy,
   hasVerifiedWordStudies,
-  type VerifiedWordStudy,
+  /* BIBLE BINGO LANE VERSE POSITION LABEL */
+type ChpLocalBibleVerseRecord = Record<string, unknown>;
+
+const CHP_BOOK_CODE_BY_NAME: Record<string, string> = {
+  Genesis: "GEN", Exodus: "EXO", Leviticus: "LEV", Numbers: "NUM", Deuteronomy: "DEU",
+  Joshua: "JOS", Judges: "JDG", Ruth: "RUT", "1 Samuel": "1SA", "2 Samuel": "2SA",
+  "1 Kings": "1KI", "2 Kings": "2KI", "1 Chronicles": "1CH", "2 Chronicles": "2CH",
+  Ezra: "EZR", Nehemiah: "NEH", Esther: "EST", Job: "JOB", Psalms: "PSA", Psalm: "PSA",
+  Proverbs: "PRO", Ecclesiastes: "ECC", "Song of Solomon": "SNG", "Song of Songs": "SNG",
+  Isaiah: "ISA", Jeremiah: "JER", Lamentations: "LAM", Ezekiel: "EZK", Daniel: "DAN",
+  Hosea: "HOS", Joel: "JOL", Amos: "AMO", Obadiah: "OBA", Jonah: "JON", Micah: "MIC",
+  Nahum: "NAM", Habakkuk: "HAB", Zephaniah: "ZEP", Haggai: "HAG", Zechariah: "ZEC",
+  Malachi: "MAL", Matthew: "MAT", Mark: "MRK", Luke: "LUK", John: "JHN", Acts: "ACT",
+  Romans: "ROM", "1 Corinthians": "1CO", "2 Corinthians": "2CO", Galatians: "GAL",
+  Ephesians: "EPH", Philippians: "PHP", Colossians: "COL", "1 Thessalonians": "1TH",
+  "2 Thessalonians": "2TH", "1 Timothy": "1TI", "2 Timothy": "2TI", Titus: "TIT",
+  Philemon: "PHM", Hebrews: "HEB", James: "JAS", "1 Peter": "1PE", "2 Peter": "2PE",
+  "1 John": "1JN", "2 John": "2JN", "3 John": "3JN", Jude: "JUD", Revelation: "REV",
+};
+
+const CHP_LANE_BOOKS: Record<string, string[]> = {
+  law: ["GEN", "EXO", "LEV", "NUM", "DEU"],
+  history: ["JOS", "JDG", "RUT", "1SA", "2SA", "1KI", "2KI", "1CH", "2CH", "EZR", "NEH", "EST", "ACT"],
+  psalms: ["PSA"],
+  poetry: ["JOB", "PRO", "ECC", "SNG"],
+  prophecy: ["ISA", "JER", "LAM", "EZK", "DAN", "HOS", "JOL", "AMO", "OBA", "JON", "MIC", "NAM", "HAB", "ZEP", "HAG", "ZEC", "MAL", "REV"],
+  gospels: ["MAT", "MRK", "LUK", "JHN"],
+  epistles: ["ROM", "1CO", "2CO", "GAL", "EPH", "PHP", "COL", "1TH", "2TH", "1TI", "2TI", "TIT", "PHM", "HEB", "JAS", "1PE", "2PE", "1JN", "2JN", "3JN", "JUD"],
+};
+
+function chpText(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function chpNum(value: unknown) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value.trim());
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function chpRows(value: unknown, rows: ChpLocalBibleVerseRecord[] = []) {
+  if (Array.isArray(value)) {
+    value.forEach((item) => {
+      if (item && typeof item === "object") rows.push(item as ChpLocalBibleVerseRecord);
+    });
+    return rows;
+  }
+
+  if (value && typeof value === "object") {
+    Object.values(value as Record<string, unknown>).forEach((item) => chpRows(item, rows));
+  }
+
+  return rows;
+}
+
+const CHP_BIBLE_ROWS = chpRows(CHPLocalBibleData);
+
+function chpLaneKey(card: Record<string, unknown>) {
+  const section = (card.section ?? {}) as Record<string, unknown>;
+  const title = [
+    section.title,
+    section.label,
+    card.sectionTitle,
+    card.section,
+    card.lane,
+    card.dayLabel,
+  ].map(chpText).join(" ").toLowerCase();
+
+  if (title.includes("law") || title.includes("genesis")) return "law";
+  if (title.includes("history") || title.includes("old testament")) return "history";
+  if (title.includes("psalm")) return "psalms";
+  if (title.includes("poetry") || title.includes("proverb")) return "poetry";
+  if (title.includes("prophecy") || title.includes("revelation")) return "prophecy";
+  if (title.includes("gospel")) return "gospels";
+  if (title.includes("epistle")) return "epistles";
+  return "";
+}
+
+function chpBookCodeFromText(value: unknown) {
+  const raw = chpText(value);
+  if (!raw) return "";
+
+  const upper = raw.toUpperCase();
+  if (/^[1-3]?[A-Z]{2,3}$/.test(upper)) return upper;
+
+  const dotted = raw.match(/^([1-3]?[A-Za-z]{2,3})\./);
+  if (dotted) return dotted[1].toUpperCase();
+
+  const names = Object.keys(CHP_BOOK_CODE_BY_NAME).sort((a, b) => b.length - a.length);
+  const found = names.find((name) => raw === name || raw.startsWith(`${name} `));
+  return found ? CHP_BOOK_CODE_BY_NAME[found] : "";
+}
+
+function chpBook(record: Record<string, unknown>) {
+  return (
+    chpBookCodeFromText(record.code) ||
+    chpBookCodeFromText(record.bookCode) ||
+    chpBookCodeFromText(record.book) ||
+    chpBookCodeFromText(record.bookName) ||
+    chpBookCodeFromText(record.name) ||
+    chpBookCodeFromText(record.reference) ||
+    chpBookCodeFromText(record.label) ||
+    chpBookCodeFromText(record.id)
+  );
+}
+
+function chpChapter(record: Record<string, unknown>) {
+  const direct = chpNum(record.chapter) ?? chpNum(record.chapterNumber);
+  if (direct) return direct;
+
+  const text = [record.reference, record.label, record.id].map(chpText).find(Boolean) ?? "";
+  const dotted = text.match(/^[1-3]?[A-Za-z]{2,3}\.(\d+)(?:\.|$)/);
+  if (dotted) return Number(dotted[1]);
+
+  const colon = text.match(/\s(\d+):\d+/);
+  return colon ? Number(colon[1]) : null;
+}
+
+function chpVerse(record: Record<string, unknown>) {
+  const direct = chpNum(record.verse) ?? chpNum(record.verseNumber);
+  if (direct) return direct;
+
+  const text = [record.reference, record.label, record.id].map(chpText).find(Boolean) ?? "";
+  const dotted = text.match(/^[1-3]?[A-Za-z]{2,3}\.\d+\.(\d+)/);
+  if (dotted) return Number(dotted[1]);
+
+  const colon = text.match(/\s\d+:(\d+)/);
+  return colon ? Number(colon[1]) : null;
+}
+
+function bibleBingoLaneVerseLabel(card: unknown) {
+  const cardRecord = card as Record<string, unknown>;
+  const passage = (cardRecord.passage ?? {}) as Record<string, unknown>;
+
+  const lane = chpLaneKey(cardRecord);
+  const books = lane ? CHP_LANE_BOOKS[lane] ?? [] : [];
+  const pool = books.length ? CHP_BIBLE_ROWS.filter((row) => books.includes(chpBook(row))) : [];
+
+  const total = pool.length;
+  if (!total) return "Lane count unavailable";
+
+  const cardBook = chpBook(passage) || chpBook(cardRecord);
+  const cardChapter = chpChapter(passage) ?? chpChapter(cardRecord);
+  const cardVerse = chpVerse(passage) ?? chpVerse(cardRecord);
+
+  const position =
+    cardBook && cardChapter && cardVerse
+      ? pool.findIndex(
+          (row) =>
+            chpBook(row) === cardBook &&
+            chpChapter(row) === cardChapter &&
+            chpVerse(row) === cardVerse,
+        ) + 1
+      : 0;
+
+  if (position > 0) return `Verse ${position.toLocaleString()} of ${total.toLocaleString()} in this lane`;
+  return `${total.toLocaleString()} verses in this lane`;
+}
+/* END BIBLE BINGO LANE VERSE POSITION LABEL */
+
+
+type VerifiedWordStudy,
   wordStudyLookupKey,
 } from "../../lib/originalLanguageWordStudy";
 
@@ -1051,6 +1216,10 @@ export default function BibleExplorerPage() {
               <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-slate-300">
                 Odds: <span className="text-white">{oddsText(focusedCard.section)}</span>
               </p>
+              <p className="bible-bingo-focused-lane-position-footnote mt-3 text-xs font-semibold leading-5 text-slate-400">
+                {bibleBingoLaneVerseLabel(focusedCard)}
+              </p>
+
               {focusedBookLinks.length ? (
                 <div className="bible-bingo-focused-lane-books mt-6 rounded-[1.35rem] border border-white/10 bg-black/15 px-4 py-4 text-center sm:mt-7 sm:rounded-[2rem] sm:px-5 sm:py-5">
                   <p className="text-[10px] font-black uppercase tracking-[0.28em] text-emerald-100">
