@@ -1131,3 +1131,115 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   text-decoration-line: underline !important;
   text-underline-offset: 3px !important;
 }
+
+/* CHP_READING_PLAN_ONE_PAGE_PRINT_START */
+.chp-reading-table td {
+  vertical-align: middle !important;
+}
+
+.chp-reading-table td a {
+  display: inline-block !important;
+  min-height: auto !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-size: 0.94rem !important;
+  line-height: 1.15 !important;
+  letter-spacing: normal !important;
+  text-decoration-line: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 0.22in;
+  }
+
+  .chp-reading-print-brand {
+    display: flex !important;
+  }
+
+  .chp-reading-progress-shell {
+    margin-top: 0 !important;
+  }
+
+  .chp-reading-sheet {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .chp-plan-progress-summary,
+  .chp-next-reading-row,
+  .chp-reading-sheet > div:last-child {
+    display: none !important;
+  }
+
+  .chp-reading-table {
+    overflow: visible !important;
+  }
+
+  .chp-reading-table table {
+    min-width: 0 !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+  }
+
+  .chp-reading-table th,
+  .chp-reading-table td {
+    border: 1px solid #777 !important;
+    background: white !important;
+    color: black !important;
+    padding: 1.5px 2px !important;
+    box-shadow: none !important;
+  }
+
+  .chp-reading-table thead th {
+    padding: 2px !important;
+  }
+
+  .chp-reading-table thead div {
+    min-height: 0 !important;
+    gap: 0 !important;
+  }
+
+  .chp-reading-table thead p {
+    color: black !important;
+    font-size: 5.8pt !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+  }
+
+  .chp-reading-table tbody th {
+    width: 0.28in !important;
+    font-size: 6.5pt !important;
+  }
+
+  .chp-reading-table td div {
+    min-height: 0 !important;
+    justify-content: center !important;
+    gap: 2px !important;
+  }
+
+  .chp-reading-table input {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  .chp-reading-table td a {
+    max-width: 100% !important;
+    color: black !important;
+    font-size: 6.3pt !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+}
+/* CHP_READING_PLAN_ONE_PAGE_PRINT_END */
+

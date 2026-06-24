@@ -375,6 +375,16 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
   const doneCount = readings.filter((reading) => progress[reading.id]).length;
   const totalCount = readings.length;
+  const daysLeft = Math.max(totalCount - doneCount, 0);
+  const weeksLeft = weeks.filter((week, weekIndex) => {
+    const weekNo = weekNumber(week, weekIndex + 1);
+
+    return LANES.some((lane, laneIndex) => {
+      const reading = readingForLane(week, laneIndex);
+      const id = idForReading(reading, weekNo, laneIndex);
+      return !progress[id];
+    });
+  }).length;
   const percent = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
   const nextReading = readings.find((reading) => !progress[reading.id]) ?? readings[0];
 
@@ -459,6 +469,27 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
   return (
     <section className="chp-reading-sheet overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35">
+      <div className="chp-plan-progress-summary grid grid-cols-3 border-b border-white/10 bg-slate-950/50 text-center print:hidden">
+        <div className="border-r border-white/10 px-2 py-2">
+          <p className="text-xl font-black leading-none text-white">{weeksLeft}</p>
+          <p className="mt-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+            Weeks left
+          </p>
+        </div>
+        <div className="border-r border-white/10 px-2 py-2">
+          <p className="text-xl font-black leading-none text-white">{daysLeft}</p>
+          <p className="mt-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+            Days left
+          </p>
+        </div>
+        <div className="px-2 py-2">
+          <p className="text-xl font-black leading-none text-white">{percent}%</p>
+          <p className="mt-1 text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+            Done
+          </p>
+        </div>
+      </div>
+
       {nextReading ? (
         <div className="chp-next-reading-row border-b border-white/10 bg-white/[0.04] px-3 pb-4 pt-3 sm:px-4">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -520,7 +551,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               </button>
 
               <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">
-                {doneCount}/{totalCount} • {percent}%
+                {daysLeft} left • {percent}% done
               </div>
             </div>
           </div>
@@ -528,7 +559,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       ) : null}
 
       <div className="chp-reading-table overflow-x-auto">
-        <table className="min-w-[900px] w-full border-collapse text-left">
+        <table className="min-w-[1120px] w-full border-collapse text-center">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
               <th className="w-12 border-r border-white/10 px-2 py-3 text-center text-[0.6rem] font-black uppercase tracking-[0.14em] text-slate-300">
@@ -578,24 +609,24 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                     return (
                       <td
                         key={lane.key}
-                        className={`border-r border-white/[0.07] px-2 py-1 last:border-r-0 ${
+                        className={`border-r border-white/[0.07] px-1.5 py-1.5 text-center last:border-r-0 ${
                           isRead ? "bg-emerald-300/[0.075]" : "bg-white/[0.015]"
                         }`}
                       >
-                        <div className="flex min-h-6 items-center gap-1.5">
+                        <div className="flex min-h-[2.15rem] items-center justify-center gap-1.5">
                           <input
                             type="checkbox"
                             checked={isRead}
                             onChange={() => toggleReading(id)}
                             aria-label={`${isRead ? "Mark unread" : "Mark read"} ${label}`}
-                            className="h-3.5 w-3.5 shrink-0 accent-emerald-300"
+                            className="h-4 w-4 shrink-0 accent-emerald-300"
                           />
 
                           <a
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="min-w-0 truncate text-[0.82rem] font-black leading-tight text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
+                            className="block min-w-0 max-w-[8.8rem] truncate text-center text-[0.94rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
                             title={label}
                           >
                             {label}
