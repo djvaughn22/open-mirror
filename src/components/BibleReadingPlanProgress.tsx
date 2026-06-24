@@ -436,7 +436,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               href={nextReading.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-w-0 max-w-full truncate text-base font-black leading-tight text-white underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-100 hover:decoration-emerald-200 sm:text-lg"
+              className="min-w-0 max-w-full truncate text-lg font-black leading-tight text-emerald-50 underline decoration-emerald-300/50 decoration-2 underline-offset-4 transition hover:text-white hover:decoration-emerald-100 sm:text-xl"
               title={nextReading.label}
             >
               {nextReading.label}
@@ -544,7 +544,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="min-w-0 truncate text-[0.7rem] font-black leading-tight text-white underline decoration-emerald-300/25 underline-offset-2 transition hover:text-emerald-100 hover:decoration-emerald-200"
+                            className="min-w-0 truncate text-[0.82rem] font-black leading-tight text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
                             title={label}
                           >
                             {label}

@@ -1120,4 +1120,13 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     padding-bottom: 0.75rem !important;
   }
 }
-/* CHP_MINIMAL_READING_SHEET_END */
+/* CHP_MINIMAL_READING_SHEET_END */\n
+/* Bible Reading Plan: keep chapter references as plain underlined links, not pill buttons. */
+.chp-reading-table td a {
+  display: inline !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  text-decoration-line: underline !important;
+  text-underline-offset: 3px !important;
+}
