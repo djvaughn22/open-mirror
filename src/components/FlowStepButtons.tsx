@@ -27,27 +27,33 @@ export default function FlowStepButtons() {
   if (!previous && !next) return null;
 
   return (
-    <div className="mt-6 flex items-center justify-between gap-3 text-sm font-black">
+    <div className="fixed bottom-5 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-slate-950/80 px-3 py-2 shadow-2xl shadow-black/40 backdrop-blur-md print:hidden">
       {previous ? (
         <a
           href={previous.href}
-          className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-slate-100 transition hover:bg-white/15"
+          aria-label={`Previous: ${previous.label}`}
+          title={previous.label}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-xl font-black text-slate-100 transition hover:-translate-x-0.5 hover:bg-white/15"
         >
-          ← {previous.label}
+          ←
         </a>
       ) : (
-        <span aria-hidden="true" />
+        <span className="h-11 w-11" aria-hidden="true" />
       )}
+
+      <span className="h-2 w-2 rounded-full bg-emerald-200/70" aria-hidden="true" />
 
       {next ? (
         <a
           href={next.href}
-          className="rounded-full border border-emerald-200/35 bg-emerald-300/10 px-4 py-2 text-emerald-100 transition hover:bg-emerald-300/15"
+          aria-label={`Next: ${next.label}`}
+          title={next.label}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200/30 bg-emerald-300/15 text-xl font-black text-emerald-100 transition hover:translate-x-0.5 hover:bg-emerald-300/25"
         >
-          {next.label} →
+          →
         </a>
       ) : (
-        <span aria-hidden="true" />
+        <span className="h-11 w-11" aria-hidden="true" />
       )}
     </div>
   );
