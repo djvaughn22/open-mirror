@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
+import CrossHeartPrayHero from "../components/CrossHeartPrayHero";
 
 export const metadata = {
   title: "Welcome",
@@ -21,7 +22,7 @@ const dailyWays = [
   {
     href: "/daily-hope",
     icon: "🌅",
-    eyebrow: "Repeatable",
+    eyebrow: "Daily",
     title: "Daily Hope",
     body:
       "A short prayer and Scripture routine for the day, ready whenever you want to slow down and come back to the Word.",
@@ -29,23 +30,23 @@ const dailyWays = [
   },
   {
     href: "/explorebible",
-    icon: "🎲",
-    eyebrow: "Fun shuffle",
+    icon: "🃏",
+    eyebrow: "7-card deck",
     title: "Bible Bingo 7",
     body:
       "Deal seven Bible cards, pick what stands out, open the chapter, and keep exploring where the verse leads.",
-    cta: "Shuffle 7 Cards",
+    cta: "Deal 7 Cards",
   },
 ];
 
 const studyDetails = [
   {
     title: "Open the chapter",
-    body: "A verse can quickly turn into context, chapter reading, and related Bible app study.",
+    body: "A verse can turn into context, chapter reading, and related Bible app study.",
   },
   {
-    title: "Keep following the thread",
-    body: "Bible Bingo connects discovery back into the bigger Bible reading rhythm.",
+    title: "Follow the trail",
+    body: "Bible Bingo connects a random card back into the bigger Bible reading rhythm.",
   },
   {
     title: "Deep Dive the words",
@@ -65,37 +66,14 @@ export default function WelcomePage() {
       <div className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader />
 
-        <section className="mx-auto max-w-5xl text-center">
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5 text-sm font-black uppercase tracking-[0.34em] text-white sm:text-base">
-            <span className="inline-flex items-center gap-3">
-              <span className="text-4xl tracking-normal">✝️</span>
-              <span>Cross</span>
-            </span>
-            <span className="inline-flex items-center gap-3">
-              <span className="text-4xl tracking-normal">❤️</span>
-              <span>Heart</span>
-            </span>
-            <span className="inline-flex items-center gap-3">
-              <span className="text-4xl tracking-normal">🙏</span>
-              <span>Pray</span>
-            </span>
-          </div>
-
-          <h1 className="mt-8 text-5xl font-black tracking-tight text-white sm:text-7xl">
-            Cross Heart Pray all day.
-          </h1>
-
-          <p className="mt-4 text-2xl font-black text-emerald-100 sm:text-3xl">
-            Your way through the Bible daily.
-          </p>
-
-          <p className="mx-auto mt-8 max-w-3xl text-base font-semibold leading-8 text-slate-300 sm:text-lg">
+        <CrossHeartPrayHero>
+          <p>
             Follow the 52-week Bible Reading Plan, pray through Daily Hope, or
-            shuffle Bible Bingo 7 and see where the Word leads.
+            deal Bible Bingo 7 cards and see where the Word leads.
           </p>
-        </section>
+        </CrossHeartPrayHero>
 
-        <section className="mt-14 grid gap-6 lg:grid-cols-3">
+        <section className="mt-10 grid gap-6 lg:grid-cols-3">
           {dailyWays.map((item) => (
             <Link
               key={item.href}
@@ -126,7 +104,7 @@ export default function WelcomePage() {
           ))}
         </section>
 
-        <section className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-gradient-to-r from-emerald-300/[0.12] to-slate-900">
+        <section className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-gradient-to-r from-emerald-300/[0.14] via-slate-900 to-slate-950 shadow-2xl shadow-emerald-950/20">
           <div className="grid gap-0 lg:grid-cols-[1fr_1.05fr]">
             <div className="p-8">
               <p className="text-xs font-black uppercase tracking-[0.26em] text-emerald-100">
@@ -138,16 +116,16 @@ export default function WelcomePage() {
               </h2>
 
               <p className="mt-4 text-sm font-semibold leading-7 text-slate-200">
-                Bible Bingo starts with a shuffle, but it can lead into chapter
-                context, Bible app study, related verse reading, and a deeper
-                look at the original words.
+                Bible Bingo starts with a 7-card deal, then opens into chapter
+                context, Bible app study, related verses, and original word
+                study when verified data is available.
               </p>
 
               <Link
                 href="/explorebible"
                 className="mt-7 inline-flex rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-emerald-200"
               >
-                Try Bible Bingo 7 →
+                Deal Bible Bingo 7 →
               </Link>
             </div>
 
@@ -174,9 +152,6 @@ export default function WelcomePage() {
             <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
               The simple flow underneath
             </p>
-            <h2 className="mt-4 text-3xl font-black text-white">
-              Cross. Heart. Pray.
-            </h2>
           </div>
 
           <div className="mt-7 grid gap-4 md:grid-cols-3">

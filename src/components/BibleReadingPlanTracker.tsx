@@ -3,6 +3,7 @@ import BibleReadingPlanProgress from "./BibleReadingPlanProgress";
 import PrintButton from "./PrintButton";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
+import CrossHeartPrayHero from "./CrossHeartPrayHero";
 
 type BibleReadingPlanTrackerProps = {
   weeks: BibleReadingPlanWeek[];
@@ -26,17 +27,7 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
         <SiteHeader className="mb-5 sm:mb-12 print:hidden" />
 
         <div className="text-center">
-          <div
-            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base font-black uppercase tracking-[0.24em] text-white sm:text-lg"
-            aria-hidden="true"
-          >
-            <span className="text-3xl">✝️</span>
-            <span>Cross</span>
-            <span className="text-3xl">❤️</span>
-            <span>Heart</span>
-            <span className="text-3xl">🙏</span>
-            <span>Pray</span>
-          </div>
+          <CrossHeartPrayHero compact className="print:hidden" />
 
           <h1 className="mt-4 text-3xl font-black tracking-tight text-white print:text-black sm:mt-6 sm:text-7xl">
             Bible Reading Plan

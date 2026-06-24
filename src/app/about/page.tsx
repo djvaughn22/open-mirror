@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
+import CrossHeartPrayHero from "../../components/CrossHeartPrayHero";
 
 export const metadata = {
   title: "About",
@@ -13,26 +14,12 @@ export default function AboutPage() {
       <div className="mx-auto max-w-6xl px-6 py-8">
         <SiteHeader />
 
-        <section className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-black uppercase tracking-[0.3em] text-emerald-100">
-            About CrossHeartPray
+        <CrossHeartPrayHero>
+          <p>
+            A simple daily Bible routine built to read, pray, deal cards, and
+            come back to the Word.
           </p>
-
-          <h1 className="mt-6 text-4xl font-black tracking-tight text-white sm:text-6xl">
-            A simple daily Bible routine.
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            CrossHeartPray is a small Bible web app built from my daily routine
-            for my kids, family, old friends, new friends, and anyone who wants
-            to follow along.
-          </p>
-
-          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Take the Word of God with you. Follow a plan, pray through Daily
-            Hope, or explore any verse through Bible Bingo 7.
-          </p>
-        </section>
+        </CrossHeartPrayHero>
 
         <section className="mt-12 grid gap-5 md:grid-cols-3">
           <Link
