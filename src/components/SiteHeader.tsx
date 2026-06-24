@@ -35,9 +35,7 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
     }
 
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-      }
+      if (event.key === "Escape") setIsMenuOpen(false);
     }
 
     document.addEventListener("mousedown", closeOnOutsideClick);

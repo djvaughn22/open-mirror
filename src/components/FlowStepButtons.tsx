@@ -42,6 +42,8 @@ export default function FlowStepButtons() {
   const previous = index > 0 ? steps[index - 1] : null;
   const next = index < steps.length - 1 ? steps[index + 1] : null;
 
+  if (!previous && !next) return null;
+
   return (
     <div className="mt-4 flex items-center justify-between gap-3 text-xs font-semibold">
       <div className="min-w-0 flex-1 text-left">

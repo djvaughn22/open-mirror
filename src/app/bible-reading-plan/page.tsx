@@ -2,7 +2,7 @@ import BibleReadingPlanTracker from "../../components/BibleReadingPlanTracker";
 import { BIBLE_READING_PLAN_WEEKS } from "../../lib/bibleReadingPlan";
 
 export const metadata = {
-  title: "Bible Reading Plan | Cross Heart Pray",
+  title: "✝️ ❤️ 🙏 Bible Reading Plan",
   description: "A full-year digital Bible Reading Plan board that fills as you read.",
   robots: {
     index: false,

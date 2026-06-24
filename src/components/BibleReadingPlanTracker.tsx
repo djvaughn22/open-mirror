@@ -48,15 +48,15 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
           </h1>
 
           <p className="mt-2 text-lg font-black text-emerald-100 print:text-black sm:mt-3 sm:text-3xl">
-            Fill the 52-week board.
+            Daily Bible reading.
           </p>
 
           <div className="mx-auto mt-4 max-w-5xl rounded-[1.4rem] border border-white/10 bg-white/[0.035] px-3 py-3 text-center print:border-black print:bg-white sm:mt-5 sm:rounded-[2rem] sm:px-5 sm:py-5">
             <p className="text-sm font-black text-slate-100 print:text-black sm:text-base">
-              One full-year board. Read, check, and watch it fill.
+              Read one day. Mark it done. Keep going.
             </p>
             <p className="mx-auto mt-2 hidden max-w-2xl text-xs font-semibold leading-6 text-slate-300 print:text-black sm:block sm:text-sm">
-              Each day follows its own lane so the whole Bible opens in a simple weekly rhythm.
+              The weekly rhythm is summarized on About.
             </p>
 
             <div className="mt-4 flex snap-x gap-2 overflow-x-auto pb-2 text-left sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-7 print:grid-cols-2">

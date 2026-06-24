@@ -3,47 +3,9 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 export const metadata = {
-  title: "About",
+  title: "✝️ ❤️ 🙏 About",
   description: "The CrossHeartPray Bible reading and discovery flow.",
 };
-
-const flowCards = [
-  {
-    title: "Bible Bingo 7",
-    href: "/",
-    line: "Discover a specific Bible verse.",
-  },
-  {
-    title: "Bible Reading Plan",
-    href: "/bible-reading-plan",
-    line: "Open the chapter, understand the context, and track your way through the Bible.",
-  },
-  {
-    title: "Daily Hope",
-    href: "/daily-hope",
-    line: "Return to daily prayers and hope verses.",
-  },
-  {
-    title: "Cross",
-    href: "/cross",
-    line: "Bring it to Jesus.",
-  },
-  {
-    title: "Heart",
-    href: "/heart",
-    line: "Receive God’s everlasting, unconditional love.",
-  },
-  {
-    title: "Pray",
-    href: "/pray",
-    line: "Talk to God and let His will be done.",
-  },
-  {
-    title: "About",
-    href: "/about",
-    line: "The simple flow in seven seconds.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -53,7 +15,7 @@ export default function AboutPage() {
 
         <section className="max-w-4xl text-left">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-100">
-            About
+            About CrossHeartPray
           </p>
 
           <h1 className="mt-5 text-4xl font-black tracking-tight text-white sm:text-6xl">
@@ -61,7 +23,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-7 max-w-3xl text-xl font-semibold leading-9 text-emerald-100 sm:text-2xl sm:leading-10">
-            CrossHeartPray is for anyone without a physical Bible nearby who wants daily Bible reading, Daily Hope, verse discovery, chapter context, a Bible Reading Plan, and simple sharing.
+            CrossHeartPray brings the Bible everywhere: discover one verse from 31,103, open the chapter for context, use Deep Dive, follow Daily Hope, track your Bible Reading Plan, and share what you find.
           </p>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
@@ -69,21 +31,108 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="mt-12 grid gap-4 md:grid-cols-2">
-          {flowCards.map((card) => (
-            <Link
-              key={card.title}
-              href={card.href}
-              className="rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-5 text-left transition hover:border-emerald-200/40 hover:bg-white/[0.07]"
-            >
-              <h2 className="text-2xl font-black text-white">
-                {card.title}
-              </h2>
+        <section className="mt-14 max-w-4xl space-y-8 text-left">
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Bible Bingo</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>One board.</li>
+              <li>Seven Bible verses.</li>
+              <li>Deep Dive word study when source-backed original-language data is available.</li>
+            </ul>
+
+            <div className="mt-6 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">Why 7 cards?</p>
+
               <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-                {card.line}
+                One board. Seven places in Scripture. Each card has a purpose.
               </p>
+
+              <ul className="mt-4 space-y-2 text-sm font-semibold leading-6 text-slate-300">
+                <li>Old Testament — beginning, history, prophecy</li>
+                <li>Psalms — praise and prayer</li>
+                <li>Proverbs — wisdom</li>
+                <li>Gospel — Jesus</li>
+                <li>Epistles — the Church</li>
+                <li>Genesis + Revelation — the beginning and the end together</li>
+              </ul>
+
+              <p className="mt-4 text-base font-black text-emerald-50">
+                God&apos;s master plan, on one board.
+              </p>
+            </div>
+
+            <Link
+              href="/"
+              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Open Bible Bingo
             </Link>
-          ))}
+          </section>
+
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Bible Reading Plan</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>Open the one-page PDF.</li>
+              <li>Follow a steady rhythm through Scripture.</li>
+              <li>Return anytime from the menu.</li>
+            </ul>
+
+            <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+              <span className="rounded-full border border-white/10 px-3 py-2">Sunday — Epistles</span>
+              <span className="rounded-full border border-white/10 px-3 py-2">Monday — Law</span>
+              <span className="rounded-full border border-white/10 px-3 py-2">Tuesday — History</span>
+              <span className="rounded-full border border-white/10 px-3 py-2">Wednesday — Psalms</span>
+              <span className="rounded-full border border-white/10 px-3 py-2">Thursday — Poetry</span>
+              <span className="rounded-full border border-white/10 px-3 py-2">Friday — Prophecy</span>
+              <span className="rounded-full border border-white/10 px-3 py-2">Saturday — Gospels</span>
+            </div>
+
+            <Link
+              href="/bible-reading-plan"
+              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Open Bible Reading Plan
+            </Link>
+          </section>
+
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Daily Hope</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>Begin with the Sinner Prayer.</li>
+              <li>Continue with the Salvation Prayer.</li>
+              <li>Read the fixed hope verses for the day.</li>
+              <li>Close with prayer.</li>
+            </ul>
+
+            <Link
+              href="/daily-hope"
+              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Start Daily Hope
+            </Link>
+          </section>
+
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Cross Heart Pray</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>
+                <span className="font-black text-white">✝️ Cross:</span>{" "}
+                <span className="font-semibold text-emerald-100">Bring it to Jesus.</span>
+              </li>
+              <li>
+                <span className="font-black text-white">❤️ Heart:</span>{" "}
+                <span className="font-semibold text-emerald-100">Receive God’s love.</span>
+              </li>
+              <li>
+                <span className="font-black text-white">🙏 Pray:</span>{" "}
+                <span className="font-semibold text-emerald-100">Talk to God.</span>
+              </li>
+            </ul>
+          </section>
         </section>
 
         <section className="mt-12 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 text-center">
@@ -96,9 +145,7 @@ export default function AboutPage() {
           <p className="mt-6 text-sm font-semibold text-slate-400">
             RIP Travis - VTL
           </p>
-          <p className="mt-1 text-xl">
-            ✝️ ❤️ 🙏
-          </p>
+          <p className="mt-1 text-xl">✝️ ❤️ 🙏</p>
         </section>
       </div>
 
