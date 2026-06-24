@@ -35,7 +35,7 @@ export default function AboutPage() {
           </div>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Welcome → Bible Bingo 7 → Bible Reading Plan → Daily Hope → About
+            Home → Bible Reading Plan → Daily Hope → About
           </p>
         </section>
 
@@ -129,7 +129,7 @@ export default function AboutPage() {
             <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
               <li>
                 <span className="font-black text-white">✝️ Cross:</span>{" "}
-                <span className="font-semibold text-emerald-100">Bring it to Jesus.</span>
+                <span className="font-semibold text-emerald-100">Call out to Jesus.</span>
               </li>
               <li>
                 <span className="font-black text-white">❤️ Heart:</span>{" "}
@@ -137,7 +137,7 @@ export default function AboutPage() {
               </li>
               <li>
                 <span className="font-black text-white">🙏 Pray:</span>{" "}
-                <span className="font-semibold text-emerald-100">Talk to God.</span>
+                <span className="font-semibold text-emerald-100">Pray nonstop.</span>
               </li>
             </ul>
           </section>
