@@ -551,3 +551,51 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   }
 }
 /* CHP_LIVELY_DARK_THEME_END */
+
+/* CHP_READING_NUCLEUS_STYLE_START */
+.chp-reading-progress-shell > section {
+  margin-top: 0 !important;
+}
+
+.chp-reading-progress-shell section {
+  scroll-margin-top: 1rem;
+}
+
+.chp-reading-progress-shell article {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.chp-reading-progress-shell [class*="bg-white/\[0.03\]"],
+.chp-reading-progress-shell [class*="bg-white/\[0.035\]"],
+.chp-reading-progress-shell [class*="bg-white/\[0.04\]"],
+.chp-reading-progress-shell [class*="bg-white/\[0.05\]"] {
+  background-color: rgba(255, 255, 255, 0.055) !important;
+}
+
+.chp-reading-progress-shell [class*="bg-slate-950/45"],
+.chp-reading-progress-shell [class*="bg-slate-950/55"],
+.chp-reading-progress-shell [class*="bg-slate-900/45"] {
+  background-color: rgba(2, 6, 23, 0.58) !important;
+}
+
+.chp-reading-progress-shell button,
+.chp-reading-progress-shell a {
+  min-height: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .chp-reading-progress-shell {
+    margin-top: 1rem !important;
+  }
+
+  .chp-reading-progress-shell article {
+    border-radius: 1.15rem !important;
+  }
+
+  .chp-reading-progress-shell [class*="tracking-\[0.18em\]"],
+  .chp-reading-progress-shell [class*="tracking-\[0.2em\]"],
+  .chp-reading-progress-shell [class*="tracking-\[0.22em\]"] {
+    letter-spacing: 0.12em !important;
+  }
+}
+/* CHP_READING_NUCLEUS_STYLE_END */
