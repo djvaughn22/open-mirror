@@ -72,6 +72,70 @@ function cardTone(index: number) {
   return CARD_TONES[index % CARD_TONES.length];
 }
 
+const DAILY_HOPE_OPEN_ICONS = ["🕊️", "✝️", "⚓", "🌅", "🛡️", "🌿", "🔥", "💧"];
+
+const DAILY_HOPE_LITERAL_WORDS = [
+  "hope",
+  "faith",
+  "love",
+  "comfort",
+  "courage",
+  "strength",
+  "trust",
+  "believe",
+  "wait",
+  "joy",
+  "peace",
+  "mercy",
+  "grace",
+  "salvation",
+  "endurance",
+  "patiently",
+  "fear",
+  "heart",
+];
+
+function prayerOpenIcon(title: string) {
+  const lower = title.toLowerCase();
+
+  if (lower.includes("sinner")) return "🕊️";
+  if (lower.includes("salvation")) return "✝️";
+  if (lower.includes("moment")) return "🌅";
+
+  return "🙏";
+}
+
+function prayerLiteralCue(title: string) {
+  const lower = title.toLowerCase();
+
+  if (lower.includes("sinner")) return "Recognize sin. Ask forgiveness.";
+  if (lower.includes("salvation")) return "Receive Jesus as Lord and Savior.";
+  if (lower.includes("moment")) return "Live this day. Keep a heavenly perspective.";
+
+  return "Pray.";
+}
+
+function literalWordsForItem(item: DailyHopePassageItem) {
+  const text = textForItem(item).toLowerCase();
+  const words = DAILY_HOPE_LITERAL_WORDS.filter((word) => {
+    const pattern = new RegExp(`\\b${word}\\b`, "i");
+    return pattern.test(text);
+  });
+
+  return words.length ? words.slice(0, 4) : ["Scripture"];
+}
+
+function dayReferencePreview(day: DailyHopeDay) {
+  return day.items.map((item) => item.label).join(" · ");
+}
+
+function dayLiteralPreview(day: DailyHopeDay) {
+  const words = day.items.flatMap((item) => literalWordsForItem(item));
+  const unique = [...new Set(words)].filter((word) => word !== "Scripture").slice(0, 5);
+
+  return unique.length ? `Words in verses: ${unique.join(" · ")}` : "Open the fixed hope verses.";
+}
+
 function verseUrl(passage: DailyHopePassage) {
   return `https://www.bible.com/bible/206/${passage.code}.${passage.chapter}.${passage.verse}.WEBUS`;
 }
@@ -515,12 +579,18 @@ export default function DailyHopeRoutine({
             const prayerId = `prayer-${index + 1}`;
             const prayerUrl = `${pageUrl}#${prayerId}`;
             const isPrayerExpanded = Boolean(expandedPrayerIds[prayerId]);
+            const prayerIcon = prayerOpenIcon(prayer.title);
+            const prayerCue = prayerLiteralCue(prayer.title);
+            const prayerTone =
+              index === 0
+                ? "border-rose-200/18 bg-rose-950/22"
+                : "border-emerald-200/18 bg-emerald-950/22";
 
             return (
               <article
                 id={prayerId}
                 key={prayer.title}
-                className="relative rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/20 sm:p-8"
+                className={`relative overflow-hidden rounded-[2rem] border p-6 shadow-2xl shadow-black/20 sm:p-8 ${prayerTone}`}
               >
                 <div className="absolute right-5 top-5">
                   <BibleBingoShareMenu
@@ -536,9 +606,23 @@ export default function DailyHopeRoutine({
                   />
                 </div>
 
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-                  Prayer Card
-                </p>
+                <div className="flex items-start gap-4 pr-12">
+                  <span
+                    className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-2xl shadow-lg shadow-black/15"
+                    aria-hidden="true"
+                  >
+                    {prayerIcon}
+                  </span>
+
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
+                      Prayer Card
+                    </p>
+                    <p className="mt-2 text-sm font-black leading-6 text-white">
+                      {prayerCue}
+                    </p>
+                  </div>
+                </div>
 
                 <div className="mt-4 flex flex-col gap-3 pr-12 sm:flex-row sm:items-center sm:justify-between">
                   <h2 className="text-2xl font-extrabold text-slate-50">
@@ -609,6 +693,32 @@ export default function DailyHopeRoutine({
                   </div>
                 </div>
 
+                {!isActiveDay ? (
+                  <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.035] p-4">
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-emerald-200/20 bg-emerald-300/10 text-2xl"
+                        aria-hidden="true"
+                      >
+                        {DAILY_HOPE_OPEN_ICONS[dayIndex % DAILY_HOPE_OPEN_ICONS.length]}
+                      </span>
+
+                      <div className="min-w-0">
+                        <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+                          Open {day.day}
+                        </p>
+                        <p className="mt-1 truncate text-sm font-semibold text-slate-300">
+                          {dayReferencePreview(day)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="mt-3 text-sm font-black leading-6 text-slate-100">
+                      {dayLiteralPreview(day)}
+                    </p>
+                  </div>
+                ) : null}
+
                 {isActiveDay ? (
                   <div className="mt-6 grid grid-cols-1 gap-5">
                     {day.items.map((item, itemIndex) => {
@@ -616,6 +726,8 @@ export default function DailyHopeRoutine({
                     const verifiedReady = itemHasVerifiedWordLinks(item);
                     const cardUrl = `${pageUrl}#${item.id}`;
                     const globalCardIndex = dayIndex * 3 + itemIndex;
+                    const literalWords = literalWordsForItem(item);
+                    const openIcon = DAILY_HOPE_OPEN_ICONS[globalCardIndex % DAILY_HOPE_OPEN_ICONS.length];
 
                     return (
                       <article
@@ -637,7 +749,28 @@ export default function DailyHopeRoutine({
                           />
                         </div>
 
-                        <div className="flex justify-center gap-3 text-2xl" aria-hidden="true">
+                        <div className="flex justify-center" aria-hidden="true">
+                          <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-3xl shadow-lg shadow-black/15">
+                            {openIcon}
+                          </span>
+                        </div>
+
+                        <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
+                          Daily Hope Card
+                        </p>
+
+                        <div className="mt-3 flex flex-wrap justify-center gap-2">
+                          {literalWords.map((word) => (
+                            <span
+                              key={word}
+                              className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em] text-slate-100"
+                            >
+                              {word}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="mt-4 flex justify-center gap-3 text-xl" aria-hidden="true">
                           <span>✝️</span>
                           <span>❤️</span>
                           <span>🙏</span>
@@ -720,7 +853,7 @@ export default function DailyHopeRoutine({
         <section className="mt-10">
           <article
             id="live-in-the-moment"
-            className="relative mx-auto max-w-4xl rounded-[2rem] border border-emerald-200/14 bg-slate-900/45 p-6 text-center shadow-xl shadow-black/20 sm:p-8"
+            className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-emerald-200/18 bg-emerald-950/22 p-6 text-center shadow-xl shadow-black/20 sm:p-8"
           >
             <div className="absolute right-5 top-5">
               <BibleBingoShareMenu
