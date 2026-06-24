@@ -65,10 +65,6 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
           </div>
         </section>
 
-        <div id="reading-plan-board" className="chp-reading-progress-shell mt-4 scroll-mt-6">
-          <BibleReadingPlanProgress weeks={weeks} />
-        </div>
-
         <section className="mt-4 print:hidden">
           <div className="mb-2 flex items-center justify-between gap-3">
             <h2 className="text-sm font-black uppercase tracking-[0.22em] text-emerald-100">
@@ -98,6 +94,10 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
             ))}
           </div>
         </section>
+
+        <div id="reading-plan-board" className="chp-reading-progress-shell mt-4 scroll-mt-6">
+          <BibleReadingPlanProgress weeks={weeks} />
+        </div>
 
         <SiteFooter />
       </section>
