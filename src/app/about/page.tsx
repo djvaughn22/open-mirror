@@ -35,7 +35,7 @@ export default function AboutPage() {
           </div>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Home → Bible Reading Plan → Daily Hope → About
+            Home → Bible Reading → Hope → Bible Bingo 7 → About
           </p>
         </section>
 

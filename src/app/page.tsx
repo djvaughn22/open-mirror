@@ -18,16 +18,16 @@ const dailyWays = [
     title: "52-week Bible Reading Plan",
     body:
       "A steady path through Scripture with seven lanes across each week and a simple rhythm to return to every day.",
-    cta: "Open Reading Plan",
+    cta: "Open Bible Reading",
   },
   {
     href: "/daily-hope",
     icon: "🌅",
     eyebrow: "Daily",
-    title: "Daily Hope",
+    title: "Hope",
     body:
       "A short prayer and Scripture routine for the day, ready whenever you want to slow down and come back to the Word.",
-    cta: "Open Daily Hope",
+    cta: "Open Hope",
   },
   {
     href: "/explorebible",
@@ -69,8 +69,8 @@ export default function WelcomePage() {
 
         <CrossHeartPrayHero>
           <p>
-            Follow the 52-week Bible Reading Plan, pray through Daily Hope, or
-            deal Bible Bingo 7 cards and see where the Word leads.
+            Start with Bible Reading, continue with Hope, then deal Bible Bingo 7
+            cards and see where the Word leads.
           </p>
         </CrossHeartPrayHero>
 
