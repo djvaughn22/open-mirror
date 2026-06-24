@@ -446,17 +446,17 @@ export default function DailyHopeRoutine({
           subhead="A prayer and Scripture rhythm for the day."
           body="Open the same hope routine, slow down, and come back to the Word."
         >
-          <CentralTimeBadge className="mt-5" />
+          <CentralTimeBadge className="mt-3" />
 
-          <div className="mt-7 flex flex-col items-center gap-4">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
             <div
               aria-label="Quick day view"
-              className="flex flex-wrap items-center justify-center gap-2"
+              className="flex flex-wrap items-center justify-center gap-1.5"
             >
               <button
                 type="button"
                 onClick={chooseToday}
-                className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-50 transition hover:bg-emerald-300/18"
+                className="rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.16em] text-emerald-50 transition hover:bg-emerald-300/18"
               >
                 Today
               </button>
@@ -471,7 +471,7 @@ export default function DailyHopeRoutine({
                     type="button"
                     onClick={() => chooseDay(day.slug)}
                     aria-label={day.day}
-                    className={`h-10 w-10 rounded-full border text-sm font-black transition ${
+                    className={`h-8 w-8 rounded-full border text-xs font-black transition ${
                       isActive
                         ? "border-white/45 bg-white text-slate-950"
                         : isToday
@@ -489,7 +489,7 @@ export default function DailyHopeRoutine({
               type="button"
               onClick={allDaysExpanded ? minimizeDays : expandAllDays}
               aria-expanded={allDaysExpanded}
-              className="w-full max-w-sm rounded-full border border-emerald-200/30 bg-emerald-300/15 px-6 py-3 text-sm font-black uppercase tracking-[0.18em] text-emerald-50 shadow-lg shadow-emerald-950/20 transition hover:bg-emerald-300/22"
+              className="inline-flex h-8 items-center justify-center rounded-full border border-emerald-200/30 bg-emerald-300/15 px-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-50 shadow-lg shadow-emerald-950/20 transition hover:bg-emerald-300/22"
             >
               {allDaysExpanded ? "Collapse all days" : "Expand all days"}
             </button>

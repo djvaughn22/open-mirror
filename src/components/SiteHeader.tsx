@@ -11,7 +11,7 @@ type SiteHeaderProps = {
 const menuLinks = [
   { href: "/", label: "Home" },
   { href: "/bible-reading-plan", label: "Bible Reading" },
-  { href: "/daily-hope", label: "Hope" },
+  { href: "/daily-hope", label: "Daily Hope" },
   { href: "/explorebible", label: "Bible Bingo 7" },
   { href: "/about", label: "About" },
 ];

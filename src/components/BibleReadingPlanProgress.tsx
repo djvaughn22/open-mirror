@@ -1,57 +1,27 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  type BibleReadingPlanDay,
-  type BibleReadingPlanWeek,
-} from "../lib/bibleReadingPlan";
+import type { BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 
 type BibleReadingPlanProgressProps = {
   weeks: BibleReadingPlanWeek[];
 };
 
+type AnyRecord = Record<string, unknown>;
+
 const STORAGE_KEY = "crossheartpray:bible-reading-plan:v1";
 
-type StoredProgress = {
-  startDateKey: string;
-  done: Record<string, boolean>;
-};
+const LANES = [
+  { key: "sunday", day: "Sunday", short: "Sun", lane: "Epistles" },
+  { key: "monday", day: "Monday", short: "Mon", lane: "Law" },
+  { key: "tuesday", day: "Tuesday", short: "Tue", lane: "History" },
+  { key: "wednesday", day: "Wednesday", short: "Wed", lane: "Psalms" },
+  { key: "thursday", day: "Thursday", short: "Thu", lane: "Poetry" },
+  { key: "friday", day: "Friday", short: "Fri", lane: "Prophecy" },
+  { key: "saturday", day: "Saturday", short: "Sat", lane: "Gospels" },
+];
 
-function centralDateKey(date = new Date()) {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Chicago",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(date);
-
-  const year = parts.find((part) => part.type === "year")?.value ?? "1970";
-  const month = parts.find((part) => part.type === "month")?.value ?? "01";
-  const day = parts.find((part) => part.type === "day")?.value ?? "01";
-
-  return `${year}-${month}-${day}`;
-}
-
-function dateKeyToUtcMs(dateKey: string) {
-  const [year, month, day] = dateKey.split("-").map(Number);
-
-  if (!year || !month || !day) {
-    return Date.UTC(1970, 0, 1);
-  }
-
-  return Date.UTC(year, month - 1, day);
-}
-
-function daysBetween(startDateKey: string, endDateKey: string) {
-  const dayMs = 24 * 60 * 60 * 1000;
-  return Math.floor((dateKeyToUtcMs(endDateKey) - dateKeyToUtcMs(startDateKey)) / dayMs);
-}
-
-function doneKey(day: BibleReadingPlanDay) {
-  return `week-${day.week}-${day.daySlug}`;
-}
-
-const BIBLE_COM_BOOK_CODES: Record<string, string> = {
+const BOOK_CODES: Record<string, string> = {
   Genesis: "GEN",
   Exodus: "EXO",
   Leviticus: "LEV",
@@ -70,12 +40,11 @@ const BIBLE_COM_BOOK_CODES: Record<string, string> = {
   Nehemiah: "NEH",
   Esther: "EST",
   Job: "JOB",
-  Psalm: "PSA",
   Psalms: "PSA",
+  Psalm: "PSA",
   Proverbs: "PRO",
   Ecclesiastes: "ECC",
   "Song of Solomon": "SNG",
-  "Song of Songs": "SNG",
   Isaiah: "ISA",
   Jeremiah: "JER",
   Lamentations: "LAM",
@@ -120,604 +89,486 @@ const BIBLE_COM_BOOK_CODES: Record<string, string> = {
   "3 John": "3JN",
   Jude: "JUD",
   Revelation: "REV",
-  "Gen": "GEN",
-  "Exod": "EXO",
-  "Exo": "EXO",
-  "Ex": "EXO",
-  "Lev": "LEV",
-  "Num": "NUM",
-  "Deut": "DEU",
-  "Dt": "DEU",
-  "Josh": "JOS",
-  "Jos": "JOS",
-  "Judg": "JDG",
-  "Jdg": "JDG",
-  "1 Sam": "1SA",
-  "2 Sam": "2SA",
-  "1Sam": "1SA",
-  "2Sam": "2SA",
-  "1 Kgs": "1KI",
-  "2 Kgs": "2KI",
-  "1 Ki": "1KI",
-  "2 Ki": "2KI",
-  "1 Chr": "1CH",
-  "2 Chr": "2CH",
-  "Neh": "NEH",
-  "Esth": "EST",
-  "Ps": "PSA",
-  "Psa": "PSA",
-  "Prov": "PRO",
-  "Pr": "PRO",
-  "Eccl": "ECC",
-  "Eccles": "ECC",
-  "Song": "SNG",
-  "Isa": "ISA",
-  "Jer": "JER",
-  "Lam": "LAM",
-  "Ezek": "EZK",
-  "Ezk": "EZK",
-  "Dan": "DAN",
-  "Hos": "HOS",
-  "Obad": "OBA",
-  "Mic": "MIC",
-  "Nah": "NAM",
-  "Hab": "HAB",
-  "Zeph": "ZEP",
-  "Hag": "HAG",
-  "Zech": "ZEC",
-  "Mal": "MAL",
-  "Matt": "MAT",
-  "Mt": "MAT",
-  "Mk": "MRK",
-  "Lk": "LUK",
-  "Jn": "JHN",
-  "Rom": "ROM",
-  "1 Cor": "1CO",
-  "2 Cor": "2CO",
-  "1Cor": "1CO",
-  "2Cor": "2CO",
-  "Gal": "GAL",
-  "Eph": "EPH",
-  "Phil": "PHP",
-  "Php": "PHP",
-  "Col": "COL",
-  "1 Thess": "1TH",
-  "2 Thess": "2TH",
-  "1 Thes": "1TH",
-  "2 Thes": "2TH",
-  "1Thess": "1TH",
-  "2Thess": "2TH",
-  "1 Tim": "1TI",
-  "2 Tim": "2TI",
-  "1Tim": "1TI",
-  "2Tim": "2TI",
-  "Philem": "PHM",
-  "Heb": "HEB",
-  "Jas": "JAS",
-  "1 Pet": "1PE",
-  "2 Pet": "2PE",
-  "1Pet": "1PE",
-  "2Pet": "2PE",
-  "Rev": "REV",
 };
 
-const BIBLE_COM_BOOK_NAMES = Object.keys(BIBLE_COM_BOOK_CODES).sort(
-  (left, right) => right.length - left.length,
-);
-
-const DAY_CATEGORY_BY_NAME: Record<string, string> = {
-  sunday: "Epistles",
-  sun: "Epistles",
-  monday: "Law",
-  mon: "Law",
-  tuesday: "History",
-  tue: "History",
-  wednesday: "Psalms",
-  wed: "Psalms",
-  thursday: "Poetry",
-  thu: "Poetry",
-  friday: "Prophecy",
-  fri: "Prophecy",
-  saturday: "Gospels",
-  sat: "Gospels",
-};
-
-function readingPlanCategory(day: BibleReadingPlanDay) {
-  const labelKey = day.dayLabel.trim().toLowerCase();
-  const slugKey = day.daySlug.trim().toLowerCase();
-
-  return DAY_CATEGORY_BY_NAME[labelKey] ?? DAY_CATEGORY_BY_NAME[slugKey] ?? day.category;
+function asRecord(value: unknown): AnyRecord {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as AnyRecord)
+    : {};
 }
 
-function bibleSearchUrl(reading: string) {
-  const normalizedReading = reading.trim().replace(/\./g, "").replace(/\s+/g, " ");
-  const bookName = BIBLE_COM_BOOK_NAMES.find(
-    (name) =>
-      normalizedReading === name ||
-      normalizedReading.startsWith(`${name} `),
-  );
+function cleanText(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
 
-  if (!bookName) {
-    return `https://www.bible.com/search/bible?q=${encodeURIComponent(reading)}`;
+function numberValue(value: unknown) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value.trim());
+    return Number.isFinite(parsed) ? parsed : null;
   }
+  return null;
+}
 
-  const code = BIBLE_COM_BOOK_CODES[bookName];
-  const remaining = normalizedReading.slice(bookName.length).trim();
-  const chapterMatch = remaining.match(/\d+/);
-  const chapter = chapterMatch?.[0] ?? "1";
+function weekNumber(week: unknown, fallback: number) {
+  const record = asRecord(week);
+  return (
+    numberValue(record.week) ??
+    numberValue(record.weekNumber) ??
+    numberValue(record.number) ??
+    fallback
+  );
+}
 
+function normalizeKey(value: string) {
+  return value.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+function readingsArray(week: unknown): unknown[] {
+  const record = asRecord(week);
+  for (const candidate of [record.days, record.readings, record.items, record.entries]) {
+    if (Array.isArray(candidate)) return candidate;
+  }
+  return [];
+}
+
+function readingForLane(week: unknown, laneIndex: number) {
+  const record = asRecord(week);
+  const lane = LANES[laneIndex];
+
+  const direct =
+    record[lane.key] ??
+    record[lane.day] ??
+    record[lane.day.toLowerCase()] ??
+    record[lane.day.toUpperCase()] ??
+    record[lane.lane] ??
+    record[lane.lane.toLowerCase()];
+
+  if (direct) return direct;
+
+  const array = readingsArray(week);
+  return (
+    array.find((item) => {
+      const itemRecord = asRecord(item);
+      const haystack = [
+        itemRecord.day,
+        itemRecord.dayLabel,
+        itemRecord.weekday,
+        itemRecord.lane,
+        itemRecord.category,
+        itemRecord.section,
+      ]
+        .map(cleanText)
+        .join(" ");
+
+      return (
+        normalizeKey(haystack).includes(lane.key) ||
+        normalizeKey(haystack).includes(normalizeKey(lane.lane))
+      );
+    }) ??
+    array[laneIndex] ??
+    null
+  );
+}
+
+function labelForReading(reading: unknown) {
+  if (typeof reading === "string") return reading.trim();
+
+  const record = asRecord(reading);
+  const label =
+    cleanText(record.label) ||
+    cleanText(record.reference) ||
+    cleanText(record.reading) ||
+    cleanText(record.passage) ||
+    cleanText(record.chapters) ||
+    cleanText(record.title);
+
+  if (label) return label;
+
+  const book = cleanText(record.book) || cleanText(record.bookName);
+  const chapters =
+    cleanText(record.chapterRange) ||
+    cleanText(record.chapters) ||
+    cleanText(record.chapter) ||
+    cleanText(record.range);
+
+  return [book, chapters].filter(Boolean).join(" ").trim() || "Reading";
+}
+
+function laneForReading(reading: unknown, laneIndex: number) {
+  const record = asRecord(reading);
+  return (
+    cleanText(record.lane) ||
+    cleanText(record.category) ||
+    cleanText(record.section) ||
+    LANES[laneIndex].lane
+  );
+}
+
+function idForReading(reading: unknown, weekNo: number, laneIndex: number) {
+  const record = asRecord(reading);
+  return (
+    cleanText(record.id) ||
+    cleanText(record.key) ||
+    cleanText(record.storageKey) ||
+    `week-${weekNo}-${LANES[laneIndex].key}`
+  );
+}
+
+function firstChapterFromLabel(label: string) {
+  const match = label.match(/\b(\d+)(?:[-–]\d+)?\b/);
+  return match ? match[1] : "1";
+}
+
+function bookCodeFromLabel(label: string, reading: unknown) {
+  const record = asRecord(reading);
+  const direct =
+    cleanText(record.bookCode) ||
+    cleanText(record.bibleCode) ||
+    cleanText(record.code);
+
+  if (direct) return direct.toUpperCase();
+
+  const book =
+    cleanText(record.book) ||
+    cleanText(record.bookName) ||
+    Object.keys(BOOK_CODES)
+      .sort((a, b) => b.length - a.length)
+      .find((name) => label.startsWith(`${name} `) || label === name) ||
+    "";
+
+  return BOOK_CODES[book] || "";
+}
+
+function bibleUrl(reading: unknown) {
+  const record = asRecord(reading);
+  const direct =
+    cleanText(record.href) ||
+    cleanText(record.url) ||
+    cleanText(record.bibleUrl) ||
+    cleanText(record.youVersionUrl);
+
+  if (direct) return direct;
+
+  const label = labelForReading(reading);
+  const code = bookCodeFromLabel(label, reading);
+  const chapter = firstChapterFromLabel(label);
+
+  if (!code) return "https://www.bible.com/bible/206";
   return `https://www.bible.com/bible/206/${code}.${chapter}.WEBUS`;
 }
 
-function readStorage(): StoredProgress | null {
+function flattenPlan(weeks: BibleReadingPlanWeek[]) {
+  return weeks.flatMap((week, weekIndex) => {
+    const weekNo = weekNumber(week, weekIndex + 1);
+
+    return LANES.map((lane, laneIndex) => {
+      const reading = readingForLane(week, laneIndex);
+      const label = labelForReading(reading);
+      const id = idForReading(reading, weekNo, laneIndex);
+
+      return {
+        id,
+        weekNo,
+        laneIndex,
+        day: lane.day,
+        short: lane.short,
+        lane: laneForReading(reading, laneIndex),
+        label,
+        href: bibleUrl(reading),
+      };
+    });
+  });
+}
+
+function loadProgress() {
+  if (typeof window === "undefined") return {};
+
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
 
-    if (!raw) {
-      return null;
+    const parsed = JSON.parse(raw);
+    const result: Record<string, boolean> = {};
+
+    if (Array.isArray(parsed)) {
+      parsed.forEach((id) => {
+        if (typeof id === "string") result[id] = true;
+      });
+      return result;
     }
 
-    const parsed = JSON.parse(raw) as Partial<StoredProgress>;
-
-    if (!parsed.startDateKey || !parsed.done) {
-      return null;
+    if (parsed && typeof parsed === "object") {
+      Object.entries(parsed as Record<string, unknown>).forEach(([key, value]) => {
+        if (value === true || value === "true") result[key] = true;
+        if (value && typeof value === "object") {
+          const record = value as Record<string, unknown>;
+          if (record.read === true || record.done === true || record.completed === true) {
+            result[key] = true;
+          }
+        }
+      });
     }
 
-    return {
-      startDateKey: parsed.startDateKey,
-      done: parsed.done,
-    };
+    return result;
   } catch {
-    return null;
+    return {};
   }
 }
 
-export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProgressProps) {
-  const [startDateKey, setStartDateKey] = useState(() => centralDateKey());
-  const [done, setDone] = useState<Record<string, boolean>>({});
-  const [loaded, setLoaded] = useState(false);
-  const [saveMessage, setSaveMessage] = useState("");
-  const [targetDayKey, setTargetDayKey] = useState("");
+function saveProgress(progress: Record<string, boolean>) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  window.dispatchEvent(new Event("crossheartpray:bible-reading-plan-progress"));
+}
 
-  const todayDateKey = centralDateKey();
-  const totalDays = weeks.length * 7;
+export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProgressProps) {
+  const readings = useMemo(() => flattenPlan(weeks), [weeks]);
+  const [progress, setProgress] = useState<Record<string, boolean>>({});
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const saved = readStorage();
-
-    if (saved) {
-      setStartDateKey(saved.startDateKey);
-      setDone(saved.done);
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const targetWeek = params.get("week");
-    const targetDay = params.get("day");
-
-    if (targetWeek && targetDay) {
-      const key = `week-${targetWeek}-${targetDay}`;
-      setTargetDayKey(key);
-      window.setTimeout(() => {
-        document.getElementById(key)?.scrollIntoView({
-          block: "center",
-          behavior: "smooth",
-        });
-      }, 300);
-    }
-
-    setLoaded(true);
+    setProgress(loadProgress());
   }, []);
 
-  useEffect(() => {
-    if (!loaded) {
-      return;
-    }
+  const doneCount = readings.filter((reading) => progress[reading.id]).length;
+  const totalCount = readings.length;
+  const percent = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
+  const nextReading = readings.find((reading) => !progress[reading.id]) ?? readings[0];
 
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        startDateKey,
-        done,
-      }),
-    );
-  }, [done, loaded, startDateKey]);
-
-  const flatDays = useMemo(() => weeks.flatMap((week) => week.days), [weeks]);
-  const nextPlanDay = flatDays.find((day) => !done[doneKey(day)]) ?? null;
-  const completedCount = Object.values(done).filter(Boolean).length;
-  const percentComplete = Math.round((completedCount / totalDays) * 100);
-
-  function toggleDone(day: BibleReadingPlanDay) {
-    const key = doneKey(day);
-
-    setDone((current) => ({
-      ...current,
-      [key]: !current[key],
-    }));
+  function toggleReading(id: string) {
+    setProgress((current) => {
+      const next = { ...current, [id]: !current[id] };
+      if (!next[id]) delete next[id];
+      saveProgress(next);
+      return next;
+    });
   }
 
-  function saveProgressNow() {
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        startDateKey,
-        done,
-      }),
-    );
+  function exportPlan(includeChecks: boolean) {
+    if (typeof window === "undefined") return;
 
-    setSaveMessage("Saved on this device.");
-  }
+    const title = includeChecks
+      ? "CrossHeartPray Bible Reading Plan - With Checks"
+      : "CrossHeartPray Bible Reading Plan - Clean";
 
-  function resetToToday() {
-    const confirmed = window.confirm(
-      "Start over and clear all Bible Reading Plan progress saved on this device?",
-    );
-
-    if (!confirmed) {
-      return;
-    }
-
-    const todayKey = centralDateKey();
-    setStartDateKey(todayKey);
-    setDone({});
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        startDateKey: todayKey,
-        done: {},
-      }),
-    );
-    setSaveMessage("Started over on this device.");
-  }
-
-  function clearProgress() {
-    const confirmed = window.confirm(
-      "Clear all Bible Reading Plan progress saved on this device?",
-    );
-
-    if (!confirmed) {
-      return;
-    }
-
-    setDone({});
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        startDateKey,
-        done: {},
-      }),
-    );
-    setSaveMessage("Progress cleared on this device.");
-  }
-
-  function progressBackupPayload() {
-    return {
-      version: 1,
-      savedAt: new Date().toISOString(),
-      startDateKey,
-      done,
-    };
-  }
-
-  function encodeProgressBackup() {
-    const json = JSON.stringify(progressBackupPayload());
-    const bytes = new TextEncoder().encode(json);
-    let binary = "";
-
-    for (const byte of bytes) {
-      binary += String.fromCharCode(byte);
-    }
-
-    return "crossheartpray-reading-plan-v1:" + window.btoa(binary);
-  }
-
-  function decodeProgressBackup(code: string): StoredProgress | null {
-    try {
-      const cleaned = code.trim().replace(/^crossheartpray-reading-plan-v1:/i, "");
-      const binary = window.atob(cleaned);
-      const bytes = Uint8Array.from(binary, function(character) {
-        return character.charCodeAt(0);
+    const header = ["Week", ...LANES.map((lane) => `${lane.short} ${lane.lane}`)].join("\t");
+    const rows = weeks.map((week, weekIndex) => {
+      const weekNo = weekNumber(week, weekIndex + 1);
+      const cells = LANES.map((lane, laneIndex) => {
+        const item = readingForLane(week, laneIndex);
+        const label = labelForReading(item);
+        const id = idForReading(item, weekNo, laneIndex);
+        const mark = includeChecks ? (progress[id] ? "☑ " : "☐ ") : "";
+        return `${mark}${label}`;
       });
-      const json = new TextDecoder().decode(bytes);
-      const parsed = JSON.parse(json) as Partial<StoredProgress>;
 
-      if (!parsed.startDateKey || !parsed.done) {
-        return null;
+      return [String(weekNo), ...cells].join("\t");
+    });
+
+    const progressLine = includeChecks
+      ? `${doneCount} of ${totalCount} read (${percent}%)`
+      : "";
+
+    const content = [title, progressLine, "", header, ...rows]
+      .filter((line) => line !== "")
+      .join("\n");
+
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = window.URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+
+    anchor.href = url;
+    anchor.download = includeChecks
+      ? "crossheartpray-bible-reading-plan-with-checks.txt"
+      : "crossheartpray-bible-reading-plan-clean.txt";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.URL.revokeObjectURL(url);
+  }
+
+  async function copyPlanLink() {
+    if (typeof window === "undefined") return;
+
+    const url = window.location.href;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = url;
+        textarea.setAttribute("readonly", "true");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
       }
 
-      return {
-        startDateKey: parsed.startDateKey,
-        done: parsed.done,
-      };
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
     } catch {
-      return null;
+      setCopied(false);
     }
   }
-
-  function emailProgressBackup() {
-    saveProgressNow();
-
-    const subject = "Cross Heart Pray Bible Reading Plan Backup";
-    const body = [
-      "Cross Heart Pray Bible Reading Plan Backup",
-      "",
-      "Saved: " + new Date().toLocaleString(),
-      "Progress: " + completedCount + "/" + totalDays,
-      "",
-      "Restore code:",
-      encodeProgressBackup(),
-      "",
-      "To restore later: open the Bible Reading Plan, tap Restore Backup, and paste the restore code.",
-    ].join("\n");
-
-    window.location.href =
-      "mailto:?subject=" +
-      encodeURIComponent(subject) +
-      "&body=" +
-      encodeURIComponent(body);
-
-    setSaveMessage("Email backup opened. Send it to yourself.");
-  }
-
-  async function copyProgressBackup() {
-    saveProgressNow();
-
-    try {
-      await navigator.clipboard.writeText(encodeProgressBackup());
-      setSaveMessage("Backup code copied.");
-    } catch {
-      setSaveMessage("Copy failed. Use Email Backup.");
-    }
-  }
-
-  function restoreProgressBackup() {
-    const code = window.prompt("Paste your Cross Heart Pray backup code:");
-
-    if (!code) {
-      return;
-    }
-
-    const restored = decodeProgressBackup(code);
-
-    if (!restored) {
-      setSaveMessage("Backup code was not valid.");
-      return;
-    }
-
-    setStartDateKey(restored.startDateKey);
-    setDone(restored.done);
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(restored));
-    setSaveMessage("Backup restored on this device.");
-  }
-
-  if (!loaded) {
-    return (
-      <section className="mx-auto mt-10 max-w-4xl print:hidden">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 text-center shadow-2xl shadow-black/20">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-            Loading Tracker
-          </p>
-          <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-            Preparing your local Bible reading progress on this device.
-          </p>
-        </div>
-      </section>
-    );
-  }
-
-  const laneColumns = weeks[0]?.days ?? [];
 
   return (
-    <>
-      <section className="mx-auto mt-8 max-w-6xl rounded-[1.5rem] border border-white/10 bg-white/[0.035] p-4 shadow-xl shadow-black/15 print:hidden sm:p-5">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="min-w-0">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
+    <section className="chp-reading-sheet overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35">
+      {nextReading ? (
+        <div className="chp-next-reading-row border-b border-white/10 bg-white/[0.04] px-3 pb-4 pt-3 sm:px-4">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-emerald-100">
               Next Reading
             </p>
 
-            {nextPlanDay ? (
-              <>
-                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
-                  Week {nextPlanDay.week} • {nextPlanDay.dayLabel}
-                </h2>
-                <p className="mt-1 text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
-                  {readingPlanCategory(nextPlanDay)}
-                </p>
-                <p className="mt-2 text-2xl font-black text-white">
-                  {nextPlanDay.reading}
-                </p>
-              </>
-            ) : (
-              <>
-                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
-                  Plan complete
-                </h2>
-                <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-                  Restart any day to begin again.
-                </p>
-              </>
-            )}
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-black/20 px-5 py-4 text-center">
-            <p className="text-3xl font-black text-white">{completedCount}</p>
-            <p className="mt-1 text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-300">
-              of {totalDays} done
+            <p className="text-sm font-black text-white">
+              Week {nextReading.weekNo} • {nextReading.day}
             </p>
-            <p className="mt-1 text-xs font-bold text-emerald-100">{percentComplete}%</p>
-          </div>
-        </div>
 
-        <div className="mt-5 flex flex-wrap justify-center gap-2 sm:justify-start">
-          {nextPlanDay ? (
-            <>
-              <a
-                href={bibleSearchUrl(nextPlanDay.reading)}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-emerald-200/30 bg-emerald-300/20 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 transition hover:bg-emerald-300/30"
-              >
-                Go
-              </a>
+            <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-emerald-100">
+              {nextReading.lane}
+            </p>
+
+            <a
+              href={nextReading.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-w-0 max-w-full truncate text-base font-black leading-tight text-white underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-100 hover:decoration-emerald-200 sm:text-lg"
+              title={nextReading.label}
+            >
+              {nextReading.label}
+            </a>
+
+            <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
+              <label className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 text-[0.66rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15">
+                <input
+                  type="checkbox"
+                  checked={Boolean(progress[nextReading.id])}
+                  onChange={() => toggleReading(nextReading.id)}
+                  className="h-3.5 w-3.5 accent-emerald-300"
+                />
+                Read
+              </label>
 
               <button
                 type="button"
-                onClick={() => toggleDone(nextPlanDay)}
-                className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15"
+                onClick={() => exportPlan(false)}
+                className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15"
               >
-                {done[doneKey(nextPlanDay)] ? "Unread" : "☐ Read"}
+                Export clean
               </button>
-            </>
-          ) : null}
-        </div>
 
-        <details className="mt-4 rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
-          <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.16em] text-slate-300">
-            Progress tools
-          </summary>
+              <button
+                type="button"
+                onClick={() => exportPlan(true)}
+                className="inline-flex h-8 items-center rounded-full border border-emerald-200/25 bg-emerald-300/12 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:bg-emerald-300/20"
+              >
+                Export with checks
+              </button>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button type="button" onClick={saveProgressNow} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
-              Save
-            </button>
-            <button type="button" onClick={emailProgressBackup} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
-              Email Backup
-            </button>
-            <button type="button" onClick={copyProgressBackup} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
-              Copy Backup
-            </button>
-            <button type="button" onClick={restoreProgressBackup} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
-              Restore
-            </button>
-            <button type="button" onClick={resetToToday} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
-              Start Today
-            </button>
-            <button type="button" onClick={clearProgress} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-white/15">
-              Clear
-            </button>
+              <button
+                type="button"
+                onClick={copyPlanLink}
+                className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15"
+              >
+                {copied ? "Copied" : "Copy link"}
+              </button>
+
+              <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">
+                {doneCount}/{totalCount} • {percent}%
+              </div>
+            </div>
           </div>
+        </div>
+      ) : null}
 
-          {saveMessage ? (
-            <p className="mt-4 text-xs font-bold text-emerald-100">
-              {saveMessage}
-            </p>
-          ) : null}
-        </details>
-      </section>
-
-      <section className="mx-auto mt-8 max-w-7xl print:mt-6">
-        <div className="overflow-x-auto rounded-[1.5rem] border border-white/10 bg-white/[0.035] shadow-2xl shadow-black/20 print:overflow-visible print:border-black print:bg-white print:shadow-none">
-          <table className="min-w-[1120px] w-full border-separate border-spacing-0 text-left print:min-w-0">
-            <thead>
-              <tr>
-                <th className="sticky left-0 z-20 w-20 border-b border-r border-white/10 bg-slate-950/95 px-3 py-4 text-center text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-300 print:static print:border-black print:bg-white print:text-black">
-                  Week
+      <div className="chp-reading-table overflow-x-auto">
+        <table className="min-w-[900px] w-full border-collapse text-left">
+          <thead>
+            <tr className="border-b border-white/10 bg-slate-900/70">
+              <th className="w-12 border-r border-white/10 px-2 py-1.5 text-[0.58rem] font-black uppercase tracking-[0.14em] text-slate-300">
+                Week
+              </th>
+              {LANES.map((lane) => (
+                <th
+                  key={lane.key}
+                  className="border-r border-white/10 px-2 py-1.5 text-[0.58rem] font-black uppercase tracking-[0.12em] text-slate-200 last:border-r-0"
+                >
+                  <span className="text-emerald-100">{lane.short}</span>{" "}
+                  <span>{lane.lane}</span>
                 </th>
+              ))}
+            </tr>
+          </thead>
 
-                {laneColumns.map((lane) => (
-                  <th
-                    key={lane.daySlug}
-                    className="w-[14.28%] border-b border-white/10 bg-slate-900/70 px-3 py-4 align-top print:border-black print:bg-white"
-                  >
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-emerald-100 print:text-black">
-                      {lane.dayLabel}
-                    </p>
-                    <p className="mt-1 text-base font-black text-white print:text-black">
-                      {readingPlanCategory(lane)}
-                    </p>
-                  </th>
-                ))}
-              </tr>
-            </thead>
+          <tbody>
+            {weeks.map((week, weekIndex) => {
+              const weekNo = weekNumber(week, weekIndex + 1);
 
-            <tbody>
-              {weeks.map((week) => (
-                <tr key={week.week} className="align-top">
-                  <th className="sticky left-0 z-10 border-b border-r border-white/10 bg-slate-950/95 px-3 py-4 text-center print:static print:border-black print:bg-white">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-slate-400 print:text-black">
-                      Week
-                    </p>
-                    <p className="text-xl font-black text-white print:text-black">
-                      {week.week}
-                    </p>
+              return (
+                <tr
+                  key={weekNo}
+                  className="border-b border-white/[0.065] last:border-b-0"
+                >
+                  <th className="border-r border-white/10 bg-slate-950/45 px-2 py-1 text-center text-xs font-black leading-none text-white">
+                    {weekNo}
                   </th>
 
-                  {laneColumns.map((lane) => {
-                    const day =
-                      week.days.find((candidate) => candidate.daySlug === lane.daySlug) ??
-                      week.days.find((candidate) => candidate.dayLabel === lane.dayLabel);
-
-                    if (!day) {
-                      return (
-                        <td
-                          key={`${week.week}-${lane.daySlug}`}
-                          className="border-b border-white/10 px-3 py-4 print:border-black"
-                        />
-                      );
-                    }
-
-                    const key = doneKey(day);
-                    const isDone = Boolean(done[key]);
-                    const isTarget = key === targetDayKey;
+                  {LANES.map((lane, laneIndex) => {
+                    const reading = readingForLane(week, laneIndex);
+                    const label = labelForReading(reading);
+                    const id = idForReading(reading, weekNo, laneIndex);
+                    const href = bibleUrl(reading);
+                    const isRead = Boolean(progress[id]);
 
                     return (
                       <td
-                        key={key}
-                        id={key}
-                        className={`border-b border-white/10 px-3 py-4 print:border-black ${
-                          isTarget ? "bg-emerald-300/10 ring-2 ring-emerald-200/40" : ""
+                        key={lane.key}
+                        className={`border-r border-white/[0.07] px-2 py-1 last:border-r-0 ${
+                          isRead ? "bg-emerald-300/[0.075]" : "bg-white/[0.015]"
                         }`}
                       >
-                        <div className={`flex h-full min-h-[8.5rem] flex-col rounded-2xl border px-3 py-3 ${
-                          isDone
-                            ? "border-emerald-200/35 bg-emerald-300/10"
-                            : "border-white/10 bg-black/20"
-                        } print:border-black print:bg-white`}>
-                          <p className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-100 print:text-black">
-                            {day.dayLabel}
-                          </p>
+                        <div className="flex min-h-6 items-center gap-1.5">
+                          <input
+                            type="checkbox"
+                            checked={isRead}
+                            onChange={() => toggleReading(id)}
+                            aria-label={`${isRead ? "Mark unread" : "Mark read"} ${label}`}
+                            className="h-3.5 w-3.5 shrink-0 accent-emerald-300"
+                          />
 
-                          <p className="mt-1 text-sm font-black leading-5 text-white print:text-black">
-                            {day.reading}
-                          </p>
-
-                          <p className="mt-1 text-[0.68rem] font-bold leading-5 text-slate-300 print:text-black">
-                            {readingPlanCategory(day)}
-                          </p>
-
-                          <div className="mt-auto flex flex-col gap-2 pt-3 print:hidden">
-                            <a
-                              href={bibleSearchUrl(day.reading)}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-center text-[0.62rem] font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/15"
-                            >
-                              Go
-                            </a>
-
-                            <button
-                              type="button"
-                              onClick={() => toggleDone(day)}
-                              className={`rounded-full border px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.12em] transition ${
-                                isDone
-                                  ? "border-emerald-200/35 bg-emerald-300/20 text-emerald-50 hover:bg-emerald-300/30"
-                                  : "border-white/15 bg-white/10 text-white hover:bg-white/15"
-                              }`}
-                            >
-                              {isDone ? "Read" : "☐ Read"}
-                            </button>
-                          </div>
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="min-w-0 truncate text-[0.7rem] font-black leading-tight text-white underline decoration-emerald-300/25 underline-offset-2 transition hover:text-emerald-100 hover:decoration-emerald-200"
+                            title={label}
+                          >
+                            {label}
+                          </a>
                         </div>
                       </td>
                     );
                   })}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="border-t border-white/10 bg-white/[0.025] px-3 py-2 text-[0.64rem] font-bold leading-5 text-slate-400">
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          {LANES.map((lane) => (
+            <span key={lane.key}>
+              <span className="text-emerald-100">{lane.short}</span> {lane.lane}
+            </span>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
