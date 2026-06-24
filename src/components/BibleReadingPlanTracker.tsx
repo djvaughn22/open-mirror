@@ -21,13 +21,13 @@ const READING_PLAN_LANES = [
 export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrackerProps) {
   return (
     <main className="chp-lively-dark-page min-h-screen bg-slate-950 text-slate-100 print:bg-white print:text-black">
-      <section className="mx-auto max-w-6xl px-4 py-4 print:max-w-none print:px-0 print:py-0 sm:px-6 sm:py-6">
+      <section className="mx-auto max-w-[82rem] px-4 py-4 print:max-w-none print:px-0 print:py-0 sm:px-6 sm:py-6">
         <SiteHeader className="mb-3 sm:mb-5 print:hidden" />
 
         <section className="relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-slate-950/45 p-4 shadow-xl shadow-black/20 print:border-black print:bg-white sm:rounded-[2rem] sm:p-5">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.20),transparent_26rem),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.14),transparent_24rem)]" />
 
-          <div className="relative grid gap-5 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+          <div className="relative grid gap-5 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
               <div
                 className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-black uppercase tracking-[0.26em] text-white sm:text-base"
@@ -53,11 +53,6 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
 
               <p className="mt-3 max-w-2xl text-lg font-black leading-snug text-emerald-100 print:text-black sm:text-xl">
                 Start with one day. Keep the rhythm.
-              </p>
-
-              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-300 print:text-black">
-                A 52-week path through Scripture, organized by seven weekly lanes.
-                Read the day, open the Bible app, and mark it done.
               </p>
 
               <div className="mt-4 flex flex-col gap-2 print:hidden sm:flex-row sm:items-center">
@@ -88,37 +83,48 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
               </div>
 
               <div className="rounded-[1.1rem] border border-sky-200/20 bg-sky-300/10 p-3 text-center">
-                <p className="text-3xl font-black text-white">1</p>
+                <p className="text-3xl font-black text-white">364</p>
                 <p className="mt-1 text-[0.65rem] font-black uppercase tracking-[0.18em] text-sky-100">
-                  Day
+                  Readings
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7 print:hidden">
-          {READING_PLAN_LANES.map((lane) => (
-            <article
-              key={lane.day}
-              className="rounded-[0.95rem] border border-white/10 bg-white/[0.045] p-3 shadow-sm shadow-black/10"
-            >
-              <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-emerald-100">
-                {lane.day}
-              </p>
-              <h2 className="mt-1 text-base font-black text-white">
-                {lane.lane}
-              </h2>
-              <p className="mt-1 text-[0.72rem] font-semibold leading-4 text-slate-300">
-                {lane.note}
-              </p>
-            </article>
-          ))}
-        </section>
-
         <div id="reading-plan-board" className="chp-reading-progress-shell mt-4 scroll-mt-6">
           <BibleReadingPlanProgress weeks={weeks} />
         </div>
+
+        <section className="mt-4 print:hidden">
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <h2 className="text-sm font-black uppercase tracking-[0.22em] text-emerald-100">
+              52-week lanes
+            </h2>
+            <p className="text-xs font-semibold text-slate-400">
+              Same weekly flow across all 52 weeks
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-7">
+            {READING_PLAN_LANES.map((lane) => (
+              <article
+                key={lane.day}
+                className="rounded-[0.95rem] border border-white/10 bg-white/[0.04] p-3 shadow-sm shadow-black/10"
+              >
+                <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-emerald-100">
+                  {lane.day}
+                </p>
+                <h3 className="mt-1 text-base font-black text-white">
+                  {lane.lane}
+                </h3>
+                <p className="mt-1 text-[0.72rem] font-semibold leading-4 text-slate-300">
+                  {lane.note}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <SiteFooter />
       </section>
