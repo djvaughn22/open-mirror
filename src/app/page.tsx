@@ -109,49 +109,50 @@ export default function WelcomePage() {
           ))}
         </section>
 
-        <section className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-gradient-to-r from-emerald-300/[0.14] via-slate-900 to-slate-950 shadow-2xl shadow-emerald-950/20">
-          <div className="grid gap-0 lg:grid-cols-[1fr_1.05fr]">
-            <div className="p-8">
+        <section className="mx-auto mt-12 max-w-5xl rounded-[2rem] border border-emerald-200/15 bg-gradient-to-br from-emerald-300/[0.10] via-slate-900 to-slate-950 p-5 shadow-2xl shadow-emerald-950/15 sm:mt-14 sm:p-6 lg:p-7">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
               <p className="text-xs font-black uppercase tracking-[0.26em] text-emerald-100">
                 Open a verse. Keep going.
               </p>
 
-              <h2 className="mt-4 text-3xl font-black text-white">
+              <h2 className="mt-3 text-3xl font-black leading-tight text-white sm:text-4xl">
                 One verse can open a whole trail.
               </h2>
 
-              <p className="mt-4 text-sm font-semibold leading-7 text-slate-200">
+              <p className="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-200 sm:text-base">
                 Bible Bingo starts with a 7-card deal, then opens into chapter
                 context, Bible app study, related verses, and original word
                 study when verified data is available.
               </p>
+            </div>
 
+            <div className="shrink-0">
               <Link
                 href="/explorebible"
-                className="mt-7 inline-flex rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-emerald-200"
+                className="inline-flex w-full items-center justify-center rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-emerald-200 sm:w-auto"
               >
                 Deal Bible Bingo 7 →
               </Link>
             </div>
+          </div>
 
-            <div className="grid gap-4 bg-slate-950/45 p-6">
-              {studyDetails.map((detail) => (
-                <div
-                  key={detail.title}
-                  className="rounded-[1.4rem] border border-white/10 bg-slate-950/55 p-5"
-                >
-                  <h3 className="text-base font-black text-white">
-                    {detail.title}
-                  </h3>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-                    {detail.body}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {studyDetails.map((detail) => (
+              <div
+                key={detail.title}
+                className="rounded-[1.35rem] border border-white/10 bg-slate-950/55 p-4 sm:p-5"
+              >
+                <h3 className="text-base font-black text-white">
+                  {detail.title}
+                </h3>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
+                  {detail.body}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
-
         <section className="mx-auto mt-14 max-w-5xl rounded-[2rem] border border-white/10 bg-white/[0.03] p-7">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-emerald-100">
