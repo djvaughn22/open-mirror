@@ -255,11 +255,15 @@ function printHtml(html: string) {
       printWindow.focus();
       printWindow.print();
     } catch {
-      // Leave the printable verse card open if the browser blocks print.
+      // Keep the printable card open if the browser blocks print.
     }
   };
 
-  window.setTimeout(runPrint, 450);
+  printWindow.addEventListener("load", () => window.setTimeout(runPrint, 500), {
+    once: true,
+  });
+
+  window.setTimeout(runPrint, 900);
 
   return true;
 }
@@ -426,9 +430,7 @@ export default function BibleBingoShareMenu({
   }
 
   function handlePrintPdf() {
-    const cardHtml = htmlEmail || buildEmailHtml(emailSubject, shareTextForCopy(), boardUrl, itemLabel);
-    const opened = printHtml(printableDocument(emailSubject, cardHtml));
-
+    const opened = printHtml(lightPrintHtml());
     setCopied(opened ? "Print opened" : "Print blocked");
     window.setTimeout(() => setCopied(""), 2600);
   }
