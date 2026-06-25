@@ -67,11 +67,7 @@ export default function WelcomePage() {
         <SiteHeader />
 
         <CrossHeartPrayHero>
-          <p>
-            Start anywhere: Bible Bingo, Reading Plan, Daily Hope, or Deep Dive
-            cards and see where the Word leads.
-          </p>
-        </CrossHeartPrayHero>
+</CrossHeartPrayHero>
 
         <section className="mt-10 grid gap-6 lg:grid-cols-3">
           {dailyWays.map((item) => (
