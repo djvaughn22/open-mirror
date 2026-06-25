@@ -295,9 +295,7 @@ function bibleUrl(reading: unknown): string {
     return "https://www.bible.com/search/bible?q=" + encodeURIComponent(label || "Bible reading plan");
   }
 
-  // Same shape as Bible Bingo chapterUrl:
-  // code + chapter only. No verse.
-  return readingPlanChapterUrl({ code, chapter });
+  return `https://www.bible.com/bible/206/${code}.${chapter}.WEBUS`;
 }
 
 function flattenPlan(weeks: BibleReadingPlanWeek[]) {
