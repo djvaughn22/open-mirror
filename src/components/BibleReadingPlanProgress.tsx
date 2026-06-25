@@ -287,15 +287,51 @@ function readingPlanChapterUrl(passage: { code: string; chapter: string }) {
 }
 
 function bibleUrl(reading: unknown): string {
-  const label = labelForReading(reading);
-  const code = bookCodeFromLabel(label, reading);
-  const chapter = firstChapterFromLabel(label);
+  const label = labelForReading(reading)
+    .replace(/\u00a0/g, " ")
+    .replace(/[–—]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim();
 
-  if (!code || !chapter) {
-    return "https://www.bible.com/search/bible?q=" + encodeURIComponent(label || "Bible reading plan");
+  const aliases: Record<string, string> = {
+    gen: "GEN", ex: "EXO", exo: "EXO", exod: "EXO", lev: "LEV", num: "NUM", deut: "DEU",
+    josh: "JOS", judg: "JDG", jdg: "JDG", ruth: "RUT",
+    "1 sam": "1SA", "2 sam": "2SA", "1 kgs": "1KI", "2 kgs": "2KI", "1 ki": "1KI", "2 ki": "2KI",
+    "1 chron": "1CH", "2 chron": "2CH", "1 chr": "1CH", "2 chr": "2CH",
+    ezra: "EZR", neh: "NEH", est: "EST", esth: "EST", job: "JOB",
+    ps: "PSA", psa: "PSA", pss: "PSA", prov: "PRO", pro: "PRO", eccl: "ECC", ecc: "ECC", song: "SNG",
+    isa: "ISA", jer: "JER", lam: "LAM", ezek: "EZK", ezk: "EZK", dan: "DAN",
+    hos: "HOS", joel: "JOL", amos: "AMO", obad: "OBA", jonah: "JON", mic: "MIC", nah: "NAM",
+    hab: "HAB", zeph: "ZEP", hag: "HAG", zech: "ZEC", mal: "MAL",
+    matt: "MAT", mat: "MAT", mt: "MAT", mark: "MRK", mrk: "MRK", mk: "MRK",
+    luke: "LUK", luk: "LUK", lk: "LUK", john: "JHN", jhn: "JHN", jn: "JHN", acts: "ACT",
+    rom: "ROM", "1 cor": "1CO", "2 cor": "2CO", "1 co": "1CO", "2 co": "2CO",
+    gal: "GAL", eph: "EPH", phil: "PHP", php: "PHP", col: "COL",
+    "1 thess": "1TH", "2 thess": "2TH", "1 thes": "1TH", "2 thes": "2TH", "1 th": "1TH", "2 th": "2TH",
+    "1 tim": "1TI", "2 tim": "2TI", "1 ti": "1TI", "2 ti": "2TI",
+    tit: "TIT", philem: "PHM", phm: "PHM", heb: "HEB", jas: "JAS",
+    "1 pet": "1PE", "2 pet": "2PE", "1 pe": "1PE", "2 pe": "2PE",
+    "1 jn": "1JN", "2 jn": "2JN", "3 jn": "3JN",
+    jude: "JUD", rev: "REV"
+  };
+
+  const candidates: Array<[string, string]> = [
+    ...Object.keys(BOOK_CODES).map((book) => [book, BOOK_CODES[book]] as [string, string]),
+    ...Object.entries(aliases),
+  ].sort((a, b) => b[0].length - a[0].length);
+
+  for (const [book, code] of candidates) {
+    const escaped = book.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = label.match(
+      new RegExp("(^|[^A-Za-z0-9])" + escaped + "\\.?\\s+(\\d{1,3})(?:\\s*[-:]\\s*\\d{1,3})?", "i")
+    );
+
+    if (match) {
+      return `https://www.bible.com/bible/206/${code}.${match[2]}.WEBUS`;
+    }
   }
 
-  return `https://www.bible.com/bible/206/${code}.${chapter}.WEBUS`;
+  return "https://www.bible.com/search/bible?q=" + encodeURIComponent(label || "Bible reading plan");
 }
 
 function flattenPlan(weeks: BibleReadingPlanWeek[]) {
