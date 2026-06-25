@@ -146,7 +146,7 @@ export default function AboutPage() {
               </li>
               <li>
                 <span className="font-black text-white">🙏 Pray:</span>{" "}
-                <span className="font-semibold text-emerald-100">Pray nonstop.</span>
+                <span className="font-semibold text-emerald-100">Pray all the time.</span>
               </li>
             </ul>
           </section>

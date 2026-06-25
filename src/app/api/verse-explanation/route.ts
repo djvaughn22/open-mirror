@@ -3,9 +3,15 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function getOpenAIClient() {
+  const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_ADMIN_KEY;
+
+  if (!apiKey) {
+    return null;
+  }
+
+  return new OpenAI({ apiKey });
+}
 
 export async function POST(request: Request) {
   try {
@@ -39,10 +45,12 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!process.env.OPENAI_API_KEY) {
+    const client = getOpenAIClient();
+
+    if (!client) {
       return NextResponse.json(
         { error: "OpenAI API key is missing on the server." },
-        { status: 500 }
+        { status: 503 }
       );
     }
 

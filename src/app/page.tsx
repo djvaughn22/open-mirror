@@ -58,7 +58,7 @@ const deepDiveLinks = [
 const crossHeartPrayCards = [
   { icon: "✝️", title: "Call out to Jesus" },
   { icon: "❤️", title: "Receive God’s love" },
-  { icon: "🙏", title: "Pray nonstop" },
+  { icon: "🙏", title: "Pray all the time" },
 ];
 
 export default function WelcomePage() {
