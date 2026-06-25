@@ -238,38 +238,28 @@ function printableDocument(title: string, bodyHtml: string) {
 }
 
 function printHtml(html: string) {
-  const frame = document.createElement("iframe");
+  if (typeof window === "undefined") return false;
 
-  frame.style.position = "fixed";
-  frame.style.right = "0";
-  frame.style.bottom = "0";
-  frame.style.width = "0";
-  frame.style.height = "0";
-  frame.style.border = "0";
-  frame.setAttribute("aria-hidden", "true");
+  const printWindow = window.open("", "_blank", "width=900,height=720");
 
-  document.body.appendChild(frame);
-
-  const frameWindow = frame.contentWindow;
-  const frameDocument = frame.contentDocument;
-
-  if (!frameWindow || !frameDocument) {
-    frame.remove();
+  if (!printWindow) {
     return false;
   }
 
-  frameDocument.open();
-  frameDocument.write(html);
-  frameDocument.close();
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
 
-  window.setTimeout(() => {
-    frameWindow.focus();
-    frameWindow.print();
+  const runPrint = () => {
+    try {
+      printWindow.focus();
+      printWindow.print();
+    } catch {
+      // Leave the printable verse card open if the browser blocks print.
+    }
+  };
 
-    window.setTimeout(() => {
-      frame.remove();
-    }, 1200);
-  }, 300);
+  window.setTimeout(runPrint, 450);
 
   return true;
 }
