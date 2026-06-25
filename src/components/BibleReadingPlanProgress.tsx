@@ -290,6 +290,8 @@ function bibleUrl(reading: unknown): string {
   const label = labelForReading(reading)
     .replace(/\u00a0/g, " ")
     .replace(/[–—]/g, "-")
+    .replace(/\b([123])\s*([A-Za-z])/g, "$1 $2")
+    .replace(/\b(I{1,3})\s*([A-Za-z])/g, "$1 $2")
     .replace(/\s+/g, " ")
     .trim();
 
