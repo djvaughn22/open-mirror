@@ -282,137 +282,18 @@ function bookCodeFromLabel(label: string, reading: unknown) {
   return BOOK_CODES[book] || "";
 }
 
-function bibleUrl(input: unknown, ...extraInputs: unknown[]): string {
-  const values: string[] = [];
+function bibleUrl(reading: unknown): string {
+  const label = labelForReading(reading);
+  const code = bookCodeFromLabel(label, reading);
+  const chapter = firstChapterFromLabel(label);
 
-  function collect(value: unknown): void {
-    if (value == null) return;
-
-    if (typeof value === "string" || typeof value === "number") {
-      values.push(String(value));
-      return;
-    }
-
-    if (Array.isArray(value)) {
-      value.forEach(collect);
-      return;
-    }
-
-    if (typeof value === "object") {
-      const record = value as Record<string, unknown>;
-
-      [
-        "reference",
-        "references",
-        "reading",
-        "readings",
-        "label",
-        "title",
-        "text",
-        "book",
-        "books",
-        "chapter",
-        "chapters",
-        "range",
-        "passage",
-      ].forEach((key) => collect(record[key]));
-    }
+  if (!code || !chapter) {
+    return "https://www.bible.com/search/bible?q=" + encodeURIComponent(label || "Bible reading plan");
   }
 
-  collect(input);
-  extraInputs.forEach(collect);
-
-  const combined = values
-    .join(" ")
-    .replace(/\u00a0/g, " ")
-    .replace(/[–—]/g, "-")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  const bookCodes: Record<string, string> = {
-    "Genesis": "GEN",
-    "Exodus": "EXO",
-    "Leviticus": "LEV",
-    "Numbers": "NUM",
-    "Deuteronomy": "DEU",
-    "Joshua": "JOS",
-    "Judges": "JDG",
-    "Ruth": "RUT",
-    "1 Samuel": "1SA",
-    "2 Samuel": "2SA",
-    "1 Kings": "1KI",
-    "2 Kings": "2KI",
-    "1 Chronicles": "1CH",
-    "2 Chronicles": "2CH",
-    "Ezra": "EZR",
-    "Nehemiah": "NEH",
-    "Esther": "EST",
-    "Job": "JOB",
-    "Psalms": "PSA",
-    "Psalm": "PSA",
-    "Proverbs": "PRO",
-    "Ecclesiastes": "ECC",
-    "Song of Solomon": "SNG",
-    "Isaiah": "ISA",
-    "Jeremiah": "JER",
-    "Lamentations": "LAM",
-    "Ezekiel": "EZK",
-    "Daniel": "DAN",
-    "Hosea": "HOS",
-    "Joel": "JOL",
-    "Amos": "AMO",
-    "Obadiah": "OBA",
-    "Jonah": "JON",
-    "Micah": "MIC",
-    "Nahum": "NAM",
-    "Habakkuk": "HAB",
-    "Zephaniah": "ZEP",
-    "Haggai": "HAG",
-    "Zechariah": "ZEC",
-    "Malachi": "MAL",
-    "Matthew": "MAT",
-    "Mark": "MRK",
-    "Luke": "LUK",
-    "John": "JHN",
-    "Acts": "ACT",
-    "Romans": "ROM",
-    "1 Corinthians": "1CO",
-    "2 Corinthians": "2CO",
-    "Galatians": "GAL",
-    "Ephesians": "EPH",
-    "Philippians": "PHP",
-    "Colossians": "COL",
-    "1 Thessalonians": "1TH",
-    "2 Thessalonians": "2TH",
-    "1 Timothy": "1TI",
-    "2 Timothy": "2TI",
-    "Titus": "TIT",
-    "Philemon": "PHM",
-    "Hebrews": "HEB",
-    "James": "JAS",
-    "1 Peter": "1PE",
-    "2 Peter": "2PE",
-    "1 John": "1JN",
-    "2 John": "2JN",
-    "3 John": "3JN",
-    "Jude": "JUD",
-    "Revelation": "REV"
-};
-  const bookNames = Object.keys(bookCodes).sort((a, b) => b.length - a.length);
-  const escapedBooks = bookNames.map((book) => book.replace(/[.*+?^$(){}|[\]\\]/g, "\\$&"));
-  const matcher = new RegExp("\\b(" + escapedBooks.join("|") + ")\\s+(\\d{1,3})(?::\\d{1,3})?", "i");
-  const match = combined.match(matcher);
-
-  if (!match) {
-    return "https://www.bible.com/search/bible?q=" + encodeURIComponent(combined || "Bible reading plan");
-  }
-
-  const canonicalBook = bookNames.find((book) => book.toLowerCase() === match[1].toLowerCase());
-  if (!canonicalBook) {
-    return "https://www.bible.com/search/bible?q=" + encodeURIComponent(combined || "Bible reading plan");
-  }
-
-  return "https://www.bible.com/bible/206/" + bookCodes[canonicalBook] + "." + match[2] + ".WEBUS";
+  // Chapter-only Bible.com URL.
+  // Do not include a verse segment like ROM.1.1.WEBUS.
+  return "https://www.bible.com/bible/206/" + code + "." + chapter + ".WEBUS";
 }
 
 function flattenPlan(weeks: BibleReadingPlanWeek[]) {
