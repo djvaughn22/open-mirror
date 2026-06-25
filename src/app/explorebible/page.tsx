@@ -1015,7 +1015,7 @@ export default function BibleExplorerPage() {
                     onClick={() => focusDayCard(index)}
                     aria-pressed={isFocused}
                     aria-busy={spinningCards[index]}
-                    className={`relative bible-bingo-deck-card flex min-h-[124px] min-w-[10.5rem] snap-start flex-col overflow-hidden rounded-[1.15rem] border p-3 text-center shadow-xl transition duration-200 sm:min-h-[235px] sm:min-w-0 sm:rounded-[1.5rem] sm:p-4 sm:hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
+                    className={`relative bible-bingo-deck-card flex min-h-[124px] min-w-[10.5rem] snap-start flex-col overflow-visible rounded-[1.15rem] border p-3 text-center shadow-xl transition duration-200 sm:min-h-[235px] sm:min-w-0 sm:rounded-[1.5rem] sm:p-4 sm:hover:-translate-y-1 ${cardTone(index)} ${spinVersions[index] > 0 ? "bible-card-spin" : ""} ${spinningCards[index] ? "bible-card-is-spinning" : ""} ${
                       isFocused
                         ? "border-white/50 bg-white/15 ring-2 ring-white/25"
                         : "border-white/10 opacity-90 hover:opacity-100"
@@ -1078,7 +1078,7 @@ export default function BibleExplorerPage() {
               id={`card-${focusedIndex + 1}`}
               ref={focusedCardRef}
               key={`${focusedCard.section.title}-${spinVersions[focusedIndex]}-${focusedFlipVersion}`}
-              className={`relative bible-bingo-focused-card bible-card-focus-flip bible-bingo-focus-arrive mx-auto mt-4 max-w-3xl overflow-hidden rounded-[1.35rem] border p-4 text-center text-slate-100 shadow-2xl shadow-black/30 sm:mt-6 sm:rounded-[2rem] sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
+              className={`relative bible-bingo-focused-card bible-card-focus-flip bible-bingo-focus-arrive mx-auto mt-4 max-w-3xl overflow-visible rounded-[1.35rem] border p-4 text-center text-slate-100 shadow-2xl shadow-black/30 sm:mt-6 sm:rounded-[2rem] sm:p-8 ${cardTone(focusedIndex)} ${spinVersions[focusedIndex] > 0 ? "bible-card-spin" : ""} ${spinningCards[focusedIndex] ? "bible-card-is-spinning" : ""}`}
               style={{
                 minHeight: "430px",
                 display: "flex",

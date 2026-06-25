@@ -3,7 +3,7 @@ import { BIBLE_READING_PLAN_WEEKS } from "../../lib/bibleReadingPlan";
 
 export const metadata = {
   title: "Bible Reading Plan",
-  description: "A full-year digital Bible Reading Plan board that fills as you read.",
+  description: "A full-year digital Bible Reading Plan board that fills as you read, connected to Bible Bingo lanes, verse progress, chapters, and future source-backed Deep Dives.",
   robots: {
     index: false,
     follow: false,

@@ -451,46 +451,218 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   }
 
   function exportPlan(includeChecks: boolean) {
-    if (typeof window === "undefined") return;
+    const escapeHtml = (value: unknown) =>
+      String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 
-    const title = includeChecks
-      ? "CrossHeartPray Bible Reading Plan - With Checks"
-      : "CrossHeartPray Bible Reading Plan - Clean";
+    const asRecord = (value: unknown): Record<string, unknown> =>
+      value && typeof value === "object" && !Array.isArray(value)
+        ? (value as Record<string, unknown>)
+        : {};
 
-    const header = ["Week", ...LANES.map((lane) => `${lane.short} ${lane.lane}`)].join("\t");
-    const rows = weeks.map((week, weekIndex) => {
-      const weekNo = weekNumber(week, weekIndex + 1);
-      const cells = LANES.map((lane, laneIndex) => {
-        const item = readingForLane(week, laneIndex);
-        const label = labelForReading(item);
-        const id = idForReading(item, weekNo, laneIndex);
-        const mark = includeChecks ? (progress[id] ? "☑ " : "☐ ") : "";
-        return `${mark}${label}`;
-      });
+    const pickText = (record: Record<string, unknown>, keys: string[]) => {
+      for (const key of keys) {
+        const value = record[key];
 
-      return [String(weekNo), ...cells].join("\t");
+        if (typeof value === "string" && value.trim()) {
+          return value.trim();
+        }
+
+        if (typeof value === "number") {
+          return String(value);
+        }
+      }
+
+      return "";
+    };
+
+    const compactText = (value: unknown): string => {
+      if (typeof value === "string" || typeof value === "number") {
+        return String(value).trim();
+      }
+
+      if (Array.isArray(value)) {
+        return value
+          .map(compactText)
+          .filter(Boolean)
+          .join("; ");
+      }
+
+      const record = asRecord(value);
+
+      if (!Object.keys(record).length) {
+        return "";
+      }
+
+      const direct = pickText(record, [
+        "reference",
+        "references",
+        "reading",
+        "readings",
+        "passage",
+        "passages",
+        "books",
+        "book",
+        "label",
+        "title",
+        "text",
+      ]);
+
+      if (direct) {
+        return direct;
+      }
+
+      return Object.entries(record)
+        .filter(([key]) => !["id", "key", "day", "name", "title", "label"].includes(key))
+        .map(([, item]) => compactText(item))
+        .filter(Boolean)
+        .join("; ");
+    };
+
+    const dayLabels = [
+      "Sunday — Epistles",
+      "Monday — Law",
+      "Tuesday — History",
+      "Wednesday — Psalms",
+      "Thursday — Poetry",
+      "Friday — Prophecy",
+      "Saturday — Gospels",
+    ];
+
+    const weekRows = (Array.isArray(weeks) ? (weeks as unknown[]) : []).map(
+      (week, weekIndex) => {
+        const record = asRecord(week);
+        const weekLabel =
+          pickText(record, ["weekLabel", "label", "title"]) ||
+          `Week ${pickText(record, ["week", "number"]) || weekIndex + 1}`;
+
+        const arraySource =
+          (Array.isArray(record.days) && record.days) ||
+          (Array.isArray(record.lanes) && record.lanes) ||
+          (Array.isArray(record.readings) && record.readings) ||
+          null;
+
+        const keyedSource = [
+          record.sunday,
+          record.monday,
+          record.tuesday,
+          record.wednesday,
+          record.thursday,
+          record.friday,
+          record.saturday,
+        ];
+
+        const cells = dayLabels.map((dayLabel, dayIndex) => {
+          const source = arraySource?.[dayIndex] ?? keyedSource[dayIndex] ?? "";
+          const sourceRecord = asRecord(source);
+          const label =
+            pickText(sourceRecord, ["dayLabel", "label", "title", "day"]) || dayLabel;
+          const text =
+            compactText(sourceRecord.readings) ||
+            compactText(sourceRecord.reading) ||
+            compactText(sourceRecord.passages) ||
+            compactText(sourceRecord.passage) ||
+            compactText(sourceRecord.books) ||
+            compactText(source);
+
+          return {
+            label,
+            text,
+          };
+        });
+
+        return {
+          weekLabel,
+          cells,
+        };
+      },
+    );
+
+    const html = `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>CrossHeartPray Bible Reading Plan — One Page</title>
+  <style>
+    @page { size: letter landscape; margin: 0.22in; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #fff; color: #000; font-family: Arial, Helvetica, sans-serif; }
+    body { width: 10.56in; height: 8.06in; overflow: hidden; }
+    .page { width: 10.56in; height: 8.06in; overflow: hidden; }
+    .top { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 5px; border-bottom: 1.5px solid #000; padding-bottom: 4px; }
+    h1 { margin: 0; font-size: 18px; line-height: 1; letter-spacing: -0.02em; }
+    .note { margin: 0; font-size: 7px; line-height: 1.15; text-align: right; max-width: 4.5in; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th, td { border: 0.75px solid #000; vertical-align: top; overflow: hidden; }
+    th { height: 18px; padding: 2px; font-size: 6.5px; line-height: 1; text-transform: uppercase; letter-spacing: 0.03em; }
+    th.week { width: 0.46in; }
+    td.week { width: 0.46in; padding: 2px; font-size: 6px; line-height: 1; font-weight: 900; text-align: center; }
+    td.day { height: 0.135in; padding: 1.5px 2px; font-size: 5.45px; line-height: 1.05; }
+    .cell-label { display: block; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cell-text { display: block; margin-top: 1px; max-height: 15px; overflow: hidden; }
+    .box { display: inline-block; width: 6px; height: 6px; border: 0.75px solid #000; margin-right: 2px; vertical-align: -1px; }
+    .footer { margin-top: 4px; display: flex; justify-content: space-between; font-size: 6.5px; line-height: 1; }
+    @media print {
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="top">
+      <h1>CrossHeartPray Bible Reading Plan</h1>
+      <p class="note">One-page export. Seven weekly lanes connected to Bible Bingo, progress tracking, chapters, and source-backed Deep Dive.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="week">Week</th>
+          ${dayLabels.map((label) => `<th>${escapeHtml(label)}</th>`).join("")}
+        </tr>
+      </thead>
+      <tbody>
+        ${weekRows
+          .map(
+            (row, index) => `<tr>
+              <td class="week">${index + 1}</td>
+              ${row.cells
+                .map(
+                  (cell) => `<td class="day">
+                    <span class="cell-label">${includeChecks ? '<span class="box"></span>' : ""}${escapeHtml(cell.label)}</span>
+                    <span class="cell-text">${escapeHtml(cell.text)}</span>
+                  </td>`,
+                )
+                .join("")}
+            </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+    <div class="footer">
+      <span>✝️ Cross ❤️ Heart 🙏 Pray</span>
+      <span>Print settings: Letter · Landscape · Scale 100% · Margins default/minimum</span>
+    </div>
+  </main>
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => window.print(), 150);
     });
+  </script>
+</body>
+</html>`;
 
-    const progressLine = includeChecks
-      ? `${doneCount} of ${totalCount} read (${percent}%)`
-      : "";
+    const exportWindow = window.open("", "_blank", "noopener,noreferrer");
 
-    const content = [title, progressLine, "", header, ...rows]
-      .filter((line) => line !== "")
-      .join("\n");
+    if (!exportWindow) {
+      return;
+    }
 
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = window.URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-
-    anchor.href = url;
-    anchor.download = includeChecks
-      ? "crossheartpray-bible-reading-plan-with-checks.txt"
-      : "crossheartpray-bible-reading-plan-clean.txt";
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-    window.URL.revokeObjectURL(url);
+    exportWindow.document.open();
+    exportWindow.document.write(html);
+    exportWindow.document.close();
   }
 
   async function copyPlanLink() {
@@ -521,7 +693,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   }
 
   return (
-    <section className="chp-reading-sheet overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35">
+    <section className="chp-reading-sheet overflow-visible rounded-2xl border border-white/10 bg-slate-950/35">
       <div className="chp-plan-progress-summary border-b border-white/10 bg-slate-950/45 p-3 print:hidden">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2">
@@ -536,7 +708,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               <span>{doneCount} read</span>
               <span className="text-emerald-100">{percent}% done</span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full border border-white/10 bg-white/10">
+            <div className="h-2 overflow-visible rounded-full border border-white/10 bg-white/10">
               <div
                 className="h-full rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.35)] transition-all"
                 style={{ width: `${percent}%` }}
@@ -594,7 +766,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={() => exportPlan(false)}
                 className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
               >
-                Export clean
+                Export 1-page
               </button>
 
               <button
@@ -602,7 +774,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={() => exportPlan(true)}
                 className="inline-flex h-8 items-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18"
               >
-                Export with checks
+                Export 1-page checks
               </button>
 
               <button

@@ -27,15 +27,15 @@ export default function AboutPage() {
               CrossHeartPray brings the Bible everywhere.
             </p>
             <p className="text-sm font-semibold leading-7 text-slate-300 sm:text-base sm:leading-8">
-              Discover one verse from 31,103. Open the chapter for context. Use Deep Dive.
+              Start anywhere in 31,103 Holy Bible verses: Bible Bingo, chapters, Daily Hope, the Reading Plan, and source-backed Deep Dive all connect.
             </p>
             <p className="text-sm font-semibold leading-7 text-slate-300 sm:text-base sm:leading-8">
-              Follow Daily Hope. Track your Bible Reading Plan. Share what you find.
+              Deal a verse, open the chapter, follow the matching plan lane, track progress, and keep building future Deep Dives from the same Bible path.
             </p>
           </div>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Home → Bible Reading Plan → Daily Hope → Bible Bingo 7 → About
+            Bible Bingo → Reading Plan → Daily Hope → Deep Dive → Track progress
           </p>
         </section>
 
@@ -120,7 +120,7 @@ export default function AboutPage() {
                 More card games to come
               </p>
               <p className="mt-2 text-sm font-semibold leading-7 text-slate-300">
-                Same Bible-first idea: cards, verses, context, sharing, and Deep Dive.
+                Same Bible-first idea: cards, verses, chapters, Reading Plan progress, sharing, and source-backed Deep Dive.
               </p>
             </div>
 

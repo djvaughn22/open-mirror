@@ -590,7 +590,7 @@ export default function DailyHopeRoutine({
               <article
                 id={prayerId}
                 key={prayer.title}
-                className={`relative overflow-hidden rounded-[2rem] border p-6 shadow-2xl shadow-black/20 sm:p-8 ${prayerTone}`}
+                className={`relative overflow-visible rounded-[2rem] border p-6 shadow-2xl shadow-black/20 sm:p-8 ${prayerTone}`}
               >
                 <div className="absolute right-5 top-5">
                   <BibleBingoShareMenu
@@ -853,7 +853,7 @@ export default function DailyHopeRoutine({
         <section className="mt-10">
           <article
             id="live-in-the-moment"
-            className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-emerald-200/18 bg-emerald-950/22 p-6 text-center shadow-xl shadow-black/20 sm:p-8"
+            className="relative mx-auto max-w-4xl overflow-visible rounded-[2rem] border border-emerald-200/18 bg-emerald-950/22 p-6 text-center shadow-xl shadow-black/20 sm:p-8"
           >
             <div className="absolute right-5 top-5">
               <BibleBingoShareMenu

@@ -8,6 +8,15 @@ import {
   type VerifiedWordStudy,
   type WordStudyPassage,
 } from "../lib/originalLanguageWordStudy";
+import {
+  getStrongsDictionaryEntry,
+  getStrongsLemma,
+  getStrongsLongDefinition,
+  getStrongsOrigin,
+  getStrongsPronunciation,
+  getStrongsShortDefinition,
+  getStrongsTransliteration,
+} from "../lib/strongsDictionary";
 
 type OriginalWordStudyModalProps = {
   passage: WordStudyPassage;
@@ -292,7 +301,17 @@ export default function OriginalWordStudyModal({
   const transliterationGuide = buildTransliterationGuide(selectedWordStudy);
   const pronunciationGuide = buildPronunciationGuide(selectedWordStudy);
   const strongsUrl = buildBibleHubStrongsUrl(selectedWordStudy.strongs);
-  const sourceUrl = cleanText(selectedWordStudy.sourceUrl);
+  const strongsEntry = getStrongsDictionaryEntry(selectedWordStudy.strongs);
+  const strongsShortDefinition =
+    getStrongsShortDefinition(strongsEntry) || selectedWordStudy.lexiconMeaning.trim();
+  const strongsLongDefinition =
+    getStrongsLongDefinition(strongsEntry) || selectedWordStudy.lexiconMeaning.trim();
+  const strongsOrigin = getStrongsOrigin(strongsEntry);
+  const strongsLemma = getStrongsLemma(strongsEntry) || selectedWordStudy.lemma.trim();
+  const strongsTransliteration =
+    getStrongsTransliteration(strongsEntry) || transliterationGuide;
+  const strongsPronunciation =
+    getStrongsPronunciation(strongsEntry) || pronunciationGuide;
 
   return (
     <div
@@ -347,15 +366,15 @@ export default function OriginalWordStudyModal({
                 {originalDisplay}
               </p>
 
-              {transliterationGuide ? (
+              {strongsTransliteration ? (
                 <p className="mt-3 text-lg font-black text-white">
-                  {transliterationGuide}
+                  {strongsTransliteration}
                 </p>
               ) : null}
 
-              {pronunciationGuide ? (
+              {strongsPronunciation ? (
                 <p className="mt-2 text-sm font-bold text-emerald-100/80">
-                  Pronunciation guide: {pronunciationGuide}
+                  Pronunciation: {strongsPronunciation}
                 </p>
               ) : null}
             </div>
@@ -399,7 +418,7 @@ export default function OriginalWordStudyModal({
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-100/75">
                   Strong&apos;s entry
                 </p>
-                <p className="mt-1 text-2xl font-black text-white">
+                <p className="mt-1 text-3xl font-black text-white">
                   {selectedWordStudy.strongs}
                 </p>
               </div>
@@ -416,42 +435,64 @@ export default function OriginalWordStudyModal({
               ) : null}
             </div>
 
-            <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/55 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
-                Strong&apos;s / lexicon description from stored source data
-              </p>
-              <p className="mt-2 whitespace-pre-wrap break-words text-lg font-black leading-relaxed text-white">
-                {fallback?.meaning || selectedWordStudy.lexiconMeaning || "No stored Strong&apos;s description found for this word yet."}
-              </p>
+            <div className="mt-5 grid gap-3">
+              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
+                  Short definition
+                </p>
+                <p className="mt-2 whitespace-pre-wrap break-words text-xl font-black leading-relaxed text-white">
+                  {fallback?.meaning || strongsShortDefinition || selectedWordStudy.sourceGloss}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
+                  Strong&apos;s long definition
+                </p>
+                <p className="mt-2 whitespace-pre-wrap break-words text-base font-bold leading-relaxed text-white">
+                  {strongsLongDefinition || "No Strong&apos;s long definition found for this word yet."}
+                </p>
+              </div>
+
+              {strongsOrigin ? (
+                <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
+                    Origin / derivation
+                  </p>
+                  <p className="mt-2 whitespace-pre-wrap break-words text-sm font-bold leading-relaxed text-white/90">
+                    {strongsOrigin}
+                  </p>
+                </div>
+              ) : null}
             </div>
           </section>
 
           <SourceTextBlock
-            label="Alignment source gloss"
-            value={selectedWordStudy.sourceGloss}
+            label="Verse word match"
+            value={`English “${titleCase(selectedWordStudy.englishWord)}” is aligned to ${originalDisplay} in ${selectedWordStudy.reference}. Gloss: ${selectedWordStudy.sourceGloss}`}
           />
 
           <section className="grid gap-3 sm:grid-cols-2">
-            <DetailRow label="Lemma" value={selectedWordStudy.lemma} />
+            <DetailRow label="Strong&apos;s lemma" value={strongsLemma} />
+            <DetailRow label="Verse lemma" value={selectedWordStudy.lemma} />
             <DetailRow label="Morphology" value={selectedWordStudy.morphology} />
             <DetailRow label="Reference" value={selectedWordStudy.reference} />
-            <DetailRow
-              label="Source alignment"
-              value={selectedWordStudy.sourceName}
-            />
-            <DetailRow
-              label="Lexicon source"
-              value={selectedWordStudy.lexiconSourceName}
-            />
-            <DetailRow label="Source URL">
-              {sourceUrl ? (
+            <DetailRow label="Verse alignment">
+              English “{titleCase(selectedWordStudy.englishWord)}” points to{" "}
+              <span className="text-emerald-100">{originalDisplay}</span> in this verse.
+            </DetailRow>
+            <DetailRow label="Dictionary source">
+              Strong&apos;s {selectedWordStudy.strongs}
+            </DetailRow>
+            <DetailRow label="Full Strong&apos;s page">
+              {strongsUrl ? (
                 <a
-                  href={sourceUrl}
+                  href={strongsUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="text-emerald-100 underline decoration-emerald-200/40 underline-offset-4"
                 >
-                  {sourceUrl}
+                  Open Strong&apos;s {selectedWordStudy.strongs}
                 </a>
               ) : null}
             </DetailRow>
@@ -489,10 +530,9 @@ export default function OriginalWordStudyModal({
           ) : null}
 
           <p className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center text-[11px] font-bold leading-relaxed text-white/50">
-            Verified source fields only: original word, transliteration,
-            pronunciation guide, Strong&apos;s number, lemma, morphology, source
-            gloss, and stored lexicon description. No AI summary. No
-            interpretation.
+            Verified source fields only: Strong&apos;s dictionary definition,
+            origin, lemma, transliteration, pronunciation, morphology, and verse
+            word match. No AI summary. No interpretation.
           </p>
         </div>
       </div>

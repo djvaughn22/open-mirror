@@ -8,7 +8,7 @@ import {
 
 export const metadata = {
   title: "Daily Hope",
-  description: "A fixed Daily Hope prayer and Scripture routine.",
+  description: "A fixed Daily Hope prayer and Scripture routine that keeps the day simple while each verse can connect to Bible Bingo, the Reading Plan, and source-backed Deep Dive.",
   robots: {
     index: false,
     follow: false,

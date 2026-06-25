@@ -7,7 +7,7 @@ import CrossHeartPrayHero from "../components/CrossHeartPrayHero";
 export const metadata = {
   title: "Welcome",
   description:
-    "CrossHeartPray is a simple daily Bible routine with a 52-week Reading Plan, Daily Hope, and Bible Bingo 7.",
+    "CrossHeartPray is a simple daily Bible routine where Bible Bingo, the Reading Plan, Daily Hope, and source-backed Deep Dive work together.",
 };
 
 const dailyWays = [
@@ -69,7 +69,7 @@ export default function WelcomePage() {
 
         <CrossHeartPrayHero>
           <p>
-            Start with Bible Reading, continue with Hope, then deal Bible Bingo 7
+            Start anywhere: Bible Bingo, Reading Plan, Daily Hope, or Deep Dive
             cards and see where the Word leads.
           </p>
         </CrossHeartPrayHero>
@@ -121,7 +121,7 @@ export default function WelcomePage() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-slate-200 sm:text-base">
-                Start with one verse. Open the Bible. Check the chapter. When
+                Start with one verse. Open the Bible. Check the chapter. Track the plan. When
                 the data is verified, look behind the English word into the
                 Hebrew or Greek source.
               </p>

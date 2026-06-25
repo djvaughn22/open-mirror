@@ -1334,3 +1334,27 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 }
 /* CHP_READING_PLAN_TARGET_HIGHLIGHT_END */
 
+
+/* CHP final visibility fix:
+   Let share/export option panels escape rounded hero/card containers instead of being clipped. */
+@media screen {
+  .chp-lively-dark-page .relative.overflow-hidden,
+  .chp-lively-dark-page section.overflow-hidden,
+  .chp-lively-dark-page article.overflow-hidden,
+  .chp-lively-dark-page div.overflow-hidden {
+    overflow: visible !important;
+  }
+
+  .chp-lively-dark-page [class*="z-10"],
+  .chp-lively-dark-page [class*="z-20"],
+  .chp-lively-dark-page [class*="z-30"] {
+    z-index: auto;
+  }
+
+  .chp-lively-dark-page [role="menu"],
+  .chp-lively-dark-page [aria-label*="Share"],
+  .chp-lively-dark-page [aria-label*="share"] {
+    z-index: 9999;
+  }
+}
+
