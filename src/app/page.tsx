@@ -96,7 +96,7 @@ export default function WelcomePage() {
               </p>
 
               <div className="mt-7">
-                <span className="inline-flex rounded-full border border-emerald-200/25 bg-emerald-300/10 px-5 py-3 text-sm font-black text-emerald-100 transition group-hover:bg-emerald-300/20">
+                <span className="inline-flex rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-black text-slate-100 transition hover:bg-white/[0.10] group-hover:bg-white/[0.10]">
                   {item.cta} →
                 </span>
               </div>
@@ -108,7 +108,7 @@ export default function WelcomePage() {
           <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="border-b border-white/10 bg-emerald-300/[0.08] p-6 lg:border-b-0 lg:border-r lg:border-white/10">
               <p className="text-xs font-black uppercase tracking-[0.26em] text-emerald-100">
-                Brand the Deep Dive
+                Open the Word
               </p>
 
               <h2 className="mt-3 text-3xl font-black leading-tight text-white sm:text-4xl">
@@ -116,8 +116,8 @@ export default function WelcomePage() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-slate-200 sm:text-base">
-                Start with one verse. Open the Bible. Check the chapter. Track the plan. When
-                the data is verified, look behind the English word into the
+                Start with one verse. Open the full chapter. Follow the reading plan.
+                When a word is verified, look behind the English into the
                 Hebrew or Greek source.
               </p>
             </div>
