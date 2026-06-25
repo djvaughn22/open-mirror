@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 
 import {
   normalizeStudyWord,
-  originalLanguageName,
   type VerifiedWordStudy,
   type WordStudyPassage,
 } from "../lib/originalLanguageWordStudy";
@@ -295,6 +294,9 @@ export default function OriginalWordStudyModal({
   }, [wordStudies]);
 
   const fallback = getWordDetailFallback(selectedWordStudy);
+  const languageLabel =
+    selectedWordStudy.language === "hebrew" ? "Hebrew" : "Greek";
+
   const originalDisplay =
     cleanOriginalScriptDisplay(selectedWordStudy.originalWord) ||
     selectedWordStudy.originalWord.trim();
@@ -398,7 +400,7 @@ export default function OriginalWordStudyModal({
               ) : null}
 
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-black text-white/75">
-                {originalLanguageName(selectedWordStudy.language)}
+                {languageLabel}
               </span>
 
               <a
@@ -436,22 +438,20 @@ export default function OriginalWordStudyModal({
             </div>
 
             <div className="mt-5 grid gap-3">
-              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
-                  Short definition
+              <div className="rounded-2xl border border-emerald-200/20 bg-emerald-950/30 p-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-100/75">
+                  Quick meaning
                 </p>
                 <p className="mt-2 whitespace-pre-wrap break-words text-xl font-black leading-relaxed text-white">
-                  {fallback?.meaning || strongsShortDefinition || selectedWordStudy.sourceGloss}
+                  {strongsShortDefinition || selectedWordStudy.sourceGloss || selectedWordStudy.lexiconMeaning}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
-                  Strong&apos;s long definition
-                </p>
-                <p className="mt-2 whitespace-pre-wrap break-words text-base font-bold leading-relaxed text-white">
-                  {strongsLongDefinition || "No Strong&apos;s long definition found for this word yet."}
-                </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <DetailRow label={`${languageLabel} word`} value={originalDisplay} />
+                <DetailRow label="English word" value={titleCase(selectedWordStudy.englishWord)} />
+                <DetailRow label="Transliteration" value={strongsTransliteration} />
+                <DetailRow label="Pronunciation" value={strongsPronunciation} />
               </div>
 
               {strongsOrigin ? (
@@ -464,25 +464,25 @@ export default function OriginalWordStudyModal({
                   </p>
                 </div>
               ) : null}
+
+              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
+                  Strong&apos;s definition
+                </p>
+                <p className="mt-2 whitespace-pre-wrap break-words text-base font-bold leading-relaxed text-white">
+                  {strongsLongDefinition || selectedWordStudy.lexiconMeaning || "No Strong&apos;s definition found for this word yet."}
+                </p>
+              </div>
             </div>
           </section>
 
-          <SourceTextBlock
-            label="Verse word match"
-            value={`English “${titleCase(selectedWordStudy.englishWord)}” is aligned to ${originalDisplay} in ${selectedWordStudy.reference}. Gloss: ${selectedWordStudy.sourceGloss}`}
-          />
-
           <section className="grid gap-3 sm:grid-cols-2">
-            <DetailRow label="Strong&apos;s lemma" value={strongsLemma} />
-            <DetailRow label="Verse lemma" value={selectedWordStudy.lemma} />
-            <DetailRow label="Morphology" value={selectedWordStudy.morphology} />
+            <DetailRow label="Strong&apos;s number" value={selectedWordStudy.strongs} />
             <DetailRow label="Reference" value={selectedWordStudy.reference} />
-            <DetailRow label="Verse alignment">
+            <DetailRow label="Grammar / morphology" value={selectedWordStudy.morphology} />
+            <DetailRow label="Verse match">
               English “{titleCase(selectedWordStudy.englishWord)}” points to{" "}
-              <span className="text-emerald-100">{originalDisplay}</span> in this verse.
-            </DetailRow>
-            <DetailRow label="Dictionary source">
-              Strong&apos;s {selectedWordStudy.strongs}
+              <span className="text-emerald-100">{originalDisplay}</span>.
             </DetailRow>
             <DetailRow label="Full Strong&apos;s page">
               {strongsUrl ? (
@@ -530,9 +530,7 @@ export default function OriginalWordStudyModal({
           ) : null}
 
           <p className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center text-[11px] font-bold leading-relaxed text-white/50">
-            Verified source fields only: Strong&apos;s dictionary definition,
-            origin, lemma, transliteration, pronunciation, morphology, and verse
-            word match. No AI summary. No interpretation.
+            Verified source fields only: English word, Greek/Hebrew word, transliteration, pronunciation, origin, Strong&apos;s definition, grammar, and verse match. No AI summary. No interpretation.
           </p>
         </div>
       </div>
