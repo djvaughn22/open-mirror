@@ -284,16 +284,65 @@ function bookCodeFromLabel(label: string, reading: unknown) {
 
 function bibleUrl(reading: unknown): string {
   const label = labelForReading(reading);
-  const code = bookCodeFromLabel(label, reading);
-  const chapter = firstChapterFromLabel(label);
 
-  if (!code || !chapter) {
-    return "https://www.bible.com/search/bible?q=" + encodeURIComponent(label || "Bible reading plan");
+  function normalizeText(value: unknown): string {
+    return cleanText(value)
+      .replace(/\\u00a0/g, " ")
+      .replace(/[–—]/g, "-")
+      .replace(/\\s+/g, " ")
+      .trim();
   }
 
-  // Chapter-only Bible.com URL.
-  // Do not include a verse segment like ROM.1.1.WEBUS.
-  return "https://www.bible.com/bible/206/" + code + "." + chapter + ".WEBUS";
+  function chapterUrlFromText(text: string): string {
+    const clean = normalizeText(text);
+    const bookNames = Object.keys(BOOK_CODES).sort((a, b) => b.length - a.length);
+
+    for (const book of bookNames) {
+      const escapedBook = book.replace(/[.*+?^$(){}|[\\]\\]/g, "\\$&");
+      const match = clean.match(
+        new RegExp("(^|[^A-Za-z0-9])" + escapedBook + "\\s+(\\d{1,3})(?=\\b|[:,-])", "i")
+      );
+
+      if (match) {
+        const code = BOOK_CODES[book];
+        const chapter = match[2];
+        return "https://www.bible.com/bible/206/" + code + "." + chapter + ".WEBUS";
+      }
+    }
+
+    return "";
+  }
+
+  // First choice: the exact visible cell label.
+  const fromVisibleLabel = chapterUrlFromText(label);
+  if (fromVisibleLabel) return fromVisibleLabel;
+
+  // Second choice: common fields on the reading object, still choosing first listed book/chapter.
+  const record = asRecord(reading);
+  const fallbackText = [
+    record.reference,
+    record.references,
+    record.reading,
+    record.readings,
+    record.label,
+    record.title,
+    record.text,
+    record.book,
+    record.books,
+    record.chapter,
+    record.chapters,
+    record.range,
+    record.passage,
+  ]
+    .map(normalizeText)
+    .filter(Boolean)
+    .join(" ");
+
+  const fromReadingFields = chapterUrlFromText(fallbackText);
+  if (fromReadingFields) return fromReadingFields;
+
+  // Final fallback: search, never Genesis 1 and never a verse-level URL.
+  return "https://www.bible.com/search/bible?q=" + encodeURIComponent(label || "Bible reading plan");
 }
 
 function flattenPlan(weeks: BibleReadingPlanWeek[]) {
