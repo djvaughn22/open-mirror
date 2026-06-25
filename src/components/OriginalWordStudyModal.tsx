@@ -367,13 +367,13 @@ export default function OriginalWordStudyModal({
                     href={strongsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-4 py-2 text-xs font-black text-emerald-50 transition hover:bg-emerald-300/20"
+                    className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-2 text-xs font-black text-emerald-50 underline decoration-emerald-100/40 underline-offset-4 transition hover:bg-emerald-300/25"
                   >
-                    {selectedWordStudy.strongs}
+                    Open Strong&apos;s {selectedWordStudy.strongs}
                   </a>
                 ) : (
                   <span className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-4 py-2 text-xs font-black text-emerald-50">
-                    {selectedWordStudy.strongs}
+                    Strong&apos;s {selectedWordStudy.strongs}
                   </span>
                 )
               ) : null}
@@ -393,14 +393,42 @@ export default function OriginalWordStudyModal({
             </div>
           </section>
 
-          <SourceTextBlock
-            label="Source gloss"
-            value={selectedWordStudy.sourceGloss}
-          />
+          <section className="rounded-[1.75rem] border border-emerald-200/20 bg-emerald-300/[0.07] p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-100/75">
+                  Strong&apos;s entry
+                </p>
+                <p className="mt-1 text-2xl font-black text-white">
+                  {selectedWordStudy.strongs}
+                </p>
+              </div>
+
+              {strongsUrl ? (
+                <a
+                  href={strongsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-emerald-200/35 bg-emerald-300/15 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-emerald-50 underline decoration-emerald-100/40 underline-offset-4 transition hover:bg-emerald-300/25"
+                >
+                  Open Strong&apos;s {selectedWordStudy.strongs}
+                </a>
+              ) : null}
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/55 p-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
+                Strong&apos;s / lexicon description from stored source data
+              </p>
+              <p className="mt-2 whitespace-pre-wrap break-words text-lg font-black leading-relaxed text-white">
+                {fallback?.meaning || selectedWordStudy.lexiconMeaning || "No stored Strong&apos;s description found for this word yet."}
+              </p>
+            </div>
+          </section>
 
           <SourceTextBlock
-            label="Lexicon meaning"
-            value={fallback?.meaning || selectedWordStudy.lexiconMeaning}
+            label="Alignment source gloss"
+            value={selectedWordStudy.sourceGloss}
           />
 
           <section className="grid gap-3 sm:grid-cols-2">
@@ -461,8 +489,9 @@ export default function OriginalWordStudyModal({
           ) : null}
 
           <p className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center text-[11px] font-bold leading-relaxed text-white/50">
-            Verified source fields only: alignment, Strong&apos;s number, lemma,
-            morphology, source gloss, and lexicon meaning. No AI summary. No
+            Verified source fields only: original word, transliteration,
+            pronunciation guide, Strong&apos;s number, lemma, morphology, source
+            gloss, and stored lexicon description. No AI summary. No
             interpretation.
           </p>
         </div>
