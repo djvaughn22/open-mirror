@@ -32,7 +32,7 @@ export default function FlowStepButtons() {
         <a
           href={previous.href}
           aria-label={`Previous: ${previous.label}`}
-          className="group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/80 bg-white px-4 py-2 text-slate-950 shadow-lg shadow-black/25 transition hover:-translate-x-0.5 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-white/70"
+          className="group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/[0.10] px-4 py-2 text-slate-50 shadow-lg shadow-black/20 transition hover:bg-white/[0.16] focus:outline-none focus:ring-2 focus:ring-white/40"
         >
           <span aria-hidden="true" className="text-sm transition group-hover:-translate-x-0.5">
             ←
@@ -47,7 +47,7 @@ export default function FlowStepButtons() {
         <a
           href={next.href}
           aria-label={`Next: ${next.label}`}
-          className="group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-emerald-100 bg-emerald-200 px-4 py-2 text-slate-950 shadow-lg shadow-emerald-950/25 transition hover:translate-x-0.5 hover:bg-emerald-100 focus:outline-none focus:ring-2 focus:ring-emerald-100/80"
+          className="group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/[0.10] px-4 py-2 text-slate-50 shadow-lg shadow-black/20 transition hover:bg-white/[0.16] focus:outline-none focus:ring-2 focus:ring-white/40"
         >
           <span className="truncate">Next: {next.label}</span>
           <span aria-hidden="true" className="text-sm transition group-hover:translate-x-0.5">

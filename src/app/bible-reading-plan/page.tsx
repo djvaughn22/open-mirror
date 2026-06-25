@@ -2,8 +2,8 @@ import BibleReadingPlanTracker from "../../components/BibleReadingPlanTracker";
 import { BIBLE_READING_PLAN_WEEKS } from "../../lib/bibleReadingPlan";
 
 export const metadata = {
-  title: "Bible Reading Plan",
-  description: "A full-year digital Bible Reading Plan board that fills as you read, connected to Bible Bingo lanes, verse progress, chapters, and future source-backed Deep Dives.",
+  title: "Bible Reading Plan | Cross Heart Pray",
+  description: "Follow a full-year Bible Reading Plan connected to Bible Bingo lanes, reading progress, chapters, and source-backed Deep Dive.",
   robots: {
     index: false,
     follow: false,
