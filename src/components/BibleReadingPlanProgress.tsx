@@ -293,37 +293,90 @@ function bibleUrl(reading: unknown): string {
     .replace(/\s+/g, " ")
     .trim();
 
-  const aliases: Record<string, string> = {
-    gen: "GEN", ex: "EXO", exo: "EXO", exod: "EXO", lev: "LEV", num: "NUM", deut: "DEU",
-    josh: "JOS", judg: "JDG", jdg: "JDG", ruth: "RUT",
-    "1 sam": "1SA", "2 sam": "2SA", "1 kgs": "1KI", "2 kgs": "2KI", "1 ki": "1KI", "2 ki": "2KI",
-    "1 chron": "1CH", "2 chron": "2CH", "1 chr": "1CH", "2 chr": "2CH",
-    ezra: "EZR", neh: "NEH", est: "EST", esth: "EST", job: "JOB",
-    ps: "PSA", psa: "PSA", pss: "PSA", prov: "PRO", pro: "PRO", eccl: "ECC", ecc: "ECC", song: "SNG",
-    isa: "ISA", jer: "JER", lam: "LAM", ezek: "EZK", ezk: "EZK", dan: "DAN",
-    hos: "HOS", joel: "JOL", amos: "AMO", obad: "OBA", jonah: "JON", mic: "MIC", nah: "NAM",
-    hab: "HAB", zeph: "ZEP", hag: "HAG", zech: "ZEC", mal: "MAL",
-    matt: "MAT", mat: "MAT", mt: "MAT", mark: "MRK", mrk: "MRK", mk: "MRK",
-    luke: "LUK", luk: "LUK", lk: "LUK", john: "JHN", jhn: "JHN", jn: "JHN", acts: "ACT",
-    rom: "ROM", "1 cor": "1CO", "2 cor": "2CO", "1 co": "1CO", "2 co": "2CO",
-    gal: "GAL", eph: "EPH", phil: "PHP", php: "PHP", col: "COL",
-    "1 thess": "1TH", "2 thess": "2TH", "1 thes": "1TH", "2 thes": "2TH", "1 th": "1TH", "2 th": "2TH",
-    "1 tim": "1TI", "2 tim": "2TI", "1 ti": "1TI", "2 ti": "2TI",
-    tit: "TIT", philem: "PHM", phm: "PHM", heb: "HEB", jas: "JAS",
-    "1 pet": "1PE", "2 pet": "2PE", "1 pe": "1PE", "2 pe": "2PE",
-    "1 jn": "1JN", "2 jn": "2JN", "3 jn": "3JN",
-    jude: "JUD", rev: "REV"
-  };
+  const aliases: Array<[string, string]> = [
+    ["Genesis", "GEN"], ["Gen", "GEN"], ["Ge", "GEN"], ["Gn", "GEN"],
+    ["Exodus", "EXO"], ["Exod", "EXO"], ["Exo", "EXO"], ["Ex", "EXO"],
+    ["Leviticus", "LEV"], ["Lev", "LEV"], ["Le", "LEV"], ["Lv", "LEV"],
+    ["Numbers", "NUM"], ["Num", "NUM"], ["Nu", "NUM"], ["Nm", "NUM"], ["Nb", "NUM"],
+    ["Deuteronomy", "DEU"], ["Deut", "DEU"], ["Deu", "DEU"], ["Dt", "DEU"],
 
-  const candidates: Array<[string, string]> = [
-    ...Object.keys(BOOK_CODES).map((book) => [book, BOOK_CODES[book]] as [string, string]),
-    ...Object.entries(aliases),
-  ].sort((a, b) => b[0].length - a[0].length);
+    ["Joshua", "JOS"], ["Josh", "JOS"], ["Jos", "JOS"], ["Jsh", "JOS"],
+    ["Judges", "JDG"], ["Judg", "JDG"], ["Jdg", "JDG"], ["Jg", "JDG"],
+    ["Ruth", "RUT"], ["Rth", "RUT"], ["Ru", "RUT"],
 
-  for (const [book, code] of candidates) {
-    const escaped = book.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    ["1 Samuel", "1SA"], ["1 Sam", "1SA"], ["1 Sa", "1SA"], ["1 Sm", "1SA"], ["I Samuel", "1SA"], ["I Sam", "1SA"],
+    ["2 Samuel", "2SA"], ["2 Sam", "2SA"], ["2 Sa", "2SA"], ["2 Sm", "2SA"], ["II Samuel", "2SA"], ["II Sam", "2SA"],
+
+    ["1 Kings", "1KI"], ["1 Kgs", "1KI"], ["1 Ki", "1KI"], ["1 Kin", "1KI"], ["I Kings", "1KI"], ["I Kgs", "1KI"],
+    ["2 Kings", "2KI"], ["2 Kgs", "2KI"], ["2 Ki", "2KI"], ["2 Kin", "2KI"], ["II Kings", "2KI"], ["II Kgs", "2KI"],
+
+    ["1 Chronicles", "1CH"], ["1 Chron", "1CH"], ["1 Chr", "1CH"], ["1 Ch", "1CH"], ["I Chronicles", "1CH"], ["I Chron", "1CH"],
+    ["2 Chronicles", "2CH"], ["2 Chron", "2CH"], ["2 Chr", "2CH"], ["2 Ch", "2CH"], ["II Chronicles", "2CH"], ["II Chron", "2CH"],
+
+    ["Ezra", "EZR"], ["Ezr", "EZR"],
+    ["Nehemiah", "NEH"], ["Neh", "NEH"], ["Ne", "NEH"],
+    ["Esther", "EST"], ["Esth", "EST"], ["Est", "EST"],
+
+    ["Job", "JOB"], ["Jb", "JOB"],
+    ["Psalms", "PSA"], ["Psalm", "PSA"], ["Ps", "PSA"], ["Psa", "PSA"], ["Pss", "PSA"],
+    ["Proverbs", "PRO"], ["Prov", "PRO"], ["Pro", "PRO"], ["Prv", "PRO"], ["Pr", "PRO"],
+    ["Ecclesiastes", "ECC"], ["Eccles", "ECC"], ["Eccl", "ECC"], ["Ecc", "ECC"], ["Qoheleth", "ECC"],
+    ["Song of Solomon", "SNG"], ["Song", "SNG"], ["Song of Songs", "SNG"], ["SOS", "SNG"], ["Canticles", "SNG"],
+
+    ["Isaiah", "ISA"], ["Isa", "ISA"], ["Is", "ISA"],
+    ["Jeremiah", "JER"], ["Jer", "JER"], ["Je", "JER"], ["Jr", "JER"],
+    ["Lamentations", "LAM"], ["Lam", "LAM"], ["La", "LAM"],
+    ["Ezekiel", "EZK"], ["Ezek", "EZK"], ["Ezk", "EZK"], ["Eze", "EZK"],
+    ["Daniel", "DAN"], ["Dan", "DAN"], ["Da", "DAN"], ["Dn", "DAN"],
+    ["Hosea", "HOS"], ["Hos", "HOS"], ["Ho", "HOS"],
+    ["Joel", "JOL"], ["Joe", "JOL"], ["Jl", "JOL"],
+    ["Amos", "AMO"], ["Am", "AMO"],
+    ["Obadiah", "OBA"], ["Obad", "OBA"], ["Oba", "OBA"], ["Ob", "OBA"],
+    ["Jonah", "JON"], ["Jon", "JON"],
+    ["Micah", "MIC"], ["Mic", "MIC"], ["Mc", "MIC"],
+    ["Nahum", "NAM"], ["Nah", "NAM"], ["Na", "NAM"],
+    ["Habakkuk", "HAB"], ["Hab", "HAB"],
+    ["Zephaniah", "ZEP"], ["Zeph", "ZEP"], ["Zep", "ZEP"],
+    ["Haggai", "HAG"], ["Hag", "HAG"],
+    ["Zechariah", "ZEC"], ["Zech", "ZEC"], ["Zec", "ZEC"],
+    ["Malachi", "MAL"], ["Mal", "MAL"],
+
+    ["Matthew", "MAT"], ["Matt", "MAT"], ["Mat", "MAT"], ["Mt", "MAT"],
+    ["Mark", "MRK"], ["Mrk", "MRK"], ["Mk", "MRK"],
+    ["Luke", "LUK"], ["Luk", "LUK"], ["Lk", "LUK"],
+    ["John", "JHN"], ["Jhn", "JHN"], ["Jn", "JHN"],
+    ["Acts", "ACT"], ["Act", "ACT"], ["Ac", "ACT"],
+
+    ["Romans", "ROM"], ["Rom", "ROM"], ["Ro", "ROM"], ["Rm", "ROM"],
+    ["1 Corinthians", "1CO"], ["1 Cor", "1CO"], ["1 Co", "1CO"], ["I Corinthians", "1CO"], ["I Cor", "1CO"],
+    ["2 Corinthians", "2CO"], ["2 Cor", "2CO"], ["2 Co", "2CO"], ["II Corinthians", "2CO"], ["II Cor", "2CO"],
+    ["Galatians", "GAL"], ["Gal", "GAL"], ["Ga", "GAL"],
+    ["Ephesians", "EPH"], ["Eph", "EPH"], ["Ep", "EPH"],
+    ["Philippians", "PHP"], ["Phil", "PHP"], ["Php", "PHP"], ["Pp", "PHP"],
+    ["Colossians", "COL"], ["Col", "COL"], ["Co", "COL"],
+
+    ["1 Thessalonians", "1TH"], ["1 Thess", "1TH"], ["1 Thes", "1TH"], ["1 Th", "1TH"], ["I Thessalonians", "1TH"], ["I Thess", "1TH"],
+    ["2 Thessalonians", "2TH"], ["2 Thess", "2TH"], ["2 Thes", "2TH"], ["2 Th", "2TH"], ["II Thessalonians", "2TH"], ["II Thess", "2TH"],
+    ["1 Timothy", "1TI"], ["1 Tim", "1TI"], ["1 Ti", "1TI"], ["I Timothy", "1TI"], ["I Tim", "1TI"],
+    ["2 Timothy", "2TI"], ["2 Tim", "2TI"], ["2 Ti", "2TI"], ["II Timothy", "2TI"], ["II Tim", "2TI"],
+
+    ["Titus", "TIT"], ["Tit", "TIT"], ["Ti", "TIT"],
+    ["Philemon", "PHM"], ["Philem", "PHM"], ["Phlm", "PHM"], ["Phm", "PHM"],
+    ["Hebrews", "HEB"], ["Heb", "HEB"],
+    ["James", "JAS"], ["Jas", "JAS"], ["Jm", "JAS"],
+    ["1 Peter", "1PE"], ["1 Pet", "1PE"], ["1 Pe", "1PE"], ["I Peter", "1PE"], ["I Pet", "1PE"],
+    ["2 Peter", "2PE"], ["2 Pet", "2PE"], ["2 Pe", "2PE"], ["II Peter", "2PE"], ["II Pet", "2PE"],
+    ["1 John", "1JN"], ["1 Jn", "1JN"], ["I John", "1JN"], ["I Jn", "1JN"],
+    ["2 John", "2JN"], ["2 Jn", "2JN"], ["II John", "2JN"], ["II Jn", "2JN"],
+    ["3 John", "3JN"], ["3 Jn", "3JN"], ["III John", "3JN"], ["III Jn", "3JN"],
+    ["Jude", "JUD"], ["Jud", "JUD"],
+    ["Revelation", "REV"], ["Rev", "REV"], ["Re", "REV"], ["Rv", "REV"]
+  ];
+
+  for (const [book, code] of aliases.sort((a, b) => b[0].length - a[0].length)) {
+    const escapedBook = book.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const match = label.match(
-      new RegExp("(^|[^A-Za-z0-9])" + escaped + "\\.?\\s+(\\d{1,3})(?:\\s*[-:]\\s*\\d{1,3})?", "i")
+      new RegExp("(^|[^A-Za-z0-9])" + escapedBook + "\\.?\\s+(\\d{1,3})(?:\\s*[-:]\\s*\\d{1,3})?", "i")
     );
 
     if (match) {
