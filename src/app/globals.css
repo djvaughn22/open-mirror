@@ -1358,3 +1358,18 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   }
 }
 
+
+/* CHP menu visibility fix: share/export panels must not be clipped by rounded hero cards. */
+@media screen {
+  .chp-lively-dark-page .relative.overflow-hidden,
+  .chp-lively-dark-page section.overflow-hidden,
+  .chp-lively-dark-page article.overflow-hidden,
+  .chp-lively-dark-page div.overflow-hidden {
+    overflow: visible !important;
+  }
+
+  .chp-lively-dark-page [role="menu"] {
+    z-index: 9999 !important;
+  }
+}
+
