@@ -13,9 +13,9 @@ export default function CrossHeartPrayHero({
 }: CrossHeartPrayHeroProps) {
   return (
     <section
-      className={`mx-auto max-w-5xl text-center ${compact ? "py-3" : "py-6 sm:py-8"} ${className}`}
+      className={`mx-auto max-w-5xl text-center ${compact ? "py-3" : "py-8 sm:py-10"} ${className}`}
     >
-      <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.36em] text-white sm:text-base">
+      <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm font-black uppercase tracking-[0.34em] text-white sm:text-base">
         <span className="inline-flex items-center gap-3">
           <span className="text-4xl tracking-normal">✝️</span>
           <span>Cross</span>
@@ -30,7 +30,7 @@ export default function CrossHeartPrayHero({
         </span>
       </div>
 
-      <p className="mt-5 text-center text-sm font-black uppercase tracking-[0.42em] text-emerald-100 sm:text-base">BIBLE APP EVERY DAY</p>
+      <p className="mt-4 text-center text-lg font-black uppercase tracking-[0.28em] text-emerald-100 sm:text-xl">BIBLE APP EVERY DAY</p>
 
       {children ? (
         <div className="mx-auto mt-7 max-w-3xl text-base font-semibold leading-8 text-slate-300 sm:text-lg">
