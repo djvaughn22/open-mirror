@@ -352,154 +352,140 @@ export default function OriginalWordStudyModal({
         </div>
 
         <div className="space-y-5 p-5">
-          <section className="rounded-[1.75rem] border border-emerald-200/20 bg-gradient-to-br from-emerald-300/10 to-white/[0.03] p-5 text-center">
-            <p className="text-[10px] font-black uppercase tracking-[0.26em] text-emerald-100/75">
-              English word
-            </p>
-            <p className="mt-2 text-3xl font-black tracking-tight text-white">
-              {titleCase(selectedWordStudy.englishWord)}
-            </p>
-
-            <div className="mx-auto mt-5 max-w-xl rounded-3xl border border-white/10 bg-slate-950/55 px-4 py-5">
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/45">
-                Original word
-              </p>
-              <p className="mt-2 break-words text-4xl font-black leading-tight text-emerald-50">
-                {originalDisplay}
-              </p>
-
-              {strongsTransliteration ? (
-                <p className="mt-3 text-lg font-black text-white">
-                  {strongsTransliteration}
+          {/* CHP clean Deep Dive card layout start */}
+          <section className="overflow-hidden rounded-[1.75rem] border border-emerald-200/15 bg-slate-950/45">
+            <div className="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
+              <div className="border-b border-white/10 bg-emerald-300/[0.08] p-5 lg:border-b-0 lg:border-r lg:border-white/10">
+                <p className="text-[10px] font-black uppercase tracking-[0.26em] text-emerald-100/75">
+                  Behind the Verse
                 </p>
-              ) : null}
 
-              {strongsPronunciation ? (
-                <p className="mt-2 text-sm font-bold text-emerald-100/80">
-                  Pronunciation: {strongsPronunciation}
+                <h3 className="mt-2 text-3xl font-black leading-tight text-white">
+                  {titleCase(selectedWordStudy.englishWord)}
+                </h3>
+
+                <p className="mt-3 text-xs font-bold leading-6 text-slate-300">
+                  {passage.label || selectedWordStudy.reference}
                 </p>
-              ) : null}
-            </div>
 
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {selectedWordStudy.strongs ? (
-                strongsUrl ? (
-                  <a
-                    href={strongsUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-emerald-200/30 bg-emerald-300/15 px-4 py-2 text-xs font-black text-emerald-50 underline decoration-emerald-100/40 underline-offset-4 transition hover:bg-emerald-300/25"
-                  >
-                    Open Strong&apos;s {selectedWordStudy.strongs}
-                  </a>
-                ) : (
-                  <span className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-4 py-2 text-xs font-black text-emerald-50">
-                    Strong&apos;s {selectedWordStudy.strongs}
+                <p className="mt-4 text-sm font-semibold leading-7 text-slate-200">
+                  Verified original-language fields only. No AI summary. No interpretation.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-200">
+                    {languageLabel}
                   </span>
-                )
-              ) : null}
 
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-black text-white/75">
-                {languageLabel}
-              </span>
+                  {selectedWordStudy.strongs ? (
+                    <span className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-50">
+                      Strong&apos;s {selectedWordStudy.strongs}
+                    </span>
+                  ) : null}
+                </div>
+              </div>
 
-              <a
-                href={verseUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-black text-white/75 transition hover:bg-white/10 hover:text-white"
-              >
-                Open verse
-              </a>
+              <div className="p-5">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/45">
+                      Original word
+                    </p>
+                    <p className="mt-2 break-words text-5xl font-black leading-none text-emerald-50">
+                      {originalDisplay}
+                    </p>
+                  </div>
+
+                  {strongsUrl ? (
+                    <a
+                      href={strongsUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-emerald-200/35 bg-emerald-300/15 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-50 underline decoration-emerald-100/40 underline-offset-4 transition hover:bg-emerald-300/25"
+                    >
+                      Open Strong&apos;s {selectedWordStudy.strongs}
+                    </a>
+                  ) : null}
+                </div>
+
+                <dl className="mt-5 grid gap-3">
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                    <dt className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-100/80">
+                      Transliteration
+                    </dt>
+                    <dd className="mt-1 break-words text-lg font-black text-white">
+                      {strongsTransliteration || "Not listed"}
+                    </dd>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                    <dt className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-100/80">
+                      Pronunciation
+                    </dt>
+                    <dd className="mt-1 break-words text-lg font-black text-white">
+                      {strongsPronunciation || "Not listed"}
+                    </dd>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                    <dt className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-100/80">
+                      Meaning
+                    </dt>
+                    <dd className="mt-2 whitespace-pre-wrap break-words text-base font-bold leading-relaxed text-white">
+                      {strongsShortDefinition || selectedWordStudy.sourceGloss || selectedWordStudy.lexiconMeaning || "Verified Strong&apos;s record"}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
             </div>
-          </section>
 
-          <section className="rounded-[1.75rem] border border-emerald-200/20 bg-emerald-300/[0.07] p-5">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-100/75">
-                  Strong&apos;s entry
-                </p>
-                <p className="mt-1 text-3xl font-black text-white">
-                  {selectedWordStudy.strongs}
-                </p>
-              </div>
-
-              {strongsUrl ? (
-                <a
-                  href={strongsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-emerald-200/35 bg-emerald-300/15 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-emerald-50 underline decoration-emerald-100/40 underline-offset-4 transition hover:bg-emerald-300/25"
-                >
-                  Open Strong&apos;s {selectedWordStudy.strongs}
-                </a>
-              ) : null}
-            </div>
-
-            <div className="mt-5 grid gap-3">
-              <div className="rounded-2xl border border-emerald-200/20 bg-emerald-950/30 p-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-100/75">
-                  Quick meaning
-                </p>
-                <p className="mt-2 whitespace-pre-wrap break-words text-xl font-black leading-relaxed text-white">
-                  {strongsShortDefinition || selectedWordStudy.sourceGloss || selectedWordStudy.lexiconMeaning}
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                <DetailRow label={`${languageLabel} word`} value={originalDisplay} />
-                <DetailRow label="English word" value={titleCase(selectedWordStudy.englishWord)} />
-                <DetailRow label="Transliteration" value={strongsTransliteration} />
-                <DetailRow label="Pronunciation" value={strongsPronunciation} />
-              </div>
-
-              {strongsOrigin ? (
-                <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
-                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
-                    Origin / derivation
+            <div className="border-t border-white/10 bg-slate-950/35 p-5">
+              <div className="grid gap-3 md:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
+                    Lemma
                   </p>
-                  <p className="mt-2 whitespace-pre-wrap break-words text-sm font-bold leading-relaxed text-white/90">
-                    {strongsOrigin}
+                  <p className="mt-1 break-words text-sm font-bold text-white">
+                    {strongsLemma || selectedWordStudy.lemma || "Not listed"}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
+                    Grammar
+                  </p>
+                  <p className="mt-1 break-words text-sm font-bold text-white">
+                    {selectedWordStudy.morphology || "Not listed"}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
+                    Verse match
+                  </p>
+                  <p className="mt-1 text-sm font-bold leading-relaxed text-white">
+                    English “{titleCase(selectedWordStudy.englishWord)}” points to{" "}
+                    <span className="text-emerald-100">{originalDisplay}</span>.
+                  </p>
+                </div>
+              </div>
+
+              {strongsLongDefinition ? (
+                <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
+                    Strong&apos;s definition
+                  </p>
+                  <p className="mt-2 whitespace-pre-wrap break-words text-sm font-bold leading-relaxed text-white">
+                    {strongsLongDefinition}
                   </p>
                 </div>
               ) : null}
-
-              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
-                  Strong&apos;s definition
-                </p>
-                <p className="mt-2 whitespace-pre-wrap break-words text-base font-bold leading-relaxed text-white">
-                  {strongsLongDefinition || selectedWordStudy.lexiconMeaning || "No Strong&apos;s definition found for this word yet."}
-                </p>
-              </div>
             </div>
           </section>
-
-          <section className="grid gap-3 sm:grid-cols-2">
-            <DetailRow label="Strong&apos;s number" value={selectedWordStudy.strongs} />
-            <DetailRow label="Reference" value={selectedWordStudy.reference} />
-            <DetailRow label="Grammar / morphology" value={selectedWordStudy.morphology} />
-            <DetailRow label="Verse match">
-              English “{titleCase(selectedWordStudy.englishWord)}” points to{" "}
-              <span className="text-emerald-100">{originalDisplay}</span>.
-            </DetailRow>
-            <DetailRow label="Full Strong&apos;s page">
-              {strongsUrl ? (
-                <a
-                  href={strongsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-emerald-100 underline decoration-emerald-200/40 underline-offset-4"
-                >
-                  Open Strong&apos;s {selectedWordStudy.strongs}
-                </a>
-              ) : null}
-            </DetailRow>
-          </section>
+          {/* CHP clean Deep Dive card layout end */}
 
           {verifiedWordStudies.length > 1 ? (
-            <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-4">
+            <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-4">
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
                 Verified words in this verse
               </p>
@@ -529,8 +515,8 @@ export default function OriginalWordStudyModal({
             </section>
           ) : null}
 
-          <p className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center text-[11px] font-bold leading-relaxed text-white/50">
-            Verified source fields only: English word, Greek/Hebrew word, transliteration, pronunciation, origin, Strong&apos;s definition, grammar, and verse match. No AI summary. No interpretation.
+          <p className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center text-[11px] font-bold leading-relaxed text-white/55">
+            Verified source fields only: English word, Greek/Hebrew word, transliteration, pronunciation, Strong&apos;s number, Strong&apos;s definition, grammar, and verse match. No AI summary. No interpretation.
           </p>
         </div>
       </div>
