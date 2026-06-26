@@ -116,46 +116,80 @@ export default function WelcomePage() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-slate-200 sm:text-base">
-                Start with one verse. Open the full chapter. Follow the reading plan.
-                When a word is verified, look behind the English into the
-                Hebrew or Greek source.
+                Start with one verse. Open the full chapter. Follow the connected reading plan.
+                When Deep Dive verifies a word, it shows the original source, pronunciation,
+                Strong&apos;s number, and meaning.
               </p>
 
-              {/* CHP behind verse truth example start */}
-              <div className="mt-5 rounded-2xl border border-emerald-200/15 bg-slate-950/45 p-4">
-                <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-emerald-100">
-                  Original word example
-                </p>
-
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                            {/* CHP behind verse truth example start */}
+              <div className="mt-5 rounded-2xl border border-emerald-200/15 bg-slate-950/50 p-4 shadow-inner shadow-black/20">
+                <div className="flex flex-wrap items-end justify-between gap-2">
                   <div>
+                    <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-emerald-100">
+                      Original word example
+                    </p>
+                    <h3 className="mt-1 text-2xl font-black leading-none text-white">
+                      Truth
+                    </h3>
+                  </div>
+                  <p className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-300">
+                    Hebrew + Greek
+                  </p>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
                     <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
-                      Hebrew truth
+                      Hebrew
                     </p>
-                    <p className="mt-1 text-2xl font-black text-white" lang="he">
-                      אֱמֶת <span className="text-sm text-emerald-100">emet</span>
+                    <p className="mt-1 text-3xl font-black leading-none text-white" lang="he">
+                      אֱמֶת
                     </p>
-                    <p className="mt-1 text-xs font-bold leading-relaxed text-slate-300">
-                      Truth, faithfulness, reliability, firmness.
-                    </p>
-                    <p className="mt-2 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-500">
-                      Strong&apos;s H571
-                    </p>
+                    <dl className="mt-3 space-y-1 text-xs font-bold leading-relaxed text-slate-300">
+                      <div>
+                        <dt className="inline text-slate-500">Transliteration: </dt>
+                        <dd className="inline text-emerald-100">emet</dd>
+                      </div>
+                      <div>
+                        <dt className="inline text-slate-500">Pronunciation: </dt>
+                        <dd className="inline text-emerald-100">eh-MET</dd>
+                      </div>
+                      <div>
+                        <dt className="inline text-slate-500">Meaning: </dt>
+                        <dd className="inline">truth, faithfulness, reliability, firmness</dd>
+                      </div>
+                      <div>
+                        <dt className="inline text-slate-500">Strong&apos;s: </dt>
+                        <dd className="inline">H571</dd>
+                      </div>
+                    </dl>
                   </div>
 
-                  <div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
                     <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
-                      Greek truth
+                      Greek
                     </p>
-                    <p className="mt-1 text-2xl font-black text-white" lang="grc">
-                      ἀλήθεια <span className="text-sm text-emerald-100">alētheia</span>
+                    <p className="mt-1 text-3xl font-black leading-none text-white" lang="grc">
+                      ἀλήθεια
                     </p>
-                    <p className="mt-1 text-xs font-bold leading-relaxed text-slate-300">
-                      Truth, reality, what is true.
-                    </p>
-                    <p className="mt-2 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-500">
-                      Strong&apos;s G225
-                    </p>
+                    <dl className="mt-3 space-y-1 text-xs font-bold leading-relaxed text-slate-300">
+                      <div>
+                        <dt className="inline text-slate-500">Transliteration: </dt>
+                        <dd className="inline text-emerald-100">alētheia</dd>
+                      </div>
+                      <div>
+                        <dt className="inline text-slate-500">Pronunciation: </dt>
+                        <dd className="inline text-emerald-100">ah-LAY-thee-ah</dd>
+                      </div>
+                      <div>
+                        <dt className="inline text-slate-500">Meaning: </dt>
+                        <dd className="inline">truth, reality, what is true</dd>
+                      </div>
+                      <div>
+                        <dt className="inline text-slate-500">Strong&apos;s: </dt>
+                        <dd className="inline">G225</dd>
+                      </div>
+                    </dl>
                   </div>
                 </div>
               </div>
@@ -209,7 +243,7 @@ export default function WelcomePage() {
                     Truth · G225
                   </a>
                   <p className="mt-2 text-xs font-semibold leading-5 text-slate-400">
-                    Greek truth: reality, what is true.
+                    Greek source word for truth, reality, what is true.
                   </p>
                 </div>
               </div>
@@ -266,6 +300,6 @@ export default function WelcomePage() {
 
       <SiteFooter />
 
-</main>
+    </main>
   );
 }
