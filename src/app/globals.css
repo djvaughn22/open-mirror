@@ -1528,3 +1528,48 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     display: block !important;
   }
 }
+
+
+/* CHP reading plan last-3 repair */
+@media (max-width: 767px) {
+  .chp-reading-sheet {
+    max-width: 100%;
+    overflow: visible !important;
+  }
+
+  .chp-reading-table {
+    display: block;
+    width: 100%;
+    max-width: calc(100vw - 1.5rem);
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    padding-bottom: 0.75rem;
+  }
+
+  .chp-reading-table table {
+    min-width: 1180px !important;
+    width: 1180px !important;
+    table-layout: fixed !important;
+  }
+
+  .chp-reading-table th,
+  .chp-reading-table td {
+    min-width: 142px;
+  }
+
+  .chp-reading-table th:first-child,
+  .chp-reading-table td:first-child {
+    min-width: 44px;
+  }
+
+  .chp-reading-plan-cell a {
+    max-width: none !important;
+    min-width: 8.75rem !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+}

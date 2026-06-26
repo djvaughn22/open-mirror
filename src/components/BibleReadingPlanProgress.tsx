@@ -606,21 +606,55 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   <meta charset="utf-8" />
   <title>CrossHeartPray Bible Reading Plan</title>
   <style>
-    @page { size: letter landscape; margin: 0.22in; }
+    @page { size: letter landscape; margin: 0.18in; }
     * { box-sizing: border-box; }
-    body { margin: 0; background: #fff; color: #000; font-family: Arial, Helvetica, sans-serif; }
-    .print-note { margin: 0 0 10px; font-size: 12px; font-weight: 700; }
-    .header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; border-bottom: 1px solid #000; padding-bottom: 5px; }
-    .brand { font-size: 15px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; }
-    .title { text-align: right; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; }
-    .sub { margin-top: 2px; font-size: 7px; font-weight: 700; letter-spacing: 0.06em; }
-    table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 5.85px; line-height: 1.05; }
-    th, td { border: 1px solid #000; padding: 1.4px 2px; vertical-align: middle; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    thead th { font-size: 5.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; background: #f2f2f2; }
-    thead th span { font-size: 4.8px; letter-spacing: 0.08em; }
-    th.week { width: 20px; text-align: center; font-weight: 900; background: #f8f8f8; }
+    html, body { width: 100%; margin: 0; background: #fff; color: #000; font-family: Arial, Helvetica, sans-serif; }
+    body { padding: 0; }
+    .print-note { margin: 0 0 6px; font-size: 11px; font-weight: 700; }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 4px;
+    }
+    .brand { font-size: 14px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; }
+    .title { text-align: right; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; }
+    .sub { margin-top: 1px; font-size: 7px; font-weight: 700; letter-spacing: 0.05em; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 5.25px;
+      line-height: 1.02;
+      page-break-inside: avoid;
+    }
+    th, td {
+      border: 0.7px solid #000;
+      padding: 1px 1.5px;
+      vertical-align: middle;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    thead th {
+      font-size: 5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.035em;
+      text-align: left;
+      background: #f2f2f2;
+    }
+    thead th span { font-size: 4.5px; letter-spacing: 0.06em; }
+    th.week { width: 18px; text-align: center; font-weight: 900; background: #f8f8f8; }
     @media screen { body { padding: 16px; } }
-    @media print { .print-note { display: none; } }
+    @media print {
+      .print-note { display: none; }
+      body { padding: 0; }
+      table { page-break-after: avoid; }
+    }
   </style>
 </head>
 <body>
@@ -709,7 +743,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               href={nextReading.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-w-0 max-w-full truncate text-xl font-black leading-tight text-emerald-50 underline decoration-emerald-300/55 decoration-2 underline-offset-4 transition hover:text-white hover:decoration-emerald-100 sm:text-2xl"
+              className="inline-flex max-w-full items-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1.5 text-sm font-black leading-tight text-emerald-50 underline decoration-emerald-300/55 decoration-2 underline-offset-4 transition hover:border-emerald-200/40 hover:bg-emerald-300/18 hover:text-white hover:decoration-emerald-100 sm:text-base"
               title={nextReading.label}
             >
               {nextReading.label}
@@ -761,8 +795,8 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
         </div>
       ) : null}
 
-      <div className="chp-reading-table overflow-x-auto">
-        <table className="min-w-[1120px] w-full table-fixed border-collapse text-left">
+      <div className="chp-reading-table overflow-x-auto" role="region" aria-label="Bible reading plan table" tabIndex={0}>
+        <table className="min-w-[1180px] w-full table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
               <th className="w-10 border-r border-white/10 px-1.5 py-2 text-center text-[0.58rem] font-black uppercase tracking-[0.12em] text-slate-300">
