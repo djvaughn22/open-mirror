@@ -30,7 +30,7 @@ export default function CrossHeartPrayHero({
         </span>
       </div>
 
-      <p className="mt-4 text-center text-lg font-black uppercase tracking-[0.28em] text-emerald-100 sm:text-xl">BIBLE APP EVERY DAY</p>
+      <p className="mt-4 text-center text-lg font-black uppercase tracking-[0.28em] text-emerald-100 sm:text-xl">BIBLE EVERY DAY</p>
 
       {children ? (
         <div className="mx-auto mt-7 max-w-3xl text-base font-semibold leading-8 text-slate-300 sm:text-lg">
