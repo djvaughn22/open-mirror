@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
+import BibleBingoKingCard from "./BibleBingoKingCard";
 
 type BibleReadingPlanProgressProps = {
   weeks: BibleReadingPlanWeek[];
@@ -775,6 +776,14 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     <section className="chp-reading-sheet overflow-visible rounded-2xl border border-white/10 bg-slate-950/35">
       <div className="chp-plan-progress-summary border-b border-white/10 bg-slate-950/45 p-3 print:hidden">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href="/explorebible"
+            aria-label="Open Bible Bingo 7"
+            className="chp-reading-king-link inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.05] shadow-sm transition hover:bg-white/[0.10]"
+          >
+            <BibleBingoKingCard className="h-9 w-7" />
+          </a>
+
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2">
             <span className="text-lg font-black leading-none text-white">{weeksLeft}</span>
             <span className="text-[0.58rem] font-black uppercase tracking-[0.14em] text-emerald-100">
@@ -784,7 +793,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
           <div className="min-w-0 flex-1">
             <div className="mb-1 flex items-center justify-between gap-3 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-300">
-              <span>{doneCount} read</span>
+              <span>{doneCount}/{readings.length}</span>
               <span className="text-emerald-100">{percent}% done</span>
             </div>
             <div className="h-2 overflow-visible rounded-full border border-white/10 bg-white/10">
@@ -830,14 +839,17 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
             </a>
 
             <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-              <label className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.66rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:bg-emerald-300/18">
+              <label
+                className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 text-emerald-50 transition hover:bg-emerald-300/18"
+                title="Mark next reading"
+              >
                 <input
                   type="checkbox"
                   checked={Boolean(progress[nextReading.id])}
                   onChange={() => toggleReading(nextReading.id)}
+                  aria-label="Mark next reading"
                   className="h-3.5 w-3.5 accent-emerald-300"
                 />
-                Read
               </label>
 
               <button
@@ -873,26 +885,23 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       ) : null}
 
       <div className="chp-reading-table overflow-x-auto">
-        <table className="min-w-[1120px] w-full border-collapse text-left">
+        <table className="min-w-[900px] w-full table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
-              <th className="w-12 border-r border-white/10 px-2 py-3 text-center text-[0.6rem] font-black uppercase tracking-[0.14em] text-slate-300">
-                Week
+              <th className="w-10 border-r border-white/10 px-1.5 py-2 text-center text-[0.58rem] font-black uppercase tracking-[0.12em] text-slate-300">
+                Wk
               </th>
               {LANES.map((lane) => (
                 <th
                   key={lane.key}
                   className="border-r border-white/10 px-2.5 py-3 text-left last:border-r-0"
                 >
-                  <div className="flex min-h-[3.25rem] flex-col justify-center gap-0.5">
-                    <p className="text-[0.58rem] font-black uppercase tracking-[0.16em] text-emerald-100">
-                      {lane.day}
+                  <div className="flex min-h-[2.25rem] flex-col justify-center gap-0.5">
+                    <p className="text-[0.56rem] font-black uppercase tracking-[0.14em] text-emerald-100">
+                      {lane.short}
                     </p>
-                    <p className="text-xs font-black uppercase tracking-[0.12em] text-white">
+                    <p className="text-[0.68rem] font-black uppercase tracking-[0.08em] text-white">
                       {lane.lane}
-                    </p>
-                    <p className="text-[0.62rem] font-bold normal-case tracking-normal text-slate-400">
-                      {lane.summary}
                     </p>
                   </div>
                 </th>
@@ -924,7 +933,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                       <td
                         id={id}
                         key={lane.key}
-                        className={`chp-reading-plan-cell scroll-mt-36 border-r border-white/[0.07] px-3 py-1.5 text-left transition duration-500 last:border-r-0 ${
+                        className={`chp-reading-plan-cell scroll-mt-36 border-r border-white/[0.07] px-2 py-1 text-left transition duration-500 last:border-r-0 ${
                           highlightedReadingId === id
                             ? "chp-reading-target-cell bg-emerald-300/[0.18]"
                             : isRead
@@ -932,20 +941,20 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                               : "bg-white/[0.015]"
                         }`}
                       >
-                        <div className="flex min-h-[2.15rem] items-center justify-start gap-2">
+                        <div className="flex min-h-[1.85rem] items-center justify-start gap-1.5">
                           <input
                             type="checkbox"
                             checked={isRead}
                             onChange={() => toggleReading(id)}
                             aria-label={`${isRead ? "Mark unread" : "Mark read"} ${label}`}
-                            className="h-4 w-4 shrink-0 accent-emerald-300"
+                            className="h-3.5 w-3.5 shrink-0 accent-emerald-300"
                           />
 
                           <a
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block min-w-0 max-w-[9.5rem] truncate text-left text-[0.98rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
+                            className="block min-w-0 max-w-[7.5rem] truncate text-left text-[0.86rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
                             title={label}
                           >
                             {label}
@@ -959,16 +968,6 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
             })}
           </tbody>
         </table>
-      </div>
-
-      <div className="border-t border-white/10 bg-white/[0.025] px-3 py-2 text-[0.64rem] font-bold leading-5 text-slate-400">
-        <div className="flex flex-wrap gap-x-4 gap-y-1">
-          {LANES.map((lane) => (
-            <span key={lane.key}>
-              <span className="text-emerald-100">{lane.short}</span> {lane.lane}
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );
