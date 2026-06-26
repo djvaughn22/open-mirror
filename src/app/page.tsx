@@ -224,7 +224,74 @@ export default function WelcomePage() {
         </section>
       </div>
 
+      {/* CHP original word example start */}
+      <section className="mx-auto mt-6 w-full max-w-5xl rounded-[1.75rem] border border-emerald-200/15 bg-slate-950/45 p-4 shadow-2xl shadow-black/25 sm:p-5">
+        <div className="flex flex-col gap-4">
+          <div>
+            <p className="text-[0.62rem] font-black uppercase tracking-[0.22em] text-emerald-100">
+              Original Word Example
+            </p>
+            <h2 className="mt-1 text-2xl font-black tracking-tight text-white sm:text-3xl">
+              Truth
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm font-semibold leading-relaxed text-slate-300">
+              One English word can carry a family of meaning across Scripture. Deep Dive keeps it source-backed:
+              verified original word, transliteration, pronunciation, Strong&apos;s number, morphology, and meaning.
+            </p>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-sky-100">
+                Biblical Hebrew
+              </p>
+              <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-1">
+                <p className="text-3xl font-black text-white" lang="he">
+                  אֱמֶת
+                </p>
+                <p className="pb-1 text-sm font-black text-emerald-100">
+                  emet
+                </p>
+              </div>
+              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-300">
+                Truth, faithfulness, reliability, firmness.
+              </p>
+              <p className="mt-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-400">
+                Strong&apos;s H571
+              </p>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-sky-100">
+                Biblical Greek
+              </p>
+              <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-1">
+                <p className="text-3xl font-black text-white" lang="grc">
+                  ἀλήθεια
+                </p>
+                <p className="pb-1 text-sm font-black text-emerald-100">
+                  alētheia
+                </p>
+              </div>
+              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-300">
+                Truth, reality, what is true.
+              </p>
+              <p className="mt-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-400">
+                Strong&apos;s G225
+              </p>
+            </article>
+          </div>
+
+          <p className="rounded-2xl border border-emerald-200/15 bg-emerald-300/10 px-4 py-3 text-xs font-bold leading-relaxed text-emerald-50">
+            Deep Dive should show the verified language for the verse: Hebrew or Aramaic in the Old Testament,
+            Greek in the New Testament. No guessing. No AI interpretation.
+          </p>
+        </div>
+      </section>
+      {/* CHP original word example end */}
+
       <SiteFooter />
-    </main>
+
+</main>
   );
 }
