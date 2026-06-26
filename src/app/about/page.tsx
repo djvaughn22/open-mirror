@@ -101,20 +101,21 @@ export default function AboutPage() {
               <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">Why 7 cards?</p>
 
               <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
-                One board. Seven places in Scripture. Each card has a purpose.
+                One board. Seven Reading Plan lanes. Each card has a purpose.
               </p>
 
               <ul className="mt-4 space-y-2 text-sm font-semibold leading-6 text-slate-300">
-                <li>Old Testament — beginning, history, prophecy</li>
-                <li>Psalms — praise and prayer</li>
-                <li>Proverbs — wisdom</li>
-                <li>Gospel — Jesus</li>
-                <li>Epistles — the Church</li>
-                <li>Genesis + Revelation — the beginning and the end together</li>
+                <li>Sunday — Epistles: Romans through Jude</li>
+                <li>Monday — Law: Genesis through Deuteronomy</li>
+                <li>Tuesday — History: Joshua through Esther</li>
+                <li>Wednesday — Psalms</li>
+                <li>Thursday — Poetry: Job through Song of Solomon</li>
+                <li>Friday — Prophecy: Isaiah through Malachi</li>
+                <li>Saturday — Gospels: Matthew, Mark, Luke, John</li>
               </ul>
 
               <p className="mt-4 text-base font-black text-emerald-50">
-                God&apos;s master plan, on one board.
+                The weekly Bible path, on one board.
               </p>
             </div>
 
