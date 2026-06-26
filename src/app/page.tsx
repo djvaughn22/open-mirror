@@ -105,7 +105,7 @@ export default function WelcomePage() {
         </section>
 
         <section className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-[2rem] border border-emerald-200/15 bg-slate-950/35 shadow-2xl shadow-emerald-950/15 sm:mt-14">
-          <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid gap-0 lg:grid-cols-[1fr_1.15fr]">
             <div className="border-b border-white/10 bg-emerald-300/[0.08] p-6 lg:border-b-0 lg:border-r lg:border-white/10">
               <p className="text-xs font-black uppercase tracking-[0.26em] text-emerald-100">
                 Open the Word
@@ -121,82 +121,10 @@ export default function WelcomePage() {
                 Strong&apos;s number, and meaning.
               </p>
 
-                            {/* CHP behind verse truth example start */}
-              <div className="mt-5 rounded-2xl border border-emerald-200/15 bg-slate-950/50 p-4 shadow-inner shadow-black/20">
-                <div className="flex flex-wrap items-end justify-between gap-2">
-                  <div>
-                    <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-emerald-100">
-                      Original word example
-                    </p>
-                    <h3 className="mt-1 text-2xl font-black leading-none text-white">
-                      Truth
-                    </h3>
-                  </div>
-                  <p className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-300">
-                    Hebrew + Greek
-                  </p>
-                </div>
 
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
-                    <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
-                      Hebrew
-                    </p>
-                    <p className="mt-1 text-3xl font-black leading-none text-white" lang="he">
-                      אֱמֶת
-                    </p>
-                    <dl className="mt-3 space-y-1 text-xs font-bold leading-relaxed text-slate-300">
-                      <div>
-                        <dt className="inline text-slate-500">Transliteration: </dt>
-                        <dd className="inline text-emerald-100">emet</dd>
-                      </div>
-                      <div>
-                        <dt className="inline text-slate-500">Pronunciation: </dt>
-                        <dd className="inline text-emerald-100">eh-MET</dd>
-                      </div>
-                      <div>
-                        <dt className="inline text-slate-500">Meaning: </dt>
-                        <dd className="inline">truth, faithfulness, reliability, firmness</dd>
-                      </div>
-                      <div>
-                        <dt className="inline text-slate-500">Strong&apos;s: </dt>
-                        <dd className="inline">H571</dd>
-                      </div>
-                    </dl>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
-                    <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
-                      Greek
-                    </p>
-                    <p className="mt-1 text-3xl font-black leading-none text-white" lang="grc">
-                      ἀλήθεια
-                    </p>
-                    <dl className="mt-3 space-y-1 text-xs font-bold leading-relaxed text-slate-300">
-                      <div>
-                        <dt className="inline text-slate-500">Transliteration: </dt>
-                        <dd className="inline text-emerald-100">alētheia</dd>
-                      </div>
-                      <div>
-                        <dt className="inline text-slate-500">Pronunciation: </dt>
-                        <dd className="inline text-emerald-100">ah-LAY-thee-ah</dd>
-                      </div>
-                      <div>
-                        <dt className="inline text-slate-500">Meaning: </dt>
-                        <dd className="inline">truth, reality, what is true</dd>
-                      </div>
-                      <div>
-                        <dt className="inline text-slate-500">Strong&apos;s: </dt>
-                        <dd className="inline">G225</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-              {/* CHP behind verse truth example end */}
             </div>
 
-            <div className="p-6">
+            <div className="flex flex-col justify-between p-6">
               <div className="grid gap-4 sm:grid-cols-3">
                 <div>
                   <p className="text-[0.66rem] font-black uppercase tracking-[0.2em] text-emerald-100">
@@ -248,7 +176,7 @@ export default function WelcomePage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+              <div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-4">
                 {deepDiveLinks.map((item) => {
                   const external = item.href.startsWith("http");
 
@@ -275,6 +203,88 @@ export default function WelcomePage() {
               </div>
             </div>
           </div>
+
+          {/* CHP behind verse truth example start */}
+          <div className="border-t border-white/10 bg-slate-950/45 p-5 sm:p-6">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch">
+              <div className="lg:w-[15rem] lg:shrink-0">
+                <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-emerald-100">
+                  Original word example
+                </p>
+                <h3 className="mt-1 text-3xl font-black leading-none text-white">
+                  Truth
+                </h3>
+                <p className="mt-3 text-xs font-bold leading-6 text-slate-300">
+                  One English word, shown with verified source language details.
+                </p>
+              </div>
+
+              <div className="grid flex-1 gap-3 md:grid-cols-2">
+                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
+                        Hebrew
+                      </p>
+                      <p className="mt-2 text-4xl font-black leading-none text-white" lang="he">
+                        אֱמֶת
+                      </p>
+                    </div>
+                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-300">
+                      H571
+                    </span>
+                  </div>
+
+                  <dl className="mt-4 grid gap-2 text-xs font-bold leading-relaxed text-slate-300">
+                    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+                      <dt className="text-slate-500">Transliteration</dt>
+                      <dd className="text-emerald-100">emet</dd>
+                    </div>
+                    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+                      <dt className="text-slate-500">Pronunciation</dt>
+                      <dd className="text-emerald-100">eh-MET</dd>
+                    </div>
+                    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+                      <dt className="text-slate-500">Meaning</dt>
+                      <dd>truth, faithfulness, reliability, firmness</dd>
+                    </div>
+                  </dl>
+                </article>
+
+                <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
+                        Greek
+                      </p>
+                      <p className="mt-2 text-4xl font-black leading-none text-white" lang="grc">
+                        ἀλήθεια
+                      </p>
+                    </div>
+                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-300">
+                      G225
+                    </span>
+                  </div>
+
+                  <dl className="mt-4 grid gap-2 text-xs font-bold leading-relaxed text-slate-300">
+                    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+                      <dt className="text-slate-500">Transliteration</dt>
+                      <dd className="text-emerald-100">alētheia</dd>
+                    </div>
+                    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+                      <dt className="text-slate-500">Pronunciation</dt>
+                      <dd className="text-emerald-100">ah-LAY-thee-ah</dd>
+                    </div>
+                    <div className="grid gap-1 sm:grid-cols-[7.5rem_1fr]">
+                      <dt className="text-slate-500">Meaning</dt>
+                      <dd>truth, reality, what is true</dd>
+                    </div>
+                  </dl>
+                </article>
+              </div>
+            </div>
+          </div>
+          {/* CHP behind verse truth example end */}
         </section>
         <section className="mx-auto mt-12 max-w-5xl">
           <div className="flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.025] px-4 py-3 text-center">
