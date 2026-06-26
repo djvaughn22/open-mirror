@@ -16,7 +16,7 @@ const dailyWays = [
     eyebrow: "Structured",
     title: "52-week Bible Reading Plan",
     body:
-      "A steady path through Scripture with seven lanes across each week and a simple rhythm to return to every day.",
+      "A 52-week Bible table with seven lanes across each week, chapter links, checkboxes, and simple progress.",
     cta: "Open Bible Reading",
   },
   {
@@ -25,7 +25,7 @@ const dailyWays = [
     eyebrow: "Daily",
     title: "Daily Hope",
     body:
-      "A short prayer and Scripture routine for the day, ready whenever you want to slow down and come back to the Word.",
+      "A fixed daily prayer and Scripture routine with the same hope verses organized by day of the week.",
     cta: "Open Daily Hope",
   },
   {
@@ -34,7 +34,7 @@ const dailyWays = [
     eyebrow: "7-card deck",
     title: "Bible Bingo 7",
     body:
-      "Deal seven Bible cards, pick what stands out, open the chapter, and keep exploring where the verse leads.",
+      "Deal seven Bible cards, open the verse or chapter, and connect the card to the reading plan.",
     cta: "Deal 7 Cards",
   },
 ];
@@ -74,7 +74,7 @@ export default function WelcomePage() {
             <Link
               key={item.href}
               href={item.href}
-              className="group rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-7 text-left shadow-2xl shadow-slate-950/30 transition hover:-translate-y-1 hover:border-emerald-200/40 hover:bg-slate-900"
+              className="group flex h-full min-h-[22rem] flex-col rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-7 text-left shadow-2xl shadow-slate-950/30 transition hover:-translate-y-1 hover:border-emerald-200/40 hover:bg-slate-900"
             >
               <div className="flex items-center justify-between gap-4">
                 {item.icon === "king-of-hearts" ? (
@@ -95,8 +95,8 @@ export default function WelcomePage() {
                 {item.body}
               </p>
 
-              <div className="mt-7">
-                <span className="inline-flex rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-black text-slate-100 transition hover:bg-white/[0.10] group-hover:bg-white/[0.10]">
+              <div className="mt-auto pt-7">
+                <span className="inline-flex min-w-[11.5rem] justify-center rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-black text-slate-100 transition hover:bg-white/[0.10] group-hover:border-emerald-200/30 group-hover:bg-emerald-300/10 group-hover:text-emerald-50">
                   {item.cta} →
                 </span>
               </div>
