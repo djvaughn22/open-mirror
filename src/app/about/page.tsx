@@ -4,7 +4,8 @@ import SiteFooter from "../../components/SiteFooter";
 
 export const metadata = {
   title: "About | Cross Heart Pray",
-  description: "A simple Bible routine built around Bible Bingo 7, the Bible Reading Plan, Daily Hope, and Cross Heart Pray.",
+  description:
+    "A simple Bible routine built around the Bible Reading Plan, Daily Hope, Bible Bingo 7, source-backed Deep Dive, and progress tracking.",
 };
 
 export default function AboutPage() {
@@ -27,15 +28,15 @@ export default function AboutPage() {
               CrossHeartPray brings the Bible everywhere.
             </p>
             <p className="text-sm font-semibold leading-7 text-slate-300 sm:text-base sm:leading-8">
-              Start anywhere in 31,103 Holy Bible verses: Bible Bingo, chapters, Daily Hope, the Reading Plan, and source-backed Deep Dive all connect.
+              Start with the Bible Reading Plan, return to Daily Hope, deal Bible Bingo 7, open the chapter, use Deep Dive when source-backed original-language data is available, and track progress as you go.
             </p>
             <p className="text-sm font-semibold leading-7 text-slate-300 sm:text-base sm:leading-8">
-              Deal a verse, open the chapter, follow the matching plan lane, track progress, and keep building future Deep Dives from the same Bible path.
+              Everything connects through 31,103 Holy Bible verses: reading lanes, chapters, daily prayer, source notes, and progress.
             </p>
           </div>
 
           <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">
-            Bible Bingo → Reading Plan → Daily Hope → Deep Dive → Track progress
+            Bible Reading Plan → Daily Hope → Bible Bingo 7 → Deep Dive → Track progress
           </p>
         </section>
 
@@ -44,9 +45,10 @@ export default function AboutPage() {
             <h2 className="text-2xl font-black text-white">Bible Reading Plan</h2>
 
             <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
-              <li>Open the one-page PDF.</li>
-              <li>Follow a steady rhythm through Scripture.</li>
-              <li>Return anytime from the menu.</li>
+              <li>Start here with the 52-week board.</li>
+              <li>Follow seven lanes across each week.</li>
+              <li>Open the linked chapter in the Bible app.</li>
+              <li>Mark readings done and keep moving.</li>
             </ul>
 
             <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
@@ -91,7 +93,8 @@ export default function AboutPage() {
             <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
               <li>One board.</li>
               <li>Seven Bible verses.</li>
-              <li>Deep Dive word study when source-backed original-language data is available.</li>
+              <li>Each card opens the Bible chapter.</li>
+              <li>Cards connect back to the matching Reading Plan lane.</li>
             </ul>
 
             <div className="mt-6 rounded-[1.5rem] border border-emerald-200/15 bg-emerald-300/[0.06] p-5 text-left">
@@ -115,20 +118,48 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.035] p-4">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
-                More card games to come
-              </p>
-              <p className="mt-2 text-sm font-semibold leading-7 text-slate-300">
-                Same Bible-first idea: cards, verses, chapters, Reading Plan progress, sharing, and source-backed Deep Dive.
-              </p>
-            </div>
-
             <Link
-              href="/"
+              href="/explorebible"
               className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
             >
               Open Bible Bingo
+            </Link>
+          </section>
+
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Deep Dive</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>Deep Dive appears only when source-backed original-language data is available.</li>
+              <li>Source details can include the original word, transliteration, pronunciation, source gloss, lexicon meaning, Strong&apos;s number, lemma, and morphology.</li>
+              <li>If no verified source match is found, the page says so instead of guessing.</li>
+            </ul>
+
+            <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.035] p-4">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-100">
+                Source info
+              </p>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-300">
+                The Bible is the path. Chapter links open in the Bible app. Deep Dive adds original-language source notes only where the data is verified.
+              </p>
+            </div>
+          </section>
+
+          <section className="border-t border-white/10 pt-8">
+            <h2 className="text-2xl font-black text-white">Track Progress</h2>
+
+            <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
+              <li>Mark Reading Plan cells complete.</li>
+              <li>See the next reading.</li>
+              <li>Use Bible Bingo cards to return to the plan.</li>
+              <li>Print or save a clean Reading Plan PDF.</li>
+            </ul>
+
+            <Link
+              href="/bible-reading-plan"
+              className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/15"
+            >
+              Track Progress
             </Link>
           </section>
 
