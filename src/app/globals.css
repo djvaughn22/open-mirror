@@ -1573,3 +1573,114 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     text-overflow: clip !important;
   }
 }
+
+
+/* CHP combined reading daily hope repair */
+@media (max-width: 767px) {
+  .chp-reading-sheet,
+  .chp-reading-progress-shell,
+  .chp-reading-progress-shell > section {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .chp-reading-table {
+    display: block !important;
+    width: calc(100vw - 1rem) !important;
+    max-width: calc(100vw - 1rem) !important;
+    margin-left: calc(50% - 50vw + 0.5rem) !important;
+    margin-right: calc(50% - 50vw + 0.5rem) !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    padding: 0 0.5rem 0.85rem;
+    scrollbar-width: auto;
+  }
+
+  .chp-reading-table table {
+    min-width: 1260px !important;
+    width: 1260px !important;
+    table-layout: fixed !important;
+  }
+
+  .chp-reading-plan-cell a {
+    max-width: none !important;
+    min-width: 9rem !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .chp-plan-detail-static {
+    display: block;
+  }
+
+  .chp-plan-detail-static > summary {
+    cursor: pointer;
+  }
+
+  .chp-plan-detail-static:not([open]) > :not(summary) {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .chp-plan-detail-static {
+    display: block;
+  }
+
+  .chp-plan-detail-static > summary {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .chp-plan-detail-static > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .chp-plan-detail-static > summary::marker {
+    content: "";
+  }
+
+  .chp-plan-detail-static > :not(summary) {
+    display: block !important;
+  }
+}
+
+@media print {
+  .chp-daily-hope-print-root {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .chp-daily-hope-print-root * {
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .chp-daily-hope-print-root button,
+  .chp-daily-hope-print-root [aria-label*="share" i],
+  .chp-daily-hope-print-root [aria-label*="deep dive" i] {
+    display: none !important;
+  }
+
+  .chp-daily-hope-print-root article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #000 !important;
+    background: #fff !important;
+  }
+
+  .chp-daily-hope-print-root section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .chp-daily-hope-print-root a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+}

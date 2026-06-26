@@ -606,54 +606,96 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   <meta charset="utf-8" />
   <title>CrossHeartPray Bible Reading Plan</title>
   <style>
-    @page { size: letter landscape; margin: 0.18in; }
+    @page { size: letter portrait; margin: 0.12in; }
     * { box-sizing: border-box; }
-    html, body { width: 100%; margin: 0; background: #fff; color: #000; font-family: Arial, Helvetica, sans-serif; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #fff;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+    }
     body { padding: 0; }
-    .print-note { margin: 0 0 6px; font-size: 11px; font-weight: 700; }
+    .print-note {
+      margin: 0 0 3px;
+      font-size: 8px;
+      font-weight: 700;
+    }
     .header {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 4px;
+      gap: 8px;
+      margin-bottom: 3px;
       border-bottom: 1px solid #000;
-      padding-bottom: 4px;
+      padding-bottom: 3px;
     }
-    .brand { font-size: 14px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; }
-    .title { text-align: right; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; }
-    .sub { margin-top: 1px; font-size: 7px; font-weight: 700; letter-spacing: 0.05em; }
+    .brand {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .title {
+      text-align: right;
+      font-size: 8.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .sub {
+      margin-top: 1px;
+      font-size: 5.5px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
     table {
       width: 100%;
+      height: 10.22in;
       border-collapse: collapse;
       table-layout: fixed;
-      font-size: 5.25px;
+      font-size: 5px;
       line-height: 1.02;
       page-break-inside: avoid;
     }
+    thead tr { height: 0.21in; }
+    tbody tr { height: 0.192in; }
     th, td {
-      border: 0.7px solid #000;
-      padding: 1px 1.5px;
+      border: 0.6px solid #000;
+      padding: 0.6px 1px;
       vertical-align: middle;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
     thead th {
-      font-size: 5px;
+      font-size: 4.6px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.035em;
+      letter-spacing: 0.02em;
       text-align: left;
       background: #f2f2f2;
     }
-    thead th span { font-size: 4.5px; letter-spacing: 0.06em; }
-    th.week { width: 18px; text-align: center; font-weight: 900; background: #f8f8f8; }
-    @media screen { body { padding: 16px; } }
+    thead th span {
+      font-size: 4.1px;
+      letter-spacing: 0.03em;
+    }
+    th.week {
+      width: 18px;
+      max-width: 18px;
+      text-align: center;
+      font-weight: 900;
+      background: #f8f8f8;
+    }
+    td { width: calc((100% - 18px) / 7); }
+    @media screen { body { padding: 12px; } }
     @media print {
       .print-note { display: none; }
       body { padding: 0; }
-      table { page-break-after: avoid; }
+      .header { break-after: avoid; }
+      table { break-inside: avoid; page-break-inside: avoid; }
     }
   </style>
 </head>
@@ -796,7 +838,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       ) : null}
 
       <div className="chp-reading-table overflow-x-auto" role="region" aria-label="Bible reading plan table" tabIndex={0}>
-        <table className="min-w-[1180px] w-full table-fixed border-collapse text-left">
+        <table className="w-[1260px] min-w-[1260px] table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
               <th className="w-10 border-r border-white/10 px-1.5 py-2 text-center text-[0.58rem] font-black uppercase tracking-[0.12em] text-slate-300">
