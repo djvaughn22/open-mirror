@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
-import BibleBingoKingCard from "./BibleBingoKingCard";
 
 type BibleReadingPlanProgressProps = {
   weeks: BibleReadingPlanWeek[];
@@ -661,13 +660,6 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     <section className="chp-reading-sheet overflow-visible rounded-2xl border border-white/10 bg-slate-950/35">
       <div className="chp-plan-progress-summary border-b border-white/10 bg-slate-950/45 p-3 print:hidden">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a
-            href="/explorebible"
-            aria-label="Open Bible Bingo 7"
-            className="chp-reading-king-link inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.05] shadow-sm transition hover:bg-white/[0.10]"
-          >
-            <BibleBingoKingCard className="h-9 w-7" />
-          </a>
 
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2">
             <span className="text-lg font-black leading-none text-white">{weeksLeft}</span>
@@ -717,7 +709,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               href={nextReading.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-w-0 max-w-full truncate text-lg font-black leading-tight text-emerald-50 underline decoration-emerald-300/50 decoration-2 underline-offset-4 transition hover:text-white hover:decoration-emerald-100 sm:text-xl"
+              className="min-w-0 max-w-full truncate text-xl font-black leading-tight text-emerald-50 underline decoration-emerald-300/55 decoration-2 underline-offset-4 transition hover:text-white hover:decoration-emerald-100 sm:text-2xl"
               title={nextReading.label}
             >
               {nextReading.label}
