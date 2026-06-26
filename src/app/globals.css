@@ -1373,3 +1373,81 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   }
 }
 
+
+/* CHP mobile Reading Plan: compact 52-week lane table */
+@media (max-width: 640px) {
+  .chp-reading-sheet {
+    border-radius: 1rem !important;
+  }
+
+  .chp-reading-sheet > div:first-child {
+    padding: 0.55rem !important;
+  }
+
+  .chp-reading-table {
+    margin-top: 0.5rem !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chp-reading-table table {
+    min-width: 560px !important;
+    table-layout: fixed !important;
+  }
+
+  .chp-reading-table th {
+    padding: 0.35rem 0.25rem !important;
+    vertical-align: bottom !important;
+  }
+
+  .chp-reading-table thead th:first-child {
+    width: 2.1rem !important;
+  }
+
+  .chp-reading-table thead th p {
+    line-height: 1.05 !important;
+  }
+
+  .chp-reading-table thead th p:first-child {
+    font-size: 0.52rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .chp-reading-table thead th p:nth-child(2) {
+    margin-top: 0.1rem !important;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap !important;
+  }
+
+  .chp-reading-table thead th p:nth-child(3) {
+    display: none !important;
+  }
+
+  .chp-reading-table tbody th {
+    width: 2.1rem !important;
+    padding: 0.25rem 0.15rem !important;
+    font-size: 0.58rem !important;
+  }
+
+  .chp-reading-plan-cell {
+    padding: 0.28rem 0.25rem !important;
+  }
+
+  .chp-reading-plan-cell label {
+    gap: 0.25rem !important;
+  }
+
+  .chp-reading-plan-cell input[type="checkbox"] {
+    height: 0.72rem !important;
+    width: 0.72rem !important;
+  }
+
+  .chp-reading-plan-cell a {
+    max-width: 3.7rem !important;
+    font-size: 0.68rem !important;
+    line-height: 1.05 !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 2px !important;
+  }
+}
