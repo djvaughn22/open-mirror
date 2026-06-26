@@ -50,7 +50,7 @@ const deepDiveLinks = [
   },
   {
     label: "Original word example",
-    href: "https://biblehub.com/greek/3056.htm",
+    href: "https://biblehub.com/greek/225.htm",
   },
 ];
 
@@ -120,6 +120,46 @@ export default function WelcomePage() {
                 When a word is verified, look behind the English into the
                 Hebrew or Greek source.
               </p>
+
+              {/* CHP behind verse truth example start */}
+              <div className="mt-5 rounded-2xl border border-emerald-200/15 bg-slate-950/45 p-4">
+                <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-emerald-100">
+                  Original word example
+                </p>
+
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
+                      Hebrew truth
+                    </p>
+                    <p className="mt-1 text-2xl font-black text-white" lang="he">
+                      אֱמֶת <span className="text-sm text-emerald-100">emet</span>
+                    </p>
+                    <p className="mt-1 text-xs font-bold leading-relaxed text-slate-300">
+                      Truth, faithfulness, reliability, firmness.
+                    </p>
+                    <p className="mt-2 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-500">
+                      Strong&apos;s H571
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-[0.55rem] font-black uppercase tracking-[0.14em] text-sky-100">
+                      Greek truth
+                    </p>
+                    <p className="mt-1 text-2xl font-black text-white" lang="grc">
+                      ἀλήθεια <span className="text-sm text-emerald-100">alētheia</span>
+                    </p>
+                    <p className="mt-1 text-xs font-bold leading-relaxed text-slate-300">
+                      Truth, reality, what is true.
+                    </p>
+                    <p className="mt-2 text-[0.55rem] font-black uppercase tracking-[0.12em] text-slate-500">
+                      Strong&apos;s G225
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* CHP behind verse truth example end */}
             </div>
 
             <div className="p-6">
@@ -161,15 +201,15 @@ export default function WelcomePage() {
                     Strong’s
                   </p>
                   <a
-                    href="https://biblehub.com/greek/3056.htm"
+                    href="https://biblehub.com/greek/225.htm"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-flex text-lg font-black text-white underline decoration-emerald-300/45 decoration-2 underline-offset-4 transition hover:text-emerald-100"
                   >
-                    Logos · G3056
+                    Truth · G225
                   </a>
                   <p className="mt-2 text-xs font-semibold leading-5 text-slate-400">
-                    Source-backed word study, not a guess.
+                    Greek truth: reality, what is true.
                   </p>
                 </div>
               </div>
@@ -223,72 +263,6 @@ export default function WelcomePage() {
           </p>
         </section>
       </div>
-
-      {/* CHP original word example start */}
-      <section className="mx-auto mt-6 w-full max-w-5xl rounded-[1.75rem] border border-emerald-200/15 bg-slate-950/45 p-4 shadow-2xl shadow-black/25 sm:p-5">
-        <div className="flex flex-col gap-4">
-          <div>
-            <p className="text-[0.62rem] font-black uppercase tracking-[0.22em] text-emerald-100">
-              Original Word Example
-            </p>
-            <h2 className="mt-1 text-2xl font-black tracking-tight text-white sm:text-3xl">
-              Truth
-            </h2>
-            <p className="mt-2 max-w-3xl text-sm font-semibold leading-relaxed text-slate-300">
-              One English word can carry a family of meaning across Scripture. Deep Dive keeps it source-backed:
-              verified original word, transliteration, pronunciation, Strong&apos;s number, morphology, and meaning.
-            </p>
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-2">
-            <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-sky-100">
-                Biblical Hebrew
-              </p>
-              <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-1">
-                <p className="text-3xl font-black text-white" lang="he">
-                  אֱמֶת
-                </p>
-                <p className="pb-1 text-sm font-black text-emerald-100">
-                  emet
-                </p>
-              </div>
-              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-300">
-                Truth, faithfulness, reliability, firmness.
-              </p>
-              <p className="mt-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-400">
-                Strong&apos;s H571
-              </p>
-            </article>
-
-            <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-sky-100">
-                Biblical Greek
-              </p>
-              <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-1">
-                <p className="text-3xl font-black text-white" lang="grc">
-                  ἀλήθεια
-                </p>
-                <p className="pb-1 text-sm font-black text-emerald-100">
-                  alētheia
-                </p>
-              </div>
-              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-300">
-                Truth, reality, what is true.
-              </p>
-              <p className="mt-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-400">
-                Strong&apos;s G225
-              </p>
-            </article>
-          </div>
-
-          <p className="rounded-2xl border border-emerald-200/15 bg-emerald-300/10 px-4 py-3 text-xs font-bold leading-relaxed text-emerald-50">
-            Deep Dive should show the verified language for the verse: Hebrew or Aramaic in the Old Testament,
-            Greek in the New Testament. No guessing. No AI interpretation.
-          </p>
-        </div>
-      </section>
-      {/* CHP original word example end */}
 
       <SiteFooter />
 
