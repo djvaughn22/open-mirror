@@ -7,6 +7,7 @@ import SiteHeader from "./SiteHeader";
 
 import { useEffect, useMemo, useState } from "react";
 import BibleBingoShareMenu from "./BibleBingoShareMenu";
+import BibleBingoKingCard from "./BibleBingoKingCard";
 import CentralTimeBadge from "./CentralTimeBadge";
 import OriginalWordStudyModal from "./OriginalWordStudyModal";
 import VerifiedVerseText from "./VerifiedVerseText";
@@ -508,8 +509,17 @@ export default function DailyHopeRoutine({
         <PageNucleusHero
           title="Daily Hope"
           subhead="A prayer and Scripture rhythm for the day."
-          body="Open the same hope routine, slow down, and come back to the Word."
         >
+          <div className="mt-3 flex justify-center">
+            <a
+              href="/explorebible"
+              aria-label="Open Bible Bingo 7"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.05] shadow-sm transition hover:bg-white/[0.10]"
+            >
+              <BibleBingoKingCard className="h-10 w-8" />
+            </a>
+          </div>
+
           <CentralTimeBadge className="mt-3" />
 
           <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
