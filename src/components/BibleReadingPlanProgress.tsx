@@ -566,210 +566,95 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   }
 
   function exportPlan(includeChecks: boolean) {
-    const escapePdf = (value: unknown) =>
-      String(value ?? "")
-        .normalize("NFKD")
-        .replace(/[^\x20-\x7E]/g, "")
-        .replace(/\\/g, "\\\\")
-        .replace(/\(/g, "\\(")
-        .replace(/\)/g, "\\)")
-        .trim();
+    const escapeHtmlForPrint = (value: string) =>
+      value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
-    const asRecord = (value: unknown): Record<string, unknown> =>
-      value && typeof value === "object" && !Array.isArray(value)
-        ? (value as Record<string, unknown>)
-        : {};
+    const laneHeader = LANES.map(
+      (lane) =>
+        `<th><span>${escapeHtmlForPrint(lane.short)}</span><br />${escapeHtmlForPrint(lane.lane)}</th>`,
+    ).join("");
 
-    const pickText = (record: Record<string, unknown>, keys: string[]) => {
-      for (const key of keys) {
-        const value = record[key];
-        if (typeof value === "string" && value.trim()) return value.trim();
-        if (typeof value === "number") return String(value);
-      }
-      return "";
-    };
+    const rows = weeks
+      .map((week, weekIndex) => {
+        const weekNo = weekNumber(week, weekIndex + 1);
+        const cells = LANES.map((lane, laneIndex) => {
+          const reading = readingForLane(week, laneIndex);
+          const label = labelForReading(reading);
+          const id = idForReading(reading, weekNo, laneIndex);
+          const mark = includeChecks && progress[id] ? "☑" : "☐";
 
-    const compactText = (value: unknown): string => {
-      if (typeof value === "string" || typeof value === "number") {
-        return String(value).trim();
-      }
+          return `<td>${mark} ${escapeHtmlForPrint(label)}</td>`;
+        }).join("");
 
-      if (Array.isArray(value)) {
-        return value.map(compactText).filter(Boolean).join("; ");
-      }
+        return `<tr><th class="week">${weekNo}</th>${cells}</tr>`;
+      })
+      .join("");
 
-      const record = asRecord(value);
-      if (!Object.keys(record).length) return "";
-
-      const direct = pickText(record, [
-        "reference",
-        "references",
-        "reading",
-        "readings",
-        "passage",
-        "passages",
-        "books",
-        "book",
-        "label",
-        "title",
-        "text",
-      ]);
-
-      if (direct) return direct;
-
-      return Object.entries(record)
-        .filter(([key]) => !["id", "key", "day", "name", "title", "label"].includes(key))
-        .map(([, item]) => compactText(item))
-        .filter(Boolean)
-        .join("; ");
-    };
-
-    const laneFallbacks = [
-      "Sunday Epistles",
-      "Monday Law",
-      "Tuesday History",
-      "Wednesday Psalms",
-      "Thursday Poetry",
-      "Friday Prophecy",
-      "Saturday Gospels",
-    ];
-
-    const laneLabels = laneFallbacks.map((fallback, index) => {
-      const lane = asRecord((LANES as unknown[])[index]);
-      return pickText(lane, ["label", "title", "name"]) || fallback;
+    const printedOn = new Date().toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
 
-    const weekRows = weeks.map((week, weekIndex) => {
-      const weekNo = weekNumber(week, weekIndex + 1);
-
-      const cells = laneLabels.map((laneLabel, laneIndex) => {
-        const reading = readingForLane(week, laneIndex);
-        const id = idForReading(reading, weekNo, laneIndex);
-        const text = compactText(reading) || laneLabel;
-
-        return {
-          label: laneLabel,
-          text,
-          checked: Boolean(progress[id]),
-        };
-      });
-
-      return {
-        weekNumber: weekNo,
-        cells,
-      };
+    const html = `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>CrossHeartPray Bible Reading Plan</title>
+  <style>
+    @page { size: letter landscape; margin: 0.22in; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fff; color: #000; font-family: Arial, Helvetica, sans-serif; }
+    .print-note { margin: 0 0 10px; font-size: 12px; font-weight: 700; }
+    .header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; border-bottom: 1px solid #000; padding-bottom: 5px; }
+    .brand { font-size: 15px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; }
+    .title { text-align: right; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; }
+    .sub { margin-top: 2px; font-size: 7px; font-weight: 700; letter-spacing: 0.06em; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 5.85px; line-height: 1.05; }
+    th, td { border: 1px solid #000; padding: 1.4px 2px; vertical-align: middle; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    thead th { font-size: 5.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; background: #f2f2f2; }
+    thead th span { font-size: 4.8px; letter-spacing: 0.08em; }
+    th.week { width: 20px; text-align: center; font-weight: 900; background: #f8f8f8; }
+    @media screen { body { padding: 16px; } }
+    @media print { .print-note { display: none; } }
+  </style>
+</head>
+<body>
+  <p class="print-note">Use your browser print dialog and choose “Save as PDF.”</p>
+  <div class="header">
+    <div class="brand">✝️ ❤️ 🙏 CrossHeartPray</div>
+    <div class="title">
+      Bible Reading Plan
+      <div class="sub">52 weeks · 7 lanes · ${includeChecks ? "progress" : "clean"} · ${printedOn}</div>
+    </div>
+  </div>
+  <table aria-label="CrossHeartPray Bible Reading Plan">
+    <thead><tr><th class="week">Wk</th>${laneHeader}</tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <script>
+    window.addEventListener("load", () => {
+      window.setTimeout(() => window.print(), 250);
     });
+  </script>
+</body>
+</html>`;
 
-    const pageWidth = 792;
-    const pageHeight = 612;
-    const margin = 18;
-    const tableTop = 558;
-    const tableLeft = margin;
-    const weekWidth = 28;
-    const cellWidth = (pageWidth - margin * 2 - weekWidth) / 7;
-    const headerHeight = 16;
-    const rowHeight = 8.86;
-    const tableWidth = pageWidth - margin * 2;
-    const tableHeight = headerHeight + weekRows.length * rowHeight;
+    const printWindow = window.open("", "_blank");
 
-    const line = (x1: number, y1: number, x2: number, y2: number) =>
-      `${x1.toFixed(2)} ${y1.toFixed(2)} m ${x2.toFixed(2)} ${y2.toFixed(2)} l S\n`;
+    if (!printWindow) {
+      return;
+    }
 
-    const rect = (x: number, y: number, width: number, height: number) =>
-      `${x.toFixed(2)} ${y.toFixed(2)} ${width.toFixed(2)} ${height.toFixed(2)} re S\n`;
-
-    const textAt = (
-      x: number,
-      y: number,
-      size: number,
-      value: unknown,
-      maxLength = 80,
-      bold = false,
-    ) =>
-      `BT /${bold ? "F2" : "F1"} ${size} Tf 1 0 0 1 ${x.toFixed(2)} ${y.toFixed(
-        2,
-      )} Tm (${escapePdf(String(value).slice(0, maxLength))}) Tj ET\n`;
-
-    let content = "";
-    content += "0 0 0 RG 0 0 0 rg 0.45 w\n";
-    content += textAt(margin, 586, 16, "CrossHeartPray Bible Reading Plan", 80, true);
-    content += textAt(
-      420,
-      588,
-      6,
-      "One-page PDF. Bible Bingo lanes, progress, chapters, and Deep Dive.",
-      95,
-    );
-
-    content += rect(tableLeft, tableTop - tableHeight, tableWidth, tableHeight);
-    content += line(tableLeft, tableTop - headerHeight, tableLeft + tableWidth, tableTop - headerHeight);
-    content += textAt(tableLeft + 4, tableTop - 11, 5.2, "Week", 12, true);
-
-    laneLabels.forEach((label, index) => {
-      const x = tableLeft + weekWidth + index * cellWidth;
-      content += line(x, tableTop, x, tableTop - tableHeight);
-      content += textAt(x + 2, tableTop - 11, 5.1, label, 23, true);
-    });
-
-    content += line(tableLeft + tableWidth, tableTop, tableLeft + tableWidth, tableTop - tableHeight);
-
-    weekRows.forEach((row, rowIndex) => {
-      const yTop = tableTop - headerHeight - rowIndex * rowHeight;
-      const yBottom = yTop - rowHeight;
-
-      content += line(tableLeft, yBottom, tableLeft + tableWidth, yBottom);
-      content += textAt(tableLeft + 7, yBottom + 2.2, 4.6, row.weekNumber, 4, true);
-
-      row.cells.forEach((cell, cellIndex) => {
-        const x = tableLeft + weekWidth + cellIndex * cellWidth;
-        const prefix = includeChecks ? (cell.checked ? "[x] " : "[ ] ") : "";
-        content += textAt(x + 2, yBottom + 2.2, 3.85, `${prefix}${cell.text}`, 45);
-      });
-    });
-
-    content += textAt(margin, 18, 6, "Cross Heart Pray your way through it.", 60, true);
-    content += textAt(520, 18, 5.5, includeChecks ? "Progress version" : "Clean version", 30, true);
-
-    const objects = [
-      "<< /Type /Catalog /Pages 2 0 R >>",
-      "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
-      `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>`,
-      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
-      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>",
-      `<< /Length ${content.length} >>\nstream\n${content}endstream`,
-    ];
-
-    let pdf = "%PDF-1.4\n";
-    const offsets = [0];
-
-    objects.forEach((object, index) => {
-      offsets.push(pdf.length);
-      pdf += `${index + 1} 0 obj\n${object}\nendobj\n`;
-    });
-
-    const xrefOffset = pdf.length;
-    pdf += `xref\n0 ${objects.length + 1}\n`;
-    pdf += "0000000000 65535 f \n";
-    offsets.slice(1).forEach((offset) => {
-      pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
-    });
-
-    pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
-
-    const blob = new Blob([pdf], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-
-    anchor.href = url;
-    anchor.download = includeChecks
-      ? "crossheartpray-bible-reading-plan-progress.pdf"
-      : "crossheartpray-bible-reading-plan-clean.pdf";
-
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-
-    window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+    printWindow.document.open();
+    printWindow.document.write(html);
+    printWindow.document.close();
+    printWindow.focus();
   }
 
   return (
@@ -857,7 +742,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={() => exportPlan(false)}
                 className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
               >
-                Download PDF
+                Print / Save PDF
               </button>
 
               <button
@@ -865,7 +750,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={() => exportPlan(true)}
                 className="inline-flex h-8 items-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18"
               >
-                Download progress PDF
+                Print Progress PDF
               </button>
 
               <button

@@ -510,14 +510,10 @@ export default function DailyHopeRoutine({
           title="Daily Hope"
           subhead="A prayer and Scripture rhythm for the day."
         >
-          <div className="mt-3 flex justify-center">
-            <a
-              href="/explorebible"
-              aria-label="Open Bible Bingo 7"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.05] shadow-sm transition hover:bg-white/[0.10]"
-            >
+          <div className="mt-3 flex justify-center" aria-hidden="true">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.05] shadow-sm">
               <BibleBingoKingCard className="h-10 w-8" />
-            </a>
+            </div>
           </div>
 
           <CentralTimeBadge className="mt-3" />
