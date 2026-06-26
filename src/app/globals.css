@@ -1485,3 +1485,46 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     text-underline-offset: 1px !important;
   }
 }
+
+
+/* CHP reading plan mobile links and lane details */
+@media (max-width: 767px) {
+  .chp-reading-table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .chp-reading-table table {
+    min-width: 1120px !important;
+    table-layout: fixed !important;
+  }
+
+  .chp-reading-plan-cell a {
+    max-width: none !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .chp-lane-guide-details:not([open]) > :not(summary) {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .chp-lane-guide-details > summary {
+    cursor: default;
+  }
+
+  .chp-lane-guide-details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .chp-lane-guide-details > :not(summary) {
+    display: block !important;
+  }
+}

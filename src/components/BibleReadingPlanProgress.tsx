@@ -762,7 +762,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       ) : null}
 
       <div className="chp-reading-table overflow-x-auto">
-        <table className="min-w-[900px] w-full table-fixed border-collapse text-left">
+        <table className="min-w-[1120px] w-full table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
               <th className="w-10 border-r border-white/10 px-1.5 py-2 text-center text-[0.58rem] font-black uppercase tracking-[0.12em] text-slate-300">
@@ -831,7 +831,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block min-w-0 max-w-[7.5rem] truncate text-left text-[0.86rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
+                            className="block min-w-[8.5rem] whitespace-nowrap text-left text-[0.86rem] font-black leading-snug text-emerald-50 underline decoration-emerald-300/45 decoration-2 underline-offset-3 transition hover:text-white hover:decoration-emerald-100"
                             title={label}
                           >
                             {label}
