@@ -65,7 +65,11 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
           </div>
         </section>
 
-        <section className="mt-4 print:hidden">
+        <details className="chp-lane-guide-details mt-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 print:hidden">
+          <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.18em] text-emerald-100">
+            52-week plan details
+          </summary>
+          <div className="mt-4">
           <div className="mb-2 flex items-center justify-between gap-3">
             <h2 className="text-sm font-black uppercase tracking-[0.22em] text-emerald-100">
               52-week lanes
@@ -93,7 +97,8 @@ export default function BibleReadingPlanTracker({ weeks }: BibleReadingPlanTrack
               </article>
             ))}
           </div>
-        </section>
+          </div>
+        </details>
 
         <div id="reading-plan-board" className="chp-reading-progress-shell mt-4 scroll-mt-6">
           <BibleReadingPlanProgress weeks={weeks} />

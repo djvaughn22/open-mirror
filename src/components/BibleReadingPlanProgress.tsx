@@ -606,89 +606,128 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   <meta charset="utf-8" />
   <title>CrossHeartPray Bible Reading Plan</title>
   <style>
-    @page { size: letter portrait; margin: 0.04in; }
+    @page { size: letter portrait; margin: 0.03in; }
     * { box-sizing: border-box; }
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 8.44in;
+      height: 10.94in;
       margin: 0;
+      padding: 0;
       background: #fff;
       color: #000;
       font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
     }
-    body { padding: 0; }
-    .print-note { display: none; }
+    body {
+      padding: 0;
+    }
+    .print-note {
+      display: none;
+    }
+    .sheet {
+      width: 8.44in;
+      height: 10.94in;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
     .header {
+      flex: 0 0 0.20in;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 6px;
-      height: 0.22in;
-      margin-bottom: 1px;
+      gap: 5px;
+      margin: 0;
       border-bottom: 1px solid #000;
-      padding-bottom: 2px;
+      padding: 0 0 1px;
     }
     .brand {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 900;
-      letter-spacing: 0.055em;
+      letter-spacing: 0.045em;
       white-space: nowrap;
     }
     .title {
       text-align: right;
-      font-size: 8px;
+      font-size: 7.75px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.065em;
+      letter-spacing: 0.055em;
       white-space: nowrap;
     }
     .sub {
       margin-top: 0;
-      font-size: 5.4px;
+      font-size: 5.2px;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
     }
     table {
+      flex: 1 1 auto;
       width: 100%;
-      height: 10.70in;
+      height: 10.72in;
       border-collapse: collapse;
       table-layout: fixed;
-      font-size: 5.85px;
-      line-height: 1.035;
+      font-size: 6.15px;
+      line-height: 1.02;
       page-break-inside: avoid;
     }
-    thead tr { height: 0.20in; }
-    tbody tr { height: 0.202in; }
+    thead {
+      height: 0.20in;
+    }
+    thead tr {
+      height: 0.20in;
+    }
+    tbody {
+      height: 10.52in;
+    }
+    tbody tr {
+      height: calc(10.52in / 52);
+      min-height: calc(10.52in / 52);
+      max-height: calc(10.52in / 52);
+    }
     th, td {
-      border: 0.5px solid #000;
-      padding: 0.55px 0.85px;
+      border: 0.45px solid #000;
+      padding: 0.45px 0.7px;
       vertical-align: middle;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
     thead th {
-      font-size: 4.75px;
+      font-size: 4.85px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.015em;
+      letter-spacing: 0.012em;
       text-align: left;
       background: #f2f2f2;
     }
     thead th span {
       font-size: 4.15px;
-      letter-spacing: 0.018em;
+      letter-spacing: 0.015em;
     }
     th.week {
-      width: 17px;
-      max-width: 17px;
+      width: 16px;
+      max-width: 16px;
       text-align: center;
       font-weight: 900;
       background: #f8f8f8;
     }
-    td { width: calc((100% - 17px) / 7); }
+    td {
+      width: calc((100% - 16px) / 7);
+    }
     @media screen {
-      body { padding: 8px; }
+      html, body {
+        width: auto;
+        height: auto;
+        overflow: visible;
+      }
+      body {
+        padding: 8px;
+      }
+      .sheet {
+        width: 8.44in;
+        height: 10.94in;
+      }
       .print-note {
         display: block;
         margin: 0 0 4px;
@@ -697,14 +736,24 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
       }
     }
     @media print {
-      body { padding: 0; }
-      .header { break-after: avoid; }
-      table { break-inside: avoid; page-break-inside: avoid; }
+      html, body {
+        width: 8.44in;
+        height: 10.94in;
+        overflow: hidden;
+      }
+      .header {
+        break-after: avoid;
+      }
+      table {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
     }
   </style>
 </head>
 <body>
   <p class="print-note">Use your browser print dialog and choose “Save as PDF.”</p>
+  <div class="sheet">
   <div class="header">
     <div class="brand">✝️ ❤️ 🙏 CrossHeartPray</div>
     <div class="title">
@@ -716,6 +765,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     <thead><tr><th class="week">Wk</th>${laneHeader}</tr></thead>
     <tbody>${rows}</tbody>
   </table>
+  </div>
   <script>
     window.addEventListener("load", () => {
       window.setTimeout(() => window.print(), 250);
@@ -811,6 +861,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
               <button
                 type="button"
+                data-chp-reading-plan-export="clean"
                 onClick={() => exportPlan(false)}
                 className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
               >
