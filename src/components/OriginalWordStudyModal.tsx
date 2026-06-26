@@ -368,20 +368,33 @@ export default function OriginalWordStudyModal({
                   {passage.label || selectedWordStudy.reference}
                 </p>
 
-                <p className="mt-4 text-sm font-semibold leading-7 text-slate-200">
-                  Verified original-language fields only. No AI summary. No interpretation.
-                </p>
+                <div className="mt-5 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-100/75">
+                    Strong&apos;s definition
+                  </p>
+                  <p className="mt-2 whitespace-pre-wrap break-words text-sm font-bold leading-relaxed text-white">
+                    {strongsLongDefinition || selectedWordStudy.lexiconMeaning || strongsShortDefinition || "No Strong&apos;s definition found for this word yet."}
+                  </p>
+                </div>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-slate-200">
-                    {languageLabel}
-                  </span>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
+                      Language
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-white">
+                      {languageLabel}
+                    </p>
+                  </div>
 
-                  {selectedWordStudy.strongs ? (
-                    <span className="rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.14em] text-emerald-50">
-                      Strong&apos;s {selectedWordStudy.strongs}
-                    </span>
-                  ) : null}
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
+                      Strong&apos;s number
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-white">
+                      {selectedWordStudy.strongs || "Not listed"}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -470,16 +483,7 @@ export default function OriginalWordStudyModal({
                 </div>
               </div>
 
-              {strongsLongDefinition ? (
-                <div className="mt-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/45">
-                    Strong&apos;s definition
-                  </p>
-                  <p className="mt-2 whitespace-pre-wrap break-words text-sm font-bold leading-relaxed text-white">
-                    {strongsLongDefinition}
-                  </p>
-                </div>
-              ) : null}
+
             </div>
           </section>
           {/* CHP clean Deep Dive card layout end */}
