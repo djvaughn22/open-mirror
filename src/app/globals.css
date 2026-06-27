@@ -1663,3 +1663,60 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     list-style: none;
   }
 }
+
+/* CHP RESTORE: mobile Reading Plan scroll, tap, and zoom only */
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    touch-action: pan-x pan-y pinch-zoom !important;
+    -webkit-text-size-adjust: 100% !important;
+  }
+
+  .chp-reading-progress-shell {
+    overflow: visible !important;
+    max-width: none !important;
+    touch-action: pan-x pan-y pinch-zoom !important;
+  }
+
+  .chp-reading-progress-shell * {
+    touch-action: auto !important;
+  }
+
+  .chp-reading-progress-shell [class*="overflow-x"],
+  .chp-reading-progress-shell [class*="overflow-auto"],
+  .chp-reading-progress-shell [class*="overflow-scroll"] {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    padding-bottom: 18px !important;
+    touch-action: pan-x pan-y pinch-zoom !important;
+  }
+
+  .chp-reading-progress-shell table {
+    min-width: 760px !important;
+    table-layout: auto !important;
+  }
+
+  .chp-reading-progress-shell button,
+  .chp-reading-progress-shell a,
+  .chp-reading-progress-shell label,
+  .chp-reading-progress-shell summary,
+  .chp-reading-progress-shell input[type="checkbox"] {
+    position: relative !important;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    touch-action: manipulation !important;
+  }
+
+  .chp-reading-progress-shell input[type="checkbox"] {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 8px !important;
+  }
+}
