@@ -1,5 +1,19 @@
 "use client";
 
+const BIBLE_READING_PLAN_EXPORT_ASSET = "/downloads/52-week-bible-reading-plan.png";
+
+function openBibleReadingPlanExportAsset() {
+  if (typeof window === "undefined") return;
+
+  const link = document.createElement("a");
+  link.href = BIBLE_READING_PLAN_EXPORT_ASSET;
+  link.download = "52-week-bible-reading-plan.png";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+
 import { useEffect, useMemo, useState } from "react";
 import type { BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 
@@ -768,7 +782,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   </div>
   <script>
     window.addEventListener("load", () => {
-      window.print();
+      openBibleReadingPlanExportAsset();
     });
   </script>
 </body>
@@ -865,7 +879,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={() => exportPlan(false)}
                 className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
               >
-                Print / Save PDF
+                Download Reading Plan
               </button>
 
               <button

@@ -4,6 +4,20 @@ import PrintButton from "./PrintButton";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 
+const BIBLE_READING_PLAN_EXPORT_ASSET = "/downloads/52-week-bible-reading-plan.png";
+
+function openBibleReadingPlanExportAsset() {
+  if (typeof window === "undefined") return;
+
+  const link = document.createElement("a");
+  link.href = BIBLE_READING_PLAN_EXPORT_ASSET;
+  link.download = "52-week-bible-reading-plan.png";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+
 type BibleReadingPlanTrackerProps = {
   weeks: BibleReadingPlanWeek[];
 };
