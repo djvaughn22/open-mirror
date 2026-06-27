@@ -768,7 +768,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
   </div>
   <script>
     window.addEventListener("load", () => {
-      window.setTimeout(() => window.print(), 250);
+      window.print();
     });
   </script>
 </body>

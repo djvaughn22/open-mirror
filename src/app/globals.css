@@ -1649,3 +1649,17 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     text-decoration: none !important;
   }
 }
+
+/* CHP mobile reading plan collapse guard */
+@media (max-width: 767px) {
+  .chp-lane-guide-details:not([open]) > :not(summary),
+  .chp-plan-detail-static:not([open]) > :not(summary) {
+    display: none !important;
+  }
+
+  .chp-lane-guide-details > summary,
+  .chp-plan-detail-static > summary {
+    display: block !important;
+    list-style: none;
+  }
+}
