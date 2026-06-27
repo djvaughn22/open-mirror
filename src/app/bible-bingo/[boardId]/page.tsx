@@ -223,7 +223,7 @@ export default async function BibleBingoSharePage({ params, searchParams }: Page
     : "";
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
+    <main data-chp-export-root className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-5xl px-6 py-8">
         <SiteHeader />
 

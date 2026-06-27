@@ -1663,3 +1663,67 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     list-style: none;
   }
 }
+
+/* CHP mobile reading table touch and zoom fix */
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    touch-action: auto !important;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .chp-reading-progress-shell,
+  .chp-reading-progress-shell * {
+    touch-action: auto !important;
+  }
+
+  .chp-reading-progress-shell {
+    overflow: visible !important;
+  }
+
+  .chp-reading-progress-shell table {
+    min-width: 760px;
+  }
+
+  .chp-reading-progress-shell [class*="overflow-x-auto"],
+  .chp-reading-progress-shell [class*="overflow-auto"],
+  .chp-reading-progress-shell [class*="overflow-scroll"] {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain;
+    padding-bottom: 1rem;
+  }
+
+  .chp-reading-progress-shell button,
+  .chp-reading-progress-shell a,
+  .chp-reading-progress-shell label,
+  .chp-reading-progress-shell input[type="checkbox"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation !important;
+  }
+
+  .chp-reading-progress-shell input[type="checkbox"] {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* CHP clean print/export no urls */
+@media print {
+  a[href]::after {
+    content: "" !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  details:not([open]) > :not(summary) {
+    display: block !important;
+  }
+}

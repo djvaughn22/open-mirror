@@ -253,7 +253,19 @@ function printHtml(html: string) {
   const runPrint = () => {
     try {
       printWindow.focus();
-      printWindow.print();
+      const chpCleanExportHtml = printWindow.document.documentElement.outerHTML
+        .replace(/\s+href=(["']).*?\1/gi, "")
+        .replace(/https?:\/\/[^\s<>"']+/gi, "");
+      const chpExportBlob = new Blob([chpCleanExportHtml], { type: "text/html;charset=utf-8" });
+      const chpExportUrl = URL.createObjectURL(chpExportBlob);
+      const chpExportLink = document.createElement("a");
+      chpExportLink.href = chpExportUrl;
+      chpExportLink.download = `cross-heart-pray-cards-${new Date().toISOString().slice(0, 10)}.html`;
+      document.body.appendChild(chpExportLink);
+      chpExportLink.click();
+      chpExportLink.remove();
+      window.setTimeout(() => URL.revokeObjectURL(chpExportUrl), 1000);
+      printWindow.close();
     } catch {
       // Keep the printable card open if the browser blocks print.
     }
@@ -519,7 +531,7 @@ export default function BibleBingoShareMenu({
             onClick={handlePrintPdf}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Print / Save PDF
+            Download HTML
           </button>
 
 
