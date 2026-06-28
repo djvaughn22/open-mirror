@@ -856,76 +856,38 @@ async function shareOriginalReadingPlanPdf() {
       </div>
 
       {nextReading ? (
-        <div className="chp-next-reading-row border-b border-white/10 bg-white/[0.04] px-3 pb-4 pt-3 sm:px-4">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-emerald-100">
-              Next Reading
-            </p>
+        <div className="chp-next-reading-row border-b border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div className="min-w-0 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-emerald-100">
+                Next Reading
+              </p>
 
-            <p className="text-sm font-black text-white">
-              Week {nextReading.weekNo} • {nextReading.day}
-            </p>
+              <p className="text-sm font-black text-white">
+                Week {nextReading.weekNo} • {nextReading.day} • {nextReading.lane}
+              </p>
 
-            <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-emerald-100">
-              {nextReading.lane}
-            </p>
-
-            <a
-              href={nextReading.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex max-w-full items-center rounded-full border border-emerald-200/25 bg-emerald-300/10 px-3 py-1.5 text-sm font-black leading-tight text-emerald-50 underline decoration-emerald-300/55 decoration-2 underline-offset-4 transition hover:border-emerald-200/40 hover:bg-emerald-300/18 hover:text-white hover:decoration-emerald-100 sm:text-base"
-              title={nextReading.label}
-            >
-              {nextReading.label}
-            </a>
-
-            <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-              <label className="inline-flex h-8 shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18">
-                <input
-                  type="checkbox"
-                  checked={Boolean(progress[nextReading.id])}
-                  onChange={() => toggleReading(nextReading.id)}
-                  aria-label="Mark next reading"
-                  className="h-3.5 w-3.5 accent-emerald-300"
-                />
-                <span>{progress[nextReading.id] ? "Done" : "Mark done"}</span>
-              </label>
-
-              <details className="group relative shrink-0">
-                <summary className="inline-flex h-8 cursor-pointer list-none items-center rounded-xl border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15 [&::-webkit-details-marker]:hidden">
-                  Tools
-                </summary>
-                <div className="absolute right-0 top-10 z-40 w-64 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-2 shadow-2xl shadow-black/40 backdrop-blur">
-                  <button
-                    type="button"
-                    data-chp-reading-plan-export="clean"
-                    onClick={openBibleReadingPlanExportAsset}
-                    className="block w-full rounded-xl px-3 py-2 text-left text-[0.68rem] font-black uppercase tracking-[0.12em] text-slate-100 hover:bg-white/10"
-                  >
-                    Download original PDF
-                  </button>
-                  <button
-                    type="button"
-                    onClick={shareOriginalReadingPlanPdf}
-                    className="block w-full rounded-xl px-3 py-2 text-left text-[0.68rem] font-black uppercase tracking-[0.12em] text-emerald-50 hover:bg-emerald-300/10"
-                  >
-                    Share PDF link
-                  </button>
-                  <button
-                    type="button"
-                    onClick={copyPlanLink}
-                    className="block w-full rounded-xl px-3 py-2 text-left text-[0.68rem] font-black uppercase tracking-[0.12em] text-slate-100 hover:bg-white/10"
-                  >
-                    {copied ? "Copied" : "Copy page link"}
-                  </button>
-                </div>
-              </details>
-
-              <div className="rounded-xl border border-white/10 bg-slate-950/40 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">
-                {daysLeft} left • {percent}% done
-              </div>
+              <a
+                href={nextReading.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex max-w-full items-center rounded-xl border border-emerald-200/35 bg-emerald-300/10 px-3 py-2 text-sm font-black leading-tight text-emerald-50 transition hover:border-emerald-200/60 hover:bg-emerald-300/18 hover:text-white sm:text-base"
+                title={nextReading.label}
+              >
+                Read {nextReading.label}
+              </a>
             </div>
+
+            <label className="inline-flex h-9 w-fit shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.68rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18">
+              <input
+                type="checkbox"
+                checked={Boolean(progress[nextReading.id])}
+                onChange={() => toggleReading(nextReading.id)}
+                aria-label="Mark next reading"
+                className="h-3.5 w-3.5 accent-emerald-300"
+              />
+              <span>{progress[nextReading.id] ? "Done" : "Mark done"}</span>
+            </label>
           </div>
         </div>
       ) : null}
