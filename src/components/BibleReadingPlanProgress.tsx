@@ -905,10 +905,10 @@ async function shareOriginalReadingPlanPdf() {
 
               <button
                 type="button"
-                onClick={openBibleReadingPlanExportAsset}
+                onClick={shareOriginalReadingPlanPdf}
                 className="inline-flex h-8 items-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18"
               >
-                Download Reading Plan
+                Share PDF link
               </button>
 
               <button
