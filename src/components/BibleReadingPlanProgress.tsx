@@ -824,9 +824,9 @@ async function shareOriginalReadingPlanPdf() {
   return (
     <section className="chp-reading-sheet overflow-visible rounded-2xl border border-white/10 bg-slate-950/35">
       <div className="chp-plan-progress-summary border-b border-white/10 bg-slate-950/45 p-3 print:hidden">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="grid gap-3 md:grid-cols-[auto,1fr,auto] md:items-center">
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/20 bg-emerald-300/10 px-3 py-2">
+          <div className="inline-flex items-center justify-center gap-2 rounded-2xl border border-emerald-200/20 bg-emerald-300/10 px-4 py-3 md:justify-start">
             <span className="text-lg font-black leading-none text-white">{weeksLeft}</span>
             <span className="text-[0.58rem] font-black uppercase tracking-[0.14em] text-emerald-100">
               weeks left
@@ -846,7 +846,7 @@ async function shareOriginalReadingPlanPdf() {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-200/20 bg-sky-300/10 px-3 py-2">
+          <div className="inline-flex items-center justify-center gap-2 rounded-2xl border border-sky-200/20 bg-sky-300/10 px-4 py-3 md:justify-start">
             <span className="text-lg font-black leading-none text-white">{daysLeft}</span>
             <span className="text-[0.58rem] font-black uppercase tracking-[0.14em] text-sky-100">
               days left
@@ -856,43 +856,54 @@ async function shareOriginalReadingPlanPdf() {
       </div>
 
       {nextReading ? (
-        <div className="chp-next-reading-row border-b border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4">
+        <div className="chp-next-reading-row border-b border-white/10 bg-white/[0.04] px-3 py-4 sm:px-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="min-w-0 flex flex-wrap items-center gap-x-3 gap-y-2">
+            <div className="min-w-0">
               <p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-emerald-100">
                 Next Reading
               </p>
 
-              <p className="text-sm font-black text-white">
-                Week {nextReading.weekNo} • {nextReading.day} • {nextReading.lane}
-              </p>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <p className="text-sm font-black text-white sm:text-base">
+                  Week {nextReading.weekNo} • {nextReading.day}
+                </p>
 
+                <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-950/35 px-2.5 py-1 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-100">
+                  {nextReading.lane}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:justify-end">
               <a
                 href={nextReading.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex max-w-full items-center rounded-xl border border-emerald-200/35 bg-emerald-300/10 px-3 py-2 text-sm font-black leading-tight text-emerald-50 transition hover:border-emerald-200/60 hover:bg-emerald-300/18 hover:text-white sm:text-base"
+                className="inline-flex min-h-10 w-full items-center justify-center rounded-2xl border border-emerald-200/35 bg-emerald-300/10 px-4 py-2 text-sm font-black leading-tight text-emerald-50 transition hover:border-emerald-200/60 hover:bg-emerald-300/18 hover:text-white sm:w-auto sm:text-base"
                 title={nextReading.label}
               >
                 Read {nextReading.label}
               </a>
-            </div>
 
-            <label className="inline-flex h-9 w-fit shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.68rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18">
-              <input
-                type="checkbox"
-                checked={Boolean(progress[nextReading.id])}
-                onChange={() => toggleReading(nextReading.id)}
-                aria-label="Mark next reading"
-                className="h-3.5 w-3.5 accent-emerald-300"
-              />
-              <span>{progress[nextReading.id] ? "Done" : "Mark done"}</span>
-            </label>
+              <label className="inline-flex min-h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl border border-emerald-200/25 bg-emerald-300/10 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18 sm:w-auto">
+                <input
+                  type="checkbox"
+                  checked={Boolean(progress[nextReading.id])}
+                  onChange={() => toggleReading(nextReading.id)}
+                  aria-label="Mark next reading"
+                  className="peer sr-only"
+                />
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-md border border-emerald-200/35 bg-slate-950/45 text-[0.72rem] leading-none text-transparent transition peer-checked:border-emerald-200/70 peer-checked:bg-emerald-300 peer-checked:text-slate-950">
+                  ✓
+                </span>
+                <span>{progress[nextReading.id] ? "Done" : "Mark Done"}</span>
+              </label>
+            </div>
           </div>
         </div>
       ) : null}
 
-      <div className="chp-reading-table overflow-x-auto" role="region" aria-label="Bible reading plan table" tabIndex={0}>
+      <div className="chp-reading-table overflow-x-auto pb-2" role="region" aria-label="Bible reading plan table" tabIndex={0}>
         <table className="w-[1360px] min-w-[1360px] table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-slate-900/75">
