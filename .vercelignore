@@ -1,0 +1,9 @@
+.microsurgery-backups
+.microsurgery-backups/**
+node_modules
+node_modules/**
+.next
+.next/**
+.git
+.git/**
+*.log
