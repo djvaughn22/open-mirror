@@ -1,9 +1,7 @@
 "use client";
-
-import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { useState, useEffect, useRef } from "react";
 
-type ShareItemLabel = "board" | "card";
+type ShareItemLabel = "board" | "card" | "dailyHope";
 
 type BibleBingoShareMenuProps = {
   boardHref: string;
@@ -45,7 +43,8 @@ function menuPositionClass(align: BibleBingoShareMenuProps["align"]) {
 }
 
 function titleNameFor(itemLabel: ShareItemLabel) {
-  return itemLabel === "card" ? "Card" : "Board";
+  if (itemLabel === "dailyHope") return "Daily Hope";
+  return itemLabel === "board" ? "board" : "card";
 }
 
 function plainTextWithUrl(shareText: string, boardUrl: string) {
@@ -87,23 +86,60 @@ function filenameSafe(value: string) {
     .slice(0, 72) || "cross-heart-pray";
 }
 
-function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
-  const safeTitle = escapeHtml(title || titleNameFor(itemLabel));
-  const safeKind = escapeHtml(itemLabel === "card" ? "Card" : "Board");
-  const safeUrl = escapeHtml(boardUrl);
-  const lines = shareText
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean);
+// CHP unified share/export helpers start
+function chpEscapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
-  const body = lines
-    .map((line) => {
-      const isUrl = /^https?:\/\//i.test(line);
-      return isUrl
-        ? `<p class="line url"><a href="${escapeHtml(line)}">${escapeHtml(line)}</a></p>`
-        : `<p class="line">${escapeHtml(line)}</p>`;
+function chpEscapeAttr(value: string) {
+  return chpEscapeHtml(value);
+}
+
+function chpLinkifyLine(value: string) {
+  const urlPattern = /(https?:\/\/[^\s<>"']+)/g;
+  return value
+    .split(urlPattern)
+    .map((part) => {
+      if (/^https?:\/\//.test(part)) {
+        const safeUrl = chpEscapeAttr(part);
+        return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${chpEscapeHtml(part)}</a>`;
+      }
+
+      return chpEscapeHtml(part);
     })
     .join("");
+}
+
+function chpShareTextToHtml(value: string) {
+  return value
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => `<p>${chpLinkifyLine(line)}</p>`)
+    .join("\n");
+}
+
+function chpFileNameFromTitle(value: string) {
+  return (
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 72) || "crossheartpray-share"
+  );
+}
+// CHP unified share/export helpers end
+
+function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
+  const safeTitle = chpEscapeHtml(title);
+  const safeBoardUrl = chpEscapeAttr(boardUrl);
+  const bodyHtml = chpShareTextToHtml(shareText);
+  const kind = chpEscapeHtml(titleNameFor(itemLabel));
 
   return `<!doctype html>
 <html>
@@ -111,90 +147,107 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
   <meta charset="utf-8" />
   <title>${safeTitle}</title>
   <style>
-    @page { margin: 0.45in; }
-    * { box-sizing: border-box; }
+    @page { size: letter portrait; margin: 0.35in; }
     body {
       margin: 0;
-      background: #ffffff;
-      color: #111827;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 12px;
-      line-height: 1.32;
+      background: #f8fafc;
+      color: #0f172a;
+      font-family: Georgia, "Times New Roman", serif;
     }
-    .sheet {
+    .page {
       max-width: 760px;
       margin: 0 auto;
-      padding: 0;
+      padding: 28px;
     }
-    .brand {
+    .card {
+      border: 2px solid #0f172a;
+      border-radius: 24px;
+      background: #ffffff;
+      padding: 30px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+    }
+    .icons {
       text-align: center;
-      font-size: 18px;
-      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
     }
     .kind {
       text-align: center;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
+      margin: 0 0 10px;
+      color: #334155;
+      font: 800 12px Arial, sans-serif;
       text-transform: uppercase;
-      margin: 0 0 6px;
-      color: #374151;
+      letter-spacing: 0.14em;
     }
     h1 {
-      margin: 0 0 12px;
+      margin: 0 0 18px;
       text-align: center;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 22px;
-      line-height: 1.15;
-      color: #111827;
+      font-size: 30px;
+      line-height: 1.05;
     }
-    .content {
-      column-count: 2;
-      column-gap: 24px;
-      border-top: 1px solid #d1d5db;
-      border-bottom: 1px solid #d1d5db;
-      padding: 12px 0;
-    }
-    .line {
-      break-inside: avoid;
-      margin: 0 0 7px;
-      color: #1f2937;
-    }
-    .url {
-      font-size: 10px;
-      overflow-wrap: anywhere;
-      color: #374151;
+    p {
+      font-size: 18px;
+      line-height: 1.55;
+      margin: 0 0 12px;
+      white-space: pre-wrap;
     }
     a {
-      color: #111827;
+      color: #065f46;
+      font-weight: 800;
       text-decoration: underline;
+      overflow-wrap: anywhere;
+    }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .button {
+      display: block;
+      border: 1px solid #0f172a;
+      border-radius: 999px;
+      padding: 12px 16px;
+      text-align: center;
+      font: 900 12px Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #0f172a;
+      text-decoration: none;
     }
     .footer {
-      margin: 10px 0 0;
+      margin-top: 18px;
       text-align: center;
-      font-size: 10px;
-      color: #4b5563;
-    }
-    @media screen {
-      body { background: #f3f4f6; padding: 24px; }
-      .sheet { background: #ffffff; padding: 28px; border: 1px solid #d1d5db; }
+      color: #475569;
+      font: 700 12px Arial, sans-serif;
     }
     @media print {
-      .content { column-count: 2; }
+      body { background: #ffffff; }
+      .page { padding: 0; }
+      .card { box-shadow: none; }
+      .actions { display: none; }
     }
   </style>
 </head>
 <body>
-  <main class="sheet">
-    <p class="brand">✝️ ❤️ 🙏</p>
-    <p class="kind">✝️ ❤️ 🙏 · Bible Bingo 7 · ${safeKind}</p>
-    <h1>${safeTitle}</h1>
-    <section class="content">${body}</section>
-    <p class="footer">Open online: <a href="${safeUrl}">${safeUrl}</a></p>
+  <main class="page">
+    <article class="card">
+      <div class="icons">✝️ ❤️ 🙏</div>
+      <p class="kind">CrossHeartPray · ${kind}</p>
+      <h1>${safeTitle}</h1>
+      ${bodyHtml}
+      <div class="actions">
+        <a class="button" href="${safeBoardUrl}" target="_blank" rel="noopener noreferrer">Open</a>
+        <a class="button" href="https://www.crossheartpray.com/bible-reading-plan" target="_blank" rel="noopener noreferrer">Read Plan</a>
+      </div>
+      <p class="footer">Cross Heart Pray your way through it.</p>
+    </article>
   </main>
 </body>
 </html>`;
 }
+
 
 function printableDocument(title: string, bodyHtml: string) {
   return `<!doctype html>
@@ -284,28 +337,26 @@ function downloadHtml(filename: string, html: string) {
 }
 
 function buildEmailHtml(emailSubject: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
-  const title = itemLabel === "card" ? "Bible Bingo Card" : "Bible Bingo Board";
-  const safeTitle = escapeHtml(title);
-  const safeSubject = escapeHtml(emailSubject);
-  const safeUrl = escapeHtml(boardUrl);
-  const safeLines = shareText
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => `<p style="margin:0 0 12px 0;color:#1f2937;font-size:16px;line-height:1.55;">${escapeHtml(line)}</p>`)
-    .join("");
+  const safeSubject = chpEscapeHtml(emailSubject);
+  const safeBoardUrl = chpEscapeAttr(boardUrl);
+  const safeKind = chpEscapeHtml(titleNameFor(itemLabel));
+  const bodyHtml = chpShareTextToHtml(shareText);
 
-  return `
-<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;padding:24px;background:#f8fafc;">
-  <div style="border:1px solid #d1d5db;border-radius:22px;background:#ffffff;padding:28px;text-align:center;">
-    <div style="font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:800;color:#047857;margin-bottom:12px;">${safeTitle}</div>
-    <h1 style="margin:0 0 18px 0;color:#0f172a;font-size:24px;line-height:1.25;">${safeSubject}</h1>
-    <div style="text-align:left;margin:0 auto 22px auto;max-width:470px;">${safeLines}</div>
-    <a href="${safeUrl}" style="display:inline-block;background:#065f46;color:#ffffff;text-decoration:none;font-weight:800;border-radius:999px;padding:13px 22px;">Open ${safeTitle}</a>
-    <p style="margin:20px 0 0 0;color:#64748b;font-size:13px;line-height:1.45;">✝️ ❤️ 🙏</p>
+  return `<div style="font-family: Georgia, 'Times New Roman', serif; color: #0f172a; background: #f8fafc; padding: 24px;">
+  <div style="max-width: 680px; margin: 0 auto; background: #ffffff; border: 2px solid #0f172a; border-radius: 24px; padding: 28px;">
+    <div style="text-align: center; font-size: 28px; letter-spacing: 8px;">✝️ ❤️ 🙏</div>
+    <p style="text-align: center; margin: 10px 0; color: #334155; font: 800 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.6px;">CrossHeartPray · ${safeKind}</p>
+    <h1 style="margin: 0 0 18px; text-align: center; font-size: 28px; line-height: 1.1;">${safeSubject}</h1>
+    <div style="font-size: 18px; line-height: 1.55;">${bodyHtml}</div>
+    <p style="margin-top: 22px; text-align: center;">
+      <a href="${safeBoardUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; border: 1px solid #0f172a; border-radius: 999px; padding: 12px 18px; color: #0f172a; font: 900 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.4px; text-decoration: none;">Open and Explore</a>
+      <a href="https://www.crossheartpray.com/bible-reading-plan" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-left: 8px; border: 1px solid #0f172a; border-radius: 999px; padding: 12px 18px; color: #0f172a; font: 900 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.4px; text-decoration: none;">Read Plan</a>
+    </p>
+    <p style="text-align: center; color: #475569; font: 700 12px Arial, sans-serif;">Cross Heart Pray your way through it.</p>
   </div>
-</div>`.trim();
+</div>`;
 }
+
 
 async function copyText(value: string) {
   await navigator.clipboard.writeText(value);
@@ -436,6 +487,11 @@ export default function BibleBingoShareMenu({
     window.setTimeout(() => setCopied(""), 2600);
   }
 
+function handleDownloadHtml() {
+  downloadHtml(`${chpFileNameFromTitle(emailSubject)}.html`, lightPrintHtml());
+  setCopied("HTML downloaded");
+}
+
   return (
     <div ref={menuRef} className="relative inline-flex">
       <button
@@ -451,7 +507,7 @@ export default function BibleBingoShareMenu({
         }
       >
         <ShareIcon />
-        {iconOnly ? <span className="sr-only">{buttonLabel}</span> : <span>Share</span>}
+        {iconOnly ? <span className="sr-only">{buttonLabel}</span> : <span>{buttonLabel}</span>}
       </button>
 
       {open ? (
@@ -493,7 +549,7 @@ export default function BibleBingoShareMenu({
             onClick={() => handleCopy(shareTextForCopy(), "Text copied")}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy text
+            {itemLabel === "dailyHope" ? "Copy full Daily Hope" : `Copy full ${titleName}`}
           </button>
 
           <button
@@ -502,7 +558,7 @@ export default function BibleBingoShareMenu({
             onClick={() => handleCopy(boardUrl, `${titleName} URL copied`)}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Copy link
+            {itemLabel === "dailyHope" ? "Copy Daily Hope link" : `Copy ${titleName} link`}
           </button>
 
           <button
@@ -511,7 +567,7 @@ export default function BibleBingoShareMenu({
             onClick={handleCopyHtml}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-emerald-50 hover:bg-emerald-300/10"
           >
-            Copy email
+            {itemLabel === "dailyHope" ? "Copy full Daily Hope email" : `Copy full email ${titleName}`}
           </button>
 
           <button
@@ -520,12 +576,12 @@ export default function BibleBingoShareMenu({
             onClick={handlePrintPdf}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Download original PDF
+            {itemLabel === "dailyHope" ? "Print full Daily Hope / Save PDF" : `Print full ${titleName} / Save PDF`}
           </button>
 
 
           <p className="px-4 pb-2 pt-1 text-xs leading-5 text-slate-400">
-            {copied || "Ready to paste."}
+            {copied || "Ready to paste with clickable links."}
           </p>
         </div>
       ) : null}

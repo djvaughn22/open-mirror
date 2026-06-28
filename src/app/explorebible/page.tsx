@@ -1,6 +1,4 @@
 "use client";
-
-import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import * as CHPLocalBibleData from "../../lib/localBibleVerses";
 import SiteFooter from "../../components/SiteFooter";
 

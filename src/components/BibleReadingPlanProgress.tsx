@@ -1,20 +1,18 @@
 "use client";
 
-const BIBLE_READING_PLAN_EXPORT_ASSET = "/downloads/52-week-bible-reading-plan.png";
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF, CHP_OFFICIAL_BIBLE_READING_PLAN_PDF_DOWNLOAD_NAME } from "@/lib/crossHeartPrayOfficialAssets";
 
 function openBibleReadingPlanExportAsset() {
-  if (typeof window === "undefined") return;
-
   const link = document.createElement("a");
-  link.href = BIBLE_READING_PLAN_EXPORT_ASSET;
-  link.download = "52-week-bible-reading-plan.png";
+  link.href = CHP_OFFICIAL_BIBLE_READING_PLAN_PDF;
+  link.download = CHP_OFFICIAL_BIBLE_READING_PLAN_PDF_DOWNLOAD_NAME;
   document.body.appendChild(link);
   link.click();
   link.remove();
 }
 
+const BIBLE_READING_PLAN_EXPORT_ASSET = CHP_OFFICIAL_BIBLE_READING_PLAN_PDF;
 
-import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { useEffect, useMemo, useState } from "react";
 import type { BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 
@@ -579,6 +577,28 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
     }
   }
 
+async function shareOriginalReadingPlanPdf() {
+  const pdfUrl = new URL(CHP_OFFICIAL_BIBLE_READING_PLAN_PDF, window.location.origin).toString();
+  const shareText = `52 Week Bible Reading Plan\nCrossHeartPray\n\n${pdfUrl}`;
+
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: "52 Week Bible Reading Plan",
+        text: "Original 52 Week Bible Reading Plan from CrossHeartPray.",
+        url: pdfUrl,
+      });
+      setCopied(true);
+      return;
+    }
+
+    await navigator.clipboard.writeText(shareText);
+    setCopied(true);
+  } catch {
+    setCopied(false);
+  }
+}
+
   function exportPlan(includeChecks: boolean) {
     const escapeHtmlForPrint = (value: string) =>
       value
@@ -877,7 +897,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
               <button
                 type="button"
                 data-chp-reading-plan-export="clean"
-                onClick={() => exportPlan(false)}
+                onClick={openBibleReadingPlanExportAsset}
                 className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
               >
                 Download Reading Plan
@@ -885,10 +905,10 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
 
               <button
                 type="button"
-                onClick={() => exportPlan(true)}
+                onClick={openBibleReadingPlanExportAsset}
                 className="inline-flex h-8 items-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18"
               >
-                Print Progress PDF
+                Download Reading Plan
               </button>
 
               <button
@@ -896,7 +916,7 @@ export default function BibleReadingPlanProgress({ weeks }: BibleReadingPlanProg
                 onClick={copyPlanLink}
                 className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15"
               >
-                {copied ? "Copied" : "Copy link"}
+                {copied ? "Copied" : "Copy page link"}
               </button>
 
               <div className="rounded-xl border border-white/10 bg-slate-950/40 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">

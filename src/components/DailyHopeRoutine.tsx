@@ -562,8 +562,6 @@ export default function DailyHopeRoutine({
               boardUrl={pageUrl}
               shareText={boardShareText}
               emailSubject="Daily Hope"
-              htmlEmail={boardHtml}
-              buttonLabel="Share"
             />
           </div>
         </PageNucleusHero>
@@ -595,12 +593,11 @@ export default function DailyHopeRoutine({
                   <BibleBingoShareMenu
                     boardHref={`#${prayerId}`}
                     boardUrl={prayerUrl}
-                    shareText={prayerShareText(prayer, prayerUrl)}
-                    emailSubject={`Daily Hope - ${prayer.title}`}
-                    htmlEmail={prayerHtmlEmail(prayer, prayerUrl)}
+                    shareText={boardShareText}
+                    emailSubject="Daily Hope"
                     align="right"
-                    itemLabel="card"
-                    buttonLabel={`Share ${prayer.title}`}
+                    itemLabel="dailyHope"
+                    buttonLabel="Share full Daily Hope"
                     iconOnly
                   />
                 </div>
@@ -738,12 +735,20 @@ export default function DailyHopeRoutine({
                           <BibleBingoShareMenu
                             boardHref={`#${item.id}`}
                             boardUrl={cardUrl}
-                            shareText={verseShareText(day, item, cardUrl)}
-                            emailSubject={`Daily Hope - ${item.label}`}
-                            htmlEmail={verseHtmlEmail(day, item, cardUrl)}
-                            align="right"
-                            itemLabel="card"
-                            buttonLabel={`Share ${item.label}`}
+                            shareText={boardShareText}
+                            emailSubject="Daily Hope"
+                    align="right"
+                            itemLabel="dailyHope"
+                            buttonLabel="Share full Daily Hope"
+                  />
+                  <BibleBingoShareMenu
+                            boardHref={`#${item.id}`}
+                            boardUrl={cardUrl}
+                            shareText={boardShareText}
+                            emailSubject="Daily Hope"
+                    align="right"
+                            itemLabel="dailyHope"
+                            buttonLabel="Share full Daily Hope"
                             iconOnly
                           />
                         </div>
@@ -858,18 +863,20 @@ export default function DailyHopeRoutine({
               <BibleBingoShareMenu
                 boardHref="#live-in-the-moment"
                 boardUrl={`${pageUrl}#live-in-the-moment`}
-                shareText={prayerShareText(
-                  closingPrayer,
-                  `${pageUrl}#live-in-the-moment`,
-                )}
-                emailSubject={`Daily Hope - ${closingPrayer.title}`}
-                htmlEmail={prayerHtmlEmail(
-                  closingPrayer,
-                  `${pageUrl}#live-in-the-moment`,
-                )}
-                align="right"
-                itemLabel="card"
-                buttonLabel={`Share ${closingPrayer.title}`}
+                shareText={boardShareText}
+                emailSubject="Daily Hope"
+                    align="right"
+                itemLabel="dailyHope"
+                buttonLabel="Share full Daily Hope"
+                  />
+                  <BibleBingoShareMenu
+                boardHref="#live-in-the-moment"
+                boardUrl={`${pageUrl}#live-in-the-moment`}
+                shareText={boardShareText}
+                emailSubject="Daily Hope"
+                    align="right"
+                itemLabel="dailyHope"
+                buttonLabel="Share full Daily Hope"
                 iconOnly
               />
             </div>

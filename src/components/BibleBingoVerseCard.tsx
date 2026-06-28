@@ -1,6 +1,4 @@
 "use client";
-
-import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { useMemo, useState } from "react";
 import BibleBingoShareMenu from "./BibleBingoShareMenu";
 import VerifiedVerseText from "./VerifiedVerseText";

@@ -1,23 +1,11 @@
-import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF, CHP_OFFICIAL_BIBLE_READING_PLAN_PDF_DOWNLOAD_NAME } from "@/lib/crossHeartPrayOfficialAssets";
 import { type BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 import BibleReadingPlanProgress from "./BibleReadingPlanProgress";
 import PrintButton from "./PrintButton";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 
-const BIBLE_READING_PLAN_EXPORT_ASSET = "/downloads/52-week-bible-reading-plan.png";
-
-function openBibleReadingPlanExportAsset() {
-  if (typeof window === "undefined") return;
-
-  const link = document.createElement("a");
-  link.href = BIBLE_READING_PLAN_EXPORT_ASSET;
-  link.download = "52-week-bible-reading-plan.png";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-}
-
+const BIBLE_READING_PLAN_EXPORT_ASSET = CHP_OFFICIAL_BIBLE_READING_PLAN_PDF;
 
 type BibleReadingPlanTrackerProps = {
   weeks: BibleReadingPlanWeek[];
