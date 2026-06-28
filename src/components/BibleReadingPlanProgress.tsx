@@ -881,10 +881,7 @@ async function shareOriginalReadingPlanPdf() {
             </a>
 
             <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-              <label
-                className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 text-emerald-50 transition hover:bg-emerald-300/18"
-                title="Mark next reading"
-              >
+              <label className="inline-flex h-8 shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18">
                 <input
                   type="checkbox"
                   checked={Boolean(progress[nextReading.id])}
@@ -892,32 +889,38 @@ async function shareOriginalReadingPlanPdf() {
                   aria-label="Mark next reading"
                   className="h-3.5 w-3.5 accent-emerald-300"
                 />
+                <span>{progress[nextReading.id] ? "Done" : "Mark done"}</span>
               </label>
 
-              <button
-                type="button"
-                data-chp-reading-plan-export="clean"
-                onClick={openBibleReadingPlanExportAsset}
-                className="inline-flex h-8 items-center rounded-xl border border-white/20 bg-slate-950/40 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:border-white/30 hover:bg-white/10"
-              >
-                Download Reading Plan
-              </button>
-
-              <button
-                type="button"
-                onClick={shareOriginalReadingPlanPdf}
-                className="inline-flex h-8 items-center rounded-xl border border-emerald-200/25 bg-emerald-300/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-emerald-50 transition hover:border-emerald-200/40 hover:bg-emerald-300/18"
-              >
-                Share PDF link
-              </button>
-
-              <button
-                type="button"
-                onClick={copyPlanLink}
-                className="inline-flex h-8 items-center rounded-full border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15"
-              >
-                {copied ? "Copied" : "Copy page link"}
-              </button>
+              <details className="group relative shrink-0">
+                <summary className="inline-flex h-8 cursor-pointer list-none items-center rounded-xl border border-white/15 bg-white/10 px-3 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-100 transition hover:bg-white/15 [&::-webkit-details-marker]:hidden">
+                  Tools
+                </summary>
+                <div className="absolute right-0 top-10 z-40 w-64 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-2 shadow-2xl shadow-black/40 backdrop-blur">
+                  <button
+                    type="button"
+                    data-chp-reading-plan-export="clean"
+                    onClick={openBibleReadingPlanExportAsset}
+                    className="block w-full rounded-xl px-3 py-2 text-left text-[0.68rem] font-black uppercase tracking-[0.12em] text-slate-100 hover:bg-white/10"
+                  >
+                    Download original PDF
+                  </button>
+                  <button
+                    type="button"
+                    onClick={shareOriginalReadingPlanPdf}
+                    className="block w-full rounded-xl px-3 py-2 text-left text-[0.68rem] font-black uppercase tracking-[0.12em] text-emerald-50 hover:bg-emerald-300/10"
+                  >
+                    Share PDF link
+                  </button>
+                  <button
+                    type="button"
+                    onClick={copyPlanLink}
+                    className="block w-full rounded-xl px-3 py-2 text-left text-[0.68rem] font-black uppercase tracking-[0.12em] text-slate-100 hover:bg-white/10"
+                  >
+                    {copied ? "Copied" : "Copy page link"}
+                  </button>
+                </div>
+              </details>
 
               <div className="rounded-xl border border-white/10 bg-slate-950/40 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.12em] text-slate-300">
                 {daysLeft} left • {percent}% done
