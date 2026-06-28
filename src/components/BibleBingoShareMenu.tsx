@@ -135,10 +135,41 @@ function chpFileNameFromTitle(value: string) {
 }
 // CHP unified share/export helpers end
 
+function chpCleanPrintLine(value: string) {
+  return value
+    .replace(/https?:\/\/[^\s<>"']+/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function chpShareTextToPrintHtml(value: string) {
+  const lines = value
+    .split(/\n+/)
+    .map((line) => chpCleanPrintLine(line))
+    .filter(Boolean);
+
+  if (lines.length === 0) {
+    return `<p class="line">CrossHeartPray card details.</p>`;
+  }
+
+  return lines
+    .map((line) => {
+      const isReference =
+        /^[1-3]?\s?[A-Za-z]+(?:\s+of\s+[A-Za-z]+)?\s+\d+:\d+/.test(line) ||
+        /^[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\s+\d+:\d+/.test(line);
+
+      if (isReference) {
+        return `<p class="reference">${chpEscapeHtml(line)}</p>`;
+      }
+
+      return `<p class="line">${chpEscapeHtml(line)}</p>`;
+    })
+    .join("\n");
+}
+
 function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
-  const safeTitle = chpEscapeHtml(title);
-  const safeBoardUrl = chpEscapeAttr(boardUrl);
-  const bodyHtml = chpShareTextToHtml(shareText);
+  const safeTitle = chpEscapeHtml(title || titleNameFor(itemLabel));
+  const bodyHtml = chpShareTextToPrintHtml(shareText);
   const kind = chpEscapeHtml(titleNameFor(itemLabel));
 
   return `<!doctype html>
@@ -147,86 +178,84 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
   <meta charset="utf-8" />
   <title>${safeTitle}</title>
   <style>
-    @page { size: letter portrait; margin: 0.35in; }
+    @page { size: letter portrait; margin: 0.42in; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #f8fafc;
+      background: #ffffff;
       color: #0f172a;
       font-family: Georgia, "Times New Roman", serif;
     }
     .page {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 28px;
+      padding: 22px;
     }
     .card {
       border: 2px solid #0f172a;
       border-radius: 24px;
       background: #ffffff;
-      padding: 30px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+      padding: 28px;
     }
     .icons {
       text-align: center;
       font-size: 28px;
       letter-spacing: 0.18em;
-      margin-bottom: 10px;
+      margin: 0 0 8px;
     }
     .kind {
       text-align: center;
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       color: #334155;
-      font: 800 12px Arial, sans-serif;
+      font: 900 11px Arial, sans-serif;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
     }
     h1 {
       margin: 0 0 18px;
       text-align: center;
       font-size: 30px;
-      line-height: 1.05;
+      line-height: 1.08;
     }
-    p {
-      font-size: 18px;
-      line-height: 1.55;
-      margin: 0 0 12px;
+    .content {
+      display: grid;
+      gap: 10px;
+      border-top: 1px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 18px 0;
+    }
+    .line,
+    .reference {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.5;
       white-space: pre-wrap;
-    }
-    a {
-      color: #065f46;
-      font-weight: 800;
-      text-decoration: underline;
       overflow-wrap: anywhere;
     }
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .button {
-      display: block;
-      border: 1px solid #0f172a;
-      border-radius: 999px;
-      padding: 12px 16px;
-      text-align: center;
-      font: 900 12px Arial, sans-serif;
-      text-transform: uppercase;
+    .reference {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
       letter-spacing: 0.12em;
-      color: #0f172a;
-      text-decoration: none;
+      text-transform: uppercase;
+      color: #334155;
     }
     .footer {
-      margin-top: 18px;
+      margin: 16px 0 0;
       text-align: center;
       color: #475569;
-      font: 700 12px Arial, sans-serif;
+      font: 800 11px Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    @media screen {
+      body { background: #f8fafc; padding: 22px; }
+      .card { box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10); }
     }
     @media print {
       body { background: #ffffff; }
       .page { padding: 0; }
       .card { box-shadow: none; }
-      .actions { display: none; }
     }
   </style>
 </head>
@@ -236,18 +265,13 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       <div class="icons">✝️ ❤️ 🙏</div>
       <p class="kind">CrossHeartPray · ${kind}</p>
       <h1>${safeTitle}</h1>
-      ${bodyHtml}
-      <div class="actions">
-        <a class="button" href="${safeBoardUrl}" target="_blank" rel="noopener noreferrer">Open</a>
-        <a class="button" href="https://www.crossheartpray.com/bible-reading-plan" target="_blank" rel="noopener noreferrer">Read Plan</a>
-      </div>
+      <section class="content">${bodyHtml}</section>
       <p class="footer">Cross Heart Pray your way through it.</p>
     </article>
   </main>
 </body>
 </html>`;
 }
-
 
 function printableDocument(title: string, bodyHtml: string) {
   return `<!doctype html>
