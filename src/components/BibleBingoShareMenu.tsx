@@ -167,9 +167,38 @@ function chpShareTextToPrintHtml(value: string) {
     .join("\n");
 }
 
+function chpDownloadLineHtml(value: string) {
+  const clean = value
+    .replace(/https?:\/\/[^\s<>"']+/g, "")
+    .replace(/\bOpen online:\s*/gi, "")
+    .replace(/\bOpen:\s*/gi, "")
+    .replace(/\bURL:\s*/gi, "")
+    .replace(/\bLink:\s*/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!clean) return "";
+
+  const isReference = /^[1-3]?\s?[A-Za-z]+(?:\s+[A-Za-z]+)?\s+\d+(?::\d+)?/.test(clean);
+  const isDetail = /^(to:|from:|shared:|section:|lane:|week:|day:|daily hope|prayer|verse|card|board)/i.test(clean);
+  const className = isReference ? "reference" : isDetail ? "detail" : clean.length > 95 ? "main" : "line";
+
+  return `<p class="${className}">${chpEscapeHtml(clean)}</p>`;
+}
+
+function chpFullDetailsHtml(value: string) {
+  const html = value
+    .split(/\n+/)
+    .map((line) => chpDownloadLineHtml(line))
+    .filter(Boolean)
+    .join("\n");
+
+  return html || `<p class="line">CrossHeartPray details.</p>`;
+}
+
 function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
   const safeTitle = chpEscapeHtml(title || titleNameFor(itemLabel));
-  const bodyHtml = chpShareTextToPrintHtml(shareText);
+  const bodyHtml = chpFullDetailsHtml(shareText);
   const kind = chpEscapeHtml(titleNameFor(itemLabel));
 
   return `<!doctype html>
@@ -178,7 +207,7 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
   <meta charset="utf-8" />
   <title>${safeTitle}</title>
   <style>
-    @page { size: letter portrait; margin: 0.42in; }
+    @page { size: letter portrait; margin: 0.4in; }
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -187,7 +216,7 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       font-family: Georgia, "Times New Roman", serif;
     }
     .page {
-      max-width: 780px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 22px;
     }
@@ -201,7 +230,7 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       text-align: center;
       font-size: 28px;
       letter-spacing: 0.18em;
-      margin: 0 0 8px;
+      margin-bottom: 8px;
     }
     .kind {
       text-align: center;
@@ -224,24 +253,34 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       border-bottom: 1px solid #cbd5e1;
       padding: 18px 0;
     }
-    .line,
-    .reference {
+    p {
       margin: 0;
-      font-size: 17px;
-      line-height: 1.5;
-      white-space: pre-wrap;
       overflow-wrap: anywhere;
     }
     .reference {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.12em;
+      color: #065f46;
+      font: 900 14px Arial, sans-serif;
       text-transform: uppercase;
-      color: #334155;
+      letter-spacing: 0.1em;
+    }
+    .detail {
+      color: #475569;
+      font: 900 11px Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .main {
+      color: #0f172a;
+      font-size: 19px;
+      line-height: 1.52;
+    }
+    .line {
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.45;
     }
     .footer {
-      margin: 16px 0 0;
+      margin-top: 16px;
       text-align: center;
       color: #475569;
       font: 800 11px Arial, sans-serif;
@@ -249,7 +288,7 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       letter-spacing: 0.12em;
     }
     @media screen {
-      body { background: #f8fafc; padding: 22px; }
+      body { background: #f8fafc; padding: 18px; }
       .card { box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10); }
     }
     @media print {
