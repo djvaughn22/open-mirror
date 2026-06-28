@@ -1,5 +1,6 @@
 "use client";
 
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { useState, useEffect, useRef } from "react";
 
 type ShareItemLabel = "board" | "card";
@@ -519,7 +520,7 @@ export default function BibleBingoShareMenu({
             onClick={handlePrintPdf}
             className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10"
           >
-            Print / Save PDF
+            Download original PDF
           </button>
 
 

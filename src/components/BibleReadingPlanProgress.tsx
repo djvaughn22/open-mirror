@@ -14,6 +14,7 @@ function openBibleReadingPlanExportAsset() {
 }
 
 
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { useEffect, useMemo, useState } from "react";
 import type { BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { useEffect, useState } from "react";
 import type { BibleBingoPassage } from "../lib/bibleRandom";
 import {

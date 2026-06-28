@@ -1,3 +1,4 @@
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import BibleReadingPlanTracker from "../../components/BibleReadingPlanTracker";
 import { BIBLE_READING_PLAN_WEEKS } from "../../lib/bibleReadingPlan";
 

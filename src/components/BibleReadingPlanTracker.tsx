@@ -1,3 +1,4 @@
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { type BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 import BibleReadingPlanProgress from "./BibleReadingPlanProgress";
 import PrintButton from "./PrintButton";

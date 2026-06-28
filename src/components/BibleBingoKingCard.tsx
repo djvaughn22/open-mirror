@@ -1,3 +1,4 @@
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 type BibleBingoKingCardProps = {
   className?: string;
 };

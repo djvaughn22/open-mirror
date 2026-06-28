@@ -1,3 +1,4 @@
+import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF } from "@/lib/crossHeartPrayOfficialAssets";
 import { notFound } from "next/navigation";
 import BibleBingoShareBoard from "../../../components/BibleBingoShareBoard";
 import BibleBingoShareMenu from "../../../components/BibleBingoShareMenu";
