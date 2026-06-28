@@ -196,35 +196,84 @@ function chpFullDetailsHtml(value: string) {
   return html || `<p class="line">CrossHeartPray details.</p>`;
 }
 
-function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
-  const safeTitle = chpEscapeHtml(title || titleNameFor(itemLabel));
-  const bodyHtml = chpFullDetailsHtml(shareText);
-  const kind = chpEscapeHtml(titleNameFor(itemLabel));
 
-  return `<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>${safeTitle}</title>
-  <style>
-    @page { size: letter portrait; margin: 0.4in; }
+function chpPrettyCardLines(value: string) {
+  return value
+    .split(/\n+/)
+    .map((line) =>
+      line
+        .replace(/\bOpen online:\s*/gi, "")
+        .replace(/\bOpen:\s*/gi, "")
+        .replace(/\bURL:\s*/gi, "")
+        .replace(/\bLink:\s*/gi, "")
+        .trim()
+    )
+    .filter(Boolean);
+}
+
+function chpPrettyCardsHtml(value: string, allowLinks: boolean) {
+  const rawLines = chpPrettyCardLines(value);
+  const cardBlocks: string[][] = [];
+  let current: string[] = [];
+
+  for (const line of rawLines) {
+    const startsNewCard =
+      /^(card\s+\d+|verse card|prayer card|daily hope|sinner prayer|salvation prayer|live in the moment prayer)/i.test(line) ||
+      (/^[1-3]?\s?[A-Za-z]+(?:\s+[A-Za-z]+)?\s+\d+:\d+/.test(line) && current.length > 2);
+
+    if (startsNewCard && current.length) {
+      cardBlocks.push(current);
+      current = [];
+    }
+
+    current.push(line);
+  }
+
+  if (current.length) cardBlocks.push(current);
+  if (!cardBlocks.length) cardBlocks.push(["CrossHeartPray card details."]);
+
+  return cardBlocks
+    .map((lines) => {
+      const body = lines
+        .map((line) => {
+          const cleanForClass = line.replace(/https?:\/\/[^\s<>"']+/g, "").trim();
+          if (!cleanForClass) return "";
+
+          const isReference = /^[1-3]?\s?[A-Za-z]+(?:\s+[A-Za-z]+)?\s+\d+(?::\d+)?/.test(cleanForClass);
+          const isMeta = /^(to:|from:|shared:|section:|lane:|week:|day:|card\s+\d+|daily hope|prayer card|verse card|board)/i.test(cleanForClass);
+          const className = isReference ? "reference" : isMeta ? "meta" : cleanForClass.length > 90 ? "verse" : "line";
+
+          const html = allowLinks ? chpLinkifyLine(line) : chpEscapeHtml(cleanForClass);
+          return `<p class="${className}">${html}</p>`;
+        })
+        .filter(Boolean)
+        .join("\n");
+
+      return `<article class="pretty-card">${body}</article>`;
+    })
+    .join("\n");
+}
+
+function chpPrettyCardCss() {
+  return `
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #ffffff;
+      background: #f8fafc;
       color: #0f172a;
       font-family: Georgia, "Times New Roman", serif;
     }
     .page {
-      max-width: 800px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 22px;
     }
-    .card {
+    .shell {
       border: 2px solid #0f172a;
-      border-radius: 24px;
+      border-radius: 28px;
       background: #ffffff;
-      padding: 28px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
     }
     .icons {
       text-align: center;
@@ -246,30 +295,36 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       font-size: 30px;
       line-height: 1.08;
     }
-    .content {
+    .cards {
       display: grid;
-      gap: 10px;
-      border-top: 1px solid #cbd5e1;
-      border-bottom: 1px solid #cbd5e1;
-      padding: 18px 0;
+      gap: 14px;
+    }
+    .pretty-card {
+      break-inside: avoid;
+      border: 1px solid #cbd5e1;
+      border-radius: 22px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
     }
     p {
-      margin: 0;
+      margin: 0 0 8px;
       overflow-wrap: anywhere;
     }
+    p:last-child { margin-bottom: 0; }
     .reference {
       color: #065f46;
       font: 900 14px Arial, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
-    .detail {
+    .meta {
       color: #475569;
       font: 900 11px Arial, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
-    .main {
+    .verse {
       color: #0f172a;
       font-size: 19px;
       line-height: 1.52;
@@ -279,6 +334,12 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       font-size: 16px;
       line-height: 1.45;
     }
+    a {
+      color: #065f46;
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
     .footer {
       margin-top: 16px;
       text-align: center;
@@ -287,26 +348,38 @@ function buildLightPrintHtml(title: string, shareText: string, boardUrl: string,
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
-    @media screen {
-      body { background: #f8fafc; padding: 18px; }
-      .card { box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10); }
-    }
     @media print {
+      @page { size: letter portrait; margin: 0.38in; }
       body { background: #ffffff; }
       .page { padding: 0; }
-      .card { box-shadow: none; }
+      .shell, .pretty-card { box-shadow: none; }
     }
-  </style>
+  `;
+}
+
+
+function buildLightPrintHtml(title: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
+  const safeTitle = chpEscapeHtml(title || titleNameFor(itemLabel));
+  const kind = chpEscapeHtml(titleNameFor(itemLabel));
+  const cardsHtml = chpPrettyCardsHtml(shareText, false);
+  void boardUrl;
+
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${safeTitle}</title>
+  <style>${chpPrettyCardCss()}</style>
 </head>
 <body>
   <main class="page">
-    <article class="card">
+    <section class="shell">
       <div class="icons">✝️ ❤️ 🙏</div>
       <p class="kind">CrossHeartPray · ${kind}</p>
       <h1>${safeTitle}</h1>
-      <section class="content">${bodyHtml}</section>
+      <div class="cards">${cardsHtml}</div>
       <p class="footer">Cross Heart Pray your way through it.</p>
-    </article>
+    </section>
   </main>
 </body>
 </html>`;
@@ -401,21 +474,17 @@ function downloadHtml(filename: string, html: string) {
 
 function buildEmailHtml(emailSubject: string, shareText: string, boardUrl: string, itemLabel: ShareItemLabel) {
   const safeSubject = chpEscapeHtml(emailSubject);
-  const safeBoardUrl = chpEscapeAttr(boardUrl);
   const safeKind = chpEscapeHtml(titleNameFor(itemLabel));
-  const bodyHtml = chpShareTextToHtml(shareText);
+  const cardsHtml = chpPrettyCardsHtml(shareText, true);
+  void boardUrl;
 
-  return `<div style="font-family: Georgia, 'Times New Roman', serif; color: #0f172a; background: #f8fafc; padding: 24px;">
-  <div style="max-width: 680px; margin: 0 auto; background: #ffffff; border: 2px solid #0f172a; border-radius: 24px; padding: 28px;">
+  return `<div style="font-family: Georgia, 'Times New Roman', serif; color: #0f172a; background: #f8fafc; padding: 22px;">
+  <div style="max-width: 760px; margin: 0 auto; background: #ffffff; border: 2px solid #0f172a; border-radius: 28px; padding: 24px;">
     <div style="text-align: center; font-size: 28px; letter-spacing: 8px;">✝️ ❤️ 🙏</div>
-    <p style="text-align: center; margin: 10px 0; color: #334155; font: 800 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.6px;">CrossHeartPray · ${safeKind}</p>
-    <h1 style="margin: 0 0 18px; text-align: center; font-size: 28px; line-height: 1.1;">${safeSubject}</h1>
-    <div style="font-size: 18px; line-height: 1.55;">${bodyHtml}</div>
-    <p style="margin-top: 22px; text-align: center;">
-      <a href="${safeBoardUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; border: 1px solid #0f172a; border-radius: 999px; padding: 12px 18px; color: #0f172a; font: 900 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.4px; text-decoration: none;">Open and Explore</a>
-      <a href="https://www.crossheartpray.com/bible-reading-plan" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-left: 8px; border: 1px solid #0f172a; border-radius: 999px; padding: 12px 18px; color: #0f172a; font: 900 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.4px; text-decoration: none;">Read Plan</a>
-    </p>
-    <p style="text-align: center; color: #475569; font: 700 12px Arial, sans-serif;">Cross Heart Pray your way through it.</p>
+    <p style="text-align: center; margin: 8px 0; color: #334155; font: 900 11px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.6px;">CrossHeartPray · ${safeKind}</p>
+    <h1 style="margin: 0 0 18px; text-align: center; font-size: 30px; line-height: 1.08;">${safeSubject}</h1>
+    <div>${cardsHtml}</div>
+    <p style="margin-top: 16px; text-align: center; color: #475569; font: 800 11px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1.3px;">Cross Heart Pray your way through it.</p>
   </div>
 </div>`;
 }
