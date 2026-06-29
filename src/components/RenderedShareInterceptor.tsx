@@ -68,12 +68,11 @@ function optionsFor(action: HTMLElement): ShareOptions {
   const href = window.location.href.toLowerCase();
 
   if (path.includes("/daily-hope")) {
-    const stack = label.includes("stack") || label.includes("all");
     return {
-      title: stack ? "Daily Hope Card Stack" : "Daily Hope Card",
-      fileBase: stack ? "daily-hope-card-stack" : "daily-hope-card",
+      title: "Daily Hope Card Stack",
+      fileBase: "daily-hope-card-stack",
       heading: "Daily Hope",
-      subheading: stack ? "FULL PRAYER CARD STACK" : "PRAYER CARD",
+      subheading: "FULL PRAYER CARD STACK",
       kind: "daily-hope",
     };
   }
@@ -209,36 +208,39 @@ function findCardRoot(action: HTMLElement) {
 }
 
 function findDailyHopeRoot(action: HTMLElement, options: ShareOptions) {
-  if (options.title.includes("Stack")) {
-    const main = document.querySelector<HTMLElement>("main") || document.body;
-    const candidates = Array.from(main.querySelectorAll<HTMLElement>("section,article,div"));
-    let best: HTMLElement | null = null;
-    let bestScore = -Infinity;
+  const main = document.querySelector<HTMLElement>("main") || document.body;
+  const candidates = Array.from(main.querySelectorAll<HTMLElement>("section,article,div"));
 
-    for (const el of candidates) {
-      const text = norm(el.textContent || "");
-      const rect = el.getBoundingClientRect();
-      if (rect.width < 240 || rect.height < 160 || text.length < 120) continue;
+  let best: HTMLElement | null = null;
+  let bestScore = -Infinity;
 
-      let score = 0;
-      if (text.includes("daily hope")) score += 2;
-      if (text.includes("sinner prayer")) score += 3;
-      if (text.includes("salvation prayer")) score += 3;
-      if (text.includes("live in the moment")) score += 3;
-      if (text.includes("share")) score -= 1;
-      if (text.includes("expand all days")) score -= 2;
+  for (const el of candidates) {
+    const text = norm(el.textContent || "");
+    const rect = el.getBoundingClientRect();
+    if (rect.width < 280 || rect.height < 180 || text.length < 120) continue;
 
-      const rank = score * 100000 - text.length * 0.25;
-      if (score >= 5 && rank > bestScore) {
-        best = el;
-        bestScore = rank;
-      }
+    let score = 0;
+    if (text.includes("daily hope")) score += 2;
+    if (text.includes("sinner prayer")) score += 10;
+    if (text.includes("salvation prayer")) score += 10;
+    if (text.includes("live in the moment")) score += 10;
+    if (text.includes("romans 5:")) score += 5;
+    if (text.includes("prayer card")) score += 4;
+
+    if (text.includes("share daily hope card")) score -= 8;
+    if (text.includes("email/text shares")) score -= 8;
+    if (text.includes("copy url is link only")) score -= 8;
+    if (text.includes("bible reading plan today")) score -= 4;
+    if (text.includes("expand all days")) score -= 4;
+
+    const rank = score * 100000 - Math.abs(text.length - 2200);
+    if (score > bestScore) {
+      best = el;
+      bestScore = score;
     }
-
-    return best || main;
   }
 
-  return findCardRoot(action);
+  return bestScore >= 10 && best ? best : main;
 }
 
 function bestShareRoot(action: HTMLElement, options: ShareOptions) {
