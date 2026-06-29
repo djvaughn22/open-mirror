@@ -340,6 +340,108 @@ function plainText(parsed: ParsedShare, title: string) {
   return parts.join("\n").trim();
 }
 
+
+function shareTargetElement(boardHref: string, canonicalUrl: string) {
+  if (typeof document === "undefined") return null;
+
+  let hash = "";
+
+  try {
+    if (boardHref.startsWith("#")) {
+      hash = boardHref;
+    } else {
+      hash = new URL(canonicalUrl || boardHref, window.location.href).hash;
+    }
+  } catch {
+    hash = "";
+  }
+
+  if (hash) {
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (target) return target;
+  }
+
+  return document.querySelector("main");
+}
+
+function cleanedDomShareText(element: Element | null) {
+  if (!element || typeof document === "undefined") return "";
+
+  const clone = element.cloneNode(true) as HTMLElement;
+
+  clone
+    .querySelectorAll(
+      [
+        "script",
+        "style",
+        "button",
+        "nav",
+        "header",
+        "footer",
+        "[role='menu']",
+        "[aria-haspopup='menu']",
+        ".print\\:hidden",
+      ].join(","),
+    )
+    .forEach((node) => node.remove());
+
+  const noisyLines = new Set([
+    "Share",
+    "Share HTML",
+    "Copy URL",
+    "HTML copies the pretty card and opens text/email. URL copies link only.",
+    "Copies pretty card, then opens text/email share.",
+    "Link only.",
+    "Deep Dive",
+    "Open",
+    "Tools",
+  ]);
+
+  return (clone.innerText || clone.textContent || "")
+    .split(/\\n+/)
+    .map((line) => line.replace(/\\s+/g, " ").trim())
+    .filter(Boolean)
+    .filter((line) => !noisyLines.has(line))
+    .join("\\n");
+}
+
+function targetLinks(element: Element | null, canonicalUrl: string) {
+  const links: string[] = [];
+
+  if (element) {
+    element.querySelectorAll("a[href]").forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      try {
+        links.push(new URL(href, window.location.origin).toString());
+      } catch {
+        links.push(href);
+      }
+    });
+  }
+
+  if (canonicalUrl) links.push(canonicalUrl);
+
+  return unique(links);
+}
+
+function runtimeShareText(shareText: string, boardHref: string, canonicalUrl: string) {
+  if (typeof document === "undefined") return shareText;
+
+  const target = shareTargetElement(boardHref, canonicalUrl);
+  const domText = cleanedDomShareText(target);
+  const links = targetLinks(target, canonicalUrl);
+
+  const baseText =
+    domText.length > shareText.length + 40 || shareText.length < 140
+      ? domText || shareText
+      : shareText;
+
+  return [baseText, "", ...links].filter(Boolean).join("\\n");
+}
+
+
 function menuPositionClass(align: CrossHeartPrayShareMenuProps["align"]) {
   if (align === "left") return "left-0";
   if (align === "center") return "left-1/2 -translate-x-1/2";
@@ -505,8 +607,12 @@ export default function CrossHeartPrayShareMenu({
             type="button"
             role="menuitem"
             onClick={async () => {
-              const ok = await copyRich(copyHtml, fullText);
-              const shareTextWithUrl = `${fullText}\n\n${canonicalUrl}`.trim();
+              const liveShareText = runtimeShareText(shareText, boardHref, canonicalUrl);
+              const liveParsed = parseShare(liveShareText, canonicalUrl);
+              const liveHtml = cardShellHtml(liveParsed, emailSubject, itemLabel, true);
+              const liveText = plainText(liveParsed, emailSubject);
+              const ok = await copyRich(liveHtml, liveText);
+              const shareTextWithUrl = `${liveText}\n\n${canonicalUrl}`.trim();
               let openedShare = false;
 
               try {

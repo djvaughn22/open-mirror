@@ -170,6 +170,98 @@ function htmlForPassages(item: DailyHopePassageItem) {
     .join("");
 }
 
+
+function dailyHopePassageFullLine(passage: any) {
+  const label = typeof passage?.label === "string" ? passage.label : "";
+  const text =
+    typeof passage?.text === "string"
+      ? passage.text
+      : typeof passage?.verseText === "string"
+        ? passage.verseText
+        : "";
+
+  return [label, text].filter(Boolean).join(" — ");
+}
+
+function dailyHopeItemFullShareText(item: any, cardUrl: string) {
+  const title = typeof item?.title === "string" ? item.title : "Daily Hope Card";
+  const cue = typeof item?.cue === "string" ? item.cue : "";
+  const body =
+    typeof item?.body === "string"
+      ? item.body
+      : typeof item?.text === "string"
+        ? item.text
+        : "";
+
+  const passageLines = Array.isArray(item?.passages)
+    ? item.passages.map((passage: any) => dailyHopePassageFullLine(passage)).filter(Boolean)
+    : [];
+
+  return [
+    "Daily Hope Card",
+    title,
+    cue,
+    "",
+    body,
+    "",
+    ...passageLines,
+    "",
+    cardUrl,
+  ].filter((line) => line !== undefined && line !== null).join("\\n");
+}
+
+function dailyHopePrayerFullShareText(prayer: DailyHopePrayerCard, prayerUrl: string) {
+  return ["Prayer Card", prayer.title, "", prayer.body, "", prayerUrl].join("\\n");
+}
+
+function dailyHopeFullPageShareText(
+  openingPrayers: DailyHopePrayerCard[],
+  days: any[],
+  closingPrayer: DailyHopePrayerCard,
+  pageUrl: string,
+) {
+  const lines: string[] = ["Daily Hope", "Don’t just hope. Know.", "", "Opening Prayers"];
+
+  openingPrayers.forEach((prayer) => {
+    lines.push("", "Prayer Card", prayer.title, "", prayer.body);
+  });
+
+  lines.push("", "Fixed Hope Verses");
+
+  days.forEach((day: any) => {
+    lines.push("", day.day || "Daily Hope Day");
+
+    if (Array.isArray(day.items)) {
+      day.items.forEach((item: any) => {
+        const title = typeof item?.title === "string" ? item.title : "Daily Hope Card";
+        const cue = typeof item?.cue === "string" ? item.cue : "";
+        const body =
+          typeof item?.body === "string"
+            ? item.body
+            : typeof item?.text === "string"
+              ? item.text
+              : "";
+
+        lines.push("", "Daily Hope Card", title);
+        if (cue) lines.push(cue);
+        if (body) lines.push("", body);
+
+        if (Array.isArray(item?.passages)) {
+          item.passages.forEach((passage: any) => {
+            const passageLine = dailyHopePassageFullLine(passage);
+            if (passageLine) lines.push(passageLine);
+          });
+        }
+      });
+    }
+  });
+
+  lines.push("", "Closing Prayer", closingPrayer.title, "", closingPrayer.body, "", pageUrl);
+
+  return lines.join("\\n");
+}
+
+
 function prayerShareText(prayer: DailyHopePrayerCard, pageUrl: string) {
   return [`Daily Hope`, prayer.title, "", prayer.body, "", pageUrl].join("\n");
 }
@@ -357,14 +449,12 @@ export default function DailyHopeRoutine({
     return [...uniquePassages.values()];
   }, [days]);
 
-  const boardShareText = [
-    "Daily Hope",
-    "Don’t just hope. Know.",
-    "",
-    "Prayers and fixed hope verses.",
-    "",
+  const boardShareText = dailyHopeFullPageShareText(
+    openingPrayers,
+    days,
+    closingPrayer,
     pageUrl,
-  ].join("\n");
+  );
 
   const boardHtml = boardHtmlEmail(
     openingPrayers,
@@ -593,8 +683,8 @@ export default function DailyHopeRoutine({
                   <BibleBingoShareMenu
                     boardHref={`#${prayerId}`}
                     boardUrl={prayerUrl}
-                    shareText={boardShareText}
-                    emailSubject="Daily Hope"
+                    shareText={dailyHopePrayerFullShareText(prayer, prayerUrl)}
+                    emailSubject={`Daily Hope - ${prayer.title}`}
                     align="right"
                     itemLabel="dailyHope"
                     buttonLabel="Share full Daily Hope"
@@ -735,8 +825,8 @@ export default function DailyHopeRoutine({
                           <BibleBingoShareMenu
                             boardHref={`#${item.id}`}
                             boardUrl={cardUrl}
-                            shareText={boardShareText}
-                            emailSubject="Daily Hope"
+                            shareText={dailyHopeItemFullShareText(item, cardUrl)}
+                            emailSubject={`Daily Hope - ${day.day}`}
                     align="right"
                             itemLabel="dailyHope"
                             buttonLabel="Share full Daily Hope"
@@ -744,8 +834,8 @@ export default function DailyHopeRoutine({
                   <BibleBingoShareMenu
                             boardHref={`#${item.id}`}
                             boardUrl={cardUrl}
-                            shareText={boardShareText}
-                            emailSubject="Daily Hope"
+                            shareText={dailyHopeItemFullShareText(item, cardUrl)}
+                            emailSubject={`Daily Hope - ${day.day}`}
                     align="right"
                             itemLabel="dailyHope"
                             buttonLabel="Share full Daily Hope"
@@ -863,8 +953,8 @@ export default function DailyHopeRoutine({
               <BibleBingoShareMenu
                 boardHref="#live-in-the-moment"
                 boardUrl={`${pageUrl}#live-in-the-moment`}
-                shareText={boardShareText}
-                emailSubject="Daily Hope"
+                shareText={dailyHopePrayerFullShareText(closingPrayer, `${pageUrl}#live-in-the-moment`)}
+                emailSubject={`Daily Hope - ${closingPrayer.title}`}
                     align="right"
                 itemLabel="dailyHope"
                 buttonLabel="Share full Daily Hope"
@@ -872,8 +962,8 @@ export default function DailyHopeRoutine({
                   <BibleBingoShareMenu
                 boardHref="#live-in-the-moment"
                 boardUrl={`${pageUrl}#live-in-the-moment`}
-                shareText={boardShareText}
-                emailSubject="Daily Hope"
+                shareText={dailyHopePrayerFullShareText(closingPrayer, `${pageUrl}#live-in-the-moment`)}
+                emailSubject={`Daily Hope - ${closingPrayer.title}`}
                     align="right"
                 itemLabel="dailyHope"
                 buttonLabel="Share full Daily Hope"
