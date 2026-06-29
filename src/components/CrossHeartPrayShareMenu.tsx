@@ -487,14 +487,14 @@ export default function CrossHeartPrayShareMenu({
       {open ? (
         <div
           role="menu"
-          className={`absolute ${menuPositionClass(align)} top-11 z-50 w-72 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-2 text-left shadow-2xl shadow-black/45 backdrop-blur`}
+          className={`absolute ${menuPositionClass(align)} top-11 z-50 w-64 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-2 text-left shadow-2xl shadow-black/45 backdrop-blur`}
         >
           <div className="border-b border-white/10 px-3 py-2">
             <p className="text-[0.62rem] font-black uppercase tracking-[0.16em] text-emerald-100">
-              Full card share
+              Share
             </p>
             <p className="mt-1 text-xs font-semibold leading-5 text-slate-300">
-              Copies prayers, verses, card details first. Links stay at the bottom.
+              HTML = full pretty card/page. URL = link only.
             </p>
             {copied ? (
               <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-100">{copied}</p>
@@ -506,47 +506,15 @@ export default function CrossHeartPrayShareMenu({
             role="menuitem"
             onClick={async () => {
               const ok = await copyRich(copyHtml, fullText);
-              flash(ok ? "Full card copied" : "Copy blocked");
+              flash(ok ? "HTML copied" : "Copy blocked");
+              setOpen(false);
             }}
-            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
+            className="block w-full rounded-xl px-3 py-4 text-left text-base font-black text-white hover:bg-white/10"
           >
-            Copy full card HTML
-          </button>
-
-          <button
-            type="button"
-            role="menuitem"
-            onClick={async () => {
-              const ok = await copyPlain(fullText);
-              flash(ok ? "Full text copied" : "Copy blocked");
-            }}
-            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
-          >
-            Copy full text
-          </button>
-
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => {
-              printHtml(fullHtml);
-              flash("Print opened");
-            }}
-            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
-          >
-            Print / Save full PDF
-          </button>
-
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => {
-              downloadHtml(fileName, fullHtml);
-              flash("HTML downloaded");
-            }}
-            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
-          >
-            Download full card page
+            Share HTML
+            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-300">
+              Full prayers, verses, cards first. Links at bottom.
+            </span>
           </button>
 
           <button
@@ -555,10 +523,14 @@ export default function CrossHeartPrayShareMenu({
             onClick={async () => {
               const ok = await copyPlain(canonicalUrl);
               flash(ok ? "URL copied" : "Copy blocked");
+              setOpen(false);
             }}
-            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-slate-200 hover:bg-white/10"
+            className="block w-full rounded-xl px-3 py-4 text-left text-base font-black text-white hover:bg-white/10"
           >
-            Copy URL only
+            Copy URL
+            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-300">
+              Link only.
+            </span>
           </button>
         </div>
       ) : null}
