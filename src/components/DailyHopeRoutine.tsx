@@ -822,15 +822,7 @@ export default function DailyHopeRoutine({
                         className={`relative overflow-visible rounded-[1.5rem] border p-5 text-center text-slate-100 shadow-lg shadow-black/15 sm:p-6 ${cardTone(globalCardIndex)}`}
                       >
                         <div className="absolute right-4 top-4">
-                          <BibleBingoShareMenu
-                            boardHref={`#${item.id}`}
-                            boardUrl={cardUrl}
-                            shareText={dailyHopeItemFullShareText(item, cardUrl)}
-                            emailSubject={`Daily Hope - ${day.day}`}
-                    align="right"
-                            itemLabel="dailyHope"
-                            buttonLabel="Share full Daily Hope"
-                  />
+
                   <BibleBingoShareMenu
                             boardHref={`#${item.id}`}
                             boardUrl={cardUrl}
@@ -950,15 +942,7 @@ export default function DailyHopeRoutine({
             className="relative mx-auto max-w-4xl overflow-visible rounded-[2rem] border border-emerald-200/18 bg-emerald-950/22 p-6 text-center shadow-xl shadow-black/20 sm:p-8"
           >
             <div className="absolute right-5 top-5">
-              <BibleBingoShareMenu
-                boardHref="#live-in-the-moment"
-                boardUrl={`${pageUrl}#live-in-the-moment`}
-                shareText={dailyHopePrayerFullShareText(closingPrayer, `${pageUrl}#live-in-the-moment`)}
-                emailSubject={`Daily Hope - ${closingPrayer.title}`}
-                    align="right"
-                itemLabel="dailyHope"
-                buttonLabel="Share full Daily Hope"
-                  />
+
                   <BibleBingoShareMenu
                 boardHref="#live-in-the-moment"
                 boardUrl={`${pageUrl}#live-in-the-moment`}
