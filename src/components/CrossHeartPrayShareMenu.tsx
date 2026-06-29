@@ -1,0 +1,567 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+
+export type ShareItemLabel = "board" | "card" | "dailyHope" | string;
+
+export type CrossHeartPrayShareMenuProps = {
+  boardHref: string;
+  boardUrl?: string;
+  shareText: string;
+  emailSubject?: string;
+  align?: "left" | "right" | "center";
+  itemLabel?: ShareItemLabel;
+  buttonLabel?: string;
+  iconOnly?: boolean;
+  className?: string;
+  [key: string]: unknown;
+};
+
+type ParsedCard = {
+  title: string;
+  lines: string[];
+  links: string[];
+};
+
+type ParsedShare = {
+  metaLines: string[];
+  cards: ParsedCard[];
+  links: string[];
+};
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function escapeAttr(value: string) {
+  return escapeHtml(value);
+}
+
+function titleNameFor(itemLabel: ShareItemLabel) {
+  if (itemLabel === "dailyHope") return "Daily Hope";
+  if (itemLabel === "board") return "Board";
+  return "Card";
+}
+
+function safeFileName(value: string) {
+  return (
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 72) || "crossheartpray-share"
+  );
+}
+
+function unique(values: string[]) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
+
+function extractUrls(value: string): string[] {
+  return Array.from(value.match(/https?:\/\/[^\s<>"')]+/g) ?? []);
+}
+
+function cleanTextLine(value: string) {
+  return value
+    .replace(/https?:\/\/[^\s<>"')]+/g, "")
+    .replace(/\bOpen online:\s*/gi, "")
+    .replace(/\bOpen:\s*/gi, "")
+    .replace(/\bURL:\s*/gi, "")
+    .replace(/\bLink:\s*/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function looksLikeReference(value: string) {
+  return /^[1-3]?\s?[A-Za-z]+(?:\s+[A-Za-z]+)?\s+\d+(?::\d+)?(?:[-–]\d+)?/.test(value);
+}
+
+function looksLikeCardStart(value: string) {
+  return (
+    /^(card\s+\d+|verse card|prayer card|daily hope|sinner prayer|salvation prayer|live in the moment prayer|board)/i.test(value) ||
+    looksLikeReference(value)
+  );
+}
+
+function looksLikeMeta(value: string) {
+  return /^(to:|from:|shared:|date:|section:|lane:|week:|day:)/i.test(value);
+}
+
+function lineKind(value: string) {
+  if (looksLikeReference(value)) return "reference";
+  if (/^(card\s+\d+|verse card|prayer card|daily hope|sinner prayer|salvation prayer|live in the moment prayer|board)/i.test(value)) {
+    return "heading";
+  }
+  if (looksLikeMeta(value)) return "meta";
+  if (value.length > 90) return "main";
+  return "line";
+}
+
+function parseShare(shareText: string, canonicalUrl: string): ParsedShare {
+  const rawLines = shareText
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const metaLines: string[] = [];
+  const cards: ParsedCard[] = [];
+  const allLinks: string[] = [...extractUrls(shareText)];
+
+  let currentTitle = "Card";
+  let currentLines: string[] = [];
+  let currentLinks: string[] = [];
+  let hasCurrent = false;
+
+  function startCard(title = "Card") {
+    hasCurrent = true;
+    currentTitle = title || "Card";
+    currentLines = [];
+    currentLinks = [];
+  }
+
+  function flushCard() {
+    if (!hasCurrent) return;
+
+    if (currentLines.length || currentLinks.length) {
+      cards.push({
+        title: currentTitle || "Card",
+        lines: [...currentLines],
+        links: unique(currentLinks),
+      });
+    }
+
+    hasCurrent = false;
+    currentTitle = "Card";
+    currentLines = [];
+    currentLinks = [];
+  }
+
+  for (const rawLine of rawLines) {
+    const urls = extractUrls(rawLine);
+    const clean = cleanTextLine(rawLine);
+
+    if (!clean && urls.length) {
+      if (!hasCurrent) startCard("Card");
+      currentLinks.push(...urls);
+      continue;
+    }
+
+    if (!clean) continue;
+
+    const isEarlyMeta =
+      !hasCurrent &&
+      cards.length === 0 &&
+      (looksLikeMeta(clean) || /^cross\s?heart\s?pray|^crossheartpray|^bible bingo 7/i.test(clean));
+
+    if (isEarlyMeta) {
+      metaLines.push(clean);
+      allLinks.push(...urls);
+      continue;
+    }
+
+    const startsCard = looksLikeCardStart(clean);
+
+    if (startsCard && hasCurrent && currentLines.length > 0) {
+      flushCard();
+    }
+
+    if (!hasCurrent) {
+      startCard(startsCard ? clean : "Card");
+    }
+
+    if (startsCard && currentLines.length === 0) {
+      currentTitle = clean;
+    }
+
+    currentLines.push(clean);
+    currentLinks.push(...urls);
+  }
+
+  flushCard();
+
+  if (!cards.length) {
+    cards.push({
+      title: "Card",
+      lines: metaLines.length ? [...metaLines] : ["CrossHeartPray card details."],
+      links: [],
+    });
+    metaLines.length = 0;
+  }
+
+  const links = unique([...allLinks, canonicalUrl].filter(Boolean));
+
+  return {
+    metaLines,
+    cards,
+    links,
+  };
+}
+function paragraphHtml(line: string, allowLinks: boolean) {
+  const kind = lineKind(line);
+  const html = allowLinks ? linkify(line) : escapeHtml(cleanTextLine(line) || line);
+
+  const styleByKind: Record<string, string> = {
+    heading: "margin:0 0 8px;color:#065f46;font:900 13px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.4px;",
+    reference: "margin:0 0 8px;color:#065f46;font:900 14px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.2px;",
+    meta: "margin:0 0 8px;color:#475569;font:900 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.2px;",
+    main: "margin:0 0 10px;color:#0f172a;font-size:19px;line-height:1.52;",
+    line: "margin:0 0 9px;color:#0f172a;font-size:16px;line-height:1.45;",
+  };
+
+  return `<p class="${kind}" style="${styleByKind[kind] ?? styleByKind.line}">${html}</p>`;
+}
+
+function linkify(value: string) {
+  const urlPattern = /(https?:\/\/[^\s<>"')]+)/g;
+
+  return value
+    .split(urlPattern)
+    .map((part) => {
+      if (/^https?:\/\//i.test(part)) {
+        const safeUrl = escapeAttr(part);
+        return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" style="color:#065f46;font-weight:900;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(part)}</a>`;
+      }
+
+      return escapeHtml(part);
+    })
+    .join("");
+}
+
+function cardShellHtml(parsed: ParsedShare, title: string, itemLabel: ShareItemLabel, allowLinks: boolean) {
+  const safeTitle = escapeHtml(title);
+  const safeKind = escapeHtml(titleNameFor(itemLabel));
+
+  const metaHtml = parsed.metaLines.length
+    ? `<div style="margin:0 0 14px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:18px;background:#f8fafc;">${parsed.metaLines
+        .map((line) => paragraphHtml(line, allowLinks))
+        .join("")}</div>`
+    : "";
+
+  const cardsHtml = parsed.cards
+    .map((card, index) => {
+      const body = card.lines.map((line) => paragraphHtml(line, allowLinks)).join("");
+
+      const localLinks = unique([...card.links]);
+      const linksHtml =
+        allowLinks && localLinks.length
+          ? `<div style="margin-top:12px;padding-top:12px;border-top:1px solid #e2e8f0;">${localLinks
+              .map((url) => {
+                const safeUrl = escapeAttr(url);
+                return `<p style="margin:0 0 7px;color:#475569;font:800 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">Open source: <a href="${safeUrl}" target="_blank" rel="noopener noreferrer" style="color:#065f46;font-weight:900;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(url)}</a></p>`;
+              })
+              .join("")}</div>`
+          : "";
+
+      return `<article style="break-inside:avoid;margin:0 0 14px;border:1px solid #cbd5e1;border-radius:22px;background:#ffffff;padding:18px;box-shadow:0 8px 22px rgba(15,23,42,0.08);">
+        <div style="margin:0 0 10px;color:#94a3b8;font:900 10px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.4px;">${parsed.cards.length > 1 ? `Card ${index + 1}` : "Card"}</div>
+        ${body}
+        ${linksHtml}
+      </article>`;
+    })
+    .join("");
+
+  const allLinksHtml =
+    allowLinks && parsed.links.length
+      ? `<div style="margin-top:14px;padding:14px;border:1px solid #cbd5e1;border-radius:18px;background:#f8fafc;">
+          <p style="margin:0 0 8px;color:#475569;font:900 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.2px;">Links</p>
+          ${parsed.links
+            .map((url) => {
+              const safeUrl = escapeAttr(url);
+              return `<p style="margin:0 0 7px;color:#475569;font:800 11px Arial,sans-serif;letter-spacing:.4px;overflow-wrap:anywhere;"><a href="${safeUrl}" target="_blank" rel="noopener noreferrer" style="color:#065f46;font-weight:900;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(url)}</a></p>`;
+            })
+            .join("")}
+        </div>`
+      : "";
+
+  return `<section style="font-family:Georgia,'Times New Roman',serif;color:#0f172a;background:#f8fafc;padding:22px;">
+  <div style="max-width:880px;margin:0 auto;background:#ffffff;border:2px solid #0f172a;border-radius:28px;padding:24px;">
+    <div style="text-align:center;font-size:28px;letter-spacing:8px;">✝️ ❤️ 🙏</div>
+    <p style="text-align:center;margin:8px 0;color:#334155;font:900 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.6px;">CrossHeartPray · ${safeKind}</p>
+    <h1 style="margin:0 0 18px;text-align:center;font-size:30px;line-height:1.08;">${safeTitle}</h1>
+    ${metaHtml}
+    <div>${cardsHtml}</div>
+    ${allLinksHtml}
+    <p style="margin-top:16px;text-align:center;color:#475569;font:800 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:1.3px;">Cross Heart Pray your way through it.</p>
+  </div>
+</section>`;
+}
+
+function documentHtml(parsed: ParsedShare, title: string, itemLabel: ShareItemLabel) {
+  return `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${escapeHtml(title)}</title>
+  <style>
+    @page { size: letter portrait; margin: 0.38in; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f8fafc; }
+    @media print {
+      body { background: #ffffff; }
+      section { padding: 0 !important; }
+      section > div { box-shadow: none !important; }
+      article { box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body>
+${cardShellHtml(parsed, title, itemLabel, true)}
+</body>
+</html>`;
+}
+
+function plainText(parsed: ParsedShare, title: string) {
+  const parts: string[] = [title, ""];
+
+  if (parsed.metaLines.length) {
+    parts.push(...parsed.metaLines, "");
+  }
+
+  parsed.cards.forEach((card, index) => {
+    parts.push(parsed.cards.length > 1 ? `Card ${index + 1}` : "Card");
+    parts.push(...card.lines);
+    if (card.links.length) {
+      parts.push("Links:");
+      parts.push(...card.links);
+    }
+    parts.push("");
+  });
+
+  if (parsed.links.length) {
+    parts.push("All links:");
+    parts.push(...parsed.links);
+  }
+
+  return parts.join("\n").trim();
+}
+
+function menuPositionClass(align: CrossHeartPrayShareMenuProps["align"]) {
+  if (align === "left") return "left-0";
+  if (align === "center") return "left-1/2 -translate-x-1/2";
+  return "right-0";
+}
+
+async function copyPlain(value: string) {
+  try {
+    await navigator.clipboard.writeText(value);
+    return true;
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = value;
+    textarea.setAttribute("readonly", "true");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      return true;
+    } finally {
+      textarea.remove();
+    }
+  }
+}
+
+async function copyRich(html: string, plain: string) {
+  try {
+    if (navigator.clipboard && "write" in navigator.clipboard && typeof ClipboardItem !== "undefined") {
+      const item = new ClipboardItem({
+        "text/html": new Blob([html], { type: "text/html" }),
+        "text/plain": new Blob([plain], { type: "text/plain" }),
+      });
+      await navigator.clipboard.write([item]);
+      return true;
+    }
+  } catch {
+    // Fall back below.
+  }
+
+  return copyPlain(plain);
+}
+
+function downloadHtml(fileName: string, html: string) {
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function printHtml(html: string) {
+  const printWindow = window.open("", "_blank", "noopener,noreferrer,width=900,height=1100");
+
+  if (!printWindow) {
+    downloadHtml("crossheartpray-full-cards.html", html);
+    return;
+  }
+
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.focus();
+
+  window.setTimeout(() => {
+    printWindow.print();
+  }, 350);
+}
+
+export default function CrossHeartPrayShareMenu({
+  boardHref,
+  boardUrl,
+  shareText,
+  emailSubject = "CrossHeartPray Share",
+  align = "right",
+  itemLabel = "card",
+  buttonLabel,
+  iconOnly = false,
+  className = "",
+}: CrossHeartPrayShareMenuProps) {
+  const [open, setOpen] = useState(false);
+  const [copied, setCopied] = useState("");
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  const canonicalUrl = useMemo(() => {
+    if (boardUrl) return boardUrl;
+    if (typeof window !== "undefined") {
+      try {
+        return new URL(boardHref || window.location.href, window.location.origin).toString();
+      } catch {
+        return window.location.href;
+      }
+    }
+    return boardHref || "";
+  }, [boardHref, boardUrl]);
+
+  const parsed = useMemo(() => parseShare(shareText, canonicalUrl), [shareText, canonicalUrl]);
+  const fullHtml = useMemo(() => documentHtml(parsed, emailSubject, itemLabel), [parsed, emailSubject, itemLabel]);
+  const copyHtml = useMemo(() => cardShellHtml(parsed, emailSubject, itemLabel, true), [parsed, emailSubject, itemLabel]);
+  const fullText = useMemo(() => plainText(parsed, emailSubject), [parsed, emailSubject]);
+  const fileName = `${safeFileName(emailSubject)}.html`;
+
+  useEffect(() => {
+    function onPointerDown(event: PointerEvent) {
+      if (!rootRef.current) return;
+      if (!rootRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, []);
+
+  function flash(message: string) {
+    setCopied(message);
+    window.setTimeout(() => setCopied(""), 1800);
+  }
+
+  const visibleButtonLabel = buttonLabel || `Share ${titleNameFor(itemLabel)}`;
+
+  return (
+    <div ref={rootRef} className={`relative inline-flex ${className}`}>
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className={
+          iconOnly
+            ? "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-sm font-black text-white shadow-lg shadow-black/20 transition hover:bg-white/15"
+            : "inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white shadow-lg shadow-black/20 transition hover:bg-white/15"
+        }
+        aria-haspopup="menu"
+        aria-expanded={open}
+        title={visibleButtonLabel}
+      >
+        {iconOnly ? "↗" : visibleButtonLabel}
+      </button>
+
+      {open ? (
+        <div
+          role="menu"
+          className={`absolute ${menuPositionClass(align)} top-11 z-50 w-72 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-2 text-left shadow-2xl shadow-black/45 backdrop-blur`}
+        >
+          <div className="border-b border-white/10 px-3 py-2">
+            <p className="text-[0.62rem] font-black uppercase tracking-[0.16em] text-emerald-100">
+              Full card share
+            </p>
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-300">
+              Copies prayers, verses, card details first. Links stay at the bottom.
+            </p>
+            {copied ? (
+              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-100">{copied}</p>
+            ) : null}
+          </div>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={async () => {
+              const ok = await copyRich(copyHtml, fullText);
+              flash(ok ? "Full card copied" : "Copy blocked");
+            }}
+            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
+          >
+            Copy full card HTML
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={async () => {
+              const ok = await copyPlain(fullText);
+              flash(ok ? "Full text copied" : "Copy blocked");
+            }}
+            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
+          >
+            Copy full text
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              printHtml(fullHtml);
+              flash("Print opened");
+            }}
+            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
+          >
+            Print / Save full PDF
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              downloadHtml(fileName, fullHtml);
+              flash("HTML downloaded");
+            }}
+            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-white hover:bg-white/10"
+          >
+            Download full card page
+          </button>
+
+          <button
+            type="button"
+            role="menuitem"
+            onClick={async () => {
+              const ok = await copyPlain(canonicalUrl);
+              flash(ok ? "URL copied" : "Copy blocked");
+            }}
+            className="block w-full rounded-xl px-3 py-3 text-left text-sm font-black text-slate-200 hover:bg-white/10"
+          >
+            Copy URL only
+          </button>
+        </div>
+      ) : null}
+    </div>
+  );
+}
