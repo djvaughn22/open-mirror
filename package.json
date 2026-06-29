@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@youversion/platform-core": "^2.0.0",
+    "html-to-image": "^1.11.13",
     "next": "16.2.6",
     "openai": "^6.41.0",
     "react": "19.2.4",
