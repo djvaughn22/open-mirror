@@ -389,8 +389,8 @@ function cleanedDomShareText(element: Element | null) {
     "Share",
     "Share HTML",
     "Copy URL",
-    "HTML copies the pretty card and opens text/email. URL copies link only.",
-    "Copies pretty card, then opens text/email share.",
+    "HTML copies complete formatted content and opens text/email. URL copies link only.",
+    "Complete text first, links below, ready for text/email.",
     "Link only.",
     "Deep Dive",
     "Open",
@@ -596,7 +596,7 @@ export default function CrossHeartPrayShareMenu({
               Share
             </p>
             <p className="mt-1 text-xs font-semibold leading-5 text-slate-300">
-              HTML copies the pretty card and opens text/email. URL copies link only.
+              HTML copies complete formatted content and opens text/email. URL copies link only.
             </p>
             {copied ? (
               <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-100">{copied}</p>
@@ -640,7 +640,7 @@ export default function CrossHeartPrayShareMenu({
           >
             Share HTML
             <span className="mt-1 block text-xs font-semibold leading-5 text-slate-300">
-              Copies pretty card, then opens text/email share.
+              Complete text first, links below, ready for text/email.
             </span>
           </button>
 
