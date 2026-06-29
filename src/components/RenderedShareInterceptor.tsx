@@ -227,9 +227,7 @@ function extractLines(root: HTMLElement, options: ShareOptions) {
     .filter((line) => !isNoiseLine(line))
     .slice(0, options.kind === "daily-hope" ? 120 : 90);
 
-  if (!trimmed.length) return [options.title];
-
-  return trimmed;
+  return trimmed.length ? trimmed : [options.title];
 }
 
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
@@ -306,7 +304,7 @@ async function makeRenderedPng(context: ShareContext) {
     }
   }
 
-  estimated += 92;
+  estimated += 120;
   const height = Math.min(16000, Math.max(900, estimated));
   const scale = height > 9000 ? 1 : Math.min(2, window.devicePixelRatio || 1.5);
 
@@ -330,9 +328,7 @@ async function makeRenderedPng(context: ShareContext) {
 
   ctx.fillStyle = "#456f59";
   ctx.font = "900 24px Arial";
-  ctx.letterSpacing = "8px";
   ctx.fillText("CROSS HEART PRAY", pad, y);
-  ctx.letterSpacing = "0px";
   y += 70;
 
   ctx.fillStyle = "#263034";
@@ -342,9 +338,7 @@ async function makeRenderedPng(context: ShareContext) {
 
   ctx.fillStyle = "#456f59";
   ctx.font = "900 27px Arial";
-  ctx.letterSpacing = "7px";
   ctx.fillText(context.options.subheading, pad, y);
-  ctx.letterSpacing = "0px";
   y += 54;
 
   const cardTop = y;
@@ -387,7 +381,7 @@ async function makeRenderedPng(context: ShareContext) {
     }
   }
 
-  y = Math.min(y + 24, height - 100);
+  y = Math.min(y + 28, height - 105);
   ctx.fillStyle = "#315c49";
   ctx.font = "700 24px Arial";
   ctx.fillText("Open:", cardX + cardPad, y);
@@ -423,44 +417,22 @@ async function copyImageToClipboard(file: File) {
   }
 }
 
-function openEmail(subject: string, body: string) {
-  window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function openText(body: string) {
-  const separator = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?";
-  window.location.href = `sms:${separator}body=${encodeURIComponent(body)}`;
-}
-
-async function shareRendered(mode: "email" | "text", context: ShareContext, setStatus: (value: string) => void) {
-  setStatus("Rendering card image…");
-
-  const file = await makeRenderedPng(context);
+async function shareFileOnly(file: File, title: string) {
   const nav = navigator as Navigator & {
     canShare?: (data: { files?: File[] }) => boolean;
-    share?: (data: { title?: string; text?: string; files?: File[] }) => Promise<void>;
+    share?: (data: { title?: string; files?: File[] }) => Promise<void>;
   };
 
-  const shareText = `${context.options.title}\n${context.url}`;
+  if (!nav.share) return false;
 
-  if (nav.share && (!nav.canShare || nav.canShare({ files: [file] }))) {
-    setStatus(mode === "email" ? "Choose Mail in the share sheet…" : "Choose Messages in the share sheet…");
+  try {
     await nav.share({
-      title: context.options.title,
-      text: shareText,
+      title,
       files: [file],
     });
-    setStatus("Shared rendered image.");
-    return;
-  }
-
-  const copied = await copyImageToClipboard(file);
-  setStatus(copied ? "Rendered image copied. Opening app…" : "Opening app with link…");
-
-  if (mode === "email") {
-    openEmail(context.options.title, shareText);
-  } else {
-    openText(shareText);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -472,6 +444,37 @@ async function copyUrl(url: string, setStatus: (value: string) => void) {
 export default function RenderedShareInterceptor() {
   const [context, setContext] = useState<ShareContext | null>(null);
   const [status, setStatus] = useState("");
+  const [renderedFile, setRenderedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!context) return;
+
+    let cancelled = false;
+    let objectUrl: string | null = null;
+
+    setRenderedFile(null);
+    setPreviewUrl(null);
+    setStatus("Rendering image…");
+
+    void makeRenderedPng(context)
+      .then((file) => {
+        if (cancelled) return;
+        objectUrl = URL.createObjectURL(file);
+        setRenderedFile(file);
+        setPreviewUrl(objectUrl);
+        setStatus("Rendered image ready.");
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setStatus("Could not render image in this browser. Copy URL still works.");
+      });
+
+    return () => {
+      cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [context]);
 
   useEffect(() => {
     const handler = (event: MouseEvent) => {
@@ -503,6 +506,29 @@ export default function RenderedShareInterceptor() {
   if (!context) return null;
 
   const itemWord = context.options.kind === "bible-bingo-board" ? "board" : "card";
+  const canShareRendered = Boolean(renderedFile);
+
+  const shareRendered = async (targetName: "Mail" | "Messages") => {
+    if (!renderedFile) {
+      setStatus("Still rendering image…");
+      return;
+    }
+
+    setStatus(`Opening share sheet. Choose ${targetName}.`);
+    const shared = await shareFileOnly(renderedFile, context.options.title);
+
+    if (shared) {
+      setStatus("Rendered image shared.");
+      return;
+    }
+
+    const copied = await copyImageToClipboard(renderedFile);
+    setStatus(
+      copied
+        ? `Native image share is blocked here. Rendered image copied — paste it into ${targetName}.`
+        : `Native image share is blocked here. Rendered image is shown below.`
+    );
+  };
 
   return (
     <div
@@ -524,6 +550,8 @@ export default function RenderedShareInterceptor() {
       <div
         style={{
           width: "min(430px, 100%)",
+          maxHeight: "92vh",
+          overflow: "auto",
           borderRadius: 28,
           background: "#eef7ff",
           color: "#263034",
@@ -535,15 +563,7 @@ export default function RenderedShareInterceptor() {
         onClick={(event) => event.stopPropagation()}
       >
         <div style={{ fontSize: 30, lineHeight: 1, marginBottom: 10 }}>✝️ ❤️ 🙏</div>
-        <div
-          style={{
-            color: "#456f59",
-            fontSize: 12,
-            fontWeight: 900,
-            letterSpacing: 4,
-            marginBottom: 8,
-          }}
-        >
+        <div style={{ color: "#456f59", fontSize: 12, fontWeight: 900, letterSpacing: 4, marginBottom: 8 }}>
           CROSS HEART PRAY
         </div>
 
@@ -552,13 +572,14 @@ export default function RenderedShareInterceptor() {
         </h2>
 
         <p style={{ margin: "0 0 18px 0", color: "#526166", fontSize: 14, lineHeight: 1.35 }}>
-          Email/Text creates a rendered PNG image of this {itemWord}. URL copies the live link only.
+          Email/Text shares the rendered PNG image. URL copies the live link only.
         </p>
 
         <div style={{ display: "grid", gap: 10 }}>
           <button
             type="button"
-            onClick={() => void shareRendered("email", context, setStatus)}
+            disabled={!canShareRendered}
+            onClick={() => void shareRendered("Mail")}
             style={{
               width: "100%",
               border: 0,
@@ -566,9 +587,9 @@ export default function RenderedShareInterceptor() {
               padding: "14px 16px",
               fontSize: 16,
               fontWeight: 900,
-              background: "#315c49",
+              background: canShareRendered ? "#315c49" : "#9fb5ad",
               color: "white",
-              cursor: "pointer",
+              cursor: canShareRendered ? "pointer" : "wait",
               textAlign: "left",
             }}
           >
@@ -577,7 +598,8 @@ export default function RenderedShareInterceptor() {
 
           <button
             type="button"
-            onClick={() => void shareRendered("text", context, setStatus)}
+            disabled={!canShareRendered}
+            onClick={() => void shareRendered("Messages")}
             style={{
               width: "100%",
               border: 0,
@@ -585,9 +607,9 @@ export default function RenderedShareInterceptor() {
               padding: "14px 16px",
               fontSize: 16,
               fontWeight: 900,
-              background: "#315c49",
+              background: canShareRendered ? "#315c49" : "#9fb5ad",
               color: "white",
-              cursor: "pointer",
+              cursor: canShareRendered ? "pointer" : "wait",
               textAlign: "left",
             }}
           >
@@ -626,6 +648,22 @@ export default function RenderedShareInterceptor() {
         >
           {status || context.url}
         </div>
+
+        {previewUrl ? (
+          <img
+            src={previewUrl}
+            alt={`${context.options.title} rendered preview`}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "auto",
+              marginTop: 14,
+              borderRadius: 18,
+              border: "1px solid #b8e1d5",
+              background: "#eef7ff",
+            }}
+          />
+        ) : null}
 
         <button
           type="button"
