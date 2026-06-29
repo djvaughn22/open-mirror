@@ -1,12 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type ShareOptions = {
   title: string;
   fileBase: string;
   heading: string;
   subheading: string;
+  kind: "daily-hope" | "bible-bingo-board" | "bible-bingo-card";
+};
+
+type ShareContext = {
+  root: HTMLElement;
+  options: ShareOptions;
+  url: string;
 };
 
 function norm(value: string) {
@@ -15,10 +22,10 @@ function norm(value: string) {
 
 function escapeHtml(value: string) {
   return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function slugify(value: string) {
@@ -36,8 +43,8 @@ function supportedPath() {
   return path.includes("/daily-hope") || path.includes("/explorebible") || path.includes("/bible-bingo");
 }
 
-function isShareClick(action: HTMLElement) {
-  const label = norm(
+function getActionLabel(action: HTMLElement) {
+  return norm(
     [
       action.innerText || "",
       action.textContent || "",
@@ -45,15 +52,22 @@ function isShareClick(action: HTMLElement) {
       action.getAttribute("title") || "",
     ].join(" ")
   );
+}
 
+function isShareTrigger(action: HTMLElement) {
+  const label = getActionLabel(action);
   if (!label) return false;
-  if (label.includes("share") || label.includes("email") || label.includes("copy html")) return true;
+  if (label.includes("share")) return true;
+  if (label.includes("email")) return true;
+  if (label.includes("text")) return true;
+  if (label.includes("copy html")) return true;
   return false;
 }
 
 function optionsFor(action: HTMLElement): ShareOptions {
   const path = window.location.pathname;
-  const label = norm(action.innerText || action.textContent || "");
+  const label = getActionLabel(action);
+  const href = window.location.href.toLowerCase();
 
   if (path.includes("/daily-hope")) {
     const stack = label.includes("stack") || label.includes("all");
@@ -62,48 +76,71 @@ function optionsFor(action: HTMLElement): ShareOptions {
       fileBase: stack ? "daily-hope-card-stack" : "daily-hope-card",
       heading: "Daily Hope",
       subheading: stack ? "FULL PRAYER CARD STACK" : "PRAYER CARD",
+      kind: "daily-hope",
     };
   }
 
-  const focused = label.includes("card") || window.location.href.includes("card=");
+  const focused = label.includes("card") || href.includes("card=");
   return {
     title: focused ? "Bible Bingo Card" : "Bible Bingo Board",
     fileBase: focused ? "bible-bingo-card" : "bible-bingo-board",
     heading: "Bible Bingo",
     subheading: focused ? "FOCUSED CARD" : "FULL BOARD",
+    kind: focused ? "bible-bingo-card" : "bible-bingo-board",
   };
 }
 
-function bestShareRoot(action: HTMLElement) {
+function dynamicUrl(action: HTMLElement, options: ShareOptions) {
+  const href =
+    action instanceof HTMLAnchorElement &&
+    action.href &&
+    !action.href.startsWith("mailto:") &&
+    !action.href.startsWith("sms:")
+      ? action.href
+      : window.location.href;
+
+  const url = new URL(href, window.location.origin);
+
+  if (options.kind === "bible-bingo-board") {
+    url.searchParams.delete("card");
+  }
+
+  return url.toString();
+}
+
+function bestShareRoot(action: HTMLElement, options: ShareOptions) {
   const explicit =
     action.closest<HTMLElement>("[data-render-share-root]") ||
     document.querySelector<HTMLElement>("[data-render-share-root]");
   if (explicit) return explicit;
 
-  const main = document.querySelector<HTMLElement>("main");
-  const candidates: HTMLElement[] = [];
+  if (options.kind === "bible-bingo-board") {
+    return document.querySelector<HTMLElement>("main") || document.body;
+  }
 
   let node: HTMLElement | null = action;
   while (node && node !== document.body) {
     const textLength = (node.textContent || "").replace(/\s+/g, " ").trim().length;
-    if (textLength > 80) candidates.push(node);
-    if (main && node === main) break;
+    const tag = node.tagName.toLowerCase();
+    const cls = node.className ? String(node.className).toLowerCase() : "";
+    if (
+      textLength > 80 &&
+      (tag === "article" || tag === "section" || cls.includes("card") || cls.includes("hope") || cls.includes("bingo"))
+    ) {
+      return node;
+    }
     node = node.parentElement;
   }
 
-  const cardish = candidates.find((el) => {
-    const tag = el.tagName.toLowerCase();
-    const cls = el.className ? String(el.className).toLowerCase() : "";
-    return tag === "article" || tag === "section" || cls.includes("card") || cls.includes("board");
-  });
-
-  if (cardish) return cardish;
-  if (main) return main;
-  return document.body;
+  return document.querySelector<HTMLElement>("main") || document.body;
 }
 
 function stripNoise(root: HTMLElement) {
-  root.querySelectorAll("script,style,button,input,textarea,select,nav,form,svg,video,audio,[role='button'],[role='dialog']").forEach((el) => el.remove());
+  root
+    .querySelectorAll(
+      "script,style,button,input,textarea,select,nav,form,svg,img,video,audio,[role='button'],[role='dialog']"
+    )
+    .forEach((el) => el.remove());
 
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const textNodes: Text[] = [];
@@ -122,6 +159,8 @@ function stripNoise(root: HTMLElement) {
     /open board/gi,
     /back to all 7/gi,
     /print \/ save pdf/gi,
+    /expand all days/gi,
+    /bible reading plan today/gi,
   ];
 
   textNodes.forEach((node) => {
@@ -134,7 +173,7 @@ function stripNoise(root: HTMLElement) {
 
   root.querySelectorAll<HTMLElement>("a").forEach((a) => {
     const text = norm(a.textContent || "");
-    if (!text || /^[smtwtfs]$/.test(text) || text === "today" || text === "expand all days") {
+    if (!text || /^[smtwtfs]$/.test(text) || text === "today") {
       a.remove();
       return;
     }
@@ -188,23 +227,15 @@ function cleanElement(el: HTMLElement, depth = 0) {
     el.style.margin = "0 0 12px 0";
   } else if (tag === "strong" || tag === "b") {
     el.style.fontWeight = "900";
-  } else if (tag === "em" || tag === "i") {
-    el.style.fontStyle = "italic";
   } else if (tag === "small") {
     el.style.fontSize = "13px";
     el.style.letterSpacing = "1px";
   }
 
   const textLength = (el.textContent || "").replace(/\s+/g, " ").trim().length;
-  const cardish =
-    depth <= 2 &&
-    textLength > 70 &&
-    (tag === "article" ||
-      tag === "section" ||
-      tag === "div" ||
-      tag === "main");
+  const cardish = depth <= 2 && depth > 0 && textLength > 70 && ["article", "section", "div", "main"].includes(tag);
 
-  if (cardish && depth > 0) {
+  if (cardish) {
     el.style.background = "#dff1fb";
     el.style.border = "2px solid #b8e1d5";
     el.style.borderRadius = "28px";
@@ -218,7 +249,7 @@ function cleanElement(el: HTMLElement, depth = 0) {
   });
 }
 
-function buildCleanHtml(source: HTMLElement, options: ShareOptions) {
+function buildCleanHtml(source: HTMLElement, options: ShareOptions, url: string) {
   const clone = source.cloneNode(true) as HTMLElement;
   stripNoise(clone);
   cleanElement(clone, 0);
@@ -227,10 +258,10 @@ function buildCleanHtml(source: HTMLElement, options: ShareOptions) {
   clone.style.maxWidth = "720px";
   clone.style.margin = "0 auto";
 
-  const plainText = (clone.textContent || options.title)
+  const plainText = `${options.title}\n\n${(clone.textContent || options.title)
     .replace(/\n{3,}/g, "\n\n")
     .replace(/[ \t]{2,}/g, " ")
-    .trim();
+    .trim()}\n\n${url}`;
 
   const html = `
 <div xmlns="http://www.w3.org/1999/xhtml" style="background:#eef7ff;color:#2f3437;font-family:Arial,Helvetica,sans-serif;padding:34px;width:760px;max-width:100%;box-sizing:border-box;">
@@ -241,6 +272,9 @@ function buildCleanHtml(source: HTMLElement, options: ShareOptions) {
     <div style="color:#456f59;font-size:20px;font-weight:900;letter-spacing:6px;">${escapeHtml(options.subheading)}</div>
   </div>
   ${clone.outerHTML}
+  <div style="max-width:720px;margin:22px auto 0 auto;color:#315c49;font-size:15px;line-height:1.35;word-break:break-word;">
+    <strong>Open:</strong> <a href="${escapeHtml(url)}" style="color:#315c49;text-decoration:underline;">${escapeHtml(url)}</a>
+  </div>
 </div>`.trim();
 
   return { html, plainText };
@@ -248,6 +282,7 @@ function buildCleanHtml(source: HTMLElement, options: ShareOptions) {
 
 async function makePng(html: string, fileBase: string) {
   const width = 760;
+
   const temp = document.createElement("div");
   temp.style.position = "fixed";
   temp.style.left = "-10000px";
@@ -292,8 +327,8 @@ async function makePng(html: string, fileBase: string) {
   return new File([blob], `${slugify(fileBase)}.png`, { type: "image/png" });
 }
 
-async function copyPretty(html: string, plainText: string, pngFile?: File) {
-  const ClipboardItemCtor = window.ClipboardItem;
+async function copyRendered(html: string, plainText: string, pngFile?: File) {
+  const ClipboardItemCtor = (window as any).ClipboardItem;
 
   if (navigator.clipboard?.write && ClipboardItemCtor) {
     if (pngFile) {
@@ -301,13 +336,11 @@ async function copyPretty(html: string, plainText: string, pngFile?: File) {
         await navigator.clipboard.write([
           new ClipboardItemCtor({
             "image/png": pngFile,
-            "text/html": new Blob([html], { type: "text/html" }),
-            "text/plain": new Blob([plainText], { type: "text/plain" }),
           }),
         ]);
         return;
       } catch {
-        /* try html next */
+        /* try rich html below */
       }
     }
 
@@ -320,7 +353,7 @@ async function copyPretty(html: string, plainText: string, pngFile?: File) {
       ]);
       return;
     } catch {
-      /* execCommand fallback next */
+      /* fallback below */
     }
   }
 
@@ -342,15 +375,23 @@ async function copyPretty(html: string, plainText: string, pngFile?: File) {
   temp.remove();
 }
 
-async function doRenderedShare(action: HTMLElement) {
-  const options = optionsFor(action);
-  const root = bestShareRoot(action);
-  const clean = buildCleanHtml(root, options);
+function openEmail(subject: string, body: string) {
+  window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function openText(body: string) {
+  const separator = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?";
+  window.location.href = `sms:${separator}body=${encodeURIComponent(body)}`;
+}
+
+async function shareNativeOrFallback(mode: "email" | "text", context: ShareContext, setStatus: (value: string) => void) {
+  const { html, plainText } = buildCleanHtml(context.root, context.options, context.url);
+
+  setStatus("Preparing rendered card…");
 
   let pngFile: File | undefined;
-
   try {
-    pngFile = await makePng(clean.html, options.fileBase);
+    pngFile = await makePng(html, context.options.fileBase);
   } catch {
     pngFile = undefined;
   }
@@ -361,42 +402,205 @@ async function doRenderedShare(action: HTMLElement) {
   };
 
   if (pngFile && nav.share && (!nav.canShare || nav.canShare({ files: [pngFile] }))) {
-    try {
-      await nav.share({ title: options.title, files: [pngFile] });
-      return;
-    } catch {
-      /* copy fallback */
-    }
+    setStatus(mode === "email" ? "Opening share sheet for email…" : "Opening share sheet for text…");
+    await nav.share({
+      title: context.options.title,
+      text: context.url,
+      files: [pngFile],
+    });
+    setStatus("Shared.");
+    return;
   }
 
-  await copyPretty(clean.html, clean.plainText, pngFile);
+  await copyRendered(html, plainText, pngFile);
 
-  const old = document.title;
-  document.title = `${options.title} copied`;
-  window.setTimeout(() => {
-    document.title = old;
-  }, 1800);
+  if (mode === "email") {
+    setStatus("Copied rendered card. Opening email…");
+    openEmail(context.options.title, `${context.options.title}\n\n${context.url}`);
+  } else {
+    setStatus("Copied rendered card. Opening text…");
+    openText(`${context.options.title}\n${context.url}`);
+  }
+}
+
+async function copyUrl(url: string, setStatus: (value: string) => void) {
+  await navigator.clipboard.writeText(url);
+  setStatus("URL copied.");
 }
 
 export default function RenderedShareInterceptor() {
+  const [context, setContext] = useState<ShareContext | null>(null);
+  const [status, setStatus] = useState("");
+
   useEffect(() => {
     const handler = (event: MouseEvent) => {
       if (!supportedPath()) return;
 
       const target = event.target as HTMLElement | null;
-      const action = target?.closest<HTMLElement>("button,a,[role='button']");
-      if (!action || !isShareClick(action)) return;
+      if (!target) return;
+      if (target.closest("[data-render-share-modal='true']")) return;
+
+      const action = target.closest<HTMLElement>("button,a,[role='button']");
+      if (!action || !isShareTrigger(action)) return;
 
       event.preventDefault();
       event.stopPropagation();
       (event as any).stopImmediatePropagation?.();
 
-      void doRenderedShare(action);
+      const options = optionsFor(action);
+      const url = dynamicUrl(action, options);
+      const root = bestShareRoot(action, options);
+
+      setStatus("");
+      setContext({ root, options, url });
     };
 
     document.addEventListener("click", handler, true);
     return () => document.removeEventListener("click", handler, true);
   }, []);
 
-  return null;
+  if (!context) return null;
+
+  return (
+    <div
+      data-render-share-modal="true"
+      role="dialog"
+      aria-modal="true"
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 2147483647,
+        background: "rgba(0,0,0,0.62)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 18,
+      }}
+      onClick={() => setContext(null)}
+    >
+      <div
+        style={{
+          width: "min(430px, 100%)",
+          borderRadius: 28,
+          background: "#eef7ff",
+          color: "#263034",
+          border: "1px solid rgba(184,225,213,0.95)",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.35)",
+          padding: 22,
+          fontFamily: "Arial, Helvetica, sans-serif",
+        }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div style={{ fontSize: 30, lineHeight: 1, marginBottom: 10 }}>✝️ ❤️ 🙏</div>
+        <div
+          style={{
+            color: "#456f59",
+            fontSize: 12,
+            fontWeight: 900,
+            letterSpacing: 4,
+            marginBottom: 8,
+          }}
+        >
+          CROSS HEART PRAY
+        </div>
+        <h2 style={{ margin: "0 0 6px 0", fontSize: 30, lineHeight: 1.1, fontWeight: 900 }}>
+          Share {context.options.title}
+        </h2>
+        <p style={{ margin: "0 0 18px 0", color: "#526166", fontSize: 14, lineHeight: 1.35 }}>
+          Choose rendered card/board or copy the exact live URL.
+        </p>
+
+        <div style={{ display: "grid", gap: 10 }}>
+          <button
+            type="button"
+            onClick={() => void shareNativeOrFallback("email", context, setStatus)}
+            style={{
+              width: "100%",
+              border: 0,
+              borderRadius: 18,
+              padding: "14px 16px",
+              fontSize: 16,
+              fontWeight: 900,
+              background: "#315c49",
+              color: "white",
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            📧 Email rendered {context.options.kind === "bible-bingo-board" ? "board" : "card"}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => void shareNativeOrFallback("text", context, setStatus)}
+            style={{
+              width: "100%",
+              border: 0,
+              borderRadius: 18,
+              padding: "14px 16px",
+              fontSize: 16,
+              fontWeight: 900,
+              background: "#315c49",
+              color: "white",
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            💬 Text rendered {context.options.kind === "bible-bingo-board" ? "board" : "card"}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => void copyUrl(context.url, setStatus)}
+            style={{
+              width: "100%",
+              border: "2px solid #b8e1d5",
+              borderRadius: 18,
+              padding: "14px 16px",
+              fontSize: 16,
+              fontWeight: 900,
+              background: "white",
+              color: "#315c49",
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            🔗 Copy URL only
+          </button>
+        </div>
+
+        <div
+          style={{
+            marginTop: 14,
+            minHeight: 20,
+            color: "#315c49",
+            fontSize: 13,
+            fontWeight: 800,
+            wordBreak: "break-word",
+          }}
+        >
+          {status || context.url}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setContext(null)}
+          style={{
+            marginTop: 14,
+            width: "100%",
+            border: 0,
+            borderRadius: 16,
+            padding: "11px 14px",
+            fontSize: 14,
+            fontWeight: 900,
+            background: "rgba(49,92,73,0.09)",
+            color: "#315c49",
+            cursor: "pointer",
+          }}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
 }
