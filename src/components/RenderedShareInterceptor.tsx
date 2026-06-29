@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+type ShareKind = "daily-hope" | "bible-bingo-board" | "bible-bingo-card";
+
 type ShareOptions = {
   title: string;
   fileBase: string;
   heading: string;
   subheading: string;
-  kind: "daily-hope" | "bible-bingo-board" | "bible-bingo-card";
+  kind: ShareKind;
 };
 
 type ShareContext = {
@@ -18,14 +20,6 @@ type ShareContext = {
 
 function norm(value: string) {
   return value.replace(/\s+/g, " ").trim().toLowerCase();
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
 
 function slugify(value: string) {
@@ -57,11 +51,7 @@ function getActionLabel(action: HTMLElement) {
 function isShareTrigger(action: HTMLElement) {
   const label = getActionLabel(action);
   if (!label) return false;
-  if (label.includes("share")) return true;
-  if (label.includes("email")) return true;
-  if (label.includes("text")) return true;
-  if (label.includes("copy html")) return true;
-  return false;
+  return label.includes("share") || label.includes("email") || label.includes("text") || label.includes("copy html");
 }
 
 function optionsFor(action: HTMLElement): ShareOptions {
@@ -135,244 +125,302 @@ function bestShareRoot(action: HTMLElement, options: ShareOptions) {
   return document.querySelector<HTMLElement>("main") || document.body;
 }
 
-function stripNoise(root: HTMLElement) {
-  root
+function removeJunk(clone: HTMLElement) {
+  clone
     .querySelectorAll(
       "script,style,button,input,textarea,select,nav,form,svg,img,video,audio,[role='button'],[role='dialog']"
     )
     .forEach((el) => el.remove());
 
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-  const textNodes: Text[] = [];
-  while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
-
-  const noise = [
-    /ShareHTML copies complete formatted content and opens text\/email\.?/gi,
-    /URL copies link only\.?/gi,
-    /copies complete formatted content/gi,
-    /opens text\/email/gi,
-    /copy html/gi,
-    /share html/gi,
-    /share card/gi,
-    /share board/gi,
-    /share stack/gi,
-    /open board/gi,
-    /back to all 7/gi,
-    /print \/ save pdf/gi,
-    /expand all days/gi,
-    /bible reading plan today/gi,
-  ];
-
-  textNodes.forEach((node) => {
-    let value = node.nodeValue || "";
-    noise.forEach((pattern) => {
-      value = value.replace(pattern, "");
-    });
-    node.nodeValue = value;
-  });
-
-  root.querySelectorAll<HTMLElement>("a").forEach((a) => {
+  clone.querySelectorAll<HTMLElement>("a").forEach((a) => {
     const text = norm(a.textContent || "");
     if (!text || /^[smtwtfs]$/.test(text) || text === "today") {
       a.remove();
-      return;
     }
-    a.removeAttribute("class");
-    a.removeAttribute("id");
-    a.style.color = "#315c49";
-    a.style.textDecoration = "underline";
-    a.style.wordBreak = "break-word";
   });
-
-  Array.from(root.querySelectorAll<HTMLElement>("*"))
-    .reverse()
-    .forEach((el) => {
-      const text = (el.textContent || "").replace(/\s+/g, "").trim();
-      if (!text && el.children.length === 0 && el.tagName.toLowerCase() !== "br") el.remove();
-    });
 }
 
-function cleanElement(el: HTMLElement, depth = 0) {
-  const tag = el.tagName.toLowerCase();
+function isNoiseLine(line: string) {
+  const value = norm(line);
+  if (!value) return true;
 
-  el.removeAttribute("class");
-  el.removeAttribute("id");
-  el.removeAttribute("style");
+  const exact = new Set([
+    "share",
+    "share card",
+    "share board",
+    "share stack",
+    "share html",
+    "copy html",
+    "copy text",
+    "copy url",
+    "copy link",
+    "url copies link only",
+    "email",
+    "text",
+    "message",
+    "open board",
+    "back to all 7",
+    "print / save pdf",
+    "expand all days",
+    "today",
+    "bible reading plan today",
+  ]);
 
-  el.style.boxSizing = "border-box";
-  el.style.maxWidth = "100%";
-  el.style.writingMode = "horizontal-tb";
-  el.style.textOrientation = "mixed";
-  el.style.overflowWrap = "break-word";
-  el.style.wordBreak = "normal";
-  el.style.whiteSpace = "normal";
-  el.style.color = "#2f3437";
-  el.style.fontFamily = "Arial, Helvetica, sans-serif";
-  el.style.lineHeight = "1.45";
+  if (exact.has(value)) return true;
+  if (/^s\s*m\s*t\s*w\s*t\s*f\s*s$/i.test(value)) return true;
+  if (value.includes("sharehtml copies complete formatted content")) return true;
+  if (value.includes("opens text/email")) return true;
+  if (value.includes("url copies link only")) return true;
+  if (value.length < 2) return true;
 
-  if (tag === "h1") {
-    el.style.fontSize = "42px";
-    el.style.fontWeight = "900";
-    el.style.margin = "0 0 14px 0";
-  } else if (tag === "h2") {
-    el.style.fontSize = "30px";
-    el.style.fontWeight = "900";
-    el.style.margin = "0 0 12px 0";
-  } else if (tag === "h3") {
-    el.style.fontSize = "22px";
-    el.style.fontWeight = "900";
-    el.style.margin = "18px 0 8px 0";
-  } else if (tag === "p" || tag === "li") {
-    el.style.fontSize = "18px";
-    el.style.margin = "0 0 12px 0";
-  } else if (tag === "strong" || tag === "b") {
-    el.style.fontWeight = "900";
-  } else if (tag === "small") {
-    el.style.fontSize = "13px";
-    el.style.letterSpacing = "1px";
+  return false;
+}
+
+function cleanLine(line: string) {
+  return line
+    .replace(/ShareHTML copies complete formatted content and opens text\/email\.?/gi, "")
+    .replace(/URL copies link only\.?/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractLines(root: HTMLElement, options: ShareOptions) {
+  const clone = root.cloneNode(true) as HTMLElement;
+  removeJunk(clone);
+
+  const blockSelector = "h1,h2,h3,h4,p,li,blockquote,article,section,div,span,strong";
+  const blockTags = new Set(["H1", "H2", "H3", "H4", "P", "LI", "BLOCKQUOTE", "ARTICLE", "SECTION", "DIV"]);
+
+  const candidates = Array.from(clone.querySelectorAll<HTMLElement>(blockSelector));
+  const lines: string[] = [];
+  const seen = new Set<string>();
+
+  for (const el of candidates) {
+    const hasBlockChild = Array.from(el.children).some((child) => blockTags.has(child.tagName));
+    const raw = cleanLine(el.textContent || "");
+    const key = norm(raw);
+
+    if (hasBlockChild && raw.length > 80) continue;
+    if (isNoiseLine(raw)) continue;
+    if (seen.has(key)) continue;
+
+    seen.add(key);
+    lines.push(raw);
   }
 
-  const textLength = (el.textContent || "").replace(/\s+/g, " ").trim().length;
-  const cardish = depth <= 2 && depth > 0 && textLength > 70 && ["article", "section", "div", "main"].includes(tag);
+  if (lines.length < 3) {
+    const fallback = (clone.textContent || "")
+      .split(/\n|(?=Romans\s+\d+:)|(?=Psalm\s+\d+:)|(?=Proverbs\s+\d+:)|(?=Matthew\s+\d+:)|(?=Mark\s+\d+:)|(?=Luke\s+\d+:)|(?=John\s+\d+:)/g)
+      .map(cleanLine)
+      .filter((line) => !isNoiseLine(line));
 
-  if (cardish) {
-    el.style.background = "#dff1fb";
-    el.style.border = "2px solid #b8e1d5";
-    el.style.borderRadius = "28px";
-    el.style.padding = "24px";
-    el.style.margin = "0 0 22px 0";
-    el.style.boxShadow = "0 10px 24px rgba(34, 54, 62, 0.10)";
+    for (const line of fallback) {
+      const key = norm(line);
+      if (!seen.has(key)) {
+        seen.add(key);
+        lines.push(line);
+      }
+    }
   }
 
-  Array.from(el.children).forEach((child) => {
-    if (child instanceof HTMLElement) cleanElement(child, depth + 1);
-  });
+  const trimmed = lines
+    .filter((line) => !isNoiseLine(line))
+    .slice(0, options.kind === "daily-hope" ? 120 : 90);
+
+  if (!trimmed.length) return [options.title];
+
+  return trimmed;
 }
 
-function buildCleanHtml(source: HTMLElement, options: ShareOptions, url: string) {
-  const clone = source.cloneNode(true) as HTMLElement;
-  stripNoise(clone);
-  cleanElement(clone, 0);
+function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
+  const words = text.split(/\s+/).filter(Boolean);
+  const lines: string[] = [];
+  let current = "";
 
-  clone.style.width = "100%";
-  clone.style.maxWidth = "720px";
-  clone.style.margin = "0 auto";
+  for (const word of words) {
+    const test = current ? `${current} ${word}` : word;
+    if (ctx.measureText(test).width <= maxWidth || !current) {
+      current = test;
+    } else {
+      lines.push(current);
+      current = word;
+    }
+  }
 
-  const plainText = `${options.title}\n\n${(clone.textContent || options.title)
-    .replace(/\n{3,}/g, "\n\n")
-    .replace(/[ \t]{2,}/g, " ")
-    .trim()}\n\n${url}`;
-
-  const html = `
-<div xmlns="http://www.w3.org/1999/xhtml" style="background:#eef7ff;color:#2f3437;font-family:Arial,Helvetica,sans-serif;padding:34px;width:760px;max-width:100%;box-sizing:border-box;">
-  <div style="max-width:720px;margin:0 auto 26px auto;">
-    <div style="font-size:38px;line-height:1.1;margin-bottom:12px;">✝️ ❤️ 🙏</div>
-    <div style="color:#456f59;font-size:18px;font-weight:900;letter-spacing:8px;margin-bottom:10px;">CROSS HEART PRAY</div>
-    <div style="color:#2f3437;font-size:52px;font-weight:900;line-height:1.05;margin-bottom:12px;">${escapeHtml(options.heading)}</div>
-    <div style="color:#456f59;font-size:20px;font-weight:900;letter-spacing:6px;">${escapeHtml(options.subheading)}</div>
-  </div>
-  ${clone.outerHTML}
-  <div style="max-width:720px;margin:22px auto 0 auto;color:#315c49;font-size:15px;line-height:1.35;word-break:break-word;">
-    <strong>Open:</strong> <a href="${escapeHtml(url)}" style="color:#315c49;text-decoration:underline;">${escapeHtml(url)}</a>
-  </div>
-</div>`.trim();
-
-  return { html, plainText };
+  if (current) lines.push(current);
+  return lines;
 }
 
-async function makePng(html: string, fileBase: string) {
-  const width = 760;
+function isHeadingLine(line: string) {
+  const value = norm(line);
+  return (
+    value === "daily hope" ||
+    value === "sinner prayer" ||
+    value === "salvation prayer" ||
+    value.includes("prayer card") ||
+    value.includes("bible bingo") ||
+    value.includes("cross heart pray")
+  );
+}
 
-  const temp = document.createElement("div");
-  temp.style.position = "fixed";
-  temp.style.left = "-10000px";
-  temp.style.top = "0";
-  temp.innerHTML = html;
-  document.body.appendChild(temp);
+function isVerseLine(line: string) {
+  return /^[1-3]?\s?[A-Z][a-z]+(?:\s+of\s+[A-Z][a-z]+)?\s+\d+:\d+/.test(line);
+}
 
-  const height = Math.min(16000, Math.max(620, Math.ceil((temp.firstElementChild as HTMLElement)?.scrollHeight || 900)));
-  temp.remove();
+function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + width, y, x + width, y + height, r);
+  ctx.arcTo(x + width, y + height, x, y + height, r);
+  ctx.arcTo(x, y + height, x, y, r);
+  ctx.arcTo(x, y, x + width, y, r);
+  ctx.closePath();
+}
 
-  const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-  <foreignObject x="0" y="0" width="100%" height="100%">
-    ${html}
-  </foreignObject>
-</svg>`.trim();
+async function makeRenderedPng(context: ShareContext) {
+  const lines = extractLines(context.root, context.options);
+  const width = 1080;
+  const pad = 72;
+  const cardPad = 42;
+  const cardX = pad;
+  const cardW = width - pad * 2;
+  const textW = cardW - cardPad * 2;
 
-  const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
-  const img = new Image();
+  const measureCanvas = document.createElement("canvas");
+  const measure = measureCanvas.getContext("2d");
+  if (!measure) throw new Error("Canvas unavailable.");
 
-  await new Promise<void>((resolve, reject) => {
-    img.onload = () => resolve();
-    img.onerror = () => reject(new Error("Rendered image failed."));
-    img.src = url;
-  });
+  let estimated = 72 + 70 + 44 + 86 + 54 + 44;
 
-  const scale = Math.min(2, window.devicePixelRatio || 2);
+  for (const line of lines) {
+    if (isHeadingLine(line)) {
+      measure.font = "900 44px Arial";
+      estimated += wrapText(measure, line, textW).length * 56 + 12;
+    } else if (isVerseLine(line)) {
+      measure.font = "900 31px Georgia";
+      estimated += wrapText(measure, line, textW).length * 43 + 12;
+    } else {
+      measure.font = "400 30px Georgia";
+      estimated += wrapText(measure, line, textW).length * 43 + 10;
+    }
+  }
+
+  estimated += 92;
+  const height = Math.min(16000, Math.max(900, estimated));
+  const scale = height > 9000 ? 1 : Math.min(2, window.devicePixelRatio || 1.5);
+
   const canvas = document.createElement("canvas");
   canvas.width = Math.ceil(width * scale);
   canvas.height = Math.ceil(height * scale);
 
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas unavailable.");
-
   ctx.scale(scale, scale);
-  ctx.drawImage(img, 0, 0);
-  URL.revokeObjectURL(url);
+
+  ctx.fillStyle = "#eef7ff";
+  ctx.fillRect(0, 0, width, height);
+
+  let y = 72;
+
+  ctx.fillStyle = "#263034";
+  ctx.font = "700 56px Arial";
+  ctx.fillText("✝️  ❤️  🙏", pad, y);
+  y += 78;
+
+  ctx.fillStyle = "#456f59";
+  ctx.font = "900 24px Arial";
+  ctx.letterSpacing = "8px";
+  ctx.fillText("CROSS HEART PRAY", pad, y);
+  ctx.letterSpacing = "0px";
+  y += 70;
+
+  ctx.fillStyle = "#263034";
+  ctx.font = "900 72px Arial";
+  ctx.fillText(context.options.heading, pad, y);
+  y += 66;
+
+  ctx.fillStyle = "#456f59";
+  ctx.font = "900 27px Arial";
+  ctx.letterSpacing = "7px";
+  ctx.fillText(context.options.subheading, pad, y);
+  ctx.letterSpacing = "0px";
+  y += 54;
+
+  const cardTop = y;
+  roundRectPath(ctx, cardX, cardTop, cardW, height - cardTop - 60, 38);
+  ctx.fillStyle = "#dff1fb";
+  ctx.fill();
+  ctx.strokeStyle = "#b8e1d5";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  y += cardPad;
+
+  for (const line of lines) {
+    if (y > height - 170) break;
+
+    if (isHeadingLine(line)) {
+      ctx.fillStyle = "#263034";
+      ctx.font = "900 44px Arial";
+      for (const wrapped of wrapText(ctx, line, textW)) {
+        ctx.fillText(wrapped, cardX + cardPad, y);
+        y += 56;
+      }
+      y += 10;
+    } else if (isVerseLine(line)) {
+      ctx.fillStyle = "#315c49";
+      ctx.font = "900 31px Georgia";
+      for (const wrapped of wrapText(ctx, line, textW)) {
+        ctx.fillText(wrapped, cardX + cardPad, y);
+        y += 43;
+      }
+      y += 10;
+    } else {
+      ctx.fillStyle = "#2f3437";
+      ctx.font = "400 30px Georgia";
+      for (const wrapped of wrapText(ctx, line, textW)) {
+        ctx.fillText(wrapped, cardX + cardPad, y);
+        y += 43;
+      }
+      y += 9;
+    }
+  }
+
+  y = Math.min(y + 24, height - 100);
+  ctx.fillStyle = "#315c49";
+  ctx.font = "700 24px Arial";
+  ctx.fillText("Open:", cardX + cardPad, y);
+  y += 34;
+
+  ctx.fillStyle = "#315c49";
+  ctx.font = "400 22px Arial";
+  for (const wrapped of wrapText(ctx, context.url, textW)) {
+    if (y > height - 42) break;
+    ctx.fillText(wrapped, cardX + cardPad, y);
+    y += 30;
+  }
 
   const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png", 0.95));
   if (!blob) throw new Error("PNG failed.");
 
-  return new File([blob], `${slugify(fileBase)}.png`, { type: "image/png" });
+  return new File([blob], `${slugify(context.options.fileBase)}.png`, { type: "image/png" });
 }
 
-async function copyRendered(html: string, plainText: string, pngFile?: File) {
+async function copyImageToClipboard(file: File) {
   const ClipboardItemCtor = (window as any).ClipboardItem;
+  if (!navigator.clipboard?.write || !ClipboardItemCtor) return false;
 
-  if (navigator.clipboard?.write && ClipboardItemCtor) {
-    if (pngFile) {
-      try {
-        await navigator.clipboard.write([
-          new ClipboardItemCtor({
-            "image/png": pngFile,
-          }),
-        ]);
-        return;
-      } catch {
-        /* try rich html below */
-      }
-    }
-
-    try {
-      await navigator.clipboard.write([
-        new ClipboardItemCtor({
-          "text/html": new Blob([html], { type: "text/html" }),
-          "text/plain": new Blob([plainText], { type: "text/plain" }),
-        }),
-      ]);
-      return;
-    } catch {
-      /* fallback below */
-    }
+  try {
+    await navigator.clipboard.write([
+      new ClipboardItemCtor({
+        "image/png": file,
+      }),
+    ]);
+    return true;
+  } catch {
+    return false;
   }
-
-  const temp = document.createElement("div");
-  temp.contentEditable = "true";
-  temp.style.position = "fixed";
-  temp.style.left = "-10000px";
-  temp.style.top = "0";
-  temp.innerHTML = html;
-  document.body.appendChild(temp);
-
-  const range = document.createRange();
-  range.selectNodeContents(temp);
-  const selection = window.getSelection();
-  selection?.removeAllRanges();
-  selection?.addRange(range);
-  document.execCommand("copy");
-  selection?.removeAllRanges();
-  temp.remove();
 }
 
 function openEmail(subject: string, body: string) {
@@ -384,42 +432,35 @@ function openText(body: string) {
   window.location.href = `sms:${separator}body=${encodeURIComponent(body)}`;
 }
 
-async function shareNativeOrFallback(mode: "email" | "text", context: ShareContext, setStatus: (value: string) => void) {
-  const { html, plainText } = buildCleanHtml(context.root, context.options, context.url);
+async function shareRendered(mode: "email" | "text", context: ShareContext, setStatus: (value: string) => void) {
+  setStatus("Rendering card image…");
 
-  setStatus("Preparing rendered card…");
-
-  let pngFile: File | undefined;
-  try {
-    pngFile = await makePng(html, context.options.fileBase);
-  } catch {
-    pngFile = undefined;
-  }
-
+  const file = await makeRenderedPng(context);
   const nav = navigator as Navigator & {
     canShare?: (data: { files?: File[] }) => boolean;
     share?: (data: { title?: string; text?: string; files?: File[] }) => Promise<void>;
   };
 
-  if (pngFile && nav.share && (!nav.canShare || nav.canShare({ files: [pngFile] }))) {
-    setStatus(mode === "email" ? "Opening share sheet for email…" : "Opening share sheet for text…");
+  const shareText = `${context.options.title}\n${context.url}`;
+
+  if (nav.share && (!nav.canShare || nav.canShare({ files: [file] }))) {
+    setStatus(mode === "email" ? "Choose Mail in the share sheet…" : "Choose Messages in the share sheet…");
     await nav.share({
       title: context.options.title,
-      text: context.url,
-      files: [pngFile],
+      text: shareText,
+      files: [file],
     });
-    setStatus("Shared.");
+    setStatus("Shared rendered image.");
     return;
   }
 
-  await copyRendered(html, plainText, pngFile);
+  const copied = await copyImageToClipboard(file);
+  setStatus(copied ? "Rendered image copied. Opening app…" : "Opening app with link…");
 
   if (mode === "email") {
-    setStatus("Copied rendered card. Opening email…");
-    openEmail(context.options.title, `${context.options.title}\n\n${context.url}`);
+    openEmail(context.options.title, shareText);
   } else {
-    setStatus("Copied rendered card. Opening text…");
-    openText(`${context.options.title}\n${context.url}`);
+    openText(shareText);
   }
 }
 
@@ -460,6 +501,8 @@ export default function RenderedShareInterceptor() {
   }, []);
 
   if (!context) return null;
+
+  const itemWord = context.options.kind === "bible-bingo-board" ? "board" : "card";
 
   return (
     <div
@@ -503,17 +546,19 @@ export default function RenderedShareInterceptor() {
         >
           CROSS HEART PRAY
         </div>
+
         <h2 style={{ margin: "0 0 6px 0", fontSize: 30, lineHeight: 1.1, fontWeight: 900 }}>
           Share {context.options.title}
         </h2>
+
         <p style={{ margin: "0 0 18px 0", color: "#526166", fontSize: 14, lineHeight: 1.35 }}>
-          Choose rendered card/board or copy the exact live URL.
+          Email/Text creates a rendered PNG image of this {itemWord}. URL copies the live link only.
         </p>
 
         <div style={{ display: "grid", gap: 10 }}>
           <button
             type="button"
-            onClick={() => void shareNativeOrFallback("email", context, setStatus)}
+            onClick={() => void shareRendered("email", context, setStatus)}
             style={{
               width: "100%",
               border: 0,
@@ -527,12 +572,12 @@ export default function RenderedShareInterceptor() {
               textAlign: "left",
             }}
           >
-            📧 Email rendered {context.options.kind === "bible-bingo-board" ? "board" : "card"}
+            📧 Email rendered {itemWord}
           </button>
 
           <button
             type="button"
-            onClick={() => void shareNativeOrFallback("text", context, setStatus)}
+            onClick={() => void shareRendered("text", context, setStatus)}
             style={{
               width: "100%",
               border: 0,
@@ -546,7 +591,7 @@ export default function RenderedShareInterceptor() {
               textAlign: "left",
             }}
           >
-            💬 Text rendered {context.options.kind === "bible-bingo-board" ? "board" : "card"}
+            💬 Text rendered {itemWord}
           </button>
 
           <button
