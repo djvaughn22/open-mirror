@@ -494,7 +494,7 @@ export default function CrossHeartPrayShareMenu({
               Share
             </p>
             <p className="mt-1 text-xs font-semibold leading-5 text-slate-300">
-              HTML = full pretty card/page. URL = link only.
+              HTML copies the pretty card and opens text/email. URL copies link only.
             </p>
             {copied ? (
               <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-100">{copied}</p>
@@ -506,14 +506,35 @@ export default function CrossHeartPrayShareMenu({
             role="menuitem"
             onClick={async () => {
               const ok = await copyRich(copyHtml, fullText);
-              flash(ok ? "HTML copied" : "Copy blocked");
+              const shareTextWithUrl = `${fullText}\n\n${canonicalUrl}`.trim();
+              let openedShare = false;
+
+              try {
+                if (navigator.share) {
+                  await navigator.share({
+                    title: emailSubject,
+                    text: shareTextWithUrl,
+                    url: canonicalUrl,
+                  });
+                  openedShare = true;
+                }
+              } catch {
+                openedShare = false;
+              }
+
+              if (!openedShare) {
+                const mailtoUrl = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(shareTextWithUrl)}`;
+                window.location.href = mailtoUrl;
+              }
+
+              flash(ok ? "HTML copied + share opened" : "Share opened");
               setOpen(false);
             }}
             className="block w-full rounded-xl px-3 py-4 text-left text-base font-black text-white hover:bg-white/10"
           >
             Share HTML
             <span className="mt-1 block text-xs font-semibold leading-5 text-slate-300">
-              Full prayers, verses, cards first. Links at bottom.
+              Copies pretty card, then opens text/email share.
             </span>
           </button>
 
