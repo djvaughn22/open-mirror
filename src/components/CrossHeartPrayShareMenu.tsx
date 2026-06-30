@@ -9,6 +9,7 @@ export type CrossHeartPrayShareMenuProps = {
   boardUrl?: string;
   shareText: string;
   emailSubject?: string;
+  htmlEmail?: string;
   align?: "left" | "right" | "center";
   itemLabel?: ShareItemLabel;
   buttonLabel?: string;
@@ -522,6 +523,7 @@ export default function CrossHeartPrayShareMenu({
   boardUrl,
   shareText,
   emailSubject = "CrossHeartPray Share",
+  htmlEmail,
   align = "right",
   itemLabel = "card",
   buttonLabel,
@@ -609,7 +611,7 @@ export default function CrossHeartPrayShareMenu({
             onClick={async () => {
               const liveShareText = runtimeShareText(shareText, boardHref, canonicalUrl);
               const liveParsed = parseShare(liveShareText, canonicalUrl);
-              const liveHtml = cardShellHtml(liveParsed, emailSubject, itemLabel, true);
+              const liveHtml = htmlEmail ?? cardShellHtml(liveParsed, emailSubject, itemLabel, true);
               const liveText = plainText(liveParsed, emailSubject);
               const ok = await copyRich(liveHtml, liveText);
               const shareTextWithUrl = `${liveText}\n\n${canonicalUrl}`.trim();

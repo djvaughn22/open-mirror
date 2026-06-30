@@ -207,11 +207,11 @@ function dailyHopeItemFullShareText(item: any, cardUrl: string) {
     ...passageLines,
     "",
     cardUrl,
-  ].filter((line) => line !== undefined && line !== null).join("\\n");
+  ].filter((line) => line !== undefined && line !== null).join("\n");
 }
 
 function dailyHopePrayerFullShareText(prayer: DailyHopePrayerCard, prayerUrl: string) {
-  return ["Prayer Card", prayer.title, "", prayer.body, "", prayerUrl].join("\\n");
+  return ["Prayer Card", prayer.title, "", prayer.body, "", prayerUrl].join("\n");
 }
 
 function dailyHopeFullPageShareText(
@@ -258,7 +258,7 @@ function dailyHopeFullPageShareText(
 
   lines.push("", "Closing Prayer", closingPrayer.title, "", closingPrayer.body, "", pageUrl);
 
-  return lines.join("\\n");
+  return lines.join("\n");
 }
 
 
@@ -306,22 +306,6 @@ function prayerHtmlEmail(prayer: DailyHopePrayerCard, pageUrl: string) {
         </p>
         <p style="text-align: center; color: #64748b; font-size: 13px;">Cross Heart Pray · Daily Hope</p>
       </div>
-    </div>
-  `;
-}
-
-function verseHtmlEmail(
-  day: DailyHopeDay,
-  item: DailyHopePassageItem,
-  cardUrl: string,
-) {
-  return `
-    <div style="font-family: Arial, Helvetica, sans-serif; background: #f1f5f9; color: #0f172a; padding: 28px 12px;">
-      <PageNucleusHero
-          title="Daily Hope"
-          subhead="$"
-          body="Open Daily Hope Card"
-        />
     </div>
   `;
 }
@@ -652,6 +636,7 @@ export default function DailyHopeRoutine({
               boardUrl={pageUrl}
               shareText={boardShareText}
               emailSubject="Daily Hope"
+              htmlEmail={boardHtml}
             />
           </div>
         </PageNucleusHero>
