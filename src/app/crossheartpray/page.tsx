@@ -3,6 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 import BibleBingoKingCard from "../../components/BibleBingoKingCard";
 import CrossHeartPrayHero from "../../components/CrossHeartPrayHero";
+import OpenMirrorBar from "../../components/OpenMirrorBar";
 
 export const metadata = {
   title: "✝️ ❤️ 🙏 Welcome | Cross Heart Pray",
@@ -64,6 +65,7 @@ export default function WelcomePage() {
   return (
     <main className="chp-lively-dark-page min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-8">
+        <OpenMirrorBar project="CrossHeartPray" />
         <SiteHeader />
 
         <CrossHeartPrayHero>

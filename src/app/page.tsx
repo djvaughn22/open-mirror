@@ -35,8 +35,16 @@ const projects: Project[] = [
       "Reflection tools that help you compare answers, claim truth, and deepen self-awareness.",
     status: "Concept / Coming Soon",
     statusColor: "text-violet-300",
-    href: "https://www.whatamiai.com",
-    external: true,
+    href: "/whatamiai",
+    cta: "View Project",
+  },
+  {
+    name: "theDJcares",
+    tagline:
+      "Music as a love language — playlists that carry feeling, purpose, and healing.",
+    status: "Concept / Coming Soon",
+    statusColor: "text-pink-300",
+    href: "/thedjcares",
     cta: "View Project",
   },
   {
