@@ -7,7 +7,18 @@ export const metadata: Metadata = {
     "Open Mirror LLC builds simple web apps with heart, purpose, and real-world usefulness.",
 };
 
-const projects = [
+type Project = {
+  name: string;
+  tagline: string;
+  status: string;
+  statusColor: string;
+  href: string;
+  external?: boolean;
+  cta: string;
+  primary?: boolean;
+};
+
+const projects: Project[] = [
   {
     name: "CrossHeartPray",
     tagline:
@@ -19,6 +30,16 @@ const projects = [
     primary: true,
   },
   {
+    name: "WhatAmIAI",
+    tagline:
+      "Reflection tools that help you compare answers, claim truth, and deepen self-awareness.",
+    status: "Concept / Coming Soon",
+    statusColor: "text-violet-300",
+    href: "https://www.whatamiai.com",
+    external: true,
+    cta: "View Project",
+  },
+  {
     name: "iDontCry",
     tagline:
       "A healing-first emotional support project for grief, strength, and honest moments.",
@@ -26,17 +47,16 @@ const projects = [
     statusColor: "text-slate-400",
     href: "/idontcry",
     cta: "View Project",
-    primary: false,
   },
   {
     name: "Step In The Ring",
     tagline:
-      "A parent-guided idea builder for turning a rough idea into a simple first MVP.",
-    status: "Prototype / MVP",
+      "A parent-guided idea builder for turning a rough idea into a simple first MVP — with AI as your partner.",
+    status: "Live / MVP",
     statusColor: "text-amber-300",
-    href: "/step-in-the-ring",
-    cta: "View Project",
-    primary: false,
+    href: "https://step-in-the-ring.vercel.app",
+    external: true,
+    cta: "Open Step In The Ring",
   },
   {
     name: "Watched Not Watched",
@@ -44,9 +64,9 @@ const projects = [
       "A clean-viewing concept for families who want safer ways to watch what they already have access to.",
     status: "In Development",
     statusColor: "text-sky-300",
-    href: "/watched-not-watched",
+    href: "https://www.watchednotwatched.com",
+    external: true,
     cta: "View Project",
-    primary: false,
   },
   {
     name: "DontCloneMeTom",
@@ -56,7 +76,6 @@ const projects = [
     statusColor: "text-orange-300",
     href: "/dont-clone-me-tom",
     cta: "View Project",
-    primary: false,
   },
 ];
 
@@ -64,9 +83,10 @@ export default function OpenMirrorHub() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-2xl px-5 py-14">
+
         {/* Header */}
         <header className="mb-12 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-slate-500 mb-3">
+          <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-4">
             Open Mirror LLC
           </p>
           <h1 className="text-3xl font-black leading-tight text-white mb-4">
@@ -83,47 +103,55 @@ export default function OpenMirrorHub() {
 
         {/* Project cards */}
         <div className="flex flex-col gap-4">
-          {projects.map((p) => (
-            <Link
-              key={p.name}
-              href={p.href}
-              className={`group block rounded-2xl border p-6 transition hover:-translate-y-0.5 ${
-                p.primary
-                  ? "border-emerald-200/25 bg-emerald-950/30 hover:border-emerald-200/40"
-                  : "border-white/10 bg-white/[0.03] hover:border-white/20"
-              }`}
-            >
-              <div className="flex items-start justify-between gap-4 flex-wrap">
-                <div className="flex-1 min-w-0">
-                  <h2 className="text-lg font-black text-white">{p.name}</h2>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-slate-300">
-                    {p.tagline}
-                  </p>
+          {projects.map((p) => {
+            const inner = (
+              <div
+                className={`group block rounded-2xl border p-6 transition hover:-translate-y-0.5 cursor-pointer ${
+                  p.primary
+                    ? "border-emerald-200/25 bg-emerald-950/30 hover:border-emerald-200/40"
+                    : "border-white/10 bg-white/[0.03] hover:border-white/20"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-4 flex-wrap">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-lg font-black text-white">{p.name}</h2>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-slate-300">
+                      {p.tagline}
+                    </p>
+                  </div>
+                  <span className={`shrink-0 text-xs font-black uppercase tracking-[0.15em] ${p.statusColor}`}>
+                    {p.status}
+                  </span>
                 </div>
-                <span
-                  className={`shrink-0 text-xs font-black uppercase tracking-[0.15em] ${p.statusColor}`}
-                >
-                  {p.status}
-                </span>
+                <div className="mt-4">
+                  <span
+                    className={`inline-flex rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-[0.15em] transition ${
+                      p.primary
+                        ? "border-emerald-200/30 text-emerald-100 group-hover:bg-emerald-300/10"
+                        : "border-white/15 text-slate-300 group-hover:border-white/25 group-hover:text-white"
+                    }`}
+                  >
+                    {p.cta} →
+                  </span>
+                </div>
               </div>
-              <div className="mt-4">
-                <span
-                  className={`inline-flex rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-[0.15em] transition ${
-                    p.primary
-                      ? "border-emerald-200/30 text-emerald-100 group-hover:bg-emerald-300/10"
-                      : "border-white/15 text-slate-300 group-hover:border-white/25 group-hover:text-white"
-                  }`}
-                >
-                  {p.cta} →
-                </span>
-              </div>
-            </Link>
-          ))}
+            );
+
+            return p.external ? (
+              <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer">
+                {inner}
+              </a>
+            ) : (
+              <Link key={p.name} href={p.href}>
+                {inner}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Footer */}
         <footer className="mt-16 text-center border-t border-white/10 pt-8">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-500">
             Open Mirror LLC
           </p>
           <p className="mt-1 text-xs text-slate-600">Built project by project.</p>

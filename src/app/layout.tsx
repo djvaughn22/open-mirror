@@ -15,15 +15,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "✝️ ❤️ 🙏 CrossHeartPray",
-    template: "✝️ ❤️ 🙏 %s",
+    default: "Open Mirror LLC",
+    template: "%s | Open Mirror LLC",
   },
-  icons: {
-      icon: "/crossheartpray-icon.svg",
-      shortcut: "/crossheartpray-icon.svg",
-      apple: "/crossheartpray-icon.svg",
-    },
-  description: "A simple Bible web app for Bible Bingo 7, a Bible Reading Plan, and Daily Hope.",
+  description: "Open Mirror LLC builds simple web apps with heart, purpose, and real-world usefulness.",
 };
 
 export default function RootLayout({

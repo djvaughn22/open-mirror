@@ -9,11 +9,13 @@ type SiteHeaderProps = {
 };
 
 const menuLinks = [
-  { href: "/", label: "Home" },
+  { href: "/crossheartpray", label: "Home" },
   { href: "/bible-reading-plan", label: "Bible Reading" },
   { href: "/daily-hope", label: "Daily Hope" },
   { href: "/explorebible", label: "Bible Bingo 7" },
+  { href: "/reflect", label: "Reflect" },
   { href: "/about", label: "About" },
+  { href: "/", label: "← Open Mirror LLC" },
 ];
 
 export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
@@ -51,7 +53,7 @@ export default function SiteHeader({ className = "mb-16" }: SiteHeaderProps) {
     <header className={className}>
       <nav className="grid grid-cols-3 items-center">
         <a
-          href="/"
+          href="/crossheartpray"
           aria-label="Open CrossHeartPray"
           className="justify-self-start font-bold text-slate-100"
         >
