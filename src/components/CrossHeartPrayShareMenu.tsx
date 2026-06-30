@@ -388,7 +388,7 @@ function cleanedDomShareText(element: Element | null) {
 
   const noisyLines = new Set([
     "Share",
-    "Share HTML",
+    "Copy rich email HTML",
     "Copy URL",
     "HTML copies complete formatted content and opens text/email. URL copies link only.",
     "Complete text first, links below, ready for text/email.",
@@ -598,7 +598,7 @@ export default function CrossHeartPrayShareMenu({
               Share
             </p>
             <p className="mt-1 text-xs font-semibold leading-5 text-slate-300">
-              HTML copies complete formatted content and opens text/email. URL copies link only.
+              Copy HTML, then paste into Gmail. Or open your email app with a plain text link.
             </p>
             {copied ? (
               <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-100">{copied}</p>
@@ -612,36 +612,29 @@ export default function CrossHeartPrayShareMenu({
               const liveShareText = runtimeShareText(shareText, boardHref, canonicalUrl);
               const liveParsed = parseShare(liveShareText, canonicalUrl);
               const liveHtml = htmlEmail ?? cardShellHtml(liveParsed, emailSubject, itemLabel, true);
-              const ok = await copyRich(liveHtml, shareText.trim() || canonicalUrl);
-              const simpleShareText = shareText.trim() || canonicalUrl;
-              let openedShare = false;
+              await copyRich(liveHtml, shareText.trim() || canonicalUrl);
+              flash("Rich email HTML copied. Open Gmail/email and paste into the body.");
+            }}
+            className="block w-full rounded-xl px-3 py-4 text-left text-base font-black text-white hover:bg-white/10"
+          >
+            Copy rich email HTML
+            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-300">
+              Paste into Gmail or any email to send formatted.
+            </span>
+          </button>
 
-              try {
-                if (navigator.share) {
-                  await navigator.share({
-                    title: emailSubject,
-                    text: simpleShareText,
-                    url: canonicalUrl,
-                  });
-                  openedShare = true;
-                }
-              } catch {
-                openedShare = false;
-              }
-
-              if (!openedShare) {
-                const mailtoUrl = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(simpleShareText)}`;
-                window.location.href = mailtoUrl;
-              }
-
-              flash(ok ? "HTML copied — paste into email, or check share sheet" : "Share opened");
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              window.location.href = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(canonicalUrl)}`;
               setOpen(false);
             }}
             className="block w-full rounded-xl px-3 py-4 text-left text-base font-black text-white hover:bg-white/10"
           >
-            Share HTML
+            Open email with plain text link
             <span className="mt-1 block text-xs font-semibold leading-5 text-slate-300">
-              Complete text first, links below, ready for text/email.
+              Opens your email app with a plain text link.
             </span>
           </button>
 
