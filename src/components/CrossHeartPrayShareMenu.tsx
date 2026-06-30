@@ -613,14 +613,14 @@ export default function CrossHeartPrayShareMenu({
               const liveParsed = parseShare(liveShareText, canonicalUrl);
               const liveHtml = htmlEmail ?? cardShellHtml(liveParsed, emailSubject, itemLabel, true);
               const ok = await copyRich(liveHtml, shareText.trim() || canonicalUrl);
-              const simpleShareText = `${emailSubject}\n${canonicalUrl}`;
+              const simpleShareText = shareText.trim() || canonicalUrl;
               let openedShare = false;
 
               try {
                 if (navigator.share) {
                   await navigator.share({
                     title: emailSubject,
-                    text: canonicalUrl,
+                    text: simpleShareText,
                     url: canonicalUrl,
                   });
                   openedShare = true;
