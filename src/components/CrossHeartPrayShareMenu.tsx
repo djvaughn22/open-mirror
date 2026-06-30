@@ -399,11 +399,11 @@ function cleanedDomShareText(element: Element | null) {
   ]);
 
   return (clone.innerText || clone.textContent || "")
-    .split(/\\n+/)
-    .map((line) => line.replace(/\\s+/g, " ").trim())
+    .split(/\n+/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
     .filter(Boolean)
     .filter((line) => !noisyLines.has(line))
-    .join("\\n");
+    .join("\n");
 }
 
 function targetLinks(element: Element | null, canonicalUrl: string) {
@@ -439,7 +439,7 @@ function runtimeShareText(shareText: string, boardHref: string, canonicalUrl: st
       ? domText || shareText
       : shareText;
 
-  return [baseText, "", ...links].filter(Boolean).join("\\n");
+  return [baseText, "", ...links].filter(Boolean).join("\n");
 }
 
 
@@ -612,16 +612,15 @@ export default function CrossHeartPrayShareMenu({
               const liveShareText = runtimeShareText(shareText, boardHref, canonicalUrl);
               const liveParsed = parseShare(liveShareText, canonicalUrl);
               const liveHtml = htmlEmail ?? cardShellHtml(liveParsed, emailSubject, itemLabel, true);
-              const liveText = plainText(liveParsed, emailSubject);
-              const ok = await copyRich(liveHtml, liveText);
-              const shareTextWithUrl = `${liveText}\n\n${canonicalUrl}`.trim();
+              const ok = await copyRich(liveHtml, shareText.trim() || canonicalUrl);
+              const simpleShareText = `${emailSubject}\n${canonicalUrl}`;
               let openedShare = false;
 
               try {
                 if (navigator.share) {
                   await navigator.share({
                     title: emailSubject,
-                    text: shareTextWithUrl,
+                    text: canonicalUrl,
                     url: canonicalUrl,
                   });
                   openedShare = true;
@@ -631,11 +630,11 @@ export default function CrossHeartPrayShareMenu({
               }
 
               if (!openedShare) {
-                const mailtoUrl = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(shareTextWithUrl)}`;
+                const mailtoUrl = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(simpleShareText)}`;
                 window.location.href = mailtoUrl;
               }
 
-              flash(ok ? "HTML copied + share opened" : "Share opened");
+              flash(ok ? "HTML copied — paste into email, or check share sheet" : "Share opened");
               setOpen(false);
             }}
             className="block w-full rounded-xl px-3 py-4 text-left text-base font-black text-white hover:bg-white/10"
