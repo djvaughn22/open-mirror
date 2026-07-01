@@ -120,12 +120,22 @@ export default function DontCloneMeTom() {
       <div className="mx-auto max-w-2xl px-5 py-10">
 
         {/* Nav back */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-slate-300 transition mb-10"
-        >
-          ← Open Mirror LLC
-        </Link>
+        <div className="flex items-center justify-between mb-10">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-slate-300 transition"
+          >
+            ← Open Mirror LLC
+          </Link>
+          <a
+            href="https://crossheartpray.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 hover:text-orange-300 transition"
+          >
+            CrossHeartPray ✝️
+          </a>
+        </div>
 
         {/* Hero */}
         <section className="text-center mb-12">
@@ -182,7 +192,7 @@ export default function DontCloneMeTom() {
         <section className="mb-10">
           <h2 className="text-xl font-black text-white mb-2">Meet the Originals</h2>
           <p className="text-sm font-semibold text-slate-400 mb-5">
-            Placeholder dogs. Real energy. Genuinely 100% original.
+            These are stand-ins for the real dogs waiting in shelters near you — same energy, same love, genuinely 100% original.
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
             {dogs.map((dog) => (
@@ -203,9 +213,14 @@ export default function DontCloneMeTom() {
                 <p className="text-xs font-semibold text-orange-300">
                   Superpower: {dog.superpower}
                 </p>
-                <button className="mt-4 w-full rounded-full border border-orange-300/25 bg-orange-900/15 py-2 text-xs font-black uppercase tracking-[0.15em] text-orange-100 hover:bg-orange-900/30 transition">
-                  I Need a Human
-                </button>
+                <a
+                  href="https://www.petfinder.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 block w-full rounded-full border border-orange-300/25 bg-orange-900/15 py-2 text-xs font-black uppercase tracking-[0.15em] text-orange-100 hover:bg-orange-900/30 transition text-center"
+                >
+                  Find a Dog Like This →
+                </a>
               </div>
             ))}
           </div>
