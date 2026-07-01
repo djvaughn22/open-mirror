@@ -50,6 +50,9 @@ export default function TheDJCaresPage() {
 
   return (
     <main className="min-h-screen bg-black text-white">
+      <div className="bg-yellow-400 px-6 py-3 text-center text-sm font-black uppercase tracking-widest text-black">
+        Coming Soon — Not yet live
+      </div>
       <div className="mx-auto max-w-6xl px-6 py-8">
         <nav className="grid grid-cols-3 items-center">
           <a href="/crossheartpray" className="justify-self-start font-bold">
