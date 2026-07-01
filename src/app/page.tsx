@@ -77,9 +77,9 @@ const projects = [
   },
   {
     name: "iDontCry",
-    emoji: "💙",
-    tagline: "Honest healing. For grief, hard moments, and the feelings you carry alone.",
-    status: "Coming Soon",
+    emoji: "😭",
+    tagline: "The Vaughn Family's Digital Playground. Dad jokes, mini games, and absolutely zero crying.",
+    status: "Live",
     accent: "#818CF8",
     cardDark: "#0D0F20",
     cardLight: "#EEF2FF",
