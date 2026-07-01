@@ -18,7 +18,7 @@ const projects = [
   {
     name: "WhatAmIAI",
     emoji: "🤖",
-    tagline: "A Gospel-first reflection tool — AI asks questions, you find your own answers.",
+    tagline: "Seven quick questions, then turn your answers into a reflection prompt for any AI.",
     status: "Live",
     accent: "#A78BFA",
     cardDark: "#130F20",
