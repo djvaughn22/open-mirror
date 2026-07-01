@@ -100,18 +100,8 @@ export default function TheDJCaresPage() {
           <h1 className="text-5xl font-black tracking-tight md:text-7xl">
             TheDJCares
           </h1>
-        </section>
 
-        <section className="mb-8 rounded-3xl border border-zinc-800 bg-zinc-950 p-8 text-center">
-          <div className="text-5xl">🎧</div>
-
-          <p className="mt-6 text-xs font-bold uppercase tracking-[0.28em] text-yellow-400">
-            Coming Soon
-          </p>
-
-          <h2 className="mt-4 text-2xl font-bold">TheDJCares</h2>
-
-          <p className="mx-auto mt-4 max-w-3xl leading-7 text-zinc-400">
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
             Your digital disc jockey connecting YOU to uplifting music, videos,
             sermons, podcasts, blogs, churches, charities, Christian businesses,
             Bible studies, and gospel-centered resources.

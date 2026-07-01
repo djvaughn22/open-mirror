@@ -16,18 +16,6 @@ const projects = [
     href: "https://crossheartpray.com",
   },
   {
-    name: "Reflect",
-    emoji: "🪞",
-    tagline: "Read a verse. Sit with it. Write what you notice. Simple and quiet.",
-    status: "Live",
-    accent: "#4ADE80",
-    cardDark: "#0A1F12",
-    cardLight: "#F0FDF4",
-    borderDark: "#1A3A22",
-    borderLight: "#BBF7D0",
-    href: "https://crossheartpray.com/reflect",
-  },
-  {
     name: "WhatAmIAI",
     emoji: "🤖",
     tagline: "A Gospel-first reflection tool — AI asks questions, you find your own answers.",
@@ -107,6 +95,8 @@ export default function OpenMirrorHub() {
 
   useEffect(() => {
     const saved = localStorage.getItem("om-theme");
+    // Reading persisted theme after hydration is intentional and safe here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (saved) setDark(saved === "dark");
   }, []);
 
