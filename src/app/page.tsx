@@ -13,7 +13,7 @@ type Project = {
   status: string;
   statusColor: string;
   href: string;
-  external?: boolean;
+  external: boolean;
   cta: string;
   primary?: boolean;
 };
@@ -25,9 +25,20 @@ const projects: Project[] = [
       "A Bible-first app for verse discovery, prayer, Daily Hope, Bible Bingo, and reading plans.",
     status: "Live / MVP1",
     statusColor: "text-emerald-300",
-    href: "/crossheartpray",
+    href: "https://crossheartpray.com",
+    external: true,
     cta: "Open CrossHeartPray",
     primary: true,
+  },
+  {
+    name: "Reflect",
+    tagline:
+      "A quiet Bible reflection tool. Read a verse, sit with it, write what you notice.",
+    status: "Live",
+    statusColor: "text-emerald-300",
+    href: "https://crossheartpray.com/reflect",
+    external: true,
+    cta: "Open Reflect",
   },
   {
     name: "WhatAmIAI",
@@ -35,7 +46,8 @@ const projects: Project[] = [
       "Reflection tools that help you compare answers, claim truth, and deepen self-awareness.",
     status: "Concept / Coming Soon",
     statusColor: "text-violet-300",
-    href: "/whatamiai",
+    href: "https://whatamiai.com",
+    external: true,
     cta: "View Project",
   },
   {
@@ -44,7 +56,8 @@ const projects: Project[] = [
       "Music as a love language — playlists that carry feeling, purpose, and healing.",
     status: "Concept / Coming Soon",
     statusColor: "text-pink-300",
-    href: "/thedjcares",
+    href: "https://thedjcares.com",
+    external: true,
     cta: "View Project",
   },
   {
@@ -53,7 +66,8 @@ const projects: Project[] = [
       "A healing-first emotional support project for grief, strength, and honest moments.",
     status: "Concept / Coming Soon",
     statusColor: "text-slate-400",
-    href: "/idontcry",
+    href: "https://idontcry.com",
+    external: true,
     cta: "View Project",
   },
   {
@@ -72,7 +86,7 @@ const projects: Project[] = [
       "A clean-viewing concept for families who want safer ways to watch what they already have access to.",
     status: "In Development",
     statusColor: "text-sky-300",
-    href: "https://www.watchednotwatched.com",
+    href: "https://watchednotwatched.com",
     external: true,
     cta: "View Project",
   },
@@ -83,6 +97,7 @@ const projects: Project[] = [
     status: "Campaign MVP",
     statusColor: "text-orange-300",
     href: "/dont-clone-me-tom",
+    external: false,
     cta: "View Project",
   },
 ];
@@ -92,7 +107,6 @@ export default function OpenMirrorHub() {
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-2xl px-5 py-14">
 
-        {/* Header */}
         <header className="mb-12 text-center">
           <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-4">
             Open Mirror LLC
@@ -109,10 +123,9 @@ export default function OpenMirrorHub() {
           </p>
         </header>
 
-        {/* Project cards */}
         <div className="flex flex-col gap-4">
           {projects.map((p) => {
-            const inner = (
+            const card = (
               <div
                 className={`group block rounded-2xl border p-6 transition hover:-translate-y-0.5 cursor-pointer ${
                   p.primary
@@ -132,13 +145,11 @@ export default function OpenMirrorHub() {
                   </span>
                 </div>
                 <div className="mt-4">
-                  <span
-                    className={`inline-flex rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-[0.15em] transition ${
-                      p.primary
-                        ? "border-emerald-200/30 text-emerald-100 group-hover:bg-emerald-300/10"
-                        : "border-white/15 text-slate-300 group-hover:border-white/25 group-hover:text-white"
-                    }`}
-                  >
+                  <span className={`inline-flex rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-[0.15em] transition ${
+                    p.primary
+                      ? "border-emerald-200/30 text-emerald-100 group-hover:bg-emerald-300/10"
+                      : "border-white/15 text-slate-300 group-hover:border-white/25 group-hover:text-white"
+                  }`}>
                     {p.cta} →
                   </span>
                 </div>
@@ -147,17 +158,16 @@ export default function OpenMirrorHub() {
 
             return p.external ? (
               <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer">
-                {inner}
+                {card}
               </a>
             ) : (
               <Link key={p.name} href={p.href}>
-                {inner}
+                {card}
               </Link>
             );
           })}
         </div>
 
-        {/* Footer */}
         <footer className="mt-16 text-center border-t border-white/10 pt-8">
           <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-500">
             Open Mirror LLC
