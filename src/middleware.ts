@@ -3,10 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 const DOMAIN_ROOTS: Record<string, string> = {
   "crossheartpray.com": "/crossheartpray",
   "www.crossheartpray.com": "/crossheartpray",
-  "whatamiai.com": "/whatamiai",
-  "www.whatamiai.com": "/whatamiai",
-  "thedjcares.com": "/thedjcares",
-  "www.thedjcares.com": "/thedjcares",
 };
 
 export function middleware(request: NextRequest) {
