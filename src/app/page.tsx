@@ -88,7 +88,7 @@ const projects = [
     href: "https://idontcry.com",
   },
   {
-    name: "DontCloneMeTom",
+    name: "DontCloneMeTom.com",
     emoji: "🐶",
     tagline: "Rescue dogs are waiting. Original, one-of-a-kind, ready to love you.",
     status: "Campaign",

@@ -139,6 +139,10 @@ export default function DontCloneMeTom() {
 
         {/* Hero */}
         <section className="text-center mb-12">
+          <div className="mb-6 inline-flex items-baseline rounded-full border border-orange-300/25 bg-orange-950/20 px-4 py-1.5 text-lg font-black tracking-tight sm:text-xl">
+            <span className="text-white">DontCloneMeTom</span>
+            <span className="text-orange-400">.com</span>
+          </div>
           <p className="text-xs font-black uppercase tracking-[0.3em] text-orange-400 mb-4">
             Campaign MVP · Rescue First
           </p>
@@ -263,8 +267,8 @@ export default function DontCloneMeTom() {
               onClick={() => {
                 if (navigator.share) {
                   navigator.share({
-                    title: "Don't Clone Me, Tom",
-                    text: "Tom, the rescue pack is waiting. Don't clone me — I'm already here.",
+                    title: "DontCloneMeTom.com",
+                    text: "Tom, the rescue pack is waiting. Don't clone me — I'm already here. DontCloneMeTom.com",
                     url: window.location.href,
                   });
                 } else {
@@ -363,6 +367,10 @@ export default function DontCloneMeTom() {
 
         {/* Footer back to hub */}
         <div className="text-center">
+          <p className="mb-3 text-sm font-black tracking-tight">
+            <span className="text-slate-300">DontCloneMeTom</span>
+            <span className="text-orange-400">.com</span>
+          </p>
           <Link
             href="/"
             className="text-xs font-black uppercase tracking-[0.2em] text-slate-600 hover:text-slate-400 transition"
