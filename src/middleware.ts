@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
   const target = DOMAIN_ROOTS[host];
   if (target && request.nextUrl.pathname === "/") {
-    return NextResponse.redirect(new URL(target, request.url), 302);
+    return NextResponse.rewrite(new URL(target, request.url));
   }
   return NextResponse.next();
 }
