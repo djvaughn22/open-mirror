@@ -14,11 +14,6 @@ const oldPathRedirects: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
-  const host = request.headers.get("host")?.toLowerCase() ?? "";
-
-  if (host === "openmirrorllc.com" || host === "www.openmirrorllc.com") {
-    return NextResponse.redirect("https://crossheartpray.com/", 308);
-  }
 
   const cleanPath = oldPathRedirects[url.pathname];
 
