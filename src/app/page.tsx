@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const projects = [
@@ -85,8 +84,43 @@ const projects = [
     cardLight: "#FFFBEB",
     borderDark: "#332800",
     borderLight: "#FDE68A",
-    href: "/dont-clone-me-tom",
-    internal: true,
+    href: "https://dontclonemetom.com",
+  },
+  {
+    name: "PleaseBeReady.com",
+    emoji: "🧰",
+    tagline: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time.",
+    status: "Live",
+    accent: "#34D399",
+    cardDark: "#022C22",
+    cardLight: "#ECFDF5",
+    borderDark: "#064E3B",
+    borderLight: "#A7F3D0",
+    href: "https://pleasebeready.com",
+  },
+  {
+    name: "Fambookagram.com",
+    emoji: "👨‍👩‍👧‍👦",
+    tagline: "Your family's private feed. Photos and everyday moments — no ads, no algorithm, no strangers.",
+    status: "Waitlist",
+    accent: "#FBBF24",
+    cardDark: "#1C1300",
+    cardLight: "#FFFBEB",
+    borderDark: "#3A2800",
+    borderLight: "#FDE68A",
+    href: "https://fambookagram.com",
+  },
+  {
+    name: "Friendbookagram.com",
+    emoji: "🫂",
+    tagline: "Where your friends actually stay in touch. Private, calm, invite-only.",
+    status: "Waitlist",
+    accent: "#818CF8",
+    cardDark: "#0F1030",
+    cardLight: "#EEF2FF",
+    borderDark: "#1E1F4A",
+    borderLight: "#C7D2FE",
+    href: "https://friendbookagram.com",
   },
 ];
 
@@ -164,9 +198,7 @@ export default function OpenMirrorHub() {
               </div>
             );
 
-            return p.internal ? (
-              <Link key={p.name} href={p.href} target="_blank" style={{ textDecoration: "none" }}>{card}</Link>
-            ) : (
+            return (
               <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>{card}</a>
             );
           })}
