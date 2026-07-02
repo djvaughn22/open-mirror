@@ -9,11 +9,17 @@ export const metadata: Metadata = {
 };
 
 const family = [
-  { emoji: "🤖", name: "WhatAmIAI", text: "A self-reflection tool. Asks good questions, hands you a prompt for any AI. Won't put you in a box." , href: "https://whatamiai.com" },
+  { emoji: "✝️", name: "CrossHeartPray.com", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.", href: "https://crossheartpray.com" },
+  { emoji: "🤖", name: "WhatAmIAI.com", text: "A self-reflection tool. Seven quick questions, a reflection back, then a prompt for any AI. Won't put you in a box.", href: "https://whatamiai.com" },
   { emoji: "🪞", name: "Reflect", text: "The five-second version. One prompt, a few honest lines, a little clarity. That's it.", href: "/reflect" },
-  { emoji: "🎵", name: "DJ Cares", text: "Gospel-first music, sermons, and encouragement — pointing people toward hope.", href: "https://thedjcares.com" },
-  { emoji: "🐶", name: "DontCloneMeTom.com", text: "A rescue-dog campaign with a sense of humor. Adopt an original.", href: "https://dontclonemetom.com" },
-  { emoji: "✝️", name: "CrossHeartPray", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo. One project, fully its own thing.", href: "https://crossheartpray.com" },
+  { emoji: "🧰", name: "PleaseBeReady.com", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
+  { emoji: "🎵", name: "TheDJCares.com", text: "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.", href: "https://thedjcares.com" },
+  { emoji: "🐶", name: "DontCloneMeTom.com", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
+  { emoji: "😂", name: "iDontCry.com", text: "The Vaughn family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
+  { emoji: "🥊", name: "StepInTheRing.com", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
+  { emoji: "🎬", name: "WatchedNotWatched.com", text: "Safer viewing for families — watch what you love, the way you want to. (In development.)", href: "https://watchednotwatched.com" },
+  { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
+  { emoji: "🫂", name: "Friendbookagram.com", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
 ];
 
 export default function AboutOpenMirror() {
@@ -45,8 +51,8 @@ export default function AboutOpenMirror() {
         </section>
 
         <section className="mb-10">
-          <h2 className="mb-2 text-xl font-black">The family</h2>
-          <p className="mb-5 text-sm font-semibold text-[#9A9188]">Reflection tools, faith tools, and a couple that just make people smile.</p>
+          <h2 className="mb-2 text-xl font-black">Every site in the family</h2>
+          <p className="mb-5 text-sm font-semibold text-[#9A9188]">Reflection tools, faith tools, prep, and a few that just make people smile — tap any one to open it.</p>
           <div className="flex flex-col gap-3">
             {family.map((f) => (
               <a

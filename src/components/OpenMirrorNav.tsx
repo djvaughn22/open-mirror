@@ -7,10 +7,10 @@ type Item = { label: string; href: string; external?: boolean; note?: string };
 
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
-  { label: "Reflect", href: "/reflect", note: "Quick" },
-  { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
-  { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
   { label: "CrossHeartPray.com", href: "https://crossheartpray.com", external: true },
+  { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
+  { label: "Reflect", href: "/reflect", note: "Quick" },
+  { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
   { label: "TheDJCares.com", href: "https://thedjcares.com", external: true },
   { label: "DontCloneMeTom.com", href: "https://dontclonemetom.com", external: true },
   { label: "iDontCry.com", href: "https://idontcry.com", external: true },
