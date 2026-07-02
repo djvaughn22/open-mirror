@@ -29,14 +29,11 @@ export default function OpenMirrorHub() {
 
         <header style={{ textAlign: "center", marginBottom: 44 }}>
           <div style={{ fontSize: 30, marginBottom: 14, letterSpacing: 6 }}>✝️ 🤖 🧰 🎵 🐶</div>
-          <h1 style={{ fontSize: 42, fontWeight: 900, color: text, margin: "0 0 14px", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: 46, fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#FBBF24" }}>LLC</span>
           </h1>
-          <p style={{ fontSize: 22, fontWeight: 800, color: text, margin: "0 auto 10px", maxWidth: 520, lineHeight: 1.25 }}>
-            See clearly. Reflect honestly. Take the next real step.
-          </p>
-          <p style={{ fontSize: 16, color: sub, lineHeight: 1.7, margin: "0 auto", maxWidth: 460 }}>
-            Simple tools with a soul — built to actually help, one project at a time. 🪞
+          <p style={{ fontSize: 20, fontWeight: 800, color: sub, margin: 0, letterSpacing: "0.01em" }}>
+            Come and Play.
           </p>
         </header>
 

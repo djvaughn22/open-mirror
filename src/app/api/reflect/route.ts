@@ -261,7 +261,7 @@ ${formattedPassages}
     }
 
     return NextResponse.json(
-      { error: "Unable to generate reflection." },
+      { error: "Unable to generate reflection.", detail: String(error?.message || error).slice(0, 300) },
       { status: 500 }
     );
   }
