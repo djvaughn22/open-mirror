@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import OpenMirrorNav from "../components/OpenMirrorNav";
 
 const projects = [
   {
@@ -134,12 +135,6 @@ export default function OpenMirrorHub() {
     if (saved) setDark(saved === "dark");
   }, []);
 
-  const toggle = () => {
-    const next = !dark;
-    setDark(next);
-    localStorage.setItem("om-theme", next ? "dark" : "light");
-  };
-
   const bg = dark ? "#0C0C0C" : "#FEFCF9";
   const text = dark ? "#F5F0E8" : "#1C1917";
   const sub = dark ? "#8A8078" : "#57534E";
@@ -148,18 +143,10 @@ export default function OpenMirrorHub() {
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif", transition: "background 0.2s" }}>
-      <div style={{ maxWidth: 680, margin: "0 auto", padding: "56px 24px 80px" }}>
+      <OpenMirrorNav />
+      <div style={{ maxWidth: 680, margin: "0 auto", padding: "40px 24px 80px" }}>
 
         <header style={{ textAlign: "center", marginBottom: 52 }}>
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 24 }}>
-            <button onClick={toggle} aria-label="Toggle theme" style={{
-              background: "none", border: `1px solid ${footerBorder}`, borderRadius: 50,
-              padding: "6px 14px", fontSize: 13, fontWeight: 700, cursor: "pointer",
-              color: sub, letterSpacing: "0.04em",
-            }}>
-              {dark ? "☀️ Light" : "🌙 Dark"}
-            </button>
-          </div>
           <div style={{ fontSize: 40, marginBottom: 16 }}>🪞</div>
           <h1 style={{ fontSize: 38, fontWeight: 900, color: text, margin: "0 0 16px", lineHeight: 1.05 }}>
             Open Mirror LLC
