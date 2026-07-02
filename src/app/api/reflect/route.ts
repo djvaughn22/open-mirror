@@ -83,10 +83,11 @@ Ephesians 3:17–19`;
       );
     }
 
-    const response = await client.responses.create({
+    const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
-      max_output_tokens: 1200,
-      input: [
+      max_tokens: 1200,
+      response_format: { type: "json_object" },
+      messages: [
         {
           role: "system",
           content: `
@@ -160,39 +161,12 @@ Do not include commentary.
         },
         {
           role: "user",
-          content: problem,
+          content: `${problem}
+
+Return ONLY a JSON object shaped exactly like this, with exactly 3 passages:
+{"heard": "<=320 chars summarizing what you heard, in the second person", "passages": [{"chapter": "e.g. Psalm 42", "reference": "e.g. Psalm 42:11", "text": "the verse text"}, {"chapter": "", "reference": "", "text": ""}, {"chapter": "", "reference": "", "text": ""}]}`,
         },
       ],
-      text: {
-        format: {
-          type: "json_schema",
-          name: "scripture_explore_reflection",
-          strict: true,
-          schema: {
-            type: "object",
-            additionalProperties: false,
-            properties: {
-              heard: { type: "string", maxLength: 320 },
-              passages: {
-                type: "array",
-                minItems: 3,
-                maxItems: 3,
-                items: {
-                  type: "object",
-                  additionalProperties: false,
-                  properties: {
-                    chapter: { type: "string", maxLength: 80 },
-                    reference: { type: "string", maxLength: 80 },
-                    text: { type: "string", maxLength: 320 }
-                  },
-                  required: ["chapter", "reference", "text"]
-                }
-              }
-            },
-            required: ["heard", "passages"]
-          }
-        }
-      }
     });
 
     let result: {
@@ -204,11 +178,13 @@ Do not include commentary.
       }[];
     };
 
+    const raw = completion.choices[0]?.message?.content ?? "";
+
     try {
-      result = JSON.parse(response.output_text);
+      result = JSON.parse(raw);
     } catch (parseError) {
       console.error("OPEN MIRROR PARSE ERROR:", parseError);
-      console.error("OPEN MIRROR RAW OUTPUT:", response.output_text);
+      console.error("OPEN MIRROR RAW OUTPUT:", raw);
       throw new Error("Structured reflection response could not be parsed.");
     }
 
@@ -261,7 +237,7 @@ ${formattedPassages}
     }
 
     return NextResponse.json(
-      { error: "Unable to generate reflection.", detail: String(error?.message || error).slice(0, 300) },
+      { error: "Unable to generate reflection." },
       { status: 500 }
     );
   }

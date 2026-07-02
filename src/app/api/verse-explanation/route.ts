@@ -54,10 +54,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const response = await client.responses.create({
+    const response = await client.chat.completions.create({
       model: "gpt-4o-mini",
-      max_output_tokens: 140,
-      input: [
+      max_tokens: 140,
+      messages: [
         {
           role: "system",
           content: `
@@ -94,7 +94,7 @@ Selected Bible reference: ${verse}`,
       ],
     });
 
-    const explanation = response.output_text?.trim();
+    const explanation = response.choices[0]?.message?.content?.trim();
 
     if (!explanation) {
       return NextResponse.json(

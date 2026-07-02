@@ -32,8 +32,8 @@ export default function OpenMirrorHub() {
           <h1 style={{ fontSize: 46, fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#FBBF24" }}>LLC</span>
           </h1>
-          <p style={{ fontSize: 20, fontWeight: 800, color: sub, margin: 0, letterSpacing: "0.01em" }}>
-            Come and Play.
+          <p style={{ fontSize: 14, fontWeight: 700, color: "#93C5FD", margin: 0, letterSpacing: "0.02em" }}>
+            Choose your own adventure.
           </p>
         </header>
 
