@@ -20,10 +20,22 @@ const PROMPTS = [
   "When did you last feel most like yourself?",
 ];
 
+const FOLLOWUPS = [
+  "What surprised you as you wrote that down?",
+  "If a friend wrote this, what would you gently tell them?",
+  "What's the smallest next step hiding in what you wrote?",
+  "What did you leave out because it felt too big — or too small?",
+  "Which part of this do you most want to be different a month from now?",
+  "What's one thing you're grateful for, even inside this?",
+];
+
 export default function ReflectPage() {
   const [idx, setIdx] = useState(0);
   const [text, setText] = useState("");
   const [copied, setCopied] = useState(false);
+  const [showReflection, setShowReflection] = useState(false);
+
+  const followups = [FOLLOWUPS[idx % FOLLOWUPS.length], FOLLOWUPS[(idx + 2) % FOLLOWUPS.length], FOLLOWUPS[(idx + 4) % FOLLOWUPS.length]];
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE);
@@ -36,7 +48,7 @@ export default function ReflectPage() {
     if (text) localStorage.setItem(STORAGE, text);
   }, [text]);
 
-  const nextPrompt = () => setIdx((i) => (i + 1) % PROMPTS.length);
+  const nextPrompt = () => { setIdx((i) => (i + 1) % PROMPTS.length); setShowReflection(false); };
 
   const copyForAI = () => {
     if (!text.trim()) return;
@@ -74,12 +86,12 @@ export default function ReflectPage() {
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
-              onClick={copyForAI}
+              onClick={() => setShowReflection(true)}
               disabled={!text.trim()}
               style={{ background: text.trim() ? A : "#262626", color: text.trim() ? "#0C0C0C" : "#7A736B" }}
               className="flex-1 rounded-full px-6 py-3 text-sm font-black uppercase tracking-[0.12em] transition hover:opacity-90 disabled:cursor-not-allowed"
             >
-              {copied ? "✓ Copied — paste into any AI" : "Think it through with AI"}
+              Reflect on this →
             </button>
             <button
               onClick={nextPrompt}
@@ -89,6 +101,29 @@ export default function ReflectPage() {
             </button>
           </div>
         </section>
+
+        {showReflection && text.trim() && (
+          <section className="mt-4 rounded-3xl border border-[#262626] bg-[#151515] p-6">
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.2em]" style={{ color: A }}>A few things to sit with 🪞</p>
+            <div className="flex flex-col gap-3">
+              {followups.map((f, i) => (
+                <div key={i} className="flex gap-2 text-[15px] leading-6 text-[#F5F0E8]">
+                  <span style={{ color: A }}>•</span><span>{f}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs font-semibold leading-6 text-[#9A9188]">
+              No verdicts here — just questions worth your honesty. Want to go further?
+            </p>
+            <button
+              onClick={copyForAI}
+              style={{ background: A, color: "#0C0C0C" }}
+              className="mt-4 w-full rounded-full px-6 py-3 text-sm font-black uppercase tracking-[0.12em] transition hover:opacity-90"
+            >
+              {copied ? "✓ Copied — paste into any AI" : "Now take it deeper with AI"}
+            </button>
+          </section>
+        )}
 
         <p className="mt-6 text-center text-xs font-semibold text-[#7A736B]">
           Want the deeper version? Try{" "}
