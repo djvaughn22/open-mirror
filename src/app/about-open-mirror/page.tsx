@@ -10,16 +10,16 @@ export const metadata: Metadata = {
 
 const family = [
   { emoji: "✝️", name: "CrossHeartPray.com", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.", href: "https://crossheartpray.com" },
-  { emoji: "🤖", name: "WhatAmIAI.com", text: "A self-reflection tool. Seven quick questions, a reflection back, then a prompt for any AI. Won't put you in a box.", href: "https://whatamiai.com" },
-  { emoji: "🪞", name: "Reflect", text: "The five-second version. One prompt, a few honest lines, a little clarity. That's it.", href: "/reflect" },
-  { emoji: "🧰", name: "PleaseBeReady.com", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
   { emoji: "🎵", name: "TheDJCares.com", text: "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.", href: "https://thedjcares.com" },
+  { emoji: "🧰", name: "PleaseBeReady.com", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
   { emoji: "🐶", name: "DontCloneMeTom.com", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
   { emoji: "😂", name: "iDontCry.com", text: "The Vaughn family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
   { emoji: "🥊", name: "StepInTheRing.com", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
   { emoji: "🎬", name: "WatchedNotWatched.com", text: "Safer viewing for families — watch what you love, the way you want to. (In development.)", href: "https://watchednotwatched.com" },
   { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
   { emoji: "🫂", name: "Friendbookagram.com", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
+  { emoji: "🤖", name: "WhatAmIAI.com", text: "Seven quick questions, then a real reflection with a verse or two matched to what you shared.", href: "https://whatamiai.com" },
+  { emoji: "🪞", name: "Reflect", text: "The five-second version. One prompt, then Scripture matched to what you wrote.", href: "/reflect" },
 ];
 
 export default function AboutOpenMirror() {
