@@ -40,7 +40,7 @@ export default function OpenMirrorHub() {
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {projects.map((p) => (
             <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-              <div style={{ background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+              <div className="pop" style={{ background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", gap: 16, alignItems: "flex-start", cursor: "pointer" }}>
                 <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>

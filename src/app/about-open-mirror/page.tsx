@@ -59,7 +59,7 @@ export default function AboutOpenMirror() {
                 key={f.name}
                 href={f.href}
                 {...(f.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="flex items-start gap-4 rounded-2xl border border-[#262626] bg-[#151515] p-5 transition hover:border-[#3a3a3a]"
+                className="pop flex items-start gap-4 rounded-2xl border border-[#262626] bg-[#151515] p-5 transition hover:border-[#3a3a3a]"
               >
                 <span className="text-2xl">{f.emoji}</span>
                 <div>

@@ -86,6 +86,7 @@ Ephesians 3:17–19`;
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       max_tokens: 1200,
+      temperature: 0.5,
       response_format: { type: "json_object" },
       messages: [
         {
