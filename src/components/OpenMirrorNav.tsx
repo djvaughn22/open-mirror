@@ -7,13 +7,19 @@ type Item = { label: string; href: string; external?: boolean; note?: string };
 
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
-  { label: "WhatAmIAI", href: "https://whatamiai.com", external: true, note: "Reflection tool" },
-  { label: "Reflect", href: "/reflect", note: "Quick reflection" },
-  { label: "About Open Mirror", href: "/about-open-mirror" },
-  { label: "DJ Cares", href: "https://thedjcares.com", external: true },
+  { label: "Reflect", href: "/reflect", note: "Quick" },
+  { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
+  { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
+  { label: "CrossHeartPray.com", href: "https://crossheartpray.com", external: true },
+  { label: "TheDJCares.com", href: "https://thedjcares.com", external: true },
   { label: "DontCloneMeTom.com", href: "https://dontclonemetom.com", external: true },
-  { label: "CrossHeartPray", href: "https://crossheartpray.com", external: true },
-  { label: "Bible Reading Plan PDF", href: "/resources/52-week-bible-reading-plan.pdf", external: true, note: "Download" },
+  { label: "iDontCry.com", href: "https://idontcry.com", external: true },
+  { label: "StepInTheRing.com", href: "https://stepinthering.com", external: true },
+  { label: "WatchedNotWatched.com", href: "https://watchednotwatched.com", external: true },
+  { label: "Fambookagram.com", href: "https://fambookagram.com", external: true },
+  { label: "Friendbookagram.com", href: "https://friendbookagram.com", external: true },
+  { label: "About Open Mirror", href: "/about-open-mirror" },
+  { label: "Bible Reading Plan PDF", href: "/resources/52-week-bible-reading-plan.pdf", external: true, note: "PDF" },
 ];
 
 export default function OpenMirrorNav() {
@@ -52,7 +58,7 @@ export default function OpenMirrorNav() {
           </button>
 
           {open && (
-            <nav className="absolute right-0 mt-3 w-64 overflow-hidden rounded-2xl border border-[#262626] bg-[#151515] p-2 shadow-2xl shadow-black/50">
+            <nav className="absolute right-0 mt-3 max-h-[80vh] w-64 overflow-y-auto rounded-2xl border border-[#262626] bg-[#151515] p-2 shadow-2xl shadow-black/50">
               {MENU.map((item) => (
                 <a
                   key={item.href}
