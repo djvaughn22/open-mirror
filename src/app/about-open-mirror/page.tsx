@@ -24,7 +24,7 @@ const family = [
 
 export default function AboutOpenMirror() {
   return (
-    <main className="min-h-screen bg-[#0C0C0C] text-[#F5F0E8]">
+    <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
       <OpenMirrorNav />
       <div className="mx-auto max-w-2xl px-5 py-12">
 
@@ -45,7 +45,7 @@ export default function AboutOpenMirror() {
             find a bit of hope, or take a practical next step.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#9A9188]">
-            <strong className="text-[#F5F0E8]">CrossHeartPray is one Open Mirror project — but Open Mirror is not only CrossHeartPray.</strong>{" "}
+            <strong className="text-[#e8edf5]">CrossHeartPray is one Open Mirror project — but Open Mirror is not only CrossHeartPray.</strong>{" "}
             It&apos;s a small family of tools, and it&apos;s still growing.
           </p>
         </section>
@@ -73,13 +73,13 @@ export default function AboutOpenMirror() {
 
         <section className="mb-12 rounded-3xl border border-[#262626] bg-[#151515] p-7 text-center">
           <p className="text-base font-semibold leading-8 text-[#9A9188]">
-            Tools that help you <strong className="text-[#F5F0E8]">see clearly, reflect honestly, build better, and take the next useful step.</strong>
+            Tools that help you <strong className="text-[#e8edf5]">see clearly, reflect honestly, build better, and take the next useful step.</strong>
             {" "}That&apos;s the whole idea.
           </p>
         </section>
 
         <footer className="border-t border-[#1E1E1E] pt-8 text-center">
-          <Link href="/" className="text-xs font-black uppercase tracking-[0.2em] text-[#7A736B] transition hover:text-[#F5F0E8]">
+          <Link href="/" className="text-xs font-black uppercase tracking-[0.2em] text-[#7A736B] transition hover:text-[#e8edf5]">
             ← Open Mirror Home
           </Link>
         </footer>
