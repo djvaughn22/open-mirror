@@ -5,11 +5,9 @@ type Project = { name: string; emoji: string; tagline: string; status: string; a
 const live: Project[] = [
   { name: "CrossHeartPray", emoji: "✝️", tagline: "Verses, prayer, Daily Hope, and Bible Bingo — your daily faith routine.", status: "Live", accent: "#4ADE80", href: "https://crossheartpray.com" },
   { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Live", accent: "#FB7185", href: "https://thedjcares.com" },
-  { name: "PleaseBeReady", emoji: "🧰", tagline: "Friendly emergency prep for everyone. Calm, practical, one step at a time.", status: "Live", accent: "#34D399", href: "https://pleasebeready.com" },
   { name: "DontCloneMeTom", emoji: "🐶", tagline: "Don't clone me, Tom — adopt an original. A rescue campaign with a wagging tail.", status: "Live", accent: "#FB923C", href: "https://dontclonemetom.com" },
   { name: "iDontCry", emoji: "😂", tagline: "The Vaughn family's digital playground. Dad jokes, mini games, zero crying.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
   { name: "StepInTheRing", emoji: "🥊", tagline: "Turn any idea into a real first plan — with AI as your corner. Free to start.", status: "Live", accent: "#FBBF24", href: "https://stepinthering.com" },
-  { name: "WatchedNotWatched", emoji: "🎬", tagline: "Safer viewing for families — watch what you love, the way you want to.", status: "In Dev", accent: "#22D3EE", href: "https://watchednotwatched.com" },
 ];
 
 const soon: Project[] = [
@@ -22,11 +20,18 @@ const reflect: Project[] = [
   { name: "Reflect", emoji: "🪞", tagline: "A quiet minute — one prompt, then Scripture matched to what you wrote.", status: "Live", accent: "#93C5FD", href: "/reflect" },
 ];
 
-const bg = "#0C0C0C";
-const card = "#17171B";
-const border = "#2A2A31";
-const text = "#F7F3EC";
-const sub = "#B4ACA1";
+// Still being figured out, plus PleaseBeReady parked at the very bottom.
+const more: Project[] = [
+  { name: "WatchedNotWatched", emoji: "🎬", tagline: "Safer viewing for families — watch what you love, the way you want to.", status: "In Dev", accent: "#22D3EE", href: "https://watchednotwatched.com" },
+  { name: "PleaseBeReady", emoji: "🧰", tagline: "Friendly emergency prep for everyone. Calm, practical, one step at a time.", status: "Live", accent: "#34D399", href: "https://pleasebeready.com" },
+];
+
+// Cool, flat palette — matched to CrossHeartPray / TheDJCares so the family feels connected.
+const bg = "#0b1220";
+const card = "#141d2e";
+const border = "#26324c";
+const text = "#e8edf5";
+const sub = "#94a3b8";
 
 function Card({ p }: { p: Project }) {
   const isCom = p.href.startsWith("http");
@@ -91,6 +96,13 @@ export default function OpenMirrorHub() {
           <GroupLabel>🪞 Reflect with AI</GroupLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {reflect.map((p) => <Card key={p.name} p={p} />)}
+          </div>
+        </div>
+
+        <div style={{ marginTop: 44 }}>
+          <GroupLabel>✨ More from Open Mirror</GroupLabel>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {more.map((p) => <Card key={p.name} p={p} />)}
           </div>
         </div>
 

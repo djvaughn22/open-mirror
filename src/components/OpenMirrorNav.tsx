@@ -5,21 +5,23 @@ import { useEffect, useRef, useState } from "react";
 
 type Item = { label: string; href: string; external?: boolean; note?: string };
 
+// Order: hub → faith apps → live sites → coming-soon → resources → still-being-
+// -figured-out (WatchedNotWatched / WhatAmIAI / Reflect) → PleaseBeReady last.
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
   { label: "CrossHeartPray.com", href: "https://crossheartpray.com", external: true },
   { label: "TheDJCares.com", href: "https://thedjcares.com", external: true },
-  { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
   { label: "DontCloneMeTom.com", href: "https://dontclonemetom.com", external: true },
   { label: "iDontCry.com", href: "https://idontcry.com", external: true },
   { label: "StepInTheRing.com", href: "https://stepinthering.com", external: true },
-  { label: "WatchedNotWatched.com", href: "https://watchednotwatched.com", external: true },
   { label: "Fambookagram.com", href: "https://fambookagram.com", external: true, note: "Soon" },
   { label: "Friendbookagram.com", href: "https://friendbookagram.com", external: true, note: "Soon" },
-  { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
-  { label: "Reflect", href: "/reflect", note: "Quick" },
   { label: "About Open Mirror", href: "/about-open-mirror" },
   { label: "Bible Reading Plan PDF", href: "/resources/52-week-bible-reading-plan.pdf", external: true, note: "PDF" },
+  { label: "WatchedNotWatched.com", href: "https://watchednotwatched.com", external: true },
+  { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
+  { label: "Reflect", href: "/reflect", note: "Quick" },
+  { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
 ];
 
 export default function OpenMirrorNav() {
