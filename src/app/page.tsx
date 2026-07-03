@@ -4,14 +4,14 @@ type Project = { name: string; emoji: string; tagline: string; status: string; a
 
 const live: Project[] = [
   { name: "CrossHeartPray", emoji: "✝️", tagline: "Verses, prayer, Daily Hope, and Bible Bingo — your daily faith routine.", status: "Live", accent: "#4ADE80", href: "https://crossheartpray.com" },
-  { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Live", accent: "#FB7185", href: "https://thedjcares.com" },
-  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Don't clone me, Tom — adopt an original. A rescue campaign with a wagging tail.", status: "Live", accent: "#FB923C", href: "https://dontclonemetom.com" },
-  { name: "iDontCry", emoji: "😂", tagline: "The Vaughn family's digital playground. Dad jokes, mini games, zero crying.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
-  { name: "StepInTheRing", emoji: "🥊", tagline: "Turn any idea into a real first plan — with AI as your corner. Free to start.", status: "Live", accent: "#FBBF24", href: "https://stepinthering.com" },
+  { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Live", accent: "#A78BFA", href: "https://thedjcares.com" },
+  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Don't clone me, Tom — adopt an original. A rescue campaign with a wagging tail.", status: "Live", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
+  { name: "iDontCry", emoji: "😂", tagline: "The family's digital playground. Dad jokes, mini games, zero crying.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
+  { name: "StepInTheRing", emoji: "🥊", tagline: "Turn any idea into a real first plan — with AI as your corner. Free to start.", status: "Live", accent: "#38BDF8", href: "https://stepinthering.com" },
 ];
 
 const soon: Project[] = [
-  { name: "Fambookagram", emoji: "👨‍👩‍👧‍👦", tagline: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.", status: "Coming Soon", accent: "#F472B6", href: "https://fambookagram.com" },
+  { name: "Fambookagram", emoji: "👨‍👩‍👧‍👦", tagline: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.", status: "Coming Soon", accent: "#C084FC", href: "https://fambookagram.com" },
   { name: "Friendbookagram", emoji: "🫂", tagline: "Where your friends actually stay in touch. Private, calm, invite-only.", status: "Coming Soon", accent: "#818CF8", href: "https://friendbookagram.com" },
 ];
 
@@ -74,7 +74,7 @@ export default function OpenMirrorHub() {
         <header style={{ textAlign: "center", marginBottom: 44 }}>
           <div style={{ fontSize: 30, marginBottom: 14, letterSpacing: 6 }}>✝️ 🤖 🧰 🎵 🐶</div>
           <h1 style={{ fontSize: 46, fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
-            Open Mirror <span style={{ color: "#FBBF24" }}>LLC</span>
+            Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 700, color: "#93C5FD", margin: 0, letterSpacing: "0.02em" }}>
             Choose your own adventure.
@@ -110,7 +110,7 @@ export default function OpenMirrorHub() {
           <p style={{ fontSize: 13, color: sub, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 6px" }}>
             Open Mirror LLC — built project by project 🪞
           </p>
-          <a href="/about-open-mirror" style={{ fontSize: 13, fontWeight: 800, color: "#FBBF24", textDecoration: "none" }}>About Open Mirror →</a>
+          <a href="/about-open-mirror" style={{ fontSize: 13, fontWeight: 800, color: "#38BDF8", textDecoration: "none" }}>About Open Mirror →</a>
         </footer>
       </div>
     </main>
