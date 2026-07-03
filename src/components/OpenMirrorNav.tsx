@@ -40,10 +40,10 @@ export default function OpenMirrorNav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#1E1E1E] bg-[#0C0C0C]/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[#26324c] bg-[#0b1220]/95 ">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3.5">
         {/* The only visible top-level item: Open Mirror Home */}
-        <Link href="/" className="inline-flex items-baseline gap-2 text-base font-black tracking-tight text-[#F5F0E8]">
+        <Link href="/" className="inline-flex items-baseline gap-2 text-base font-black tracking-tight text-[#e8edf5]">
           <span aria-hidden>🪞</span>
           <span>Open Mirror</span>
         </Link>
@@ -54,23 +54,23 @@ export default function OpenMirrorNav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#262626] bg-[#151515] text-lg leading-none text-[#F5F0E8] transition hover:border-[#3a3a3a]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-lg leading-none text-[#e8edf5] transition hover:border-[#1c2740]"
           >
             <span aria-hidden>{open ? "✕" : "☰"}</span>
           </button>
 
           {open && (
-            <nav className="absolute right-0 mt-3 max-h-[80vh] w-64 overflow-y-auto rounded-2xl border border-[#262626] bg-[#151515] p-2 shadow-2xl shadow-black/50">
+            <nav className="absolute right-0 mt-3 max-h-[80vh] w-64 overflow-y-auto rounded-2xl border border-[#26324c] bg-[#141d2e] p-2 shadow-2xl shadow-black/50">
               {MENU.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-[#F5F0E8] transition hover:bg-[#1F1F1F]"
+                  className="flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-[#e8edf5] transition hover:bg-[#1c2740]"
                 >
                   <span>{item.label}</span>
-                  {item.note && <span className="text-[10px] font-black uppercase tracking-wider text-[#7A736B]">{item.note}</span>}
+                  {item.note && <span className="text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">{item.note}</span>}
                 </a>
               ))}
             </nav>
