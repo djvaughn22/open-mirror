@@ -44,8 +44,7 @@ export default function OpenMirrorNav() {
       <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3.5">
         {/* The only visible top-level item: Open Mirror Home */}
         <Link href="/" className="inline-flex items-baseline gap-2 text-base font-black tracking-tight text-[#e8edf5]">
-          <span aria-hidden>🪞</span>
-          <span>Open Mirror</span>
+          <span>Open Mirror LLC</span>
         </Link>
 
         <div ref={ref} className="relative">

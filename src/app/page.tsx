@@ -108,7 +108,7 @@ export default function OpenMirrorHub() {
 
         <footer style={{ marginTop: 56, textAlign: "center", borderTop: `1px solid ${border}`, paddingTop: 28 }}>
           <p style={{ fontSize: 13, color: sub, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 6px" }}>
-            Open Mirror LLC — built project by project 🪞
+            Open Mirror LLC — built project by project
           </p>
           <a href="/about-open-mirror" style={{ fontSize: 13, fontWeight: 800, color: "#38BDF8", textDecoration: "none" }}>About Open Mirror →</a>
         </footer>
