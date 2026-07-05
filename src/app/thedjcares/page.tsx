@@ -257,7 +257,7 @@ const resourceSections: ResourceSection[] = [
     eyebrow: "Worship",
     title: "Safe Hymns & Simple Praise",
     intro:
-      "Classic hymns and DJ-reviewed music encouragement, labeled as music rather than doctrine.",
+      "Classic hymns and TheDJCares-reviewed music encouragement, labeled as music rather than doctrine.",
     items: worshipItems,
   },
   {
