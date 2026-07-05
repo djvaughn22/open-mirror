@@ -29,31 +29,11 @@ const FOLLOWUPS = [
   "What's one thing you're grateful for, even inside this?",
 ];
 
-function ReflectionView({ md }: { md: string }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      {md.split("\n").map((ln, i) => {
-        const t = ln.trim();
-        if (!t || t === "✝️ ❤️ 🙏") return t ? <p key={i} className="text-center text-lg">{t}</p> : null;
-        if (t === "---") return <hr key={i} className="my-3 border-[#262626]" />;
-        if (t.startsWith("### ")) return <p key={i} className="mt-2 text-sm font-black" style={{ color: A }}>{t.slice(4)}</p>;
-        if (t.startsWith("## ")) return <p key={i} className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-[#9A9188]">{t.slice(3)}</p>;
-        if (t.startsWith('"')) return <p key={i} className="text-[15px] italic leading-6 text-[#F5F0E8]">{t}</p>;
-        if (t === "Start reading:") return <p key={i} className="mt-1 text-xs font-bold text-[#9A9188]">{t}</p>;
-        return <p key={i} className="text-[15px] leading-6 text-[#F5F0E8]">{t}</p>;
-      })}
-    </div>
-  );
-}
-
 export default function ReflectPage() {
   const [idx, setIdx] = useState(0);
   const [text, setText] = useState("");
   const [copied, setCopied] = useState(false);
   const [showReflection, setShowReflection] = useState(false);
-  const [aiLoading, setAiLoading] = useState(false);
-  const [aiResult, setAiResult] = useState("");
-  const [aiError, setAiError] = useState(false);
 
   const followups = [FOLLOWUPS[idx % FOLLOWUPS.length], FOLLOWUPS[(idx + 2) % FOLLOWUPS.length], FOLLOWUPS[(idx + 4) % FOLLOWUPS.length]];
 
@@ -68,28 +48,11 @@ export default function ReflectPage() {
     if (text) localStorage.setItem(STORAGE, text);
   }, [text]);
 
-  const nextPrompt = () => { setIdx((i) => (i + 1) % PROMPTS.length); setShowReflection(false); setAiResult(""); setAiError(false); };
+  const nextPrompt = () => { setIdx((i) => (i + 1) % PROMPTS.length); setShowReflection(false); };
 
-  const doReflect = async () => {
+  const doReflect = () => {
     if (!text.trim()) return;
     setShowReflection(true);
-    setAiError(false);
-    setAiResult("");
-    setAiLoading(true);
-    try {
-      const res = await fetch("/api/reflect", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ problem: text.trim().slice(0, 250) }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.reflection) throw new Error();
-      setAiResult(data.reflection);
-    } catch {
-      setAiError(true);
-    } finally {
-      setAiLoading(false);
-    }
   };
 
   const copyForAI = () => {
@@ -129,11 +92,11 @@ export default function ReflectPage() {
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
               onClick={doReflect}
-              disabled={!text.trim() || aiLoading}
+              disabled={!text.trim()}
               style={{ background: text.trim() ? A : "#262626", color: text.trim() ? "#0C0C0C" : "#7A736B" }}
               className="flex-1 rounded-full px-6 py-3 text-sm font-black uppercase tracking-[0.12em] transition hover:opacity-90 disabled:cursor-not-allowed"
             >
-              {aiLoading ? "Reflecting…" : "Reflect on this →"}
+              Reflect on this →
             </button>
             <button
               onClick={nextPrompt}
@@ -146,44 +109,32 @@ export default function ReflectPage() {
 
         {showReflection && text.trim() && (
           <section className="mt-4 rounded-3xl border border-[#262626] bg-[#151515] p-6">
-            {aiLoading && (
-              <p className="text-sm font-semibold text-[#9A9188]">Reading your reflection and finding a verse or two… 🪞</p>
-            )}
-
-            {!aiLoading && aiResult && (
-              <>
-                <ReflectionView md={aiResult} />
-                <p className="mt-4 text-xs font-semibold leading-6 text-[#9A9188]">
-                  Scripture matched to what you wrote. Read the chapters in context, and bring it to prayer.
-                </p>
-              </>
-            )}
-
-            {!aiLoading && aiError && (
-              <>
-                <p className="mb-4 text-xs font-black uppercase tracking-[0.2em]" style={{ color: A }}>A few things to sit with 🪞</p>
-                <div className="flex flex-col gap-3">
-                  {followups.map((f, i) => (
-                    <div key={i} className="flex gap-2 text-[15px] leading-6 text-[#F5F0E8]">
-                      <span style={{ color: A }}>•</span><span>{f}</span>
-                    </div>
-                  ))}
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.2em]" style={{ color: A }}>A few things to sit with 🪞</p>
+            <div className="flex flex-col gap-3">
+              {followups.map((f, i) => (
+                <div key={i} className="flex gap-2 text-[15px] leading-6 text-[#F5F0E8]">
+                  <span style={{ color: A }}>•</span><span>{f}</span>
                 </div>
-                <button
-                  onClick={copyForAI}
-                  style={{ background: A, color: "#0C0C0C" }}
-                  className="mt-4 w-full rounded-full px-6 py-3 text-sm font-black uppercase tracking-[0.12em] transition hover:opacity-90"
-                >
-                  {copied ? "✓ Copied — paste into any AI" : "Take it deeper with any AI"}
-                </button>
-              </>
-            )}
+              ))}
+            </div>
+            <button
+              onClick={copyForAI}
+              style={{ background: A, color: "#0C0C0C" }}
+              className="mt-4 w-full rounded-full px-6 py-3 text-sm font-black uppercase tracking-[0.12em] transition hover:opacity-90"
+            >
+              {copied ? "✓ Copied — paste into any AI" : "Take it deeper with any AI"}
+            </button>
+            <p className="mt-4 text-xs font-semibold leading-6 text-[#9A9188]">
+              Patterns to notice, not a verdict — you&apos;re not a category.
+            </p>
           </section>
         )}
 
         <p className="mt-6 text-center text-xs font-semibold text-[#7A736B]">
           Want the deeper version? Try{" "}
           <a href="https://whatamiai.com" target="_blank" rel="noopener noreferrer" className="font-black underline" style={{ color: A }}>WhatAmIAI</a>.
+          {" "}Prefer to reflect through faith and Scripture? Visit{" "}
+          <a href="https://crossheartpray.com" target="_blank" rel="noopener noreferrer" className="font-black underline" style={{ color: A }}>CrossHeartPray</a>.
         </p>
 
         <footer className="mt-10 border-t border-[#1E1E1E] pt-8 text-center">
