@@ -48,6 +48,24 @@ const shareLines = [
   "Tom, if you're reading this, the pack saved you a spot.",
 ];
 
+
+function PetfinderAdoptableIframe() {
+  const srcDoc = `<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;background:#f8fafc;font-family:system-ui,sans-serif}</style></head><body><script src="https://www.petfinder.com/pet-scroller.bundle.js"></script><pet-scroller s3Url="https://dbw3zep4prcju.cloudfront.net/" apiBase="https://psl.petfinder.com/graphql" organization="[]" status="adoptable" petfinderUrl="https://www.petfinder.com/" hideBreed="true" limit="24" petListTitle=""></pet-scroller></body></html>`;
+  return (
+    <section className="mb-10 rounded-2xl border border-orange-200/15 bg-white p-4 text-slate-950">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-600">Petfinder-powered</p>
+          <h2 className="mt-2 text-2xl font-black">Adoptable Pets Waiting Now</h2>
+          <p className="mt-1 text-sm font-semibold text-slate-600">Real Petfinder listings while Tom&apos;s bigger rescue-friendly search keeps growing.</p>
+        </div>
+        <a href="https://www.petfinder.com/" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center rounded-full bg-slate-950 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-white hover:bg-slate-800">Open Petfinder</a>
+      </div>
+      <iframe title="Petfinder adoptable pets" srcDoc={srcDoc} className="h-[760px] w-full rounded-xl border border-slate-200 bg-slate-50" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" />
+    </section>
+  );
+}
+
 function DonationCalc() {
   const [amount, setAmount] = useState(50000);
 
@@ -229,6 +247,8 @@ export default function DontCloneMeTom() {
             ))}
           </div>
         </section>
+
+        <PetfinderAdoptableIframe />
 
         {/* Rescue Challenge */}
         <section id="rescue-challenge" className="mb-10">
