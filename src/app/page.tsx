@@ -3,11 +3,11 @@ import OpenMirrorNav from "../components/OpenMirrorNav";
 type Project = { name: string; emoji: string; tagline: string; status: string; accent: string; href: string };
 
 const live: Project[] = [
-  { name: "CrossHeartPray", emoji: "✝️", tagline: "Verses, prayer, Daily Hope, and Bible Bingo — your daily faith routine.", status: "Live", accent: "#4ADE80", href: "https://crossheartpray.com" },
+  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Live", accent: "#4ADE80", href: "https://crossheartpray.com" },
   { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Live", accent: "#A78BFA", href: "https://thedjcares.com" },
-  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Don't clone me, Tom — adopt an original. A rescue campaign with a wagging tail.", status: "Live", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
-  { name: "iDontCry", emoji: "😂", tagline: "The family's digital playground. Dad jokes, mini games, zero crying.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
-  { name: "StepInTheRing", emoji: "🥊", tagline: "Turn any idea into a real first plan — with AI as your corner. Free to start.", status: "Live", accent: "#38BDF8", href: "https://stepinthering.com" },
+  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", status: "Live", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
+  { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
+  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Live", accent: "#38BDF8", href: "https://stepinthering.com" },
 ];
 
 const soon: Project[] = [
@@ -16,8 +16,8 @@ const soon: Project[] = [
 ];
 
 const reflect: Project[] = [
-  { name: "WhatAmIAI", emoji: "🤖", tagline: "Seven quick questions, then a real reflection with a verse or two matched to you.", status: "Live", accent: "#A78BFA", href: "https://whatamiai.com" },
-  { name: "Reflect", emoji: "🪞", tagline: "A quiet minute — one prompt, then Scripture matched to what you wrote.", status: "Live", accent: "#93C5FD", href: "/reflect" },
+  { name: "WhatAmIAI", emoji: "🤖", tagline: "Seven quick questions, then patterns worth noticing. No labels — you're not a category.", status: "Live", accent: "#A78BFA", href: "https://whatamiai.com" },
+  { name: "Reflect", emoji: "🪞", tagline: "A quiet minute — one honest prompt, then a few things to sit with.", status: "Live", accent: "#93C5FD", href: "/reflect" },
 ];
 
 // Still being figured out, plus PleaseBeReady parked at the very bottom.
