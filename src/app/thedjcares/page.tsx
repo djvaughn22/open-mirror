@@ -261,6 +261,89 @@ const devotionalItems: ResourceItem[] = [
   },
 ];
 
+const familyAndHomeItems: ResourceItem[] = [
+  {
+    title: "Allen Jackson Ministries",
+    source: "Pastor Allen Jackson",
+    type: "Teaching",
+    summary:
+      "Official ministry home for Bible-centered sermons, broadcasts, devotionals, prayer resources, and encouragement for living faith in real life.",
+    href: "https://allenjackson.com/",
+    action: "Open",
+    badge: "Faith at Home",
+  },
+  {
+    title: "Sermons & Broadcasts",
+    source: "Allen Jackson Ministries",
+    type: "Sermon",
+    summary:
+      "Official Allen Jackson sermons and broadcasts. Keep these as reviewed encouragement, not a blanket endorsement of every topical episode.",
+    href: "https://allenjackson.com/watch/recent-tv-broadcasts/",
+    action: "Watch",
+    badge: "Teaching",
+  },
+  {
+    title: "Bible Reading Plan",
+    source: "Allen Jackson Ministries",
+    type: "Bible Plan",
+    summary:
+      "A simple official Bible reading plan meant to help people stay in Scripture a few minutes each day.",
+    href: "https://allenjackson.com/bible-reading/",
+    action: "Read",
+    badge: "Bible",
+  },
+  {
+    title: "Dr. James Dobson Family Institute",
+    source: "Dr. James Dobson's Family Talk",
+    type: "Family Ministry",
+    summary:
+      "Official family ministry resources for marriage, parenting, children, legacy, and building a Christ-centered home.",
+    href: "https://www.drjamesdobson.org/",
+    action: "Open",
+    badge: "Family",
+  },
+  {
+    title: "Family Talk Broadcasts",
+    source: "Dr. James Dobson's Family Talk",
+    type: "Broadcast",
+    summary:
+      "Official broadcasts focused on marriage, parenting, sons, daughters, and strengthening the family with biblical encouragement.",
+    href: "https://www.drjamesdobson.org/category/broadcasts/",
+    action: "Listen",
+    badge: "Family Talk",
+  },
+  {
+    title: "Marriage & Parenting",
+    source: "Dr. James Dobson Family Institute",
+    type: "Family Resource",
+    summary:
+      "A focused official resource hub for keeping Christ at the center of marriage, parenting, and home life.",
+    href: "https://www.drjamesdobson.org/category/marriage-parenting/",
+    action: "Read",
+    badge: "Home",
+  },
+  {
+    title: "Building a Family Legacy",
+    source: "Dr. James Dobson's Family Talk",
+    type: "Family Resource",
+    summary:
+      "Dr. Dobson and Ryan Dobson discuss building a spiritual legacy and helping children follow Christ.",
+    href: "https://www.drjamesdobson.org/broadcasts/building-a-family-legacy-part-1/",
+    action: "Listen",
+    badge: "Legacy",
+  },
+  {
+    title: "Dr. Dobson Minute",
+    source: "Dr. James Dobson Family Institute",
+    type: "Short Encouragement",
+    summary:
+      "Short official audio messages with practical insights for marriage, parenting, and family life.",
+    href: "https://www.drjamesdobson.org/category/dobson-minute/",
+    action: "Listen",
+    badge: "Minute",
+  },
+];
+
 const resourceSections: ResourceSection[] = [
   {
     eyebrow: "Start Here",
@@ -289,6 +372,13 @@ const resourceSections: ResourceSection[] = [
     intro:
       "Classic hymns and TheDJCares-reviewed music encouragement, labeled as music rather than doctrine.",
     items: worshipItems,
+  },
+  {
+    eyebrow: "Family",
+    title: "Family & Home",
+    intro:
+      "Official family ministry resources for marriage, parenting, legacy, Bible reading, and building a Christ-centered home.",
+    items: familyAndHomeItems,
   },
   {
     eyebrow: "Encouragement",
