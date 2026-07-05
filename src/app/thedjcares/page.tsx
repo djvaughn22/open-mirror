@@ -19,6 +19,16 @@ const keptAppleMusicPlaylists: ResourceItem[] = [];
 
 const gospelItems: ResourceItem[] = [
   {
+    title: "Seoul, South Korea: Billy Graham's Largest Ever Crusade",
+    source: "Billy Graham Evangelistic Association",
+    type: "Sermon / Gospel",
+    summary:
+      "Official BGEA video from Billy Graham's historic 1973 Seoul Crusade, where millions gathered to hear the Gospel. Start here for a clear invitation to Jesus.",
+    href: "https://www.youtube.com/watch?v=PQDLjd57vdE",
+    action: "Watch",
+    badge: "Featured Gospel",
+  },
+  {
     title: "Billy Graham Classics",
     source: "Billy Graham Evangelistic Association",
     type: "Sermon",
@@ -29,14 +39,14 @@ const gospelItems: ResourceItem[] = [
     badge: "Gospel",
   },
   {
-    title: "Jesus Calls You by Name",
-    source: "Billy Graham Classics",
-    type: "Sermon",
+    title: "Peace With God",
+    source: "Billy Graham Evangelistic Association",
+    type: "Gospel",
     summary:
-      "A clear invitation to lay down what keeps you from Christ and come to Jesus personally.",
-    href: "https://billygraham.org/classics",
+      "A clear next step for anyone who wants to understand salvation, forgiveness, repentance, and faith in Jesus Christ.",
+    href: "https://peacewithgod.net/",
     action: "Open",
-    badge: "Classic",
+    badge: "Jesus",
   },
   {
     title: "Choices We Make",
@@ -58,48 +68,48 @@ const gospelItems: ResourceItem[] = [
     action: "Open",
     badge: "Hope",
   },
-  {
-    title: "The Holy Spirit and You",
-    source: "Billy Graham Classics",
-    type: "Sermon",
-    summary:
-      "A classic message about the Helper Jesus promised and the daily life of faith.",
-    href: "https://billygraham.org/classics",
-    action: "Open",
-    badge: "Faith",
-  },
 ];
 
 const classicTeachingItems: ResourceItem[] = [
   {
-    title: "Love Worth Finding",
-    source: "Adrian Rogers",
+    title: "Prayer",
+    source: "Adrian Rogers / Love Worth Finding",
     type: "Sermon",
     summary:
-      "Straightforward Bible teaching centered on Jesus, Scripture, assurance, obedience, and trusting God.",
-    href: "https://www.lwf.org/",
-    action: "Open",
-    badge: "Classic",
+      "A clear, practical message on prayer as a believer's privilege, dependence, and daily walk with God.",
+    href: "https://www.lwf.org/sermons/video/prayer-2064",
+    action: "Watch",
+    badge: "Prayer",
   },
   {
-    title: "Assurance of Salvation",
-    source: "Love Worth Finding",
-    type: "Teaching",
+    title: "What to Do When the Bottom Falls Out",
+    source: "Adrian Rogers / Love Worth Finding",
+    type: "Sermon",
     summary:
-      "A clear Gospel-centered explanation of receiving Christ by faith and resting in His finished work.",
-    href: "https://www.lwf.org/discover-jesus/assurance-of-salvation",
-    action: "Read",
-    badge: "Assurance",
+      "Bible encouragement for standing on God's unchanging love when life gets heavy or unstable.",
+    href: "https://www.lwf.org/sermons/video/what-to-do-when-the-bottom-falls-out-2140",
+    action: "Watch",
+    badge: "Hope",
   },
   {
     title: "Biblical Faith",
-    source: "Love Worth Finding",
+    source: "Adrian Rogers / Love Worth Finding",
     type: "Sermon",
     summary:
-      "Encouragement to put faith in the right object: Jesus Christ and the Word of God.",
+      "A Scripture-centered teaching on what real faith is and why faith must rest in Jesus and God's Word.",
     href: "https://www.lwf.org/sermons/video/biblical-faith-what-it-is-and-how-to-have-it-1749",
     action: "Watch",
     badge: "Bible",
+  },
+  {
+    title: "Love Worth Finding",
+    source: "Adrian Rogers",
+    type: "Teaching Library",
+    summary:
+      "Official Adrian Rogers ministry library for straightforward Bible teaching centered on Jesus, Scripture, assurance, obedience, and trusting God.",
+    href: "https://www.lwf.org/",
+    action: "Open",
+    badge: "Classic",
   },
   {
     title: "In Touch Ministries",
@@ -119,6 +129,26 @@ const classicTeachingItems: ResourceItem[] = [
       "Long-form Bible teaching that helps listeners keep walking through the whole counsel of Scripture.",
     href: "https://www.ttb.org/",
     action: "Listen",
+    badge: "Bible",
+  },
+  {
+    title: "Christ Is at the Beginning, Middle, and End of History",
+    source: "David Jeremiah / Turning Point",
+    type: "Bible Overview",
+    summary:
+      "A big-picture Bible resource connecting Genesis 3:15 and Revelation 22:13 around Jesus Christ, the Alpha and Omega.",
+    href: "https://davidjeremiah.blog/christs-second-coming-in-gods-story-of-redemption/",
+    action: "Read",
+    badge: "Genesis to Revelation",
+  },
+  {
+    title: "Understand the Basics of the Bible",
+    source: "David Jeremiah / Turning Point",
+    type: "Bible Overview",
+    summary:
+      "A simple Bible overview that traces the Good News from Genesis through the redemptive work of Jesus Christ.",
+    href: "https://davidjeremiah.blog/understand-the-basics-of-the-bible/",
+    action: "Read",
     badge: "Bible",
   },
 ];
@@ -328,6 +358,48 @@ export default function TheDJCaresPage() {
               Scripture is the test, and every resource should point you back to God&apos;s Word,
               prayer, and real-life faith.
             </p>
+          </div>
+        </section>
+
+        <section className="mt-8 overflow-hidden rounded-[2rem] border border-amber-200/20 bg-gradient-to-br from-amber-200/15 via-white/[0.06] to-sky-300/10 p-6 shadow-xl shadow-black/20 sm:p-8">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-100">
+                Featured Gospel Message
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Billy Graham in Seoul, South Korea
+              </h2>
+              <p className="mt-4 text-base leading-7 text-white/75">
+                Billy Graham&apos;s 1973 Seoul Crusade is one of the clearest public examples of Gospel-first preaching reaching millions. Start here: Jesus, repentance, faith, and peace with God.
+              </p>
+              <a
+                href="https://www.youtube.com/watch?v=PQDLjd57vdE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-100"
+              >
+                Watch on official BGEA YouTube
+              </a>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-black/30 shadow-lg shadow-black/30">
+              <div className="aspect-video">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/PQDLjd57vdE"
+                  title="Seoul, South Korea: Billy Graham's Largest Ever Crusade"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <div className="p-4">
+                <p className="text-sm font-semibold text-amber-100">Why it is featured</p>
+                <p className="mt-2 text-sm leading-6 text-white/70">
+                  Not noise. Not a random upload. Official BGEA Gospel preaching that points plainly to Jesus.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
