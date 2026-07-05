@@ -257,7 +257,7 @@ const resourceSections: ResourceSection[] = [
     eyebrow: "Worship",
     title: "Safe Hymns & Simple Praise",
     intro:
-      "Classic hymns and kept Apple Music encouragement links, labeled as music rather than doctrine.",
+      "Classic hymns and DJ-reviewed music encouragement, labeled as music rather than doctrine.",
     items: worshipItems,
   },
   {
@@ -347,7 +347,7 @@ export default function TheDJCaresPage() {
           <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-5">
             <p className="text-sm font-semibold text-sky-100">Music is music</p>
             <p className="mt-2 text-sm leading-6 text-white/65">
-              Apple Music playlists may encourage worship, but they are not doctrine or teaching.
+              Music playlists may encourage worship, but they are not doctrine or teaching.
             </p>
           </div>
         </section>
