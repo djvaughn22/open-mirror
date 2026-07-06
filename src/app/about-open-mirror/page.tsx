@@ -29,7 +29,7 @@ export default function AboutOpenMirror() {
       <div className="mx-auto max-w-2xl px-5 py-12">
 
         <section className="mb-12 text-center">
-          <div className="mb-5 text-5xl">🪞</div>
+          <div className="mb-5" style={{ fontSize: 30, letterSpacing: 6 }}>✝️ 🤖 🧰 🎵 🐶</div>
           <h1 className="mb-4 text-4xl font-black leading-tight sm:text-5xl">About Open Mirror</h1>
           <p className="mx-auto max-w-lg text-lg font-semibold leading-8 text-[#94a3b8]">
             Open Mirror LLC builds simple tools that help people see clearly, reflect honestly,
@@ -52,7 +52,7 @@ export default function AboutOpenMirror() {
 
         <section className="mb-10">
           <h2 className="mb-2 text-xl font-black">Every site in the family</h2>
-          <p className="mb-5 text-sm font-semibold text-[#94a3b8]">Reflection tools, faith tools, prep, and a few that just make people smile — tap any one to open it.</p>
+          <p className="mb-5 text-sm font-semibold text-[#94a3b8]">Reflection tools, faith tools, prep, and a few that just make people smile.</p>
           <div className="flex flex-col gap-3">
             {family.map((f) => (
               <a
