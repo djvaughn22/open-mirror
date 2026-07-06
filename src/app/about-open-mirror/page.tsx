@@ -71,6 +71,24 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
+        <section className="mb-10">
+          <h2 className="mb-2 text-xl font-black">Free resources</h2>
+          <div className="flex flex-col gap-3">
+            <a
+              href="/resources/52-week-bible-reading-plan.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
+            >
+              <span className="text-2xl">📖</span>
+              <div>
+                <h3 className="text-base font-black">Bible Reading Plan <span className="text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">PDF</span></h3>
+                <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">A 52-week plan to read through the Bible — print it or keep it on your phone.</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
         <section className="mb-12 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7 text-center">
           <p className="text-base font-semibold leading-8 text-[#94a3b8]">
             Tools that help you <strong className="text-[#e8edf5]">see clearly, reflect honestly, build better, and take the next useful step.</strong>

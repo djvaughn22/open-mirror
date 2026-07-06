@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean };
+type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
 
 // Live products first, a divider, then the rest, resources, About last.
 const MENU: Item[] = [
@@ -15,12 +15,13 @@ const MENU: Item[] = [
   { label: "iDontCry.com", href: "https://idontcry.com", external: true },
   { label: "StepInTheRing.com", href: "https://stepinthering.com", external: true },
   { divider: true },
-  { label: "Fambookagram.com", href: "https://fambookagram.com", external: true, note: "Soon" },
-  { label: "Friendbookagram.com", href: "https://friendbookagram.com", external: true, note: "Soon" },
+  { heading: "Coming Soon" },
+  { label: "Fambookagram.com", href: "https://fambookagram.com", external: true },
+  { label: "Friendbookagram.com", href: "https://friendbookagram.com", external: true },
   { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
-  { label: "Reflect", href: "/reflect", note: "Quick" },
+  { label: "Reflect", href: "/reflect" },
   { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
-  { label: "Bible Reading Plan PDF", href: "/resources/52-week-bible-reading-plan.pdf", external: true, note: "PDF" },
+  { divider: true },
   { label: "About Open Mirror", href: "/about-open-mirror" },
 ];
 
@@ -63,6 +64,10 @@ export default function OpenMirrorNav() {
               {MENU.map((item, i) =>
                 item.divider ? (
                   <div key={`divider-${i}`} className="my-2 border-t border-[#26324c]" />
+                ) : item.heading ? (
+                  <div key={`heading-${i}`} className="px-4 pb-1 pt-2 text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">
+                    {item.heading}
+                  </div>
                 ) : (
                   <a
                     key={item.href}
