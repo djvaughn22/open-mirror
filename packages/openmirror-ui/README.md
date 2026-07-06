@@ -16,7 +16,7 @@ This ends the copy-paste drift called out in
 | File | Status | Notes |
 |------|--------|-------|
 | `OpenMirrorNav.tsx` | **synced to all 9 satellites** | Minimal satellite header: Open Mirror LLC wordmark + ☰ menu (Open Mirror Home / About). Flat solid `#0b1220` — no glass. |
-| `OpenMirrorFooter.tsx` | available, not yet adopted | Shared footer (`siteName`/`tagline` props). Sites keep their own footer copy for now; add to `FILES` in sync-ui.sh when adopted. |
+| `OpenMirrorFooter.tsx` | **synced to all 9 satellites** | Shared footer, mounted in each satellite's `layout.tsx` after `{children}`. Site identity via `siteName`/`tagline` props (taglines are DJ's copy — carried over verbatim). |
 
 ## Not covered
 

@@ -1,10 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// CANONICAL SOURCE — shared Open Mirror footer (optional, not yet adopted).
+// CANONICAL SOURCE — shared Open Mirror footer (adopted by all 9 satellites).
 // Edit ONLY here: hub repo → packages/openmirror-ui/OpenMirrorFooter.tsx
-// When a site adopts it, add this file to FILES in scripts/sync-ui.sh.
+// Then run scripts/sync-ui.sh — never edit the copies in site repos.
 //
-// Each site currently keeps its own footer tagline on purpose — adopt this
-// per site (with DJ's okay on the copy), passing that site's line as `tagline`.
+// Mounted in each satellite's app/layout.tsx after {children}; each site
+// passes its own identity via `siteName` / `tagline`.
 // ─────────────────────────────────────────────────────────────────────────────
 
 type Props = {

@@ -12,8 +12,8 @@ set -euo pipefail
 HUB="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="$HUB/packages/openmirror-ui"
 
-# Components that get synced. Add OpenMirrorFooter.tsx once sites adopt it.
-FILES=(OpenMirrorNav.tsx)
+# Components that get synced into every satellite.
+FILES=(OpenMirrorNav.tsx OpenMirrorFooter.tsx)
 
 # Where each satellite keeps its copy (the dir the site imports it from).
 TARGETS=(
