@@ -33,7 +33,7 @@ export default function AboutOpenMirror() {
           <h1 className="mb-4 text-4xl font-black leading-tight sm:text-5xl">About Open Mirror</h1>
           <p className="mx-auto max-w-lg text-lg font-semibold leading-8 text-[#94a3b8]">
             Open Mirror LLC builds simple tools that help people see clearly, reflect honestly,
-            and take the next useful step. No gurus. No jargon. No 40-tab dashboards.
+            and take the next useful step. Each one is small, honest, and built to actually help.
           </p>
         </section>
 
