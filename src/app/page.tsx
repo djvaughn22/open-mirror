@@ -42,13 +42,13 @@ function Card({ p }: { p: Project }) {
         <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-            <h2 style={{ fontSize: 20, fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontSize: 20, fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", minWidth: 0, overflowWrap: "anywhere", wordBreak: "break-word" }}>
               {p.name}{isCom && <span style={{ color: p.accent }}>{dot}</span>}
             </h2>
             <span style={{ fontSize: 10, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#0C0C0C", background: p.accent, borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{p.status}</span>
           </div>
           <p style={{ fontSize: 14.5, color: sub, margin: "6px 0 14px", lineHeight: 1.55 }}>{p.tagline}</p>
-          <span style={{ display: "inline-block", background: p.accent, color: "#0C0C0C", borderRadius: 50, padding: "8px 18px", fontSize: 13, fontWeight: 900 }}>
+          <span style={{ display: "inline-block", maxWidth: "100%", overflowWrap: "anywhere", wordBreak: "break-word", background: p.accent, color: "#0C0C0C", borderRadius: 50, padding: "8px 18px", fontSize: 13, fontWeight: 900 }}>
             Open {p.name}{dot} →
           </span>
         </div>
