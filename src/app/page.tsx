@@ -9,6 +9,11 @@ const live: Project[] = [
   { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Live", accent: "#60A5FA", href: "https://stepinthering.com" },
 ];
 
+// Apps born as family ideas and built through StepInTheRing's six questions.
+const ring: Project[] = [
+  { name: "SnowDoku", emoji: "⛷️", tagline: "Winter brain games in Roman numerals — an iDontCry idea made real through six simple questions. Four slopes, bunny hill to double black diamond.", status: "New", accent: "#7DD3FC", href: "https://snowdoku.com" },
+];
+
 const soon: Project[] = [
   { name: "Fambookagram", emoji: "👨‍👩‍👧‍👦", tagline: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.", status: "Coming Soon", accent: "#C084FC", href: "https://fambookagram.com" },
   { name: "Friendbookagram", emoji: "🫂", tagline: "Where your friends actually stay in touch. Private, calm, invite-only.", status: "Coming Soon", accent: "#818CF8", href: "https://friendbookagram.com" },
@@ -81,6 +86,16 @@ export default function OpenMirrorHub() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {live.map((p) => <Card key={p.name} p={p} />)}
+        </div>
+
+        <div style={{ marginTop: 44 }}>
+          <GroupLabel>🥊 Built by StepInTheRing.com</GroupLabel>
+          <p style={{ fontSize: 13, color: sub, textAlign: "center", margin: "-8px 0 16px" }}>
+            Family ideas — big and small — turned into real apps through six simple questions.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {ring.map((p) => <Card key={p.name} p={p} />)}
+          </div>
         </div>
 
         <div style={{ marginTop: 44 }}>
