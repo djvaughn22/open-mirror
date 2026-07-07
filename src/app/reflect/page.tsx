@@ -55,7 +55,7 @@ export default function ReflectPage() {
 
   const copyForAI = () => {
     if (!text.trim()) return;
-    const p = `I've been reflecting on this question: "${PROMPTS[idx]}"\n\nHere's what I wrote:\n\n${text.trim()}\n\nHelp me think about it more clearly — notice any patterns and ask a gentle follow-up or two. Please don't tell me who I am or put me in a box.`;
+    const p = `I've been reflecting on this question: "${PROMPTS[idx]}"\n\nHere's what I wrote:\n\n${text.trim()}\n\nHelp me think about it more clearly — notice any patterns and ask a gentle follow-up or two. Give me wise, grounded advice — timeless, proverb-style wisdom: patience, honesty, humility, gratitude, hope, forgiveness, and loving people well. Practical, not preachy. Please don't tell me who I am or put me in a box.`;
     navigator.clipboard.writeText(p).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2200);

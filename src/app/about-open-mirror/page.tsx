@@ -14,8 +14,8 @@ const family = [
   { emoji: "🥊", name: "StepInTheRing.com", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
   { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
   { emoji: "🫂", name: "Friendbookagram.com", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
-  { emoji: "🤖", name: "WhatAmIAI.com", text: "Seven quick questions, then a real reflection with a verse or two matched to what you shared.", href: "https://whatamiai.com" },
-  { emoji: "🪞", name: "Reflect", text: "The five-second version. One prompt, then Scripture matched to what you wrote.", href: "/reflect" },
+  { emoji: "🤖", name: "WhatAmIAI.com", text: "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.", href: "https://whatamiai.com" },
+  { emoji: "🪞", name: "Reflect", text: "The five-second version. One prompt, a few honest lines, a little clarity.", href: "/reflect" },
   { emoji: "🎬", name: "WatchedNotWatched.com", text: "Safer viewing for families — watch what you love, the way you want to. (In development.)", href: "https://watchednotwatched.com" },
   { emoji: "🧰", name: "PleaseBeReady.com", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
 ];

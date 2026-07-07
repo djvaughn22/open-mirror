@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
 
@@ -41,13 +42,15 @@ export default function OpenMirrorNav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#26324c] bg-[#0b1220]">
+    <header className="om-bar sticky top-0 z-50 border-b border-[#26324c] bg-[#0b1220]">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3.5">
         {/* The only visible top-level item: Open Mirror Home */}
         <Link href="/" className="inline-flex items-baseline gap-2 text-base font-black tracking-tight text-[#e8edf5]">
           <span>Open Mirror LLC</span>
         </Link>
 
+        <div className="flex items-center gap-2">
+        <OpenMirrorThemeToggle />
         <div ref={ref} className="relative">
           <button
             type="button"
@@ -83,6 +86,7 @@ export default function OpenMirrorNav() {
               )}
             </nav>
           )}
+        </div>
         </div>
       </div>
     </header>

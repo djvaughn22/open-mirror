@@ -75,7 +75,7 @@ export default function OpenMirrorHub() {
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 700, color: "#93C5FD", margin: 0, letterSpacing: "0.02em" }}>
-            Choose your own adventure.
+            Choose your own adventure
           </p>
         </header>
 
