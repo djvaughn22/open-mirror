@@ -41,7 +41,7 @@ export default function OpenMirrorNav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#26324c] bg-[#0b1220]/95 ">
+    <header className="sticky top-0 z-50 border-b border-[#26324c] bg-[#0b1220]">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3.5">
         {/* The only visible top-level item: Open Mirror Home */}
         <Link href="/" className="inline-flex items-baseline gap-2 text-base font-black tracking-tight text-[#e8edf5]">

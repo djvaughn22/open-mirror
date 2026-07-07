@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import OpenMirrorNav from "../../components/OpenMirrorNav";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
@@ -25,7 +23,6 @@ const family = [
 export default function AboutOpenMirror() {
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
-      <OpenMirrorNav />
       <div className="mx-auto max-w-2xl px-5 py-12">
 
         <section className="mb-12 text-center">
@@ -95,12 +92,6 @@ export default function AboutOpenMirror() {
             {" "}That&apos;s the whole idea.
           </p>
         </section>
-
-        <footer className="border-t border-[#26324c] pt-8 text-center">
-          <Link href="/" className="text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8] transition hover:text-[#e8edf5]">
-            ← Open Mirror Home
-          </Link>
-        </footer>
 
       </div>
     </main>

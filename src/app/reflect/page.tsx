@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import OpenMirrorNav from "../../components/OpenMirrorNav";
 
 const A = "#93C5FD"; // calm accent
 const STORAGE = "om-reflect-v1";
@@ -66,7 +64,6 @@ export default function ReflectPage() {
 
   return (
     <main className="min-h-screen bg-[#0C0C0C] text-[#F5F0E8]">
-      <OpenMirrorNav />
       <div className="mx-auto max-w-xl px-5 py-12">
 
         <section className="mb-8 text-center">
@@ -136,12 +133,6 @@ export default function ReflectPage() {
           {" "}Prefer to reflect through faith and Scripture? Visit{" "}
           <a href="https://crossheartpray.com" target="_blank" rel="noopener noreferrer" className="font-black underline" style={{ color: A }}>CrossHeartPray</a>.
         </p>
-
-        <footer className="mt-10 border-t border-[#1E1E1E] pt-8 text-center">
-          <Link href="/" className="text-xs font-black uppercase tracking-[0.2em] text-[#7A736B] transition hover:text-[#F5F0E8]">
-            ← Open Mirror Home
-          </Link>
-        </footer>
 
       </div>
     </main>

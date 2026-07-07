@@ -239,9 +239,6 @@ export default function WhatAmIAIPage() {
           </div>
         </section>
 
-        <footer className="border-t border-zinc-900 px-8 py-8 text-center text-sm text-zinc-500">
-          Follow Jesus. Love God. Pray.
-        </footer>
       </div>
     </main>
   );
