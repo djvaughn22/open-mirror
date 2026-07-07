@@ -2,11 +2,11 @@
 type Project = { name: string; emoji: string; tagline: string; status: string; accent: string; href: string };
 
 const live: Project[] = [
-  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Live", accent: "#4ADE80", href: "https://crossheartpray.com" },
+  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Live", accent: "#C4B5FD", href: "https://crossheartpray.com" },
   { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Live", accent: "#A78BFA", href: "https://thedjcares.com" },
   { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", status: "Live", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
   { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
-  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Live", accent: "#38BDF8", href: "https://stepinthering.com" },
+  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Live", accent: "#60A5FA", href: "https://stepinthering.com" },
 ];
 
 const soon: Project[] = [
@@ -15,7 +15,7 @@ const soon: Project[] = [
 ];
 
 const reflect: Project[] = [
-  { name: "WhatAmIAI", emoji: "🤖", tagline: "Seven quick questions, then patterns worth noticing. No labels — you're not a category.", status: "Live", accent: "#A78BFA", href: "https://whatamiai.com" },
+  { name: "WhatAmIAI", emoji: "🤖", tagline: "Seven quick questions, then patterns worth noticing. No labels — you're not a category.", status: "Live", accent: "#E879F9", href: "https://whatamiai.com" },
   { name: "Reflect", emoji: "🪞", tagline: "A quiet minute — one honest prompt, then a few things to sit with.", status: "Live", accent: "#93C5FD", href: "/reflect" },
 ];
 

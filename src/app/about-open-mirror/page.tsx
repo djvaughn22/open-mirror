@@ -7,17 +7,17 @@ export const metadata: Metadata = {
 };
 
 const family = [
-  { emoji: "✝️", name: "CrossHeartPray.com", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.", href: "https://crossheartpray.com" },
-  { emoji: "🎵", name: "TheDJCares.com", text: "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.", href: "https://thedjcares.com" },
-  { emoji: "🐶", name: "DontCloneMeTom.com", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
-  { emoji: "😂", name: "iDontCry.com", text: "The family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
-  { emoji: "🥊", name: "StepInTheRing.com", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
-  { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
-  { emoji: "🫂", name: "Friendbookagram.com", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
-  { emoji: "🤖", name: "WhatAmIAI.com", text: "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.", href: "https://whatamiai.com" },
-  { emoji: "🪞", name: "Reflect", text: "The five-second version. One prompt, a few honest lines, a little clarity.", href: "/reflect" },
-  { emoji: "🎬", name: "WatchedNotWatched.com", text: "Safer viewing for families — watch what you love, the way you want to. (In development.)", href: "https://watchednotwatched.com" },
-  { emoji: "🧰", name: "PleaseBeReady.com", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
+  { emoji: "✝️", name: "CrossHeartPray.com", accent: "#C4B5FD", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.", href: "https://crossheartpray.com" },
+  { emoji: "🎵", name: "TheDJCares.com", accent: "#A78BFA", text: "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.", href: "https://thedjcares.com" },
+  { emoji: "🐶", name: "DontCloneMeTom.com", accent: "#2DD4BF", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
+  { emoji: "😂", name: "iDontCry.com", accent: "#38BDF8", text: "The family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
+  { emoji: "🥊", name: "StepInTheRing.com", accent: "#60A5FA", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
+  { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", accent: "#C084FC", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
+  { emoji: "🫂", name: "Friendbookagram.com", accent: "#818CF8", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
+  { emoji: "🤖", name: "WhatAmIAI.com", accent: "#E879F9", text: "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.", href: "https://whatamiai.com" },
+  { emoji: "🪞", name: "Reflect", accent: "#93C5FD", text: "The five-second version. One prompt, a few honest lines, a little clarity.", href: "/reflect" },
+  { emoji: "🎬", name: "WatchedNotWatched.com", accent: "#22D3EE", text: "Safer viewing for families — watch what you love, the way you want to. (In development.)", href: "https://watchednotwatched.com" },
+  { emoji: "🧰", name: "PleaseBeReady.com", accent: "#34D399", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
 ];
 
 export default function AboutOpenMirror() {
@@ -60,7 +60,16 @@ export default function AboutOpenMirror() {
               >
                 <span className="text-2xl">{f.emoji}</span>
                 <div>
-                  <h3 className="text-base font-black">{f.name}</h3>
+                  <h3 className="text-base font-black">
+                    {f.name.endsWith(".com") ? (
+                      <>
+                        {f.name.slice(0, -4)}
+                        <span style={{ color: f.accent }}>.com</span>
+                      </>
+                    ) : (
+                      f.name
+                    )}
+                  </h3>
                   <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">{f.text}</p>
                 </div>
               </a>
