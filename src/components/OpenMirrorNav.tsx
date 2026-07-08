@@ -15,6 +15,7 @@ const MENU: Item[] = [
   { label: "WatchedNotWatched.com", href: "https://watchednotwatched.com", external: true },
   { label: "iDontCry.com", href: "https://idontcry.com", external: true },
   { label: "StepInTheRing.com", href: "https://stepinthering.com", external: true },
+  { label: "OpenDoku.com", href: "https://opendoku.com", external: true },
   { divider: true },
   { heading: "Coming Soon" },
   { label: "Fambookagram.com", href: "https://fambookagram.com", external: true },
