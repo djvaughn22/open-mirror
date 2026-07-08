@@ -170,15 +170,15 @@ export default function AboutPage() {
             <ul className="mt-5 space-y-4 text-base leading-8 text-slate-300">
               <li>
                 <span className="font-black text-white">✝️ Cross:</span>{" "}
-                <span className="font-semibold text-emerald-100">Call out to Jesus.</span>
+                <span className="font-semibold text-emerald-100">Come to Jesus…</span>
               </li>
               <li>
                 <span className="font-black text-white">❤️ Heart:</span>{" "}
-                <span className="font-semibold text-emerald-100">Receive God’s love.</span>
+                <span className="font-semibold text-emerald-100">Receive God’s Love…</span>
               </li>
               <li>
                 <span className="font-black text-white">🙏 Pray:</span>{" "}
-                <span className="font-semibold text-emerald-100">Pray all the time.</span>
+                <span className="font-semibold text-emerald-100">Dear God…</span>
               </li>
             </ul>
           </section>
