@@ -11,7 +11,7 @@ const live: Project[] = [
 
 // Apps born as family ideas and built through StepInTheRing's six questions.
 const ring: Project[] = [
-  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games where every tile is two puzzles at once — same brain, different weather. More dokus on the way.", status: "New", accent: "#7DD3FC", href: "https://opendoku.com",
+  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.", status: "New", accent: "#7DD3FC", href: "https://opendoku.com",
     links: [
       { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
