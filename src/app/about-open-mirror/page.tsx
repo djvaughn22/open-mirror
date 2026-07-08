@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Open Mirror",
   description:
-    "Open Mirror LLC builds simple tools that help people see clearly, reflect honestly, and take the next useful step. CrossHeartPray is one of them — not all of them.",
+    "Open Mirror begins with CrossHeartPray — the flagship. The rest is the workshop: useful digital projects across faith, family, creativity, and whatever comes next.",
 };
 
 const family = [
@@ -29,21 +29,23 @@ export default function AboutOpenMirror() {
           <div className="mb-5" style={{ fontSize: 30, letterSpacing: 6 }}>✝️ 🤖 🧰 🎵 🐶</div>
           <h1 className="mb-4 text-4xl font-black leading-tight sm:text-5xl">About Open Mirror</h1>
           <p className="mx-auto max-w-lg text-lg font-semibold leading-8 text-[#94a3b8]">
-            Open Mirror LLC builds simple tools that help people see clearly, reflect honestly,
-            and take the next useful step. Each one is small, honest, and built to actually help.
+            Open Mirror begins with CrossHeartPray.
           </p>
         </section>
 
         <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">The short version</h2>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            Most software wants your attention. Ours wants to give you a minute of clarity and then
-            get out of the way. Each Open Mirror tool does one small thing well: help you think,
-            find a bit of hope, or take a practical next step.
+            CrossHeartPray is the flagship: a Bible-first app built around daily Scripture, prayer,
+            reflection, and consistency.
+          </p>
+          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+            The rest of Open Mirror grew from that same foundation — a place to make, test, and
+            share useful digital projects across faith, family, creativity, music, writing, web
+            apps, and whatever comes next.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            <strong className="text-[#e8edf5]">CrossHeartPray is one Open Mirror project — but Open Mirror is not only CrossHeartPray.</strong>{" "}
-            It&apos;s a small family of tools, and it&apos;s still growing.
+            <strong className="text-[#e8edf5]">CrossHeartPray is the anchor. Open Mirror is the workshop.</strong>
           </p>
         </section>
 
