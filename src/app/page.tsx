@@ -53,9 +53,6 @@ function Card({ p }: { p: Project }) {
           {p.name}{isCom && <span style={{ color: p.accent }}>{dot}</span>}
         </h2>
         <p style={{ fontSize: 14.5, color: sub, margin: 0, lineHeight: 1.55 }}>{p.tagline}</p>
-        <span style={{ alignSelf: "flex-start", maxWidth: "100%", background: p.accent, color: "#0C0C0C", borderRadius: 50, padding: "8px 18px", fontSize: 13, fontWeight: 900, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {p.name}{dot} →
-        </span>
       </div>
     </a>
   );
