@@ -12,7 +12,7 @@ const family = [
   { emoji: "🐶", name: "DontCloneMeTom.com", accent: "#2DD4BF", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
   { emoji: "😂", name: "iDontCry.com", accent: "#38BDF8", text: "The family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
   { emoji: "🥊", name: "StepInTheRing.com", accent: "#60A5FA", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
-  { emoji: "⛷️", name: "SnowDoku.com", accent: "#7DD3FC", text: "Winter brain games in Roman numerals — four slopes from bunny hill to double black diamond, plus Avalanche. Born on iDontCry, built through StepInTheRing.", href: "https://snowdoku.com" },
+  { emoji: "🧩", name: "OpenDoku.com", accent: "#7DD3FC", text: "The puzzle-games family. SlopeDoku is first — winter brain games in Roman numerals, born on iDontCry, built through StepInTheRing. More dokus to come.", href: "https://opendoku.com" },
   { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", accent: "#C084FC", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
   { emoji: "🫂", name: "Friendbookagram.com", accent: "#818CF8", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
   { emoji: "🤖", name: "WhatAmIAI.com", accent: "#E879F9", text: "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.", href: "https://whatamiai.com" },
