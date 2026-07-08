@@ -1,5 +1,5 @@
 
-type Project = { name: string; emoji: string; tagline: string; status: string; accent: string; href: string };
+type Project = { name: string; emoji: string; tagline: string; status: string; accent: string; href: string; links?: { label: string; href: string }[] };
 
 const live: Project[] = [
   { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Live", accent: "#C4B5FD", href: "https://crossheartpray.com" },
@@ -11,7 +11,11 @@ const live: Project[] = [
 
 // Apps born as family ideas and built through StepInTheRing's six questions.
 const ring: Project[] = [
-  { name: "OpenDoku", emoji: "🧩", tagline: "The puzzle-games family — every tile is two puzzles at once. SlopeDoku is game one; more dokus on the way.", status: "New", accent: "#7DD3FC", href: "https://opendoku.com" },
+  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games where every tile is two puzzles at once — same brain, different weather. More dokus on the way.", status: "New", accent: "#7DD3FC", href: "https://opendoku.com",
+    links: [
+      { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
+      { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
+    ] },
 ];
 
 const soon: Project[] = [
@@ -40,6 +44,29 @@ const sub = "#94a3b8";
 function Card({ p }: { p: Project }) {
   const isCom = p.href.startsWith("http");
   const dot = isCom ? ".com" : "";
+  if (p.links) {
+    // card with direct game links: stretched main link + real pills on top
+    return (
+      <div className="pop" style={{ position: "relative", background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
+        <a href={p.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${p.name}${dot}`} style={{ position: "absolute", inset: 0, borderRadius: 18 }} />
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+          <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
+          <span style={{ fontSize: 10, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#0C0C0C", background: p.accent, borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{p.status}</span>
+        </div>
+        <h2 style={{ fontSize: "clamp(1rem, 5.2vw, 1.4rem)", fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
+          {p.name}{isCom && <span style={{ color: p.accent }}>{dot}</span>}
+        </h2>
+        <p style={{ fontSize: 14.5, color: sub, margin: 0, lineHeight: 1.55 }}>{p.tagline}</p>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", position: "relative", zIndex: 1 }}>
+          {p.links.map((l) => (
+            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" style={{ background: p.accent, color: "#0C0C0C", borderRadius: 50, padding: "9px 18px", fontSize: 14, fontWeight: 900, textDecoration: "none" }}>
+              {l.label} →
+            </a>
+          ))}
+        </div>
+      </div>
+    );
+  }
   return (
     <a href={p.href} {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})} style={{ textDecoration: "none" }}>
       <div className="pop" style={{ background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", flexDirection: "column", gap: 12, cursor: "pointer" }}>
