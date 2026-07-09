@@ -4,7 +4,7 @@ type Project = { name: string; emoji: string; tagline: string; status?: string; 
 // Grouped by current status. Names, taglines, links and accents unchanged —
 // only grouping, order, and status badges.
 const foundation: Project[] = [
-  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", accent: "#C4B5FD", href: "https://crossheartpray.com" },
+  { name: "CrossHeartPray", emoji: "✝️", tagline: "Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7 — your daily faith routine.", accent: "#C4B5FD", href: "https://crossheartpray.com" },
 ];
 
 const active: Project[] = [
