@@ -140,8 +140,13 @@ export default function AboutOpenMirror() {
 
         <section className="mb-12 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7 text-center">
           <p className="text-base font-semibold leading-8 text-[#94a3b8]">
-            Tools that help you <strong className="text-[#e8edf5]">see clearly, reflect honestly, build better, and take the next useful step.</strong>
-            {" "}That&apos;s the whole idea.
+            <strong className="text-[#e8edf5]">Start with faith. Build from there.</strong>
+            {" "}Games, tools, and sites for the whole family.
+          </p>
+          <p className="mt-4">
+            <a href="mailto:ask@openmirrorllc.com" className="text-sm font-black text-[#7dd3fc]">
+              Contact us
+            </a>
           </p>
         </section>
 
