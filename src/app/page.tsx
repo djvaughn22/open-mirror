@@ -1,37 +1,34 @@
 
 type Project = { name: string; emoji: string; tagline: string; status: string; accent: string; href: string; links?: { label: string; href: string }[] };
 
-const live: Project[] = [
-  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Live", accent: "#C4B5FD", href: "https://crossheartpray.com" },
-  { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Live", accent: "#A78BFA", href: "https://thedjcares.com" },
-  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", status: "Live", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
-  { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", status: "Live", accent: "#38BDF8", href: "https://idontcry.com" },
-  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Live", accent: "#60A5FA", href: "https://stepinthering.com" },
+// Grouped by current status. Names, taglines, links and accents unchanged —
+// only grouping, order, and status badges.
+const flagship: Project[] = [
+  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Flagship", accent: "#C4B5FD", href: "https://crossheartpray.com" },
 ];
 
-// Apps born as family ideas and built through StepInTheRing's six questions.
-const ring: Project[] = [
-  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.", status: "New", accent: "#7DD3FC", href: "https://opendoku.com",
+const active: Project[] = [
+  { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Active Build", accent: "#A78BFA", href: "https://thedjcares.com" },
+  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", status: "Active Build", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
+  { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", status: "Active Build", accent: "#38BDF8", href: "https://idontcry.com" },
+  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Active Build", accent: "#60A5FA", href: "https://stepinthering.com" },
+  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.", status: "Active Build", accent: "#7DD3FC", href: "https://opendoku.com",
     links: [
       { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
     ] },
 ];
 
-const soon: Project[] = [
-  { name: "Fambookagram", emoji: "👨‍👩‍👧‍👦", tagline: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.", status: "Coming Soon", accent: "#C084FC", href: "https://fambookagram.com" },
-  { name: "Friendbookagram", emoji: "🫂", tagline: "Where your friends actually stay in touch. Private, calm, invite-only.", status: "Coming Soon", accent: "#818CF8", href: "https://friendbookagram.com" },
+const starts: Project[] = [
+  { name: "WatchedNotWatched", emoji: "🎬", tagline: "Safer viewing for families — watch what you love, the way you want to.", status: "Prototype", accent: "#22D3EE", href: "https://watchednotwatched.com" },
+  { name: "WhatAmIAI", emoji: "🤖", tagline: "Seven quick questions, then patterns worth noticing. No labels — you're not a category.", status: "Prototype", accent: "#E879F9", href: "https://whatamiai.com" },
+  { name: "Reflect", emoji: "🪞", tagline: "A quiet minute — one honest prompt, then a few things to sit with.", status: "Prototype", accent: "#93C5FD", href: "/reflect" },
 ];
 
-const reflect: Project[] = [
-  { name: "WhatAmIAI", emoji: "🤖", tagline: "Seven quick questions, then patterns worth noticing. No labels — you're not a category.", status: "Live", accent: "#E879F9", href: "https://whatamiai.com" },
-  { name: "Reflect", emoji: "🪞", tagline: "A quiet minute — one honest prompt, then a few things to sit with.", status: "Live", accent: "#93C5FD", href: "/reflect" },
-];
-
-// Still being figured out, plus PleaseBeReady parked at the very bottom.
-const more: Project[] = [
-  { name: "WatchedNotWatched", emoji: "🎬", tagline: "Safer viewing for families — watch what you love, the way you want to.", status: "In Dev", accent: "#22D3EE", href: "https://watchednotwatched.com" },
-  { name: "PleaseBeReady", emoji: "🧰", tagline: "Friendly emergency prep for everyone. Calm, practical, one step at a time.", status: "Live", accent: "#34D399", href: "https://pleasebeready.com" },
+const parked: Project[] = [
+  { name: "PleaseBeReady", emoji: "🧰", tagline: "Friendly emergency prep for everyone. Calm, practical, one step at a time.", status: "Evergreen", accent: "#34D399", href: "https://pleasebeready.com" },
+  { name: "Fambookagram", emoji: "👨‍👩‍👧‍👦", tagline: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.", status: "Parked", accent: "#C084FC", href: "https://fambookagram.com" },
+  { name: "Friendbookagram", emoji: "🫂", tagline: "Where your friends actually stay in touch. Private, calm, invite-only.", status: "Parked", accent: "#818CF8", href: "https://friendbookagram.com" },
 ];
 
 // Cool, flat palette — matched to CrossHeartPray / TheDJCares so the family feels connected.
@@ -108,38 +105,31 @@ export default function OpenMirrorHub() {
           </p>
         </header>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {live.map((p) => <Card key={p.name} p={p} />)}
-        </div>
-
-        <div style={{ marginTop: 44 }}>
-          <GroupLabel>🥊 Built by StepInTheRing.com</GroupLabel>
-          <p style={{ fontSize: 13, color: sub, textAlign: "center", margin: "-8px 0 16px" }}>
-            Family ideas — big and small — turned into real apps through six simple questions.
-          </p>
+        <div>
+          <GroupLabel>Flagship</GroupLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {ring.map((p) => <Card key={p.name} p={p} />)}
+            {flagship.map((p) => <Card key={p.name} p={p} />)}
           </div>
         </div>
 
-        <div style={{ marginTop: 44 }}>
-          <GroupLabel>🔜 Coming Soon</GroupLabel>
+        <div style={{ marginTop: 40 }}>
+          <GroupLabel>Active Builds</GroupLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {soon.map((p) => <Card key={p.name} p={p} />)}
+            {active.map((p) => <Card key={p.name} p={p} />)}
           </div>
         </div>
 
-        <div style={{ marginTop: 44 }}>
-          <GroupLabel>🪞 Reflect with AI</GroupLabel>
+        <div style={{ marginTop: 40 }}>
+          <GroupLabel>Playable / Usable Starts</GroupLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {reflect.map((p) => <Card key={p.name} p={p} />)}
+            {starts.map((p) => <Card key={p.name} p={p} />)}
           </div>
         </div>
 
-        <div style={{ marginTop: 44 }}>
-          <GroupLabel>✨ More from Open Mirror</GroupLabel>
+        <div style={{ marginTop: 40 }}>
+          <GroupLabel>Evergreen + Parked</GroupLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {more.map((p) => <Card key={p.name} p={p} />)}
+            {parked.map((p) => <Card key={p.name} p={p} />)}
           </div>
         </div>
 
