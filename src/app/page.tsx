@@ -101,7 +101,7 @@ export default function OpenMirrorHub() {
 
         <header style={{ textAlign: "center", marginBottom: 44 }}>
           <div style={{ fontSize: 30, marginBottom: 14, letterSpacing: 6 }}>✝️ 🤖 🧰 🎵 🐶</div>
-          <h1 style={{ fontSize: 46, fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 700, color: "#93C5FD", margin: 0, letterSpacing: "0.02em" }}>
