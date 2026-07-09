@@ -11,7 +11,7 @@ const family: FamilyItem[] = [
   { emoji: "✝️", name: "CrossHeartPray.com", accent: "#C4B5FD", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.", href: "https://crossheartpray.com" },
   { emoji: "🎵", name: "TheDJCares.com", accent: "#A78BFA", text: "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.", href: "https://thedjcares.com" },
   { emoji: "🐶", name: "DontCloneMeTom.com", accent: "#2DD4BF", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
-  { emoji: "😂", name: "iDontCry.com", accent: "#38BDF8", text: "The family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
+  { emoji: "😂", name: "iDontCry.com", accent: "#38BDF8", text: "Obviously. The family's digital playground. Dad jokes, mini games, and absolutely zero crying.", href: "https://idontcry.com" },
   { emoji: "🥊", name: "StepInTheRing.com", accent: "#60A5FA", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
   { emoji: "🧩", name: "OpenDoku.com", accent: "#7DD3FC", text: "The puzzle-games family. SlopeDoku (winter) and SurfDoku (beach) climb from one easy rule to two full sudokus in every tile. Born on iDontCry, built through StepInTheRing — more dokus to come.", href: "https://opendoku.com" },
   { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", accent: "#C084FC", status: "Parked", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
