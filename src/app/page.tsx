@@ -1,18 +1,18 @@
 
-type Project = { name: string; emoji: string; tagline: string; status: string; accent: string; href: string; links?: { label: string; href: string }[] };
+type Project = { name: string; emoji: string; tagline: string; status?: string; accent: string; href: string; links?: { label: string; href: string }[] };
 
 // Grouped by current status. Names, taglines, links and accents unchanged —
 // only grouping, order, and status badges.
-const flagship: Project[] = [
-  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", status: "Flagship", accent: "#C4B5FD", href: "https://crossheartpray.com" },
+const foundation: Project[] = [
+  { name: "CrossHeartPray", emoji: "✝️", tagline: "Bible Bingo, Daily Hope, a reading plan, and Deep Dive with Gene Getz's Life Essentials — your daily faith routine.", accent: "#C4B5FD", href: "https://crossheartpray.com" },
 ];
 
 const active: Project[] = [
-  { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", status: "Active Build", accent: "#A78BFA", href: "https://thedjcares.com" },
-  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", status: "Active Build", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
-  { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", status: "Active Build", accent: "#38BDF8", href: "https://idontcry.com" },
-  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", status: "Active Build", accent: "#60A5FA", href: "https://stepinthering.com" },
-  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.", status: "Active Build", accent: "#7DD3FC", href: "https://opendoku.com",
+  { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", accent: "#A78BFA", href: "https://thedjcares.com" },
+  { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
+  { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", accent: "#38BDF8", href: "https://idontcry.com" },
+  { name: "StepInTheRing", emoji: "🥊", tagline: "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.", accent: "#60A5FA", href: "https://stepinthering.com" },
+  { name: "OpenDoku", emoji: "🧩", tagline: "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.", accent: "#7DD3FC", href: "https://opendoku.com",
     links: [
       { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
@@ -48,7 +48,9 @@ function Card({ p }: { p: Project }) {
         <a href={p.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${p.name}${dot}`} style={{ position: "absolute", inset: 0, borderRadius: 18 }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
           <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
-          <span style={{ fontSize: 10, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#0C0C0C", background: p.accent, borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{p.status}</span>
+          {p.status ? (
+            <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: p.accent, border: `1px solid ${p.accent}55`, background: "transparent", borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{p.status}</span>
+          ) : null}
         </div>
         <h2 style={{ fontSize: "clamp(1rem, 5.2vw, 1.4rem)", fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
           {p.name}{isCom && <span style={{ color: p.accent }}>{dot}</span>}
@@ -70,7 +72,9 @@ function Card({ p }: { p: Project }) {
         {/* Icon on top, status to the right — frees the full width for the name */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
           <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
-          <span style={{ fontSize: 10, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#0C0C0C", background: p.accent, borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{p.status}</span>
+          {p.status ? (
+            <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: p.accent, border: `1px solid ${p.accent}55`, background: "transparent", borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{p.status}</span>
+          ) : null}
         </div>
         {/* Domain always on one line — font scales down on narrow phones so it fits */}
         <h2 style={{ fontSize: "clamp(1rem, 5.2vw, 1.4rem)", fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
@@ -106,9 +110,9 @@ export default function OpenMirrorHub() {
         </header>
 
         <div>
-          <GroupLabel>Flagship</GroupLabel>
+          <GroupLabel>Foundation</GroupLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {flagship.map((p) => <Card key={p.name} p={p} />)}
+            {foundation.map((p) => <Card key={p.name} p={p} />)}
           </div>
         </div>
 

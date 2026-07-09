@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Open Mirror",
   description:
-    "Open Mirror begins with CrossHeartPray — the flagship. The rest is the workshop: useful digital projects across faith, family, creativity, and whatever comes next.",
+    "Open Mirror begins with CrossHeartPray — the foundation. The rest is the workshop: useful digital projects across faith, family, creativity, and whatever comes next.",
 };
 
 const family = [
@@ -37,7 +37,7 @@ export default function AboutOpenMirror() {
         <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">The short version</h2>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            CrossHeartPray is the flagship: a Bible-first app built around daily Scripture, prayer,
+            CrossHeartPray is the foundation: a Bible-first app built around daily Scripture, prayer,
             reflection, and consistency.
           </p>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
