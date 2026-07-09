@@ -59,8 +59,7 @@ export default function AboutOpenMirror() {
         </section>
 
         <section className="mb-10">
-          <h2 className="mb-2 text-xl font-black">Every site in the family</h2>
-          <p className="mb-5 text-sm font-semibold text-[#94a3b8]">Reflection tools, faith tools, prep, and a few that just make people smile.</p>
+          <h2 className="mb-5 text-xl font-black">Every site in the hub</h2>
           {groups.map((g) => (
           <div key={g.label} className="mb-6">
             <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{g.label}</p>
