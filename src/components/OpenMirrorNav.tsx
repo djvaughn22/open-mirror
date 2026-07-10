@@ -3,26 +3,27 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
+import { products, type Product } from "../lib/products";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
 
-// Live products first, a divider, then the rest, resources, About last.
+// Menu is derived from the product registry (src/lib/products.ts):
+// Foundation + Live sites first, a divider, then everything in progress, About last.
+function menuItem(p: Product): Item {
+  const external = p.href.startsWith("http");
+  return { label: external ? `${p.name}.com` : p.name, href: p.href, external };
+}
+
+const navProducts = products.filter((p) => p.showInNav !== false);
+const liveItems = navProducts.filter((p) => p.status === "foundation" || p.status === "live").map(menuItem);
+const inProgressItems = navProducts.filter((p) => p.status !== "foundation" && p.status !== "live" && p.status !== "archived").map(menuItem);
+
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
-  { label: "CrossHeartPray.com", href: "https://crossheartpray.com", external: true },
-  { label: "TheDJCares.com", href: "https://thedjcares.com", external: true },
-  { label: "DontCloneMeTom.com", href: "https://dontclonemetom.com", external: true },
-  { label: "WatchedNotWatched.com", href: "https://watchednotwatched.com", external: true },
-  { label: "iDontCry.com", href: "https://idontcry.com", external: true },
-  { label: "StepInTheRing.com", href: "https://stepinthering.com", external: true },
-  { label: "OpenDoku.com", href: "https://opendoku.com", external: true },
+  ...liveItems,
   { divider: true },
-  { heading: "Coming Soon" },
-  { label: "Fambookagram.com", href: "https://fambookagram.com", external: true },
-  { label: "Friendbookagram.com", href: "https://friendbookagram.com", external: true },
-  { label: "WhatAmIAI.com", href: "https://whatamiai.com", external: true },
-  { label: "Reflect", href: "/reflect" },
-  { label: "PleaseBeReady.com", href: "https://pleasebeready.com", external: true },
+  { heading: "In Progress" },
+  ...inProgressItems,
   { divider: true },
   { label: "About Open Mirror", href: "/about-open-mirror" },
 ];

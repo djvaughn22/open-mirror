@@ -1,0 +1,227 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Open Mirror LLC product registry — the single source of truth.
+//
+// The homepage, About page, and nav menu all read from this file.
+// To add, reorder, or restatus a product, edit ONLY this file.
+//
+// Descriptions are DJ's words. Do not rewrite them to sound polished.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type ProductStatus =
+  | "foundation" // the product at the origin of Open Mirror
+  | "live"       // public and functioning
+  | "beta"       // public but still being tested or completed
+  | "building"   // actively under development
+  | "exploring"  // an early concept or experiment
+  | "archived";  // preserved but not currently being developed
+
+export const STATUS_LABEL: Record<ProductStatus, string> = {
+  foundation: "Foundation",
+  live: "Live",
+  beta: "Beta",
+  building: "Building",
+  exploring: "Exploring",
+  archived: "Archived",
+};
+
+export type Product = {
+  name: string;
+  emoji: string;
+  /** short factual description — homepage card */
+  description: string;
+  /** longer description — About page (falls back to `description`) */
+  aboutText?: string;
+  /** site accent color (family rule: the colored ".com") */
+  accent: string;
+  /** full URL for standalone sites, or a hub route like "/reflect" */
+  href: string;
+  status: ProductStatus;
+  category: "faith" | "family" | "creativity" | "play";
+  /** direct sub-links shown as pills on the card (e.g. individual games) */
+  links?: { label: string; href: string }[];
+  /** hidden from the homepage portfolio when false */
+  showInPortfolio?: boolean;
+  /** hidden from the nav menu when false */
+  showInNav?: boolean;
+};
+
+export const STUDIO = {
+  name: "Open Mirror LLC",
+  label: "Independent Product Studio",
+  mission:
+    "Open Mirror LLC is an independent product studio creating useful, original products across faith, family, creativity, and play.",
+  missionShort:
+    "Creating useful, original products across faith, family, creativity, and play.",
+  supportLine:
+    "Each product has its own purpose and identity, supported by one shared studio.",
+  url: "https://openmirrorllc.com",
+  email: "ask@openmirrorllc.com",
+};
+
+// Array order is display order within each status group.
+export const products: Product[] = [
+  {
+    name: "CrossHeartPray",
+    emoji: "✝️",
+    description:
+      "Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7 — your daily faith routine.",
+    aboutText:
+      "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.",
+    accent: "#C4B5FD",
+    href: "https://crossheartpray.com",
+    status: "foundation",
+    category: "faith",
+  },
+  {
+    name: "TheDJCares",
+    emoji: "🎵",
+    description:
+      "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.",
+    aboutText:
+      "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.",
+    accent: "#A78BFA",
+    href: "https://thedjcares.com",
+    status: "live",
+    category: "faith",
+  },
+  {
+    name: "DontCloneMeTom",
+    emoji: "🐶",
+    description:
+      "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",
+    aboutText:
+      "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.",
+    accent: "#2DD4BF",
+    href: "https://dontclonemetom.com",
+    status: "live",
+    category: "family",
+  },
+  {
+    name: "iDontCry",
+    emoji: "😂",
+    description:
+      "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.",
+    aboutText:
+      "Obviously. The family's digital playground. Dad jokes, mini games, and the Dream Lab — dream up anything with AI, free, then step in the ring and build it for real. Absolutely zero crying.",
+    accent: "#38BDF8",
+    href: "https://idontcry.com",
+    status: "live",
+    category: "play",
+  },
+  {
+    name: "StepInTheRing",
+    emoji: "🥊",
+    description:
+      "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.",
+    aboutText:
+      "Turn any idea into a real first plan — with AI as your corner. Free to start.",
+    accent: "#60A5FA",
+    href: "https://stepinthering.com",
+    status: "live",
+    category: "creativity",
+  },
+  {
+    name: "OpenDoku",
+    emoji: "🧩",
+    description:
+      "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.",
+    aboutText:
+      "The puzzle-games family. SlopeDoku (winter) and SurfDoku (beach) climb from one easy rule to two full sudokus in every tile. Born on iDontCry, built through StepInTheRing — more dokus to come.",
+    accent: "#7DD3FC",
+    href: "https://opendoku.com",
+    status: "live",
+    category: "play",
+    links: [
+      { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
+      { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
+    ],
+  },
+  {
+    name: "PleaseBeReady",
+    emoji: "🧰",
+    description:
+      "Friendly emergency prep for everyone. Calm, practical, one step at a time.",
+    aboutText:
+      "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.",
+    accent: "#34D399",
+    href: "https://pleasebeready.com",
+    status: "live",
+    category: "family",
+  },
+  {
+    name: "WhatAmIAI",
+    emoji: "🤖",
+    description:
+      "Seven quick questions, then patterns worth noticing. No labels — you're not a category.",
+    aboutText:
+      "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.",
+    accent: "#E879F9",
+    href: "https://whatamiai.com",
+    status: "beta",
+    category: "creativity",
+  },
+  {
+    name: "Reflect",
+    emoji: "🪞",
+    description:
+      "A quiet minute — one honest prompt, then a few things to sit with.",
+    aboutText:
+      "The five-second version. One prompt, a few honest lines, a little clarity.",
+    accent: "#93C5FD",
+    href: "/reflect",
+    status: "beta",
+    category: "creativity",
+  },
+  {
+    name: "WatchedNotWatched",
+    emoji: "🎬",
+    description:
+      "Safer viewing for families — watch what you love, the way you want to.",
+    aboutText:
+      "Safer viewing for families — watch what you love, the way you want to. (In development.)",
+    accent: "#22D3EE",
+    href: "https://watchednotwatched.com",
+    status: "building",
+    category: "family",
+  },
+  {
+    name: "Fambookagram",
+    emoji: "👨‍👩‍👧‍👦",
+    description:
+      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.",
+    aboutText:
+      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)",
+    accent: "#C084FC",
+    href: "https://fambookagram.com",
+    status: "exploring",
+    category: "family",
+  },
+  {
+    name: "Friendbookagram",
+    emoji: "🫂",
+    description:
+      "Where your friends actually stay in touch. Private, calm, invite-only.",
+    aboutText:
+      "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)",
+    accent: "#818CF8",
+    href: "https://friendbookagram.com",
+    status: "exploring",
+    category: "family",
+  },
+];
+
+/** Portfolio display order: Foundation → Live → Beta → Building → Exploring → Archived. */
+export const STATUS_ORDER: ProductStatus[] = [
+  "foundation",
+  "live",
+  "beta",
+  "building",
+  "exploring",
+  "archived",
+];
+
+export function productsByStatus(status: ProductStatus): Product[] {
+  return products.filter(
+    (p) => p.status === status && p.showInPortfolio !== false
+  );
+}

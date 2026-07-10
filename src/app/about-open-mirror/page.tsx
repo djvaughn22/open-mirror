@@ -1,33 +1,27 @@
 import type { Metadata } from "next";
+import { productsByStatus, STATUS_LABEL, STATUS_ORDER, STUDIO } from "../../lib/products";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
-  description:
-    "Open Mirror begins with CrossHeartPray — the foundation. The rest is the workshop: useful digital projects across faith, family, creativity, and whatever comes next.",
+  description: STUDIO.mission,
+  alternates: { canonical: "/about-open-mirror" },
 };
 
 type FamilyItem = { emoji: string; name: string; accent: string; text: string; href: string; status?: string };
-const family: FamilyItem[] = [
-  { emoji: "✝️", name: "CrossHeartPray.com", accent: "#C4B5FD", text: "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.", href: "https://crossheartpray.com" },
-  { emoji: "🎵", name: "TheDJCares.com", accent: "#A78BFA", text: "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.", href: "https://thedjcares.com" },
-  { emoji: "🐶", name: "DontCloneMeTom.com", accent: "#2DD4BF", text: "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.", href: "https://dontclonemetom.com" },
-  { emoji: "😂", name: "iDontCry.com", accent: "#38BDF8", text: "Obviously. The family's digital playground. Dad jokes, mini games, and the Dream Lab — dream up anything with AI, free, then step in the ring and build it for real. Absolutely zero crying.", href: "https://idontcry.com" },
-  { emoji: "🥊", name: "StepInTheRing.com", accent: "#60A5FA", text: "Turn any idea into a real first plan — with AI as your corner. Free to start.", href: "https://stepinthering.com" },
-  { emoji: "🧩", name: "OpenDoku.com", accent: "#7DD3FC", text: "The puzzle-games family. SlopeDoku (winter) and SurfDoku (beach) climb from one easy rule to two full sudokus in every tile. Born on iDontCry, built through StepInTheRing — more dokus to come.", href: "https://opendoku.com" },
-  { emoji: "👨‍👩‍👧‍👦", name: "Fambookagram.com", accent: "#C084FC", status: "Parked", text: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)", href: "https://fambookagram.com" },
-  { emoji: "🫂", name: "Friendbookagram.com", accent: "#818CF8", status: "Parked", text: "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)", href: "https://friendbookagram.com" },
-  { emoji: "🤖", name: "WhatAmIAI.com", accent: "#E879F9", status: "Prototype", text: "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.", href: "https://whatamiai.com" },
-  { emoji: "🪞", name: "Reflect", accent: "#93C5FD", status: "Prototype", text: "The five-second version. One prompt, a few honest lines, a little clarity.", href: "/reflect" },
-  { emoji: "🎬", name: "WatchedNotWatched.com", accent: "#22D3EE", status: "Prototype", text: "Safer viewing for families — watch what you love, the way you want to. (In development.)", href: "https://watchednotwatched.com" },
-  { emoji: "🧰", name: "PleaseBeReady.com", accent: "#34D399", status: "Evergreen", text: "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.", href: "https://pleasebeready.com" },
-];
 
-const groups: { label: string; names: string[] }[] = [
-  { label: "Foundation", names: ["CrossHeartPray.com"] },
-  { label: "Active Builds", names: ["TheDJCares.com", "DontCloneMeTom.com", "iDontCry.com", "StepInTheRing.com", "OpenDoku.com"] },
-  { label: "Playable / Usable Starts", names: ["WatchedNotWatched.com", "WhatAmIAI.com", "Reflect"] },
-  { label: "Evergreen + Parked", names: ["PleaseBeReady.com", "Fambookagram.com", "Friendbookagram.com"] },
-];
+// Family list comes from the product registry (src/lib/products.ts).
+// Foundation and Live carry their status in the group label; the rest get a badge.
+const groups: { label: string; items: FamilyItem[] }[] = STATUS_ORDER.map((status) => ({
+  label: STATUS_LABEL[status],
+  items: productsByStatus(status).map((p) => ({
+    emoji: p.emoji,
+    name: p.href.startsWith("http") ? `${p.name}.com` : p.name,
+    accent: p.accent,
+    text: p.aboutText ?? p.description,
+    href: p.href,
+    status: status === "foundation" || status === "live" ? undefined : STATUS_LABEL[status],
+  })),
+})).filter((g) => g.items.length > 0);
 
 export default function AboutOpenMirror() {
   return (
@@ -44,6 +38,9 @@ export default function AboutOpenMirror() {
 
         <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">The short version</h2>
+          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+            {STUDIO.mission}
+          </p>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
             CrossHeartPray is the foundation: a Bible-first app built around daily Scripture, prayer,
             reflection, and consistency.
@@ -64,7 +61,7 @@ export default function AboutOpenMirror() {
           <div key={g.label} className="mb-6">
             <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{g.label}</p>
           <div className="flex flex-col gap-3">
-            {family.filter((f) => g.names.includes(f.name)).map((f) => (
+            {g.items.map((f) => (
               <a
                 key={f.name}
                 href={f.href}

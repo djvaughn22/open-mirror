@@ -16,11 +16,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://openmirrorllc.com"),
   title: {
-    default: "Open Mirror LLC",
+    default: "Open Mirror LLC — Independent Product Studio",
     template: "%s | Open Mirror LLC",
   },
-  description: "Open Mirror LLC builds simple web apps with heart, purpose, and real-world usefulness.",
+  description:
+    "Open Mirror LLC is an independent product studio creating useful, original products across faith, family, creativity, and play.",
+  openGraph: {
+    siteName: "Open Mirror LLC",
+    title: "Open Mirror LLC — Independent Product Studio",
+    description:
+      "Open Mirror LLC is an independent product studio creating useful, original products across faith, family, creativity, and play.",
+    url: "https://openmirrorllc.com",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -37,7 +47,7 @@ export default function RootLayout({
         <VisualThemeProvider>
           <OpenMirrorNav />
           {children}
-          <OpenMirrorFooter siteName="Open Mirror LLC" tagline="built project by project" />
+          <OpenMirrorFooter siteName="Open Mirror LLC" tagline="Independent Product Studio" />
         </VisualThemeProvider>
       </body>
     </html>
