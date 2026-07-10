@@ -8,7 +8,6 @@ const foundation: Project[] = [
 ];
 
 const active: Project[] = [
-  { name: "Shop", emoji: "🛍️", tagline: "Original products from the Open Mirror family — prayer cards, dog rescue gear, funny stickers, encouragement.", accent: "#FBBF24", href: "/shop" },
   { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", accent: "#A78BFA", href: "https://thedjcares.com" },
   { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
   { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", accent: "#38BDF8", href: "https://idontcry.com" },
@@ -27,6 +26,7 @@ const starts: Project[] = [
 ];
 
 const parked: Project[] = [
+  { name: "Shop", emoji: "🛍️", tagline: "Original products from the Open Mirror family — prayer cards, dog rescue gear, funny stickers, encouragement.", accent: "#FBBF24", href: "/shop" },
   { name: "PleaseBeReady", emoji: "🧰", tagline: "Friendly emergency prep for everyone. Calm, practical, one step at a time.", status: "Evergreen", accent: "#34D399", href: "https://pleasebeready.com" },
   { name: "Fambookagram", emoji: "👨‍👩‍👧‍👦", tagline: "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.", status: "Parked", accent: "#C084FC", href: "https://fambookagram.com" },
   { name: "Friendbookagram", emoji: "🫂", tagline: "Where your friends actually stay in touch. Private, calm, invite-only.", status: "Parked", accent: "#818CF8", href: "https://friendbookagram.com" },
