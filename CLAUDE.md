@@ -35,3 +35,27 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   secularize it. Reflect/WhatAmIAI bridge to CrossHeartPray instead.
 - Legacy copies of some sites exist as hub routes (e.g. `/crossheartpray`);
   the live sites are the standalone repos — don't edit legacy routes.
+
+## Open Mirror Shop
+
+**Route:** `/shop`
+
+**Purpose:** Single page listing all Open Mirror brand product categories. Placeholder for products as they go live on Etsy.
+
+**Sections:** 6 brand cards:
+- CrossHeartPray (#C4B5FD): Prayer cards, Bible aids, printables
+- TheDJCares (#A78BFA): Encouragement cards, playlists, downloads
+- DontCloneMeTom (#2DD4BF): Dog rescue merchandise, adoption apparel
+- iDontCry (#38BDF8): Dad jokes, stickers, funny items
+- StepInTheRing (#60A5FA): Build guides, templates, tools
+- Digital Downloads (#7DD3FC): Printables, wallpapers, journals
+
+**Copy:** "Shop links will appear as products go live." Honest placeholder — no fake inventory, no fake Etsy URLs, no fake reviews.
+
+**Config:** `src/app/shop/page.tsx` defines brand cards. Update the array to add/reorder brands or change taglines.
+
+**Etsy integration:** When products ship, update brand taglines and add Etsy links (currently placeholders).
+
+**Documentation:** `OPEN_MIRROR_ETSY_FIRST_STORE_BATCH.md` at repo root contains 25 product ideas, 5 complete listing drafts, and social launch strategy.
+
+**Next work:** Implement Etsy API sync or manual product updates to shop. Route is ready to extend.
