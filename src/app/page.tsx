@@ -8,6 +8,7 @@ const foundation: Project[] = [
 ];
 
 const active: Project[] = [
+  { name: "Shop", emoji: "🛍️", tagline: "Original products from the Open Mirror family — prayer cards, dog rescue gear, funny stickers, encouragement.", accent: "#FBBF24", href: "/shop" },
   { name: "TheDJCares", emoji: "🎵", tagline: "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.", accent: "#A78BFA", href: "https://thedjcares.com" },
   { name: "DontCloneMeTom", emoji: "🐶", tagline: "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.", accent: "#2DD4BF", href: "https://dontclonemetom.com" },
   { name: "iDontCry", emoji: "😂", tagline: "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.", accent: "#38BDF8", href: "https://idontcry.com" },
