@@ -7,7 +7,6 @@ const brands: ShopBrand[] = [
   { name: "iDontCry", emoji: "😂", accent: "#38BDF8", tagline: "Dad jokes, family games, funny stickers." },
   { name: "StepInTheRing", emoji: "🥊", accent: "#60A5FA", tagline: "Build guides, idea templates, digital tools." },
   { name: "Digital Downloads", emoji: "📥", accent: "#7DD3FC", tagline: "Printables, wallpapers, journals, templates." },
-  { name: "Funny Ideas", emoji: "💡", accent: "#FBBF24", tagline: "Original humor, unexpected gifts, surprises." },
 ];
 
 const bg = "#0b1220";
