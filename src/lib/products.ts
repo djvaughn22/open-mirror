@@ -149,18 +149,8 @@ export const products: Product[] = [
     category: "family",
   },
   {
-    name: "WhatAmIAI",
-    emoji: "🤖",
-    description:
-      "Seven quick questions, then patterns worth noticing. No labels — you're not a category.",
-    aboutText:
-      "Seven quick questions — mostly taps, not typing — then turn your answers into a reflection prompt for any AI. No labels, no accounts.",
-    accent: "#E879F9",
-    href: "https://whatamiai.com",
-    status: "beta",
-    category: "creativity",
-  },
-  {
+    // Hidden gem: the /reflect route stays live for people who know it,
+    // but it is not promoted on the homepage, About page, or nav.
     name: "Reflect",
     emoji: "🪞",
     description:
@@ -171,6 +161,8 @@ export const products: Product[] = [
     href: "/reflect",
     status: "beta",
     category: "creativity",
+    showInPortfolio: false,
+    showInNav: false,
   },
   {
     name: "WatchedNotWatched",
@@ -183,6 +175,18 @@ export const products: Product[] = [
     href: "https://watchednotwatched.com",
     status: "building",
     category: "family",
+  },
+  {
+    name: "WhatAmIAI",
+    emoji: "🤖",
+    description:
+      "Being rebuilt: see what your own AI prompts say about how you use AI, think through one real situation, or look at your bigger patterns. No labels — you're not a category.",
+    aboutText:
+      "Being rebuilt as a three-part reflection tool — paste your own AI prompts and see how you actually use AI, work through one real situation, or take a wider look at your patterns. Runs on your device. No accounts, no labels.",
+    accent: "#E879F9",
+    href: "https://whatamiai.com",
+    status: "building",
+    category: "creativity",
   },
   {
     name: "Fambookagram",
