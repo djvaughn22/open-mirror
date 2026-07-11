@@ -13,18 +13,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// The Shop is a hub page, not a product — it stays out of the registry.
-const shopCard: Product = {
-  name: "Shop",
-  emoji: "🛍️",
-  description:
-    "Original products from the Open Mirror family — prayer cards, dog rescue gear, funny stickers, encouragement.",
-  accent: "#FBBF24",
-  href: "/shop",
-  status: "live",
-  category: "creativity",
-};
-
 // Cool, flat palette — matched to CrossHeartPray / TheDJCares so the family feels connected.
 const bg = "#0b1220";
 const card = "#141d2e";
@@ -125,13 +113,6 @@ export default function OpenMirrorHub() {
             </div>
           </div>
         ))}
-
-        <div style={{ marginTop: 40 }}>
-          <GroupLabel>Shop</GroupLabel>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <Card p={shopCard} />
-          </div>
-        </div>
 
       </div>
     </main>
