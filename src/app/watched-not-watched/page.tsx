@@ -2,8 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Watched Not Watched | Open Mirror LLC",
-  description: "A clean-viewing concept for families who want safer ways to watch what they already have access to.",
+  title: "WatchedNotWatched | Open Mirror LLC",
+  description:
+    "A fast watch list for movies and TV — thumbs, the Top 222, and picks based on what you liked. Live at watchednotwatched.com.",
 };
 
 export default function WatchedNotWatchedPage() {
@@ -18,14 +19,28 @@ export default function WatchedNotWatchedPage() {
         </Link>
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-sky-400 mb-4">
-            In Development
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#22D3EE] mb-4">
+            Live
           </p>
-          <h1 className="text-3xl font-black text-white mb-4">Watched Not Watched</h1>
+          <h1 className="text-3xl font-black text-white mb-4">
+            WatchedNotWatched<span className="text-[#22D3EE]">.com</span>
+          </h1>
           <p className="text-base font-semibold leading-7 text-slate-300 max-w-sm mx-auto">
-            A clean-viewing concept for families who want safer ways to watch what they already have access to.
+            A fast watch list for movies and TV. Search anything, thumb it 👍 or 👎,
+            sort the Top 222 of any decade or genre on a drag-and-drop board, and get
+            picks based on what you liked.
           </p>
-          <p className="mt-6 text-sm text-slate-500">This project is in active development. Check back soon.</p>
+          <p className="mt-3 text-sm text-slate-500">
+            Free. No account. Saved on your device, exportable anytime.
+          </p>
+          <a
+            href="https://watchednotwatched.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block rounded-full bg-[#22D3EE] px-7 py-3 text-sm font-black text-slate-950 hover:opacity-90 transition"
+          >
+            Open WatchedNotWatched →
+          </a>
         </div>
       </div>
     </main>

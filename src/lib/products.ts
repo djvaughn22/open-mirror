@@ -168,12 +168,12 @@ export const products: Product[] = [
     name: "WatchedNotWatched",
     emoji: "🎬",
     description:
-      "Safer viewing for families — watch what you love, the way you want to.",
+      "Remember what you watched. Thumb movies and shows 👍 or 👎, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
     aboutText:
-      "Safer viewing for families — watch what you love, the way you want to. (In development.)",
+      "A fast watch list for movies and TV. Search anything, mark it watched with a thumbs up or down, and work through the Top 222 of all time — or any decade or genre — on a drag-and-drop board. Your thumbs power For You picks. Free, no account, everything saved on your device and exportable anytime.",
     accent: "#22D3EE",
     href: "https://watchednotwatched.com",
-    status: "building",
+    status: "live",
     category: "family",
   },
   {
