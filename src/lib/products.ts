@@ -180,9 +180,9 @@ export const products: Product[] = [
     name: "WhatAmIAI",
     emoji: "🤖",
     description:
-      "Being rebuilt: see what your own AI prompts say about how you use AI, think through one real situation, or look at your bigger patterns. No labels — you're not a category.",
+      "See what your own AI prompts say about how you use AI, think through one real situation, or look at your bigger patterns. No labels — you're not a category.",
     aboutText:
-      "Being rebuilt as a three-part reflection tool — paste your own AI prompts and see how you actually use AI, work through one real situation, or take a wider look at your patterns. Runs on your device. No accounts, no labels.",
+      "A three-part reflection tool — paste your own AI prompts and see how you actually use AI, work through one real situation, or take a wider look at your patterns. Runs on your device. No accounts, no labels. Still being polished.",
     accent: "#E879F9",
     href: "https://whatamiai.com",
     status: "building",
@@ -194,7 +194,7 @@ export const products: Product[] = [
     description:
       "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.",
     aboutText:
-      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. (Waitlist.)",
+      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.",
     accent: "#C084FC",
     href: "https://fambookagram.com",
     status: "exploring",
@@ -206,7 +206,7 @@ export const products: Product[] = [
     description:
       "Where your friends actually stay in touch. Private, calm, invite-only.",
     aboutText:
-      "Where your friends actually stay in touch. Private, calm, invite-only. (Waitlist.)",
+      "Where your friends actually stay in touch. Private, calm, invite-only.",
     accent: "#818CF8",
     href: "https://friendbookagram.com",
     status: "exploring",

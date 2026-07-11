@@ -55,6 +55,20 @@ export default function AboutOpenMirror() {
           </p>
         </section>
 
+        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
+          <h2 className="mb-3 text-xl font-black">Built in 40 days</h2>
+          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+            A dozen working apps — designed, built, and shipped in about 40 days by one small
+            independent studio.
+          </p>
+          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+            That speed is proof we can build. It is not a claim of traction: each product is the
+            smallest useful version of a real idea, put into real use, and improved from evidence.
+            Some will grow, some will stay small, some will be retired — and everything we learn
+            carries into the next build.
+          </p>
+        </section>
+
         <section className="mb-10">
           <h2 className="mb-5 text-xl font-black">Every site in the hub</h2>
           {groups.map((g) => (
@@ -133,6 +147,21 @@ export default function AboutOpenMirror() {
               </a>
             ))}
           </div>
+        </section>
+
+        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
+          <h2 className="mb-3 text-xl font-black">Sponsor the studio</h2>
+          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+            Every Open Mirror product is free — no ads, no accounts, no selling your data.
+            Sponsors are what keep it that way.
+          </p>
+          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+            If you or your organization want to back healthy, family-safe software built on
+            Christian values, we&rsquo;d love to talk:{" "}
+            <a href="mailto:ask@openmirrorllc.com" className="font-black text-[#7dd3fc]">
+              ask@openmirrorllc.com
+            </a>
+          </p>
         </section>
 
         <section className="mb-12 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7 text-center">

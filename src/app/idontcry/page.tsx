@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "iDontCry | Open Mirror LLC",
-  description: "A healing-first emotional support project for grief, strength, and honest moments.",
+  description:
+    "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free. Live at idontcry.com.",
 };
 
 export default function IDontCryPage() {
@@ -18,14 +19,24 @@ export default function IDontCryPage() {
         </Link>
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-slate-500 mb-4">
-            Concept / Coming Soon
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#38BDF8] mb-4">
+            Live
           </p>
-          <h1 className="text-3xl font-black text-white mb-4">iDontCry</h1>
+          <h1 className="text-3xl font-black text-white mb-4">
+            iDontCry<span className="text-[#38BDF8]">.com</span>
+          </h1>
           <p className="text-base font-semibold leading-7 text-slate-300 max-w-sm mx-auto">
-            A healing-first emotional support project for grief, strength, and honest moments.
+            The family&rsquo;s digital playground. Dad jokes, mini games, and the Dream Lab —
+            dream up anything with AI, free, then step in the ring and build it for real.
           </p>
-          <p className="mt-6 text-sm text-slate-500">This project is in concept stage. Check back soon.</p>
+          <a
+            href="https://idontcry.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block rounded-full bg-[#38BDF8] px-7 py-3 text-sm font-black text-slate-950 hover:opacity-90 transition"
+          >
+            Open iDontCry →
+          </a>
         </div>
       </div>
     </main>

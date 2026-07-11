@@ -1,4 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Open Mirror LLC — hub (openmirrorllc.com)
+
+The company and portfolio doorway for Open Mirror LLC, an independent product
+studio. This repo serves the hub homepage, the studio About page, and the
+CrossHeartPray family of pages.
+
+- Portfolio source of truth: `src/lib/products.ts` (homepage, About, and nav
+  all read from it — edit ONLY that file to add, reorder, or restatus a product).
+- Company direction: `OPEN_MIRROR_PORTFOLIO_DOCTRINE.md`.
+- Push to `main` = production deploy (Vercel).
 
 ## Getting Started
 
