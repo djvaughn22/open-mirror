@@ -58,8 +58,8 @@ export default function AboutOpenMirror() {
         <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">Built in 40 days</h2>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            A dozen working apps — designed, built, and shipped in about 40 days by one small
-            independent studio.
+            A portfolio of working apps — designed, built, and shipped in about 40 days by one
+            small independent studio.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
             That speed is proof we can build. It is not a claim of traction: each product is the
