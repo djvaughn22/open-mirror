@@ -4,6 +4,7 @@ import "./globals.css";
 import OpenMirrorFooter from "../../packages/openmirror-ui/OpenMirrorFooter";
 import OpenMirrorNav from "../components/OpenMirrorNav";
 import VisualThemeProvider from "../components/VisualThemeProvider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,16 @@ export default function RootLayout({
           {children}
           <OpenMirrorFooter siteName="Open Mirror LLC" tagline="Independent Product Studio" />
         </VisualThemeProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-91WTHE5VQJ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-91WTHE5VQJ');`}
+        </Script>
       </body>
     </html>
   );
