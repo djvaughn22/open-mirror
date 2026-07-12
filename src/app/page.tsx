@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import {
+  BOTTOM_PIN_LABEL,
+  bottomPinnedProducts,
   productsByStatus,
   STATUS_LABEL,
   STATUS_ORDER,
@@ -87,6 +89,7 @@ export default function OpenMirrorHub() {
     label: STATUS_LABEL[status],
     items: productsByStatus(status),
   })).filter((g) => g.items.length > 0);
+  const pinned = bottomPinnedProducts();
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
@@ -113,6 +116,15 @@ export default function OpenMirrorHub() {
             </div>
           </div>
         ))}
+
+        {pinned.length > 0 && (
+          <div style={{ marginTop: 40 }}>
+            <GroupLabel>{BOTTOM_PIN_LABEL}</GroupLabel>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {pinned.map((p) => <Card key={p.name} p={p} />)}
+            </div>
+          </div>
+        )}
 
       </div>
     </main>

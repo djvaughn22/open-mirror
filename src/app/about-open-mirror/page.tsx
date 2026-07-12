@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { productsByStatus, STATUS_LABEL, STATUS_ORDER, STUDIO } from "../../lib/products";
+import { BOTTOM_PIN_LABEL, bottomPinnedProducts, productsByStatus, STATUS_LABEL, STATUS_ORDER, STUDIO } from "../../lib/products";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
@@ -174,6 +174,30 @@ export default function AboutOpenMirror() {
               Contact us
             </a>
           </p>
+        </section>
+
+        <section className="mb-12">
+          <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{BOTTOM_PIN_LABEL}</p>
+          <div className="flex flex-col gap-3">
+            {bottomPinnedProducts().map((p) => (
+              <a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
+              >
+                <span className="text-2xl">{p.emoji}</span>
+                <div>
+                  <h3 className="text-base font-black">
+                    {p.name}
+                    <span style={{ color: p.accent }}>.com</span>
+                  </h3>
+                  <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">{p.aboutText ?? p.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </section>
 
       </div>

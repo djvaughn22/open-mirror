@@ -43,6 +43,8 @@ export type Product = {
   showInPortfolio?: boolean;
   /** hidden from the nav menu when false */
   showInNav?: boolean;
+  /** pulled out of the status groups and pinned to the very bottom of the homepage and About page */
+  pinBottom?: boolean;
 };
 
 export const STUDIO = {
@@ -147,6 +149,7 @@ export const products: Product[] = [
     href: "https://pleasebeready.com",
     status: "live",
     category: "family",
+    pinBottom: true,
   },
   {
     // Hidden gem: the /reflect route stays live for people who know it,
@@ -226,6 +229,15 @@ export const STATUS_ORDER: ProductStatus[] = [
 
 export function productsByStatus(status: ProductStatus): Product[] {
   return products.filter(
-    (p) => p.status === status && p.showInPortfolio !== false
+    (p) => p.status === status && p.showInPortfolio !== false && p.pinBottom !== true
+  );
+}
+
+/** Bottom-of-page section shared by the homepage and About page. */
+export const BOTTOM_PIN_LABEL = "Live resource for emergency planning";
+
+export function bottomPinnedProducts(): Product[] {
+  return products.filter(
+    (p) => p.pinBottom === true && p.showInPortfolio !== false
   );
 }
