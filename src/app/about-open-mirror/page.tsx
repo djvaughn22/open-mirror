@@ -42,13 +42,8 @@ export default function AboutOpenMirror() {
             {STUDIO.mission}
           </p>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            CrossHeartPray is the foundation: a Bible-first app built around daily Scripture, prayer,
-            reflection, and consistency.
-          </p>
-          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            The rest of Open Mirror grew from that same foundation — a place to make, test, and
-            share useful digital projects across faith, family, creativity, music, writing, web
-            apps, and whatever comes next.
+            CrossHeartPray came first — a Bible-first app built around daily Scripture, prayer,
+            and consistency. Every other product grew from there.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
             <strong className="text-[#e8edf5]">CrossHeartPray is the anchor. Open Mirror is the workshop.</strong>
@@ -135,18 +130,6 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
-        <section className="mb-12 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7 text-center">
-          <p className="text-base font-semibold leading-8 text-[#94a3b8]">
-            <strong className="text-[#e8edf5]">Start with faith. Build from there.</strong>
-            {" "}Games, tools, and sites for the whole family.
-          </p>
-          <p className="mt-4">
-            <a href="mailto:ask@openmirrorllc.com" className="text-sm font-black text-[#7dd3fc]">
-              Contact us
-            </a>
-          </p>
-        </section>
-
         <section className="mb-10">
           <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{BOTTOM_PIN_LABEL}</p>
           <div className="flex flex-col gap-3">
@@ -171,12 +154,18 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
-        {/* Quiet footnote — kept small on purpose (DJ, 2026-07-11). */}
-        <p className="mx-auto max-w-lg text-center text-xs font-semibold leading-6 text-[#64748b]">
+        {/* Quiet footnotes — kept small on purpose (DJ, 2026-07-11). */}
+        <p className="mx-auto mb-4 max-w-lg text-center text-xs font-semibold leading-6 text-[#64748b]">
           This whole portfolio was built in about 40 days, on evenings and weekends. We mention
           that not for the speed, but for what made it possible: a process, and a set of tools
           built along the way that are saved and reused — so every build makes the next one
           faster.
+        </p>
+        <p className="text-center text-xs font-semibold text-[#64748b]">
+          Contact:{" "}
+          <a href="mailto:ask@openmirrorllc.com" className="font-black text-[#7dd3fc]">
+            ask@openmirrorllc.com
+          </a>
         </p>
 
       </div>
