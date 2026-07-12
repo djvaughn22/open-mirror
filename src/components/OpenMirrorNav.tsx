@@ -7,16 +7,18 @@ import { products, type Product } from "../lib/products";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
 
-// Menu is derived from the product registry (src/lib/products.ts):
-// Foundation + Live sites first, a divider, then everything in progress, About last.
+// Menu is derived from the product registry (src/lib/products.ts) in the same
+// order as the homepage: Foundation + Live sites first, a divider, then
+// everything in progress, About, and the bottom-pinned products last.
 function menuItem(p: Product): Item {
   const external = p.href.startsWith("http");
   return { label: external ? `${p.name}.com` : p.name, href: p.href, external };
 }
 
 const navProducts = products.filter((p) => p.showInNav !== false);
-const liveItems = navProducts.filter((p) => p.status === "foundation" || p.status === "live").map(menuItem);
-const inProgressItems = navProducts.filter((p) => p.status !== "foundation" && p.status !== "live" && p.status !== "archived").map(menuItem);
+const liveItems = navProducts.filter((p) => (p.status === "foundation" || p.status === "live") && p.pinBottom !== true).map(menuItem);
+const inProgressItems = navProducts.filter((p) => p.status !== "foundation" && p.status !== "live" && p.status !== "archived" && p.pinBottom !== true).map(menuItem);
+const bottomItems = navProducts.filter((p) => p.pinBottom === true).map(menuItem);
 
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
@@ -26,6 +28,8 @@ const MENU: Item[] = [
   ...inProgressItems,
   { divider: true },
   { label: "About Open Mirror", href: "/about-open-mirror" },
+  { divider: true },
+  ...bottomItems,
 ];
 
 export default function OpenMirrorNav() {

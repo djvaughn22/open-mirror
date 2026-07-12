@@ -126,9 +126,9 @@ export const products: Product[] = [
     name: "OpenDoku",
     emoji: "🧩",
     description:
-      "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. More dokus on the way.",
+      "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. Newest: MineDoku, dreamed up on iDontCry, built in StepInTheRing through the gate, and pushed and deployed with one prompt.",
     aboutText:
-      "The puzzle-games family. SlopeDoku (winter) and SurfDoku (beach) climb from one easy rule to two full sudokus in every tile. Born on iDontCry, built through StepInTheRing — more dokus to come.",
+      "The puzzle-games family. SlopeDoku (winter) and SurfDoku (beach) climb from one easy rule to two full sudokus in every tile. MineDoku (underground number digs) is the newest — dreamed up on iDontCry, built in StepInTheRing through the gate, and pushed and deployed with one prompt. More dokus to come.",
     accent: "#7DD3FC",
     href: "https://opendoku.com",
     status: "live",
@@ -136,6 +136,7 @@ export const products: Product[] = [
     links: [
       { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
+      { label: "⛏️ MineDoku", href: "https://opendoku.com/minedoku/" },
     ],
   },
   {
@@ -202,6 +203,7 @@ export const products: Product[] = [
     href: "https://fambookagram.com",
     status: "exploring",
     category: "family",
+    showInNav: false,
   },
   {
     name: "Friendbookagram",
@@ -214,6 +216,7 @@ export const products: Product[] = [
     href: "https://friendbookagram.com",
     status: "exploring",
     category: "family",
+    showInNav: false,
   },
 ];
 

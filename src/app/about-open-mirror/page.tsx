@@ -55,20 +55,6 @@ export default function AboutOpenMirror() {
           </p>
         </section>
 
-        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-          <h2 className="mb-3 text-xl font-black">Built in 40 days</h2>
-          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            A portfolio of working apps — designed, built, and shipped in about 40 days by one
-            small independent studio.
-          </p>
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            That speed is proof we can build. It is not a claim of traction: each product is the
-            smallest useful version of a real idea, put into real use, and improved from evidence.
-            Some will grow, some will stay small, some will be retired — and everything we learn
-            carries into the next build.
-          </p>
-        </section>
-
         <section className="mb-10">
           <h2 className="mb-5 text-xl font-black">Every site in the hub</h2>
           {groups.map((g) => (
@@ -149,21 +135,6 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
-        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-          <h2 className="mb-3 text-xl font-black">Sponsor the studio</h2>
-          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            Every Open Mirror product is free — no ads, no accounts, no selling your data.
-            Sponsors are what keep it that way.
-          </p>
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            If you or your organization want to back healthy, family-safe software built on
-            Christian values, we&rsquo;d love to talk:{" "}
-            <a href="mailto:ask@openmirrorllc.com" className="font-black text-[#7dd3fc]">
-              ask@openmirrorllc.com
-            </a>
-          </p>
-        </section>
-
         <section className="mb-12 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7 text-center">
           <p className="text-base font-semibold leading-8 text-[#94a3b8]">
             <strong className="text-[#e8edf5]">Start with faith. Build from there.</strong>
@@ -176,7 +147,7 @@ export default function AboutOpenMirror() {
           </p>
         </section>
 
-        <section className="mb-12">
+        <section className="mb-10">
           <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{BOTTOM_PIN_LABEL}</p>
           <div className="flex flex-col gap-3">
             {bottomPinnedProducts().map((p) => (
@@ -199,6 +170,14 @@ export default function AboutOpenMirror() {
             ))}
           </div>
         </section>
+
+        {/* Quiet footnote — kept small on purpose (DJ, 2026-07-11). */}
+        <p className="mx-auto max-w-lg text-center text-xs font-semibold leading-6 text-[#64748b]">
+          This whole portfolio was built in about 40 days, on evenings and weekends. We mention
+          that not for the speed, but for what made it possible: a process, and a set of tools
+          built along the way that are saved and reused — so every build makes the next one
+          faster.
+        </p>
 
       </div>
     </main>
