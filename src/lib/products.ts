@@ -196,9 +196,7 @@ export const products: Product[] = [
     name: "Fambookagram",
     emoji: "👨‍👩‍👧‍👦",
     description:
-      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.",
-    aboutText:
-      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers.",
+      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. Placeholder domain while we test the concept — if it proves valuable, expect a domain change.",
     accent: "#C084FC",
     href: "https://fambookagram.com",
     status: "exploring",
@@ -209,9 +207,7 @@ export const products: Product[] = [
     name: "Friendbookagram",
     emoji: "🫂",
     description:
-      "Where your friends actually stay in touch. Private, calm, invite-only.",
-    aboutText:
-      "Where your friends actually stay in touch. Private, calm, invite-only.",
+      "Where your friends actually stay in touch. Private, calm, invite-only. Placeholder domain while we test the concept — if it proves valuable, expect a domain change.",
     accent: "#818CF8",
     href: "https://friendbookagram.com",
     status: "exploring",
