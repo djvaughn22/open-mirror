@@ -42,8 +42,8 @@ export default function AboutOpenMirror() {
             {STUDIO.mission}
           </p>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            CrossHeartPray came first — a Bible-first app built around daily Scripture, prayer,
-            and consistency. Every other product grew from there.
+            CrossHeartPray is a Bible-first app built around daily Scripture, prayer, and
+            consistency. Every other product grew from there.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
             <strong className="text-[#e8edf5]">CrossHeartPray is the anchor. Open Mirror is the workshop.</strong>
