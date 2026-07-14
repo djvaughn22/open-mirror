@@ -66,7 +66,9 @@ export default function TalkWithTheOwner() {
             Talk with the Owner
           </h1>
           <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8]">
-            Consulting and digital product creation, one engagement at a time.
+            Consulting and digital product creation,
+            <br />
+            one engagement at a time.
           </p>
         </section>
 
