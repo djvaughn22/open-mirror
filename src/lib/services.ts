@@ -13,7 +13,10 @@ export const SERVICE_EMAIL = STUDIO.email;
 
 /** The engagement, in one line — used by the page, metadata, and OG tags. */
 export const ENGAGEMENT =
-  "Consulting and digital product creation with the founder of Open Mirror. One engagement, shaped to your project — scope and terms depend on what you're making.";
+  "Consulting and digital product creation, directly with the founder of Open Mirror — one engagement at a time. Scope and terms are set per project, before anything starts.";
+
+/** The quiet stat line under the hero. Every claim is verifiable on this site. */
+export const STATS = ["One founder", "Built in 40 days", "All of it live"];
 
 /** Intake current-stage choices — shared by the form and the email body. */
 export const INTAKE_STAGES = [
@@ -35,17 +38,24 @@ export const FOR_LIST = [
 /** How it works, in order. Three steps — no discovery calls, no decks. */
 export const PROCESS = [
   {
-    title: "Tell the studio what you're making",
-    text: "The short form below is all it takes.",
+    title: "Send the brief",
+    text: "The short form below is all it takes. No discovery call, no deck.",
   },
   {
     title: "Get a straight answer",
-    text: "A direct reply by email: whether it's a fit and what the right engagement looks like — including \"this isn't a fit\" if that's the honest answer.",
+    text: "A direct reply: whether it's a fit and what the right engagement looks like. If it isn't, you'll hear that plainly.",
   },
   {
     title: "Scope, then work",
-    text: "Every engagement starts with a short written scope, sized to the project — an hour of direction or a product built end to end. Then the work starts.",
+    text: "A short written scope — sized anywhere from an hour of direction to a product built end to end. Then the work starts.",
   },
+];
+
+/** Quiet boundaries — three lines, no prices, no legal wall. */
+export const BOUNDARIES = [
+  "Every engagement starts with a written scope.",
+  "Work outside an agreed scope gets a new proposal.",
+  "Sending the intake starts a conversation — not a client relationship.",
 ];
 
 /**

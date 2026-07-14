@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import WorkWithFounderIntake from "../../components/WorkWithFounderIntake";
 import { products } from "../../lib/products";
-import { ENGAGEMENT, FOR_LIST, PROCESS, PROOF, SERVICE_EMAIL } from "../../lib/services";
+import { BOUNDARIES, ENGAGEMENT, FOR_LIST, PROCESS, PROOF, SERVICE_EMAIL, STATS } from "../../lib/services";
 
 const PAGE_TITLE = "Work With the Founder";
 
@@ -58,51 +58,53 @@ export default function WorkWithTheFounder() {
       />
       <div className="mx-auto max-w-2xl px-5 py-14">
         {/* 1 — Hero */}
-        <section className="mb-14 text-center">
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-[#7dd3fc]">
+        <section className="mb-16 text-center">
+          <p className="mb-5 text-xs font-black uppercase tracking-[0.2em] text-[#7dd3fc]">
             Open Mirror LLC
           </p>
-          <h1 className="mb-5 text-4xl font-black leading-tight sm:text-5xl">
+          <h1 className="mb-5 text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl">
             You bring the idea.
             <br />
-            We make it real.
+            I make it real.
           </h1>
-          <p className="mx-auto max-w-lg text-base font-semibold leading-7 text-[#94a3b8]">
-            Consulting and digital product creation, directly with the founder.
-            One engagement, shaped to your project — an hour of direction or a
-            product built end to end.
+          <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8]">
+            Consulting and digital product creation, one engagement at a time —
+            an hour of direction or a product built end to end.
           </p>
           <a
             href="#intake"
-            className="mt-7 inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
+            className="mt-8 inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
           >
             Start the conversation →
           </a>
+          <p className="mt-9 text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748b]">
+            {STATS.join("  ·  ")}
+          </p>
         </section>
 
-        {/* 2 — What this is */}
-        <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            <strong className="text-[#e8edf5]">
-              No packages. No menus. No meetings you don&apos;t need.
-            </strong>{" "}
-            You describe the project; the engagement is scoped to fit it. Scope
-            and terms depend on what you&apos;re making — you&apos;ll know both
-            before anything starts.
+        {/* 2 — What you're hiring */}
+        <section className="mb-16 border-y border-[#26324c] py-9 text-center">
+          <p className="mx-auto max-w-lg text-[15px] font-semibold leading-8 text-[#94a3b8]">
+            <strong className="text-[#e8edf5]">What you&apos;re hiring is judgment.</strong>{" "}
+            Creative direction, simplification, prioritization, product thinking,
+            and a practical path from concept to launch. Not an agency. Not AI
+            consulting. One person, accountable, through Open Mirror LLC — and
+            one engagement at a time: while your project is on the bench,
+            it&apos;s the only one there.
           </p>
         </section>
 
         {/* 3 — Who this is for */}
-        <section className="mb-14">
+        <section className="mb-16">
           <SectionLabel>Who this is for</SectionLabel>
-          <h2 className="mb-5 text-center text-2xl font-black">
+          <h2 className="mb-5 text-center text-2xl font-black tracking-tight">
             You have something. It isn&apos;t clear yet.
           </h2>
-          <ul className="mx-auto flex max-w-lg flex-col gap-2.5">
+          <ul className="mx-auto max-w-lg divide-y divide-[#26324c] rounded-2xl border border-[#26324c] bg-[#141d2e]">
             {FOR_LIST.map((item) => (
               <li
                 key={item}
-                className="rounded-2xl border border-[#26324c] bg-[#141d2e] px-5 py-3.5 text-sm font-semibold leading-6 text-[#e8edf5]"
+                className="px-5 py-3.5 text-sm font-semibold leading-6 text-[#e8edf5]"
               >
                 {item}
               </li>
@@ -111,13 +113,13 @@ export default function WorkWithTheFounder() {
         </section>
 
         {/* 4 — Portfolio proof */}
-        <section className="mb-14">
+        <section className="mb-16">
           <SectionLabel>The proof</SectionLabel>
-          <h2 className="mb-2 text-center text-2xl font-black">
-            Built here, live now
+          <h2 className="mb-2 text-center text-2xl font-black tracking-tight">
+            Built here. Live now.
           </h2>
           <p className="mx-auto mb-6 max-w-md text-center text-sm font-semibold leading-6 text-[#94a3b8]">
-            Every product below is live. Click through and judge for yourself.
+            Judge the work, not the pitch — everything below is one click away.
           </p>
           <div className="flex flex-col gap-3">
             {proof.map((p) => (
@@ -144,10 +146,10 @@ export default function WorkWithTheFounder() {
         </section>
 
         {/* 5 — How it works */}
-        <section className="mb-14">
+        <section className="mb-16">
           <SectionLabel>How it works</SectionLabel>
-          <h2 className="mb-6 text-center text-2xl font-black">
-            Three steps, few meetings
+          <h2 className="mb-6 text-center text-2xl font-black tracking-tight">
+            Three steps. Few meetings.
           </h2>
           <ol className="flex flex-col gap-3">
             {PROCESS.map((step, i) => (
@@ -175,17 +177,31 @@ export default function WorkWithTheFounder() {
         {/* 6 — Intake */}
         <section id="intake" className="mb-14 scroll-mt-20">
           <SectionLabel>Start here</SectionLabel>
-          <h2 className="mb-6 text-center text-2xl font-black">
-            Tell us what you&apos;re making
+          <h2 className="mb-6 text-center text-2xl font-black tracking-tight">
+            Tell me what you&apos;re making
           </h2>
           <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 sm:p-7">
             <WorkWithFounderIntake />
           </div>
         </section>
 
-        {/* 7 — Final call to action */}
+        {/* 7 — Boundaries, quietly */}
+        <section className="mb-16">
+          <ul className="mx-auto flex max-w-lg flex-col gap-1.5">
+            {BOUNDARIES.map((b) => (
+              <li
+                key={b}
+                className="text-center text-xs font-semibold leading-6 text-[#64748b]"
+              >
+                {b}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* 8 — Final call to action */}
         <section className="text-center">
-          <h2 className="mb-3 text-2xl font-black">
+          <h2 className="mb-5 text-2xl font-black tracking-tight">
             If it&apos;s been sitting in your head, that&apos;s the sign.
           </h2>
           <a
