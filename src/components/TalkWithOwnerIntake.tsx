@@ -1,85 +1,47 @@
 "use client";
 
-// Intake for /talk-with-the-owner. There is no form backend in this repo, so this
-// stays honest: it validates, builds a clean email addressed to the real
-// studio address, opens the visitor's mail app prefilled, and offers a
-// copy-to-clipboard fallback. Nothing pretends to have been "sent".
+// Intake for /talk-with-the-owner. Posts to /api/intake, which sends the
+// message when RESEND_API_KEY is configured. If it isn't (or the send
+// fails), the same click falls back to opening the visitor's email app
+// prefilled — nothing pretends to have been sent.
 
 import { useRef, useState } from "react";
-import { INTAKE_STAGES, SERVICE_EMAIL } from "../lib/services";
+import { SERVICE_EMAIL } from "../lib/services";
 
 // GA4 is loaded in the root layout; guard so the form works without it.
 // Events carry no intake text.
-function track(event: string, params?: Record<string, string>) {
+function track(event: string) {
   const w = window as unknown as { gtag?: (...args: unknown[]) => void };
-  if (typeof w.gtag === "function") w.gtag("event", event, params ?? {});
+  if (typeof w.gtag === "function") w.gtag("event", event, {});
 }
 
 type Fields = {
   name: string;
   email: string;
-  project: string;
   creating: string;
-  stage: string;
   link: string;
-  obstacle: string;
-  outcome: string;
-  deadline: string;
-  heard: string;
 };
 
-const EMPTY: Fields = {
-  name: "",
-  email: "",
-  project: "",
-  creating: "",
-  stage: "",
-  link: "",
-  obstacle: "",
-  outcome: "",
-  deadline: "",
-  heard: "",
-};
+const EMPTY: Fields = { name: "", email: "", creating: "", link: "" };
 
 const REQUIRED: (keyof Fields)[] = ["name", "email", "creating"];
 
 const LABELS: Record<keyof Fields, string> = {
   name: "Name",
   email: "Email",
-  project: "Business, organization, or project name",
   creating: "What are you trying to create or improve?",
-  stage: "Current stage",
   link: "Existing website or relevant link",
-  obstacle: "Biggest current obstacle",
-  outcome: "What would a great outcome look like?",
-  deadline: "Any relevant deadline",
-  heard: "How did you hear about Open Mirror?",
 };
 
 function buildEmailBody(f: Fields): string {
-  const line = (key: keyof Fields) => {
-    if (!f[key].trim()) return "";
-    const label = LABELS[key].endsWith("?") ? LABELS[key] : `${LABELS[key]}:`;
-    return `${label}\n${f[key].trim()}\n`;
-  };
   return [
-    "Talk with the Owner — intake",
-    "",
-    line("name"),
-    line("email"),
-    line("project"),
-    line("creating"),
-    line("stage"),
-    line("link"),
-    line("obstacle"),
-    line("outcome"),
-    line("deadline"),
-    line("heard"),
+    `Name:\n${f.name.trim()}`,
+    `Email:\n${f.email.trim()}`,
+    `${LABELS.creating}\n${f.creating.trim()}`,
+    f.link.trim() ? `Link:\n${f.link.trim()}` : "",
   ]
     .filter(Boolean)
-    .join("\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+    .join("\n\n");
 }
 
 // Native focus outline stays on: the light theme forces border-color with
@@ -91,10 +53,8 @@ const labelClass = "mb-1.5 block text-xs font-black uppercase tracking-wider tex
 export default function TalkWithOwnerIntake() {
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
-  const [composed, setComposed] = useState<string | null>(null);
-  const [copied, setCopied] = useState<"ok" | "fail" | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "mailto">("idle");
   const started = useRef(false);
-  const composedRef = useRef<HTMLTextAreaElement | null>(null);
 
   function set(key: keyof Fields, value: string) {
     if (!started.current) {
@@ -103,8 +63,7 @@ export default function TalkWithOwnerIntake() {
     }
     setFields((f) => ({ ...f, [key]: value }));
     setErrors((e) => (e[key] ? { ...e, [key]: undefined } : e));
-    setComposed(null);
-    setCopied(null);
+    setStatus((s) => (s === "idle" || s === "sending" ? s : "idle"));
   }
 
   function validate(): boolean {
@@ -121,30 +80,33 @@ export default function TalkWithOwnerIntake() {
     return Object.keys(next).length === 0;
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!validate()) return;
-    const body = buildEmailBody(fields);
-    setComposed(body);
+    if (status === "sending" || !validate()) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/intake", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: fields.name.trim(),
+          email: fields.email.trim(),
+          creating: fields.creating.trim(),
+          link: fields.link.trim(),
+        }),
+      });
+      if (res.ok) {
+        track("intake_sent");
+        setStatus("sent");
+        return;
+      }
+    } catch {
+      // Fall through to the email-app fallback below.
+    }
     track("intake_email_opened");
     const subject = `Talk with the Owner — ${fields.name.trim()}`;
-    window.location.href = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }
-
-  async function copyToClipboard() {
-    if (!composed) return;
-    track("intake_copied");
-    try {
-      await navigator.clipboard.writeText(
-        `To: ${SERVICE_EMAIL}\nSubject: Talk with the Owner — ${fields.name.trim()}\n\n${composed}`
-      );
-      setCopied("ok");
-    } catch {
-      // Clipboard API can be unavailable — select the text so a manual copy works.
-      composedRef.current?.focus();
-      composedRef.current?.select();
-      setCopied("fail");
-    }
+    window.location.href = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildEmailBody(fields))}`;
+    setStatus("mailto");
   }
 
   const err = (key: keyof Fields) =>
@@ -156,13 +118,6 @@ export default function TalkWithOwnerIntake() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
-      <p className="text-sm font-semibold leading-6 text-[#94a3b8]">
-        No form backend, no account, no spam list. When you hit the button, this
-        opens in your own email app — filled in and addressed to{" "}
-        <span className="font-black text-[#e8edf5]">{SERVICE_EMAIL}</span> — so
-        you can read it over and send it yourself.
-      </p>
-
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="intake-name" className={labelClass}>
@@ -195,19 +150,6 @@ export default function TalkWithOwnerIntake() {
       </div>
 
       <div>
-        <label htmlFor="intake-project" className={labelClass}>
-          {LABELS.project}
-        </label>
-        <input
-          id="intake-project"
-          type="text"
-          value={fields.project}
-          onChange={(e) => set("project", e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
         <label htmlFor="intake-creating" className={labelClass}>
           {LABELS.creating} *
         </label>
@@ -221,138 +163,41 @@ export default function TalkWithOwnerIntake() {
         {err("creating")}
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="intake-stage" className={labelClass}>
-            {LABELS.stage}
-          </label>
-          <select
-            id="intake-stage"
-            value={fields.stage}
-            onChange={(e) => set("stage", e.target.value)}
-            className={inputClass}
-          >
-            <option value="">Choose one…</option>
-            {INTAKE_STAGES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="intake-link" className={labelClass}>
-            {LABELS.link}
-          </label>
-          <input
-            id="intake-link"
-            type="url"
-            placeholder="https://"
-            value={fields.link}
-            onChange={(e) => set("link", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-      </div>
-
       <div>
-        <label htmlFor="intake-obstacle" className={labelClass}>
-          {LABELS.obstacle}
+        <label htmlFor="intake-link" className={labelClass}>
+          {LABELS.link}
         </label>
-        <textarea
-          id="intake-obstacle"
-          rows={2}
-          value={fields.obstacle}
-          onChange={(e) => set("obstacle", e.target.value)}
+        <input
+          id="intake-link"
+          type="url"
+          placeholder="https://"
+          value={fields.link}
+          onChange={(e) => set("link", e.target.value)}
           className={inputClass}
         />
-      </div>
-
-      <div>
-        <label htmlFor="intake-outcome" className={labelClass}>
-          {LABELS.outcome}
-        </label>
-        <textarea
-          id="intake-outcome"
-          rows={2}
-          value={fields.outcome}
-          onChange={(e) => set("outcome", e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="intake-deadline" className={labelClass}>
-            {LABELS.deadline}
-          </label>
-          <input
-            id="intake-deadline"
-            type="text"
-            value={fields.deadline}
-            onChange={(e) => set("deadline", e.target.value)}
-            className={inputClass}
-          />
-        </div>
-        <div>
-          <label htmlFor="intake-heard" className={labelClass}>
-            {LABELS.heard}
-          </label>
-          <input
-            id="intake-heard"
-            type="text"
-            value={fields.heard}
-            onChange={(e) => set("heard", e.target.value)}
-            className={inputClass}
-          />
-        </div>
       </div>
 
       <button
         type="submit"
-        className="mt-1 rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
+        disabled={status === "sending"}
+        className="mt-1 rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C] disabled:opacity-60"
       >
-        Open this in my email app →
+        {status === "sending" ? "Sending…" : "Send"}
       </button>
 
-      {composed && (
-        <div className="rounded-2xl border border-[#26324c] bg-[#0b1220] p-5">
-          <p className="mb-3 text-sm font-bold leading-6 text-[#e8edf5]">
-            Your email app should have opened with everything below. If it
-            didn&apos;t, copy this and send it to{" "}
-            <a href={`mailto:${SERVICE_EMAIL}`} className="font-black text-[#7dd3fc]">
-              {SERVICE_EMAIL}
-            </a>
-            .
-          </p>
-          <textarea
-            ref={composedRef}
-            readOnly
-            value={composed}
-            rows={10}
-            aria-label="Your intake, ready to copy"
-            className="w-full rounded-xl border border-[#26324c] bg-[#141d2e] p-4 font-mono text-xs leading-5 text-[#94a3b8]"
-          />
-          <div className="mt-3 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={copyToClipboard}
-              className="rounded-full border border-[#26324c] bg-[#141d2e] px-6 py-2.5 text-sm font-black text-[#e8edf5] transition hover:border-[#38BDF8]"
-            >
-              Copy to clipboard
-            </button>
-            {copied === "ok" && (
-              <span role="status" className="text-sm font-bold text-[#34D399]">
-                Copied — paste it into an email to {SERVICE_EMAIL}
-              </span>
-            )}
-            {copied === "fail" && (
-              <span role="status" className="text-sm font-bold text-[#94a3b8]">
-                Couldn&apos;t reach your clipboard — the text is selected above, copy it manually.
-              </span>
-            )}
-          </div>
-        </div>
+      {status === "sent" && (
+        <p role="status" className="text-center text-sm font-bold text-[#34D399]">
+          Sent.
+        </p>
+      )}
+      {status === "mailto" && (
+        <p role="status" className="text-center text-sm font-semibold text-[#94a3b8]">
+          Your email app opened with the message. If it didn&apos;t, send it to{" "}
+          <a href={`mailto:${SERVICE_EMAIL}`} className="font-black text-[#7dd3fc]">
+            {SERVICE_EMAIL}
+          </a>
+          .
+        </p>
       )}
     </form>
   );

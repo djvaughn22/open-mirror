@@ -2,9 +2,9 @@
 // Talk-with-the-Owner service registry — single source of truth for
 // /talk-with-the-owner.
 //
-// One engagement, no menu, no prices. Scope and terms are set per project,
-// after the intake. When pricing or payment links are ready to go public,
-// they get added here — not sprinkled through the page.
+// Three tiers, no prices. Scope and terms are set per project, after the
+// intake. When pricing or payment links are ready to go public, they get
+// added here — not sprinkled through the page.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { STUDIO } from "./products";
@@ -15,48 +15,25 @@ export const SERVICE_EMAIL = STUDIO.email;
 export const ENGAGEMENT =
   "Consulting and digital product creation, directly with the owner of Open Mirror LLC — one engagement at a time. Scope and terms are set per project, before anything starts.";
 
-/** The quiet stat line under the hero. Every claim is verifiable on this site. */
-export const STATS = ["One owner", "Built in 40 days", "All of it live"];
-
-/** Intake current-stage choices — shared by the form and the email body. */
-export const INTAKE_STAGES = [
-  "Just an idea",
-  "Started, but stuck",
-  "Live, but unclear",
-  "Live and growing — needs direction",
-] as const;
-
-/** Who this page is for — the qualifying list under the hero. */
-export const FOR_LIST = [
-  "An idea you keep describing but haven't started",
-  "A half-built project that stalled",
-  "A business, ministry, or product that works but feels unclear",
-  "A website that doesn't say what it should",
-  "A creative concept you want to see as a real first version",
-];
-
-/** How it works, in order. Three steps — no discovery calls, no decks. */
-export const PROCESS = [
+/** The three ways to work. No prices — terms are set per project. */
+export const TIERS = [
   {
-    title: "Send the brief",
-    text: "The short form below is all it takes. No discovery call, no deck.",
+    name: "An hour of direction",
+    how: "One conversation about the idea or the obstacle. You get a straight answer and a clear next step.",
   },
   {
-    title: "Get a straight answer",
-    text: "A direct reply: whether it's a fit and what the right engagement looks like. If it isn't, you'll hear that plainly.",
+    name: "A written plan",
+    how: "The idea worked into a short, buildable plan — what to build, what to skip, and in what order.",
   },
   {
-    title: "Scope, then work",
-    text: "A short written scope — sized anywhere from an hour of direction to a product built end to end. Then the work starts.",
+    name: "A full build",
+    how: "The product designed, built, and put live, end to end.",
   },
 ];
 
-/** Quiet boundaries — three lines, no prices, no legal wall. */
-export const BOUNDARIES = [
-  "Every engagement starts with a written scope.",
-  "Work outside an agreed scope gets a new proposal.",
-  "Sending the intake starts a conversation — not a client relationship.",
-];
+/** The one boundary line shown under the tiers. */
+export const SCOPE_LINE =
+  "Scope and terms are set per project, in writing, before anything starts.";
 
 /**
  * Portfolio proof — a selective set, not the whole registry.
