@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "iDontCry | Open Mirror LLC",
   description:
-    "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free. Live at idontcry.com.",
+    "The family's playground — dad jokes, games, and a Dream Lab to dream up anything, free. Live at idontcry.com.",
 };
 
 export default function IDontCryPage() {
@@ -27,7 +27,7 @@ export default function IDontCryPage() {
           </h1>
           <p className="text-base font-semibold leading-7 text-slate-300 max-w-sm mx-auto">
             The family&rsquo;s digital playground. Dad jokes, mini games, and the Dream Lab —
-            dream up anything with AI, free, then step in the ring and build it for real.
+            dream up anything, free, then step in the ring and build it for real.
           </p>
           <a
             href="https://idontcry.com"

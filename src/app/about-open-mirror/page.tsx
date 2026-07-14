@@ -29,7 +29,7 @@ export default function AboutOpenMirror() {
       <div className="mx-auto max-w-2xl px-5 py-12">
 
         <section className="mb-12 text-center">
-          <div className="mb-5" style={{ fontSize: 30, letterSpacing: 6 }}>✝️ 🤖 🧰 🎵 🐶</div>
+          <div className="mb-5" style={{ fontSize: 30, letterSpacing: 6 }}>✝️ 🧩 🧰 🎵 🐶</div>
           <h1 className="mb-4 text-4xl font-black leading-tight sm:text-5xl">About Open Mirror</h1>
           <p className="mx-auto max-w-lg text-lg font-semibold leading-8 text-[#94a3b8]">
             Open Mirror begins with CrossHeartPray.
@@ -40,6 +40,9 @@ export default function AboutOpenMirror() {
           <h2 className="mb-3 text-xl font-black">The short version</h2>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
             {STUDIO.mission}
+          </p>
+          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+            {STUDIO.whyTheName}
           </p>
           <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
             CrossHeartPray is a Bible-first app built around daily Scripture, prayer, and
@@ -154,6 +157,13 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
+        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
+          <h2 className="mb-3 text-xl font-black">The founder</h2>
+          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+            {STUDIO.founderNote}
+          </p>
+        </section>
+
         {/* Quiet footnotes — kept small on purpose (DJ, 2026-07-11). */}
         <p className="mx-auto mb-4 max-w-lg text-center text-xs font-semibold leading-6 text-[#64748b]">
           This whole portfolio was built in about 40 days, on evenings and weekends. We mention
@@ -162,9 +172,9 @@ export default function AboutOpenMirror() {
           faster.
         </p>
         <p className="text-center text-xs font-semibold text-[#64748b]">
-          Contact:{" "}
-          <a href="mailto:ask@openmirrorllc.com" className="font-black text-[#7dd3fc]">
-            ask@openmirrorllc.com
+          Ideas, projects, collaborations, or something here you&apos;d like to talk about:{" "}
+          <a href={`mailto:${STUDIO.email}`} className="font-black text-[#7dd3fc]">
+            {STUDIO.email}
           </a>
         </p>
 

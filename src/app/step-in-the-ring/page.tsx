@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "StepInTheRing | Open Mirror LLC",
   description:
-    "Take any idea and turn it into a real first build. AI in your corner. Live at stepinthering.com.",
+    "Take any idea and turn it into a real first build. Seven questions, one fight plan. Live at stepinthering.com.",
 };
 
 export default function StepInTheRingPage() {
@@ -27,7 +27,7 @@ export default function StepInTheRingPage() {
           </h1>
           <p className="text-base font-semibold leading-7 text-slate-300 max-w-sm mx-auto">
             Take any idea — even one you dreamed up on iDontCry — and turn it into a
-            real first build. AI in your corner.
+            real first build. Seven questions, one fight plan.
           </p>
           <p className="mt-4 text-sm font-semibold text-slate-400 max-w-xs mx-auto">
             Kids should build with a parent or trusted adult.

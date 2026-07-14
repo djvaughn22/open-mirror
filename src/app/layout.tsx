@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { STUDIO } from "../lib/products";
 import OpenMirrorFooter from "../../packages/openmirror-ui/OpenMirrorFooter";
 import OpenMirrorNav from "../components/OpenMirrorNav";
 import VisualThemeProvider from "../components/VisualThemeProvider";
@@ -16,20 +17,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Studio identity comes from the product registry — one source of truth.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://openmirrorllc.com"),
+  metadataBase: new URL(STUDIO.url),
   title: {
-    default: "Open Mirror LLC — Independent Product Studio",
-    template: "%s | Open Mirror LLC",
+    default: `${STUDIO.name} — ${STUDIO.label}`,
+    template: `%s | ${STUDIO.name}`,
   },
-  description:
-    "Open Mirror LLC is an independent product studio creating useful, original products across faith, family, creativity, and play.",
+  description: STUDIO.mission,
   openGraph: {
-    siteName: "Open Mirror LLC",
-    title: "Open Mirror LLC — Independent Product Studio",
-    description:
-      "Open Mirror LLC is an independent product studio creating useful, original products across faith, family, creativity, and play.",
-    url: "https://openmirrorllc.com",
+    siteName: STUDIO.name,
+    title: `${STUDIO.name} — ${STUDIO.label}`,
+    description: STUDIO.mission,
+    url: STUDIO.url,
     type: "website",
   },
 };
@@ -48,7 +48,7 @@ export default function RootLayout({
         <VisualThemeProvider>
           <OpenMirrorNav />
           {children}
-          <OpenMirrorFooter siteName="Open Mirror LLC" tagline="Independent Product Studio" />
+          <OpenMirrorFooter siteName={STUDIO.name} tagline={STUDIO.label} />
         </VisualThemeProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-91WTHE5VQJ"

@@ -49,13 +49,19 @@ export type Product = {
 
 export const STUDIO = {
   name: "Open Mirror LLC",
-  label: "Independent Product Studio",
+  label: "Independent Creative Studio",
   mission:
-    "Open Mirror LLC is an independent product studio creating useful, original products across faith, family, creativity, and play.",
+    "Open Mirror LLC is an independent creative studio building useful, original products across faith, family, creativity, and play — all made to help people create.",
   missionShort:
     "Creating useful, original products across faith, family, creativity, and play.",
   supportLine:
     "Each product has its own purpose and identity, supported by one shared studio.",
+  /** The meaning of the name — stated once, on the About page. */
+  whyTheName:
+    "The name is the idea: take an honest look at yourself and ask, \"What do I want to create?\" Sometimes that's a business. Sometimes a website, a product, a game, or something that simply makes life better. Open Mirror is where those ideas get built.",
+  /** Quiet founder note — plain, no selling. */
+  founderNote:
+    "Open Mirror is built by one founder, DJ. Every product here comes from years of creating, experimenting, and refining — and from using these things in everyday life, family included.",
   url: "https://openmirrorllc.com",
   email: "ask@openmirrorllc.com",
 };
@@ -102,9 +108,9 @@ export const products: Product[] = [
     name: "iDontCry",
     emoji: "😂",
     description:
-      "The family's playground — dad jokes, games, and a Dream Lab to create anything with AI, free.",
+      "The family's playground — dad jokes, games, and a Dream Lab to dream up anything, free.",
     aboutText:
-      "Obviously. The family's digital playground. Dad jokes, mini games, and the Dream Lab — dream up anything with AI, free, then step in the ring and build it for real. Absolutely zero crying.",
+      "Obviously. The family's digital playground. Dad jokes, mini games, and the Dream Lab — dream up anything, free, then step in the ring and build it for real. Absolutely zero crying.",
     accent: "#38BDF8",
     href: "https://idontcry.com",
     status: "live",
@@ -114,9 +120,9 @@ export const products: Product[] = [
     name: "StepInTheRing",
     emoji: "🥊",
     description:
-      "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. AI in your corner.",
+      "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. Seven questions, one fight plan.",
     aboutText:
-      "Turn any idea into a real first plan — with AI as your corner. Free to start.",
+      "Turn any idea into a real first build — seven questions, one fight plan. Free to start.",
     accent: "#60A5FA",
     href: "https://stepinthering.com",
     status: "live",
