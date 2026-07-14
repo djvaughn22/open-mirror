@@ -2,9 +2,9 @@
 // Talk-with-the-Owner service registry — single source of truth for
 // /talk-with-the-owner.
 //
-// Three tiers, no prices. Scope and terms are set per project, after the
-// intake. When pricing or payment links are ready to go public, they get
-// added here — not sprinkled through the page.
+// Three tiers with public prices. Larger work is scoped per project, after
+// the intake. Payment links, when ready, get added here — not sprinkled
+// through the page.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { STUDIO } from "./products";
@@ -13,32 +13,64 @@ export const SERVICE_EMAIL = STUDIO.email;
 
 /** The engagement, in one line — used by the page, metadata, and OG tags. */
 export const ENGAGEMENT =
-  "Consulting and digital product creation, directly with the owner of Open Mirror LLC — one engagement at a time. Scope and terms are set per project, before anything starts.";
+  "Direct help from the owner of Open Mirror LLC: a clear production path from your idea or prototype to the real thing.";
 
-/** The three ways to work. No prices — terms are set per project. */
-export const TIERS = [
+/** What the owner helps you decide, shown as the qualifying list. */
+export const DECIDE_LIST = [
+  "What to build first",
+  "What to leave out",
+  "What tools you need",
+  "What could go wrong",
+  "The next real step",
+];
+
+/** The three kinds of help. Price is null when work is scoped per project. */
+export const TIERS: { name: string; price: string | null; how: string }[] = [
   {
-    name: "An hour of direction",
-    how: "One conversation. A straight answer and a clear next step.",
+    name: "Production Scope",
+    price: "$500",
+    how: "A clear, written path from your idea or prototype toward production. A scope and plan — not a full application build.",
   },
   {
-    name: "A written plan",
-    how: "What to build, what to skip, and in what order.",
+    name: "One-on-One Help",
+    price: "$250 an hour",
+    how: "Send the project and questions first. Use the hour to make decisions and solve problems.",
   },
   {
-    name: "A full build",
-    how: "Designed, built, and put live. End to end.",
+    name: "Larger Builds",
+    price: null,
+    how: "Some ideas need more. Larger work starts with a clear paid scope.",
   },
 ];
 
-/** The one boundary line shown under the tiers. */
-export const SCOPE_LINE =
-  "Scope and terms are set per project, in writing, before anything starts.";
+/** The one line under the tiers. */
+export const NO_MYSTERY =
+  "No fake promises. No mystery pricing before the idea is understood.";
+
+/** Availability, honestly. */
+export const AVAILABILITY =
+  "Open Mirror runs on evenings and weekends, alongside a full-time job. Availability is limited. Every accepted project gets direct owner involvement.";
+
+/** Intake select options. */
+export const HELP_TYPES = [
+  "Production Scope",
+  "One-on-One Help",
+  "Larger Build",
+  "Not sure yet",
+] as const;
+
+export const BUDGET_RANGES = [
+  "Under $500",
+  "$500 – $2,500",
+  "$2,500 – $10,000",
+  "$10,000+",
+  "Not sure yet",
+] as const;
 
 /**
- * Portfolio proof — a selective set, not the whole registry.
+ * Portfolio proof — one-line product statements.
  * `product` must match a `name` in src/lib/products.ts; the page joins them
- * so links, accents, and emoji stay in sync with the registry.
+ * so links, accents, emoji, and statuses stay in sync with the registry.
  */
 export const PROOF: { product: string; proves: string }[] = [
   {

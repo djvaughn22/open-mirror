@@ -6,7 +6,7 @@
 // prefilled — nothing pretends to have been sent.
 
 import { useRef, useState } from "react";
-import { SERVICE_EMAIL } from "../lib/services";
+import { BUDGET_RANGES, HELP_TYPES, SERVICE_EMAIL } from "../lib/services";
 
 // GA4 is loaded in the root layout; guard so the form works without it.
 // Events carry no intake text.
@@ -18,28 +18,46 @@ function track(event: string) {
 type Fields = {
   name: string;
   email: string;
-  creating: string;
+  building: string;
+  done: string;
+  stuck: string;
   link: string;
+  helpType: string;
+  budget: string;
+  notes: string;
 };
 
-const EMPTY: Fields = { name: "", email: "", creating: "", link: "" };
+const EMPTY: Fields = {
+  name: "",
+  email: "",
+  building: "",
+  done: "",
+  stuck: "",
+  link: "",
+  helpType: "",
+  budget: "",
+  notes: "",
+};
 
-const REQUIRED: (keyof Fields)[] = ["name", "email", "creating"];
+const REQUIRED: (keyof Fields)[] = ["name", "email", "building"];
 
 const LABELS: Record<keyof Fields, string> = {
   name: "Name",
   email: "Email",
-  creating: "What are you trying to create or improve?",
-  link: "Existing website or relevant link",
+  building: "What are you building?",
+  done: "What have you already done?",
+  stuck: "Where are you stuck?",
+  link: "Link to the project, if you have one",
+  helpType: "Type of help",
+  budget: "Budget range",
+  notes: "Anything else the owner should know?",
 };
 
 function buildEmailBody(f: Fields): string {
-  return [
-    `Name:\n${f.name.trim()}`,
-    `Email:\n${f.email.trim()}`,
-    `${LABELS.creating}\n${f.creating.trim()}`,
-    f.link.trim() ? `Link:\n${f.link.trim()}` : "",
-  ]
+  const line = (key: keyof Fields) =>
+    f[key].trim() ? `${LABELS[key]}\n${f[key].trim()}` : "";
+  return (["name", "email", "building", "done", "stuck", "link", "helpType", "budget", "notes"] as const)
+    .map(line)
     .filter(Boolean)
     .join("\n\n");
 }
@@ -88,12 +106,11 @@ export default function TalkWithOwnerIntake() {
       const res = await fetch("/api/intake", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: fields.name.trim(),
-          email: fields.email.trim(),
-          creating: fields.creating.trim(),
-          link: fields.link.trim(),
-        }),
+        body: JSON.stringify(
+          Object.fromEntries(
+            Object.entries(fields).map(([k, v]) => [k, v.trim()])
+          )
+        ),
       });
       if (res.ok) {
         track("intake_sent");
@@ -150,17 +167,43 @@ export default function TalkWithOwnerIntake() {
       </div>
 
       <div>
-        <label htmlFor="intake-creating" className={labelClass}>
-          {LABELS.creating} *
+        <label htmlFor="intake-building" className={labelClass}>
+          {LABELS.building} *
         </label>
         <textarea
-          id="intake-creating"
-          rows={4}
-          value={fields.creating}
-          onChange={(e) => set("creating", e.target.value)}
+          id="intake-building"
+          rows={3}
+          value={fields.building}
+          onChange={(e) => set("building", e.target.value)}
           className={inputClass}
         />
-        {err("creating")}
+        {err("building")}
+      </div>
+
+      <div>
+        <label htmlFor="intake-done" className={labelClass}>
+          {LABELS.done}
+        </label>
+        <textarea
+          id="intake-done"
+          rows={2}
+          value={fields.done}
+          onChange={(e) => set("done", e.target.value)}
+          className={inputClass}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="intake-stuck" className={labelClass}>
+          {LABELS.stuck}
+        </label>
+        <textarea
+          id="intake-stuck"
+          rows={2}
+          value={fields.stuck}
+          onChange={(e) => set("stuck", e.target.value)}
+          className={inputClass}
+        />
       </div>
 
       <div>
@@ -173,6 +216,58 @@ export default function TalkWithOwnerIntake() {
           placeholder="https://"
           value={fields.link}
           onChange={(e) => set("link", e.target.value)}
+          className={inputClass}
+        />
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="intake-helpType" className={labelClass}>
+            {LABELS.helpType}
+          </label>
+          <select
+            id="intake-helpType"
+            value={fields.helpType}
+            onChange={(e) => set("helpType", e.target.value)}
+            className={inputClass}
+          >
+            <option value="">Choose one…</option>
+            {HELP_TYPES.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="intake-budget" className={labelClass}>
+            {LABELS.budget}
+          </label>
+          <select
+            id="intake-budget"
+            value={fields.budget}
+            onChange={(e) => set("budget", e.target.value)}
+            className={inputClass}
+          >
+            <option value="">Choose one…</option>
+            {BUDGET_RANGES.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="intake-notes" className={labelClass}>
+          {LABELS.notes}
+        </label>
+        <textarea
+          id="intake-notes"
+          rows={2}
+          value={fields.notes}
+          onChange={(e) => set("notes", e.target.value)}
           className={inputClass}
         />
       </div>

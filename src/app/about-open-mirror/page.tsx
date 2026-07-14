@@ -1,101 +1,133 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BOTTOM_PIN_LABEL, bottomPinnedProducts, productsByStatus, STATUS_LABEL, STATUS_ORDER, STUDIO } from "../../lib/products";
+import { OWNER, ownerHasPublicProfile } from "../../lib/owner";
+import { STUDIO } from "../../lib/products";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
-  description: STUDIO.mission,
+  description: "This mirror is for you. What do you want to create?",
   alternates: { canonical: "/about-open-mirror" },
 };
-
-type FamilyItem = { emoji: string; name: string; accent: string; text: string; href: string; status?: string };
-
-// Family list comes from the product registry (src/lib/products.ts).
-// Foundation and Live carry their status in the group label; the rest get a badge.
-const groups: { label: string; items: FamilyItem[] }[] = STATUS_ORDER.map((status) => ({
-  label: STATUS_LABEL[status],
-  items: productsByStatus(status).map((p) => ({
-    emoji: p.emoji,
-    name: p.href.startsWith("http") ? `${p.name}.com` : p.name,
-    accent: p.accent,
-    text: p.aboutText ?? p.description,
-    href: p.href,
-    status: status === "foundation" || status === "live" ? undefined : STATUS_LABEL[status],
-  })),
-})).filter((g) => g.items.length > 0);
 
 export default function AboutOpenMirror() {
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
-      <div className="mx-auto max-w-2xl px-5 py-12">
+      <div className="mx-auto max-w-2xl px-5 py-14">
 
-        <section className="mb-12 text-center">
-          <div className="mb-5" style={{ fontSize: 30, letterSpacing: 6 }}>✝️ 🧩 🧰 🎵 🐶</div>
-          <h1 className="mb-4 text-4xl font-black leading-tight sm:text-5xl">About Open Mirror</h1>
-          <p className="mx-auto max-w-lg text-lg font-semibold leading-8 text-[#94a3b8]">
-            Open Mirror begins with CrossHeartPray.
+        {/* The idea */}
+        <section className="mb-14 text-center">
+          <h1 className="mb-5 text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl">
+            This mirror is for you.
+          </h1>
+          <p className="text-xl font-black text-[#7dd3fc]">
+            What do you want to create?
           </p>
         </section>
 
-        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-          <h2 className="mb-3 text-xl font-black">The short version</h2>
-          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            {STUDIO.mission}
+        <section className="mb-14 text-center">
+          <p className="mx-auto max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
+            Open Mirror is where ideas become things.
+            <br />
+            You do not need to know every step.
+            <br />
+            You need to sit down and start.
           </p>
-          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            {STUDIO.whyTheName}
+          <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
+            Bring your idea, your brain, your time, and your commitment.
+            <br />
+            Technology makes building easier than ever.
           </p>
-          <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            CrossHeartPray is a Bible-first app built around daily Scripture, prayer, and
-            consistency. Every other product grew from there.
+          <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-8 text-[#e8edf5]">
+            Start with what you know. Learn the next step.
+            <br />
+            Fix what does not work. Keep going.
+          </p>
+          <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
+            That is how Open Mirror was built.
+          </p>
+        </section>
+
+        {/* How it is built */}
+        <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
+          <h2 className="mb-3 text-xl font-black">Built after work.</h2>
+          <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
+            Open Mirror is an independent evenings-and-weekends company, built
+            on personal time alongside a full-time job. It is separate from
+            that job and does not represent the owner&apos;s employer.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            <strong className="text-[#e8edf5]">CrossHeartPray is the anchor. Open Mirror is the workshop.</strong>
+            Every project builds more skill, judgment, and experience. That
+            experience can help someone else move faster.
           </p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="mb-5 text-xl font-black">Every site in the hub</h2>
-          {groups.map((g) => (
-          <div key={g.label} className="mb-6">
-            <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{g.label}</p>
-          <div className="flex flex-col gap-3">
-            {g.items.map((f) => (
-              <a
-                key={f.name}
-                href={f.href}
-                {...(f.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
-              >
-                <span className="text-2xl">{f.emoji}</span>
-                <div>
-                  <h3 className="text-base font-black">
-                    {f.name.endsWith(".com") ? (
-                      <>
-                        {f.name.slice(0, -4)}
-                        <span style={{ color: f.accent }}>.com</span>
-                      </>
-                    ) : (
-                      f.name
-                    )}
-                  </h3>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">{f.text}</p>
-                </div>
-                {f.status ? (
-                  <span className="ml-auto shrink-0 self-start rounded-full border px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-[0.12em]" style={{ color: f.accent, borderColor: `${f.accent}55` }}>{f.status}</span>
-                ) : null}
-              </a>
-            ))}
+        {/* Optional public profile — renders nothing while OWNER is anonymous. */}
+        {ownerHasPublicProfile() && (
+          <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
+            <h2 className="mb-3 text-xl font-black">The owner</h2>
+            {OWNER.photoUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={OWNER.photoUrl}
+                alt={OWNER.publicName ?? "The owner of Open Mirror LLC"}
+                className="mb-4 h-24 w-24 rounded-full object-cover"
+              />
+            )}
+            {OWNER.publicName && (
+              <p className="mb-2 text-base font-black">{OWNER.publicName}</p>
+            )}
+            {OWNER.bio && (
+              <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
+                {OWNER.bio}
+              </p>
+            )}
+            {OWNER.links.length > 0 && (
+              <p className="text-sm font-semibold text-[#94a3b8]">
+                {OWNER.links.map((l, i) => (
+                  <span key={l.href}>
+                    {i > 0 && " · "}
+                    <a href={l.href} className="font-black text-[#7dd3fc]">
+                      {l.label}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            )}
+          </section>
+        )}
+
+        {/* Where to begin */}
+        <section className="mb-14 text-center">
+          <h2 className="mb-4 text-2xl font-black tracking-tight">
+            Your idea. Your move.
+          </h2>
+          <p className="mx-auto mb-7 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
+            Start building in StepInTheRing. Keep going on your own. Or talk
+            with the owner when you need help getting from an idea to
+            production.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="https://stepinthering.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
+            >
+              Start Building
+            </a>
+            <Link
+              href="/talk-with-the-owner"
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-base font-black text-[#e8edf5] transition hover:border-[#38BDF8]"
+            >
+              Talk with the Owner
+            </Link>
           </div>
-          </div>
-          ))}
         </section>
 
+        {/* Free resources & credits — attribution stays; some content is used
+            with permission. */}
         <section className="mb-10">
           <h2 className="mb-2 text-xl font-black">Free resources</h2>
-          <p className="mb-4 text-sm font-semibold text-[#94a3b8]">
-            What we share, and the free tools and data our sites are built on — credit where credit is due.
-          </p>
           <div className="flex flex-col gap-3">
             <a
               href="/resources/52-week-bible-reading-plan.pdf"
@@ -110,7 +142,10 @@ export default function AboutOpenMirror() {
               </div>
             </a>
           </div>
-          <div className="mt-4 flex flex-col gap-2">
+          <p className="mb-3 mt-6 text-sm font-black text-[#e8edf5]">
+            Credit where credit is due
+          </p>
+          <div className="flex flex-col gap-2">
             {[
               { name: "52-Week Bible Reading Plan", credit: "© 1995–2009 Michael Coley, Bible-Reading.com — used with permission (CrossHeartPray)", href: "http://www.bible-reading.com" },
               { name: "Life Essentials · Bible Principles", credit: "Dr. Gene Getz / B&H Publishing — principles & official videos (CrossHeartPray, TheDJCares)", href: "https://bibleprinciples.org" },
@@ -134,51 +169,8 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
-        <section className="mb-10">
-          <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">{BOTTOM_PIN_LABEL}</p>
-          <div className="flex flex-col gap-3">
-            {bottomPinnedProducts().map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
-              >
-                <span className="text-2xl">{p.emoji}</span>
-                <div>
-                  <h3 className="text-base font-black">
-                    {p.name}
-                    <span style={{ color: p.accent }}>.com</span>
-                  </h3>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">{p.aboutText ?? p.description}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-          <h2 className="mb-3 text-xl font-black">The owner</h2>
-          <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
-            {STUDIO.ownerNote}
-          </p>
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            You can also talk with the owner directly about your own idea or
-            project:{" "}
-            <Link href="/talk-with-the-owner" className="font-black text-[#7dd3fc]">
-              Talk with the Owner →
-            </Link>
-          </p>
-        </section>
-
-        {/* Quiet footnotes — kept small on purpose (DJ, 2026-07-11). */}
-        <p className="mx-auto mb-4 max-w-lg text-center text-xs font-semibold leading-6 text-[#64748b]">
-          Everything here went live in about 40 days, on evenings and weekends. The point
-          isn&apos;t speed — it&apos;s the process: every build makes the next one faster.
-        </p>
         <p className="text-center text-xs font-semibold text-[#64748b]">
-          Ideas, projects, collaborations, or something here you&apos;d like to talk about:{" "}
+          {STUDIO.name} ·{" "}
           <a href={`mailto:${STUDIO.email}`} className="font-black text-[#7dd3fc]">
             {STUDIO.email}
           </a>
