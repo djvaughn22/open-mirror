@@ -19,15 +19,15 @@ export const ENGAGEMENT =
 export const TIERS = [
   {
     name: "An hour of direction",
-    how: "One conversation about the idea or the obstacle. You get a straight answer and a clear next step.",
+    how: "One conversation. A straight answer and a clear next step.",
   },
   {
     name: "A written plan",
-    how: "The idea worked into a short, buildable plan — what to build, what to skip, and in what order.",
+    how: "What to build, what to skip, and in what order.",
   },
   {
     name: "A full build",
-    how: "The product designed, built, and put live, end to end.",
+    how: "Designed, built, and put live. End to end.",
   },
 ];
 
@@ -42,33 +42,28 @@ export const SCOPE_LINE =
  */
 export const PROOF: { product: string; proves: string }[] = [
   {
-    product: "CrossHeartPray",
-    proves:
-      "Mission-driven product thinking — a daily faith routine built as one coherent product, not a pile of features.",
+    product: "StepInTheRing",
+    proves: "An idea goes in. A buildable plan comes out.",
   },
   {
     product: "WatchedNotWatched",
     proves:
-      "Consumer product design — a full watch-tracking product with ranking boards and personal picks, no account required.",
+      "Everything you've ever watched, on one board that learns what to hand you next.",
   },
   {
     product: "OpenDoku",
-    proves:
-      "Reusable engines — one puzzle engine shipping multiple games (SlopeDoku, SurfDoku, MineDoku) instead of one-off builds.",
-  },
-  {
-    product: "StepInTheRing",
-    proves:
-      "Idea to first build — the exact process of turning a raw idea into a scoped, buildable plan, as a working product.",
+    proves: "One puzzle engine. Every new game ships faster than the last.",
   },
   {
     product: "DontCloneMeTom",
-    proves:
-      "Creative concept development — a rescue-dog campaign with real adoptable dogs on the page, from a single odd idea.",
+    proves: "A joke about a cloned dog that gets real dogs adopted.",
   },
   {
     product: "TheDJCares",
-    proves:
-      "Curation as a product — hand-picked music, sermons, and encouragement, organized so people actually use it.",
+    proves: "Music, sermons, and encouragement, picked by hand.",
+  },
+  {
+    product: "CrossHeartPray",
+    proves: "A complete daily faith routine in one place.",
   },
 ];
