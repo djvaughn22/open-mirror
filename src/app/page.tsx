@@ -103,7 +103,7 @@ export default function OpenMirrorHub() {
           <p style={{ fontSize: 14, fontWeight: 700, color: "#93C5FD", margin: "0 0 10px", letterSpacing: "0.02em", textTransform: "uppercase" }}>
             {STUDIO.label}
           </p>
-          <p style={{ fontSize: 15, fontWeight: 600, color: sub, margin: "0 auto", maxWidth: 440, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, fontWeight: 600, color: sub, margin: "0 auto", maxWidth: 440, lineHeight: 1.6, whiteSpace: "pre-line" }}>
             {STUDIO.missionShort}
           </p>
         </header>

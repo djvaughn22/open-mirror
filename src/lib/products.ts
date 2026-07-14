@@ -53,7 +53,7 @@ export const STUDIO = {
   mission:
     "Open Mirror LLC is an independent creative studio building useful, original products across faith, family, creativity, and play — all made to help people create.",
   missionShort:
-    "Creating useful, original products across faith, family, creativity, and play.",
+    "Creating useful, original products across\nfaith, family, creativity, and play.",
   supportLine:
     "Each product has its own purpose and identity, supported by one shared studio.",
   /** The meaning of the name — stated once, on the About page. */
