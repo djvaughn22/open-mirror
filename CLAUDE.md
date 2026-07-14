@@ -25,6 +25,11 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   yourself, ask "what do I want to create?", sit down, start building. Keep it
   subtle and in-flow: never write mirror/mission language onto pages, and never
   tell readers what they're thinking or feeling.
+- **Locked mission haikus (Start / Improve / Get it live):** verbatim in
+  `OPEN_MIRROR_PORTFOLIO_DOCTRINE.md` with the messaging alignment matrix.
+  They appear ONLY on the hub's `/about-open-mirror` and (third haiku) on
+  StepInTheRing's fight-plan result. Never rewrite them; never paste them
+  onto other sites.
 - **"Owner," never "founder":** DJ is "the owner of Open Mirror LLC." No
   founder/visionary/CEO framing in public copy, and no personal name on public
   pages. (Strong's dictionary data is exempt external content.)

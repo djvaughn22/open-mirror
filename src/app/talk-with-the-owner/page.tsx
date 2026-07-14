@@ -71,14 +71,14 @@ export default function TalkWithTheOwner() {
             Open Mirror LLC
           </p>
           <h1 className="mb-5 text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl">
-            Talk with the owner.
+            Bring me what you built.
           </h1>
           <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8]">
-            You have an idea. Maybe you already started building it.
+            You started. You made something.
             <br />
-            Now you are stuck between the idea and the real thing.
+            Now you need the next real step.
             <br />
-            That is where the owner of Open Mirror can help.
+            Talk directly with the owner of Open Mirror LLC.
           </p>
           <a
             href="#intake"

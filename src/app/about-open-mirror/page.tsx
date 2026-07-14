@@ -5,7 +5,8 @@ import { STUDIO } from "../../lib/products";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
-  description: "This mirror is for you. What do you want to create?",
+  description:
+    "This mirror is for you. What do you want to create? Start. Improve. Ship.",
   alternates: { canonical: "/about-open-mirror" },
 };
 
@@ -24,26 +25,65 @@ export default function AboutOpenMirror() {
           </p>
         </section>
 
+        {/* The three moves — locked haikus (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
+            Never rewrite their words. */}
         <section className="mb-14 text-center">
-          <p className="mx-auto max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
-            Open Mirror is where ideas become things.
-            <br />
-            You do not need to know every step.
-            <br />
-            You need to sit down and start.
+          <p className="mb-10 text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
+            Open Mirror works in three moves
           </p>
-          <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
-            Bring your idea, your brain, your time, and your commitment.
+
+          <h2 className="mb-4 text-2xl font-black tracking-tight text-[#7dd3fc]">
+            Start
+          </h2>
+          <p className="text-lg font-black leading-9 text-[#e8edf5]">
+            Pick one thing to build
             <br />
-            Technology makes building easier than ever.
-          </p>
-          <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-8 text-[#e8edf5]">
-            Start with what you know. Learn the next step.
+            Start before the plan is done
             <br />
-            Fix what does not work. Keep going.
+            Make the first version
           </p>
-          <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
-            That is how Open Mirror was built.
+          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
+            Every project here began before everything was known.
+          </p>
+
+          <h2 className="mb-4 mt-12 text-2xl font-black tracking-tight text-[#7dd3fc]">
+            Improve
+          </h2>
+          <p className="text-lg font-black leading-9 text-[#e8edf5]">
+            Build it, test it, learn
+            <br />
+            Keep what works and cut the rest
+            <br />
+            Then build it better
+          </p>
+          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
+            The whole portfolio is built this way — use it, fix it, build it
+            better.
+          </p>
+
+          <h2 className="mb-4 mt-12 text-2xl font-black tracking-tight text-[#7dd3fc]">
+            Get it live
+          </h2>
+          <p className="text-lg font-black leading-9 text-[#e8edf5]">
+            Bring me what you built
+            <br />
+            I will find the real next step
+            <br />
+            Then ship something real
+          </p>
+          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
+            Start in StepInTheRing. When production is the next step, the
+            owner can help.
+          </p>
+
+          <p className="mx-auto mt-12 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
+            You bring the idea, the time, and the judgment.
+            <br />
+            Modern tools make the path faster. The work still matters.
+            <br />
+            <span className="font-black text-[#e8edf5]">
+              You can start building too.
+            </span>
           </p>
         </section>
 

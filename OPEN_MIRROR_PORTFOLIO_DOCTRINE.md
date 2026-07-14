@@ -1,5 +1,55 @@
 # Open Mirror LLC Portfolio Doctrine
 
+## The locked mission (do not rewrite)
+
+Open Mirror is built around three moves. Each is an actual 5–7–5 haiku. Their
+words are LOCKED — never rewrite, "improve," or paraphrase them where they
+appear. They live publicly on the hub's `/about-open-mirror` page; the third
+also closes StepInTheRing's fight-plan result.
+
+**Start**
+
+> Pick one thing to build
+> Start before the plan is done
+> Make the first version
+
+**Improve**
+
+> Build it, test it, learn
+> Keep what works and cut the rest
+> Then build it better
+
+**Get it live**
+
+> Bring me what you built
+> I will find the real next step
+> Then ship something real
+
+Meaning: **Start. Improve. Ship.** That is the operating philosophy. It stays
+background everywhere else — the haikus do NOT get pasted across satellite
+sites, footers, or game pages.
+
+## Messaging alignment matrix (final — Jul 14 2026)
+
+One company, distinct projects. Open Mirror is the quiet thread, never the
+main character inside a project. This table is the reference so future
+sessions do not re-litigate the mission.
+
+| Project | Core purpose | Primary visitor action | Open Mirror connection | Commercial boundary | Copy changed (Jul 14 2026 pass) |
+|---|---|---|---|---|---|
+| Open Mirror hub | Company doorway; honest portfolio | Browse projects; find StepInTheRing | Is Open Mirror | Talk with the Owner is the only consulting surface | About rebuilt around the three haikus; Talk opens "Bring me what you built." |
+| StepInTheRing | Turn one idea into a first build plan | Answer seven questions, get the fight plan | Kicker link + shared footer | Free output stays complete; owner line only on the result | Result-page production line now uses the Get-it-live haiku |
+| CrossHeartPray | Scripture, prayer, daily faith routine | Daily Hope / reading plan | Quiet top bar + footer link only | NO commercial/consulting language, ever | None (verified untouched) |
+| TheDJCares | Gospel-first curated encouragement | Listen / watch curated content | Shared footer + About link only | No consulting pitch in the experience | None |
+| DontCloneMeTom | Get real adoptable dogs adopted | Meet the dogs | Shared footer only | Rescue traffic is never a funnel | None |
+| iDontCry | Family creativity and laughs | Play; Dream Lab → StepInTheRing | Shared footer; Ring bridge is creative, not commercial | Nothing consulting-shaped aimed at kids | None |
+| WatchedNotWatched | Personal watch list + discovery | Thumb titles, work the board | Shared footer only | Never interrupt the watch-list flow | None |
+| OpenDoku + games | Puzzle games that feel like games | Play | Quiet footer + About page line | No business messaging in gameplay | None |
+| PleaseBeReady | Calm emergency prep | Work the checklists / gear links | Shared footer only | Honest statuses; no fake commerce | None |
+| WhatAmIAI | AI-usage self-reflection | Run a reflection | Shared footer only | Building status stays honest | None |
+| Fam/Friendbookagram | Parked private-feed concepts | (Exploring; not promoted) | Shared footer only | Placeholder-domain honesty stays | None |
+| Design Shop / engines | Creation infrastructure (in StepInTheRing) | Make → improve → export | Natural bridge to Ring + owner at production time | Not a consulting advertisement | None |
+
 Open Mirror LLC is an independent digital product studio that turns useful ideas into working digital products.
 
 The company is not defined by the number of websites it owns. Its core asset is the repeatable ability to:
