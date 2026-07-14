@@ -21,6 +21,25 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   the CrossHeartPray link. No word after About. That is the brand.
 - **Copy style:** DJ's words. Short, plain, human. Never wordy or AI-sounding.
   Faith stays only on CrossHeartPray + TheDJCares; every other site is secular.
+- **Mission (background, not copy):** Open Mirror helps people create — look at
+  yourself, ask "what do I want to create?", sit down, start building. Keep it
+  subtle and in-flow: never write mirror/mission language onto pages, and never
+  tell readers what they're thinking or feeling.
+- **"Owner," never "founder":** DJ is "the owner of Open Mirror LLC." No
+  founder/visionary/CEO framing in public copy, and no personal name on public
+  pages. (Strong's dictionary data is exempt external content.)
+- **Talk with the Owner:** the one consulting surface is the hub's
+  `/talk-with-the-owner`. Entry points: hub nav, one hub About line, and one
+  quiet line on Step In The Ring's fight-plan result. Satellites connect back
+  only via the shared quiet footer + family menu. Never popups, countdowns,
+  repeated CTAs, or pricing outside that page. StepInTheRing's free output
+  stays complete — DJ is optional, not required.
+- **Protected sites:** CrossHeartPray gets NO commercial or consulting
+  language, ever — its only Open Mirror connection is the quiet footer link,
+  and nothing sales-shaped goes near Scripture, prayer, or memorial content.
+  TheDJCares stays gospel-first (Open Mirror links in footer/About only).
+  DontCloneMeTom stays dog-first. iDontCry stays family-first — any
+  owner-contact path must be adult-facing.
 - **Deploys:** push to `main` = production deploy (Vercel, GitHub-connected).
   Batch related edits into one commit per repo. Exception: crossheartpray
   deploys by CLI (`npx vercel --prod`), not on push.

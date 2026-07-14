@@ -85,6 +85,6 @@ export const PROOF: { product: string; proves: string }[] = [
   {
     product: "PleaseBeReady",
     proves:
-      "Calm emergency prep, one step at a time. A shop of the exact gear is on the way.",
+      "Calm emergency prep, one step at a time. Every checklist lists the exact gear to get.",
   },
 ];
