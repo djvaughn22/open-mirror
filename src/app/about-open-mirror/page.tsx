@@ -174,10 +174,8 @@ export default function AboutOpenMirror() {
 
         {/* Quiet footnotes — kept small on purpose (DJ, 2026-07-11). */}
         <p className="mx-auto mb-4 max-w-lg text-center text-xs font-semibold leading-6 text-[#64748b]">
-          This whole portfolio was built in about 40 days, on evenings and weekends. We mention
-          that not for the speed, but for what made it possible: a process, and a set of tools
-          built along the way that are saved and reused — so every build makes the next one
-          faster.
+          Everything here went live in about 40 days, on evenings and weekends. The point
+          isn&apos;t speed — it&apos;s the process: every build makes the next one faster.
         </p>
         <p className="text-center text-xs font-semibold text-[#64748b]">
           Ideas, projects, collaborations, or something here you&apos;d like to talk about:{" "}

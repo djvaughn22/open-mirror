@@ -5,11 +5,11 @@
 // studio address, opens the visitor's mail app prefilled, and offers a
 // copy-to-clipboard fallback. Nothing pretends to have been "sent".
 
-import { useEffect, useRef, useState } from "react";
-import { INTAKE_STAGES, SERVICE_EMAIL, offers } from "../lib/services";
+import { useRef, useState } from "react";
+import { INTAKE_STAGES, SERVICE_EMAIL } from "../lib/services";
 
 // GA4 is loaded in the root layout; guard so the form works without it.
-// Events carry only the offer label — never the intake text.
+// Events carry no intake text.
 function track(event: string, params?: Record<string, string>) {
   const w = window as unknown as { gtag?: (...args: unknown[]) => void };
   if (typeof w.gtag === "function") w.gtag("event", event, params ?? {});
@@ -22,7 +22,6 @@ type Fields = {
   creating: string;
   stage: string;
   link: string;
-  offer: string;
   obstacle: string;
   outcome: string;
   deadline: string;
@@ -36,14 +35,13 @@ const EMPTY: Fields = {
   creating: "",
   stage: "",
   link: "",
-  offer: "",
   obstacle: "",
   outcome: "",
   deadline: "",
   heard: "",
 };
 
-const REQUIRED: (keyof Fields)[] = ["name", "email", "creating", "offer"];
+const REQUIRED: (keyof Fields)[] = ["name", "email", "creating"];
 
 const LABELS: Record<keyof Fields, string> = {
   name: "Name",
@@ -52,7 +50,6 @@ const LABELS: Record<keyof Fields, string> = {
   creating: "What are you trying to create or improve?",
   stage: "Current stage",
   link: "Existing website or relevant link",
-  offer: "Which offer interests you?",
   obstacle: "Biggest current obstacle",
   outcome: "What would a great outcome look like?",
   deadline: "Any relevant deadline",
@@ -71,7 +68,6 @@ function buildEmailBody(f: Fields): string {
     line("name"),
     line("email"),
     line("project"),
-    line("offer"),
     line("creating"),
     line("stage"),
     line("link"),
@@ -99,19 +95,6 @@ export default function WorkWithFounderIntake() {
   const [copied, setCopied] = useState<"ok" | "fail" | null>(null);
   const started = useRef(false);
   const composedRef = useRef<HTMLTextAreaElement | null>(null);
-
-  // Offer cards up the page carry data-offer buttons; clicking one preselects
-  // that offer here and jumps to the form. Keeps the offer section server-rendered.
-  useEffect(() => {
-    const onClick = (e: Event) => {
-      const el = (e.target as HTMLElement).closest<HTMLElement>("[data-offer]");
-      if (!el?.dataset.offer) return;
-      setFields((f) => ({ ...f, offer: el.dataset.offer! }));
-      track("select_offer", { offer: el.dataset.offer! });
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, []);
 
   function set(key: keyof Fields, value: string) {
     if (!started.current) {
@@ -143,17 +126,17 @@ export default function WorkWithFounderIntake() {
     if (!validate()) return;
     const body = buildEmailBody(fields);
     setComposed(body);
-    track("intake_email_opened", { offer: fields.offer });
-    const subject = `Work with the Founder — ${fields.offer} — ${fields.name.trim()}`;
+    track("intake_email_opened");
+    const subject = `Work with the Founder — ${fields.name.trim()}`;
     window.location.href = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   async function copyToClipboard() {
     if (!composed) return;
-    track("intake_copied", { offer: fields.offer });
+    track("intake_copied");
     try {
       await navigator.clipboard.writeText(
-        `To: ${SERVICE_EMAIL}\nSubject: Work with the Founder — ${fields.offer} — ${fields.name.trim()}\n\n${composed}`
+        `To: ${SERVICE_EMAIL}\nSubject: Work with the Founder — ${fields.name.trim()}\n\n${composed}`
       );
       setCopied("ok");
     } catch {
@@ -222,27 +205,6 @@ export default function WorkWithFounderIntake() {
           onChange={(e) => set("project", e.target.value)}
           className={inputClass}
         />
-      </div>
-
-      <div>
-        <label htmlFor="intake-offer" className={labelClass}>
-          {LABELS.offer} *
-        </label>
-        <select
-          id="intake-offer"
-          value={fields.offer}
-          onChange={(e) => set("offer", e.target.value)}
-          className={inputClass}
-        >
-          <option value="">Choose one…</option>
-          {offers.map((o) => (
-            <option key={o.id} value={o.name}>
-              {o.name} — {o.price}
-            </option>
-          ))}
-          <option value="Not sure yet">Not sure yet — tell me what fits</option>
-        </select>
-        {err("offer")}
       </div>
 
       <div>
