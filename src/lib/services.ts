@@ -70,4 +70,21 @@ export const PROOF: { product: string; proves: string }[] = [
     product: "CrossHeartPray",
     proves: "A complete daily faith routine in one place.",
   },
+  {
+    product: "WhatAmIAI",
+    proves: "Your own prompts, played back — how you actually use AI.",
+  },
+  {
+    product: "Fambookagram",
+    proves: "A private feed for your family. No ads, no strangers.",
+  },
+  {
+    product: "Friendbookagram",
+    proves: "A private, invite-only feed for your friends.",
+  },
+  {
+    product: "PleaseBeReady",
+    proves:
+      "Calm emergency prep, one step at a time. A shop of the exact gear is on the way.",
+  },
 ];

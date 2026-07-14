@@ -111,7 +111,7 @@ export default function TalkWithTheOwner() {
 
         {/* 4 — Portfolio proof */}
         <section className="mb-14">
-          <SectionLabel>Built here. Live now.</SectionLabel>
+          <SectionLabel>Built here.</SectionLabel>
           <div className="flex flex-col gap-3">
             {proof.map((p) => (
               <a
@@ -126,6 +126,11 @@ export default function TalkWithTheOwner() {
                   <h2 className="text-base font-black">
                     {p.name}
                     <span style={{ color: p.accent }}>.com</span>
+                    {p.status !== "live" && p.status !== "foundation" && (
+                      <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-[#64748b]">
+                        {p.status}
+                      </span>
+                    )}
                   </h2>
                   <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
                     {p.proves}
