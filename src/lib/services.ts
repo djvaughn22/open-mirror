@@ -55,6 +55,10 @@ export const PROOF: { product: string; proves: string }[] = [
     proves: "One puzzle engine. Every new game ships faster than the last.",
   },
   {
+    product: "iDontCry",
+    proves: "Where kids dream something up and start making it.",
+  },
+  {
     product: "DontCloneMeTom",
     proves: "A joke about a cloned dog that gets real dogs adopted.",
   },
