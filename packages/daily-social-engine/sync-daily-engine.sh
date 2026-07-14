@@ -11,6 +11,7 @@ TARGETS=(
   "$HOME/OpenMirror/crossheartpray:src/lib:src/components"
   "$HOME/DontCloneMeTom/dont-clone-me-tom:app/lib:app/components"
   "$HOME/TheDJCares/thedjcares:app/lib:app/components"
+  "$HOME/PleaseBeReady/pleasebeready:app/lib:app/components"
 )
 
 for target in "${TARGETS[@]}"; do
