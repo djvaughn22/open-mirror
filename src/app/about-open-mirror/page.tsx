@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BOTTOM_PIN_LABEL, bottomPinnedProducts, productsByStatus, STATUS_LABEL, STATUS_ORDER, STUDIO } from "../../lib/products";
 
 export const metadata: Metadata = {
@@ -159,8 +160,15 @@ export default function AboutOpenMirror() {
 
         <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">The founder</h2>
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+          <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
             {STUDIO.founderNote}
+          </p>
+          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+            You can also work with the founder directly on your own idea or
+            project:{" "}
+            <Link href="/work-with-the-founder" className="font-black text-[#7dd3fc]">
+              Work with the Founder →
+            </Link>
           </p>
         </section>
 

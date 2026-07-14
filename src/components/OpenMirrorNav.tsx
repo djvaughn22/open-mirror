@@ -28,6 +28,7 @@ const MENU: Item[] = [
   ...inProgressItems,
   { divider: true },
   { label: "About Open Mirror", href: "/about-open-mirror" },
+  { label: "Work with the Founder", href: "/work-with-the-founder" },
   { divider: true },
   ...bottomItems,
 ];

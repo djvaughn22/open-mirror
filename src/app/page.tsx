@@ -126,6 +126,19 @@ export default function OpenMirrorHub() {
           </div>
         )}
 
+        {/* Quiet close: the one place the homepage points at the service page.
+            Pricing and detail live only on /work-with-the-founder. */}
+        <div style={{ marginTop: 48, textAlign: "center", borderTop: `1px solid ${border}`, paddingTop: 36 }}>
+          <p style={{ fontSize: 15, fontWeight: 700, color: sub, margin: "0 auto 16px", maxWidth: 420, lineHeight: 1.6 }}>
+            Everything above started as an idea. Have one of your own?
+          </p>
+          {/* Class-based colors on purpose: the family override flattens
+              inline "#0C0C0C" styles, which would erase the accent here. */}
+          <a href="/work-with-the-founder" className="inline-block rounded-full bg-[#38BDF8] px-7 py-3 text-[15px] font-black text-[#0C0C0C] no-underline">
+            Work with the Founder →
+          </a>
+        </div>
+
       </div>
     </main>
   );
