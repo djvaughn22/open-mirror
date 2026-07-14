@@ -59,9 +59,9 @@ export const STUDIO = {
   /** The meaning of the name — stated once, on the About page. */
   whyTheName:
     "The name is the idea: take an honest look at yourself and ask, \"What do I want to create?\" Sometimes that's a business. Sometimes a website, a product, a game, or something that simply makes life better. Open Mirror is where those ideas get built.",
-  /** Quiet founder note — plain, no selling, no name, no résumé. */
-  founderNote:
-    "One founder builds everything here and uses it every day. If it isn't useful in real life, it doesn't ship.",
+  /** Quiet owner note — plain, no selling, no name, no résumé. */
+  ownerNote:
+    "One owner builds everything here and uses it every day. If it isn't useful in real life, it doesn't ship.",
   url: "https://openmirrorllc.com",
   email: "ask@openmirrorllc.com",
 };

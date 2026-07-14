@@ -1,6 +1,6 @@
 "use client";
 
-// Intake for /work-with-the-founder. There is no form backend in this repo, so this
+// Intake for /talk-with-the-owner. There is no form backend in this repo, so this
 // stays honest: it validates, builds a clean email addressed to the real
 // studio address, opens the visitor's mail app prefilled, and offers a
 // copy-to-clipboard fallback. Nothing pretends to have been "sent".
@@ -63,7 +63,7 @@ function buildEmailBody(f: Fields): string {
     return `${label}\n${f[key].trim()}\n`;
   };
   return [
-    "Work with the Founder — intake",
+    "Talk with the Owner — intake",
     "",
     line("name"),
     line("email"),
@@ -88,7 +88,7 @@ const inputClass =
   "w-full rounded-xl border border-[#26324c] bg-[#0b1220] px-4 py-3 text-sm font-semibold text-[#e8edf5] placeholder:text-[#64748b] focus:border-[#38BDF8]";
 const labelClass = "mb-1.5 block text-xs font-black uppercase tracking-wider text-[#94a3b8]";
 
-export default function WorkWithFounderIntake() {
+export default function TalkWithOwnerIntake() {
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [composed, setComposed] = useState<string | null>(null);
@@ -127,7 +127,7 @@ export default function WorkWithFounderIntake() {
     const body = buildEmailBody(fields);
     setComposed(body);
     track("intake_email_opened");
-    const subject = `Work with the Founder — ${fields.name.trim()}`;
+    const subject = `Talk with the Owner — ${fields.name.trim()}`;
     window.location.href = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
@@ -136,7 +136,7 @@ export default function WorkWithFounderIntake() {
     track("intake_copied");
     try {
       await navigator.clipboard.writeText(
-        `To: ${SERVICE_EMAIL}\nSubject: Work with the Founder — ${fields.name.trim()}\n\n${composed}`
+        `To: ${SERVICE_EMAIL}\nSubject: Talk with the Owner — ${fields.name.trim()}\n\n${composed}`
       );
       setCopied("ok");
     } catch {

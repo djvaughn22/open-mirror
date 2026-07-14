@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import WorkWithFounderIntake from "../../components/WorkWithFounderIntake";
+import TalkWithOwnerIntake from "../../components/TalkWithOwnerIntake";
 import { products } from "../../lib/products";
-import { BOUNDARIES, ENGAGEMENT, FOR_LIST, PROCESS, PROOF, SERVICE_EMAIL, STATS } from "../../lib/services";
+import { BOUNDARIES, ENGAGEMENT, FOR_LIST, PROCESS, PROOF, SERVICE_EMAIL } from "../../lib/services";
 
-const PAGE_TITLE = "Work With the Founder";
+const PAGE_TITLE = "Talk with the Owner";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: ENGAGEMENT,
-  alternates: { canonical: "/work-with-the-founder" },
+  alternates: { canonical: "/talk-with-the-owner" },
   openGraph: {
     title: `${PAGE_TITLE} | Open Mirror LLC`,
     description: ENGAGEMENT,
-    url: "/work-with-the-founder",
+    url: "/talk-with-the-owner",
     type: "website",
   },
   twitter: {
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Work With the Founder — Open Mirror LLC",
+  name: "Talk with the Owner — Open Mirror LLC",
   description: ENGAGEMENT,
-  url: "https://openmirrorllc.com/work-with-the-founder",
+  url: "https://openmirrorllc.com/talk-with-the-owner",
   email: SERVICE_EMAIL,
   brand: { "@type": "Organization", name: "Open Mirror LLC" },
 };
@@ -42,7 +42,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function WorkWithTheFounder() {
+export default function TalkWithTheOwner() {
   // Join proof picks with the product registry so names, links, accents, and
   // emoji stay in sync with the single source of truth.
   const proof = PROOF.flatMap(({ product, proves }) => {
@@ -63,9 +63,7 @@ export default function WorkWithTheFounder() {
             Open Mirror LLC
           </p>
           <h1 className="mb-5 text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl">
-            You bring the idea.
-            <br />
-            I make it real.
+            Talk with the Owner
           </h1>
           <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8]">
             Consulting and digital product creation, one engagement at a time —
@@ -77,20 +75,17 @@ export default function WorkWithTheFounder() {
           >
             Start the conversation →
           </a>
-          <p className="mt-9 text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748b]">
-            {STATS.join("  ·  ")}
-          </p>
         </section>
 
-        {/* 2 — What you're hiring */}
+        {/* 2 — What this is */}
         <section className="mb-16 border-y border-[#26324c] py-9 text-center">
           <p className="mx-auto max-w-lg text-[15px] font-semibold leading-8 text-[#94a3b8]">
-            <strong className="text-[#e8edf5]">What you&apos;re hiring is judgment.</strong>{" "}
-            Creative direction, simplification, prioritization, product thinking,
-            and a practical path from concept to launch. Not an agency. Not AI
-            consulting. One person, accountable, through Open Mirror LLC — and
-            one engagement at a time: while your project is on the bench,
-            it&apos;s the only one there.
+            One owner built everything on this site and uses it every day. Your
+            idea, your judgment, and your work are what bring a project to
+            life — this is help finding the practical path: what to build,
+            what to skip, and the next step toward production. Not an agency.
+            One person, accountable, through Open Mirror LLC, one engagement
+            at a time.
           </p>
         </section>
 
@@ -181,7 +176,7 @@ export default function WorkWithTheFounder() {
             Tell me what you&apos;re making
           </h2>
           <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 sm:p-7">
-            <WorkWithFounderIntake />
+            <TalkWithOwnerIntake />
           </div>
         </section>
 

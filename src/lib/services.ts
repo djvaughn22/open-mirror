@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Work-with-the-Founder service registry — single source of truth for
-// /work-with-the-founder.
+// Talk-with-the-Owner service registry — single source of truth for
+// /talk-with-the-owner.
 //
 // One engagement, no menu, no prices. Scope and terms are set per project,
 // after the intake. When pricing or payment links are ready to go public,
@@ -13,10 +13,10 @@ export const SERVICE_EMAIL = STUDIO.email;
 
 /** The engagement, in one line — used by the page, metadata, and OG tags. */
 export const ENGAGEMENT =
-  "Consulting and digital product creation, directly with the founder of Open Mirror — one engagement at a time. Scope and terms are set per project, before anything starts.";
+  "Consulting and digital product creation, directly with the owner of Open Mirror LLC — one engagement at a time. Scope and terms are set per project, before anything starts.";
 
 /** The quiet stat line under the hero. Every claim is verifiable on this site. */
-export const STATS = ["One founder", "Built in 40 days", "All of it live"];
+export const STATS = ["One owner", "Built in 40 days", "All of it live"];
 
 /** Intake current-stage choices — shared by the form and the email body. */
 export const INTAKE_STAGES = [
