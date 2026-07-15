@@ -28,16 +28,21 @@ export const CORE_MESSAGE_SHORT =
 export const PRIVACY_NOTE =
   "What you share here is only used to respond to your message. It isn't shared, sold, or added to a mailing list.";
 
+/** The one line above the small proof set. */
+export const PROOF_MESSAGE =
+  "Open Mirror builds and tests its own ideas first. Explore the work, or share what you're trying to create.";
+
 /**
- * Portfolio proof — one-line product statements.
+ * A restrained proof set — three representative products only, so the
+ * contact page never turns back into a second homepage. One meaningful,
+ * one playful, one still being built. CrossHeartPray is deliberately not
+ * here: it's a personal Foundation, not commercial proof. The full
+ * portfolio is one quiet link away (STUDIO.url).
+ *
  * `product` must match a `name` in src/lib/products.ts; the page joins them
  * so links, accents, emoji, and statuses stay in sync with the registry.
  */
 export const PROOF: { product: string; proves: string }[] = [
-  {
-    product: "StepInTheRing",
-    proves: "An idea goes in. A buildable plan comes out.",
-  },
   {
     product: "WatchedNotWatched",
     proves:
@@ -48,36 +53,7 @@ export const PROOF: { product: string; proves: string }[] = [
     proves: "One puzzle engine. Every new game ships faster than the last.",
   },
   {
-    product: "iDontCry",
-    proves: "Where kids dream something up and start making it.",
-  },
-  {
-    product: "DontCloneMeTom",
-    proves: "A joke about a cloned dog that gets real dogs adopted.",
-  },
-  {
-    product: "TheDJCares",
-    proves: "Music, sermons, and encouragement, picked by hand.",
-  },
-  {
-    product: "CrossHeartPray",
-    proves: "A complete daily faith routine in one place.",
-  },
-  {
     product: "WhatAmIAI",
     proves: "Your own prompts, played back — how you actually use AI.",
-  },
-  {
-    product: "Fambookagram",
-    proves: "A private feed for your family. No ads, no strangers.",
-  },
-  {
-    product: "Friendbookagram",
-    proves: "A private, invite-only feed for your friends.",
-  },
-  {
-    product: "PleaseBeReady",
-    proves:
-      "Calm emergency prep, one step at a time. Every checklist lists the exact gear to get.",
   },
 ];

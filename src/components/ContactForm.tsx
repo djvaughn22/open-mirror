@@ -63,6 +63,9 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "mailto">("idle");
   const started = useRef(false);
+  // Honeypot: real users never see or fill this; bots that fill every field
+  // will. Its value is sent as `company` and the server drops those quietly.
+  const honeypot = useRef<HTMLInputElement | null>(null);
 
   function set(key: keyof Fields, value: string) {
     if (!started.current) {
@@ -96,11 +99,12 @@ export default function ContactForm() {
       const res = await fetch("/api/intake", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-          Object.fromEntries(
+        body: JSON.stringify({
+          ...Object.fromEntries(
             Object.entries(fields).map(([k, v]) => [k, v.trim()])
-          )
-        ),
+          ),
+          company: honeypot.current?.value ?? "",
+        }),
       });
       if (res.ok) {
         track("intake_sent");
@@ -152,7 +156,21 @@ export default function ContactForm() {
   );
 
   return (
-    <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
+    <form onSubmit={onSubmit} noValidate className="relative flex flex-col gap-5">
+      {/* Honeypot — hidden from people, tempting to bots. Off-screen rather
+          than display:none so more bots still fill it. Never focusable. */}
+      <div aria-hidden className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="intake-company">Company (leave blank)</label>
+        <input
+          id="intake-company"
+          ref={honeypot}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-2">
         {textField("name", true)}
         {textField("email", true)}

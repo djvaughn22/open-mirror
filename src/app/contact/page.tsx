@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactForm from "../../components/ContactForm";
 import { products } from "../../lib/products";
+import { STUDIO } from "../../lib/products";
 import {
   CORE_MESSAGE,
   CORE_MESSAGE_SHORT,
@@ -8,6 +9,7 @@ import {
   PAGE_TITLE,
   PRIVACY_NOTE,
   PROOF,
+  PROOF_MESSAGE,
   SERVICE_EMAIL,
 } from "../../lib/services";
 
@@ -42,14 +44,6 @@ const structuredData = {
   publisher: { "@type": "Organization", name: "Open Mirror LLC" },
 };
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mb-4 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
-      {children}
-    </p>
-  );
-}
-
 export default function Contact() {
   // Join proof picks with the product registry so names, links, accents, and
   // emoji stay in sync with the single source of truth.
@@ -79,15 +73,9 @@ export default function Contact() {
           <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8] sm:hidden">
             {CORE_MESSAGE_SHORT}
           </p>
-          <a
-            href="#idea"
-            className="mt-8 inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
-          >
-            Share your idea
-          </a>
         </section>
 
-        {/* 2 — Form */}
+        {/* 2 — Form (the single primary action) */}
         <section id="idea" className="mb-6 scroll-mt-20">
           <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 sm:p-7">
             <ContactForm />
@@ -99,9 +87,12 @@ export default function Contact() {
           {PRIVACY_NOTE}
         </p>
 
-        {/* 4 — Quiet portfolio proof */}
-        <section className="mb-14">
-          <SectionLabel>Already live</SectionLabel>
+        {/* 4 — Restrained proof: three representative products, then one
+            quiet link to the full portfolio. Not a second homepage. */}
+        <section className="mb-14 border-t border-[#26324c] pt-10">
+          <p className="mx-auto mb-6 max-w-md text-center text-sm font-semibold leading-7 text-[#94a3b8]">
+            {PROOF_MESSAGE}
+          </p>
           <div className="flex flex-col gap-3">
             {proof.map((p) => (
               <a
@@ -129,6 +120,11 @@ export default function Contact() {
               </a>
             ))}
           </div>
+          <p className="mt-5 text-center text-sm font-bold">
+            <a href={STUDIO.url} className="text-[#7dd3fc]">
+              See everything Open Mirror has built →
+            </a>
+          </p>
         </section>
 
         <p className="text-center text-xs font-semibold text-[#64748b]">

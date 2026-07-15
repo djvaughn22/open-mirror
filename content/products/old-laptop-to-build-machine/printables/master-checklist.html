@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Checklist</title>
+<style>
+  :root { --ink:#1b2a38; --head:#123049; --accent:#0b6a80; --muted:#5a6b7a; --rule:#c3cfda; }
+  * { box-sizing:border-box; }
+  body { font-family: Georgia, "Times New Roman", serif; color:var(--ink); line-height:1.45; margin:0; }
+  .wrap { max-width: 720px; margin:0 auto; padding: 34px 30px 46px; }
+  h1,h2,.mark { font-family:"Segoe UI",Helvetica,Arial,sans-serif; color:var(--head); }
+  .mark { font-size:11px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-size:26px; margin:8px 0 2px; }
+  .sub { color:var(--muted); font-size:14px; margin:0 0 4px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--rule); padding-bottom:3px; margin:20px 0 6px; }
+  ul { list-style:none; padding:0; margin:6px 0; }
+  li { padding-left:26px; position:relative; margin:5px 0; font-size:13.5px; }
+  li::before { content:""; position:absolute; left:0; top:2px; width:14px; height:14px; border:1.5px solid var(--head); border-radius:3px; }
+  .cols { column-count: 2; column-gap: 28px; }
+  .foot { margin-top:22px; border-top:1px solid var(--rule); padding-top:10px; font-family:"Segoe UI",Helvetica,Arial,sans-serif; font-size:10px; color:var(--muted); }
+  @page { size: Letter; margin: 15mm; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="mark">Old Laptop to Build Machine</p>
+  <h1>Master Checklist</h1>
+  <p class="sub">Tick each item as you go. Nothing needs to happen in one sitting.</p>
+
+  <div class="cols">
+    <h2>Before you touch the laptop</h2>
+    <ul>
+      <li>Filled out the readiness worksheet</li>
+      <li>Backed up anything important, and confirmed it</li>
+      <li>Wrote down the Wi-Fi password</li>
+      <li>Have a USB stick, 8 GB+, to erase</li>
+      <li>Laptop plugged into power</li>
+    </ul>
+
+    <h2>Install Linux</h2>
+    <ul>
+      <li>Downloaded Linux Mint from the official site</li>
+      <li>Made a bootable USB stick (balenaEtcher)</li>
+      <li>Booted the laptop from the USB stick</li>
+      <li>Chose "erase and install" deliberately (or dual-boot)</li>
+      <li>Restarts into Linux Mint on its own</li>
+    </ul>
+
+    <h2>First boot</h2>
+    <ul>
+      <li>Connected to Wi-Fi or ethernet</li>
+      <li>Installed all updates, restarted</li>
+      <li>Set the screen to lock automatically</li>
+      <li>Opened a terminal</li>
+    </ul>
+
+    <h2>Development tools</h2>
+    <ul>
+      <li>Git installed</li>
+      <li>VS Code installed</li>
+      <li>Python installed</li>
+      <li>Node.js and npm installed</li>
+      <li>GitHub CLI (gh) installed</li>
+      <li>verify-setup.sh shows everything present</li>
+    </ul>
+
+    <h2>Git and GitHub</h2>
+    <ul>
+      <li>Created a free GitHub account</li>
+      <li>Set my name and email in Git</li>
+      <li>Signed in with gh auth login</li>
+    </ul>
+
+    <h2>First project</h2>
+    <ul>
+      <li>Made a project folder, opened it in VS Code</li>
+      <li>Built the Build Log</li>
+      <li>Ran it locally in a browser</li>
+      <li>Made a visible change</li>
+      <li>git init, first commit</li>
+      <li>Created the GitHub repo and pushed</li>
+    </ul>
+
+    <h2>Deployment</h2>
+    <ul>
+      <li>Turned on GitHub Pages</li>
+      <li>Visited the live URL — it works</li>
+      <li>Changed it, pushed, saw it update live</li>
+    </ul>
+
+    <h2>After that</h2>
+    <ul>
+      <li>Know where the code, folder, and URL are</li>
+      <li>Decided what to build next</li>
+    </ul>
+  </div>
+
+  <p class="foot">Old Laptop to Build Machine · An Open Mirror Playbook · openmirrorllc.com</p>
+</div>
+</body>
+</html>

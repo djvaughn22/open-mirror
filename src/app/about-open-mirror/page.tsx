@@ -24,9 +24,11 @@ export default function AboutOpenMirror() {
             What do you want to create?
           </p>
           <p className="mx-auto max-w-lg text-balance text-sm font-semibold leading-7 text-[#94a3b8]">
-            Open Mirror is a small independent studio. Everything it makes —
-            websites, games, tools — is live and free to use. One person
-            builds it all, evenings and weekends, and uses it every day.
+            Open Mirror is a small independent company. It builds useful ideas
+            and shares many of them free — websites, games, and tools you can
+            use right now. It also makes practical playbooks that help you
+            build something of your own. Limited direct help is available for
+            the right project, handled directly, evenings and weekends.
           </p>
         </section>
 
@@ -187,24 +189,16 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
-        {/* Legal disclaimer — official register, not sales copy. Keep it
-            small, at the bottom, and factual. */}
-        <section id="disclaimer" className="mb-8 scroll-mt-24 border-t border-[#26324c] pt-6">
-          <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#64748b]">
-            Disclaimer
-          </p>
-          <p className="text-pretty text-xs font-medium leading-6 text-[#64748b]">
-            Open Mirror LLC is an independent company, created and operated
-            entirely on personal time. It is not affiliated with, sponsored
-            by, or endorsed by its owner&apos;s employer, and its projects —
-            small consumer experiments built to learn — neither compete with
-            nor draw on that employer&apos;s business. Any apparent overlap
-            is unintentional; report it to{" "}
-            <a href={`mailto:${STUDIO.email}`} className="font-semibold text-[#94a3b8]">
-              {STUDIO.email}
-            </a>{" "}
-            and it will be corrected. The views expressed across its sites
-            are solely its own.
+        {/* Keep a small anchor here so existing #disclaimer deep links still
+            land, but the full legal text now lives on its own /disclaimer
+            page — off the main About copy. */}
+        <section id="disclaimer" className="mb-8 scroll-mt-24 border-t border-[#26324c] pt-6 text-center">
+          <p className="text-xs font-medium leading-6 text-[#64748b]">
+            Open Mirror LLC is a small independent company.{" "}
+            <Link href="/disclaimer" className="font-semibold text-[#94a3b8] underline">
+              Read the full disclaimer
+            </Link>
+            .
           </p>
         </section>
 

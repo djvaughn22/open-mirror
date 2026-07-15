@@ -1,0 +1,70 @@
+====================================================================
+  OLD LAPTOP TO BUILD MACHINE
+  An Open Mirror Playbook — Version 1.0 (July 2026)
+====================================================================
+
+Welcome. This file explains what to open, and in what order.
+
+--------------------------------------------------------------------
+START WITH THE GUIDE
+--------------------------------------------------------------------
+Open the main guide first. It's the whole journey, start to finish:
+
+    guide/old-laptop-to-build-machine.pdf     <- the designed guide
+                                                 (open this one)
+    guide/old-laptop-to-build-machine.html    <- same guide, opens
+                                                 in any web browser
+    guide/old-laptop-to-build-machine.md      <- same guide, plain
+                                                 text
+
+Pick whichever you like — they contain the same thing. The PDF is
+the nicest to read and print.
+
+--------------------------------------------------------------------
+KEEP THESE OPEN BESIDE YOU
+--------------------------------------------------------------------
+Quick lookups you'll reach for while following the guide:
+
+    references/terminal-reference.md
+    references/git-and-github-reference.md
+    references/troubleshooting-and-recovery.md
+
+Print-and-tick sheets:
+
+    printables/laptop-readiness-worksheet.pdf
+    printables/master-checklist.pdf
+    (HTML versions are in the same folder if you'd rather not print)
+
+--------------------------------------------------------------------
+WHEN THE GUIDE TELLS YOU TO
+--------------------------------------------------------------------
+    scripts/setup-dev-machine.sh   <- installs your dev tools
+                                       (Chapter 5). Read scripts/README
+                                       first. It asks before it changes
+                                       anything.
+    scripts/verify-setup.sh        <- checks what's installed. Changes
+                                       nothing. Safe to run any time.
+
+    first-project/                 <- the finished "Build Log" website
+                                       from Chapter 7, to compare your
+                                       own work against.
+
+--------------------------------------------------------------------
+THE FINE PRINT
+--------------------------------------------------------------------
+    LICENSE.txt    <- what you may do with these files
+    SUPPORT.txt    <- what this product does and doesn't help with
+    VERSION.txt    <- what's changed across versions
+
+--------------------------------------------------------------------
+IMPORTANT, BEFORE YOU INSTALL ANYTHING
+--------------------------------------------------------------------
+Installing Linux erases the laptop's drive. Chapter 2 of the guide
+shows how to back up anything you want to keep FIRST. Please don't
+skip it.
+
+Everything in this bundle is plain text, HTML, PDF, and shell
+scripts. You do not need any account or internet connection to read
+it. Enjoy the build.
+
+                                        openmirrorllc.com

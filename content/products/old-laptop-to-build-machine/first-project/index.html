@@ -7,16 +7,31 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>My Build Log</h1>
-    <p>A running log of what I've built, starting today.</p>
+  <main class="card">
+    <header class="head">
+      <h1>My Build Log</h1>
+      <p class="sub">A running record of what I build, starting today.</p>
+    </header>
 
-    <form id="log-form">
-      <input type="text" id="log-input" placeholder="What did you just do?" required>
+    <form id="log-form" class="entry-form">
+      <input
+        type="text"
+        id="log-input"
+        placeholder="What did you just do?"
+        aria-label="What did you just do?"
+        autocomplete="off"
+        required
+      >
       <button type="submit">Add entry</button>
     </form>
 
-    <ul id="log-list"></ul>
+    <p id="empty" class="empty">No entries yet. Add your first one above.</p>
+    <ol id="log-list" class="log-list"></ol>
+
+    <footer class="foot">
+      <span id="count">0 entries</span>
+      <span>Built with the Old Laptop to Build Machine playbook</span>
+    </footer>
   </main>
 
   <script src="script.js"></script>

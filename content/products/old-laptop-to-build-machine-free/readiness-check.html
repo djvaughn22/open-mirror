@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can Your Old Laptop Become a Build Machine?</title>
+<style>
+  :root {
+    --ink: #1b2a38; --head: #123049; --accent: #0b6a80; --muted: #5a6b7a;
+    --rule: #d3dce4; --warn-ink: #8f2f16; --warn-bg: #fbeee9; --warn-edge: #e0a48f;
+    --ok-ink: #0a5e46; --ok-bg: #eaf5ef; --ok-edge: #a6d3bf;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, "Times New Roman", serif; color: var(--ink); line-height: 1.55; margin: 0; background:#fff; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 40px 28px 60px; }
+  h1, h2, h3, .mark { font-family: "Segoe UI", Helvetica, Arial, sans-serif; color: var(--head); }
+  .mark { font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 32px; line-height: 1.1; margin: 12px 0 8px; }
+  .promise { font-size: 16px; color: var(--muted); margin: 0 0 8px; }
+  h2 { font-size: 19px; margin: 26px 0 6px; }
+  p { margin: 8px 0; }
+  ul { margin: 8px 0; padding-left: 22px; }
+  li { margin: 5px 0; }
+  a { color: var(--accent); }
+  .box { border-radius: 8px; padding: 13px 15px; margin: 16px 0; page-break-inside: avoid; }
+  .warn { background: var(--warn-bg); border: 1px solid var(--warn-edge); color: var(--warn-ink); }
+  .ok { background: var(--ok-bg); border: 1px solid var(--ok-edge); color: var(--ok-ink); }
+  .label { font-family:"Segoe UI",Helvetica,Arial,sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; display:block; margin-bottom: 3px; }
+  .check { list-style: none; padding: 0; margin: 10px 0; }
+  .check li { padding-left: 30px; position: relative; margin: 9px 0; font-size: 15px; }
+  .check li::before { content:""; position:absolute; left:0; top:2px; width:16px; height:16px; border:1.6px solid var(--head); border-radius:4px; }
+  .grid { display:flex; gap: 16px; flex-wrap: wrap; margin: 10px 0; }
+  .col { flex: 1; min-width: 220px; border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; }
+  .col h3 { margin: 0 0 4px; font-size: 14px; }
+  .col p { margin: 2px 0; font-size: 14px; color: var(--muted); }
+  .cta { border: 2px solid var(--accent); border-radius: 10px; padding: 16px 18px; margin: 22px 0 0; text-align:center; page-break-inside: avoid; }
+  .cta .u { font-family:"Segoe UI",Helvetica,Arial,sans-serif; font-weight:800; color: var(--accent); font-size: 15px; }
+  .foot { margin-top: 26px; border-top: 1px solid var(--rule); padding-top: 12px; font-family:"Segoe UI",Helvetica,Arial,sans-serif; font-size: 11px; color: var(--muted); text-align:center; }
+  .page-break { page-break-before: always; }
+  @media print { .wrap { max-width:none; padding: 0; } a { color: var(--accent); text-decoration: none; } }
+  @page { size: Letter; margin: 16mm 15mm 16mm; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="mark">A Free Readiness Check · Open Mirror</p>
+  <h1>Can your old laptop become a build machine?</h1>
+  <p class="promise">A five-minute check before you spend an afternoon on it.</p>
+
+  <p>That laptop in the drawer might be one free afternoon away from being a
+  real computer for building things — writing code, making small projects, and
+  putting a website on the internet. Or it might not be worth it. This quick
+  check tells you which, before you commit any time.</p>
+
+  <h2>The five-minute check</h2>
+  <p>If you can tick all six, your laptop is a good candidate:</p>
+  <ul class="check">
+    <li>It <strong>powers on and starts up</strong> reliably, and holds a charge.</li>
+    <li>The <strong>screen, keyboard, and trackpad</strong> all work (or you
+      have an external one to plug in).</li>
+    <li>It has at least <strong>2&nbsp;GB of RAM</strong> (4&nbsp;GB or more is
+      much nicer).</li>
+    <li>It has about <strong>20&nbsp;GB of free storage</strong>.</li>
+    <li>You have a <strong>USB flash drive, 8&nbsp;GB or larger</strong>, you
+      don't mind erasing.</li>
+    <li>You have <strong>internet</strong> and a couple of hours (you can split
+      it up).</li>
+  </ul>
+
+  <h2>Practical hardware requirements</h2>
+  <div class="grid">
+    <div class="col">
+      <h3>Minimum</h3>
+      <p>2&nbsp;GB RAM</p>
+      <p>20&nbsp;GB storage</p>
+      <p>Powers on, parts work</p>
+    </div>
+    <div class="col">
+      <h3>Comfortable</h3>
+      <p>4–8&nbsp;GB RAM</p>
+      <p>An SSD (faster) helps</p>
+      <p>Any laptop from the last ~10 years</p>
+    </div>
+  </div>
+  <p style="font-size:14px; color:var(--muted);">Age matters less than most
+  people expect — Linux runs well on machines that current Windows or macOS
+  have left behind.</p>
+
+  <div class="box warn">
+    <span class="label">One important warning</span>
+    <p>The full process installs a fresh operating system, which <strong>erases
+    everything currently on the laptop</strong>. Anything you want to keep must
+    be backed up somewhere else first. The full guide walks through exactly how
+    — but know this going in.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>Clear stop signs</h2>
+  <p>Skip it (or fix these first) if:</p>
+  <ul>
+    <li>The laptop <strong>won't power on</strong>, won't charge, or the screen
+      stays black — that's a hardware fault, and installing Linux won't fix it.</li>
+    <li>You <strong>need what's on it</strong> and have nowhere to back it up
+      yet. Sort the backup out first.</li>
+    <li>It's the <strong>only computer you rely on daily</strong> and you can't
+      risk changing it. Use a spare instead.</li>
+    <li>You want a phone-style, zero-effort setup. This is hands-on and takes a
+      couple of focused hours.</li>
+  </ul>
+
+  <h2>What the full process gets you</h2>
+  <p>Following the complete walkthrough, you finish with:</p>
+  <ul class="check">
+    <li>A laptop running <strong>Linux</strong>, updated and secured.</li>
+    <li>The tools developers use — a code editor, <strong>Git</strong>,
+      Python, Node.js — installed and working.</li>
+    <li>A small <strong>website you built by hand</strong>.</li>
+    <li>That website <strong>live on the internet</strong>, at a real address
+      you can share.</li>
+    <li>A clear idea of <strong>what to build next</strong>.</li>
+  </ul>
+
+  <div class="box ok">
+    <span class="label">The honest version</span>
+    <p>This won't fix a broken laptop, and it isn't a shortcut to a job or an
+    income. It's a genuine, complete path from "I have an old laptop" to "I have
+    a working computer with a live project on it." That's worth a lot on its
+    own.</p>
+  </div>
+
+  <div class="cta">
+    <p class="u">Passed the check? The full step-by-step playbook is here:</p>
+    <p style="margin:6px 0 0; font-size:15px;">openmirrorllc.com/products/old-laptop-to-build-machine</p>
+  </div>
+
+  <p class="foot">Can Your Old Laptop Become a Build Machine? · A free readiness
+  check from Open Mirror LLC · openmirrorllc.com · Free to share, unchanged.</p>
+
+</div>
+</body>
+</html>

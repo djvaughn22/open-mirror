@@ -1,0 +1,38 @@
+OLD LAPTOP TO BUILD MACHINE — SUPPORT & SCOPE
+Version 1.0 · An Open Mirror Playbook · openmirrorllc.com
+
+WHAT THIS PRODUCT HELPS YOU DO
+- Check whether an old laptop can become a build machine.
+- Back up what's on it safely.
+- Install Linux Mint 22 (Cinnamon, or Xfce for older hardware).
+- Set up a beginner development toolset: Git, VS Code, Python, Node.js, npm,
+  and the GitHub CLI.
+- Build one small real website by hand.
+- Put it live on the internet for free with GitHub Pages.
+- Know where to go next.
+
+WHAT IS OUTSIDE ITS SCOPE
+This product cannot cover every laptop or every situation. It does not help
+with:
+- Repairing broken hardware, or laptops that won't power on or hold a charge.
+- Wi-Fi or other chips that need obscure proprietary drivers.
+- Linux distributions other than Linux Mint 22.
+- Dual-boot repair, disk partitioning beyond the installer's own options, or
+  data recovery from an already-erased drive.
+- Advanced backend hosting, custom domains, or production deployment.
+
+HOW TO GET UNSTUCK
+1. Read the "Troubleshooting & Recovery" reference in the references/ folder —
+   it covers the problems people hit most often.
+2. Re-read the relevant chapter of the main guide; most issues come from a
+   skipped step.
+3. The tools named here have large, free official communities and
+   documentation for issues specific to them.
+
+A NOTE ON EXPECTATIONS
+Following this guide takes a few hours and a willingness to go slowly. It will
+not turn a broken laptop into a working one, and it is not a shortcut to a job
+or an income. It is an honest, complete path from "I have an old laptop" to "I
+have a working computer with a live project on it."
+
+For questions about the product itself, contact: ask@openmirrorllc.com

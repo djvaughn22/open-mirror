@@ -138,26 +138,45 @@ export default function OldLaptopToBuildMachine() {
           </p>
         </section>
 
-        <Section label="Download">
+        {/* Free readiness check — genuinely free, a real download. */}
+        <Section label="Free readiness check">
           <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 text-center">
+            <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+              Not sure if your laptop is up to it? Start with the free
+              five-minute readiness check — hardware requirements, a backup
+              warning, and clear stop signs. No email required.
+            </p>
             <a
-              href="/downloads/old-laptop-to-build-machine.zip"
+              href="/downloads/old-laptop-readiness-check.pdf"
               download
               className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
             >
-              Download the bundle (.zip)
+              Download the free check (PDF)
             </a>
-            <p className="mt-4 text-xs font-semibold leading-6 text-[#64748b]">
-              Everything in the bundle is plain text, HTML, and shell
-              scripts — readable in any editor or browser, with no account
-              or internet connection required to use it once downloaded.
+          </div>
+        </Section>
+
+        {/* Full playbook — described, not sold. No checkout, no price, and no
+            public free-download of the complete paid bundle. */}
+        <Section label="Full playbook">
+          <div className="rounded-3xl border border-dashed border-[#26324c] bg-[#0f1826] p-6 text-center">
+            <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#f59e0b]">
+              Preparing for release
+            </p>
+            <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+              The complete playbook — the full illustrated guide (PDF, HTML, and
+              Markdown), printable worksheets, quick-reference cards, safe setup
+              scripts, and the finished first-project files. It isn&apos;t on
+              sale yet: there is no price, no checkout, and no purchase button on
+              this page. When it&apos;s ready, this is where it will live.
             </p>
           </div>
         </Section>
 
         <p className="text-center text-xs font-semibold leading-6 text-[#64748b]">
-          This is an early product from Open Mirror LLC — free while it&apos;s
-          being tested. There is no payment or checkout on this page.
+          An early product from Open Mirror LLC. This page is for review — see{" "}
+          <a href="/disclaimer" className="underline">the disclaimer</a>{" "}
+          on how Open Mirror describes products before they&apos;re for sale.
         </p>
       </div>
     </main>

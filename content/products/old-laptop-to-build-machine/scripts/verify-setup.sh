@@ -44,4 +44,4 @@ fi
 
 echo
 echo "Anything marked ✗ can be installed with ./setup-dev-machine.sh,"
-echo "or by hand — see 06-development-machine-setup.md."
+echo "or by hand — see Chapter 5 of the guide."

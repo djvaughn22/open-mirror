@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Laptop to Build Machine — the guide</title>
+<style>
+  :root {
+    --ink: #1b2a38;
+    --head: #123049;
+    --accent: #0b6a80;
+    --muted: #5a6b7a;
+    --rule: #d3dce4;
+    --warn-ink: #8f2f16;
+    --warn-bg: #fbeee9;
+    --warn-edge: #e0a48f;
+    --ok-ink: #0a5e46;
+    --ok-bg: #eaf5ef;
+    --ok-edge: #a6d3bf;
+    --code-bg: #f3f6f9;
+    --code-edge: #cdd8e2;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0;
+    background: #fff;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 48px 28px 80px; }
+  h1, h2, h3, .cover-title { font-family: "Segoe UI", Helvetica, Arial, sans-serif; color: var(--head); }
+  h2 { font-size: 24px; margin: 40px 0 6px; line-height: 1.2; }
+  h3 { font-size: 17px; margin: 26px 0 4px; }
+  p { margin: 10px 0; }
+  a { color: var(--accent); }
+  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.92em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 12.5px; line-height: 1.55;
+    background: var(--code-bg); color: #14212e;
+    border: 1px solid var(--code-edge); border-left: 4px solid var(--accent);
+    border-radius: 6px; padding: 12px 14px; margin: 12px 0;
+    overflow-x: auto; white-space: pre-wrap; word-break: break-word;
+  }
+  pre code { background: none; padding: 0; }
+  .kicker { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .does { font-size: 14px; color: var(--muted); margin: 6px 0 14px; }
+  .does strong { color: var(--ink); }
+
+  /* Callout boxes */
+  .box { border-radius: 8px; padding: 14px 16px; margin: 18px 0; page-break-inside: avoid; }
+  .warn { background: var(--warn-bg); border: 1px solid var(--warn-edge); color: var(--warn-ink); }
+  .warn .label { color: var(--warn-ink); }
+  .check { background: var(--ok-bg); border: 1px solid var(--ok-edge); color: var(--ok-ink); }
+  .check .label { color: var(--ok-ink); }
+  .tip { background: #eef3f8; border: 1px solid #c6d5e3; color: #26435c; }
+  .tip .label { color: #1f5a7a; }
+  .label { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .box p { margin: 4px 0; }
+  .box p:first-of-type { margin-top: 0; }
+
+  ul, ol { margin: 10px 0; padding-left: 24px; }
+  li { margin: 5px 0; }
+
+  /* Cover */
+  .cover { text-align: center; padding: 60px 0 0; }
+  .cover .mark { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+  .cover-title { font-size: 46px; line-height: 1.05; margin: 22px auto 14px; max-width: 12em; }
+  .cover .promise { font-size: 18px; color: var(--muted); max-width: 26em; margin: 0 auto; }
+  .cover .diagram { margin: 40px auto 0; max-width: 520px; }
+  .cover .meta { margin-top: 44px; font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 12px; color: var(--muted); }
+
+  .flow { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; font-family: "Segoe UI", Helvetica, Arial, sans-serif; }
+  .flow .node { border: 1.5px solid var(--rule); border-radius: 8px; padding: 8px 12px; font-size: 12px; font-weight: 700; color: var(--head); background: #fff; }
+  .flow .arr { color: var(--accent); font-weight: 800; }
+
+  /* Table of contents */
+  .toc { margin: 8px 0 0; }
+  .toc ol { list-style: none; padding: 0; margin: 0; }
+  .toc li { display: flex; justify-content: space-between; border-bottom: 1px dotted var(--rule); padding: 7px 0; font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 15px; }
+  .toc .n { color: var(--accent); font-weight: 700; }
+
+  hr { border: none; border-top: 1px solid var(--rule); margin: 28px 0; }
+  .chapter-num { font-family: "Segoe UI", Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-top: 0; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding-left: 28px; position: relative; margin: 8px 0; }
+  .checklist li::before { content: ""; position: absolute; left: 0; top: 3px; width: 15px; height: 15px; border: 1.5px solid var(--head); border-radius: 3px; }
+
+  @media print {
+    .wrap { max-width: none; margin: 0; padding: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    .page-break { page-break-before: always; }
+    h2 { page-break-after: avoid; }
+    h3 { page-break-after: avoid; }
+    pre, .box, .toc, .flow { page-break-inside: avoid; }
+  }
+  @page { size: Letter; margin: 18mm 16mm 20mm; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ COVER ============ -->
+  <header class="cover">
+    <p class="mark">An Open Mirror Playbook</p>
+    <h1 class="cover-title">Old Laptop to Build Machine</h1>
+    <p class="promise">Turn an unused laptop into a simple Linux development machine — and publish your first website.</p>
+    <div class="diagram">
+      <div class="flow">
+        <span class="node">Old laptop</span>
+        <span class="arr">→</span>
+        <span class="node">Linux</span>
+        <span class="arr">→</span>
+        <span class="node">Dev tools</span>
+        <span class="arr">→</span>
+        <span class="node">First site</span>
+        <span class="arr">→</span>
+        <span class="node">Live online</span>
+      </div>
+    </div>
+    <p class="meta">Version 1.0 · Revised July 2026 · openmirrorllc.com</p>
+  </header>
+
+  <div class="page-break"></div>
+
+  <!-- ============ PROMISE + WARNING ============ -->
+  <h2>What this guide does</h2>
+  <p>You have an old laptop — slow, or just sitting in a drawer. This guide
+  turns it into a real computer for building things: writing code, making
+  small projects, and putting real, working websites on the internet. It is
+  written for someone who has never used Linux, a terminal, Git, or any of
+  this before. Every term is explained the first time it appears.</p>
+
+  <p>By the end, you will have a laptop running Linux with the tools
+  developers actually use, one small website you built by hand, and that
+  website <strong>live on the internet at a real address you can share</strong>.</p>
+
+  <div class="box warn">
+    <span class="label">Read this before you start</span>
+    <p>Installing Linux the way this guide recommends <strong>erases everything
+    currently on the laptop</strong> — its old operating system, programs,
+    photos, and files. Chapter&nbsp;2 walks through backing up anything you
+    want to keep. Do not skip it. Nothing in this guide erases a drive
+    automatically; the one destructive step happens inside the Linux
+    installer, and you choose it deliberately.</p>
+  </div>
+
+  <h3>What you need before you begin</h3>
+  <ul>
+    <li>A laptop that powers on and boots reliably (its age matters less than
+      you'd think — see Chapter&nbsp;1).</li>
+    <li>At least <strong>2&nbsp;GB of RAM</strong> (4&nbsp;GB or more is much
+      more comfortable) and about <strong>20&nbsp;GB of free storage</strong>.</li>
+    <li>A USB flash drive, <strong>8&nbsp;GB or larger</strong>, that you don't
+      mind erasing.</li>
+    <li>An internet connection, and the laptop's charger.</li>
+    <li>Around 2–4 hours. You can spread it across several sittings.</li>
+  </ul>
+
+  <div class="box tip">
+    <span class="label">The one path this guide supports</span>
+    <p>To keep every instruction exact, this guide follows a single supported
+    setup: <strong>Linux Mint 22 (Cinnamon edition)</strong>, which is built
+    on Ubuntu 24.04 LTS and supported until 2029. For older or low-memory
+    laptops, use the <strong>Xfce edition</strong> of the same version — every
+    command in this guide is identical. Both cover laptops that start in
+    either <strong>UEFI or legacy BIOS</strong> mode. See Chapter&nbsp;3 for
+    Secure Boot and what falls outside this guide's scope.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ TOC ============ -->
+  <h2>Contents</h2>
+  <nav class="toc">
+    <ol>
+      <li><span><span class="n">1.</span> Is your laptop up to this?</span></li>
+      <li><span><span class="n">2.</span> Back up anything you want to keep</span></li>
+      <li><span><span class="n">3.</span> Install Linux</span></li>
+      <li><span><span class="n">4.</span> First boot: update and secure it</span></li>
+      <li><span><span class="n">5.</span> Set up your development tools</span></li>
+      <li><span><span class="n">6.</span> Git and GitHub: save your work</span></li>
+      <li><span><span class="n">7.</span> Build your first website</span></li>
+      <li><span><span class="n">8.</span> Put it on the internet</span></li>
+      <li><span><span class="n">9.</span> Change it, and find it later</span></li>
+      <li><span><span class="n">10.</span> What to build next</span></li>
+      <li><span>Completion checklist</span></li>
+      <li><span>Support and scope</span></li>
+    </ol>
+  </nav>
+  <p class="does">A quick-reference terminal card, a Git &amp; GitHub card,
+  and a full troubleshooting &amp; recovery guide are included as separate
+  files in the <code>references/</code> folder — keep them open beside you.</p>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 1 ============ -->
+  <p class="chapter-num">Chapter 1</p>
+  <h2>Is your laptop up to this?</h2>
+  <p>Linux runs on a much wider range of hardware than current Windows or
+  macOS, including machines those systems have left behind. Before installing
+  anything, check a few things so you know what to expect. (The printable
+  <em>Laptop Readiness Worksheet</em> in the <code>printables/</code> folder
+  is the same checklist on one page.)</p>
+
+  <h3>Memory (RAM)</h3>
+  <ul>
+    <li><strong>8&nbsp;GB or more</strong> — comfortable for everyday building.</li>
+    <li><strong>4&nbsp;GB</strong> — works well with the Xfce edition; avoid
+      dozens of browser tabs at once.</li>
+    <li><strong>2&nbsp;GB</strong> — usable for the terminal-based parts, but a
+      code editor and browser together will feel slow. Choose Xfce.</li>
+  </ul>
+  <p class="does">Not sure how much you have? On Windows: Settings → System →
+  About. On a Mac: Apple menu → About This Mac. You can also search the
+  laptop's model number online.</p>
+
+  <h3>Storage and drive type</h3>
+  <p>You need about 20&nbsp;GB free. If the laptop has a solid-state drive
+  (SSD) it will feel fast; an older spinning hard drive (HDD) still works, just
+  slower to open programs. Neither stops you.</p>
+
+  <h3>Does the basic hardware work?</h3>
+  <p>If the laptop powers on, holds a charge, and the screen, keyboard, and
+  trackpad work, it's ready. If something is physically broken, Linux will
+  inherit that same problem — this guide can't fix hardware faults. You can
+  still use an external keyboard, mouse, or monitor if one built-in part
+  fails.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 1</span>
+    <p>The laptop powers on reliably, has at least 2&nbsp;GB of RAM and
+    ~20&nbsp;GB free, and its core parts work. You've decided on the Cinnamon
+    edition (capable laptop) or the Xfce edition (older / 4&nbsp;GB or less).</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 2 ============ -->
+  <p class="chapter-num">Chapter 2</p>
+  <h2>Back up anything you want to keep</h2>
+  <p>This is the step people regret skipping. Installing Linux will erase the
+  laptop's internal drive. Anything you want to keep has to be copied
+  somewhere else <em>first</em>.</p>
+
+  <h3>1. Decide what's on the laptop</h3>
+  <p>Photos and videos, documents, files you use, passwords saved in a
+  browser, anything you'd be upset to lose. If the honest answer is "nothing I
+  care about," you can move on. If there's anything at all, back it up.</p>
+
+  <h3>2. Copy it somewhere that isn't this laptop</h3>
+  <ul>
+    <li><strong>An external USB drive</strong> — plug it in, copy your files over.</li>
+    <li><strong>A cloud account you already use</strong> (Google Drive, iCloud,
+      OneDrive, Dropbox) — upload while the old system still runs.</li>
+    <li><strong>Another computer</strong> — copy over your home network or a USB drive.</li>
+  </ul>
+  <p>Pick at least one. Two is safer than one.</p>
+
+  <h3>3. Write down what you'll need again</h3>
+  <p>Your Wi-Fi password, any logins tied only to this laptop, and browser
+  bookmarks if they matter (most browsers can export them to a file).</p>
+
+  <h3>4. Confirm the backup actually worked</h3>
+  <p>Open the drive or cloud folder and check the files are really there.
+  Don't just trust that the copy finished. This one check prevents almost
+  every "I thought I backed it up" story.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 2</span>
+    <p>Everything you want to keep is copied somewhere else and you've
+    <em>opened it there</em> to confirm. Your Wi-Fi password is written down.
+    You're ready to erase the laptop.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 3 ============ -->
+  <p class="chapter-num">Chapter 3</p>
+  <h2>Install Linux</h2>
+  <p><strong>Linux</strong> is a free operating system — the same kind of
+  software as Windows or macOS. You don't pay for it and there's no license
+  key. <strong>Linux Mint</strong> is a version of it that looks familiar and
+  is friendly to newcomers. We'll put it on a USB stick, start the laptop from
+  that stick, and install.</p>
+
+  <h3>Step 1 — Download the installer</h3>
+  <p>On any working computer, go to the official Linux Mint website
+  (<code>linuxmint.com</code>) and download the <strong>Cinnamon</strong>
+  edition (or <strong>Xfce</strong> for older hardware). You'll get one large
+  file ending in <code>.iso</code>. Always download from the project's own
+  official site — never a random mirror.</p>
+
+  <h3>Step 2 — Make a bootable USB stick</h3>
+  <p>Download <strong>balenaEtcher</strong> (free; works on Windows, macOS, and
+  Linux) from its official site. Open it, select the <code>.iso</code> you
+  downloaded, select your USB drive, and start. Everything on the USB drive is
+  erased.</p>
+  <div class="box warn">
+    <span class="label">Double-check the target</span>
+    <p>Before you confirm, make sure the selected drive is the <em>USB
+    stick</em> — not your computer's main drive. This is the one moment in the
+    whole guide to slow down and read the screen.</p>
+  </div>
+
+  <h3>Step 3 — Start the laptop from the USB stick</h3>
+  <p>Plug the stick into the laptop you're converting. Restart it and, as it
+  powers on, repeatedly press the key that opens the boot menu — usually
+  <code>F12</code>, <code>F2</code>, <code>Esc</code>, or <code>Del</code>
+  (it varies by maker and often flashes on screen for a second). Choose to
+  boot from the USB drive. You'll land in a "live" Linux Mint desktop running
+  from the stick — nothing on the laptop's own drive has changed yet.</p>
+  <div class="box tip">
+    <span class="label">UEFI, legacy BIOS, and Secure Boot</span>
+    <p>Linux Mint installs on laptops that start in either modern
+    <strong>UEFI</strong> or older <strong>legacy BIOS</strong> mode — you
+    don't need to know which yours uses. If the USB stick won't boot, look in
+    that boot/BIOS menu for a setting called <strong>Secure Boot</strong> and
+    turn it off, then try again. Linux Mint supports Secure Boot, but turning
+    it off avoids the most common first-time snag.</p>
+  </div>
+
+  <h3>Step 4 — Install, and choose the erase option deliberately</h3>
+  <p>Double-click <strong>Install Linux Mint</strong> on the desktop. Follow
+  the prompts for language, keyboard, and time zone. When it asks how to use
+  the drive:</p>
+  <ul>
+    <li><strong>Erase disk and install Linux Mint</strong> — the clean, simple
+      choice this guide recommends for a dedicated build machine. Only pick
+      this after finishing Chapter&nbsp;2. <em>This is the step that erases the
+      old system.</em></li>
+    <li><strong>Install alongside</strong> (dual-boot) — keeps the old system
+      too and lets you choose at startup. A safer option if you're not ready
+      to fully commit the laptop, though it leaves less room for your work.</li>
+  </ul>
+  <p>Set your name, a username, and a password you'll remember — you'll type it
+  often, including to install software later.</p>
+
+  <h3>Step 5 — First restart</h3>
+  <p>When prompted, remove the USB stick and let the laptop restart. It should
+  boot straight into Linux Mint.</p>
+
+  <div class="box tip">
+    <span class="label">Outside this guide's scope</span>
+    <p>This guide supports Linux Mint 22 on a laptop with working hardware. It
+    does not cover Wi-Fi chips that need obscure proprietary drivers,
+    dual-boot repair, laptops that won't power on, or other Linux
+    distributions. If your Wi-Fi doesn't work after install, connect once by
+    ethernet cable and open <strong>Driver Manager</strong> from the menu —
+    then see the Troubleshooting &amp; Recovery reference.</p>
+  </div>
+
+  <div class="box check">
+    <span class="label">Checkpoint 3</span>
+    <p>The laptop restarts into Linux Mint on its own, without the USB stick.
+    You can log in with your password.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 4 ============ -->
+  <p class="chapter-num">Chapter 4</p>
+  <h2>First boot: update and secure it</h2>
+
+  <h3>Connect to the internet</h3>
+  <p>Click the network icon at the bottom-right and join your Wi-Fi, or plug in
+  an ethernet cable.</p>
+
+  <h3>Install all updates</h3>
+  <p>Open <strong>Update Manager</strong> from the menu and install everything
+  it offers. A fresh system usually has a lot; let it finish, then restart
+  once more. This is the single most important thing you can do for security —
+  it patches known problems.</p>
+
+  <h3>Meet the terminal</h3>
+  <p>The <strong>terminal</strong> is a text way to give the computer
+  instructions. Open it from the menu or press <code>Ctrl</code>+<code>Alt</code>+<code>T</code>.
+  You'll type commands and press <strong>Enter</strong> to run them. When a
+  command starts with <code>sudo</code> ("do this as an administrator"),
+  you'll be asked for your password — the characters won't appear as you type,
+  which is normal.</p>
+  <div class="box tip">
+    <span class="label">Reading a command</span>
+    <p>In <code>sudo apt update</code>: <code>sudo</code> = run as admin,
+    <code>apt</code> = Mint's software installer, <code>update</code> = refresh
+    the list of available software. The full <em>Terminal Reference</em> card
+    in <code>references/</code> explains every command used here.</p>
+  </div>
+
+  <h3>Lock screen</h3>
+  <p>Confirm the screen locks automatically: <strong>Menu → Screensaver</strong>,
+  and set it to lock after a few minutes. Combined with your login password,
+  that keeps the machine yours.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 4</span>
+    <p>You're online, every update is installed, you've restarted, and you can
+    open a terminal.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 5 ============ -->
+  <p class="chapter-num">Chapter 5</p>
+  <h2>Set up your development tools</h2>
+  <p>Now we install the tools you'll build with. Every one is free. Here's what
+  each is for:</p>
+  <ul>
+    <li><strong>Git</strong> — tracks changes to your work so you never lose it
+      and can undo mistakes. Required for GitHub.</li>
+    <li><strong>VS Code</strong> — the editor where you'll write and read code.</li>
+    <li><strong>Python</strong> — a friendly programming language for scripts
+      and backends.</li>
+    <li><strong>Node.js &amp; npm</strong> — run JavaScript outside a browser
+      and install its packages; most modern web tools need them.</li>
+    <li><strong>GitHub CLI (<code>gh</code>)</strong> — connect to GitHub from
+      the terminal.</li>
+    <li><strong>build-essential</strong> — shared under-the-hood tools other
+      software depends on.</li>
+  </ul>
+  <p>This is a focused starter set — not everything possible, just what you
+  need to build and ship the project ahead, and most things after it.</p>
+
+  <h3>The easy way: run the setup script</h3>
+  <p>This bundle includes a script that installs all of the above safely. Open
+  a terminal, move into the bundle's <code>scripts/</code> folder, and run:</p>
+  <pre><code>chmod +x setup-dev-machine.sh
+./setup-dev-machine.sh</code></pre>
+  <p class="does"><strong>What this does:</strong> the script first prints
+  exactly what it will install and asks you to confirm. It checks whether each
+  tool is already present before installing it, so it's safe to run more than
+  once. Open it in a text editor first if you'd like to read it — it's
+  commented throughout. When it finishes, run <code>./verify-setup.sh</code>
+  to confirm everything landed.</p>
+
+  <h3>The manual way: install each tool yourself</h3>
+  <p>If you'd rather do it by hand (and understand each piece), here are the
+  same steps. Run them in a terminal, one block at a time.</p>
+
+  <p><strong>Git, build tools, Python, and helpers:</strong></p>
+  <pre><code>sudo apt update
+sudo apt install -y git build-essential python3 python3-pip python3-venv curl ca-certificates gnupg</code></pre>
+  <p class="does"><strong>What this does:</strong> installs Git, the shared
+  build tools, Python 3 with its package and virtual-environment helpers, and
+  <code>curl</code>/<code>gnupg</code> (used in the next steps to add trusted
+  software sources).</p>
+
+  <p><strong>VS Code</strong> — from Microsoft's official software repository.
+  (On Linux Mint, don't use "snap" for this; Mint blocks it by default. This
+  is the official Debian/Ubuntu method.)</p>
+  <pre><code>wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+rm -f packages.microsoft.gpg
+sudo apt update
+sudo apt install -y code</code></pre>
+  <p class="does"><strong>What this does:</strong> downloads Microsoft's signing
+  key, registers their official VS Code software source, and installs the
+  editor. Downloading a signing <em>key</em> is safe — it's not a program, and
+  nothing unknown is run.</p>
+
+  <p><strong>Node.js (version 22 LTS) and npm</strong> — from NodeSource's
+  official repository, so you get a current, supported version rather than an
+  old one.</p>
+  <pre><code>sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list > /dev/null
+sudo apt update
+sudo apt install -y nodejs</code></pre>
+  <p class="does"><strong>What this does:</strong> adds NodeSource's trusted
+  source for Node.js 22 (the current long-term-support version) and installs
+  Node.js together with npm.</p>
+
+  <p><strong>GitHub CLI (<code>gh</code>)</strong> — from GitHub's official
+  repository.</p>
+  <pre><code>sudo mkdir -p -m 755 /etc/apt/keyrings
+wget -nv -O- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
+sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install -y gh</code></pre>
+
+  <h3>Confirm it all installed</h3>
+  <pre><code>git --version
+python3 --version
+node --version
+npm --version
+gh --version
+code --version</code></pre>
+  <p class="does">Each should print a version number. If one says
+  <code>command not found</code>, re-run that tool's install block, or run the
+  bundle's <code>verify-setup.sh</code> to see exactly what's missing.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 5</span>
+    <p>Git, VS Code, Python, Node.js, npm, and <code>gh</code> all print
+    version numbers. Your machine is now a development machine.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 6 ============ -->
+  <p class="chapter-num">Chapter 6</p>
+  <h2>Git and GitHub: save your work</h2>
+  <p><strong>Git</strong> is a program on your computer that saves snapshots of
+  your work over time. <strong>GitHub</strong> is a website that stores copies
+  of those snapshots online — for backup, sharing, and (in Chapter&nbsp;8)
+  publishing your site for free. Git is the tool; GitHub is one place to keep
+  what it tracks.</p>
+
+  <h3>Tell Git who you are</h3>
+  <pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+  <p class="does">Use any name and email — this just labels your snapshots.</p>
+
+  <h3>Create a free GitHub account</h3>
+  <p>Go to <code>github.com</code> and sign up. It's free for public and
+  private projects. Pick a username you don't mind being visible — it appears
+  in your project addresses.</p>
+
+  <h3>Sign in from the terminal</h3>
+  <pre><code>gh auth login</code></pre>
+  <p class="does">Choose <strong>GitHub.com</strong>, then <strong>HTTPS</strong>,
+  and let it open your browser to finish. One-time setup per machine. (This
+  replaces the old username-and-password method, which GitHub no longer
+  accepts.)</p>
+
+  <h3>The loop you'll repeat forever</h3>
+  <pre><code>git status                       # see what changed
+git add .                        # stage all changes to save
+git commit -m "Describe it"      # save a snapshot with a note
+git push                         # send snapshots to GitHub</code></pre>
+  <p class="does">The <em>Git &amp; GitHub Reference</em> card in
+  <code>references/</code> keeps these commands and their meanings on one
+  page.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 6</span>
+    <p>Git knows your name and email, you have a GitHub account, and
+    <code>gh auth login</code> finished successfully.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 7 ============ -->
+  <p class="chapter-num">Chapter 7</p>
+  <h2>Build your first website</h2>
+  <p>You'll build a small, real site: a <strong>Build Log</strong> — one page
+  where you type a note and a button adds it to a running list, saved right in
+  your browser. It's small on purpose. The point isn't the project; it's
+  finishing the whole loop: write code, run it, save it, publish it.</p>
+  <p class="does">The finished files are in this bundle's
+  <code>first-project/</code> folder. Type them yourself first — that's where
+  the learning is — then compare if something misbehaves.</p>
+
+  <h3>Step 1 — Make a project folder and open it</h3>
+  <pre><code>cd ~
+mkdir build-log
+cd build-log
+code .</code></pre>
+  <p class="does"><strong>What this does:</strong> moves to your home folder,
+  makes a folder called <code>build-log</code>, moves into it, and opens it in
+  VS Code. The three files below go in that folder — create them from VS
+  Code's file explorer on the left.</p>
+
+  <h3>Step 2 — The three files</h3>
+  <p>Create <code>index.html</code>, <code>style.css</code>, and
+  <code>script.js</code>. The full contents are printed in the
+  <code>first-project/</code> README and files; the short version of what each
+  does:</p>
+  <ul>
+    <li><code>index.html</code> — the page's structure: a heading, a form with
+      a text box and button, and an empty list.</li>
+    <li><code>style.css</code> — how it looks: fonts, spacing, colors.</li>
+    <li><code>script.js</code> — what it does: when you submit the form, it
+      adds your entry to the list and saves it in the browser so it's still
+      there next time.</li>
+  </ul>
+
+  <h3>Step 3 — Run it locally</h3>
+  <p>A page this simple needs no server. Open the folder in your file manager
+  and double-click <code>index.html</code>, or run <code>xdg-open
+  index.html</code> from the terminal. Type something, press the button, and
+  watch it appear.</p>
+  <div class="box tip">
+    <span class="label">If the button does nothing</span>
+    <p>Open the browser's developer console (<code>F12</code> → Console) and
+    look for a red error — it names the line and mistake. The most common
+    cause is a filename in <code>index.html</code> not matching the real file,
+    or a missing <code>}</code> in <code>script.js</code>. Compare with the
+    files in <code>first-project/</code>.</p>
+  </div>
+
+  <h3>Step 4 — Make one visible change</h3>
+  <p>In <code>index.html</code>, change the big heading to something of your
+  own. Save, reload the page in the browser, and confirm your change shows.
+  You just edited a real website.</p>
+
+  <h3>Step 5 — Save it with Git and push to GitHub</h3>
+  <pre><code>git init
+git add .
+git commit -m "First commit: build log page"
+gh repo create build-log --public --source=. --push</code></pre>
+  <p class="does"><strong>What this does:</strong> turns the folder into a Git
+  project, saves your first snapshot, then creates a matching GitHub
+  repository and uploads your code — all in the last command. Use
+  <code>--private</code> instead of <code>--public</code> to keep it hidden.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 7</span>
+    <p>Your Build Log works in a browser, you've made it your own, and the code
+    is on GitHub at <code>github.com/your-username/build-log</code>.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 8 ============ -->
+  <p class="chapter-num">Chapter 8</p>
+  <h2>Put it on the internet</h2>
+  <p>"Deploying" means putting your project where anyone can reach it. We'll use
+  <strong>GitHub Pages</strong> — the simplest free option for a site like this,
+  with no extra account and no configuration file. It publishes straight from
+  the repository you just created.</p>
+
+  <h3>Turn on GitHub Pages</h3>
+  <ol>
+    <li>In a browser, open <code>github.com/your-username/build-log</code>.</li>
+    <li>Click <strong>Settings</strong>, then <strong>Pages</strong> in the left
+      sidebar.</li>
+    <li>Under "Build and deployment," set <strong>Source</strong> to
+      <strong>Deploy from a branch</strong>.</li>
+    <li>Set the branch to <code>main</code> and the folder to
+      <strong>/ (root)</strong>, then <strong>Save</strong>.</li>
+  </ol>
+
+  <h3>Visit your live site</h3>
+  <p>Give it a minute or two, then refresh the Pages settings — it will show
+  "Your site is live at <code>https://your-username.github.io/build-log/</code>."
+  Open that address. Your Build Log is now on the internet, reachable by anyone
+  with the link.</p>
+
+  <div class="box check">
+    <span class="label">Checkpoint 8</span>
+    <p>Your site loads at its <code>github.io</code> address in a normal
+    browser. You can send that link to someone.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 9 ============ -->
+  <p class="chapter-num">Chapter 9</p>
+  <h2>Change it, and find it later</h2>
+  <p>The loop that makes it feel real: change something and watch the live site
+  update.</p>
+  <ol>
+    <li>In VS Code, edit <code>index.html</code> — add a line, change the
+      heading, adjust a color in <code>style.css</code>. Save.</li>
+    <li>In the terminal, inside the <code>build-log</code> folder:</li>
+  </ol>
+  <pre><code>git add .
+git commit -m "Update the heading"
+git push</code></pre>
+  <ol start="3">
+    <li>Wait a minute, refresh your live address — your change is there.</li>
+  </ol>
+  <p>That loop — edit, commit, push, see it live — is exactly how real projects
+  update, at any size.</p>
+
+  <h3>Finding your site again later</h3>
+  <p>Your live address is always
+  <code>https://your-username.github.io/build-log/</code>. You can also find it
+  any time under the repository's <strong>Settings → Pages</strong>. Your code
+  lives at <code>github.com/your-username/build-log</code>, and on your laptop
+  in the <code>~/build-log</code> folder.</p>
+
+  <div class="box tip">
+    <span class="label">What GitHub Pages does and doesn't do</span>
+    <p>Pages serves static files (HTML, CSS, JavaScript) — perfect for this
+    project. It doesn't run a live backend or database. When a later idea needs
+    those, you'll use a different kind of host; Chapter&nbsp;10 points the way.</p>
+  </div>
+
+  <div class="box check">
+    <span class="label">Checkpoint 9</span>
+    <p>You changed the site, pushed the change, and saw it go live. You know
+    where to find the code, the folder, and the live URL again.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ============ CH 10 ============ -->
+  <p class="chapter-num">Chapter 10</p>
+  <h2>What to build next</h2>
+  <p>You now have a working development machine and one live project. The
+  hardest part — finishing the whole loop once — is behind you. These free
+  tools from Open Mirror can help you decide what to build next. None are
+  required; they're a place to start.</p>
+  <ul>
+    <li><strong>Open Mirror</strong> (<code>openmirrorllc.com</code>) — a plain,
+      honest list of real, working things one small studio has built with the
+      same toolset you just installed. Good for seeing finished examples.</li>
+    <li><strong>StepInTheRing</strong> (<code>stepinthering.com</code>) — the
+      most useful next stop. Answer a short series of questions about an idea
+      and it turns them into a concrete first build plan. If you're thinking
+      "okay, but what do I build," bring that half-formed idea here. Free, and
+      the plan is yours.</li>
+    <li><strong>Reflect</strong> (<code>openmirrorllc.com/reflect</code>) — a
+      quieter tool: a few open-ended prompts if you're stuck on what you even
+      want to make.</li>
+  </ul>
+  <p>A good second project is usually smaller than you think. Take one idea,
+  write down the smallest version that would truly work end to end, and build
+  that — the same loop you just used. That's exactly what StepInTheRing helps
+  you shape.</p>
+
+  <div class="page-break"></div>
+
+  <!-- ============ COMPLETION CHECKLIST ============ -->
+  <h2>Completion checklist</h2>
+  <p>You've finished the journey when all of these are true:</p>
+  <ul class="checklist">
+    <li>The laptop runs Linux Mint, fully updated, with a lock screen.</li>
+    <li>Git, VS Code, Python, Node.js, npm, and <code>gh</code> all work.</li>
+    <li>Git knows your name and email; you're signed in to GitHub.</li>
+    <li>You built the Build Log and made it your own.</li>
+    <li>The code is on GitHub.</li>
+    <li>The site is live at your <code>github.io</code> address.</li>
+    <li>You changed it, pushed, and watched the live site update.</li>
+    <li>You know where to find the code, the folder, and the live URL again.</li>
+  </ul>
+
+  <!-- ============ SUPPORT / SCOPE ============ -->
+  <h2>Support and scope</h2>
+  <p><strong>What this guide covers:</strong> converting a working laptop to
+  Linux Mint 22, installing a beginner development toolset, and building and
+  deploying one static website with Git, GitHub, and GitHub Pages.</p>
+  <p><strong>What it doesn't:</strong> repairing broken hardware, obscure Wi-Fi
+  driver issues, other Linux distributions, dual-boot recovery, or advanced
+  backend hosting. For problems along the way, use the <em>Troubleshooting
+  &amp; Recovery</em> reference in this bundle first.</p>
+  <p class="does">This is an independent Open Mirror playbook. It isn't
+  affiliated with Linux Mint, Microsoft, GitHub, or any other project named
+  here; those names refer to their official free tools. Results depend on your
+  hardware and the time you put in — the guide gives you the steps, not a
+  guarantee.</p>
+
+  <hr>
+  <p style="text-align:center; font-family:'Segoe UI',Helvetica,Arial,sans-serif; font-size:12px; color:var(--muted);">
+    Old Laptop to Build Machine · Version 1.0 · Revised July 2026 · An Open Mirror Playbook · openmirrorllc.com
+  </p>
+
+</div>
+</body>
+</html>

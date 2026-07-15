@@ -1,0 +1,32 @@
+OLD LAPTOP TO BUILD MACHINE — LICENSE
+Version 1.0 · An Open Mirror Playbook · openmirrorllc.com
+
+WHAT YOU MAY DO
+- Use this guide and its files for your own personal learning and projects,
+  on as many of your own computers as you like.
+- Print the guide, worksheets, and checklists for your own use.
+- Keep your copy forever.
+
+WHAT YOU MAY NOT DO
+- Resell, sublicense, or redistribute these files, in whole or in part.
+- Republish the guide's text, worksheets, or scripts as your own, or as part
+  of another product, course, or bundle.
+- Remove or alter this license or the Open Mirror attribution.
+
+THE PROJECT YOU BUILD IS YOURS
+Anything you create by following this guide — your Build Log, your GitHub
+repositories, your websites — is entirely your own, to do with as you wish.
+
+NO WARRANTY
+This guide is provided "as is," without warranty of any kind. Installing an
+operating system carries inherent risk to existing data; you are responsible
+for backing up anything important first, as the guide explains. Open Mirror
+LLC is not liable for data loss, hardware issues, or other outcomes. The
+third-party tools named here (Linux Mint, VS Code, Node.js, Git, GitHub, and
+others) are the property of their respective owners and are governed by their
+own licenses; this product is not affiliated with or endorsed by them.
+
+Results depend on your hardware and the effort you put in. This product gives
+you the steps, not a guarantee of any particular outcome.
+
+© 2026 Open Mirror LLC. All rights reserved.

@@ -1,0 +1,21 @@
+OLD LAPTOP TO BUILD MACHINE — VERSION HISTORY
+openmirrorllc.com
+
+Version 1.0 — July 2026
+- First release.
+- Single supported path: Linux Mint 22 (Cinnamon; Xfce for older hardware),
+  built on Ubuntu 24.04 LTS.
+- Full guide in PDF, HTML, and Markdown, with cover, table of contents,
+  numbered chapters, checkpoints, and troubleshooting near each step.
+- Development tools installed via current official sources: VS Code from
+  Microsoft's apt repository, Node.js 22 LTS from NodeSource, GitHub CLI from
+  GitHub's apt repository (no "snap", which Linux Mint blocks by default).
+- Terminal, Git & GitHub, and Troubleshooting & Recovery reference cards.
+- Printable laptop-readiness worksheet and master checklist.
+- Setup script (asks before changing anything; idempotent; refuses unsupported
+  systems) and a read-only verification script.
+- Complete "Build Log" first-project files.
+
+Planned for future versions
+- Refresh command versions as Linux Mint, Node.js, and the tools update.
+- Optional companion video walkthroughs.
