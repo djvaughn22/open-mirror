@@ -77,10 +77,8 @@ export default function AboutOpenMirror() {
           </p>
 
           <p className="mx-auto mt-12 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
-            You bring the idea, the time, and the judgment.
-            <br />
-            Modern tools make the path faster. The work still matters.
-            <br />
+            Everything on this site got made this way — one person, nights
+            and weekends.{" "}
             <span className="font-black text-[#e8edf5]">
               You can start building too.
             </span>
@@ -91,13 +89,15 @@ export default function AboutOpenMirror() {
         <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">Built after work.</h2>
           <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
-            Open Mirror is an independent evenings-and-weekends company, built
-            on personal time alongside a full-time job. It is separate from
-            that job and does not represent the owner&apos;s employer.
+            Open Mirror LLC is my own small company. I build it at night and
+            on weekends, with my own time, my own money, and my own
+            equipment.
           </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            Every project builds more skill, judgment, and experience. That
-            experience can help someone else move faster.
+            I also have a full-time day job. The two are completely separate.
+            Nothing here is connected to my employer, paid for by my
+            employer, or speaking for my employer. The opinions — and the
+            mistakes — are mine.
           </p>
         </section>
 
@@ -139,12 +139,12 @@ export default function AboutOpenMirror() {
         {/* Where to begin */}
         <section className="mb-14 text-center">
           <h2 className="mb-4 text-2xl font-black tracking-tight">
-            Your idea. Your move.
+            So what do you want to build?
           </h2>
           <p className="mx-auto mb-7 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
-            Start building in StepInTheRing. Keep going on your own. Or talk
-            with the owner when you need help getting from an idea to
-            production.
+            Start in StepInTheRing and make something. If you get stuck
+            between the idea and something real, come talk. That&apos;s the
+            whole pitch.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
