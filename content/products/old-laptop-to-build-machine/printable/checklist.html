@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Printable Checklist — Old Laptop to Build Machine</title>
+<style>
+  @media print {
+    @page { margin: 0.6in; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    max-width: 640px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #111;
+    line-height: 1.5;
+  }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  p.sub { color: #555; margin-top: 0; font-size: 14px; }
+  h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+    margin-top: 28px;
+  }
+  ul { list-style: none; padding: 0; margin: 10px 0; }
+  li {
+    padding: 5px 0 5px 26px;
+    position: relative;
+    font-size: 14px;
+  }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #333;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+  <h1>Old Laptop to Build Machine</h1>
+  <p class="sub">Printable checklist — check items off as you go.</p>
+
+  <h2>Before you touch the laptop</h2>
+  <ul>
+    <li>Read 04-backup-and-safety.md</li>
+    <li>Filled out the laptop readiness worksheet</li>
+    <li>Anything important is backed up somewhere else</li>
+    <li>I know the Wi-Fi password, or have a wired connection</li>
+    <li>I have a USB flash drive, 8&nbsp;GB or larger, I don't mind erasing</li>
+    <li>The laptop is plugged into power</li>
+  </ul>
+
+  <h2>Installing Linux</h2>
+  <ul>
+    <li>Downloaded a Linux install image</li>
+    <li>Created a bootable USB drive from that image</li>
+    <li>Booted the laptop from the USB drive</li>
+    <li>Installed Linux, erasing the drive on purpose (or set up dual-boot)</li>
+    <li>Laptop restarts into Linux on its own</li>
+  </ul>
+
+  <h2>First boot</h2>
+  <ul>
+    <li>Connected to Wi-Fi or ethernet</li>
+    <li>Ran a full system update</li>
+    <li>Set a strong login password</li>
+    <li>Confirmed automatic screen lock is on</li>
+  </ul>
+
+  <h2>Development tools</h2>
+  <ul>
+    <li>Installed Git</li>
+    <li>Installed a code editor</li>
+    <li>Installed Python</li>
+    <li>Installed Node.js and npm</li>
+    <li>Installed GitHub's command-line tool (gh)</li>
+    <li>Ran verify-setup.sh and everything shows installed</li>
+  </ul>
+
+  <h2>Git and GitHub</h2>
+  <ul>
+    <li>Created a free GitHub account</li>
+    <li>Set my name and email in Git</li>
+    <li>Signed in to GitHub from the terminal</li>
+  </ul>
+
+  <h2>First project</h2>
+  <ul>
+    <li>Created a project folder</li>
+    <li>Built the small project in the walkthrough</li>
+    <li>Ran it locally and saw it work in a browser</li>
+    <li>Turned the folder into a Git repository</li>
+    <li>Made my first commit</li>
+    <li>Created a matching repository on GitHub</li>
+    <li>Pushed my code to GitHub</li>
+  </ul>
+
+  <h2>Deployment</h2>
+  <ul>
+    <li>Turned on GitHub Pages for the repository</li>
+    <li>Visited the live URL and saw the project working</li>
+    <li>Made a small change, committed, pushed, watched it update live</li>
+  </ul>
+
+  <h2>After that</h2>
+  <ul>
+    <li>Read the Open Mirror tools guide</li>
+    <li>Decided what to build next</li>
+  </ul>
+</body>
+</html>

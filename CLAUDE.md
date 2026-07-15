@@ -33,12 +33,15 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 - **"Owner," never "founder":** DJ is "the owner of Open Mirror LLC." No
   founder/visionary/CEO framing in public copy, and no personal name on public
   pages. (Strong's dictionary data is exempt external content.)
-- **Talk with the Owner:** the one consulting surface is the hub's
-  `/talk-with-the-owner`. Entry points: hub nav, one hub About line, and one
-  quiet line on Step In The Ring's fight-plan result. Satellites connect back
-  only via the shared quiet footer + family menu. Never popups, countdowns,
-  repeated CTAs, or pricing outside that page. StepInTheRing's free output
-  stays complete — DJ is optional, not required.
+- **Contact Open Mirror (Jul 15 2026 — was "Talk with the Owner"):** the one
+  consulting surface is the hub's `/contact` (old `/talk-with-the-owner` and
+  `/work-with-the-founder` URLs permanently redirect there). Faceless page —
+  no name, photo, bio, employer, or job title; "owner" isn't repeated as a
+  framing device. Entry points: hub nav ("Contact"), one hub About line, and
+  one quiet line on Step In The Ring's fight-plan result. Satellites connect
+  back only via the shared quiet footer + family menu. Never popups,
+  countdowns, repeated CTAs, or pricing outside that page. StepInTheRing's
+  free output stays complete — reaching out is optional, not required.
 - **Protected sites:** CrossHeartPray gets NO commercial or consulting
   language, ever — its only Open Mirror connection is the quiet footer link,
   and nothing sales-shaped goes near Scripture, prayer, or memorial content.

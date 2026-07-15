@@ -13,7 +13,7 @@ CrossHeartPray family of pages.
 
 - **Production:** https://openmirrorllc.com — branch `main`, auto-deploys on push (Vercel).
 - **Framework:** Next.js 16.2.6 (App Router). Build: `npm run build`.
-- **Routes:** `/` (portfolio), `/about-open-mirror`, `/talk-with-the-owner`, `/reflect`, per-product pages (`/crossheartpray`, `/step-in-the-ring`, …), plus mirrored CHP pages (`/cross`, `/heart`, `/pray`, `/daily-hope`, `/bible-reading-plan`, `/bible-bingo/[boardId]`, `/explorebible`).
+- **Routes:** `/` (portfolio), `/about-open-mirror`, `/contact`, `/reflect`, per-product pages (`/crossheartpray`, `/step-in-the-ring`, …), plus mirrored CHP pages (`/cross`, `/heart`, `/pray`, `/daily-hope`, `/bible-reading-plan`, `/bible-bingo/[boardId]`, `/explorebible`). `/talk-with-the-owner` and `/work-with-the-founder` permanently redirect to `/contact`.
 - **Canonical family UI:** `packages/openmirror-ui/` (`OpenMirrorNav`, `OpenMirrorFooter`, `OpenMirrorTheme`). Edit ONLY there, then run `./scripts/sync-ui.sh` and build/commit/push each satellite. Pattern docs: `docs/OPEN_MIRROR_PATTERNS.md`.
 - **Identity rules:** owner stays publicly anonymous — "the owner of Open Mirror LLC", never a name/photo/bio. `src/lib/owner.ts` is the only identity source. No public prices without DJ's explicit go.
 - **Env vars (names only):** `RESEND_API_KEY`, `INTAKE_FROM_EMAIL`, `SITE_BASE_URL`, `SOCIAL_ADMIN_KEY`, `SOCIAL_HASHTAGS`, `CRON_SECRET`, `YVP_API_HOST`, `YVP_APP_KEY`, `OPENAI_API_KEY`.

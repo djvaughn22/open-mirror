@@ -1,9 +1,9 @@
 "use client";
 
-// Intake for /talk-with-the-owner. Four fields, one Send button. Posts to
-// /api/intake, which sends the message when RESEND_API_KEY is configured.
-// If it isn't (or the send fails), the same click falls back to opening the
-// visitor's email app prefilled — nothing pretends to have been sent.
+// Intake for /contact. Six fields, one Send button. Posts to /api/intake,
+// which sends the message when RESEND_API_KEY is configured. If it isn't (or
+// the send fails), the same click falls back to opening the visitor's email
+// app prefilled — nothing pretends to have been sent.
 
 import { useRef, useState } from "react";
 import { SERVICE_EMAIL } from "../lib/services";
@@ -18,33 +18,38 @@ function track(event: string) {
 type Fields = {
   name: string;
   email: string;
-  building: string;
-  link: string;
+  creating: string;
+  done: string;
+  stuck: string;
+  help: string;
 };
 
 const EMPTY: Fields = {
   name: "",
   email: "",
-  building: "",
-  link: "",
+  creating: "",
+  done: "",
+  stuck: "",
+  help: "",
 };
 
-const REQUIRED: (keyof Fields)[] = ["name", "email", "building"];
+const REQUIRED: (keyof Fields)[] = ["name", "email", "creating"];
 
 const LABELS: Record<keyof Fields, string> = {
   name: "Name",
   email: "Email",
-  building: "What are you building?",
-  link: "Link to the project, if you have one",
+  creating: "What are you trying to create?",
+  done: "What have you already done?",
+  stuck: "Where are you stuck?",
+  help: "What kind of help would be useful?",
 };
+
+const FIELD_ORDER: (keyof Fields)[] = ["name", "email", "creating", "done", "stuck", "help"];
 
 function buildEmailBody(f: Fields): string {
   const line = (key: keyof Fields) =>
     f[key].trim() ? `${LABELS[key]}\n${f[key].trim()}` : "";
-  return (["name", "email", "building", "link"] as const)
-    .map(line)
-    .filter(Boolean)
-    .join("\n\n");
+  return FIELD_ORDER.map(line).filter(Boolean).join("\n\n");
 }
 
 // Native focus outline stays on: the light theme forces border-color with
@@ -53,7 +58,7 @@ const inputClass =
   "w-full rounded-xl border border-[#26324c] bg-[#0b1220] px-4 py-3 text-sm font-semibold text-[#e8edf5] placeholder:text-[#64748b] focus:border-[#38BDF8]";
 const labelClass = "mb-1.5 block text-xs font-black uppercase tracking-wider text-[#94a3b8]";
 
-export default function TalkWithOwnerIntake() {
+export default function ContactForm() {
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "mailto">("idle");
@@ -106,7 +111,7 @@ export default function TalkWithOwnerIntake() {
       // Fall through to the email-app fallback below.
     }
     track("intake_email_opened");
-    const subject = `Talk with the Owner — ${fields.name.trim()}`;
+    const subject = `Open Mirror — ${fields.name.trim()}`;
     window.location.href = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildEmailBody(fields))}`;
     setStatus("mailto");
   }
@@ -118,78 +123,57 @@ export default function TalkWithOwnerIntake() {
       </p>
     ) : null;
 
+  const textField = (key: keyof Fields, required: boolean, rows?: number) => (
+    <div>
+      <label htmlFor={`intake-${key}`} className={labelClass}>
+        {LABELS[key]}
+        {required ? " *" : ""}
+      </label>
+      {rows ? (
+        <textarea
+          id={`intake-${key}`}
+          rows={rows}
+          value={fields[key]}
+          onChange={(e) => set(key, e.target.value)}
+          className={inputClass}
+        />
+      ) : (
+        <input
+          id={`intake-${key}`}
+          type={key === "email" ? "email" : "text"}
+          autoComplete={key === "name" ? "name" : key === "email" ? "email" : "off"}
+          value={fields[key]}
+          onChange={(e) => set(key, e.target.value)}
+          className={inputClass}
+        />
+      )}
+      {err(key)}
+    </div>
+  );
+
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
       <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="intake-name" className={labelClass}>
-            {LABELS.name} *
-          </label>
-          <input
-            id="intake-name"
-            type="text"
-            autoComplete="name"
-            value={fields.name}
-            onChange={(e) => set("name", e.target.value)}
-            className={inputClass}
-          />
-          {err("name")}
-        </div>
-        <div>
-          <label htmlFor="intake-email" className={labelClass}>
-            {LABELS.email} *
-          </label>
-          <input
-            id="intake-email"
-            type="email"
-            autoComplete="email"
-            value={fields.email}
-            onChange={(e) => set("email", e.target.value)}
-            className={inputClass}
-          />
-          {err("email")}
-        </div>
+        {textField("name", true)}
+        {textField("email", true)}
       </div>
 
-      <div>
-        <label htmlFor="intake-building" className={labelClass}>
-          {LABELS.building} *
-        </label>
-        <textarea
-          id="intake-building"
-          rows={3}
-          value={fields.building}
-          onChange={(e) => set("building", e.target.value)}
-          className={inputClass}
-        />
-        {err("building")}
-      </div>
-
-      <div>
-        <label htmlFor="intake-link" className={labelClass}>
-          {LABELS.link}
-        </label>
-        <input
-          id="intake-link"
-          type="url"
-          placeholder="https://"
-          value={fields.link}
-          onChange={(e) => set("link", e.target.value)}
-          className={inputClass}
-        />
-      </div>
+      {textField("creating", true, 3)}
+      {textField("done", false, 2)}
+      {textField("stuck", false, 2)}
+      {textField("help", false, 2)}
 
       <button
         type="submit"
         disabled={status === "sending"}
         className="mt-1 rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C] disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Send"}
+        {status === "sending" ? "Sending…" : "Send your idea"}
       </button>
 
       {status === "sent" && (
         <p role="status" className="text-center text-sm font-bold text-[#34D399]">
-          Sent.
+          Sent. If it&apos;s a good fit, you&apos;ll hear back.
         </p>
       )}
       {status === "mailto" && (

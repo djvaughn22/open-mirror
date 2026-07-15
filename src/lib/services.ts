@@ -1,52 +1,32 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Talk-with-the-Owner service registry — single source of truth for
-// /talk-with-the-owner.
+// Contact registry — single source of truth for /contact.
 //
-// Three kinds of help, no public prices. Scope and terms are settled in the
-// conversation, after the idea is understood. If payment links ever get
-// added, they get added here — not sprinkled through the page.
+// One quiet page: a plain invitation, a form, and a privacy note. No prices,
+// no tiers, no menu to pick from. If a payment link is ever added, it gets
+// added here — not sprinkled through the page.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { STUDIO } from "./products";
 
 export const SERVICE_EMAIL = STUDIO.email;
 
-/** The engagement, in one line — used by the page, metadata, and OG tags. */
-export const ENGAGEMENT =
-  "Direct help from the owner of Open Mirror LLC: a clear production path from your idea or prototype to the real thing.";
+export const PAGE_TITLE = "Contact Open Mirror";
 
-/** What the owner helps you decide, shown as the qualifying list. */
-export const DECIDE_LIST = [
-  "What to build first",
-  "What to leave out",
-  "What tools you need",
-  "What could go wrong",
-  "The next real step",
-];
+/** One-line description for metadata, OG tags, and structured data. */
+export const META_DESCRIPTION =
+  "Have an idea you want to bring to life? Open Mirror takes on one focused project at a time. Share what you're making and where you're stuck.";
 
-/** The three kinds of help — plain names, plain explanations, no prices. */
-export const TIERS: { name: string; how: string }[] = [
-  {
-    name: "An hour of direction",
-    how: "Send the project and your questions first. Use the hour to make decisions and get unstuck.",
-  },
-  {
-    name: "A written plan",
-    how: "A clear, written path from your idea or prototype toward production — what to build, in what order.",
-  },
-  {
-    name: "A full build",
-    how: "Some ideas need more. Bigger work starts with a conversation and a clear scope.",
-  },
-];
+/** The core message — the full version. */
+export const CORE_MESSAGE =
+  "Open Mirror takes on one focused project at a time. Work is handled directly, mostly during evenings and weekends. Share what you are trying to create, what you have already done, and where you need help. If the project feels like a good fit, Open Mirror will respond.";
 
-/** The one line under the tiers. */
-export const SCOPE_LINE =
-  "Every project starts with a conversation. Reaching out costs nothing.";
+/** Shorter version — same honesty, fewer words, used on small screens. */
+export const CORE_MESSAGE_SHORT =
+  "Open Mirror takes on one focused project at a time, worked on directly, mostly evenings and weekends. Share what you're making, what you've already done, and where you're stuck. If it's a good fit, you'll hear back.";
 
-/** Availability, honestly. */
-export const AVAILABILITY =
-  "Open Mirror runs on evenings and weekends, alongside a full-time job. Availability is limited. Every accepted project gets direct owner involvement.";
+/** Shown near the form. Sets expectations honestly, without apology. */
+export const PRIVACY_NOTE =
+  "What you share here is only used to respond to your message. It isn't shared, sold, or added to a mailing list.";
 
 /**
  * Portfolio proof — one-line product statements.

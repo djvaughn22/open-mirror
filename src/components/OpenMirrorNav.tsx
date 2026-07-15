@@ -29,7 +29,7 @@ const MENU: Item[] = [
   { divider: true },
   { label: "About", href: "/about-open-mirror" },
   { label: "Start Building", href: "https://stepinthering.com" },
-  { label: "Talk with the Owner", href: "/talk-with-the-owner" },
+  { label: "Contact", href: "/contact" },
   { divider: true },
   ...bottomItems,
 ];

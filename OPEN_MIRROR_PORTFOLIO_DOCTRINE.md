@@ -37,7 +37,7 @@ sessions do not re-litigate the mission.
 
 | Project | Core purpose | Primary visitor action | Open Mirror connection | Commercial boundary | Copy changed (Jul 14 2026 pass) |
 |---|---|---|---|---|---|
-| Open Mirror hub | Company doorway; honest portfolio | Browse projects; find StepInTheRing | Is Open Mirror | Talk with the Owner is the only consulting surface | About rebuilt around the three haikus; Talk opens "Bring me what you built." |
+| Open Mirror hub | Company doorway; honest portfolio | Browse projects; find StepInTheRing | Is Open Mirror | `/contact` (Contact Open Mirror) is the only consulting surface | About rebuilt around the three haikus; `/contact` is a quiet, faceless page — no tiers, no pricing, no "owner" framing (renamed from Talk with the Owner, Jul 15 2026) |
 | StepInTheRing | Turn one idea into a first build plan | Answer seven questions, get the fight plan | Kicker link + shared footer | Free output stays complete; owner line only on the result | Result-page production line now uses the Get-it-live haiku |
 | CrossHeartPray | Scripture, prayer, daily faith routine | Daily Hope / reading plan | Quiet top bar + footer link only | NO commercial/consulting language, ever | None (verified untouched) |
 | TheDJCares | Gospel-first curated encouragement | Listen / watch curated content | Shared footer + About link only | No consulting pitch in the experience | None |

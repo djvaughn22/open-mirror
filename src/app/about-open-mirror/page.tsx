@@ -121,7 +121,7 @@ export default function AboutOpenMirror() {
             Want to make something of your own?
           </h2>
           <p className="mx-auto mb-5 max-w-md text-balance text-sm font-semibold leading-7 text-[#94a3b8]">
-            Start in StepInTheRing. If you get stuck, the owner is easy to
+            Start in StepInTheRing. If you get stuck, Open Mirror is easy to
             reach.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -134,10 +134,10 @@ export default function AboutOpenMirror() {
               Start Building
             </a>
             <Link
-              href="/talk-with-the-owner"
+              href="/contact"
               className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-base font-black text-[#e8edf5] transition hover:border-[#38BDF8]"
             >
-              Talk with the Owner
+              Contact Open Mirror
             </Link>
           </div>
         </section>

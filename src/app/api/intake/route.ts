@@ -2,13 +2,15 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { SERVICE_EMAIL } from "../../../lib/services";
 
-// Sends the /talk-with-the-owner intake to the studio address via Resend.
-// Returns 503 when RESEND_API_KEY isn't configured — the form then falls
-// back to opening the visitor's own email app, so nothing is lost.
+// Sends the /contact intake to the studio address via Resend. Returns 503
+// when RESEND_API_KEY isn't configured — the form then falls back to
+// opening the visitor's own email app, so nothing is lost.
 
 const FIELD_LABELS: Record<string, string> = {
-  building: "What are you building?",
-  link: "Link",
+  creating: "What are you trying to create?",
+  done: "What have you already done?",
+  stuck: "Where are you stuck?",
+  help: "What kind of help would be useful?",
 };
 
 export async function POST(req: Request) {
@@ -24,9 +26,9 @@ export async function POST(req: Request) {
 
   const name = field("name", 200);
   const email = field("email", 200);
-  const building = field("building", 5000);
+  const creating = field("creating", 5000);
 
-  if (!name || !building || !/^\S+@\S+\.\S+$/.test(email)) {
+  if (!name || !creating || !/^\S+@\S+\.\S+$/.test(email)) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
@@ -38,9 +40,9 @@ export async function POST(req: Request) {
   const text = [
     `Name:\n${name}`,
     `Email:\n${email}`,
-    `${FIELD_LABELS.building}\n${building}`,
+    `${FIELD_LABELS.creating}\n${creating}`,
     ...Object.entries(FIELD_LABELS)
-      .filter(([k]) => k !== "building")
+      .filter(([k]) => k !== "creating")
       .map(([k, label]) => {
         const v = field(k, 5000);
         return v ? `${label}\n${v}` : "";
@@ -55,7 +57,7 @@ export async function POST(req: Request) {
     from,
     to: [SERVICE_EMAIL],
     replyTo: email,
-    subject: `Talk with the Owner — ${name}`,
+    subject: `Open Mirror — ${name}`,
     text,
   });
 

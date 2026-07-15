@@ -5,7 +5,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/work-with-the-founder",
-        destination: "/talk-with-the-owner",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/talk-with-the-owner",
+        destination: "/contact",
         permanent: true,
       },
     ];
