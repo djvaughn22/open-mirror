@@ -17,13 +17,13 @@ export default function AboutOpenMirror() {
 
         {/* The idea + what this is */}
         <section className="mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl">
+          <h1 className="mb-2 text-balance text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl">
             This mirror is for you.
           </h1>
-          <p className="mb-4 text-lg font-black text-[#7dd3fc]">
+          <p className="mb-4 text-balance text-lg font-black text-[#7dd3fc]">
             What do you want to create?
           </p>
-          <p className="mx-auto max-w-lg text-sm font-semibold leading-7 text-[#94a3b8]">
+          <p className="mx-auto max-w-lg text-balance text-sm font-semibold leading-7 text-[#94a3b8]">
             Open Mirror is a small independent studio. Everything it makes —
             websites, games, tools — is live and free to use. One person
             builds it all, evenings and weekends, and uses it every day.
@@ -114,10 +114,10 @@ export default function AboutOpenMirror() {
 
         {/* Where to begin */}
         <section className="mb-10 text-center">
-          <h2 className="mb-2 text-xl font-black tracking-tight">
+          <h2 className="mb-2 text-balance text-xl font-black tracking-tight">
             Want to make something of your own?
           </h2>
-          <p className="mx-auto mb-5 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
+          <p className="mx-auto mb-5 max-w-md text-balance text-sm font-semibold leading-7 text-[#94a3b8]">
             Start in StepInTheRing. If you get stuck, the owner is easy to
             reach.
           </p>
@@ -186,11 +186,11 @@ export default function AboutOpenMirror() {
 
         {/* Legal disclaimer — official register, not sales copy. Keep it
             small, at the bottom, and factual. */}
-        <section className="mb-8 border-t border-[#26324c] pt-6">
+        <section id="disclaimer" className="mb-8 scroll-mt-24 border-t border-[#26324c] pt-6">
           <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#64748b]">
             Disclaimer
           </p>
-          <p className="text-xs font-medium leading-6 text-[#64748b]">
+          <p className="text-pretty text-xs font-medium leading-6 text-[#64748b]">
             Open Mirror LLC is an independent company, created and operated
             entirely on personal time. It is not affiliated with, sponsored
             by, or endorsed by its owner&apos;s employer, and its projects —
