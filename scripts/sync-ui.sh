@@ -26,9 +26,11 @@ TARGETS=(
   "$HOME/WhatAmIAI/whatamiai/app"
   "$HOME/idontcry/src/app"
   "$HOME/WatchedNotWatched/watched-not-watched/src/app"
+  "$HOME/OpenMirror/crossheartpray/src/components"
 )
-# CrossHeartPray is intentionally absent — it keeps its own SiteHeader
-# (see guardrails in 04-reusable-component-plan.md).
+# CrossHeartPray joined 2026-07-14 (DJ: same header as every other site).
+# Its copies live in src/components; its own ChpProductNav bar carries the
+# site links below the family bar, WatchedNotWatched-style.
 
 for t in "${TARGETS[@]}"; do
   if [ ! -d "$t" ]; then
