@@ -1,11 +1,8 @@
-import { CHP_OFFICIAL_BIBLE_READING_PLAN_PDF, CHP_OFFICIAL_BIBLE_READING_PLAN_PDF_DOWNLOAD_NAME } from "@/lib/crossHeartPrayOfficialAssets";
 import { type BibleReadingPlanWeek } from "../lib/bibleReadingPlan";
 import BibleReadingPlanProgress from "./BibleReadingPlanProgress";
 import PrintButton from "./PrintButton";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
-
-const BIBLE_READING_PLAN_EXPORT_ASSET = CHP_OFFICIAL_BIBLE_READING_PLAN_PDF;
 
 type BibleReadingPlanTrackerProps = {
   weeks: BibleReadingPlanWeek[];
