@@ -1,12 +1,12 @@
 "use client";
 
-// Intake for /talk-with-the-owner. Posts to /api/intake, which sends the
-// message when RESEND_API_KEY is configured. If it isn't (or the send
-// fails), the same click falls back to opening the visitor's email app
-// prefilled — nothing pretends to have been sent.
+// Intake for /talk-with-the-owner. Four fields, one Send button. Posts to
+// /api/intake, which sends the message when RESEND_API_KEY is configured.
+// If it isn't (or the send fails), the same click falls back to opening the
+// visitor's email app prefilled — nothing pretends to have been sent.
 
 import { useRef, useState } from "react";
-import { BUDGET_RANGES, HELP_TYPES, SERVICE_EMAIL } from "../lib/services";
+import { SERVICE_EMAIL } from "../lib/services";
 
 // GA4 is loaded in the root layout; guard so the form works without it.
 // Events carry no intake text.
@@ -19,24 +19,14 @@ type Fields = {
   name: string;
   email: string;
   building: string;
-  done: string;
-  stuck: string;
   link: string;
-  helpType: string;
-  budget: string;
-  notes: string;
 };
 
 const EMPTY: Fields = {
   name: "",
   email: "",
   building: "",
-  done: "",
-  stuck: "",
   link: "",
-  helpType: "",
-  budget: "",
-  notes: "",
 };
 
 const REQUIRED: (keyof Fields)[] = ["name", "email", "building"];
@@ -45,18 +35,13 @@ const LABELS: Record<keyof Fields, string> = {
   name: "Name",
   email: "Email",
   building: "What are you building?",
-  done: "What have you already done?",
-  stuck: "Where are you stuck?",
   link: "Link to the project, if you have one",
-  helpType: "Type of help",
-  budget: "Budget range",
-  notes: "Anything else the owner should know?",
 };
 
 function buildEmailBody(f: Fields): string {
   const line = (key: keyof Fields) =>
     f[key].trim() ? `${LABELS[key]}\n${f[key].trim()}` : "";
-  return (["name", "email", "building", "done", "stuck", "link", "helpType", "budget", "notes"] as const)
+  return (["name", "email", "building", "link"] as const)
     .map(line)
     .filter(Boolean)
     .join("\n\n");
@@ -181,32 +166,6 @@ export default function TalkWithOwnerIntake() {
       </div>
 
       <div>
-        <label htmlFor="intake-done" className={labelClass}>
-          {LABELS.done}
-        </label>
-        <textarea
-          id="intake-done"
-          rows={2}
-          value={fields.done}
-          onChange={(e) => set("done", e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="intake-stuck" className={labelClass}>
-          {LABELS.stuck}
-        </label>
-        <textarea
-          id="intake-stuck"
-          rows={2}
-          value={fields.stuck}
-          onChange={(e) => set("stuck", e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
-      <div>
         <label htmlFor="intake-link" className={labelClass}>
           {LABELS.link}
         </label>
@@ -216,58 +175,6 @@ export default function TalkWithOwnerIntake() {
           placeholder="https://"
           value={fields.link}
           onChange={(e) => set("link", e.target.value)}
-          className={inputClass}
-        />
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="intake-helpType" className={labelClass}>
-            {LABELS.helpType}
-          </label>
-          <select
-            id="intake-helpType"
-            value={fields.helpType}
-            onChange={(e) => set("helpType", e.target.value)}
-            className={inputClass}
-          >
-            <option value="">Choose one…</option>
-            {HELP_TYPES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="intake-budget" className={labelClass}>
-            {LABELS.budget}
-          </label>
-          <select
-            id="intake-budget"
-            value={fields.budget}
-            onChange={(e) => set("budget", e.target.value)}
-            className={inputClass}
-          >
-            <option value="">Choose one…</option>
-            {BUDGET_RANGES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="intake-notes" className={labelClass}>
-          {LABELS.notes}
-        </label>
-        <textarea
-          id="intake-notes"
-          rows={2}
-          value={fields.notes}
-          onChange={(e) => set("notes", e.target.value)}
           className={inputClass}
         />
       </div>

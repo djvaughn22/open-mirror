@@ -8,12 +8,7 @@ import { SERVICE_EMAIL } from "../../../lib/services";
 
 const FIELD_LABELS: Record<string, string> = {
   building: "What are you building?",
-  done: "What have you already done?",
-  stuck: "Where are you stuck?",
   link: "Link",
-  helpType: "Type of help",
-  budget: "Budget range",
-  notes: "Anything else",
 };
 
 export async function POST(req: Request) {

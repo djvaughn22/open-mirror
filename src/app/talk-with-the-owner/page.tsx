@@ -5,8 +5,8 @@ import {
   AVAILABILITY,
   DECIDE_LIST,
   ENGAGEMENT,
-  NO_MYSTERY,
   PROOF,
+  SCOPE_LINE,
   SERVICE_EMAIL,
   TIERS,
 } from "../../lib/services";
@@ -106,9 +106,9 @@ export default function TalkWithTheOwner() {
           </ul>
         </section>
 
-        {/* 3 — The help, priced */}
+        {/* 3 — The help, plain */}
         <section className="mb-14">
-          <SectionLabel>Choose the help you need</SectionLabel>
+          <SectionLabel>Three kinds of help</SectionLabel>
           <div className="flex flex-col gap-3">
             {TIERS.map((t, i) => (
               <div
@@ -122,12 +122,7 @@ export default function TalkWithTheOwner() {
                   {i + 1}
                 </span>
                 <div>
-                  <h2 className="text-base font-black">
-                    {t.name}
-                    {t.price && (
-                      <span className="ml-2 text-[#7dd3fc]">— {t.price}</span>
-                    )}
-                  </h2>
+                  <h2 className="text-base font-black">{t.name}</h2>
                   <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
                     {t.how}
                   </p>
@@ -136,7 +131,7 @@ export default function TalkWithTheOwner() {
             ))}
           </div>
           <p className="mt-4 text-center text-xs font-semibold leading-6 text-[#64748b]">
-            {NO_MYSTERY}
+            {SCOPE_LINE}
           </p>
         </section>
 
