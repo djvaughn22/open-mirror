@@ -9,37 +9,19 @@ CrossHeartPray family of pages.
 - Company direction: `OPEN_MIRROR_PORTFOLIO_DOCTRINE.md`.
 - Push to `main` = production deploy (Vercel).
 
-## Getting Started
+## Repo map
 
-First, run the development server:
+- **Production:** https://openmirrorllc.com — branch `main`, auto-deploys on push (Vercel).
+- **Framework:** Next.js 16.2.6 (App Router). Build: `npm run build`.
+- **Routes:** `/` (portfolio), `/about-open-mirror`, `/talk-with-the-owner`, `/reflect`, per-product pages (`/crossheartpray`, `/step-in-the-ring`, …), plus mirrored CHP pages (`/cross`, `/heart`, `/pray`, `/daily-hope`, `/bible-reading-plan`, `/bible-bingo/[boardId]`, `/explorebible`).
+- **Canonical family UI:** `packages/openmirror-ui/` (`OpenMirrorNav`, `OpenMirrorFooter`, `OpenMirrorTheme`). Edit ONLY there, then run `./scripts/sync-ui.sh` and build/commit/push each satellite. Pattern docs: `docs/OPEN_MIRROR_PATTERNS.md`.
+- **Identity rules:** owner stays publicly anonymous — "the owner of Open Mirror LLC", never a name/photo/bio. `src/lib/owner.ts` is the only identity source. No public prices without DJ's explicit go.
+- **Env vars (names only):** `RESEND_API_KEY`, `INTAKE_FROM_EMAIL`, `SITE_BASE_URL`, `SOCIAL_ADMIN_KEY`, `SOCIAL_HASHTAGS`, `CRON_SECRET`, `YVP_API_HOST`, `YVP_APP_KEY`, `OPENAI_API_KEY`.
+- **Protected:** the three haikus (About page, verbatim), mission/positioning copy, product order in `src/lib/products.ts`, Talk-with-the-Owner unpriced tiers.
+
+## Local dev
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

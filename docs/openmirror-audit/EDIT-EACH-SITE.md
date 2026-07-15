@@ -14,27 +14,26 @@ cd <repo path from the table below>
 npm run build            # 2. must say: ✓ Compiled successfully
 git add -A
 git commit -m "what you changed"   # 3. save
-git push                 # 4. save to GitHub
-vercel --prod --yes      # 5. deploy live   (hub + iDontCry auto-deploy on push — skip step 5)
-# 6. hard-refresh the live site: Ctrl+Shift+R
+git push                 # 4. save to GitHub — every site auto-deploys on push to main
+                         #    (DJ confirmed Jul 2026; the old `vercel --prod` step is obsolete)
+# 5. hard-refresh the live site: Ctrl+Shift+R
 ```
-> `vercel` not installed? `npm i vercel` once (it's free), then use `npx vercel --prod --yes`.
 
 ## Where each site lives + what to edit
 
 | Site | Repo path | Edit this file for content | Deploy |
 |------|-----------|----------------------------|--------|
 | Open Mirror hub | `~/OpenMirror/open-mirror` | `src/app/page.tsx` (the cards) | push (auto) |
-| CrossHeartPray | `~/OpenMirror/crossheartpray` | `src/app/page.tsx`, `src/app/about/page.tsx`, `src/lib/*.ts` | `vercel --prod` |
-| TheDJCares | `~/TheDJCares/thedjcares` | `app/lib/djCaresLibrary.ts` (playlists/videos), `app/lib/faithYouTube.ts` (faith themes) | `vercel --prod` |
-| DontCloneMeTom | `~/DontCloneMeTom/dont-clone-me-tom` | `app/page.tsx` | `vercel --prod` |
+| CrossHeartPray | `~/OpenMirror/crossheartpray` | `src/app/page.tsx`, `src/app/about/page.tsx`, `src/lib/*.ts` | push (auto) |
+| TheDJCares | `~/TheDJCares/thedjcares` | `app/lib/djCaresLibrary.ts` (playlists/videos), `app/lib/faithYouTube.ts` (faith themes) | push (auto) |
+| DontCloneMeTom | `~/DontCloneMeTom/dont-clone-me-tom` | `app/page.tsx` | push (auto) |
 | iDontCry | `~/idontcry` | `src/app/welcome/page.tsx` | push (auto) |
-| StepInTheRing | `~/StepInTheRing/step-in-the-ring` | `app/page.tsx` (steps/examples) | `vercel --prod` |
-| WatchedNotWatched | `~/WatchedNotWatched/watched-not-watched` | `src/app/page.tsx` | `vercel --prod` |
-| WhatAmIAI | `~/WhatAmIAI/whatamiai` | `app/page.tsx` | `vercel --prod` |
-| PleaseBeReady | `~/PleaseBeReady/pleasebeready` | `app/page.tsx` | `vercel --prod` |
-| Fambookagram | `~/Fambookagram/fambookagram` | `app/page.tsx` | `vercel --prod` |
-| Friendbookagram | `~/Friendbookagram/friendbookagram` | `app/page.tsx` | `vercel --prod` |
+| StepInTheRing | `~/StepInTheRing/step-in-the-ring` | `app/page.tsx` (steps/examples) | push (auto) |
+| WatchedNotWatched | `~/WatchedNotWatched/watched-not-watched` | `src/app/page.tsx` | push (auto) |
+| WhatAmIAI | `~/WhatAmIAI/whatamiai` | `app/page.tsx` | push (auto) |
+| PleaseBeReady | `~/PleaseBeReady/pleasebeready` | `app/page.tsx` | push (auto) |
+| Fambookagram | `~/Fambookagram/fambookagram` | `app/page.tsx` | push (auto) |
+| Friendbookagram | `~/Friendbookagram/friendbookagram` | `app/page.tsx` | push (auto) |
 
 ## The family colors (use these everywhere — cool, no red/yellow/orange)
 ```
@@ -46,7 +45,7 @@ Per-site accent (one cool pop each): CHP `#4ADE80` · DJCares `#A78BFA` · DontC
 **To recolor a whole site fast** (it uses `:root` CSS variables like StepInTheRing, or inline hex): find/replace the old hex → the family hex, then `npm run build`.
 
 ## The cross-site menu (one list, same everywhere)
-The menu lives in each repo's `OpenMirrorNav.tsx`. The canonical order + cool styling is in **TheDJCares `app/OpenMirrorNav.tsx`** and the **hub `src/components/OpenMirrorNav.tsx`** — copy that file over a site's old nav to update it. (Long-term: see `04-reusable-component-plan.md` for making this ONE shared file.)
+The canonical nav/footer/theme files live in **this repo → `packages/openmirror-ui/`**. Edit there, then run `./scripts/sync-ui.sh` to copy them into every satellite, then build + commit + push each satellite. Never edit a site's local copy. (Pattern details: `docs/OPEN_MIRROR_PATTERNS.md`.)
 
 ## Add a playlist / video to TheDJCares (one line)
 `app/lib/djCaresLibrary.ts` → drop one line into the right group:
