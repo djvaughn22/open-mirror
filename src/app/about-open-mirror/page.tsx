@@ -193,8 +193,15 @@ export default function AboutOpenMirror() {
           <p className="text-xs font-medium leading-6 text-[#64748b]">
             Open Mirror LLC is an independent company, created and operated
             entirely on personal time. It is not affiliated with, sponsored
-            by, or endorsed by its owner&apos;s employer, and the views
-            expressed across its sites are solely its own.
+            by, or endorsed by its owner&apos;s employer, and its projects —
+            small consumer experiments built to learn — neither compete with
+            nor draw on that employer&apos;s business. Any apparent overlap
+            is unintentional; report it to{" "}
+            <a href={`mailto:${STUDIO.email}`} className="font-semibold text-[#94a3b8]">
+              {STUDIO.email}
+            </a>{" "}
+            and it will be corrected. The views expressed across its sites
+            are solely its own.
           </p>
         </section>
 
