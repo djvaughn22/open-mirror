@@ -27,71 +27,68 @@ export default function AboutOpenMirror() {
 
         {/* The three moves — locked haikus (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
             Never rewrite their words. */}
-        <section className="mb-14 text-center">
-          <p className="mb-10 text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
+        <section className="mb-14">
+          <p className="mb-6 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
             Open Mirror works in three moves
           </p>
-
-          <h2 className="mb-4 text-2xl font-black tracking-tight text-[#7dd3fc]">
-            Start
-          </h2>
-          <p className="text-lg font-black leading-9 text-[#e8edf5]">
-            Pick one thing to build
-            <br />
-            Start before the plan is done
-            <br />
-            Make the first version
-          </p>
-          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
-            Every project here began before everything was known.
-          </p>
-
-          <h2 className="mb-4 mt-12 text-2xl font-black tracking-tight text-[#7dd3fc]">
-            Improve
-          </h2>
-          <p className="text-lg font-black leading-9 text-[#e8edf5]">
-            Build it, test it, learn
-            <br />
-            Keep what works and cut the rest
-            <br />
-            Then build it better
-          </p>
-          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
-            The whole portfolio is built this way — use it, fix it, build it
-            better.
-          </p>
-
-          <h2 className="mb-4 mt-12 text-2xl font-black tracking-tight text-[#7dd3fc]">
-            Get it live
-          </h2>
-          <p className="text-lg font-black leading-9 text-[#e8edf5]">
-            Bring me what you built
-            <br />
-            I will find the real next step
-            <br />
-            Then ship something real
-          </p>
-          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
-            Start in StepInTheRing. When production is the next step, the
-            owner can help.
-          </p>
-
-          <p className="mx-auto mt-12 max-w-md text-base font-semibold leading-8 text-[#94a3b8]">
-            Everything on this site got made this way — one person, nights
-            and weekends.{" "}
+          <div className="flex flex-col gap-4">
+            {[
+              {
+                n: "01",
+                title: "Start",
+                lines: [
+                  "Pick one thing to build",
+                  "Start before the plan is done",
+                  "Make the first version",
+                ],
+              },
+              {
+                n: "02",
+                title: "Improve",
+                lines: [
+                  "Build it, test it, learn",
+                  "Keep what works and cut the rest",
+                  "Then build it better",
+                ],
+              },
+              {
+                n: "03",
+                title: "Get it live",
+                lines: [
+                  "Bring me what you built",
+                  "I will find the real next step",
+                  "Then ship something real",
+                ],
+              },
+            ].map((move) => (
+              <div
+                key={move.n}
+                className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-7"
+              >
+                <div className="mb-3 flex items-baseline gap-3">
+                  <span className="text-sm font-black tracking-widest text-[#38BDF8]">
+                    {move.n}
+                  </span>
+                  <h2 className="text-2xl font-black tracking-tight">
+                    {move.title}
+                  </h2>
+                </div>
+                <p className="text-base font-bold leading-8 text-[#94a3b8]">
+                  {move.lines.map((line, i) => (
+                    <span key={line}>
+                      {i > 0 && <br />}
+                      {line}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-base font-semibold leading-8 text-[#94a3b8]">
+            Every project on this site was built this way.{" "}
             <span className="font-black text-[#e8edf5]">
               You can start building too.
             </span>
-          </p>
-        </section>
-
-        {/* How it is built */}
-        <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-          <h2 className="mb-3 text-xl font-black">Built after work.</h2>
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            By day, I&apos;m a digital product executive at a large company.
-            Open Mirror LLC is independent of that work — personal time,
-            personally funded, unaffiliated.
           </p>
         </section>
 
@@ -201,6 +198,24 @@ export default function AboutOpenMirror() {
               </a>
             ))}
           </div>
+        </section>
+
+        {/* Legal disclaimer — official register, not sales copy. Keep it
+            small, at the bottom, and factual. */}
+        <section className="mb-8 border-t border-[#26324c] pt-6">
+          <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#64748b]">
+            Disclaimer
+          </p>
+          <p className="text-xs font-medium leading-6 text-[#64748b]">
+            Open Mirror LLC is an independent Missouri limited liability
+            company, owned and operated on personal time and at personal
+            expense. Its owner is separately employed as a digital product
+            executive at a large company. Open Mirror LLC is not affiliated
+            with, sponsored by, or endorsed by that employer, and nothing
+            published by Open Mirror LLC or its affiliated sites represents
+            the views, work, or interests of any employer. All content and
+            opinions are solely those of Open Mirror LLC.
+          </p>
         </section>
 
         <p className="text-center text-xs font-semibold text-[#64748b]">
