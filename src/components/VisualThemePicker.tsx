@@ -45,6 +45,7 @@ export default function VisualThemePicker() {
         window.localStorage.getItem(STORAGE_KEY),
     );
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR renders the default; the saved theme is read from localStorage after mount
     setTheme(initial);
   }, []);
 

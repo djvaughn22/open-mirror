@@ -1,6 +1,10 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
+function asUnknownRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+}
+
 export const runtime = "nodejs";
 
 
@@ -220,13 +224,14 @@ ${formattedPassages}
     return NextResponse.json({
       reflection: formattedReflection,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error(error);
 
+    const err = asUnknownRecord(error);
     if (
-      error?.status === 429 ||
-      error?.code === "insufficient_quota" ||
-      error?.type === "insufficient_quota"
+      err.status === 429 ||
+      err.code === "insufficient_quota" ||
+      err.type === "insufficient_quota"
     ) {
       return NextResponse.json(
         {
