@@ -33,7 +33,11 @@ export default function AboutOpenMirror() {
         {/* The three haikus — locked words (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
             Never rewrite them. Presented quietly, as verse, not as a method. */}
         <section className="mb-10 border-y border-[#26324c] py-6">
-          <div className="grid gap-6 text-center sm:grid-cols-3">
+          {/* Each haiku is always exactly 3 rows: one non-wrapping block per
+              line (5-7-5, locked). Stack full-width on phones/small tablets so
+              the 7-syllable line has room; only go 3-across at md, where the
+              columns are wide enough that no line ever wraps to a 4th row. */}
+          <div className="grid gap-6 text-center md:grid-cols-3">
             {[
               {
                 title: "Start",
@@ -64,10 +68,9 @@ export default function AboutOpenMirror() {
                 <h2 className="mb-1 text-sm font-black tracking-tight text-[#7dd3fc]">
                   {verse.title}
                 </h2>
-                <p className="text-[13px] font-semibold leading-6 text-[#94a3b8]">
-                  {verse.lines.map((line, i) => (
-                    <span key={line}>
-                      {i > 0 && <br />}
+                <p className="text-[13px] font-semibold leading-6 text-[#94a3b8] md:text-[12px]">
+                  {verse.lines.map((line) => (
+                    <span key={line} className="block whitespace-nowrap">
                       {line}
                     </span>
                   ))}
