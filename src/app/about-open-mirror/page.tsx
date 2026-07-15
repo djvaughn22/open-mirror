@@ -13,21 +13,17 @@ export const metadata: Metadata = {
 export default function AboutOpenMirror() {
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
-      <div className="mx-auto max-w-2xl px-5 py-14">
+      <div className="mx-auto max-w-2xl px-5 py-10">
 
-        {/* The idea */}
-        <section className="mb-14 text-center">
-          <h1 className="mb-5 text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl">
+        {/* The idea + what this is */}
+        <section className="mb-8 text-center">
+          <h1 className="mb-2 text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl">
             This mirror is for you.
           </h1>
-          <p className="text-xl font-black text-[#7dd3fc]">
+          <p className="mb-4 text-lg font-black text-[#7dd3fc]">
             What do you want to create?
           </p>
-        </section>
-
-        {/* What this is */}
-        <section className="mb-14 text-center">
-          <p className="mx-auto max-w-lg text-base font-semibold leading-8 text-[#94a3b8]">
+          <p className="mx-auto max-w-lg text-sm font-semibold leading-7 text-[#94a3b8]">
             Open Mirror is a small independent studio. Everything it makes —
             websites, games, tools — is live and free to use. One person
             builds it all, evenings and weekends, and uses it every day.
@@ -36,8 +32,8 @@ export default function AboutOpenMirror() {
 
         {/* The three haikus — locked words (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
             Never rewrite them. Presented quietly, as verse, not as a method. */}
-        <section className="mb-14 border-y border-[#26324c] py-10">
-          <div className="grid gap-8 text-center sm:grid-cols-3 sm:gap-6">
+        <section className="mb-10 border-y border-[#26324c] py-6">
+          <div className="grid gap-6 text-center sm:grid-cols-3">
             {[
               {
                 title: "Start",
@@ -65,10 +61,10 @@ export default function AboutOpenMirror() {
               },
             ].map((verse) => (
               <div key={verse.title}>
-                <h2 className="mb-3 text-base font-black tracking-tight text-[#7dd3fc]">
+                <h2 className="mb-1 text-sm font-black tracking-tight text-[#7dd3fc]">
                   {verse.title}
                 </h2>
-                <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+                <p className="text-[13px] font-semibold leading-6 text-[#94a3b8]">
                   {verse.lines.map((line, i) => (
                     <span key={line}>
                       {i > 0 && <br />}
@@ -117,11 +113,11 @@ export default function AboutOpenMirror() {
         )}
 
         {/* Where to begin */}
-        <section className="mb-14 text-center">
-          <h2 className="mb-4 text-2xl font-black tracking-tight">
+        <section className="mb-10 text-center">
+          <h2 className="mb-2 text-xl font-black tracking-tight">
             Want to make something of your own?
           </h2>
-          <p className="mx-auto mb-7 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
+          <p className="mx-auto mb-5 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
             Start in StepInTheRing. If you get stuck, the owner is easy to
             reach.
           </p>
@@ -195,14 +191,10 @@ export default function AboutOpenMirror() {
             Disclaimer
           </p>
           <p className="text-xs font-medium leading-6 text-[#64748b]">
-            Open Mirror LLC is an independent Missouri limited liability
-            company, owned and operated on personal time and at personal
-            expense. Its owner is separately employed as a digital product
-            executive at a large company. Open Mirror LLC is not affiliated
-            with, sponsored by, or endorsed by that employer, and nothing
-            published by Open Mirror LLC or its affiliated sites represents
-            the views, work, or interests of any employer. All content and
-            opinions are solely those of Open Mirror LLC.
+            Open Mirror LLC is an independent company, created and operated
+            entirely on personal time. It is not affiliated with, sponsored
+            by, or endorsed by its owner&apos;s employer, and the views
+            expressed across its sites are solely its own.
           </p>
         </section>
 
