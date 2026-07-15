@@ -88,17 +88,10 @@ export default function AboutOpenMirror() {
         {/* How it is built */}
         <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
           <h2 className="mb-3 text-xl font-black">Built after work.</h2>
-          <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
-            By profession, I&apos;m a digital product executive at a large
-            company. That is my full-time career, and it comes first. Open
-            Mirror LLC is fully independent of it — built on personal time,
-            personally funded, and unaffiliated with my employer.
-          </p>
           <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            The two don&apos;t compete; they compound. Building complete
-            products here sharpens the craft I bring to that role, and it
-            puts the experience to work for people chasing ideas of their
-            own.
+            By day, I&apos;m a digital product executive at a large company.
+            Open Mirror LLC is independent of that work — personal time,
+            personally funded, unaffiliated.
           </p>
         </section>
 
