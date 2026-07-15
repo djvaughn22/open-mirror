@@ -25,16 +25,21 @@ export default function AboutOpenMirror() {
           </p>
         </section>
 
-        {/* The three moves — locked haikus (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
-            Never rewrite their words. */}
-        <section className="mb-14">
-          <p className="mb-6 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
-            Open Mirror works in three moves
+        {/* What this is */}
+        <section className="mb-14 text-center">
+          <p className="mx-auto max-w-lg text-base font-semibold leading-8 text-[#94a3b8]">
+            Open Mirror is a small independent studio. Everything it makes —
+            websites, games, tools — is live and free to use. One person
+            builds it all, evenings and weekends, and uses it every day.
           </p>
-          <div className="flex flex-col gap-4">
+        </section>
+
+        {/* The three haikus — locked words (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
+            Never rewrite them. Presented quietly, as verse, not as a method. */}
+        <section className="mb-14 border-y border-[#26324c] py-10">
+          <div className="grid gap-8 text-center sm:grid-cols-3 sm:gap-6">
             {[
               {
-                n: "01",
                 title: "Start",
                 lines: [
                   "Pick one thing to build",
@@ -43,7 +48,6 @@ export default function AboutOpenMirror() {
                 ],
               },
               {
-                n: "02",
                 title: "Improve",
                 lines: [
                   "Build it, test it, learn",
@@ -52,7 +56,6 @@ export default function AboutOpenMirror() {
                 ],
               },
               {
-                n: "03",
                 title: "Get it live",
                 lines: [
                   "Bring me what you built",
@@ -60,21 +63,13 @@ export default function AboutOpenMirror() {
                   "Then ship something real",
                 ],
               },
-            ].map((move) => (
-              <div
-                key={move.n}
-                className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-7"
-              >
-                <div className="mb-3 flex items-baseline gap-3">
-                  <span className="text-sm font-black tracking-widest text-[#38BDF8]">
-                    {move.n}
-                  </span>
-                  <h2 className="text-2xl font-black tracking-tight">
-                    {move.title}
-                  </h2>
-                </div>
-                <p className="text-base font-bold leading-8 text-[#94a3b8]">
-                  {move.lines.map((line, i) => (
+            ].map((verse) => (
+              <div key={verse.title}>
+                <h2 className="mb-3 text-base font-black tracking-tight text-[#7dd3fc]">
+                  {verse.title}
+                </h2>
+                <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
+                  {verse.lines.map((line, i) => (
                     <span key={line}>
                       {i > 0 && <br />}
                       {line}
@@ -84,12 +79,6 @@ export default function AboutOpenMirror() {
               </div>
             ))}
           </div>
-          <p className="mt-8 text-center text-base font-semibold leading-8 text-[#94a3b8]">
-            Every project on this site was built this way.{" "}
-            <span className="font-black text-[#e8edf5]">
-              You can start building too.
-            </span>
-          </p>
         </section>
 
         {/* Optional public profile — renders nothing while OWNER is anonymous. */}
@@ -130,12 +119,11 @@ export default function AboutOpenMirror() {
         {/* Where to begin */}
         <section className="mb-14 text-center">
           <h2 className="mb-4 text-2xl font-black tracking-tight">
-            So what do you want to build?
+            Want to make something of your own?
           </h2>
           <p className="mx-auto mb-7 max-w-md text-sm font-semibold leading-7 text-[#94a3b8]">
-            Start in StepInTheRing and make something. If you get stuck
-            between the idea and something real, come talk. That&apos;s the
-            whole pitch.
+            Start in StepInTheRing. If you get stuck, the owner is easy to
+            reach.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
