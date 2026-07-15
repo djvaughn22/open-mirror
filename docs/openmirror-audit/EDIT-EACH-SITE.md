@@ -56,11 +56,14 @@ The canonical nav/footer/theme files live in **this repo → `packages/openmirro
 
 ## If something breaks — roll back (safe)
 ```bash
-git log --oneline -5          # find the last good commit
-git revert --no-edit <bad-commit-sha>   # undo it as a new commit (safest)
-git push && vercel --prod --yes
+git log --oneline -5                    # 1. find the unwanted commit(s)
+git revert --no-edit <bad-commit-sha>   # 2. undo each as a new commit
+npm run build                           # 3. must say ✓ Compiled
+git push                                # 4. push normally — auto-deploys the fix
 ```
-Or jump the whole repo back: `git reset --hard <good-sha> && git push --force-with-lease && vercel --prod`.
+Multiple bad commits? Revert each one (oldest first) the same way. Never `git reset --hard`
+or force-push `main` — that rewrites shared history. Vercel's dashboard also has an
+Instant Rollback button (Deployments → … → Rollback) if the site must be fixed this second.
 
 ## Owner-only (never hand to a collaborator)
 GoDaddy/DNS · Vercel billing & env secrets · GitHub permissions. See `07-collaboration-playbook.md`.

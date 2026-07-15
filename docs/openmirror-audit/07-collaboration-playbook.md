@@ -36,13 +36,16 @@ GoDaddy / DNS · Vercel billing · production secrets/env vars · GitHub org & r
 - **VS Code (local):** open the repo, work on a **feature branch**, never commit straight to `main`.
 - Keep a clear brief up front (saves tokens + confusion): what page, what change, what "done" looks like.
 
-## Standard rollback commands (pin these)
+## Standard rollback (pin this — never rewrite main)
 ```bash
-git revert --no-edit <bad-sha>            # undo one change (safest)
-git reset --hard <good-sha>               # jump back (then force-with-lease push)
-git push --force-with-lease origin main
-vercel --prod --yes                       # redeploy the good state
+git log --oneline -10                     # 1. identify the unwanted commit(s)
+git revert --no-edit <bad-sha>            # 2. undo each as a NEW commit (oldest bad → newest)
+npm run build && npm test                 # 3. build + tests must pass
+git push                                  # 4. push normally — no --force, ever
 ```
+The push auto-deploys the reversion. Never `git reset --hard` + force-push over `main` —
+it rewrites shared history and can eat a collaborator's work. The `pre-audit-*` tags are
+read-only restore references for comparing (`git diff <tag>`), not for replacing `main`.
 Every deploy also has an **"Instant Rollback"** button in the Vercel dashboard (Deployments → … → Rollback) — no code needed.
 
 ## New-collaborator first-task checklist
