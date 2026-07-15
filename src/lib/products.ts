@@ -24,6 +24,26 @@ export const STATUS_LABEL: Record<ProductStatus, string> = {
   archived: "Archived",
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Visitor-relationship labels — what an item IS to the visitor, not its
+// internal development stage. One small, consistent vocabulary, used sparingly
+// on the About story and the product-review page.
+//   Foundation   — the personal first build everything grew from (CrossHeartPray)
+//   Free         — free to explore and use, right now
+//   Product      — a packaged product (paid, or being prepared to be)
+//   Project Help — direct, limited one-project help
+//   Exploring    — an early idea still being tested
+// ─────────────────────────────────────────────────────────────────────────────
+export type AccessLabel = "Foundation" | "Free" | "Product" | "Project Help" | "Exploring";
+
+export const ACCESS_TONE: Record<AccessLabel, string> = {
+  Foundation: "#C4B5FD",
+  Free: "#34D399",
+  Product: "#F59E0B",
+  "Project Help": "#7DD3FC",
+  Exploring: "#94A3B8",
+};
+
 export type Product = {
   name: string;
   emoji: string;

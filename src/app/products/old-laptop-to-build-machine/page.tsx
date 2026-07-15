@@ -1,59 +1,64 @@
 import type { Metadata } from "next";
 
 // Unlisted product page — for internal review only. Not linked from the
-// product registry, nav, homepage, or About page. Reachable only by direct
-// URL. No pricing, no checkout: this is an early product with no payment or
-// delivery system built yet.
+// product registry, nav, or homepage; the About page links only the free
+// readiness check, never this page. No pricing, no checkout, and no public
+// download of the paid bundle.
 
 const TITLE = "Old Laptop to Build Machine";
-const DESCRIPTION =
-  "A beginner-friendly bundle that turns an old laptop into a real Linux development machine — from checking if the laptop is usable through installing Linux, learning the essential tools, and shipping a small project live on the internet.";
+const PROMISE =
+  "Turn an unused laptop into a simple Linux development machine — and publish your first website.";
 
 export const metadata: Metadata = {
   title: `${TITLE} (early product)`,
-  description: DESCRIPTION,
+  description: PROMISE,
   robots: { index: false, follow: false },
 };
 
+// What the customer finishes with — a compact checklist, not paragraphs.
+const FINISH = [
+  "Linux installed",
+  "Development tools working",
+  "GitHub connected",
+  "First website built",
+  "First website live",
+];
+
+// What's included — tight, one line each.
 const INCLUDED = [
-  "A start-here guide and full table of contents",
-  "A printable checklist covering the whole process",
-  "A laptop readiness worksheet",
-  "Backup and safety instructions",
-  "Step-by-step Linux installation instructions",
-  "A development-machine setup guide",
-  "A plain-language terminal command reference",
-  "A Git and GitHub starter guide",
-  "A first-project walkthrough, with the finished project included",
-  "A deployment walkthrough (free hosting, real live URL)",
-  "Troubleshooting guidance",
-  "A recovery / \"what if something goes wrong\" section",
-  "A guide to Open Mirror's own free tools for deciding what's next",
-  "A setup script and a read-only verification script",
+  "Illustrated guide — PDF, HTML & Markdown",
+  "Printable readiness worksheet & checklist",
+  "Terminal and Git & GitHub reference cards",
+  "Troubleshooting & recovery guide",
+  "Safe setup script + read-only check script",
+  "The finished first-project files",
 ];
 
 const REQUIREMENTS = [
-  "A laptop that powers on and boots reliably (age doesn't matter much — see the readiness worksheet)",
-  "At least 2 GB of RAM (4 GB or more recommended for a comfortable experience)",
-  "A USB flash drive, 8 GB or larger, that can be erased",
-  "An internet connection",
-  "About 2–4 hours, which can be spread across multiple sessions",
+  "2 GB RAM",
+  "20 GB storage",
+  "A USB stick (8 GB+)",
+  "Internet",
+  "~2–4 hours",
+  "Linux Mint 22",
 ];
 
-function Section({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+function Check() {
   return (
-    <section className="mb-10">
-      <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
-        {label}
-      </p>
+    <span
+      aria-hidden
+      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#34D399] text-[11px] font-black text-[#0b1220]"
+    >
+      ✓
+    </span>
+  );
+}
+
+function Label({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
       {children}
-    </section>
+    </p>
   );
 }
 
@@ -68,115 +73,115 @@ export default function OldLaptopToBuildMachine() {
           {TITLE}
         </h1>
         <p className="mx-auto mb-10 max-w-md text-balance text-center text-base font-semibold leading-7 text-[#94a3b8]">
-          {DESCRIPTION}
+          {PROMISE}
         </p>
 
-        <Section label="Who it's for">
-          <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-            Anyone with an old laptop and no prior experience with Linux,
-            the terminal, Git, or web deployment. Every term is explained
-            the first time it comes up — nothing here assumes you already
-            know how any of this works.
-          </p>
-        </Section>
+        {/* Start → Finish, shown as structure. */}
+        <section className="mb-10 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-stretch">
+          <div className="flex flex-col justify-center rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 text-center">
+            <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
+              Start with
+            </p>
+            <div className="text-4xl">💻</div>
+            <p className="mt-2 text-sm font-semibold leading-6 text-[#e8edf5]">
+              An unused but workable laptop
+            </p>
+          </div>
+          <div className="hidden items-center justify-center text-2xl font-black text-[#38BDF8] sm:flex">
+            →
+          </div>
+          <div className="rounded-2xl border border-[#26324c] bg-[#141d2e] p-5">
+            <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#94a3b8]">
+              Finish with
+            </p>
+            <ul className="flex flex-col gap-2">
+              {FINISH.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm font-semibold leading-5">
+                  <Check />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
-        <Section label="What you'll finish with">
-          <ul className="flex flex-col gap-2">
-            {[
-              "A laptop running Linux, updated and secured",
-              "Git, a code editor, Python, and Node.js installed and working",
-              "A small real project, built by hand",
-              "That project saved to GitHub",
-              "That project live on the internet, at a real URL",
-            ].map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3 text-sm font-semibold leading-6"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section label="What's included">
+        {/* Included — compact checklist. */}
+        <section className="mb-10">
+          <Label>Included</Label>
           <ul className="grid gap-2 sm:grid-cols-2">
             {INCLUDED.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3 text-xs font-semibold leading-5 text-[#e8edf5]"
+                className="flex items-start gap-2 rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3 text-sm font-semibold leading-5"
               >
+                <Check />
                 {item}
               </li>
             ))}
           </ul>
-        </Section>
+        </section>
 
-        <Section label="System requirements">
-          <ul className="flex flex-col gap-2">
-            {REQUIREMENTS.map((item) => (
-              <li
-                key={item}
-                className="text-sm font-semibold leading-6 text-[#94a3b8]"
+        {/* Requirements — one compact row of chips. */}
+        <section className="mb-10">
+          <Label>System requirements</Label>
+          <div className="flex flex-wrap gap-2">
+            {REQUIREMENTS.map((r) => (
+              <span
+                key={r}
+                className="rounded-full border border-[#26324c] bg-[#141d2e] px-3 py-1.5 text-xs font-bold text-[#94a3b8]"
               >
-                — {item}
-              </li>
+                {r}
+              </span>
             ))}
-          </ul>
-        </Section>
+          </div>
+        </section>
 
+        {/* Backup warning — brief. */}
         <section className="mb-10 rounded-2xl border border-[#f59e0b]/40 bg-[#1c1608] p-5">
-          <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#f59e0b]">
-            Before you start
+          <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#f59e0b]">
+            Backup warning
           </p>
           <p className="text-sm font-semibold leading-7 text-[#e8edf5]">
-            Installing Linux normally erases everything currently on the
-            laptop&apos;s drive. Back up anything you need first — the bundle&apos;s
-            backup-and-safety guide walks through exactly how. No script in
-            this bundle erases a disk automatically; every destructive step
-            happens inside the Linux installer itself, under your control.
+            Installing Linux erases the laptop. The guide shows how to back up
+            first — the only destructive step is one you choose inside the
+            installer.
           </p>
         </section>
 
-        {/* Free readiness check — genuinely free, a real download. */}
-        <Section label="Free readiness check">
-          <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 text-center">
-            <p className="mb-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-              Not sure if your laptop is up to it? Start with the free
-              five-minute readiness check — hardware requirements, a backup
-              warning, and clear stop signs. No email required.
+        {/* Choose: free check (real download) vs full playbook (not for sale). */}
+        <section className="mb-10 grid gap-3 sm:grid-cols-2">
+          <div className="flex flex-col rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 text-center">
+            <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#34D399]">
+              Free readiness check
+            </p>
+            <p className="mb-4 flex-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+              A five-minute check before you begin. No email required.
             </p>
             <a
               href="/downloads/old-laptop-readiness-check.pdf"
               download
-              className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
+              className="inline-block rounded-full bg-[#38BDF8] px-6 py-3 text-sm font-black text-[#0C0C0C]"
             >
               Download the free check (PDF)
             </a>
           </div>
-        </Section>
-
-        {/* Full playbook — described, not sold. No checkout, no price, and no
-            public free-download of the complete paid bundle. */}
-        <Section label="Full playbook">
-          <div className="rounded-3xl border border-dashed border-[#26324c] bg-[#0f1826] p-6 text-center">
+          <div className="flex flex-col rounded-3xl border border-dashed border-[#26324c] bg-[#0f1826] p-6 text-center">
             <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#f59e0b]">
+              Full playbook
+            </p>
+            <p className="mb-4 flex-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+              The complete bundle. Preparing for release — no price, no
+              checkout, no download yet.
+            </p>
+            <span className="inline-block rounded-full border border-[#26324c] px-6 py-3 text-sm font-black text-[#64748b]">
               Preparing for release
-            </p>
-            <p className="text-sm font-semibold leading-7 text-[#94a3b8]">
-              The complete playbook — the full illustrated guide (PDF, HTML, and
-              Markdown), printable worksheets, quick-reference cards, safe setup
-              scripts, and the finished first-project files. It isn&apos;t on
-              sale yet: there is no price, no checkout, and no purchase button on
-              this page. When it&apos;s ready, this is where it will live.
-            </p>
+            </span>
           </div>
-        </Section>
+        </section>
 
         <p className="text-center text-xs font-semibold leading-6 text-[#64748b]">
-          An early product from Open Mirror LLC. This page is for review — see{" "}
-          <a href="/disclaimer" className="underline">the disclaimer</a>{" "}
-          on how Open Mirror describes products before they&apos;re for sale.
+          An early product from Open Mirror LLC — for review. See{" "}
+          <a href="/disclaimer" className="underline">the disclaimer</a>.
         </p>
       </div>
     </main>

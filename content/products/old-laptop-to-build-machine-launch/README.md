@@ -16,6 +16,8 @@ automatically; nothing here contains pricing or a checkout.
 | `amazon-kdp/manuscript.md` | The instructional content as a coherent, ordered book manuscript (front matter, chapters, safety disclaimer, back matter). Scripts are referred to companion downloads, not dumped inline. |
 | `direct/product-page-copy.md` | Copy for selling directly on Open Mirror's own site: promise, who it's for / not for, included, requirements, safety, FAQ, support boundaries. |
 | `social/content-package.md` | Instagram / YouTube Shorts / long-form YouTube: 10 short concepts, 3 long outlines, 10 hooks, 10 captions, before/after and required posts, CTA rotation. |
+| `social/silent-storyboards.md` | Five ready-to-shoot 9:16 storyboards — no one on camera, no voiceover. Exact on-screen text, shot order, durations, required screen captures, CTA. |
+| `launch-assets/` | **The real image files.** Ten Etsy images (2000×2000), Instagram squares (1080×1080), and 9:16 verticals (1080×1920), built from original graphics + real product screenshots. See its own README for the upload order and how to regenerate. |
 
 ## Hard rules (apply to everything in this folder)
 

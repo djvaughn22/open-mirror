@@ -1,71 +1,135 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { OWNER, ownerHasPublicProfile } from "../../lib/owner";
-import { STUDIO } from "../../lib/products";
+import { ACCESS_TONE, STUDIO, type AccessLabel } from "../../lib/products";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
   description:
-    "This mirror is for you. What do you want to create? Start. Improve. Ship.",
+    "CrossHeartPray came first. One personal Bible routine became something real. Then one build led to another. That became Open Mirror.",
   alternates: { canonical: "/about-open-mirror" },
 };
+
+// The three haikus — new words (owner-approved, July 2026), verified 5-7-5.
+// Presented as verse only; never wrapped in an explanatory paragraph.
+const HAIKUS: { title: string; lines: string[] }[] = [
+  {
+    title: "First",
+    lines: ["Cross Heart Pray came first", "One daily practice became", "Something real to share"],
+  },
+  {
+    title: "More",
+    lines: ["One build led to more", "Each new thought became a thing", "Open Mirror grew"],
+  },
+  {
+    title: "Keep going",
+    lines: ["Build what feels alive", "Keep it useful, keep it fun", "Then see where it goes"],
+  },
+];
+
+// The restrained story progression — a few real builds, chosen to show the
+// range (help, fun, a building tool, an early experiment, a product). The full
+// portfolio lives on the homepage; this is the story, not the catalogue.
+// CrossHeartPray is shown above, on its own, as the Foundation.
+const PROGRESSION: {
+  emoji: string;
+  name: string;
+  label: AccessLabel;
+  note: string;
+  sentence: string;
+  action: string;
+  href: string;
+  external: boolean;
+  accent: string;
+}[] = [
+  {
+    emoji: "🐶", name: "DontCloneMeTom", label: "Free", note: "",
+    sentence: "A joke about a cloned dog that gets real dogs adopted.",
+    action: "Meet the dogs", href: "https://dontclonemetom.com", external: true, accent: "#2DD4BF",
+  },
+  {
+    emoji: "🧩", name: "OpenDoku", label: "Free", note: "",
+    sentence: "One puzzle engine, a growing family of games.",
+    action: "Play", href: "https://opendoku.com", external: true, accent: "#7DD3FC",
+  },
+  {
+    emoji: "🥊", name: "StepInTheRing", label: "Free", note: "",
+    sentence: "Turn an idea into a real first build plan.",
+    action: "Start building", href: "https://stepinthering.com", external: true, accent: "#60A5FA",
+  },
+  {
+    emoji: "👨‍👩‍👧‍👦", name: "Fambookagram", label: "Exploring", note: "",
+    sentence: "A private family feed — an idea still being tested.",
+    action: "Take a look", href: "https://fambookagram.com", external: true, accent: "#C084FC",
+  },
+  {
+    emoji: "💻", name: "Old Laptop to Build Machine", label: "Product", note: "Preparing for release",
+    sentence: "Turn an old laptop into a build machine.",
+    action: "Free readiness check", href: "/downloads/old-laptop-readiness-check.pdf", external: false, accent: "#F59E0B",
+  },
+];
+
+function AccessChip({ label, note }: { label: AccessLabel; note?: string }) {
+  const tone = ACCESS_TONE[label];
+  return (
+    <span
+      className="shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-wider"
+      style={{ color: tone, borderColor: `${tone}55` }}
+    >
+      {label}
+      {note ? ` · ${note}` : ""}
+    </span>
+  );
+}
 
 export default function AboutOpenMirror() {
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
       <div className="mx-auto max-w-2xl px-5 py-10">
 
-        {/* The idea + what this is */}
+        {/* The true origin — plain, no second paragraph. */}
         <section className="mb-8 text-center">
-          <h1 className="mb-2 text-balance text-3xl font-black leading-[1.05] tracking-tight sm:text-4xl">
-            This mirror is for you.
+          <h1 className="mb-3 text-balance text-3xl font-black leading-[1.08] tracking-tight sm:text-4xl">
+            CrossHeartPray came first.
           </h1>
-          <p className="mb-4 text-balance text-lg font-black text-[#7dd3fc]">
-            What do you want to create?
-          </p>
-          <p className="mx-auto max-w-lg text-balance text-sm font-semibold leading-7 text-[#94a3b8]">
-            Open Mirror is a small independent company. It builds useful ideas
-            and shares many of them free — websites, games, and tools you can
-            use right now. It also makes practical playbooks that help you
-            build something of your own. Limited direct help is available for
-            the right project, handled directly, evenings and weekends.
+          <p className="mx-auto max-w-md text-balance text-base font-semibold leading-7 text-[#94a3b8]">
+            One personal Bible routine became something real. Then one build led
+            to another. That became Open Mirror.
           </p>
         </section>
 
-        {/* The three haikus — locked words (OPEN_MIRROR_PORTFOLIO_DOCTRINE.md).
-            Never rewrite them. Presented quietly, as verse, not as a method. */}
+        {/* CrossHeartPray — the protected Foundation and first build. Prominent,
+            one direct link. Not a funnel, not a sales example. */}
+        <section className="mb-10">
+          <Link
+            href="https://crossheartpray.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pop block rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 transition hover:border-[#C4B5FD]"
+            style={{ borderLeft: "5px solid #C4B5FD" }}
+          >
+            <div className="mb-3 flex items-center gap-3">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#C4B5FD] text-2xl">
+                ✝️
+              </span>
+              <AccessChip label="Foundation" note="First Build" />
+            </div>
+            <h2 className="text-xl font-black">
+              CrossHeartPray<span className="text-[#C4B5FD]">.com</span>
+            </h2>
+            <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+              A daily faith routine — Daily Hope, a Bible reading plan, Life
+              Essentials, and Bible Bingo. Gospel first.
+            </p>
+            <span className="mt-3 inline-block text-sm font-black text-[#C4B5FD]">
+              Open CrossHeartPray →
+            </span>
+          </Link>
+        </section>
+
+        {/* The three haikus — verse only, no explanation. */}
         <section className="mb-10 border-y border-[#26324c] py-6">
-          {/* Each haiku is always exactly 3 rows: one non-wrapping block per
-              line (5-7-5, locked). Stack full-width on phones/small tablets so
-              the 7-syllable line has room; only go 3-across at md, where the
-              columns are wide enough that no line ever wraps to a 4th row. */}
           <div className="grid gap-6 text-center md:grid-cols-3">
-            {[
-              {
-                title: "Start",
-                lines: [
-                  "Pick one thing to build",
-                  "Start before the plan is done",
-                  "Make the first version",
-                ],
-              },
-              {
-                title: "Improve",
-                lines: [
-                  "Build it, test it, learn",
-                  "Keep what works and cut the rest",
-                  "Then build it better",
-                ],
-              },
-              {
-                title: "Get it live",
-                lines: [
-                  "Bring me what you built",
-                  "I will find the real next step",
-                  "Then ship something real",
-                ],
-              },
-            ].map((verse) => (
+            {HAIKUS.map((verse) => (
               <div key={verse.title}>
                 <h2 className="mb-1 text-sm font-black tracking-tight text-[#7dd3fc]">
                   {verse.title}
@@ -82,66 +146,50 @@ export default function AboutOpenMirror() {
           </div>
         </section>
 
-        {/* Optional public profile — renders nothing while OWNER is anonymous. */}
-        {ownerHasPublicProfile() && (
-          <section className="mb-14 rounded-3xl border border-[#26324c] bg-[#141d2e] p-7">
-            <h2 className="mb-3 text-xl font-black">The owner</h2>
-            {OWNER.photoUrl && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={OWNER.photoUrl}
-                alt={OWNER.publicName ?? "The owner of Open Mirror LLC"}
-                className="mb-4 h-24 w-24 rounded-full object-cover"
-              />
-            )}
-            {OWNER.publicName && (
-              <p className="mb-2 text-base font-black">{OWNER.publicName}</p>
-            )}
-            {OWNER.bio && (
-              <p className="mb-3 text-sm font-semibold leading-7 text-[#94a3b8]">
-                {OWNER.bio}
-              </p>
-            )}
-            {OWNER.links.length > 0 && (
-              <p className="text-sm font-semibold text-[#94a3b8]">
-                {OWNER.links.map((l, i) => (
-                  <span key={l.href}>
-                    {i > 0 && " · "}
-                    <a href={l.href} className="font-black text-[#7dd3fc]">
-                      {l.label}
-                    </a>
+        {/* The progression — a few real builds tell the rest. */}
+        <section className="mb-10">
+          <div className="flex flex-col gap-3">
+            {PROGRESSION.map((p) => (
+              <a
+                key={p.name}
+                href={p.href}
+                {...(p.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
+                style={{ borderLeft: `5px solid ${p.accent}` }}
+              >
+                <span className="text-2xl">{p.emoji}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-base font-black">{p.name}</h3>
+                    <AccessChip label={p.label} note={p.note} />
+                  </div>
+                  <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+                    {p.sentence}
+                  </p>
+                  <span
+                    className="mt-2 inline-block text-sm font-black"
+                    style={{ color: p.accent }}
+                  >
+                    {p.action} →
                   </span>
-                ))}
-              </p>
-            )}
-          </section>
-        )}
-
-        {/* Where to begin */}
-        <section className="mb-10 text-center">
-          <h2 className="mb-2 text-balance text-xl font-black tracking-tight">
-            Want to make something of your own?
-          </h2>
-          <p className="mx-auto mb-5 max-w-md text-balance text-sm font-semibold leading-7 text-[#94a3b8]">
-            Start in StepInTheRing. If you get stuck, Open Mirror is easy to
-            reach.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="https://stepinthering.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C]"
-            >
-              Start Building
-            </a>
-            <Link
-              href="/contact"
-              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-base font-black text-[#e8edf5] transition hover:border-[#38BDF8]"
-            >
-              Contact Open Mirror
-            </Link>
+                </div>
+              </a>
+            ))}
           </div>
+        </section>
+
+        {/* The whole business, in three lines. No pricing, no revenue model. */}
+        <section className="mb-10 border-y border-[#26324c] py-6 text-center">
+          <p className="mx-auto max-w-md text-sm font-semibold leading-7 text-[#e8edf5]">
+            Many Open Mirror projects are free to explore. Some become finished
+            products.{" "}
+            <Link href="/contact" className="text-[#7dd3fc] underline">
+              Limited project help
+            </Link>{" "}
+            is available when the fit is right.
+          </p>
         </section>
 
         {/* Free resources & credits — attribution stays; some content is used

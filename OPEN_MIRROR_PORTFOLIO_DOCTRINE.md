@@ -1,33 +1,48 @@
 # Open Mirror LLC Portfolio Doctrine
 
-## The locked mission (do not rewrite)
+## The mission haikus (owner-approved, replaced Jul 15 2026)
 
-Open Mirror is built around three moves. Each is an actual 5–7–5 haiku. Their
-words are LOCKED — never rewrite, "improve," or paraphrase them where they
-appear. They live publicly on the hub's `/about-open-mirror` page; the third
-also closes StepInTheRing's fight-plan result.
+Open Mirror's story is told in three 5–7–5 haikus on the hub's
+`/about-open-mirror` page. The owner **explicitly replaced** the earlier
+Start / Improve / Get-it-live sequence with the origin-first sequence below.
+Do not rewrite these without the owner's word; do not restore the old ones.
+All three are verified 5–7–5.
 
-**Start**
+**First**
 
-> Pick one thing to build
-> Start before the plan is done
-> Make the first version
+> Cross Heart Pray came first   (5)
+> One daily practice became     (7)
+> Something real to share       (5)
 
-**Improve**
+**More**
 
-> Build it, test it, learn
-> Keep what works and cut the rest
-> Then build it better
+> One build led to more         (5)
+> Each new thought became a thing (7)
+> Open Mirror grew              (5)
 
-**Get it live**
+**Keep going**
 
-> Bring me what you built
-> I will find the real next step
-> Then ship something real
+> Build what feels alive        (5)
+> Keep it useful, keep it fun   (7)
+> Then see where it goes        (5)
 
-Meaning: **Start. Improve. Ship.** That is the operating philosophy. It stays
-background everywhere else — the haikus do NOT get pasted across satellite
+Meaning: the true origin — CrossHeartPray came first, one build led to
+another, keep building what's alive, useful, and fun. Presented as verse only,
+never wrapped in an explanatory paragraph, and NOT pasted across satellite
 sites, footers, or game pages.
+
+**STALE — needs a future SITR pass:** StepInTheRing's fight-plan result page
+still closes with the retired "Bring me what you built / I will find the real
+next step / Then ship something real" third haiku. That's a separate repo
+(out of scope for the hub-only Jul 15 story pass). Update it when SITR is next
+touched so it no longer shows a haiku the hub has retired.
+
+### The retired sequence (for reference — do not restore)
+
+Start: *Pick one thing to build / Start before the plan is done / Make the
+first version.* Improve: *Build it, test it, learn / Keep what works and cut
+the rest / Then build it better.* Get it live: *Bring me what you built / I
+will find the real next step / Then ship something real.*
 
 ## Messaging alignment matrix (final — Jul 14 2026)
 
@@ -37,7 +52,7 @@ sessions do not re-litigate the mission.
 
 | Project | Core purpose | Primary visitor action | Open Mirror connection | Commercial boundary | Copy changed (Jul 14 2026 pass) |
 |---|---|---|---|---|---|
-| Open Mirror hub | Company doorway; honest portfolio | Browse projects; find StepInTheRing | Is Open Mirror | `/contact` (Contact Open Mirror) is the only consulting surface | About rebuilt around the three haikus; `/contact` is a quiet, faceless page — no tiers, no pricing, no "owner" framing (renamed from Talk with the Owner, Jul 15 2026) |
+| Open Mirror hub | Company doorway; honest portfolio | Browse projects; find StepInTheRing | Is Open Mirror | `/contact` (Contact Open Mirror) is the only consulting surface | About rebuilt Jul 15 2026 around the true origin: "CrossHeartPray came first" → CHP Foundation block → new First/More/Keep-going haikus → 5-build progression w/ Free/Product/Exploring/Foundation labels → 3-line business copy → calm `/disclaimer` link. `/contact` faceless, no tiers/pricing |
 | StepInTheRing | Turn one idea into a first build plan | Answer seven questions, get the fight plan | Kicker link + shared footer | Free output stays complete; owner line only on the result | Result-page production line now uses the Get-it-live haiku |
 | CrossHeartPray | Scripture, prayer, daily faith routine | Daily Hope / reading plan | Quiet top bar + footer link only | NO commercial/consulting language, ever | None (verified untouched) |
 | TheDJCares | Gospel-first curated encouragement | Listen / watch curated content | Shared footer + About link only | No consulting pitch in the experience | None |
