@@ -42,86 +42,100 @@ export default function Disclaimer() {
         <h1 className="mb-4 text-2xl font-black tracking-tight sm:text-3xl">
           Disclaimer and independence
         </h1>
-        <p className="mb-10 text-balance text-base font-semibold leading-7 text-[#94a3b8]">
-          Open Mirror LLC is an independent company. Its projects are created
-          and operated independently.
+        <p className="mb-10 max-w-prose text-pretty text-base font-semibold leading-7 text-[#94a3b8]">
+          Open Mirror LLC is a personal, independent company built outside
+          normal working hours. It is a place to create useful products, explore
+          ideas, and learn skills that support the owner&apos;s continued
+          professional growth.
         </p>
 
         <div className="flex flex-col gap-8">
-          <Section title="Independent company">
+          <Section title="Independent work">
+            <p>Open Mirror LLC is separate from the owner&apos;s employment.</p>
             <p>
-              Open Mirror LLC is an independent company, created and operated
-              entirely on personal time. The views expressed across its sites
-              are solely its own.
+              It is not affiliated with, sponsored by, or endorsed by the
+              owner&apos;s employer. Its projects and views belong solely to
+              Open Mirror LLC and do not represent any employer, client, or
+              other organization.
+            </p>
+            <p>
+              The company&apos;s work is created on personal time and kept
+              separate from the owner&apos;s employment responsibilities.
+            </p>
+            <p>
+              If something appears to create a conflict or unintended overlap,
+              email <Mail /> so it can be reviewed and corrected.
             </p>
           </Section>
 
-          <Section title="Ownership and non-affiliation">
+          <Section title="Projects and learning">
+            <p>Many Open Mirror projects begin as practical experiments.</p>
             <p>
-              Open Mirror LLC is not affiliated with, sponsored by, or endorsed
-              by its owner&apos;s employer, and its projects — small consumer
-              experiments built to learn — neither compete with nor draw on that
-              employer&apos;s business.
+              They are built to learn, test ideas, solve real problems, and turn
+              promising concepts into useful products. Some will continue
+              growing. Others may change, be replaced, or remain simple
+              experiments.
             </p>
             <p>
-              Any apparent overlap is unintentional. Report it to <Mail /> and
-              it will be corrected.
+              Information, features, and availability may change as the projects
+              improve.
             </p>
           </Section>
 
-          <Section title="Projects and information">
+          <Section title="Information and tools">
             <p>
-              Open Mirror projects, experiments, guides, recommendations, and
-              tools change as they are built. Information on these sites is
-              provided as it is, and may be updated or replaced at any time.
-              Where something matters to your own situation, check it against a
-              source you trust before relying on it.
+              Open Mirror provides creative tools, guides, recommendations,
+              experiments, and other general information.
+            </p>
+            <p>
+              They are provided as available and may not fit every person or
+              situation. When a decision carries meaningful personal,
+              professional, financial, legal, medical, or other consequences,
+              confirm the information with an appropriate trusted source.
             </p>
           </Section>
 
           <Section title="Products and purchases">
             <p>
-              Some Open Mirror products are free to use; others are one-time
-              paid playbooks. Nothing on these sites is a subscription.
+              Some Open Mirror projects are free. Others may become paid
+              products.
             </p>
             <p>
-              A project is not available for purchase until a real checkout and
-              delivery process exist. Where a product is marked{" "}
+              A product is not available for purchase until the site provides a
+              working checkout and delivery process. Anything marked{" "}
               <span className="font-semibold text-[#e8edf5]">
-                preparing for release
-              </span>
-              , it is being described before that exists — it is not currently
-              for sale.
+                Preparing for Release
+              </span>{" "}
+              is not yet for sale.
             </p>
             <p>
-              Product terms, delivery details, and refund information will be
-              shown where purchasing actually happens.
+              The applicable price, delivery details, terms, and refund
+              information will be shown before a purchase is completed.
             </p>
           </Section>
 
-          <Section title="Third-party services and links">
+          <Section title="Third-party services">
             <p>
-              These sites link to other sites and use services Open Mirror does
-              not control — including embedded video and music, public data and
-              adoption APIs, hosting, and app platforms. Their content,
-              availability, and terms are their own.
+              Open Mirror sites may use or link to services operated by other
+              companies, including hosting platforms, embedded media, public
+              APIs, adoption resources, and app services.
             </p>
             <p>
-              Source material used with permission or under a platform&apos;s
-              terms is credited on the{" "}
-              <a href="/about-open-mirror#disclaimer" className="font-semibold text-[#7dd3fc]">
-                About page
-              </a>
-              .
+              Open Mirror does not control the content, availability, privacy
+              practices, or terms of those services.
+            </p>
+            <p>
+              Sources and materials used with permission or under applicable
+              platform terms are credited where appropriate.
             </p>
           </Section>
 
-          <Section title="Contact and corrections">
+          <Section title="Corrections and concerns">
             <p>
-              To report incorrect information, an attribution or rights concern,
-              a broken link, or a potential conflict, email <Mail />. It will be
-              looked at and corrected.
+              To report incorrect information, a broken link, an attribution or
+              rights concern, or a possible conflict, email <Mail />.
             </p>
+            <p>The concern will be reviewed and corrected where appropriate.</p>
           </Section>
         </div>
 
