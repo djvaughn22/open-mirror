@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { featuredProduct } from "../../../lib/products";
 
-// Unlisted product page — for internal review only. Not linked from the
-// product registry, nav, or homepage; the About page links only the free
-// readiness check, never this page. No pricing, no checkout, and no public
-// download of the paid bundle.
+// The first packaged Open Mirror product, featured from the homepage and the
+// About page. Name, promise, and launch image come from the registry entry
+// (`featured: true`) so nothing is duplicated here.
+//
+// No pricing, no checkout, and no public download of the paid bundle — the
+// full playbook stays "preparing for release" until delivery actually works.
 
-const TITLE = "Old Laptop to Build Machine";
+const PRODUCT = featuredProduct();
+const TITLE = PRODUCT?.name ?? "Old Laptop to Build Machine";
 const PROMISE =
+  PRODUCT?.description ??
   "Turn an unused laptop into a simple Linux development machine — and publish your first website.";
 
 export const metadata: Metadata = {
-  title: `${TITLE} (early product)`,
+  title: TITLE,
   description: PROMISE,
-  robots: { index: false, follow: false },
+  alternates: { canonical: "/products/old-laptop-to-build-machine" },
 };
 
 // What the customer finishes with — a compact checklist, not paragraphs.
@@ -67,14 +73,27 @@ export default function OldLaptopToBuildMachine() {
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
       <div className="mx-auto max-w-2xl px-5 py-14">
         <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.2em] text-[#f59e0b]">
-          Early Open Mirror product · internal review
+          Product · Preparing for Release
         </p>
         <h1 className="mb-4 text-balance text-center text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">
           {TITLE}
         </h1>
-        <p className="mx-auto mb-10 max-w-md text-balance text-center text-base font-semibold leading-7 text-[#94a3b8]">
+        <p className="mx-auto mb-8 max-w-md text-balance text-center text-base font-semibold leading-7 text-[#94a3b8]">
           {PROMISE}
         </p>
+
+        {/* The transformation, shown rather than explained. */}
+        {PRODUCT?.image && (
+          <Image
+            src={PRODUCT.image}
+            alt={PRODUCT.imageAlt ?? ""}
+            width={1080}
+            height={1080}
+            sizes="(min-width: 672px) 672px, 100vw"
+            className="mb-10 h-auto w-full rounded-3xl border border-[#26324c]"
+            priority
+          />
+        )}
 
         {/* Start → Finish, shown as structure. */}
         <section className="mb-10 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-stretch">
@@ -148,8 +167,8 @@ export default function OldLaptopToBuildMachine() {
           </p>
         </section>
 
-        {/* Choose: free check (real download) vs full playbook (not for sale). */}
-        <section className="mb-10 grid gap-3 sm:grid-cols-2">
+        {/* Choose: free check (a real download) vs full playbook (not for sale). */}
+        <section className="mb-10 grid gap-3 sm:grid-cols-2" aria-label="Choose">
           <div className="flex flex-col rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 text-center">
             <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#34D399]">
               Free readiness check
@@ -170,8 +189,7 @@ export default function OldLaptopToBuildMachine() {
               Full playbook
             </p>
             <p className="mb-4 flex-1 text-sm font-semibold leading-6 text-[#94a3b8]">
-              The complete bundle. Preparing for release — no price, no
-              checkout, no download yet.
+              Everything listed above, in one bundle.
             </p>
             <span className="inline-block rounded-full border border-[#26324c] px-6 py-3 text-sm font-black text-[#64748b]">
               Preparing for release
@@ -180,8 +198,7 @@ export default function OldLaptopToBuildMachine() {
         </section>
 
         <p className="text-center text-xs font-semibold leading-6 text-[#64748b]">
-          An early product from Open Mirror LLC — for review. See{" "}
-          <a href="/disclaimer" className="underline">the disclaimer</a>.
+          <a href="/disclaimer" className="underline">Disclaimer and independence</a>
         </p>
       </div>
     </main>

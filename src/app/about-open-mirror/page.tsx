@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ACCESS_TONE, STUDIO, type AccessLabel } from "../../lib/products";
+import {
+  ACCESS_TONE,
+  aboutFamilyProducts,
+  featuredProduct,
+  foundationProduct,
+  STUDIO,
+  type AccessLabel,
+  type Product,
+} from "../../lib/products";
 
 export const metadata: Metadata = {
   title: "About Open Mirror",
@@ -26,46 +35,14 @@ const HAIKUS: { title: string; lines: string[] }[] = [
   },
 ];
 
-// The restrained story progression — a few real builds, chosen to show the
-// range (help, fun, a building tool, an early experiment, a product). The full
-// portfolio lives on the homepage; this is the story, not the catalogue.
-// CrossHeartPray is shown above, on its own, as the Foundation.
-const PROGRESSION: {
-  emoji: string;
-  name: string;
-  label: AccessLabel;
-  note: string;
-  sentence: string;
-  action: string;
-  href: string;
-  external: boolean;
-  accent: string;
-}[] = [
-  {
-    emoji: "🐶", name: "DontCloneMeTom", label: "Free", note: "",
-    sentence: "A joke about a cloned dog that gets real dogs adopted.",
-    action: "Meet the dogs", href: "https://dontclonemetom.com", external: true, accent: "#2DD4BF",
-  },
-  {
-    emoji: "🧩", name: "OpenDoku", label: "Free", note: "",
-    sentence: "One puzzle engine, a growing family of games.",
-    action: "Play", href: "https://opendoku.com", external: true, accent: "#7DD3FC",
-  },
-  {
-    emoji: "🥊", name: "StepInTheRing", label: "Free", note: "",
-    sentence: "Turn an idea into a real first build plan.",
-    action: "Start building", href: "https://stepinthering.com", external: true, accent: "#60A5FA",
-  },
-  {
-    emoji: "👨‍👩‍👧‍👦", name: "Fambookagram", label: "Exploring", note: "",
-    sentence: "A private family feed — an idea still being tested.",
-    action: "Take a look", href: "https://fambookagram.com", external: true, accent: "#C084FC",
-  },
-  {
-    emoji: "💻", name: "Old Laptop to Build Machine", label: "Product", note: "Preparing for release",
-    sentence: "Turn an old laptop into a build machine.",
-    action: "Free readiness check", href: "/downloads/old-laptop-readiness-check.pdf", external: false, accent: "#F59E0B",
-  },
+const CREDITS = [
+  { name: "52-Week Bible Reading Plan", credit: "© 1995–2009 Michael Coley, Bible-Reading.com — used with permission (CrossHeartPray)", href: "http://www.bible-reading.com" },
+  { name: "Life Essentials · Bible Principles", credit: "Dr. Gene Getz / B&H Publishing — principles & official videos (CrossHeartPray, TheDJCares)", href: "https://bibleprinciples.org" },
+  { name: "YouVersion Bible App", credit: "bible.com — verse and chapter links across the family", href: "https://www.bible.com" },
+  { name: "BibleHub", credit: "Original-language and Strong's references (CrossHeartPray Deep Dive)", href: "https://biblehub.com" },
+  { name: "RescueGroups.org", credit: "Free adoptable-pets API behind DontCloneMeTom's live dogs", href: "https://rescuegroups.org" },
+  { name: "Petfinder & Adopt-a-Pet", credit: "Adoption searches linked from DontCloneMeTom", href: "https://www.petfinder.com" },
+  { name: "YouTube", credit: "Video and music embeds (TheDJCares, iDontCry)", href: "https://www.youtube.com" },
 ];
 
 function AccessChip({ label, note }: { label: AccessLabel; note?: string }) {
@@ -81,148 +58,251 @@ function AccessChip({ label, note }: { label: AccessLabel; note?: string }) {
   );
 }
 
+function linkProps(href: string) {
+  return href.startsWith("http")
+    ? { target: "_blank" as const, rel: "noopener noreferrer" as const }
+    : {};
+}
+
+/** One compact family entry: name, honest label, one sentence, one action. */
+function FamilyCard({ p }: { p: Product }) {
+  return (
+    <a
+      href={p.href}
+      {...linkProps(p.href)}
+      className="pop flex items-start gap-3 rounded-2xl border border-[#26324c] bg-[#141d2e] p-4 transition hover:border-[#1c2740]"
+      style={{ borderLeft: `4px solid ${p.accent}` }}
+    >
+      <span aria-hidden className="text-xl leading-none">{p.emoji}</span>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <h3 className="text-sm font-black">{p.name}</h3>
+          <AccessChip label={p.access} note={p.accessNote} />
+        </div>
+        <p className="mt-1 text-[13px] font-semibold leading-5 text-[#94a3b8]">
+          {p.aboutLine ?? p.description}
+        </p>
+        <span
+          className="mt-1.5 inline-block text-[13px] font-black"
+          style={{ color: p.accent }}
+        >
+          {p.aboutAction ?? "Open"} →
+        </span>
+      </div>
+    </a>
+  );
+}
+
+/**
+ * The featured product panel. Bigger than a family card on purpose — this is
+ * the first packaged product. Two honest actions, no price, no checkout.
+ */
+function FeaturedPanel({ p }: { p: Product }) {
+  return (
+    <section
+      className="mb-6 overflow-hidden rounded-3xl border border-[#26324c] bg-[#141d2e]"
+      style={{ borderLeft: `5px solid ${p.accent}` }}
+      aria-labelledby="featured-product"
+    >
+      {p.image && (
+        <Image
+          src={p.image}
+          alt={p.imageAlt ?? ""}
+          width={1080}
+          height={1080}
+          sizes="(min-width: 1024px) 640px, 100vw"
+          className="h-auto w-full border-b border-[#26324c]"
+          priority
+        />
+      )}
+      <div className="p-5 sm:p-6">
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <span aria-hidden className="text-xl leading-none">{p.emoji}</span>
+          <AccessChip label={p.access} note={p.accessNote} />
+        </div>
+        <h3 id="featured-product" className="text-lg font-black sm:text-xl">
+          {p.name}
+        </h3>
+        <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+          {p.aboutLine ?? p.description}
+        </p>
+
+        {/* The transformation, in the visitor's order. */}
+        <ol className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[11px] font-bold text-[#94a3b8]">
+          {[
+            "Old laptop",
+            "Linux installed",
+            "Development tools working",
+            "GitHub connected",
+            "First website built",
+            "First website live",
+          ].map((step, i, all) => (
+            <li key={step} className="flex items-center gap-2">
+              <span
+                className="rounded-full border border-[#26324c] bg-[#0f1826] px-2.5 py-1"
+                style={i === all.length - 1 ? { color: p.accent, borderColor: `${p.accent}55` } : undefined}
+              >
+                {step}
+              </span>
+              {i < all.length - 1 && <span aria-hidden className="text-[#94a3b8]">→</span>}
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-5 flex flex-wrap gap-2.5">
+          <Link
+            href={p.href}
+            className="rounded-full px-5 py-2.5 text-sm font-black text-[#0C0C0C]"
+            style={{ background: p.accent }}
+          >
+            {p.aboutAction ?? "View the product"} →
+          </Link>
+          <a
+            href="/downloads/old-laptop-readiness-check.pdf"
+            className="rounded-full border border-[#26324c] px-5 py-2.5 text-sm font-black text-[#e8edf5] transition hover:border-[#1c2740]"
+          >
+            Free readiness check
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function AboutOpenMirror() {
+  const foundation = foundationProduct();
+  const featured = featuredProduct();
+  const family = aboutFamilyProducts();
+
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
-      <div className="mx-auto max-w-2xl px-5 py-10">
+      <div className="mx-auto max-w-5xl px-5 py-10">
 
-        {/* The true origin — plain, no second paragraph. */}
-        <section className="mb-8 text-center">
-          <h1 className="mb-3 text-balance text-3xl font-black leading-[1.08] tracking-tight sm:text-4xl">
-            CrossHeartPray came first.
-          </h1>
-          <p className="mx-auto max-w-md text-balance text-base font-semibold leading-7 text-[#94a3b8]">
-            One personal Bible routine became something real. Then one build led
-            to another. That became Open Mirror.
-          </p>
-        </section>
+        {/* Two lanes on desktop; on phones they stack in reading order —
+            where it started, then what grew from it. */}
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-12">
 
-        {/* CrossHeartPray — the protected Foundation and first build. Prominent,
-            one direct link. Not a funnel, not a sales example. */}
-        <section className="mb-10">
-          <Link
-            href="https://crossheartpray.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pop block rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 transition hover:border-[#C4B5FD]"
-            style={{ borderLeft: "5px solid #C4B5FD" }}
-          >
-            <div className="mb-3 flex items-center gap-3">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#C4B5FD] text-2xl">
-                ✝️
-              </span>
-              <AccessChip label="Foundation" note="First Build" />
-            </div>
-            <h2 className="text-xl font-black">
-              CrossHeartPray<span className="text-[#C4B5FD]">.com</span>
-            </h2>
-            <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
-              A daily faith routine — Daily Hope, a Bible reading plan, Life
-              Essentials, and Bible Bingo. Gospel first.
+          {/* ── LEFT LANE — where it started ───────────────────────────── */}
+          <div>
+            <h1 className="mb-3 text-balance text-3xl font-black leading-[1.08] tracking-tight sm:text-4xl">
+              CrossHeartPray came first.
+            </h1>
+            <p className="text-balance text-base font-semibold leading-7 text-[#94a3b8]">
+              One personal Bible routine became something real. Then one build
+              led to another. That became Open Mirror.
             </p>
-            <span className="mt-3 inline-block text-sm font-black text-[#C4B5FD]">
-              Open CrossHeartPray →
-            </span>
-          </Link>
-        </section>
 
-        {/* The three haikus — verse only, no explanation. */}
-        <section className="mb-10 border-y border-[#26324c] py-6">
-          <div className="grid gap-6 text-center md:grid-cols-3">
-            {HAIKUS.map((verse) => (
-              <div key={verse.title}>
-                <h2 className="mb-1 text-sm font-black tracking-tight text-[#7dd3fc]">
-                  {verse.title}
-                </h2>
-                <p className="text-[13px] font-semibold leading-6 text-[#94a3b8] md:text-[12px]">
-                  {verse.lines.map((line) => (
-                    <span key={line} className="block whitespace-nowrap">
-                      {line}
-                    </span>
-                  ))}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* The progression — a few real builds tell the rest. */}
-        <section className="mb-10">
-          <div className="flex flex-col gap-3">
-            {PROGRESSION.map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                {...(p.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
-                style={{ borderLeft: `5px solid ${p.accent}` }}
+            {/* The protected Foundation. One direct link. */}
+            {foundation && (
+              <Link
+                href={foundation.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pop mt-6 block rounded-3xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#C4B5FD]"
+                style={{ borderLeft: `5px solid ${foundation.accent}` }}
               >
-                <span className="text-2xl">{p.emoji}</span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-base font-black">{p.name}</h3>
-                    <AccessChip label={p.label} note={p.note} />
-                  </div>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
-                    {p.sentence}
-                  </p>
+                <div className="mb-3 flex flex-wrap items-center gap-3">
                   <span
-                    className="mt-2 inline-block text-sm font-black"
-                    style={{ color: p.accent }}
+                    aria-hidden
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-2xl"
+                    style={{ background: foundation.accent }}
                   >
-                    {p.action} →
+                    {foundation.emoji}
                   </span>
+                  <AccessChip label={foundation.access} note={foundation.accessNote} />
                 </div>
-              </a>
-            ))}
+                <h2 className="text-lg font-black">
+                  CrossHeartPray<span style={{ color: foundation.accent }}>.com</span>
+                </h2>
+                <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+                  {foundation.aboutLine ?? foundation.description}
+                </p>
+                <span
+                  className="mt-3 inline-block text-sm font-black"
+                  style={{ color: foundation.accent }}
+                >
+                  {foundation.aboutAction ?? "Open"} →
+                </span>
+              </Link>
+            )}
+
+            {/* The three haikus — verse only, no explanation. */}
+            <div className="mt-8 flex flex-col gap-5 border-t border-[#26324c] pt-6">
+              {HAIKUS.map((verse) => (
+                <div key={verse.title}>
+                  <h3 className="mb-1 text-sm font-black tracking-tight text-[#7dd3fc]">
+                    {verse.title}
+                  </h3>
+                  <p className="text-[13px] font-semibold leading-6 text-[#94a3b8]">
+                    {verse.lines.map((line) => (
+                      <span key={line} className="block whitespace-nowrap">
+                        {line}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
+
+          {/* ── RIGHT LANE — what grew from it ─────────────────────────── */}
+          <div>
+            <h2 className="mb-4 text-xl font-black tracking-tight sm:text-2xl">
+              What grew from it
+            </h2>
+
+            {featured && <FeaturedPanel p={featured} />}
+
+            <div className="grid gap-2.5 sm:grid-cols-2">
+              {family.map((p) => (
+                <FamilyCard key={p.name} p={p} />
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* The whole business, in three lines. No pricing, no revenue model. */}
-        <section className="mb-10 border-y border-[#26324c] py-6 text-center">
-          <p className="mx-auto max-w-md text-sm font-semibold leading-7 text-[#e8edf5]">
-            Many Open Mirror projects are free to explore. Some become finished
-            products.{" "}
-            <Link href="/contact" className="text-[#7dd3fc] underline">
-              Limited project help
-            </Link>{" "}
-            is available when the fit is right.
+        <section className="mt-12 border-y border-[#26324c] py-6 text-center">
+          <p className="mx-auto max-w-md text-sm font-black leading-7 text-[#e8edf5]">
+            <span className="block">Many Open Mirror projects are free to explore.</span>
+            <span className="block">Some become finished products.</span>
+            <span className="block">
+              <Link href="/contact" className="text-[#7dd3fc] underline">
+                Limited project help
+              </Link>{" "}
+              is available when the fit is right.
+            </span>
           </p>
         </section>
 
-        {/* Free resources & credits — attribution stays; some content is used
+        {/* Free resources, then credits — kept low so they never interrupt the
+            origin story or the family. Attribution stays; some content is used
             with permission. */}
-        <section className="mb-10">
-          <h2 className="mb-2 text-xl font-black">Free resources</h2>
-          <div className="flex flex-col gap-3">
-            <a
-              href="/resources/52-week-bible-reading-plan.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
-            >
-              <span className="text-2xl">📖</span>
-              <div>
-                <h3 className="text-base font-black">Bible Reading Plan <span className="text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">PDF</span></h3>
-                <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">A 52-week plan to read through the Bible — print it or keep it on your phone.</p>
-              </div>
-            </a>
-          </div>
-          <p className="mb-3 mt-6 text-sm font-black text-[#e8edf5]">
-            Credit where credit is due
-          </p>
-          <div className="flex flex-col gap-2">
-            {[
-              { name: "52-Week Bible Reading Plan", credit: "© 1995–2009 Michael Coley, Bible-Reading.com — used with permission (CrossHeartPray)", href: "http://www.bible-reading.com" },
-              { name: "Life Essentials · Bible Principles", credit: "Dr. Gene Getz / B&H Publishing — principles & official videos (CrossHeartPray, TheDJCares)", href: "https://bibleprinciples.org" },
-              { name: "YouVersion Bible App", credit: "bible.com — verse and chapter links across the family", href: "https://www.bible.com" },
-              { name: "BibleHub", credit: "Original-language and Strong's references (CrossHeartPray Deep Dive)", href: "https://biblehub.com" },
-              { name: "RescueGroups.org", credit: "Free adoptable-pets API behind DontCloneMeTom's live dogs", href: "https://rescuegroups.org" },
-              { name: "Petfinder & Adopt-a-Pet", credit: "Adoption searches linked from DontCloneMeTom", href: "https://www.petfinder.com" },
-              { name: "YouTube", credit: "Video and music embeds (TheDJCares, iDontCry)", href: "https://www.youtube.com" },
-            ].map((r) => (
+        <section className="mt-10">
+          <h2 className="mb-3 text-base font-black">Free resources</h2>
+          <a
+            href="/resources/52-week-bible-reading-plan.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
+          >
+            <span aria-hidden className="text-2xl">📖</span>
+            <div>
+              <h3 className="text-base font-black">
+                Bible Reading Plan{" "}
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">PDF</span>
+              </h3>
+              <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+                A 52-week plan to read through the Bible — print it or keep it on your phone.
+              </p>
+            </div>
+          </a>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="mb-3 text-base font-black">Credits and sources</h2>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {CREDITS.map((r) => (
               <a
                 key={r.name}
                 href={r.href}
@@ -231,26 +311,24 @@ export default function AboutOpenMirror() {
                 className="rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3 transition hover:border-[#1c2740]"
               >
                 <span className="text-sm font-black text-[#e8edf5]">{r.name}</span>
-                <span className="block text-xs font-semibold leading-5 text-[#94a3b8]">{r.credit}</span>
+                <span className="block text-xs font-semibold leading-5 text-[#94a3b8]">
+                  {r.credit}
+                </span>
               </a>
             ))}
           </div>
         </section>
 
-        {/* Keep a small anchor here so existing #disclaimer deep links still
-            land, but the full legal text now lives on its own /disclaimer
-            page — off the main About copy. */}
-        <section id="disclaimer" className="mb-8 scroll-mt-24 border-t border-[#26324c] pt-6 text-center">
-          <p className="text-xs font-medium leading-6 text-[#64748b]">
-            Open Mirror LLC is a small independent company.{" "}
-            <Link href="/disclaimer" className="font-semibold text-[#94a3b8] underline">
-              Read the full disclaimer
-            </Link>
-            .
-          </p>
+        {/* A quiet anchor so existing #disclaimer deep links still land. The
+            full legal text lives only on /disclaimer, and the shared footer
+            already carries the one-line independence note — no repeat here. */}
+        <section id="disclaimer" className="mt-10 scroll-mt-24 border-t border-[#26324c] pt-6 text-center">
+          <Link href="/disclaimer" className="text-xs font-semibold text-[#94a3b8] underline">
+            Disclaimer and independence
+          </Link>
         </section>
 
-        <p className="text-center text-xs font-semibold text-[#64748b]">
+        <p className="mt-6 text-center text-xs font-semibold text-[#64748b]">
           {STUDIO.name} ·{" "}
           <a href={`mailto:${STUDIO.email}`} className="font-black text-[#7dd3fc]">
             {STUDIO.email}

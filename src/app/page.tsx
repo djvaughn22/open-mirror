@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
+  ACCESS_TONE,
   BOTTOM_PIN_LABEL,
   bottomPinnedProducts,
+  featuredProduct,
   productsByStatus,
   STATUS_LABEL,
   STATUS_ORDER,
@@ -75,6 +78,48 @@ function Card({ p }: { p: Product }) {
   );
 }
 
+// The featured product — its own panel, above the portfolio groups, so it
+// reads as the upcoming product rather than one more card. Which product this
+// is comes from the registry (`featured: true`), never from a name check here.
+function FeaturedPanel({ p }: { p: Product }) {
+  const tone = ACCESS_TONE[p.access];
+  return (
+    <div style={{ background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, overflow: "hidden" }}>
+      {p.image && (
+        <Image
+          src={p.image}
+          alt={p.imageAlt ?? ""}
+          width={1080}
+          height={1080}
+          sizes="(min-width: 700px) 652px, 100vw"
+          style={{ width: "100%", height: "auto", display: "block", borderBottom: `1px solid ${border}` }}
+          priority
+        />
+      )}
+      <div style={{ padding: "20px 22px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+          <span aria-hidden style={{ fontSize: 22 }}>{p.emoji}</span>
+          <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: tone, border: `1px solid ${tone}55`, borderRadius: 50, padding: "3px 10px" }}>
+            {p.access}{p.accessNote ? ` · ${p.accessNote}` : ""}
+          </span>
+        </div>
+        <h2 style={{ fontSize: "clamp(1.05rem, 4.6vw, 1.4rem)", fontWeight: 900, color: text, margin: "0 0 6px", letterSpacing: "-0.01em" }}>
+          {p.name}
+        </h2>
+        <p style={{ fontSize: 14.5, color: sub, margin: 0, lineHeight: 1.55 }}>{p.description}</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 16 }}>
+          <a href={p.href} style={{ background: p.accent, color: "#0C0C0C", borderRadius: 50, padding: "10px 20px", fontSize: 14, fontWeight: 900, textDecoration: "none" }}>
+            {p.aboutAction ?? "View the product"} →
+          </a>
+          <a href="/downloads/old-laptop-readiness-check.pdf" style={{ border: `1px solid ${border}`, color: text, borderRadius: 50, padding: "10px 20px", fontSize: 14, fontWeight: 900, textDecoration: "none" }}>
+            Free readiness check
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GroupLabel({ children }: { children: React.ReactNode }) {
   return (
     <p style={{ fontSize: 12, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.2em", color: sub, margin: "0 0 16px", textAlign: "center" }}>
@@ -90,6 +135,7 @@ export default function OpenMirrorHub() {
     items: productsByStatus(status),
   })).filter((g) => g.items.length > 0);
   const pinned = bottomPinnedProducts();
+  const featured = featuredProduct();
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
@@ -108,12 +154,22 @@ export default function OpenMirrorHub() {
           </p>
         </header>
 
+        {/* CrossHeartPray is the Foundation and stays first — the featured
+            product slots in directly after it, never above it. */}
         {groups.map((g, i) => (
-          <div key={g.status} style={{ marginTop: i === 0 ? 0 : 40 }}>
-            <GroupLabel>{g.label}</GroupLabel>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {g.items.map((p) => <Card key={p.name} p={p} />)}
+          <div key={g.status}>
+            <div style={{ marginTop: i === 0 ? 0 : 40 }}>
+              <GroupLabel>{g.label}</GroupLabel>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {g.items.map((p) => <Card key={p.name} p={p} />)}
+              </div>
             </div>
+            {featured && g.status === "foundation" && (
+              <div style={{ marginTop: 40 }}>
+                <GroupLabel>First product · preparing for release</GroupLabel>
+                <FeaturedPanel p={featured} />
+              </div>
+            )}
           </div>
         ))}
 

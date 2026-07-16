@@ -25,9 +25,12 @@ from a folder of 14 flat guides into one coherent, customer-ready product:
 - **Fine print** — `START-HERE.txt`, `LICENSE.txt`, `SUPPORT.txt`,
   `VERSION.txt`.
 
-Packaged as `public/downloads/old-laptop-to-build-machine.zip` (rebuild with
-`scripts/package-old-laptop-bundle.sh`). **Unlisted, internal-review only** —
-the product page no longer exposes it via a public download button.
+Packaged into `dist/old-laptop-to-build-machine.zip` (rebuild with
+`scripts/package-old-laptop-bundle.sh`). `dist/` is git-ignored and **not
+served**. The bundle previously sat in `public/downloads/`, where every file is
+served at a guessable URL — so the paid product was downloadable by anyone who
+typed the path, with no button needed. Never put it back under `public/`; when
+checkout and delivery exist, the ZIP gets handed out from there.
 
 **Free lead magnet (separate):** `content/products/old-laptop-to-build-machine-free/`
 → `readiness-check.pdf`, published at

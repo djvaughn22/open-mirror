@@ -47,3 +47,6 @@ next-env.d.ts
 *.backup
 *.working-*
 .source-data/
+
+# packaged paid bundles — never served, never committed
+/dist

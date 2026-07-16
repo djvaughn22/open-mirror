@@ -49,8 +49,14 @@ export type Product = {
   emoji: string;
   /** short factual description — homepage card */
   description: string;
-  /** longer description — About page (falls back to `description`) */
-  aboutText?: string;
+  /** one short sentence — the compact About entry. Falls back to `description`. */
+  aboutLine?: string;
+  /** what the visitor does next from the About entry */
+  aboutAction?: string;
+  /** what this IS to a visitor — never the internal `status` */
+  access: AccessLabel;
+  /** optional qualifier on the access chip, e.g. "First Build", "Preparing for Release" */
+  accessNote?: string;
   /** site accent color (family rule: the colored ".com") */
   accent: string;
   /** full URL for standalone sites, or a hub route like "/reflect" */
@@ -61,10 +67,22 @@ export type Product = {
   links?: { label: string; href: string }[];
   /** hidden from the homepage portfolio when false */
   showInPortfolio?: boolean;
+  /** hidden from the About family when false */
+  showInAbout?: boolean;
   /** hidden from the nav menu when false */
   showInNav?: boolean;
   /** pulled out of the status groups and pinned to the very bottom of the homepage and About page */
   pinBottom?: boolean;
+  /**
+   * Visual priority. A featured product is lifted out of the status groups and
+   * rendered as its own panel on the homepage and About page. Set it here —
+   * never hard-code a product name in a page component.
+   */
+  featured?: boolean;
+  /** larger launch image for the featured panel (must live under /public) */
+  image?: string;
+  /** alt text for `image` — required whenever `image` is set */
+  imageAlt?: string;
 };
 
 export const STUDIO = {
@@ -83,12 +101,17 @@ export const STUDIO = {
 // Array order is display order within each status group.
 export const products: Product[] = [
   {
+    // PROTECTED — the Foundation and first build. Gospel-first identity, its
+    // own thing. Never a funnel, a sales example, or a generic faith card.
     name: "CrossHeartPray",
     emoji: "✝️",
     description:
       "Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7 — your daily faith routine.",
-    aboutText:
-      "A daily faith routine — verses, prayer, Daily Hope, Bible Bingo, and source-backed Deep Dive. One project, fully its own thing.",
+    aboutLine:
+      "A daily faith routine — Daily Hope, a Bible reading plan, Life Essentials, and Bible Bingo. Gospel first.",
+    aboutAction: "Open CrossHeartPray",
+    access: "Foundation",
+    accessNote: "First Build",
     accent: "#C4B5FD",
     href: "https://crossheartpray.com",
     status: "foundation",
@@ -99,8 +122,10 @@ export const products: Product[] = [
     emoji: "🎵",
     description:
       "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.",
-    aboutText:
+    aboutLine:
       "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.",
+    aboutAction: "Listen",
+    access: "Free",
     accent: "#A78BFA",
     href: "https://thedjcares.com",
     status: "live",
@@ -111,8 +136,9 @@ export const products: Product[] = [
     emoji: "🐶",
     description:
       "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",
-    aboutText:
-      "A rescue-dog campaign with a wagging tail. Don't clone me, Tom — adopt an original.",
+    aboutLine: "A joke about a cloned dog that gets real dogs adopted.",
+    aboutAction: "Meet the dogs",
+    access: "Free",
     accent: "#2DD4BF",
     href: "https://dontclonemetom.com",
     status: "live",
@@ -123,8 +149,10 @@ export const products: Product[] = [
     emoji: "😂",
     description:
       "The family's playground — dad jokes, games, and a Dream Lab to dream up anything, free.",
-    aboutText:
-      "Obviously. The family's digital playground. Dad jokes, mini games, and the Dream Lab — dream up anything, free, then step in the ring and build it for real. Absolutely zero crying.",
+    aboutLine:
+      "The family's playground — dad jokes, games, and a Dream Lab to dream up anything.",
+    aboutAction: "Play",
+    access: "Free",
     accent: "#38BDF8",
     href: "https://idontcry.com",
     status: "live",
@@ -134,9 +162,11 @@ export const products: Product[] = [
     name: "StepInTheRing",
     emoji: "🥊",
     description:
-      "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. Seven questions, one fight plan.",
-    aboutText:
-      "Turn any idea into a real first build — seven questions, one fight plan. Free to start.",
+      "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. Say it however it comes out; get back a plan for version one and a builder prompt.",
+    aboutLine:
+      "A rough idea becomes a clear plan for version one and a builder prompt.",
+    aboutAction: "Start building",
+    access: "Free",
     accent: "#60A5FA",
     href: "https://stepinthering.com",
     status: "live",
@@ -147,8 +177,9 @@ export const products: Product[] = [
     emoji: "🧩",
     description:
       "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. Newest: MineDoku, dreamed up on iDontCry, built in StepInTheRing through the gate, and pushed and deployed with one prompt.",
-    aboutText:
-      "The puzzle-games family. SlopeDoku (winter) and SurfDoku (beach) climb from one easy rule to two full sudokus in every tile. MineDoku (underground number digs) is the newest — dreamed up on iDontCry, built in StepInTheRing through the gate, and pushed and deployed with one prompt. More dokus to come.",
+    aboutLine: "One puzzle engine, a growing family of games.",
+    aboutAction: "Play",
+    access: "Free",
     accent: "#7DD3FC",
     href: "https://opendoku.com",
     status: "live",
@@ -164,8 +195,10 @@ export const products: Product[] = [
     emoji: "🧰",
     description:
       "Friendly emergency prep for everyone. Calm, practical, one step at a time.",
-    aboutText:
-      "Friendly emergency preparedness for everyone. Calm, practical, one small step at a time — no doomsday.",
+    aboutLine:
+      "Friendly emergency preparedness — calm, practical, one small step at a time.",
+    aboutAction: "Get ready",
+    access: "Free",
     accent: "#34D399",
     href: "https://pleasebeready.com",
     status: "live",
@@ -179,13 +212,15 @@ export const products: Product[] = [
     emoji: "🪞",
     description:
       "A quiet minute — one honest prompt, then a few things to sit with.",
-    aboutText:
-      "The five-second version. One prompt, a few honest lines, a little clarity.",
+    aboutLine: "The five-second version. One prompt, a little clarity.",
+    aboutAction: "Take a minute",
+    access: "Free",
     accent: "#93C5FD",
     href: "/reflect",
     status: "beta",
     category: "creativity",
     showInPortfolio: false,
+    showInAbout: false,
     showInNav: false,
   },
   {
@@ -193,8 +228,10 @@ export const products: Product[] = [
     emoji: "🎬",
     description:
       "Remember what you watched. Thumb movies and shows 👍 or 👎, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
-    aboutText:
-      "A fast watch list for movies and TV. Search anything, mark it watched with a thumbs up or down, and work through the Top 222 of all time — or any decade or genre — on a drag-and-drop board. Your thumbs power For You picks. Free, no account, everything saved on your device and exportable anytime.",
+    aboutLine:
+      "Thumb what you watch, then get picks based on what you liked. No account.",
+    aboutAction: "Start a list",
+    access: "Free",
     accent: "#22D3EE",
     href: "https://watchednotwatched.com",
     status: "live",
@@ -205,18 +242,28 @@ export const products: Product[] = [
     emoji: "🤖",
     description:
       "See what your own AI prompts say about how you use AI, think through one real situation, or look at your bigger patterns. No labels — you're not a category.",
-    aboutText:
-      "A three-part reflection tool — paste your own AI prompts and see how you actually use AI, work through one real situation, or take a wider look at your patterns. Runs on your device. No accounts, no labels. Still being polished.",
+    aboutLine:
+      "See how you actually use AI. Runs on your device, no labels.",
+    aboutAction: "Take a look",
+    // Free to use today, still being polished — the qualifier says so plainly.
+    access: "Free",
+    accessNote: "Building",
     accent: "#E879F9",
     href: "https://whatamiai.com",
     status: "building",
     category: "creativity",
   },
   {
+    // PROTECTED copy — a real, visible example of an idea still being tested.
+    // The placeholder-domain sentence is deliberate. Never hide, park, merge,
+    // rename, or rewrite this as a failed product.
     name: "Fambookagram",
     emoji: "👨‍👩‍👧‍👦",
     description:
       "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. Placeholder domain while we test the concept — if it proves valuable, expect a domain change.",
+    aboutLine: "A private family feed — an idea still being tested.",
+    aboutAction: "Take a look",
+    access: "Exploring",
     accent: "#C084FC",
     href: "https://fambookagram.com",
     status: "exploring",
@@ -224,15 +271,42 @@ export const products: Product[] = [
     showInNav: false,
   },
   {
+    // PROTECTED copy — see Fambookagram above. Same role, same rules.
     name: "Friendbookagram",
     emoji: "🫂",
     description:
       "Where your friends actually stay in touch. Private, calm, invite-only. Placeholder domain while we test the concept — if it proves valuable, expect a domain change.",
+    aboutLine:
+      "Where friends actually stay in touch — an idea still being tested.",
+    aboutAction: "Take a look",
+    access: "Exploring",
     accent: "#818CF8",
     href: "https://friendbookagram.com",
     status: "exploring",
     category: "family",
     showInNav: false,
+  },
+  {
+    // The first packaged Open Mirror product. Featured — it renders as its own
+    // panel, not as one more card. No price and no checkout exist yet, so the
+    // qualifier stays "Preparing for Release" until delivery actually works.
+    name: "Old Laptop to Build Machine",
+    emoji: "💻",
+    description:
+      "Turn an unused laptop into a simple Linux development machine — and publish your first website.",
+    aboutLine:
+      "Turn an unused laptop into a real development machine, and put your first website online.",
+    aboutAction: "View the product",
+    access: "Product",
+    accessNote: "Preparing for Release",
+    accent: "#F59E0B",
+    href: "/products/old-laptop-to-build-machine",
+    status: "building",
+    category: "creativity",
+    featured: true,
+    image: "/products/old-laptop-to-build-machine.png",
+    imageAlt:
+      "An unused laptop with a dark screen beside the same laptop running a Build Log website, above the words: same laptop, Linux, real developer tools, and your own website live on the internet.",
   },
 ];
 
@@ -248,8 +322,36 @@ export const STATUS_ORDER: ProductStatus[] = [
 
 export function productsByStatus(status: ProductStatus): Product[] {
   return products.filter(
-    (p) => p.status === status && p.showInPortfolio !== false && p.pinBottom !== true
+    (p) =>
+      p.status === status &&
+      p.showInPortfolio !== false &&
+      p.pinBottom !== true &&
+      p.featured !== true
   );
+}
+
+/** The one featured product, or undefined. Pages ask for it — they never name it. */
+export function featuredProduct(): Product | undefined {
+  return products.find((p) => p.featured === true);
+}
+
+/**
+ * The public Open Mirror family, in registry order, for the About page.
+ * Excludes the Foundation (shown on its own), the featured product (its own
+ * panel), and anything intentionally kept off About.
+ */
+export function aboutFamilyProducts(): Product[] {
+  return products.filter(
+    (p) =>
+      p.showInAbout !== false &&
+      p.featured !== true &&
+      p.status !== "foundation"
+  );
+}
+
+/** The Foundation — CrossHeartPray. */
+export function foundationProduct(): Product | undefined {
+  return products.find((p) => p.status === "foundation");
 }
 
 /** Bottom-of-page section shared by the homepage and About page. */
