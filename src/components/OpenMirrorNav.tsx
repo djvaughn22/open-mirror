@@ -8,24 +8,50 @@ import { products, type Product } from "../lib/products";
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
 
 // Menu is derived from the product registry (src/lib/products.ts) in the same
-// order as the homepage: Foundation + Live sites first, a divider, then
-// everything in progress, About, and the bottom-pinned products last.
-function menuItem(p: Product): Item {
+// order as the homepage. Grouped so every public project is reachable without
+// one endless list: the Foundation, the free sites, the featured product,
+// what's in progress, and the exploring ideas.
+function menuItem(p: Product, note?: string): Item {
   const external = p.href.startsWith("http");
-  return { label: external ? `${p.name}.com` : p.name, href: p.href, external };
+  return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note };
 }
 
 const navProducts = products.filter((p) => p.showInNav !== false);
-const liveItems = navProducts.filter((p) => (p.status === "foundation" || p.status === "live") && p.pinBottom !== true).map(menuItem);
-const inProgressItems = navProducts.filter((p) => p.status !== "foundation" && p.status !== "live" && p.status !== "archived" && p.pinBottom !== true).map(menuItem);
-const bottomItems = navProducts.filter((p) => p.pinBottom === true).map(menuItem);
+const notPinned = (p: Product) => p.pinBottom !== true;
+
+const foundationItems = navProducts
+  .filter((p) => p.status === "foundation")
+  .map((p) => menuItem(p, "Foundation"));
+
+const liveItems = navProducts
+  .filter((p) => p.status === "live" && notPinned(p) && p.featured !== true)
+  .map((p) => menuItem(p));
+
+// The featured product gets its own labelled group — recognisable as the
+// upcoming product without claiming it can be bought.
+const featuredItems = navProducts.filter((p) => p.featured === true).map((p) => menuItem(p));
+
+const inProgressItems = navProducts
+  .filter((p) => (p.status === "building" || p.status === "beta") && notPinned(p) && p.featured !== true)
+  .map((p) => menuItem(p));
+
+// Fambookagram + Friendbookagram — public examples of ideas that may become
+// real products later. They stay in the menu; never hide or park them.
+const exploringItems = navProducts
+  .filter((p) => p.status === "exploring" && notPinned(p) && p.featured !== true)
+  .map((p) => menuItem(p));
+
+const bottomItems = navProducts.filter((p) => p.pinBottom === true).map((p) => menuItem(p));
 
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
-  ...liveItems,
+  ...foundationItems,
   { divider: true },
-  { heading: "In Progress" },
-  ...inProgressItems,
+  { heading: "Free to use" },
+  ...liveItems,
+  ...(featuredItems.length ? [{ divider: true }, { heading: "First product · preparing for release" } as Item, ...featuredItems] : []),
+  ...(inProgressItems.length ? [{ divider: true }, { heading: "In progress" } as Item, ...inProgressItems] : []),
+  ...(exploringItems.length ? [{ divider: true }, { heading: "Exploring ideas" } as Item, ...exploringItems] : []),
   { divider: true },
   { label: "About", href: "/about-open-mirror" },
   { label: "Start Building", href: "https://stepinthering.com" },

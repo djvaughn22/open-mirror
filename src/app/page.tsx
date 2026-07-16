@@ -39,7 +39,7 @@ function Card({ p }: { p: Product }) {
       <div className="pop" style={{ position: "relative", background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
         <a href={p.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${p.name}${dot}`} style={{ position: "absolute", inset: 0, borderRadius: 18 }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-          <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
+          <span aria-hidden style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
           {badge ? (
             <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: p.accent, border: `1px solid ${p.accent}55`, background: "transparent", borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{badge}</span>
           ) : null}
@@ -63,7 +63,7 @@ function Card({ p }: { p: Product }) {
       <div className="pop" style={{ background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", flexDirection: "column", gap: 12, cursor: "pointer" }}>
         {/* Icon on top, status to the right — frees the full width for the name */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-          <span style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
+          <span aria-hidden style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
           {badge ? (
             <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: p.accent, border: `1px solid ${p.accent}55`, background: "transparent", borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{badge}</span>
           ) : null}
@@ -142,7 +142,7 @@ export default function OpenMirrorHub() {
       <div style={{ maxWidth: 700, margin: "0 auto", padding: "44px 24px 90px" }}>
 
         <header style={{ textAlign: "center", marginBottom: 44 }}>
-          <div style={{ fontSize: 30, marginBottom: 14, letterSpacing: 6 }}>✝️ 🧩 🧰 🎵 🐶</div>
+          <div aria-hidden style={{ fontSize: 30, marginBottom: 14, letterSpacing: 6 }}>✝️ 🧩 🧰 🎵 🐶</div>
           <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>

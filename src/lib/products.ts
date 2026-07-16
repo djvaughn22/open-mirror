@@ -268,7 +268,6 @@ export const products: Product[] = [
     href: "https://fambookagram.com",
     status: "exploring",
     category: "family",
-    showInNav: false,
   },
   {
     // PROTECTED copy — see Fambookagram above. Same role, same rules.
@@ -284,7 +283,6 @@ export const products: Product[] = [
     href: "https://friendbookagram.com",
     status: "exploring",
     category: "family",
-    showInNav: false,
   },
   {
     // The first packaged Open Mirror product. Featured — it renders as its own

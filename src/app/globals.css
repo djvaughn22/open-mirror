@@ -1968,3 +1968,80 @@ a[href]:hover {
   color: var(--om-ink);
 }
 /* OPEN MIRROR FAMILY STYLE OVERRIDE END */
+
+/* ── LIGHT-MODE COMPLETIONS (hub-only) ───────────────────────────────────────
+   The shared light theme (packages/openmirror-ui/OpenMirrorTheme.tsx) remaps a
+   hand-written list of dark surfaces and bright accents. It is the canonical
+   family file and is copied to every satellite by scripts/sync-ui.sh, so the
+   hub's own gaps are closed here instead — same theme system, one block, no
+   per-page patches.
+
+   Gaps closed: #0f1826 (inset panels) and #f59e0b / #34d399 (Product and Free
+   labels) were never in that list, so in light mode they kept dark-on-dark or
+   bright-on-white and failed WCAG AA.
+
+   PREFER the --om-* vars in new markup so this list stays short.
+
+   MEASURING GOTCHA — read before "fixing" light mode again: cards carry
+   `transition: background .15s`, and an automation/preview tab is usually
+   backgrounded, which FREEZES transitions. getComputedStyle then returns the
+   PRE-transition colour, so light mode looks broken (dark cards, ~2.2:1) when
+   it is fine. Inject `* { transition: none !important }` and wait a frame
+   before measuring contrast. */
+html[data-om-theme="light"] [class*="bg-[#0f1826]"] {
+  background-color: var(--om-inset) !important;
+}
+html[data-om-theme="light"] [class*="bg-[#1c1608]"] {
+  background-color: #fef3c7 !important;
+}
+html[data-om-theme="light"] :is([class*="text-[#f59e0b]" i], [style*="color:#f59e0b" i], [style*="color: #f59e0b" i]) {
+  color: #9a5504 !important;
+}
+
+/* These accents ARE handled by the shared theme, but it darkens them only to
+   ~4.34:1–4.45:1 on a light card — just under AA. The `body` in each selector
+   raises specificity above the shared rule so these win wherever they land.
+   Fold them into OpenMirrorTheme.tsx on the next family-wide sync. */
+html[data-om-theme="light"] body :is([class*="text-[#34d399]" i], [style*="color:#34d399" i], [style*="color: #34d399" i]) {
+  color: #065f46 !important;
+}
+html[data-om-theme="light"] body :is([class*="text-[#2dd4bf]" i], [style*="color:#2dd4bf" i], [style*="color: #2dd4bf" i]) {
+  color: #115e59 !important;
+}
+html[data-om-theme="light"] body :is([class*="text-[#22d3ee]" i], [style*="color:#22d3ee" i], [style*="color: #22d3ee" i]) {
+  color: #155e75 !important;
+}
+
+/* The shared theme's #94a3b8 rules are case-sensitive, so an inline
+   `color:#94A3B8` (how the Exploring label renders — Fambookagram and
+   Friendbookagram) slipped through at 2.08:1 on light. Match either case. */
+html[data-om-theme="light"] body :is([class*="text-[#94a3b8]" i], [style*="color:#94a3b8" i], [style*="color: #94a3b8" i]) {
+  color: #475569 !important;
+}
+
+/* #64748b is the hub's "very quiet" tone — the footer's legal line, the
+   product page's availability note, the contact privacy note. It lands at
+   3.5:1–3.9:1 on both surfaces, under AA for normal text. Nudge it one step
+   per mode: still the quietest thing on the page, now legible. */
+html[data-om-theme="dark"] body :is([class*="text-[#64748b]" i], [style*="color:#64748b" i], [style*="color: #64748b" i]) {
+  color: #94a3b8 !important;
+}
+html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color:#64748b" i], [style*="color: #64748b" i]) {
+  color: #475569 !important;
+}
+
+/* Reduced motion — the shared reduced-motion blocks above only cover the Bible
+   Bingo animations. The card hover-pop and the theme's colour fades are motion
+   too; honour the preference for them as well. */
+@media (prefers-reduced-motion: reduce) {
+  .pop,
+  button:not([disabled]),
+  a[href] {
+    transition: none !important;
+  }
+  .pop:hover,
+  button:not([disabled]):hover,
+  a[href]:hover {
+    transform: none !important;
+  }
+}
