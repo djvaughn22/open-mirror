@@ -4,7 +4,6 @@ import { products } from "../../lib/products";
 import { STUDIO } from "../../lib/products";
 import {
   CORE_MESSAGE,
-  CORE_MESSAGE_SHORT,
   META_DESCRIPTION,
   PAGE_TITLE,
   PRIVACY_NOTE,
@@ -67,11 +66,8 @@ export default function Contact() {
           <h1 className="mb-5 text-balance text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">
             Have an idea you want to bring to life?
           </h1>
-          <p className="mx-auto hidden max-w-md text-base font-semibold leading-7 text-[#94a3b8] sm:block">
+          <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8]">
             {CORE_MESSAGE}
-          </p>
-          <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8] sm:hidden">
-            {CORE_MESSAGE_SHORT}
           </p>
         </section>
 

@@ -253,8 +253,6 @@ export default function AboutOpenMirror() {
               What grew from it
             </h2>
 
-            {featured && <FeaturedPanel p={featured} />}
-
             <div className="grid gap-2.5 sm:grid-cols-2">
               {family.map((p) => (
                 <FamilyCard key={p.name} p={p} />
@@ -319,6 +317,23 @@ export default function AboutOpenMirror() {
               </a>
             ))}
           </div>
+        </section>
+
+        {/* The first packaged product — kept near the bottom, after the whole
+            family and the credits, so the origin story leads and nothing reads
+            as a funnel toward a sale. Compact panel, no price, no checkout. */}
+        {featured && (
+          <section className="mt-10">
+            <h2 className="mb-3 text-base font-black">The first product</h2>
+            <FeaturedPanel p={featured} />
+          </section>
+        )}
+
+        {/* Contact — one quiet line into the intake page. */}
+        <section className="mt-10 border-t border-[#26324c] pt-6 text-center">
+          <Link href="/contact" className="text-sm font-black text-[#7dd3fc]">
+            Have an idea you want to bring to life? →
+          </Link>
         </section>
 
         {/* A quiet anchor so existing #disclaimer deep links still land. The

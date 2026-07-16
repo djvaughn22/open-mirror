@@ -14,15 +14,11 @@ export const PAGE_TITLE = "Contact Open Mirror";
 
 /** One-line description for metadata, OG tags, and structured data. */
 export const META_DESCRIPTION =
-  "Have an idea you want to bring to life? Open Mirror takes on one focused project at a time. Share what you're making and where you're stuck.";
+  "Have an idea you want to bring to life? Tell Open Mirror what you want to create, what you've already done, and where you're stuck. If it's a good fit, you'll hear back.";
 
-/** The core message — the full version. */
+/** The single opening — one short invitation, shown once at every screen size. */
 export const CORE_MESSAGE =
-  "Open Mirror takes on one focused project at a time. Work is handled directly, mostly during evenings and weekends. Share what you are trying to create, what you have already done, and where you need help. If the project feels like a good fit, Open Mirror will respond.";
-
-/** Shorter version — same honesty, fewer words, used on small screens. */
-export const CORE_MESSAGE_SHORT =
-  "Open Mirror takes on one focused project at a time, worked on directly, mostly evenings and weekends. Share what you're making, what you've already done, and where you're stuck. If it's a good fit, you'll hear back.";
+  "Tell Open Mirror what you want to create, what you have already done, and where you are stuck. If it is a good fit, you will hear back.";
 
 /** Shown near the form. Sets expectations honestly, without apology. */
 export const PRIVACY_NOTE =

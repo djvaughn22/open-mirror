@@ -325,3 +325,90 @@ test("every product carries a visitor label and an accent", () => {
     assert.match(p.accent, /^#[0-9A-Fa-f]{6}$/, `${p.name} needs a hex accent`);
   }
 });
+
+// ── Homepage: no featured product panel ─────────────────────────────────────
+//
+// The homepage must never render the Old Laptop featured panel or any of its
+// pieces. It reads the registry by status only; a FeaturedPanel or the launch
+// image reappearing here is the exact regression these lock.
+
+test("the homepage renders no featured-product panel", () => {
+  const home = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.doesNotMatch(home, /FeaturedPanel/, "homepage must not render a featured panel");
+  assert.doesNotMatch(home, /featuredProduct\(/, "homepage must not pull the featured product");
+  assert.doesNotMatch(home, /old-laptop-to-build-machine/i, "homepage must not reference the laptop product image or page");
+  assert.doesNotMatch(home, /Preparing for Release/, "homepage must not carry the product's release label");
+});
+
+// ── About ordering: family first, product at the bottom ─────────────────────
+//
+// These assert the *rendered order* in the source, not just registry data:
+// the project family and the low sections (Free resources, Credits) come
+// first, and the single featured panel sits near the bottom — never above the
+// family, never turned back into a giant poster.
+
+test("About renders the project family before the featured product", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  const familyAt = about.indexOf("family.map(");
+  const featuredAt = about.indexOf("<FeaturedPanel p={featured}");
+  assert.ok(familyAt > 0, "About must render the family grid");
+  assert.ok(featuredAt > 0, "About must render the featured panel");
+  assert.ok(familyAt < featuredAt, "the project family must come before Old Laptop on About");
+});
+
+test("Old Laptop's panel sits below Free resources and Credits on About", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  const freeAt = about.indexOf("Free resources");
+  const creditsAt = about.indexOf("Credits and sources");
+  const featuredAt = about.indexOf("<FeaturedPanel p={featured}");
+  assert.ok(freeAt > 0 && creditsAt > 0 && featuredAt > 0, "About keeps its low sections and the featured panel");
+  assert.ok(featuredAt > freeAt, "Old Laptop must follow Free resources");
+  assert.ok(featuredAt > creditsAt, "Old Laptop must follow Credits and sources");
+});
+
+test("About keeps the featured panel compact — no giant poster treatment", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  // The compact panel renders exactly one featured panel and keeps its two
+  // honest actions; no price, no checkout.
+  assert.equal((about.match(/<FeaturedPanel /g) ?? []).length, 1, "exactly one featured panel on About");
+  const src = stripComments(about);
+  assert.doesNotMatch(src, /add to cart|buy now|checkout|\$\d/i, "About's product panel must not imply a purchase");
+});
+
+// ── Contact copy ────────────────────────────────────────────────────────────
+
+test("Contact has exactly one introduction", () => {
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  // One opening constant, rendered once. The desktop/mobile duplicate is gone.
+  assert.equal((contact.match(/\{CORE_MESSAGE\}/g) ?? []).length, 1, "the opening renders exactly once");
+  assert.doesNotMatch(contact, /CORE_MESSAGE_SHORT/, "the second (mobile) intro must be gone");
+});
+
+test("Contact copy never says 'mostly'", () => {
+  const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  assert.doesNotMatch(services, /\bmostly\b/i, "services copy must not hedge with 'mostly'");
+  assert.doesNotMatch(contact, /\bmostly\b/i, "contact page must not hedge with 'mostly'");
+});
+
+test("Contact never repeats 'one focused project at a time'", () => {
+  const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  const hits = (services + contact).match(/one focused project at a time/gi) ?? [];
+  assert.ok(hits.length <= 1, `'one focused project at a time' must not repeat (found ${hits.length})`);
+});
+
+test("Contact keeps all six intake fields", () => {
+  const form = readFileSync(join(repoRoot, "src/components/ContactForm.tsx"), "utf8");
+  for (const label of [
+    "Name",
+    "Email",
+    "What are you trying to create?",
+    "What have you already done?",
+    "Where are you stuck?",
+    "What kind of help would be useful?",
+  ]) {
+    assert.ok(form.includes(label), `the intake form must keep the "${label}" field`);
+  }
+  assert.match(form, /Send/, "the form must keep a Send action");
+});
