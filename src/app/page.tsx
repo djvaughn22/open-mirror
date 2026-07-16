@@ -10,7 +10,6 @@ import {
 } from "../lib/products";
 
 export const metadata: Metadata = {
-  title: `${STUDIO.name} — ${STUDIO.label}`,
   description: STUDIO.mission,
   alternates: { canonical: "/" },
 };

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { STUDIO } from "../../lib/products";
 
 export const metadata: Metadata = {
-  title: "Disclaimer and independence",
+  title: "Disclaimer",
   description:
     "Open Mirror LLC is an independent company. Its projects are created and operated independently.",
   alternates: { canonical: "/disclaimer" },

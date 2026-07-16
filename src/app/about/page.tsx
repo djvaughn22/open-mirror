@@ -3,7 +3,7 @@ import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 
 export const metadata = {
-  title: "About | Cross Heart Pray",
+  title: "About CrossHeartPray",
   description:
     "A simple Bible routine built around the Bible Reading Plan, Daily Hope, Bible Bingo 7, source-backed Deep Dive, and progress tracking.",
 };

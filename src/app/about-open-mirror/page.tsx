@@ -12,7 +12,7 @@ import {
 } from "../../lib/products";
 
 export const metadata: Metadata = {
-  title: "About Open Mirror",
+  title: "About",
   description:
     "CrossHeartPray came first. One personal Bible routine became something real. Then one build led to another. That became Open Mirror.",
   alternates: { canonical: "/about-open-mirror" },

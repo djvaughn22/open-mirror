@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "WatchedNotWatched | Open Mirror LLC",
+  title: "WatchedNotWatched",
   description:
     "A fast watch list for movies and TV — thumbs, the Top 222, and picks based on what you liked. Live at watchednotwatched.com.",
 };

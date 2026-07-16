@@ -6,7 +6,7 @@ import CrossHeartPrayHero from "../../components/CrossHeartPrayHero";
 import OpenMirrorBar from "../../components/OpenMirrorBar";
 
 export const metadata = {
-  title: "✝️ ❤️ 🙏 Welcome | Cross Heart Pray",
+  title: "CrossHeartPray",
   description: "Start with Bible Bingo 7, the Bible Reading Plan, Daily Hope, and source-backed Deep Dive in one simple Bible routine.",
 };
 

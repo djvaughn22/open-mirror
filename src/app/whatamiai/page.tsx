@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "WhatAmIAI | Open Mirror LLC",
+  title: "WhatAmIAI",
   description:
     "See what your own AI prompts say about how you use AI, think through one real situation, or look at your bigger patterns. Runs on your device.",
 };

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "StepInTheRing | Open Mirror LLC",
+  title: "StepInTheRing",
   description:
     "Take any idea and turn it into a real first build. Seven questions, one fight plan. Live at stepinthering.com.",
 };

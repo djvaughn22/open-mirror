@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "iDontCry | Open Mirror LLC",
+  title: "iDontCry",
   description:
     "The family's playground — dad jokes, games, and a Dream Lab to dream up anything, free. Live at idontcry.com.",
 };
