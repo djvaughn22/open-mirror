@@ -75,8 +75,8 @@ export type Product = {
   pinBottom?: boolean;
   /**
    * Visual priority. A featured product is lifted out of the status groups and
-   * rendered as its own panel on the homepage and About page. Set it here —
-   * never hard-code a product name in a page component.
+   * rendered as its own panel on About page. Set it here — never hard-code a
+   * product name in a page component. Does NOT appear on the homepage.
    */
   featured?: boolean;
   /** larger launch image for the featured panel (must live under /public) */

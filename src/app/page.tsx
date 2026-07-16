@@ -154,8 +154,8 @@ export default function OpenMirrorHub() {
           </p>
         </header>
 
-        {/* CrossHeartPray is the Foundation and stays first — the featured
-            product slots in directly after it, never above it. */}
+        {/* CrossHeartPray is the Foundation and stays first.
+            Featured products no longer appear on the homepage. */}
         {groups.map((g, i) => (
           <div key={g.status}>
             <div style={{ marginTop: i === 0 ? 0 : 40 }}>
@@ -164,12 +164,6 @@ export default function OpenMirrorHub() {
                 {g.items.map((p) => <Card key={p.name} p={p} />)}
               </div>
             </div>
-            {featured && g.status === "foundation" && (
-              <div style={{ marginTop: 40 }}>
-                <GroupLabel>First product · preparing for release</GroupLabel>
-                <FeaturedPanel p={featured} />
-              </div>
-            )}
           </div>
         ))}
 

@@ -67,6 +67,17 @@ test("exactly one product is featured", () => {
   assert.equal(products.filter((p) => p.featured === true).length, 1);
 });
 
+test("Old Laptop does NOT appear on the homepage (featured products are About-only)", () => {
+  // The homepage only shows groups filtered by status and showInPortfolio.
+  // A featured product should not be in the status groups on the homepage.
+  const featured = featuredProduct();
+  assert.ok(featured, "featured product exists");
+  const homepageItems = products.filter(
+    (p) => p.status !== "archived" && p.showInPortfolio !== false && p.pinBottom !== true && p.featured !== true
+  );
+  assert.ok(!homepageItems.some((p) => p.name === "Old Laptop to Build Machine"), "Old Laptop must not appear on homepage");
+});
+
 test("the featured product has an image with real alt text", () => {
   const featured = featuredProduct()!;
   assert.ok(featured.image, "featured product needs a launch image");

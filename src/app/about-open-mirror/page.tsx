@@ -94,77 +94,79 @@ function FamilyCard({ p }: { p: Product }) {
 }
 
 /**
- * The featured product panel. Bigger than a family card on purpose — this is
- * the first packaged product. Two honest actions, no price, no checkout.
+ * The featured product card — integrated into the family, not a poster.
+ * Compact horizontal layout: left side for content, right side for a small
+ * contained image. Two honest actions, no price, no checkout.
  */
 function FeaturedPanel({ p }: { p: Product }) {
   return (
     <section
-      className="mb-6 overflow-hidden rounded-3xl border border-[#26324c] bg-[#141d2e]"
-      style={{ borderLeft: `5px solid ${p.accent}` }}
+      className="mb-6 flex flex-col gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-4 sm:flex-row sm:p-5"
+      style={{ borderLeft: `4px solid ${p.accent}` }}
       aria-labelledby="featured-product"
     >
-      {p.image && (
-        <Image
-          src={p.image}
-          alt={p.imageAlt ?? ""}
-          width={1080}
-          height={1080}
-          sizes="(min-width: 1024px) 640px, 100vw"
-          className="h-auto w-full border-b border-[#26324c]"
-          priority
-        />
-      )}
-      <div className="p-5 sm:p-6">
-        <div className="mb-2 flex flex-wrap items-center gap-2">
-          <span aria-hidden className="text-xl leading-none">{p.emoji}</span>
+      {/* Left: content */}
+      <div className="flex-1 min-w-0">
+        <div className="mb-1.5 flex flex-wrap items-center gap-2">
+          <span aria-hidden className="text-lg leading-none">{p.emoji}</span>
           <AccessChip label={p.access} note={p.accessNote} />
         </div>
-        <h3 id="featured-product" className="text-lg font-black sm:text-xl">
+        <h3 id="featured-product" className="text-sm font-black sm:text-base">
           {p.name}
         </h3>
-        <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
+        <p className="mt-0.5 text-[13px] font-semibold leading-5 text-[#94a3b8]">
           {p.aboutLine ?? p.description}
         </p>
 
-        {/* The transformation, in the visitor's order. */}
-        <ol className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[11px] font-bold text-[#94a3b8]">
-          {[
-            "Old laptop",
-            "Linux installed",
-            "Development tools working",
-            "GitHub connected",
-            "First website built",
-            "First website live",
-          ].map((step, i, all) => (
-            <li key={step} className="flex items-center gap-2">
+        {/* Transformation row — compact, single line */}
+        <ol className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[10px] font-bold text-[#94a3b8]">
+          {["Old laptop", "Linux", "Dev tools", "GitHub", "First site"].map((step, i, all) => (
+            <li key={step} className="flex items-center gap-1.5">
               <span
-                className="rounded-full border border-[#26324c] bg-[#0f1826] px-2.5 py-1"
+                className="rounded-full border border-[#26324c] bg-[#0f1826] px-1.5 py-0.5"
                 style={i === all.length - 1 ? { color: p.accent, borderColor: `${p.accent}55` } : undefined}
               >
                 {step}
               </span>
-              {i < all.length - 1 && <span aria-hidden className="text-[#94a3b8]">→</span>}
+              {i < all.length - 1 && <span aria-hidden>→</span>}
             </li>
           ))}
         </ol>
 
-        <div className="mt-5 flex flex-wrap gap-2.5">
+        {/* Actions */}
+        <div className="mt-3 flex flex-wrap gap-2">
           <Link
             href={p.href}
-            className="rounded-full px-5 py-2.5 text-sm font-black text-[#0C0C0C]"
+            className="rounded-full px-3 py-1.5 text-xs font-black text-[#0C0C0C]"
             style={{ background: p.accent }}
           >
-            {p.aboutAction ?? "View the product"} →
+            {p.aboutAction ?? "View"} →
           </Link>
           <a
             href="/downloads/old-laptop-readiness-check.pdf"
-            className="rounded-full border border-[#26324c] px-5 py-2.5 text-sm font-black text-[#e8edf5] transition hover:border-[#1c2740]"
+            className="rounded-full border border-[#26324c] px-3 py-1.5 text-xs font-black text-[#e8edf5] transition hover:border-[#1c2740]"
           >
-            Free readiness check
+            Readiness check
           </a>
         </div>
       </div>
+
+      {/* Right: image in a frame */}
+      {p.image && (
+        <div className="w-full shrink-0 sm:w-56">
+          <div className="overflow-hidden rounded-lg border border-[#26324c] bg-[#0f1826] p-1.5">
+            <Image
+              src={p.image}
+              alt={p.imageAlt ?? ""}
+              width={1080}
+              height={1080}
+              sizes="(min-width: 1024px) 220px, 100vw"
+              className="h-auto w-full"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
