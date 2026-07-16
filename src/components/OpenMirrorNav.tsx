@@ -3,61 +3,41 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
-import { products, type Product } from "../lib/products";
+import { NAV_TAIL_KEYS, navGroups, type NavGroup, type Product } from "../lib/products";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
 
-// Menu is derived from the product registry (src/lib/products.ts) in the same
-// order as the homepage. Grouped so every public project is reachable without
-// one endless list: the Foundation, the free sites, the featured product,
-// what's in progress, and the exploring ideas.
+// Menu order comes from the registry (src/lib/products.ts → navGroups()):
+// Foundation, free sites, in progress, exploring ideas, then the pinned
+// resources and the packaged product last. Fambookagram + Friendbookagram are
+// public examples of ideas that may become real products — they stay here;
+// never hide or park them. Ordering lives in the registry, not this file.
 function menuItem(p: Product, note?: string): Item {
   const external = p.href.startsWith("http");
   return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note };
 }
 
-const navProducts = products.filter((p) => p.showInNav !== false);
-const notPinned = (p: Product) => p.pinBottom !== true;
+function groupItems(g: NavGroup): Item[] {
+  return [
+    ...(g.heading ? [{ heading: g.heading } as Item] : []),
+    ...g.items.map((p) => menuItem(p, g.note)),
+  ];
+}
 
-const foundationItems = navProducts
-  .filter((p) => p.status === "foundation")
-  .map((p) => menuItem(p, "Foundation"));
-
-const liveItems = navProducts
-  .filter((p) => p.status === "live" && notPinned(p) && p.featured !== true)
-  .map((p) => menuItem(p));
-
-// The featured product gets its own labelled group — recognisable as the
-// upcoming product without claiming it can be bought.
-const featuredItems = navProducts.filter((p) => p.featured === true).map((p) => menuItem(p));
-
-const inProgressItems = navProducts
-  .filter((p) => (p.status === "building" || p.status === "beta") && notPinned(p) && p.featured !== true)
-  .map((p) => menuItem(p));
-
-// Fambookagram + Friendbookagram — public examples of ideas that may become
-// real products later. They stay in the menu; never hide or park them.
-const exploringItems = navProducts
-  .filter((p) => p.status === "exploring" && notPinned(p) && p.featured !== true)
-  .map((p) => menuItem(p));
-
-const bottomItems = navProducts.filter((p) => p.pinBottom === true).map((p) => menuItem(p));
+const groups = navGroups();
+const head = groups.filter((g) => !NAV_TAIL_KEYS.includes(g.key));
+const tail = groups.filter((g) => NAV_TAIL_KEYS.includes(g.key));
 
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/" },
-  ...foundationItems,
-  { divider: true },
-  { heading: "Free to use" },
-  ...liveItems,
-  ...(featuredItems.length ? [{ divider: true }, { heading: "First product · preparing for release" } as Item, ...featuredItems] : []),
-  ...(inProgressItems.length ? [{ divider: true }, { heading: "In progress" } as Item, ...inProgressItems] : []),
-  ...(exploringItems.length ? [{ divider: true }, { heading: "Exploring ideas" } as Item, ...exploringItems] : []),
+  // The Foundation sits directly under Home, with no divider between them.
+  ...head.flatMap((g, i) => [...(i === 0 ? [] : [{ divider: true } as Item]), ...groupItems(g)]),
   { divider: true },
   { label: "About", href: "/about-open-mirror" },
   { label: "Start Building", href: "https://stepinthering.com" },
   { label: "Contact", href: "/contact" },
-  { divider: true },
-  ...bottomItems,
+  // Pinned resources, then the packaged product — always the last thing read.
+  ...tail.flatMap((g) => [{ divider: true } as Item, ...groupItems(g)]),
 ];
 
 export default function OpenMirrorNav() {
@@ -107,7 +87,9 @@ export default function OpenMirrorNav() {
                   </div>
                 ) : (
                   <a
-                    key={item.href}
+                    // Not keyed by href alone: StepInTheRing appears twice
+                    // (its project row and the Start Building action).
+                    key={`${item.href}-${i}`}
                     href={item.href}
                     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     onClick={() => setOpen(false)}

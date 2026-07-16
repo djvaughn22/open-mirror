@@ -360,3 +360,85 @@ export function bottomPinnedProducts(): Product[] {
     (p) => p.pinBottom === true && p.showInPortfolio !== false
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Shared-navigation order — the one ordering rule every Open Mirror menu reads.
+//
+//   1. CrossHeartPray — the Foundation
+//   2. Public projects, free to use
+//   3. Building projects
+//   4. Exploring ideas
+//   5. PleaseBeReady and approved resources
+//   6. Old Laptop to Build Machine — last
+//
+// The Foundation opens the menu and the packaged product closes it, so nothing
+// between them reads as a funnel toward a sale. Menus render these groups in
+// array order — never hand-keep a second list of names in a component.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type NavGroupKey =
+  | "foundation"
+  | "free"
+  | "inProgress"
+  | "exploring"
+  | "resources"
+  | "product";
+
+export type NavGroup = {
+  key: NavGroupKey;
+  /** small uppercase label above the group; omitted when the group needs none */
+  heading?: string;
+  /** qualifier shown alongside each row in the group */
+  note?: string;
+  items: Product[];
+};
+
+/** Groups that close the menu, after the About/Contact utility links. */
+export const NAV_TAIL_KEYS: NavGroupKey[] = ["resources", "product"];
+
+/** The shared menu, grouped and ordered. Empty groups are dropped. */
+export function navGroups(): NavGroup[] {
+  const pick = (match: (p: Product) => boolean): Product[] =>
+    products.filter((p) => p.showInNav !== false && match(p));
+  // Pinned resources and the packaged product are placed by their own groups.
+  const ungrouped = (p: Product) => p.pinBottom !== true && p.featured !== true;
+
+  const groups: NavGroup[] = [
+    {
+      key: "foundation",
+      note: "Foundation",
+      items: pick((p) => p.status === "foundation"),
+    },
+    {
+      key: "free",
+      heading: "Free to use",
+      items: pick((p) => p.status === "live" && ungrouped(p)),
+    },
+    {
+      key: "inProgress",
+      heading: "In progress",
+      items: pick((p) => (p.status === "building" || p.status === "beta") && ungrouped(p)),
+    },
+    {
+      key: "exploring",
+      heading: "Exploring ideas",
+      items: pick((p) => p.status === "exploring" && ungrouped(p)),
+    },
+    {
+      key: "resources",
+      items: pick((p) => p.pinBottom === true && p.featured !== true),
+    },
+    {
+      key: "product",
+      heading: "First product · preparing for release",
+      items: pick((p) => p.featured === true),
+    },
+  ];
+
+  return groups.filter((g) => g.items.length > 0);
+}
+
+/** The flat shared-navigation order — what a visitor reads top to bottom. */
+export function navProductOrder(): Product[] {
+  return navGroups().flatMap((g) => g.items);
+}

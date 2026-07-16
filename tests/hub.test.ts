@@ -18,6 +18,8 @@ import {
   aboutFamilyProducts,
   featuredProduct,
   foundationProduct,
+  navGroups,
+  navProductOrder,
   products,
   productsByStatus,
   type Product,
@@ -131,9 +133,87 @@ for (const name of ["Fambookagram", "Friendbookagram"]) {
 }
 
 test("the nav menu groups Exploring ideas", () => {
+  const exploring = navGroups().find((g) => g.key === "exploring");
+  assert.equal(exploring?.heading, "Exploring ideas", "nav needs a labelled Exploring ideas group");
+  assert.deepEqual(
+    exploring?.items.map((p) => p.name),
+    ["Fambookagram", "Friendbookagram"],
+    "both exploring ideas belong in the menu"
+  );
+});
+
+// ── Shared navigation order ────────────────────────────────────────────────
+//
+// Owner rule: the Foundation opens the menu and the packaged product closes
+// it. These lock the order itself, not one component's markup.
+
+test("the nav derives its order from the registry, not a hard-coded list", () => {
   const nav = readFileSync(join(repoRoot, "src/components/OpenMirrorNav.tsx"), "utf8");
-  assert.match(nav, /Exploring ideas/, "nav needs a labelled Exploring ideas group");
-  assert.match(nav, /showInNav !== false/, "nav must derive from the registry");
+  assert.match(nav, /navGroups\(\)/, "nav must read the registry ordering");
+  // A second hand-kept array of names is how ordering silently drifted before.
+  assert.doesNotMatch(nav, /const FAMILY\b/, "no competing hard-coded menu array");
+  for (const p of products) {
+    assert.doesNotMatch(
+      nav,
+      new RegExp(`["']${p.name}["']`),
+      `${p.name} must not be named directly in the nav component`
+    );
+  }
+});
+
+test("CrossHeartPray is first in shared navigation", () => {
+  assert.equal(navProductOrder()[0]?.name, "CrossHeartPray");
+  assert.equal(navGroups()[0]?.key, "foundation", "the Foundation group opens the menu");
+});
+
+test("Old Laptop to Build Machine is last in shared navigation", () => {
+  const order = navProductOrder();
+  assert.equal(
+    order.at(-1)?.name,
+    "Old Laptop to Build Machine",
+    "the packaged product must close the menu"
+  );
+  assert.equal(navGroups().at(-1)?.key, "product", "the product group is the final group");
+});
+
+test("Old Laptop sits below PleaseBeReady and every free project", () => {
+  const names = navProductOrder().map((p) => p.name);
+  const laptop = names.indexOf("Old Laptop to Build Machine");
+  assert.ok(laptop > names.indexOf("PleaseBeReady"), "Old Laptop must follow PleaseBeReady");
+  for (const name of ["TheDJCares", "iDontCry", "OpenDoku", "WhatAmIAI", "Fambookagram", "Friendbookagram"]) {
+    assert.ok(laptop > names.indexOf(name), `Old Laptop must follow ${name}`);
+  }
+});
+
+test("shared navigation follows the owner's group order", () => {
+  assert.deepEqual(
+    navGroups().map((g) => g.key),
+    ["foundation", "free", "inProgress", "exploring", "resources", "product"],
+    "Foundation → public → building → exploring → resources → product"
+  );
+});
+
+test("Old Laptop stays in shared navigation, labelled honestly", () => {
+  const laptop = byName("Old Laptop to Build Machine");
+  assert.notEqual(laptop.showInNav, false, "Old Laptop must stay reachable from the menu");
+  assert.ok(
+    navProductOrder().some((p) => p.name === laptop.name),
+    "Old Laptop must appear in the shared menu"
+  );
+  assert.equal(`${laptop.access} · ${laptop.accessNote}`, "Product · Preparing for Release");
+});
+
+test("shared navigation shows every public product exactly once", () => {
+  const names = navProductOrder().map((p) => p.name);
+  assert.deepEqual([...new Set(names)], names, "no product may appear in two menu groups");
+  for (const p of products) {
+    if (p.showInNav === false) continue;
+    assert.ok(names.includes(p.name), `${p.name} is public but reaches no menu group`);
+  }
+});
+
+test("Reflect never reaches the shared menu", () => {
+  assert.ok(!navProductOrder().some((p) => p.name === "Reflect"));
 });
 
 // ── Reflect stays hidden ────────────────────────────────────────────────────
