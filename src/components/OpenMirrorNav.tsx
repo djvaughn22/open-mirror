@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useId, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
 import { NAV_TAIL_KEYS, navGroups, type NavGroup, type Product } from "../lib/products";
 
@@ -41,23 +42,52 @@ const MENU: Item[] = [
 ];
 
 export default function OpenMirrorNav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const menuRef = useRef<HTMLElement | null>(null);
+  const menuId = useId();
 
+  // Escape closes (focus returns to the trigger); pointer down outside closes.
   useEffect(() => {
     if (!open) return;
-    const onClick = (e: MouseEvent | TouchEvent) => {
-      if (ref.current && e.target instanceof Node && !ref.current.contains(e.target)) setOpen(false);
+    const onPointerDown = (e: PointerEvent) => {
+      if (containerRef.current && e.target instanceof Node && !containerRef.current.contains(e.target)) setOpen(false);
     };
-    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
-    document.addEventListener("mousedown", onClick);
-    document.addEventListener("keydown", onEsc);
-    return () => { document.removeEventListener("mousedown", onClick); document.removeEventListener("keydown", onEsc); };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setOpen(false); buttonRef.current?.focus(); }
+    };
+    document.addEventListener("pointerdown", onPointerDown, true);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown, true);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  // Close if the route changes underneath an open menu (back/forward safety).
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  // On phones, lock the page behind the open menu so it can't drift.
+  useEffect(() => {
+    if (!open) return;
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 640px)").matches) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [open]);
+
+  // Move focus into the menu on open so keyboard users land on item one.
+  useEffect(() => {
+    if (open) menuRef.current?.querySelector<HTMLElement>("a")?.focus();
   }, [open]);
 
   return (
     <header className="om-bar sticky top-0 z-50 border-b border-[#26324c] bg-[#0b1220]">
-      <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-3.5">
+      <div ref={containerRef} className="relative mx-auto flex max-w-3xl items-center justify-between gap-3 px-5 py-3.5">
         {/* The only visible top-level item: Open Mirror Home */}
         <Link href="/" className="inline-flex items-baseline gap-2 text-base font-black tracking-tight text-[#e8edf5]">
           <span>Open Mirror LLC</span>
@@ -65,19 +95,27 @@ export default function OpenMirrorNav() {
 
         <div className="flex items-center gap-2">
         <OpenMirrorThemeToggle />
-        <div ref={ref} className="relative">
           <button
+            ref={buttonRef}
             type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label="Open Mirror menu"
+            aria-haspopup="true"
             aria-expanded={open}
+            aria-controls={menuId}
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-lg leading-none text-[#e8edf5] transition hover:border-[#1c2740]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-lg leading-none text-[#e8edf5] transition hover:bg-[#1c2740] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60"
           >
             <span aria-hidden>{open ? "✕" : "☰"}</span>
           </button>
 
           {open && (
-            <nav className="absolute right-0 mt-3 max-h-[80vh] w-64 overflow-y-auto rounded-2xl border border-[#26324c] bg-[#141d2e] p-2 shadow-2xl shadow-black/50">
+            <nav
+              id={menuId}
+              ref={menuRef}
+              aria-label="Open Mirror"
+              className="absolute right-5 top-[calc(100%+8px)] z-[60] w-72 max-w-[calc(100vw-2rem)] overflow-y-auto overflow-x-hidden rounded-2xl border border-[#26324c] bg-[#141d2e] p-2 shadow-2xl shadow-black/50"
+              style={{ maxHeight: "min(80vh, 34rem)" }}
+            >
               {MENU.map((item, i) =>
                 item.divider ? (
                   <div key={`divider-${i}`} className="my-2 border-t border-[#26324c]" />
@@ -93,16 +131,15 @@ export default function OpenMirrorNav() {
                     href={item.href}
                     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     onClick={() => setOpen(false)}
-                    className="flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-[#e8edf5] transition hover:bg-[#1c2740]"
+                    className="flex min-h-11 items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-[#e8edf5] transition hover:bg-[#1c2740] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60"
                   >
-                    <span>{item.label}</span>
-                    {item.note && <span className="text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">{item.note}</span>}
+                    <span className="min-w-0 truncate">{item.label}</span>
+                    {item.note && <span className="shrink-0 text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">{item.note}</span>}
                   </a>
                 )
               )}
             </nav>
           )}
-        </div>
         </div>
       </div>
     </header>
