@@ -207,7 +207,7 @@ export default function OpenMirrorNav({ site }: { site?: string }) {
               className="om-menu-panel"
               style={{
                 position: "absolute",
-                right: 0,
+                right: 16,
                 top: "calc(100% + 8px)",
                 zIndex: 60,
                 width: 256,
