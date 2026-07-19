@@ -26,11 +26,11 @@ TARGETS=(
   "$HOME/WhatAmIAI/whatamiai/app"
   "$HOME/idontcry/src/app"
   "$HOME/WatchedNotWatched/watched-not-watched/src/app"
-  "$HOME/OpenMirror/crossheartpray/src/components"
 )
-# CrossHeartPray joined 2026-07-14 (DJ: same header as every other site).
-# Its copies live in src/components; its own ChpProductNav bar carries the
-# site links below the family bar, WatchedNotWatched-style.
+# CrossHeartPray (corrected 2026-07-16, commit 3491570): it keeps its OWN
+# single header — no OpenMirrorNav/OpenMirrorFooter. Only the shared theme
+# machinery stays in sync there (its ChpProductNav imports OpenMirrorTheme).
+CHP_COMPONENTS="$HOME/OpenMirror/crossheartpray/src/components"
 
 for t in "${TARGETS[@]}"; do
   if [ ! -d "$t" ]; then
@@ -42,6 +42,11 @@ for t in "${TARGETS[@]}"; do
   done
   echo "synced -> $t"
 done
+
+if [ -d "$CHP_COMPONENTS" ]; then
+  cp "$SRC/OpenMirrorTheme.tsx" "$CHP_COMPONENTS/OpenMirrorTheme.tsx"
+  echo "synced (theme only) -> $CHP_COMPONENTS"
+fi
 
 echo
 echo "Done. Now build + commit + push each satellite repo."
