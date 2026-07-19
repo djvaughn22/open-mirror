@@ -136,7 +136,10 @@ export const products: Product[] = [
     emoji: "🐶",
     description:
       "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",
-    aboutLine: "A joke about a cloned dog that gets real dogs adopted.",
+    // Rescue-first, inspired by the cloned-dog headline. NOT "a dog named Tom" —
+    // the name speaks for the rescue dog: "Don't clone me, Tom. I'm already here."
+    aboutLine:
+      "A rescue-first campaign inspired by a cloned-dog headline. Meet real adoptable dogs already waiting for homes.",
     aboutAction: "Meet the dogs",
     access: "Free",
     accent: "#2DD4BF",

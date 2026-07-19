@@ -20,18 +20,20 @@ export const metadata: Metadata = {
 
 // The three haikus — new words (owner-approved, July 2026), verified 5-7-5.
 // Presented as verse only; never wrapped in an explanatory paragraph.
+// LOCKED — the owner's haikus, restored exactly 2026-07-19. Do not paraphrase,
+// improve, retitle, or replace. tests/hub.test.ts locks every line verbatim.
 const HAIKUS: { title: string; lines: string[] }[] = [
   {
-    title: "First",
-    lines: ["Cross Heart Pray came first", "One daily practice became", "Something real to share"],
+    title: "Start",
+    lines: ["Pick one thing to build", "Start before the plan is done", "Make the first version."],
   },
   {
-    title: "More",
-    lines: ["One build led to more", "Each new thought became a thing", "Open Mirror grew"],
+    title: "Improve",
+    lines: ["Build it, test it, learn", "Keep what works and cut the rest", "Then build it better."],
   },
   {
-    title: "Keep going",
-    lines: ["Build what feels alive", "Keep it useful, keep it fun", "Then see where it goes"],
+    title: "Get it live",
+    lines: ["Bring me what you built", "I will find the real next step", "Then ship something real."],
   },
 ];
 

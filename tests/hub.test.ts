@@ -242,6 +242,39 @@ test("About renders the family from the canonical registry", () => {
   assert.doesNotMatch(about, /const PROGRESSION/, "no competing hard-coded project array");
 });
 
+// ── The locked haikus ────────────────────────────────────────────────────────
+// Owner rule (2026-07-19): these three haikus are LOCKED, word for word,
+// heading for heading. They were once silently replaced; this test makes any
+// rewrite fail loudly. Never "improve" them.
+
+const LOCKED_HAIKUS: { title: string; lines: string[] }[] = [
+  {
+    title: "Start",
+    lines: ["Pick one thing to build", "Start before the plan is done", "Make the first version."],
+  },
+  {
+    title: "Improve",
+    lines: ["Build it, test it, learn", "Keep what works and cut the rest", "Then build it better."],
+  },
+  {
+    title: "Get it live",
+    lines: ["Bring me what you built", "I will find the real next step", "Then ship something real."],
+  },
+];
+
+test("the locked haikus appear on About exactly as the owner wrote them", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  for (const haiku of LOCKED_HAIKUS) {
+    assert.ok(about.includes(`"${haiku.title}"`), `haiku heading "${haiku.title}" is missing`);
+    for (const line of haiku.lines) {
+      assert.ok(about.includes(`"${line}"`), `haiku line "${line}" was changed or removed`);
+    }
+  }
+  for (const retired of ["Cross Heart Pray came first", "One build led to more", "Build what feels alive"]) {
+    assert.ok(!about.includes(retired), `retired haiku line "${retired}" must not come back`);
+  }
+});
+
 test("every public project reaches About or is deliberately excluded", () => {
   const excluded = products.filter((p) => p.showInAbout === false).map((p) => p.name);
   assert.deepEqual(excluded, ["Reflect"], "only Reflect is intentionally kept off About");
