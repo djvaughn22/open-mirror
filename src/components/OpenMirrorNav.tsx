@@ -6,7 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
 import { NAV_TAIL_KEYS, navGroups, type NavGroup, type Product } from "../lib/products";
 
-type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string };
+type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string; emoji?: string };
 
 // Menu order comes from the registry (src/lib/products.ts → navGroups()):
 // Foundation, free sites, in progress, exploring ideas, then the pinned
@@ -15,7 +15,7 @@ type Item = { label?: string; href?: string; external?: boolean; note?: string; 
 // never hide or park them. Ordering lives in the registry, not this file.
 function menuItem(p: Product, note?: string): Item {
   const external = p.href.startsWith("http");
-  return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note };
+  return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note, emoji: p.emoji };
 }
 
 function groupItems(g: NavGroup): Item[] {
@@ -30,13 +30,13 @@ const head = groups.filter((g) => !NAV_TAIL_KEYS.includes(g.key));
 const tail = groups.filter((g) => NAV_TAIL_KEYS.includes(g.key));
 
 const MENU: Item[] = [
-  { label: "Open Mirror Home", href: "/" },
+  { label: "Open Mirror Home", href: "/", emoji: "🪞" },
   // The Foundation sits directly under Home, with no divider between them.
   ...head.flatMap((g, i) => [...(i === 0 ? [] : [{ divider: true } as Item]), ...groupItems(g)]),
   { divider: true },
-  { label: "About", href: "/about-open-mirror" },
-  { label: "Start Building", href: "https://stepinthering.com" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
+  { label: "Start Building", href: "https://stepinthering.com", emoji: "🛠️" },
+  { label: "Contact", href: "/contact", emoji: "✉️" },
   // Pinned resources, then the packaged product — always the last thing read.
   ...tail.flatMap((g) => [{ divider: true } as Item, ...groupItems(g)]),
 ];
@@ -103,9 +103,10 @@ export default function OpenMirrorNav() {
             aria-expanded={open}
             aria-controls={menuId}
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-lg leading-none text-[#e8edf5] transition hover:bg-[#1c2740] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60"
+            className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[#26324c] bg-[#141d2e] px-3.5 py-2 text-sm font-black text-[#e8edf5] transition hover:bg-[#1c2740] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60 sm:px-4"
           >
-            <span aria-hidden>{open ? "✕" : "☰"}</span>
+            <span aria-hidden className="text-base leading-none">{open ? "✕" : "☰"}</span>
+            <span className="hidden sm:inline">Menu</span>
           </button>
 
           {open && (
@@ -120,7 +121,7 @@ export default function OpenMirrorNav() {
                 item.divider ? (
                   <div key={`divider-${i}`} className="my-2 border-t border-[#26324c]" />
                 ) : item.heading ? (
-                  <div key={`heading-${i}`} className="px-4 pb-1 pt-2 text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">
+                  <div key={`heading-${i}`} className="pb-1 pl-[2.75rem] pr-4 pt-2 text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">
                     {item.heading}
                   </div>
                 ) : (
@@ -131,9 +132,10 @@ export default function OpenMirrorNav() {
                     href={item.href}
                     {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-[#e8edf5] transition hover:bg-[#1c2740] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60"
+                    className="flex min-h-11 items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-[#e8edf5] transition hover:bg-[#1c2740] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60"
                   >
-                    <span className="min-w-0 truncate">{item.label}</span>
+                    <span aria-hidden className="w-5 shrink-0 text-center text-base leading-none">{item.emoji}</span>
+                    <span className="min-w-0 flex-1 truncate">{item.label}</span>
                     {item.note && <span className="shrink-0 text-[10px] font-black uppercase tracking-wider text-[#94a3b8]">{item.note}</span>}
                   </a>
                 )
