@@ -226,8 +226,10 @@ export const products: Product[] = [
   {
     name: "WatchedNotWatched",
     emoji: "🎬",
+    // No emoji inside the sentence — on phones without the glyphs it used to
+    // read "Thumb movies and shows or , sort…".
     description:
-      "Remember what you watched. Thumb movies and shows 👍 or 👎, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
+      "Remember what you watched. Thumb movies and shows up or down, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
     aboutLine:
       "Thumb what you watch, then get picks based on what you liked. No account.",
     aboutAction: "Start a list",
@@ -241,9 +243,9 @@ export const products: Product[] = [
     name: "WhatAmIAI",
     emoji: "🤖",
     description:
-      "See what your own AI prompts say about how you use AI, think through one real situation, or look at your bigger patterns. No labels — you're not a category.",
+      "See the patterns in the questions you ask, think through one real situation, or look at how you approach tools and decisions. No labels — you're not a category.",
     aboutLine:
-      "See how you actually use AI. Runs on your device, no labels.",
+      "See your own patterns, one honest look at a time. Runs on your device, no labels.",
     aboutAction: "Take a look",
     // Free to use today, still being polished — the qualifier says so plainly.
     access: "Free",

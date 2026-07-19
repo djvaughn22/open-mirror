@@ -4,41 +4,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
-import { NAV_TAIL_KEYS, navGroups, type NavGroup, type Product } from "../lib/products";
+import { bottomPinnedProducts, featuredProduct, foundationProduct, type Product } from "../lib/products";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string; emoji?: string };
 
-// Menu order comes from the registry (src/lib/products.ts → navGroups()):
-// Foundation, free sites, in progress, exploring ideas, then the pinned
-// resources and the packaged product last. Fambookagram + Friendbookagram are
-// public examples of ideas that may become real products — they stay here;
-// never hide or park them. Ordering lives in the registry, not this file.
+// The homepage IS the product directory, so the menu no longer repeats it.
+// It holds only the site's own destinations: Home, the Foundation, About,
+// Contact, then the pinned resource and the packaged product. Everything the
+// menu shows still derives from the registry — no hard-coded product names.
 function menuItem(p: Product, note?: string): Item {
   const external = p.href.startsWith("http");
   return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note, emoji: p.emoji };
 }
 
-function groupItems(g: NavGroup): Item[] {
-  return [
-    ...(g.heading ? [{ heading: g.heading } as Item] : []),
-    ...g.items.map((p) => menuItem(p, g.note)),
-  ];
-}
-
-const groups = navGroups();
-const head = groups.filter((g) => !NAV_TAIL_KEYS.includes(g.key));
-const tail = groups.filter((g) => NAV_TAIL_KEYS.includes(g.key));
+const foundation = foundationProduct();
+const featured = featuredProduct();
 
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/", emoji: "🪞" },
   // The Foundation sits directly under Home, with no divider between them.
-  ...head.flatMap((g, i) => [...(i === 0 ? [] : [{ divider: true } as Item]), ...groupItems(g)]),
+  ...(foundation ? [menuItem(foundation, "Foundation")] : []),
   { divider: true },
   { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
-  { label: "Start Building", href: "https://stepinthering.com", emoji: "🛠️" },
   { label: "Contact", href: "/contact", emoji: "✉️" },
+  { divider: true },
   // Pinned resources, then the packaged product — always the last thing read.
-  ...tail.flatMap((g) => [{ divider: true } as Item, ...groupItems(g)]),
+  ...bottomPinnedProducts().map((p) => menuItem(p)),
+  ...(featured && featured.showInNav !== false ? [menuItem(featured, "Product")] : []),
 ];
 
 export default function OpenMirrorNav() {
