@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0C0C0C;
-  --foreground: #F5F0E8;
+  --background: #12161f;
+  --foreground: #d8d3c8;
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #101a2c;
+    --foreground: #c9d3e3;
   }
 }
 
@@ -181,43 +181,43 @@ body {
    The Welcome hero at "/" stays Dark. */
 
 html[data-chp-visual-theme="light"] {
-  --background: #edf1f5;
-  --foreground: #172033;
+  --background: #e8edf3;
+  --foreground: #2b384e;
   color-scheme: light;
 }
 
 html[data-chp-visual-theme="light"] body,
 html[data-chp-visual-theme="light"] main[class*="bg-slate-950"],
 html[data-chp-visual-theme="light"] main[class*="bg-black"] {
-  background: #edf1f5 !important;
+  background: #e8edf3 !important;
   background-image: none !important;
-  color: #172033 !important;
+  color: #2b384e !important;
 }
 
 html[data-chp-visual-theme="light"] article,
 html[data-chp-visual-theme="light"] section[class*="bg-"],
 html[data-chp-visual-theme="light"] div[class*="bg-"] {
-  background: #f8fafc !important;
+  background: #f3f5f9 !important;
   background-image: none !important;
-  border-color: #cfd8e3 !important;
+  border-color: #cbd4df !important;
   box-shadow: none !important;
-  color: #172033 !important;
+  color: #2b384e !important;
 }
 
 html[data-chp-visual-theme="light"] a[class*="bg-"],
 html[data-chp-visual-theme="light"] button[class*="bg-"],
 html[data-chp-visual-theme="light"] summary[class*="bg-"] {
-  background: #e2e8ef !important;
+  background: #dfe5ec !important;
   background-image: none !important;
-  border-color: #c5d0dc !important;
+  border-color: #c1ccd8 !important;
   box-shadow: none !important;
-  color: #172033 !important;
+  color: #2b384e !important;
 }
 
 html[data-chp-visual-theme="light"] a[class*="bg-"]:hover,
 html[data-chp-visual-theme="light"] button[class*="bg-"]:hover,
 html[data-chp-visual-theme="light"] summary[class*="bg-"]:hover {
-  background: #d8e0e9 !important;
+  background: #d3dbe4 !important;
 }
 
 html[data-chp-visual-theme="light"] [class*="text-white"],
@@ -227,7 +227,7 @@ html[data-chp-visual-theme="light"] [class*="text-emerald"],
 html[data-chp-visual-theme="light"] [class*="text-yellow"],
 html[data-chp-visual-theme="light"] [class*="text-red"],
 html[data-chp-visual-theme="light"] [class*="text-sky"] {
-  color: #172033 !important;
+  color: #2b384e !important;
 }
 
 html[data-chp-visual-theme="light"] [class*="text-slate-200"],
@@ -235,20 +235,20 @@ html[data-chp-visual-theme="light"] [class*="text-slate-300"],
 html[data-chp-visual-theme="light"] [class*="text-slate-400"],
 html[data-chp-visual-theme="light"] [class*="text-slate-500"],
 html[data-chp-visual-theme="light"] [class*="text-white/"] {
-  color: #4b5563 !important;
+  color: #5a6980 !important;
 }
 
 html[data-chp-visual-theme="light"] [class*="border-"] {
-  border-color: #cfd8e3 !important;
+  border-color: #cbd4df !important;
 }
 
 html[data-chp-visual-theme="light"] input,
 html[data-chp-visual-theme="light"] textarea,
 html[data-chp-visual-theme="light"] select {
-  background: #f8fafc !important;
+  background: #f3f5f9 !important;
   background-image: none !important;
-  border-color: #c5d0dc !important;
-  color: #172033 !important;
+  border-color: #c1ccd8 !important;
+  color: #2b384e !important;
   box-shadow: none !important;
 }
 
@@ -260,13 +260,13 @@ html[data-chp-visual-theme="light"] .underline {
 html[data-chp-visual-theme="light"] :is([class*="text-[#e8edf5]"], [class*="text-zinc-1"], [class*="text-zinc-2"], [class*="text-zinc-3"], [class*="text-gray-1"], [class*="text-gray-2"], [class*="text-gray-3"], [class*="text-neutral-1"], [class*="text-neutral-2"], [class*="text-neutral-3"]),
 html[data-chp-visual-theme="light"] [style*="color: #e8edf5"],
 html[data-chp-visual-theme="light"] [style*="color:#e8edf5"] {
-  color: #172033 !important;
+  color: #2b384e !important;
 }
 
 html[data-chp-visual-theme="light"] :is([class*="text-[#94a3b8]"], [class*="text-zinc-4"], [class*="text-zinc-5"], [class*="text-gray-4"], [class*="text-gray-5"], [class*="text-neutral-4"], [class*="text-neutral-5"]),
 html[data-chp-visual-theme="light"] [style*="color: #94a3b8"],
 html[data-chp-visual-theme="light"] [style*="color:#94a3b8"] {
-  color: #4b5563 !important;
+  color: #5a6980 !important;
 }
 
 /* Bright accent text is unreadable on light backgrounds - darken per accent. */
@@ -313,10 +313,10 @@ html[data-chp-visual-theme="light"] :is([class*="text-[#2dd4bf]" i], [style*="co
 
 /* Client re-renders serialize inline colors as rgb() - match that form too. */
 html[data-chp-visual-theme="light"] [style*="color: rgb(232, 237, 245)"] {
-  color: #0f172a !important;
+  color: #2b384e !important;
 }
 html[data-chp-visual-theme="light"] [style*="color: rgb(148, 163, 184)"] {
-  color: #475569 !important;
+  color: #5a6980 !important;
 }
 html[data-chp-visual-theme="light"] [style*="color: rgb(56, 189, 248)"] {
   color: #0369a1 !important;
@@ -363,9 +363,9 @@ html[data-chp-visual-theme="light"] [style*="color: rgb(45, 212, 191)"] {
    would otherwise keep dark backgrounds in Light mode. Flatten them to a
    light band with dark text, matching the family (om) light theme. */
 html[data-chp-visual-theme="light"] :is(table, thead, tbody, tr, th, td, caption, span, p, li, ul, ol, label, header, nav, footer, aside, figcaption, h1, h2, h3, h4, h5, h6):is([class*="bg-slate-9"], [class*="bg-slate-8"], [class*="bg-black"], [class*="bg-gray-8"], [class*="bg-gray-9"], [class*="bg-zinc-8"], [class*="bg-zinc-9"], [class*="bg-neutral-8"], [class*="bg-neutral-9"]) {
-  background-color: #e2e8ef !important;
+  background-color: #dfe5ec !important;
   background-image: none !important;
-  color: #172033 !important;
+  color: #2b384e !important;
 }
 
 /* Shared Open Mirror footer ships inline dark-theme colors; retint for Light.
@@ -375,7 +375,7 @@ html[data-chp-visual-theme="light"] .om-footer {
 }
 html[data-chp-visual-theme="light"] .om-footer p,
 html[data-chp-visual-theme="light"] .om-footer a {
-  color: #475569 !important;
+  color: #5a6980 !important;
 }
 
 html[data-chp-visual-theme="light"] .bible-bingo-bottom-card-spin::after,
@@ -437,8 +437,8 @@ html[data-chp-visual-theme="light"] .theme-toggle-label {
 }
 
 html[data-chp-visual-theme="light"] .theme-toggle {
-  border-color: #c5d0dc !important;
-  background: #dce3eb !important;
+  border-color: #c1ccd8 !important;
+  background: #d8dfe8 !important;
 }
 
 html[data-chp-visual-theme="light"] .theme-toggle-option {
@@ -446,8 +446,8 @@ html[data-chp-visual-theme="light"] .theme-toggle-option {
 }
 
 html[data-chp-visual-theme="light"] .theme-toggle-option[aria-pressed="true"] {
-  background: #172033 !important;
-  color: #f8fafc !important;
+  background: #2b384e !important;
+  color: #f3f5f9 !important;
 }
 
 
@@ -467,7 +467,7 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   border-radius: 0.2rem !important;
   padding-left: 0.03em !important;
   padding-right: 0.03em !important;
-  color: #172033 !important;
+  color: #2b384e !important;
   text-decoration-line: underline !important;
   text-decoration-style: dotted !important;
   text-decoration-thickness: 1px !important;
@@ -480,7 +480,7 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="decoratio
 html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-dotted"]:hover,
 html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"][class*="bg-"]:hover {
   background: rgba(148, 163, 184, 0.18) !important;
-  color: #0f172a !important;
+  color: #2b384e !important;
   text-decoration-color: rgba(15, 23, 42, 0.75) !important;
 }
 
@@ -630,7 +630,7 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     radial-gradient(circle at 18% 0%, rgba(16, 185, 129, 0.16), transparent 30rem),
     radial-gradient(circle at 82% 6%, rgba(212, 175, 55, 0.12), transparent 28rem),
     radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.10), transparent 34rem),
-    linear-gradient(135deg, #030712 0%, #07111f 38%, #0b1f1a 72%, #141006 100%) !important;
+    linear-gradient(135deg, #0a121f 0%, #0e1826 38%, #0b1f1a 72%, #141006 100%) !important;
 }
 
 .chp-lively-dark-page::selection {
@@ -669,7 +669,7 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
     background:
       radial-gradient(circle at 12% 0%, rgba(16, 185, 129, 0.14), transparent 22rem),
       radial-gradient(circle at 92% 10%, rgba(212, 175, 55, 0.10), transparent 20rem),
-      linear-gradient(145deg, #030712 0%, #07111f 50%, #0b1f1a 100%) !important;
+      linear-gradient(145deg, #0a121f 0%, #0e1826 50%, #0b1f1a 100%) !important;
   }
 }
 /* CHP_LIVELY_DARK_THEME_END */
@@ -1845,17 +1845,17 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 
 /* card hover pop */
 .pop { transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
-.pop:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,.5); }
+.pop:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.28); }
 
 
 /* OPEN MIRROR FAMILY STYLE OVERRIDE START */
 :root {
-  --om-bg: #0b1220;
-  --om-surface: #141d2e;
-  --om-surface-2: #1c2740;
-  --om-inset: #0c1220;
-  --om-border: #26324c;
-  --om-text: #e8edf5;
+  --om-bg: #101a2c;
+  --om-surface: #182335;
+  --om-surface-2: #223048;
+  --om-inset: #111a2b;
+  --om-border: #2c3a56;
+  --om-text: #c9d3e3;
   --om-sub: #94a3b8;
   --om-accent: #A78BFA;
   --om-ink: #0b1220;
@@ -2016,7 +2016,7 @@ html[data-om-theme="light"] body :is([class*="text-[#22d3ee]" i], [style*="color
    `color:#94A3B8` (how the Exploring label renders — Fambookagram and
    Friendbookagram) slipped through at 2.08:1 on light. Match either case. */
 html[data-om-theme="light"] body :is([class*="text-[#94a3b8]" i], [style*="color:#94a3b8" i], [style*="color: #94a3b8" i]) {
-  color: #475569 !important;
+  color: #5a6980 !important;
 }
 
 /* #64748b is the hub's "very quiet" tone — the footer's legal line, the
@@ -2027,7 +2027,7 @@ html[data-om-theme="dark"] body :is([class*="text-[#64748b]" i], [style*="color:
   color: #94a3b8 !important;
 }
 html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color:#64748b" i], [style*="color: #64748b" i]) {
-  color: #475569 !important;
+  color: #5a6980 !important;
 }
 
 /* Reduced motion — the shared reduced-motion blocks above only cover the Bible
@@ -2045,3 +2045,63 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
     transform: none !important;
   }
 }
+
+
+/* ── OM_SOFT_CONTRAST (Jul 18 2026) ─ softened light palette, eyes-first.
+   No pure-white cards, no near-black ink. The doubled attribute beats the
+   family theme's injected <style> tag (same trick as the
+   html[data-om-theme="light"]:root pattern used elsewhere in the family). */
+html[data-om-theme="light"][data-om-theme] {
+  background: #e8edf3 !important;
+  --om-bg: #e8edf3;
+  --om-surface: #f5f7fa;
+  --om-surface-2: #e9eff8;
+  --om-inset: #edf0f5;
+  --om-border: #d5dde6;
+  --om-text: #2b384e;
+  --om-sub: #5a6980;
+  --bg: #e8edf3;
+  --surface: #edf0f5;
+  --panel: #f5f7fa;
+  --panel2: #e9eff8;
+  --text: #2b384e;
+  --muted: #5a6980;
+  --background: #e8edf3;
+  --foreground: #2b384e;
+}
+html[data-om-theme="light"][data-om-theme] body {
+  background: #e8edf3 !important;
+  color: #2b384e !important;
+}
+/* The injected light theme hardcodes these — re-point at the soft values. */
+html[data-om-theme="light"][data-om-theme] :is([class*="bg-[#0b1220]"], [class*="bg-slate-950"], [class*="bg-slate-900"]) {
+  background-color: #e8edf3 !important;
+}
+html[data-om-theme="light"][data-om-theme] [class*="bg-[#141d2e]"] {
+  background-color: #f5f7fa !important;
+}
+html[data-om-theme="light"][data-om-theme] [class*="bg-[#1c2740]"] {
+  background-color: #e9eff8 !important;
+}
+html[data-om-theme="light"][data-om-theme] :is([class*="bg-[#0c1220]"], [class*="bg-[#07090f]"], [class*="bg-[#0e1626]"], [class*="bg-black"], [class*="bg-slate-800"], [class*="bg-zinc-8"], [class*="bg-zinc-9"], [class*="bg-gray-8"], [class*="bg-gray-9"], [class*="bg-neutral-8"], [class*="bg-neutral-9"]) {
+  background-color: #edf0f5 !important;
+}
+html[data-om-theme="light"][data-om-theme] [class*="bg-white"] {
+  background-color: #f5f7fa !important;
+}
+html[data-om-theme="light"][data-om-theme] :is(h1, h2, h3, h4),
+html[data-om-theme="light"][data-om-theme] main,
+html[data-om-theme="light"][data-om-theme] :is([class*="text-[#e8edf5]"], [class*="text-white"], [class*="text-slate-1"], [class*="text-slate-2"], [class*="text-slate-3"], [class*="text-zinc-1"], [class*="text-zinc-2"], [class*="text-zinc-3"], [class*="text-gray-1"], [class*="text-gray-2"], [class*="text-gray-3"], [class*="text-neutral-1"], [class*="text-neutral-2"], [class*="text-neutral-3"]) {
+  color: #2b384e !important;
+}
+html[data-om-theme="light"][data-om-theme] :is([class*="text-[#94a3b8]"], [class*="text-slate-4"], [class*="text-slate-5"], [class*="text-slate-6"], [class*="text-slate-7"]) {
+  color: #5a6980 !important;
+}
+html[data-om-theme="light"][data-om-theme] .om-bar {
+  background: #f5f7fa !important;
+  border-bottom-color: #d5dde6 !important;
+}
+html[data-om-theme="light"][data-om-theme] .om-bar a {
+  color: #2b384e !important;
+}
+/* END OM_SOFT_CONTRAST */
