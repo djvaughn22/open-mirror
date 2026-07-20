@@ -55,13 +55,17 @@ test("only one product is the Foundation", () => {
 
 // ── The featured product ────────────────────────────────────────────────────
 
-test("Old Laptop to Build Machine is the featured product", () => {
+// 2026-07-19: the packaged product broadened from laptops to old computers
+// (laptops, mini PCs, small desktops, selected towers). The route keeps its
+// original /products/old-laptop-to-build-machine URL.
+test("Old Computer to Build Machine is the featured product", () => {
   const featured = featuredProduct();
-  assert.equal(featured?.name, "Old Laptop to Build Machine");
+  assert.equal(featured?.name, "Old Computer to Build Machine");
   assert.equal(featured?.access, "Product");
+  assert.equal(featured?.href, "/products/old-laptop-to-build-machine", "the original URL must never break");
 });
 
-test("Old Laptop is marked Preparing for Release", () => {
+test("Old Computer is marked Preparing for Release", () => {
   assert.equal(featuredProduct()?.accessNote, "Preparing for Release");
 });
 
@@ -69,7 +73,7 @@ test("exactly one product is featured", () => {
   assert.equal(products.filter((p) => p.featured === true).length, 1);
 });
 
-test("Old Laptop does NOT appear on the homepage (featured products are About-only)", () => {
+test("Old Computer does NOT appear on the homepage (featured products are About-only)", () => {
   // The homepage only shows groups filtered by status and showInPortfolio.
   // A featured product should not be in the status groups on the homepage.
   const featured = featuredProduct();
@@ -77,7 +81,7 @@ test("Old Laptop does NOT appear on the homepage (featured products are About-on
   const homepageItems = products.filter(
     (p) => p.status !== "archived" && p.showInPortfolio !== false && p.pinBottom !== true && p.featured !== true
   );
-  assert.ok(!homepageItems.some((p) => p.name === "Old Laptop to Build Machine"), "Old Laptop must not appear on homepage");
+  assert.ok(!homepageItems.some((p) => p.name === "Old Computer to Build Machine"), "Old Computer must not appear on homepage");
 });
 
 test("the featured product has an image with real alt text", () => {
@@ -171,22 +175,22 @@ test("CrossHeartPray is first in shared navigation", () => {
   assert.equal(navGroups()[0]?.key, "foundation", "the Foundation group opens the menu");
 });
 
-test("Old Laptop to Build Machine is last in shared navigation", () => {
+test("Old Computer to Build Machine is last in shared navigation", () => {
   const order = navProductOrder();
   assert.equal(
     order.at(-1)?.name,
-    "Old Laptop to Build Machine",
+    "Old Computer to Build Machine",
     "the packaged product must close the menu"
   );
   assert.equal(navGroups().at(-1)?.key, "product", "the product group is the final group");
 });
 
-test("Old Laptop sits below PleaseBeReady and every free project", () => {
+test("Old Computer sits below PleaseBeReady and every free project", () => {
   const names = navProductOrder().map((p) => p.name);
-  const laptop = names.indexOf("Old Laptop to Build Machine");
-  assert.ok(laptop > names.indexOf("PleaseBeReady"), "Old Laptop must follow PleaseBeReady");
+  const laptop = names.indexOf("Old Computer to Build Machine");
+  assert.ok(laptop > names.indexOf("PleaseBeReady"), "Old Computer must follow PleaseBeReady");
   for (const name of ["TheDJCares", "iDontCry", "OpenDoku", "WhatAmIAI", "Fambookagram", "Friendbookagram"]) {
-    assert.ok(laptop > names.indexOf(name), `Old Laptop must follow ${name}`);
+    assert.ok(laptop > names.indexOf(name), `Old Computer must follow ${name}`);
   }
 });
 
@@ -198,12 +202,12 @@ test("shared navigation follows the owner's group order", () => {
   );
 });
 
-test("Old Laptop stays in shared navigation, labelled honestly", () => {
-  const laptop = byName("Old Laptop to Build Machine");
-  assert.notEqual(laptop.showInNav, false, "Old Laptop must stay reachable from the menu");
+test("Old Computer stays in shared navigation, labelled honestly", () => {
+  const laptop = byName("Old Computer to Build Machine");
+  assert.notEqual(laptop.showInNav, false, "Old Computer must stay reachable from the menu");
   assert.ok(
     navProductOrder().some((p) => p.name === laptop.name),
-    "Old Laptop must appear in the shared menu"
+    "Old Computer must appear in the shared menu"
   );
   assert.equal(`${laptop.access} · ${laptop.accessNote}`, "Product · Preparing for Release");
 });
@@ -325,15 +329,57 @@ const stripComments = (src: string) =>
   src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
 
 test("no public product claims to be purchasable without a checkout", () => {
-  const pages = ["src/app/page.tsx", "src/app/about-open-mirror/page.tsx", "src/app/products/old-laptop-to-build-machine/page.tsx"];
-  for (const rel of pages) {
+  // The homepage and About stay entirely price-free.
+  for (const rel of ["src/app/page.tsx", "src/app/about-open-mirror/page.tsx"]) {
     const src = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
     assert.doesNotMatch(src, /add to cart|buy now|proceed to checkout|\$\d/i, `${rel} must not imply a purchase`);
   }
+  // The product page (2026-07-19) may show PILOT prices, but never checkout
+  // language — its only actions are a release-list email and the
+  // compatibility-check email.
+  const productPage = "src/app/products/old-laptop-to-build-machine/page.tsx";
+  const page = stripComments(readFileSync(join(repoRoot, productPage), "utf8"));
+  assert.doesNotMatch(page, /add to cart|buy now|proceed to checkout|purchase now|order now|payment/i,
+    `${productPage} must not imply an active checkout`);
+  assert.match(page, /pilot pricing/i, "any price shown must be framed as pilot pricing");
+  assert.match(page, /Join the release list/, "the playbook action is the release list, not a purchase");
+  assert.match(page, /Nothing is purchasable yet/, "the page must say nothing is purchasable yet");
   // Anything labelled Product needs an honest availability qualifier.
   for (const p of products.filter((x) => x.access === "Product")) {
     assert.ok(p.accessNote, `${p.name} is a Product and needs an availability qualifier`);
   }
+});
+
+// ── The conversion pilot stays honest ───────────────────────────────────────
+//
+// 2026-07-19: the page carries a two-path offer (playbook + conversion
+// pilot). These lock the safety copy that must never regress.
+
+test("the conversion pilot page keeps its shipping and data-erasure warnings", () => {
+  const page = readFileSync(
+    join(repoRoot, "src/app/products/old-laptop-to-build-machine/page.tsx"),
+    "utf8"
+  );
+  assert.match(page, /Do not ship anything until Open Mirror has reviewed/i,
+    "customers must be told not to ship before explicit acceptance");
+  assert.match(page, /internal drive will be erased/i, "the erasure warning must stay visible");
+  assert.match(page, /does not include backup,\s*recovery, or transfer of personal files/i,
+    "no-backup scope must stay explicit");
+  assert.match(page, /desktop/i, "the offer covers desktops");
+  assert.match(page, /laptop/i, "the offer covers laptops");
+  assert.doesNotMatch(page, /certified data destruction[^,.]*(included|guaranteed)/i,
+    "never claim certified data destruction");
+  assert.doesNotMatch(page, /\bfounder\b/i, "'owner' only — never 'founder'");
+});
+
+test("the compatibility form is mailto-only and never asks for passwords", () => {
+  const form = readFileSync(
+    join(repoRoot, "src/app/products/old-laptop-to-build-machine/CheckMyComputerForm.tsx"),
+    "utf8"
+  );
+  assert.match(form, /mailto:\$\{SERVICE_EMAIL\}/, "submission composes an email — no backend");
+  assert.doesNotMatch(form, /fetch\(|axios|\/api\//, "the form must not post to any endpoint");
+  assert.doesNotMatch(stripComments(form), /type="password"/i, "never collect a password");
 });
 
 // ── Copy that must not regress ─────────────────────────────────────────────

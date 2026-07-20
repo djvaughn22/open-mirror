@@ -291,14 +291,16 @@ export const products: Product[] = [
   },
   {
     // The first packaged Open Mirror product. Featured — it renders as its own
-    // panel, not as one more card. No price and no checkout exist yet, so the
-    // qualifier stays "Preparing for Release" until delivery actually works.
-    name: "Old Laptop to Build Machine",
+    // panel, not as one more card. No checkout exists yet, so the qualifier
+    // stays "Preparing for Release" until delivery actually works. Broadened
+    // 2026-07-19 from "Old Laptop" to cover desktops too; the route keeps the
+    // original /products/old-laptop-to-build-machine URL.
+    name: "Old Computer to Build Machine",
     emoji: "💻",
     description:
-      "Turn an unused laptop into a simple Linux development machine — and publish your first website.",
+      "Turn an old laptop or desktop PC into a clean build machine — ready to turn an idea into a live website.",
     aboutLine:
-      "Turn an unused laptop into a real development machine, and put your first website online.",
+      "Turn an old laptop or desktop PC into a real development machine, and put your first website online.",
     aboutAction: "View the product",
     access: "Product",
     accessNote: "Preparing for Release",
@@ -374,7 +376,7 @@ export function bottomPinnedProducts(): Product[] {
 //   3. Building projects
 //   4. Exploring ideas
 //   5. PleaseBeReady and approved resources
-//   6. Old Laptop to Build Machine — last
+//   6. Old Computer to Build Machine — last
 //
 // The Foundation opens the menu and the packaged product closes it, so nothing
 // between them reads as a funnel toward a sale. Menus render these groups in
