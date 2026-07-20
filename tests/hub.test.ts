@@ -439,37 +439,72 @@ test("the homepage renders no featured-product panel", () => {
 // directory" above is the lock that replaced them.
 
 // ── Contact copy ────────────────────────────────────────────────────────────
+// Owner brief (2026-07-19, work-with rewrite): Contact says plainly that
+// people can hire or collaborate with Open Mirror. These locks replaced the
+// earlier say-less locks at the owner's direction.
 
-test("Contact has exactly one introduction", () => {
-  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
-  // One opening constant, rendered once. The desktop/mobile duplicate is gone.
-  assert.equal((contact.match(/\{CORE_MESSAGE\}/g) ?? []).length, 1, "the opening renders exactly once");
-  assert.doesNotMatch(contact, /CORE_MESSAGE_SHORT/, "the second (mobile) intro must be gone");
-});
-
-test("Contact copy never says 'mostly'", () => {
+test("Contact carries the work-with structure", () => {
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
-  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
-  assert.doesNotMatch(services, /\bmostly\b/i, "services copy must not hedge with 'mostly'");
-  assert.doesNotMatch(contact, /\bmostly\b/i, "contact page must not hedge with 'mostly'");
+  assert.match(services, /Work with Open Mirror/, "the eyebrow announces working with Open Mirror");
+  assert.match(services, /Let’s build something real\./, "the headline is the owner's line");
+  assert.match(services, /Shape the idea/, "card one: shape the idea");
+  assert.match(services, /Improve the build/, "card two: improve the build");
+  assert.match(services, /Find the next step/, "card three: find the next step");
+  assert.match(services, /Start a conversation/, "the CTA section is present");
+  assert.match(services, /Tell me what you’re building/, "the primary button label");
 });
 
-test("Contact never repeats 'one focused project at a time'", () => {
+test("Contact action is a mailto with the inquiry subject", () => {
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
-  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
-  const hits = (services + contact).match(/one focused project at a time/gi) ?? [];
-  assert.ok(hits.length <= 1, `'one focused project at a time' must not repeat (found ${hits.length})`);
+  assert.match(contact, /mailto:\$\{SERVICE_EMAIL\}\?subject=/, "the action is a mailto with a subject");
+  assert.match(services, /Open Mirror project inquiry/, "the subject line is locked");
+  assert.match(contact, /\{SERVICE_EMAIL\}/, "the address stays visible on the page");
 });
 
-test("Contact is the email address and nothing more", () => {
-  // Owner rule (2026-07-19, say-less pass): the email address is enough. No
-  // intake form, no consulting or client language, one "Send an email" action.
+test("Contact availability note is confident, not apologetic", () => {
+  const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
+  assert.match(services, /built outside my full-time work/, "the availability note names the reality plainly");
+  assert.match(services, /reply personally during evenings and weekends/, "and says when replies come");
+  assert.doesNotMatch(services, /sorry|apolog|unfortunately|please note|be patient/i,
+    "no apologetic or warning language around availability");
+});
+
+test("Contact makes no forbidden promises and collects nothing", () => {
   const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
   assert.doesNotMatch(contact, /ContactForm/, "the intake form stays retired");
-  assert.match(contact, /Send an email/, "the one action is the email");
-  assert.match(contact, /mailto:\$\{SERVICE_EMAIL\}/, "the action must be a plain mailto");
-  assert.doesNotMatch(contact, /consult|client|inquir|project|partner|schedul|agreement/i,
-    "no consulting or client language on Contact");
-  assert.ok(!existsSync(join(repoRoot, "src/components/ContactForm.tsx")), "ContactForm.tsx was deleted");
-  assert.ok(!existsSync(join(repoRoot, "src/app/api/intake/route.ts")), "the intake route was deleted");
+  assert.ok(!existsSync(join(repoRoot, "src/components/ContactForm.tsx")), "ContactForm.tsx stays deleted");
+  assert.ok(!existsSync(join(repoRoot, "src/app/api/intake/route.ts")), "the intake route stays deleted");
+  assert.doesNotMatch(contact + services, /guarantee|turnaround|response time|24 hours|48 hours/i,
+    "no promises about turnaround or results");
+  assert.doesNotMatch(contact + services, /\$\d|pricing|per hour|hourly|book a call|calendar|calendly|phone/i,
+    "no pricing, booking, or phone numbers");
+  assert.doesNotMatch(contact + services, /founder/i, "'owner', never 'founder'");
+});
+
+// ── Disclaimer copy ─────────────────────────────────────────────────────────
+// Owner brief (2026-07-19): the full ten-section disclaimer replaced the
+// three-sentence version at the owner's direction.
+
+test("Disclaimer carries all ten sections and the dateline", () => {
+  const disclaimer = readFileSync(join(repoRoot, "src/app/disclaimer/page.tsx"), "utf8");
+  const headings = [
+    "General information",
+    "Provided as-is",
+    "Not professional advice",
+    "Artificial intelligence",
+    "Third-party services",
+    "Names and trademarks",
+    "Your responsibility",
+    "Limitation of responsibility",
+    "Independent ownership",
+    "Questions",
+  ];
+  for (const heading of headings) {
+    assert.ok(disclaimer.includes(heading), `Disclaimer section present: ${heading}`);
+  }
+  assert.match(disclaimer, /Last updated: July 2026/, "the small-print dateline is present");
+  assert.match(disclaimer, /owner’s full-time employer/, "the employer is referenced, never named");
+  assert.doesNotMatch(disclaimer, /founder/i, "'owner', never 'founder'");
 });
