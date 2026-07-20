@@ -2,22 +2,29 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { featuredProduct } from "../../../lib/products";
 import { SERVICE_EMAIL } from "../../../lib/services";
-import CheckMyComputerForm from "./CheckMyComputerForm";
+import {
+  PRICING,
+  PRIVACY_PATH,
+  SERVICE_TERMS_PATH,
+} from "../../../lib/deviceRequest";
+import { deviceRequestConfigured } from "../../../lib/deviceRequestServer";
+import DeviceRequestForm from "./DeviceRequestForm";
 
 // The first packaged Open Mirror product, featured from the About page.
 // Name and promise come from the registry entry (`featured: true`).
 //
-// 2026-07-19: broadened from laptops only to old computers — laptops, mini
-// PCs, small-form-factor desktops, and selected towers — with two paths:
-// the self-service playbook and a limited conversion pilot. The route keeps
-// its original URL so existing links never break.
+// 2026-07-19: broadened from laptops only to old computers, then upgraded the
+// same day from a mailto compatibility check to a real device-request
+// workflow: request → review → manual Novo invoice → shipping instructions.
+// The route keeps its original URL so existing links never break.
 //
-// Honesty rules baked in (and locked by tests/hub.test.ts):
-//   - Pilot prices are shown, but nothing is purchasable: no checkout, no
-//     cart, no payment collection of any kind. Actions are a release-list
-//     email and a compatibility-check email.
-//   - Nobody is told to ship anything before Open Mirror reviews and
-//     explicitly accepts the exact computer.
+// Honesty rules baked in (and locked by tests/hub.test.ts + deviceRequest.test.ts):
+//   - No checkout, no cart, no Buy Now, and no payment collected on this
+//     website — ever. Approved requests are invoiced manually through Novo,
+//     and payment happens on that hosted invoice.
+//   - Pilot prices come only from the centralized PRICING config.
+//   - Nobody is told to ship anything before Open Mirror accepts the exact
+//     computer, confirms payment, and sends shipping instructions.
 //   - No certified-data-destruction, guaranteed-compatibility, or
 //     guaranteed-turnaround claims.
 
@@ -49,6 +56,49 @@ const RELEASE_LIST_MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponen
 )}&body=${encodeURIComponent(
   "Please add me to the release list for the Old Computer to Build Machine playbook.\n\nName:\n"
 )}`;
+
+// The manual workflow, spelled out — no step is automated or implied.
+const HOW_IT_WORKS: { step: string; detail: string }[] = [
+  {
+    step: "Request",
+    detail:
+      "Tell Open Mirror about your laptop or desktop with the device request form below. No account, no payment — just honest answers about the machine.",
+  },
+  {
+    step: "Review",
+    detail:
+      "Open Mirror reviews every request individually and replies: accepted, more information needed, or declined. Nothing is owed for a review.",
+  },
+  {
+    step: "Invoice",
+    detail:
+      "An accepted request receives a secure Novo invoice by email. Depending on the payment options enabled on the invoice, you may pay through PayPal, Venmo, card, or another method shown there. No payment is taken on this website.",
+  },
+  {
+    step: "Ship",
+    detail:
+      "After payment is confirmed, you receive written shipping instructions. Your request number travels with the device, and you hear back when it arrives.",
+  },
+];
+
+// What happens after the form is submitted — the same promise the
+// confirmation page and customer email make.
+const WHAT_HAPPENS_NEXT = [
+  "Open Mirror reviews your request and replies by your preferred contact method.",
+  "No payment is taken on this website, and no payment is requested until a request is accepted.",
+  "An accepted request receives a secure Novo invoice by email.",
+  "Payment happens on that hosted invoice — PayPal, Venmo, card, or another method enabled on it.",
+  "Shipping instructions follow confirmed payment. Until then, keep the device at home.",
+];
+
+// Preliminary packing guidance only — final instructions come with approval.
+const PACKING_PREVIEW = [
+  "Wait for written approval and shipping instructions before packing anything.",
+  "A sturdy reused box with proper computer-safe padding is fine; original manufacturer packaging is preferred when you have it.",
+  "Laptops: include the charger when requested. Desktops: include the power cable when requested — keep your monitor, keyboard, and mouse.",
+  "Write your request number on a note inside the box.",
+  "Laptops with swollen or damaged batteries must not be shipped.",
+];
 
 // What a finished build machine contains — laptop or desktop.
 const MACHINE_CONTAINS = [
@@ -185,8 +235,8 @@ const CUSTOMER_RESPONSIBILITIES = [
   "You must own the computer or have legal authority to approve the work.",
   "You are responsible for removing any organizational locks first.",
   "Open Mirror will inspect and approve the exact model before any shipment.",
-  "Shipping instructions are sent only after a computer is approved.",
-  "Customer-paid inbound and return shipping is anticipated for the mail-in pilot.",
+  "Shipping instructions are sent only after a computer is approved and payment is confirmed.",
+  "Customer-paid inbound shipping is anticipated for the mail-in pilot; return-shipping handling is confirmed in writing during review.",
   "A local drop-off pilot may open before broader shipping does.",
   "A sturdy reused box with proper computer-safe padding is fine; original manufacturer packaging is preferred when you have it. Open Mirror may reject inadequate packaging or ask for different packaging.",
   "Include the laptop charger or desktop power cable when requested.",
@@ -238,7 +288,7 @@ const ROADMAP = [
 const FAQ: { q: string; a: string }[] = [
   {
     q: "Can I send a desktop instead of a laptop?",
-    a: "Yes — that's the point of the pilot expanding. Mini PCs, small-form-factor desktops, and selected towers are all candidates. Every computer is reviewed and approved individually first.",
+    a: "Yes — laptops and desktops are equally welcome to request. Mini PCs, small-form-factor desktops, and selected towers are all candidates. Every computer is reviewed and approved individually first.",
   },
   {
     q: "What types of desktops are accepted?",
@@ -259,6 +309,18 @@ const FAQ: { q: string; a: string }[] = [
   {
     q: "Should I include the power cable or laptop charger?",
     a: "Yes, when requested during approval. The standard desktop service covers the computer and its required power cable.",
+  },
+  {
+    q: "How do I pay?",
+    a: "Not on this website. If your request is accepted, Open Mirror sends a secure Novo invoice by email. Depending on the payment options enabled on that invoice, you may pay through PayPal, Venmo, card, or another method shown on the invoice.",
+  },
+  {
+    q: "When do I pay?",
+    a: "Only after your request is accepted and you receive the invoice — never at submission. Shipping instructions come after payment is confirmed, so nothing ships before both sides know exactly where things stand.",
+  },
+  {
+    q: "How do I know my request went through?",
+    a: "You get an Open Mirror request number on the confirmation page, and a confirmation email when email delivery is available. Every later update — review result, invoice, shipping instructions — references that number.",
   },
   {
     q: "Are desktop computers easier to convert?",
@@ -282,7 +344,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can every old computer become a build machine?",
-    a: "No. Some are too old, too damaged, or incompatible. That's exactly what the compatibility check is for — and meeting the basic requirements still doesn't guarantee acceptance.",
+    a: "No. Some are too old, too damaged, or incompatible. That's exactly what the request review is for — and meeting the basic requirements still doesn't guarantee acceptance.",
   },
   {
     q: "Can I send a MacBook or Mac desktop?",
@@ -302,7 +364,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Who pays for shipping?",
-    a: "For the mail-in pilot, customer-paid shipping both ways is anticipated, on top of the conversion price.",
+    a: "For the mail-in pilot, customer-paid inbound shipping is anticipated, on top of the conversion price. Return-shipping handling is confirmed in writing during review, before any invoice is sent.",
   },
   {
     q: "Can I reuse my box?",
@@ -310,11 +372,11 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Should I send my computer now?",
-    a: "No. Do not ship anything until Open Mirror has reviewed your answers and explicitly accepted your exact computer. Shipping instructions come only after approval.",
+    a: "No. Do not ship anything until Open Mirror has reviewed your request, explicitly accepted your exact computer, confirmed payment, and sent shipping instructions.",
   },
   {
     q: "What happens if it's not compatible?",
-    a: "You'll hear that plainly, before anything ships, and nothing is owed. That's why the check happens first.",
+    a: "You'll hear that plainly, before anything ships, and nothing is owed. That's why the review happens first.",
   },
   {
     q: "Is this a secure-wipe or certified data-destruction service?",
@@ -330,7 +392,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is the service available now?",
-    a: "Not yet. The playbook is preparing for release, and conversions open as a small local pilot first, then a limited mail-in pilot. The compatibility check is open now.",
+    a: "Conversions run as a small pilot. Device requests are open now for laptops and desktops; every request is reviewed individually, and submitting one does not guarantee acceptance. The playbook is preparing for release.",
   },
 ];
 
@@ -383,6 +445,8 @@ function PlainList({ items }: { items: string[] }) {
 }
 
 export default function OldComputerToBuildMachine() {
+  const requestFormEnabled = deviceRequestConfigured();
+
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
       <div className="mx-auto max-w-2xl px-5 py-14">
@@ -394,18 +458,25 @@ export default function OldComputerToBuildMachine() {
           {TITLE}
         </h1>
         <p className="mx-auto mb-6 max-w-md text-balance text-center text-base font-semibold leading-7 text-[#94a3b8]">
-          {PROMISE}
+          Open Mirror turns an old laptop or desktop PC into a clean, working
+          build machine — reviewed, approved, and invoiced person to person.
         </p>
-        <p className="mb-8 text-center">
+        <div className="mb-2 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#check"
-            className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-sm font-black text-[#0C0C0C]"
+            href="#request"
+            className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-center text-sm font-black text-[#0C0C0C]"
           >
-            Check My Computer
+            Start a device request
           </a>
-          <span className="mt-2 block text-xs font-bold text-[#64748b]">
-            Laptop or desktop.
-          </span>
+          <a
+            href="#how-it-works"
+            className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-center text-sm font-black text-[#e8edf5]"
+          >
+            See how it works
+          </a>
+        </div>
+        <p className="mb-8 text-center text-xs font-bold text-[#64748b]">
+          Laptops and desktop PCs. No payment on this website.
         </p>
 
         {PRODUCT?.image && (
@@ -444,7 +515,7 @@ export default function OldComputerToBuildMachine() {
             <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#34D399]">
               Path 1 · Build It Yourself
             </p>
-            <p className="mb-1 text-2xl font-black">$39</p>
+            <p className="mb-1 text-2xl font-black">{PRICING.playbook}</p>
             <p className="mb-3 text-xs font-bold text-[#94a3b8]">
               One-time · pilot pricing · preparing for release
             </p>
@@ -463,7 +534,7 @@ export default function OldComputerToBuildMachine() {
             <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#38BDF8]">
               Path 2 · Send Us Your Computer
             </p>
-            <p className="mb-1 text-2xl font-black">From $149</p>
+            <p className="mb-1 text-2xl font-black">{PRICING.conversionFrom}</p>
             <p className="mb-3 text-xs font-bold text-[#94a3b8]">
               Plus shipping · pilot pricing · limited availability
             </p>
@@ -472,24 +543,99 @@ export default function OldComputerToBuildMachine() {
               erased, configured, tested, and returned ready to build.
             </p>
             <a
-              href="#check"
+              href="#request"
               className="inline-block rounded-full bg-[#38BDF8] px-6 py-3 text-center text-sm font-black text-[#0C0C0C]"
             >
-              Check My Computer
+              Start a device request
             </a>
           </div>
         </section>
 
         <p className="mb-10 text-center text-xs font-semibold leading-6 text-[#64748b]">
-          Nothing is purchasable yet — pilot pricing is shown so you know what
-          to expect. Expected standard pricing after the pilot: starting at
-          $199 plus shipping. The $149 starting price covers an approved
-          laptop, mini PC, or small-form-factor desktop needing no hardware
-          repair or unusual compatibility work; larger towers, all-in-ones, and
-          heavy or fragile systems may need an individual quote.
+          Nothing is purchasable yet on this page and no payment is taken on
+          this website — pilot pricing is shown so you know what to expect.
+          Expected standard pricing after the pilot: starting at{" "}
+          {PRICING.postPilotFrom} plus shipping. The {PRICING.conversionFrom.toLowerCase()}{" "}
+          starting price covers an approved laptop, mini PC, or
+          small-form-factor desktop needing no hardware repair or unusual
+          compatibility work; larger towers, all-in-ones, and heavy or fragile
+          systems may need an individual quote. {PRICING.reviewLine}
         </p>
 
-        {/* 4 · Why desktops */}
+        {/* 4 · How it works */}
+        <section id="how-it-works" className="mb-10 scroll-mt-8">
+          <Label>How it works</Label>
+          <ol className="flex flex-col gap-2">
+            {HOW_IT_WORKS.map((s, i) => (
+              <li
+                key={s.step}
+                className="flex items-start gap-3 rounded-2xl border border-[#26324c] bg-[#141d2e] px-4 py-4"
+              >
+                <span
+                  aria-hidden
+                  className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#38BDF8] text-sm font-black text-[#0b1220]"
+                >
+                  {i + 1}
+                </span>
+                <span>
+                  <span className="block text-sm font-black">{s.step}</span>
+                  <span className="mt-1 block text-sm font-semibold leading-6 text-[#94a3b8]">
+                    {s.detail}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-3 text-sm font-bold leading-6 text-[#fbbf24]">
+            Do not ship anything until Open Mirror has reviewed your request,
+            accepted the exact computer, confirmed payment, and sent shipping
+            instructions.
+          </p>
+        </section>
+
+        {/* 5 · What the customer gets */}
+        <section className="mb-10">
+          <Label>What a finished build machine contains</Label>
+          <CardList items={MACHINE_CONTAINS} />
+        </section>
+
+        {/* 6 · Laptop and desktop support — two equal paths */}
+        <section className="mb-10" aria-label="Laptop and desktop support">
+          <Label>Laptops and desktops, equally welcome</Label>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-5">
+              <p className="mb-1 text-2xl" aria-hidden>
+                💻
+              </p>
+              <h2 className="mb-2 text-lg font-black tracking-tight">Laptop</h2>
+              <p className="mb-3 text-sm font-semibold leading-6 text-[#94a3b8]">
+                All-in-one and portable — the machine, screen, and keyboard
+                travel together. Pilot requirements:
+              </p>
+              <PlainList items={LAPTOP_REQS} />
+            </div>
+            <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-5">
+              <p className="mb-1 text-2xl" aria-hidden>
+                🖥️
+              </p>
+              <h2 className="mb-2 text-lg font-black tracking-tight">Desktop PC</h2>
+              <p className="mb-3 text-sm font-semibold leading-6 text-[#94a3b8]">
+                Mini PC, small-form-factor desktop, or standard tower — you
+                keep your monitor, keyboard, and mouse. Pilot requirements:
+              </p>
+              <PlainList items={DESKTOP_REQS} />
+            </div>
+          </div>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            Neither path is automatically cheaper, safer, or easier to ship —
+            it always depends on the exact machine. All-in-one desktops are
+            reviewed individually; they are more fragile, screen-dependent,
+            and can cost more to ship. Meeting these requirements does not
+            guarantee acceptance.
+          </p>
+        </section>
+
+        {/* 7 · Why desktops */}
         <section className="mb-10">
           <Label>Why an old desktop can be a great build machine</Label>
           <CardList items={WHY_DESKTOPS} />
@@ -498,12 +644,6 @@ export default function OldComputerToBuildMachine() {
             ship. Traditional towers are heavier, need stronger packaging, and
             may need an individual shipping quote.
           </p>
-        </section>
-
-        {/* 5 · What the build machine contains */}
-        <section className="mb-10">
-          <Label>What a finished build machine contains</Label>
-          <CardList items={MACHINE_CONTAINS} />
         </section>
 
         {/* What the playbook is intended to include */}
@@ -527,9 +667,11 @@ export default function OldComputerToBuildMachine() {
           </p>
         </section>
 
-        {/* 6 · Compatibility form */}
-        <section id="check" className="mb-10 scroll-mt-8 rounded-3xl border border-[#26324c] bg-[#0f1826] p-6">
-          <h2 className="mb-2 text-xl font-black tracking-tight">Check My Computer</h2>
+        {/* 8 · Device request form */}
+        <section id="request" className="mb-10 scroll-mt-8 rounded-3xl border border-[#26324c] bg-[#0f1826] p-6">
+          <h2 className="mb-2 text-xl font-black tracking-tight">
+            Start a device request
+          </h2>
           <div className="mb-5 rounded-2xl border border-[#f59e0b]/40 bg-[#1c1608] p-4">
             <p className="text-sm font-bold leading-6 text-[#fbbf24]">
               Your internal drive will be erased. Back up everything you want
@@ -539,32 +681,31 @@ export default function OldComputerToBuildMachine() {
             </p>
             <p className="mt-2 text-sm font-bold leading-6 text-[#fbbf24]">
               Do not ship anything until Open Mirror has reviewed and
-              explicitly accepted your exact computer.
+              explicitly accepted your exact computer, confirmed payment, and
+              sent shipping instructions.
             </p>
           </div>
-          <CheckMyComputerForm />
+          <DeviceRequestForm enabled={requestFormEnabled} />
         </section>
 
-        {/* 7 · Laptop requirements */}
+        {/* 9 · What happens next */}
         <section className="mb-10">
-          <Label>Laptop pilot requirements</Label>
-          <PlainList items={LAPTOP_REQS} />
+          <Label>What happens after you submit</Label>
+          <PlainList items={WHAT_HAPPENS_NEXT} />
         </section>
 
-        {/* 8 · Desktop requirements */}
+        {/* 10 · Packing preview */}
         <section className="mb-10">
-          <Label>Desktop pilot requirements</Label>
-          <PlainList items={DESKTOP_REQS} />
-          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
-            A desktop does not need to arrive with a monitor, keyboard, or
-            mouse unless Open Mirror specifically requests them. All-in-one
-            desktops are reviewed individually — they are more fragile,
-            screen-dependent, and can cost more to ship. Meeting these
-            requirements does not guarantee acceptance.
+          <Label>Packing, previewed</Label>
+          <p className="mb-3 text-sm font-semibold leading-6 text-[#94a3b8]">
+            Basic guidance so you know what to expect — the final, binding
+            shipping instructions arrive only after your request is accepted
+            and payment is confirmed:
           </p>
+          <PlainList items={PACKING_PREVIEW} />
         </section>
 
-        {/* 9 · What the service includes */}
+        {/* 11 · What the service includes */}
         <section className="mb-10">
           <Label>What an approved conversion is intended to include</Label>
           <PlainList items={CONVERSION_INTENDED} />
@@ -575,7 +716,7 @@ export default function OldComputerToBuildMachine() {
           </p>
         </section>
 
-        {/* 10 · What is not included */}
+        {/* 12 · What is not included */}
         <section className="mb-10">
           <Label>What this is not</Label>
           <div className="flex flex-col gap-2">
@@ -585,7 +726,7 @@ export default function OldComputerToBuildMachine() {
                 className="group rounded-2xl border border-[#26324c] bg-[#141d2e]"
               >
                 <summary className="cursor-pointer list-none px-4 py-3 text-sm font-black">
-                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90">
+                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90 motion-reduce:transition-none">
                     ›
                   </span>
                   {group.heading}
@@ -603,7 +744,7 @@ export default function OldComputerToBuildMachine() {
           </p>
         </section>
 
-        {/* 11 · Data-erasure and ownership responsibilities */}
+        {/* 13 · Data-erasure and ownership responsibilities */}
         <section className="mb-10 rounded-2xl border border-[#f59e0b]/40 bg-[#1c1608] p-5">
           <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-[#f59e0b]">
             Before anything ships — your responsibilities
@@ -611,7 +752,7 @@ export default function OldComputerToBuildMachine() {
           <PlainList items={CUSTOMER_RESPONSIBILITIES} />
         </section>
 
-        {/* 12 · Local pilot */}
+        {/* 14 · Local pilot */}
         <section className="mb-10">
           <Label>How the local pilot works</Label>
           <p className="mb-3 text-sm font-semibold leading-6 text-[#94a3b8]">
@@ -631,7 +772,7 @@ export default function OldComputerToBuildMachine() {
           </div>
         </section>
 
-        {/* 13 · Mail-in pilot */}
+        {/* 15 · Mail-in pilot */}
         <section className="mb-10">
           <Label>The limited mail-in pilot, after that</Label>
           <p className="mb-3 text-sm font-semibold leading-6 text-[#94a3b8]">
@@ -645,7 +786,7 @@ export default function OldComputerToBuildMachine() {
           <PlainList items={MAIL_IN_EXCLUDES} />
         </section>
 
-        {/* 14 · Roadmap */}
+        {/* 16 · Roadmap */}
         <section className="mb-10">
           <Label>The pilot roadmap</Label>
           <ol className="flex flex-col gap-2">
@@ -663,14 +804,14 @@ export default function OldComputerToBuildMachine() {
           </ol>
         </section>
 
-        {/* 15 · FAQ */}
+        {/* 17 · FAQ */}
         <section className="mb-10">
           <Label>Questions, answered plainly</Label>
           <div className="flex flex-col gap-2">
             {FAQ.map((f) => (
               <details key={f.q} className="group rounded-2xl border border-[#26324c] bg-[#141d2e]">
                 <summary className="cursor-pointer list-none px-4 py-3 text-sm font-black leading-6">
-                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90">
+                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90 motion-reduce:transition-none">
                     ›
                   </span>
                   {f.q}
@@ -681,21 +822,36 @@ export default function OldComputerToBuildMachine() {
           </div>
         </section>
 
-        {/* 16 · Final action */}
+        {/* 18 · Service terms and privacy */}
+        <section className="mb-10 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 text-center">
+          <p className="mb-2 text-sm font-black">The fine print, in plain language</p>
+          <p className="text-sm font-semibold leading-6 text-[#94a3b8]">
+            <a href={SERVICE_TERMS_PATH} className="font-black text-[#7dd3fc] underline">
+              Service terms
+            </a>{" "}
+            ·{" "}
+            <a href={PRIVACY_PATH} className="font-black text-[#7dd3fc] underline">
+              Privacy notice for device requests
+            </a>
+          </p>
+        </section>
+
+        {/* 19 · Final action */}
         <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 text-center">
           <p className="mb-3 text-sm font-semibold leading-6 text-[#94a3b8]">
-            Have an old laptop or desktop gathering dust? Find out in two
-            minutes whether it can become a build machine.
+            Have an old laptop or desktop gathering dust? Tell Open Mirror
+            about it — the review is free, and you&apos;ll get a straight
+            answer.
           </p>
           <a
-            href="#check"
+            href="#request"
             className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-sm font-black text-[#0C0C0C]"
           >
-            Check My Computer
+            Start a device request
           </a>
         </section>
 
-        {/* 17 · Independence statement */}
+        {/* 20 · Independence statement */}
         <p className="mb-2 text-center text-xs font-semibold leading-6 text-[#64748b]">
           An independent Open Mirror LLC product and service. Built and
           operated using Open Mirror&apos;s own time, equipment, accounts, and

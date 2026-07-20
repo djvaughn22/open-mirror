@@ -334,13 +334,19 @@ test("no public product claims to be purchasable without a checkout", () => {
     const src = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
     assert.doesNotMatch(src, /add to cart|buy now|proceed to checkout|\$\d/i, `${rel} must not imply a purchase`);
   }
-  // The product page (2026-07-19) may show PILOT prices, but never checkout
-  // language — its only actions are a release-list email and the
-  // compatibility-check email.
+  // The product page (2026-07-19) may show PILOT prices and explain the
+  // manual Novo invoice workflow, but never checkout language — its actions
+  // are a release-list email and the device request form. Payment happens on
+  // the hosted invoice, never on this site.
   const productPage = "src/app/products/old-laptop-to-build-machine/page.tsx";
   const page = stripComments(readFileSync(join(repoRoot, productPage), "utf8"));
-  assert.doesNotMatch(page, /add to cart|buy now|proceed to checkout|purchase now|order now|payment/i,
+  assert.doesNotMatch(page, /add to cart|buy now|proceed to checkout|purchase now|order now|pay now/i,
     `${productPage} must not imply an active checkout`);
+  assert.match(page, /no payment is taken on\s+this website/i,
+    "the page must say no payment is taken on this website");
+  assert.doesNotMatch(page, /paypal\.me|friends and family|venmo\.com|@[a-z0-9_]+\s*on venmo/i,
+    "never a personal payment handle or Friends-and-Family instruction");
+  assert.doesNotMatch(page, /\$\d/, "dollar amounts come only from the centralized PRICING config");
   assert.match(page, /pilot pricing/i, "any price shown must be framed as pilot pricing");
   assert.match(page, /Join the release list/, "the playbook action is the release list, not a purchase");
   assert.match(page, /Nothing is purchasable yet/, "the page must say nothing is purchasable yet");
@@ -372,14 +378,22 @@ test("the conversion pilot page keeps its shipping and data-erasure warnings", (
   assert.doesNotMatch(page, /\bfounder\b/i, "'owner' only — never 'founder'");
 });
 
-test("the compatibility form is mailto-only and never asks for passwords", () => {
+// 2026-07-19 (later the same day): the mailto-only compatibility check grew
+// into the real device-request workflow — server endpoint, owner review,
+// manual Novo invoice. The locks below replace the old mailto-only rule.
+test("the device request form posts to the request endpoint and never asks for secrets", () => {
   const form = readFileSync(
-    join(repoRoot, "src/app/products/old-laptop-to-build-machine/CheckMyComputerForm.tsx"),
+    join(repoRoot, "src/app/products/old-laptop-to-build-machine/DeviceRequestForm.tsx"),
     "utf8"
   );
-  assert.match(form, /mailto:\$\{SERVICE_EMAIL\}/, "submission composes an email — no backend");
-  assert.doesNotMatch(form, /fetch\(|axios|\/api\//, "the form must not post to any endpoint");
-  assert.doesNotMatch(stripComments(form), /type="password"/i, "never collect a password");
+  assert.match(form, /fetch\("\/api\/device-request"/, "submission posts to the server endpoint");
+  assert.match(form, /mailto:\$\{SERVICE_EMAIL\}/, "the email fallback must exist for the disabled state");
+  const shipped = stripComments(form);
+  assert.doesNotMatch(shipped, /type="password"/i, "never collect a password");
+  assert.doesNotMatch(shipped, /card number|cvv|routing number|social security|\bssn\b/i, "never collect payment or identity credentials");
+  assert.doesNotMatch(shipped, /process\.env/, "no server env leaks into the client form");
+  assert.match(form, /name="website"/, "the honeypot field must stay");
+  assert.doesNotMatch(shipped, /OM-DEV-[A-Z2-9]/, "request numbers are server-generated, never client-side");
 });
 
 // ── Copy that must not regress ─────────────────────────────────────────────
