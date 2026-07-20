@@ -28,8 +28,9 @@ const MENU: Item[] = [
   { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
   { label: "Contact", href: "/contact", emoji: "✉️" },
   { divider: true },
-  // Pinned resources, then the packaged product — always the last thing read.
-  ...bottomPinnedProducts().map((p) => menuItem(p)),
+  // Pinned resources (when they belong in the menu), then the packaged
+  // product — always the last thing read.
+  ...bottomPinnedProducts().filter((p) => p.showInNav !== false).map((p) => menuItem(p)),
   ...(featured && featured.showInNav !== false ? [menuItem(featured, "Product")] : []),
 ];
 

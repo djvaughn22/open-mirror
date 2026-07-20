@@ -209,6 +209,9 @@ export const products: Product[] = [
     status: "live",
     category: "family",
     pinBottom: true,
+    // 2026-07-20: discovered through the homepage directory and the About-page
+    // reminder card, not from every page's persistent menu.
+    showInNav: false,
   },
   {
     // Hidden gem: the /reflect route stays live for people who know it,

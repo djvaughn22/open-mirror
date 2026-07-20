@@ -24,6 +24,9 @@ import {
   productsByStatus,
   type Product,
 } from "../src/lib/products.ts";
+// services.ts imports ./products without an extension (fine for Next, not for
+// the strip-types test runner), so its locks below scan the source instead.
+import { BE_PREPARED_CARD, liveDestinations } from "../src/lib/destinations.ts";
 
 const repoRoot = join(import.meta.dirname, "..");
 const byName = (name: string): Product => {
@@ -185,20 +188,22 @@ test("Old Computer to Build Machine is last in shared navigation", () => {
   assert.equal(navGroups().at(-1)?.key, "product", "the product group is the final group");
 });
 
-test("Old Computer sits below PleaseBeReady and every free project", () => {
+test("Old Computer sits below every free project", () => {
   const names = navProductOrder().map((p) => p.name);
   const laptop = names.indexOf("Old Computer to Build Machine");
-  assert.ok(laptop > names.indexOf("PleaseBeReady"), "Old Computer must follow PleaseBeReady");
   for (const name of ["TheDJCares", "iDontCry", "OpenDoku", "WhatAmIAI", "Fambookagram", "Friendbookagram"]) {
     assert.ok(laptop > names.indexOf(name), `Old Computer must follow ${name}`);
   }
 });
 
+// 2026-07-20: PleaseBeReady left the persistent menu (it is discovered through
+// the directory and the About reminder card), so the resources group is empty
+// and drops out of the rendered order.
 test("shared navigation follows the owner's group order", () => {
   assert.deepEqual(
     navGroups().map((g) => g.key),
-    ["foundation", "free", "inProgress", "exploring", "resources", "product"],
-    "Foundation → public → building → exploring → resources → product"
+    ["foundation", "free", "inProgress", "exploring", "product"],
+    "Foundation → public → building → exploring → product"
   );
 });
 
@@ -223,6 +228,87 @@ test("shared navigation shows every public product exactly once", () => {
 
 test("Reflect never reaches the shared menu", () => {
   assert.ok(!navProductOrder().some((p) => p.name === "Reflect"));
+});
+
+// ── The quiet business layer (2026-07-20) ───────────────────────────────────
+//
+// PleaseBeReady stays discoverable — homepage directory, About reminder card,
+// direct visits — but never as a persistent menu row on every page. These
+// locks stop it from quietly returning to shared navigation, and stop the
+// reminder card from drifting into sales copy or a dead link.
+
+test("PleaseBeReady left the shared menu but stays in the directory", () => {
+  const p = byName("PleaseBeReady");
+  assert.equal(p.showInNav, false, "PleaseBeReady must stay out of persistent navigation");
+  assert.notEqual(p.showInPortfolio, false, "…while staying in the homepage directory");
+  assert.notEqual(p.showInAbout, false, "…and in the About family");
+  assert.ok(
+    !navProductOrder().some((x) => x.name === "PleaseBeReady"),
+    "PleaseBeReady must not reach any menu group"
+  );
+  const nav = readFileSync(join(repoRoot, "src/components/OpenMirrorNav.tsx"), "utf8");
+  assert.match(nav, /showInNav !== false/, "the nav must respect showInNav for pinned resources");
+});
+
+test("the Be Prepared card keeps its exact destination and message", () => {
+  const live = liveDestinations(BE_PREPARED_CARD.destinations);
+  assert.equal(live[0]?.href, "https://pleasebeready.com", "the destination URL is locked");
+  assert.equal(live[0]?.label, "Visit PleaseBeReady.com");
+  assert.equal(BE_PREPARED_CARD.heading, "Be prepared. Nothing dramatic.");
+  assert.match(BE_PREPARED_CARD.closing ?? "", /ready to help/, "the closing line stays");
+  const share = BE_PREPARED_CARD.share;
+  assert.ok(share, "the reminder stays shareable");
+  assert.equal(share.url, "https://pleasebeready.com");
+  assert.equal(share.title, "Be prepared. Nothing dramatic.");
+  assert.ok(share.text.trim().length > 40, "share text must never go empty");
+  assert.equal(share.label, "Share this reminder");
+  const copy = `${BE_PREPARED_CARD.body.join(" ")} ${share.text}`;
+  assert.doesNotMatch(copy, /disaster|too late|protect your family|survival|bunker|when.*strikes/i,
+    "the reminder never becomes fear copy");
+});
+
+test("the destination card component stays generic and safe", () => {
+  const src = readFileSync(join(repoRoot, "src/components/AboutDestinationCard.tsx"), "utf8");
+  assert.doesNotMatch(src, /PleaseBeReady|consulting|store|prepared/i,
+    "no destination-specific wording inside the reusable component");
+  assert.match(src, /rel(=|: )"noopener noreferrer"/, "external destinations get safe attributes");
+  assert.match(src, /isShareCancel/, "share cancellation must stay quiet");
+  assert.match(src, /aria-live/, "copy and share results are announced");
+  assert.match(src, /enabled !== false|liveDestinations/, "disabled destinations must not render");
+});
+
+test("only enabled, labelled, linked destinations render", () => {
+  const rendered = liveDestinations([
+    { label: "Real", href: "https://pleasebeready.com", kind: "resource", enabled: true },
+    { label: "Disabled", href: "https://example.com", kind: "store", enabled: false },
+    { label: "", href: "https://example.com", kind: "etsy" },
+    { label: "No link", href: "", kind: "amazon" },
+  ]);
+  assert.deepEqual(rendered.map((d) => d.label), ["Real"], "disabled and empty destinations stay hidden");
+});
+
+test("About renders the reminder card from its config, below the projects", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /AboutDestinationCard/, "About uses the reusable card");
+  assert.match(about, /BE_PREPARED_CARD/, "the card content comes from the destination config");
+  assert.match(about, /AVAILABILITY_LINE/, "the work-with section reads the availability switch");
+  assert.ok(
+    about.indexOf("AboutDestinationCard card=") > about.indexOf('aria-label="Projects"'),
+    "the reminder card sits below the projects, never above the page's own story"
+  );
+});
+
+test("consulting availability is one switch with calm public lines", () => {
+  const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
+  assert.match(services, /export const AVAILABILITY: ConsultingAvailability =/,
+    "the one availability switch exists");
+  assert.match(services, /AVAILABILITY_LINE = AVAILABILITY_LINES\[AVAILABILITY\]/,
+    "the public line derives from the switch");
+  assert.match(services, /one outside project at a time/, "the one-project language is present");
+  assert.doesNotMatch(services, /only one spot|\bapply now\b|accepting clients|limited spots|\bact now\b|discovery call/i,
+    "availability is never an urgency tactic");
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  assert.match(contact, /\{AVAILABILITY_LINE\}/, "Contact renders the availability switch");
 });
 
 // ── Reflect stays hidden ────────────────────────────────────────────────────

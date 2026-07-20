@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ACCESS_TONE,
-  BOTTOM_PIN_LABEL,
   aboutFamilyProducts,
   bottomPinnedProducts,
   featuredProduct,
@@ -10,6 +9,9 @@ import {
   type Product,
 } from "../../lib/products";
 import { MISSION_HAIKUS } from "../../lib/haikus";
+import { BE_PREPARED_CARD } from "../../lib/destinations";
+import { AVAILABILITY_LINE } from "../../lib/services";
+import AboutDestinationCard from "../../components/AboutDestinationCard";
 
 const META_DESCRIPTION =
   "Open Mirror LLC is the business behind the projects collected here — websites, apps, games, creative tools, and digital products.";
@@ -128,9 +130,6 @@ export default function AboutOpenMirror() {
             ))}
           </div>
           <div className="mt-3 grid gap-3">
-            {pinned.map((p) => (
-              <ProjectCard key={p.name} product={p} note={BOTTOM_PIN_LABEL} />
-            ))}
             {featured && <ProjectCard product={featured} />}
           </div>
         </section>
@@ -152,6 +151,15 @@ export default function AboutOpenMirror() {
           ))}
         </div>
 
+        {/* The pinned live resource renders as the quiet reminder card, not a
+            second project row. It renders only while the registry still pins
+            the live destination. */}
+        {pinned.length > 0 && (
+          <div className="mt-10">
+            <AboutDestinationCard card={BE_PREPARED_CARD} />
+          </div>
+        )}
+
         {/* id="disclaimer" keeps old /about-open-mirror#disclaimer deep links
             landing near the bottom; the footer carries the visible link. */}
         <section id="disclaimer" className="mt-10 scroll-mt-24">
@@ -161,6 +169,7 @@ export default function AboutOpenMirror() {
               {line}
             </p>
           ))}
+          <p className={body}>{AVAILABILITY_LINE}</p>
           <p className="mt-5">
             <Link
               href="/contact"

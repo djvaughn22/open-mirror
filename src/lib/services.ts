@@ -64,3 +64,33 @@ export const MAILTO_BODY =
 /** Shown once, small, under the action. */
 export const AVAILABILITY_NOTE =
   "I run Open Mirror alongside a full-time job and reply personally during evenings and weekends.";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Consulting availability — one switch, one place (2026-07-20).
+//
+// Flip AVAILABILITY when reality changes and the public line updates wherever
+// it renders (Contact, About). Never copy these strings into pages, and never
+// hard-code "available" anywhere else. This is a plain statement of capacity,
+// not an urgency tactic.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type ConsultingAvailability =
+  | "one-project" // the normal state: one outside project at a time
+  | "at-capacity" // heads-down on existing work
+  | "contact-welcome" // nothing promised either way; notes welcome
+  | "not-accepting"; // no outside work for now
+
+export const AVAILABILITY: ConsultingAvailability = "one-project";
+
+const AVAILABILITY_LINES: Record<ConsultingAvailability, string> = {
+  "one-project":
+    "Open Mirror occasionally takes one outside project at a time, based on fit and available time.",
+  "at-capacity":
+    "Open Mirror is currently focused on existing work, but you may still send a short note.",
+  "contact-welcome":
+    "You are welcome to send a short note about what you are building.",
+  "not-accepting":
+    "Open Mirror is not taking outside projects right now, but you may still send a short note.",
+};
+
+export const AVAILABILITY_LINE = AVAILABILITY_LINES[AVAILABILITY];

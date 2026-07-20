@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  AVAILABILITY_LINE,
   AVAILABILITY_NOTE,
   CTA_BUTTON,
   CTA_COPY,
@@ -126,6 +127,9 @@ export default function Contact() {
         </section>
 
         <p className="mt-8 text-sm font-semibold leading-7 text-[#64748b]">
+          {AVAILABILITY_LINE}
+        </p>
+        <p className="mt-2 text-sm font-semibold leading-7 text-[#64748b]">
           {AVAILABILITY_NOTE}
         </p>
 
