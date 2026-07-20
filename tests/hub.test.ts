@@ -237,25 +237,29 @@ test("Reflect remains hidden everywhere public", () => {
 
 // ── About is the origin story, not a second homepage ───────────────────────
 //
-// Owner brief (2026-07-19, studio-story rewrite — replaces the same-day
-// say-less locks at the owner's direction): About is product-first again,
-// with the family derived from the registry and the locked haikus imported
-// from their single source.
+// Owner brief (2026-07-20, plain-voice fix — replaces the 2026-07-19
+// studio-story locks at the owner's direction): About is about Open Mirror
+// and its projects, nothing else. No slogans, no manifesto sections, no
+// personal names, projects straight after four opening paragraphs.
 
-test("About tells the studio story in the owner's structure", () => {
+test("About is the plain business page in the owner's structure", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /Ideas are better when they become real\./, "the owner's headline");
-  assert.match(about, /One studio\. Many starting points\./, "the one-studio section");
-  assert.match(about, /It started with/, "the CrossHeartPray foundation section");
-  assert.match(about, /not a sales funnel/, "CrossHeartPray is never a funnel");
-  assert.match(about, /Travis remains the inspiration for CrossHeartPray\./, "the Travis line stays");
-  assert.match(about, /What grew from it/, "the project-family section");
-  assert.match(about, /Built by starting/, "the process section");
-  assert.match(about, /Have something of your own\?/, "the closing invitation");
+  assert.match(about, /Open Mirror LLC is the business behind the projects collected here\./,
+    "the owner's plain opening");
+  assert.match(about, /Some projects are finished\. Some are still being tested\./,
+    "the honest status paragraph");
+  assert.match(about, /CrossHeartPray came first and remains its own faith-based project\./,
+    "CrossHeartPray named once, plainly, in the opening");
+  assert.match(about, /Here is what Open Mirror is working on\./, "the Projects intro");
+  assert.match(about, /Work with Open Mirror/, "the closing section heading");
+  assert.match(about, /Start a conversation/, "the closing button label");
   assert.match(about, /href="\/contact"/, "the closing action lands on Contact");
-  assert.match(about, /Work with Open Mirror/, "the closing button label");
   // The disclaimer anchor keeps old deep links working.
   assert.match(about, /id="disclaimer"/, "existing #disclaimer deep links must still land");
+  // Retired copy that must never come back (owner, 2026-07-20).
+  assert.doesNotMatch(about, /Travis/, "no personal names on About, ever");
+  assert.doesNotMatch(about, /Ideas are better|One studio|What grew from it|Built by starting|sales funnel|starting points/,
+    "the studio-story slogans stay retired");
 });
 
 test("About derives every project from the registry", () => {
@@ -287,6 +291,10 @@ test("About public copy stays clean", () => {
     "About never mentions AI or build tooling");
   assert.doesNotMatch(about, /ecosystem|revolutionary|disruptive|visionary|cutting-edge|powered by|\bmagic\b/i,
     "no startup language");
+  // Owner's banned-phrase list (2026-07-20) — brand-copy tells stay out.
+  assert.doesNotMatch(about,
+    /reimagine|empower|\bmeaningful\b|innovation|\bjourney\b|born from|grew from|more than|at its heart|where ideas|worth sharing|make it real|built around|shared purpose|common home/i,
+    "no AI-style brand phrases on About");
 });
 
 // ── The locked haikus ────────────────────────────────────────────────────────

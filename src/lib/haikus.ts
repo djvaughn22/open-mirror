@@ -1,9 +1,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // The owner's three mission haikus — LOCKED, word for word, heading for
-// heading (2026-07-19). They render in the About page's "Built by starting"
-// section (owner's brief, later 2026-07-19) and must always be imported from
-// here — never copied inline. Never paraphrase, improve, retitle, or replace
-// them. tests/hub.test.ts locks every line verbatim.
+// heading (2026-07-19). They render on the About page after the projects,
+// with no commentary around them (owner's brief, 2026-07-20), and must
+// always be imported from here — never copied inline. Never paraphrase,
+// improve, retitle, or replace them. tests/hub.test.ts locks every line.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const MISSION_HAIKUS: { title: string; lines: string[] }[] = [
