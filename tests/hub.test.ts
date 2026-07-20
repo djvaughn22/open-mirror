@@ -237,27 +237,56 @@ test("Reflect remains hidden everywhere public", () => {
 
 // ── About is the origin story, not a second homepage ───────────────────────
 //
-// Owner rule (2026-07-19): the About page tells the origin and purpose story
-// only. The project directory lives on the homepage; credits, resources, and
-// products live on their own pages. These lock the catalog out of About and
-// keep the closing action pointed at the real directory.
+// Owner brief (2026-07-19, studio-story rewrite — replaces the same-day
+// say-less locks at the owner's direction): About is product-first again,
+// with the family derived from the registry and the locked haikus imported
+// from their single source.
 
-test("About carries no project directory, product panel, resources, or credits", () => {
+test("About tells the studio story in the owner's structure", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.doesNotMatch(about, /aboutFamilyProducts\(/, "the project directory lives on the homepage, not About");
-  assert.doesNotMatch(about, /featuredProduct\(|FeaturedPanel/, "no product promotion on About");
-  assert.doesNotMatch(about, /Free resources/, "resources belong on their own pages");
-  assert.doesNotMatch(about, /Credits and sources/, "the credits directory lives off About (src/lib/credits.ts)");
-  assert.doesNotMatch(about, /readiness-check/, "no product downloads promoted from About");
-});
-
-test("About keeps its one registry-derived CrossHeartPray link and closes into the directory", () => {
-  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /foundationProduct\(\)/, "the CrossHeartPray link must come from the registry");
-  assert.match(about, /See what is live/, "About must close with the quiet path home");
-  assert.match(about, /href="\/"/, "the closing action must land on the homepage directory");
+  assert.match(about, /Ideas are better when they become real\./, "the owner's headline");
+  assert.match(about, /One studio\. Many starting points\./, "the one-studio section");
+  assert.match(about, /It started with/, "the CrossHeartPray foundation section");
+  assert.match(about, /not a sales funnel/, "CrossHeartPray is never a funnel");
+  assert.match(about, /Travis remains the inspiration for CrossHeartPray\./, "the Travis line stays");
+  assert.match(about, /What grew from it/, "the project-family section");
+  assert.match(about, /Built by starting/, "the process section");
+  assert.match(about, /Have something of your own\?/, "the closing invitation");
+  assert.match(about, /href="\/contact"/, "the closing action lands on Contact");
+  assert.match(about, /Work with Open Mirror/, "the closing button label");
   // The disclaimer anchor keeps old deep links working.
   assert.match(about, /id="disclaimer"/, "existing #disclaimer deep links must still land");
+});
+
+test("About derives every project from the registry", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /foundationProduct\(\)/, "the CrossHeartPray link must come from the registry");
+  assert.match(about, /aboutFamilyProducts\(\)/, "the family list must come from the registry");
+  assert.match(about, /bottomPinnedProducts\(\)/, "pinned resources must come from the registry");
+  assert.match(about, /featuredProduct\(\)/, "the packaged product must come from the registry");
+  for (const p of products) {
+    if (p.name === "CrossHeartPray") continue; // named in the owner's copy
+    assert.doesNotMatch(
+      about,
+      new RegExp(`["']${p.name}["']`),
+      `${p.name} must not be hard-coded on About`
+    );
+  }
+});
+
+test("About renders the locked haikus from their single source", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /MISSION_HAIKUS/, "haikus must be imported from src/lib/haikus.ts");
+  assert.doesNotMatch(about, /Pick one thing to build/, "haiku lines are never copied inline");
+});
+
+test("About public copy stays clean", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.doesNotMatch(about, /\bfounder\b/i, "'owner', never 'founder'");
+  assert.doesNotMatch(about, /\bAI\b|ChatGPT|Claude|artificial intelligence|\bprompt/i,
+    "About never mentions AI or build tooling");
+  assert.doesNotMatch(about, /ecosystem|revolutionary|disruptive|visionary|cutting-edge|powered by|\bmagic\b/i,
+    "no startup language");
 });
 
 // ── The locked haikus ────────────────────────────────────────────────────────
@@ -460,25 +489,31 @@ test("the homepage renders no featured-product panel", () => {
 test("Contact carries the work-with structure", () => {
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
   assert.match(services, /Work with Open Mirror/, "the eyebrow announces working with Open Mirror");
-  assert.match(services, /Let’s build something real\./, "the headline is the owner's line");
+  assert.match(services, /Bring me what you’re building\./, "the headline is the owner's line");
+  assert.match(services, /A practical way forward/, "the services section heading");
   assert.match(services, /Shape the idea/, "card one: shape the idea");
-  assert.match(services, /Improve the build/, "card two: improve the build");
+  assert.match(services, /Improve what exists/, "card two: improve what exists");
   assert.match(services, /Find the next step/, "card three: find the next step");
-  assert.match(services, /Start a conversation/, "the CTA section is present");
-  assert.match(services, /Tell me what you’re building/, "the primary button label");
+  assert.match(services, /Tell me what you’re working on\./, "the CTA heading");
+  assert.match(services, /read it personally/, "the personal-reply promise stays");
+  assert.match(services, /Start the conversation/, "the primary button label");
 });
 
-test("Contact action is a mailto with the inquiry subject", () => {
+test("Contact action is a mailto with the inquiry subject and note body", () => {
   const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
   assert.match(contact, /mailto:\$\{SERVICE_EMAIL\}\?subject=/, "the action is a mailto with a subject");
+  assert.match(contact, /&body=/, "the mailto pre-fills the three-question note");
   assert.match(services, /Open Mirror project inquiry/, "the subject line is locked");
+  assert.match(services, /What are you building\?/, "body question one");
+  assert.match(services, /Where are you stuck\?/, "body question two");
+  assert.match(services, /What would a good result look like\?/, "body question three");
   assert.match(contact, /\{SERVICE_EMAIL\}/, "the address stays visible on the page");
 });
 
 test("Contact availability note is confident, not apologetic", () => {
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
-  assert.match(services, /built outside my full-time work/, "the availability note names the reality plainly");
+  assert.match(services, /alongside a full-time job/, "the availability note names the reality plainly");
   assert.match(services, /reply personally during evenings and weekends/, "and says when replies come");
   assert.doesNotMatch(services, /sorry|apolog|unfortunately|please note|be patient/i,
     "no apologetic or warning language around availability");

@@ -7,9 +7,12 @@ import {
   EYEBROW,
   HEADLINE,
   INTRO,
+  MAILTO_BODY,
   MAILTO_SUBJECT,
   META_DESCRIPTION,
   PAGE_TITLE,
+  SECTION_COPY,
+  SECTION_HEADING,
   SERVICES,
   SERVICE_EMAIL,
 } from "../../lib/services";
@@ -43,7 +46,7 @@ const structuredData = {
   publisher: { "@type": "Organization", name: "Open Mirror LLC" },
 };
 
-const MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(MAILTO_SUBJECT)}`;
+const MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(MAILTO_SUBJECT)}&body=${encodeURIComponent(MAILTO_BODY)}`;
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7dd3fc]";
@@ -74,8 +77,11 @@ export default function Contact() {
           </p>
         ))}
 
-        <section className="mt-12" aria-label="How Open Mirror can help">
-          <h2 className="text-2xl font-black tracking-tight">How I can help</h2>
+        <section className="mt-12" aria-label={SECTION_HEADING}>
+          <h2 className="text-2xl font-black tracking-tight">{SECTION_HEADING}</h2>
+          <p className="mt-3 text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
+            {SECTION_COPY}
+          </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             {SERVICES.map((service) => (
               <div

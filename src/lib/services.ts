@@ -16,42 +16,51 @@ export const PAGE_TITLE = "Contact";
 
 export const EYEBROW = "Work with Open Mirror";
 
-export const HEADLINE = "Let’s build something real.";
+export const HEADLINE = "Bring me what you’re building.";
 
 /** One-line description for metadata, OG tags, and structured data. */
 export const META_DESCRIPTION =
   "Open Mirror builds original products and works with a small number of people on their ideas, projects, and problems. Email ask@openmirrorllc.com.";
 
 export const INTRO = [
-  "Open Mirror builds original products, but I also work with a small number of people who have an idea, an existing project, or a problem worth solving.",
-  "Whether you need help shaping the idea, improving what you already built, or finding the clearest next step, tell me what you are working on.",
+  "Open Mirror creates its own products, but I also work with a small number of people who have an idea, an unfinished project, or something that should work better than it does today.",
+  "You do not need a polished plan. Tell me what you have, where you are stuck, and what you would like to make real.",
 ];
+
+export const SECTION_HEADING = "A practical way forward";
+
+export const SECTION_COPY =
+  "I can help you shape the idea, simplify the experience, improve an existing build, or identify the next step that will make the biggest difference.";
 
 /** The three ways Open Mirror helps — rendered as compact cards. */
 export const SERVICES = [
   {
     title: "Shape the idea",
-    copy: "Turn a rough thought into a clear product, useful feature, or practical first build.",
+    copy: "Turn a rough thought into a clear product, feature, service, or first build.",
   },
   {
-    title: "Improve the build",
+    title: "Improve what exists",
     copy: "Find what is confusing, unfinished, or getting in the way—and make it work better.",
   },
   {
     title: "Find the next step",
-    copy: "Get an honest assessment of what matters now, what can wait, and what should happen next.",
+    copy: "Separate what matters now from what can wait, then move the project forward.",
   },
 ];
 
-export const CTA_HEADING = "Start a conversation";
+export const CTA_HEADING = "Tell me what you’re working on.";
 
 export const CTA_COPY =
-  "Send a short note about what you are building, where you are stuck, and what a good result would look like.";
+  "Send a short note about the idea, the current problem, and what a good result would look like. I will read it personally and let you know whether Open Mirror is a good fit.";
 
-export const CTA_BUTTON = "Tell me what you’re building";
+export const CTA_BUTTON = "Start the conversation";
 
 export const MAILTO_SUBJECT = "Open Mirror project inquiry";
 
+/** Pre-filled note structure — three short questions, nothing else. */
+export const MAILTO_BODY =
+  "What are you building?\n\nWhere are you stuck?\n\nWhat would a good result look like?\n";
+
 /** Shown once, small, under the action. */
 export const AVAILABILITY_NOTE =
-  "Open Mirror is built outside my full-time work, so I reply personally during evenings and weekends.";
+  "I run Open Mirror alongside a full-time job and reply personally during evenings and weekends.";

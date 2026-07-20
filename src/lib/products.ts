@@ -166,8 +166,10 @@ export const products: Product[] = [
     emoji: "🥊",
     description:
       "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. Say it however it comes out; get back a plan for version one and a builder prompt.",
+    // Trimmed 2026-07-19 (owner copy rule): the About page never mentions
+    // prompts or build tooling, so the About line ends at the plan.
     aboutLine:
-      "A rough idea becomes a clear plan for version one and a builder prompt.",
+      "A rough idea becomes a clear plan for version one.",
     aboutAction: "Start building",
     access: "Free",
     accent: "#60A5FA",
