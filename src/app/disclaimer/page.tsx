@@ -4,17 +4,18 @@ import { STUDIO } from "../../lib/products";
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Open Mirror LLC is an independent company. Its projects are created and operated independently.",
+    "Open Mirror LLC is independently owned and operated. Its projects are created and operated independently.",
   alternates: { canonical: "/disclaimer" },
 };
 
-// The dedicated home for the full legal / non-affiliation language. Kept off
-// the About, homepage, and product copy so visitors only read it if they come
-// looking for it — the footer carries one quiet line and a link, nothing more.
+// The dedicated home for the independence, conflict, and general legal
+// language. Kept off About, Contact, the homepage, and product copy so
+// visitors only read it if they come looking for it — the shared footer
+// carries the link, nothing more.
 //
-// The non-affiliation wording is the owner's conflict-of-interest shield.
-// It was reorganized into sections (owner-directed, July 2026); the substance
-// is unchanged. Do not weaken or drop any of it without DJ.
+// The "Independent work" wording is the owner's conflict-of-interest shield
+// (rewritten on the owner's direction, July 2026). Do not weaken or drop any
+// of it without DJ. It never names an employer, job title, or industry.
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -43,66 +44,60 @@ export default function Disclaimer() {
           Disclaimer and independence
         </h1>
         <p className="mb-10 max-w-prose text-pretty text-base font-semibold leading-7 text-[#94a3b8]">
-          Open Mirror LLC is a personal, independent company built outside
-          normal working hours. It is a place to create useful products, explore
-          ideas, and learn skills that support the owner&apos;s continued
-          professional growth.
+          Open Mirror LLC builds and operates its own projects. The practical
+          and legal details live on this page so the rest of the site does not
+          have to repeat them.
         </p>
 
         <div className="flex flex-col gap-8">
           <Section title="Independent work">
-            <p>Open Mirror LLC is separate from the owner&apos;s employment.</p>
             <p>
-              It is not affiliated with, sponsored by, or endorsed by the
-              owner&apos;s employer. Its projects and views belong solely to
-              Open Mirror LLC and do not represent any employer, client, or
-              other organization.
+              Open Mirror LLC is independently owned and operated. It is
+              separate from the owner&apos;s employment and is not sponsored,
+              endorsed, or operated by the owner&apos;s employer.
             </p>
             <p>
-              The company&apos;s work is created on personal time and kept
-              separate from the owner&apos;s employment responsibilities.
+              Open Mirror uses its own accounts, systems, information,
+              equipment, and resources. Employer confidential information,
+              customer information, internal systems, and work product are not
+              used.
             </p>
             <p>
-              If something appears to create a conflict or unintended overlap,
-              email <Mail /> so it can be reviewed and corrected.
+              An inquiry may be declined because of an actual or potential
+              conflict. Sending an inquiry does not create a consulting
+              relationship. Any accepted work requires a separate written
+              agreement.
             </p>
           </Section>
 
-          <Section title="Projects and learning">
-            <p>Many Open Mirror projects begin as practical experiments.</p>
+          <Section title="Projects and availability">
             <p>
-              They are built to learn, test ideas, solve real problems, and turn
-              promising concepts into useful products. Some will continue
-              growing. Others may change, be replaced, or remain simple
-              experiments.
-            </p>
-            <p>
-              Information, features, and availability may change as the projects
-              improve.
+              Open Mirror projects are built to solve real problems and test
+              ideas. Some will keep growing. Others may change, be replaced, or
+              remain simple. Information, features, and availability may change
+              as the projects improve.
             </p>
           </Section>
 
           <Section title="Information and tools">
             <p>
               Open Mirror provides creative tools, guides, recommendations,
-              experiments, and other general information.
+              experiments, and other general information. They are provided as
+              available, without warranties, and may not fit every person or
+              situation.
             </p>
             <p>
-              They are provided as available and may not fit every person or
-              situation. When a decision carries meaningful personal,
-              professional, financial, legal, medical, or other consequences,
-              confirm the information with an appropriate trusted source.
+              When a decision carries meaningful personal, professional,
+              financial, legal, medical, or other consequences, confirm the
+              information with an appropriate trusted source.
             </p>
           </Section>
 
           <Section title="Products and purchases">
             <p>
               Some Open Mirror projects are free. Others may become paid
-              products.
-            </p>
-            <p>
-              A product is not available for purchase until the site provides a
-              working checkout and delivery process. Anything marked{" "}
+              products. A product is not available for purchase until the site
+              provides a working checkout and delivery process; anything marked{" "}
               <span className="font-semibold text-[#e8edf5]">
                 Preparing for Release
               </span>{" "}
@@ -114,15 +109,20 @@ export default function Disclaimer() {
             </p>
           </Section>
 
+          <Section title="Original content">
+            <p>
+              Open Mirror projects, names, and content are original work of
+              Open Mirror LLC unless credited otherwise. Do not reuse them
+              without permission.
+            </p>
+          </Section>
+
           <Section title="Third-party services">
             <p>
               Open Mirror sites may use or link to services operated by other
               companies, including hosting platforms, embedded media, public
-              APIs, adoption resources, and app services.
-            </p>
-            <p>
-              Open Mirror does not control the content, availability, privacy
-              practices, or terms of those services.
+              APIs, and app services. Open Mirror does not control the content,
+              availability, privacy practices, or terms of those services.
             </p>
             <p>
               Sources and materials used with permission or under applicable
@@ -133,9 +133,9 @@ export default function Disclaimer() {
           <Section title="Corrections and concerns">
             <p>
               To report incorrect information, a broken link, an attribution or
-              rights concern, or a possible conflict, email <Mail />.
+              rights concern, or a possible conflict, email <Mail />. The
+              concern will be reviewed and corrected where appropriate.
             </p>
-            <p>The concern will be reviewed and corrected where appropriate.</p>
           </Section>
         </div>
 

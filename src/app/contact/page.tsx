@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import ContactForm from "../../components/ContactForm";
-import { products } from "../../lib/products";
-import { STUDIO } from "../../lib/products";
 import {
+  AVAILABILITY_NOTE,
   CORE_MESSAGE,
+  FIT_MESSAGE,
   META_DESCRIPTION,
   PAGE_TITLE,
   PRIVACY_NOTE,
-  PROOF,
-  PROOF_MESSAGE,
   SERVICE_EMAIL,
 } from "../../lib/services";
 
@@ -32,7 +30,8 @@ export const metadata: Metadata = {
 // Faceless by design: no personal name, photo, or bio anywhere on this page
 // or in its metadata. The studio's public identity lives in src/lib/owner.ts
 // alone, and it stays empty. This is a ContactPage, not a person or a
-// professional-service listing.
+// professional-service listing. Independence and conflict language lives on
+// /disclaimer (linked from the shared footer) — never repeated here.
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
@@ -44,30 +43,30 @@ const structuredData = {
 };
 
 export default function Contact() {
-  // Join proof picks with the product registry so names, links, accents, and
-  // emoji stay in sync with the single source of truth.
-  const proof = PROOF.flatMap(({ product, proves }) => {
-    const p = products.find((x) => x.name === product);
-    return p ? [{ ...p, proves }] : [];
-  });
-
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="mx-auto max-w-2xl px-5 py-14">
-        {/* 1 — Hero + core message */}
-        <section className="mb-12 text-center">
+      <div className="mx-auto max-w-2xl px-5 py-14 sm:py-20">
+        {/* 1 — Heading + the two short paragraphs. Nothing else above the form. */}
+        <section className="mb-12">
           <p className="mb-5 text-xs font-black uppercase tracking-[0.2em] text-[#7dd3fc]">
             Open Mirror LLC
           </p>
           <h1 className="mb-5 text-balance text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">
-            Have an idea you want to bring to life?
+            Project inquiry
           </h1>
-          <p className="mx-auto max-w-md text-base font-semibold leading-7 text-[#94a3b8]">
-            {CORE_MESSAGE}
+          <p className="max-w-prose text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
+            {FIT_MESSAGE}
+          </p>
+          <p className="mt-4 max-w-prose text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
+            {CORE_MESSAGE} Send a project inquiry to{" "}
+            <a href={`mailto:${SERVICE_EMAIL}`} className="font-black text-[#7dd3fc]">
+              {SERVICE_EMAIL}
+            </a>{" "}
+            or use the form below.
           </p>
         </section>
 
@@ -78,50 +77,13 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* 3 — Privacy note */}
+        {/* 3 — Availability + privacy, once each, small. */}
+        <p className="mx-auto mb-2 max-w-md text-center text-xs font-semibold leading-6 text-[#94a3b8]">
+          {AVAILABILITY_NOTE}
+        </p>
         <p className="mx-auto mb-14 max-w-md text-center text-xs font-semibold leading-6 text-[#64748b]">
           {PRIVACY_NOTE}
         </p>
-
-        {/* 4 — Restrained proof: three representative products, then one
-            quiet link to the full portfolio. Not a second homepage. */}
-        <section className="mb-14 border-t border-[#26324c] pt-10">
-          <p className="mx-auto mb-6 max-w-md text-center text-sm font-semibold leading-7 text-[#94a3b8]">
-            {PROOF_MESSAGE}
-          </p>
-          <div className="flex flex-col gap-3">
-            {proof.map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pop flex items-start gap-4 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5 transition hover:border-[#1c2740]"
-              >
-                <span className="text-2xl">{p.emoji}</span>
-                <div>
-                  <h2 className="text-base font-black">
-                    {p.name}
-                    <span style={{ color: p.accent }}>.com</span>
-                    {p.status !== "live" && p.status !== "foundation" && (
-                      <span className="ml-2 align-middle text-[10px] font-black uppercase tracking-wider text-[#64748b]">
-                        {p.status}
-                      </span>
-                    )}
-                  </h2>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-[#94a3b8]">
-                    {p.proves}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-          <p className="mt-5 text-center text-sm font-bold">
-            <a href={STUDIO.url} className="text-[#7dd3fc]">
-              See everything Open Mirror has built →
-            </a>
-          </p>
-        </section>
 
         <p className="text-center text-xs font-semibold text-[#64748b]">
           Open Mirror LLC ·{" "}

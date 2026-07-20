@@ -17,10 +17,9 @@ import { SERVICE_EMAIL } from "../../../lib/services";
 // The one thing this route must never do is report success it didn't earn.
 
 const FIELD_LABELS: Record<string, string> = {
-  creating: "What are you trying to create?",
-  done: "What have you already done?",
+  creating: "What do you want to build?",
+  done: "What already exists?",
   stuck: "Where are you stuck?",
-  help: "What kind of help would be useful?",
 };
 
 // Best-effort in-memory rate limit. Serverless instances don't share memory,

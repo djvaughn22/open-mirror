@@ -5,24 +5,18 @@ import { foundationProduct, STUDIO } from "../../lib/products";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "An idea should not have to stay an idea. How one daily Bible routine became CrossHeartPray, and how one idea leading to another became Open Mirror.",
+    "Open Mirror is a creative digital platform. It began after CrossHeartPray became real: original ideas turned into live websites, apps, games, and tools, open to the world.",
   alternates: { canonical: "/about-open-mirror" },
 };
 
-// The origin and purpose page. The project directory lives on the homepage;
-// credits, resources, and products live on their own pages — this page only
-// tells the story. The copy is the owner's, approved 2026-07-19; change words
+// The origin and purpose page, in the owner's plain voice (rewritten
+// 2026-07-19 on the owner's direction). The project directory lives on the
+// homepage; credits, resources, and products live on their own pages — this
+// page only says what Open Mirror is and where it came from. Change words
 // only on the owner's instruction.
 
 const body = "mt-4 text-pretty text-base font-semibold leading-8 text-[#94a3b8]";
 const heading = "text-2xl font-black tracking-tight";
-
-const STANDARD = [
-  "Make something original.",
-  "Be honest about what it is.",
-  "Put it where people can use it.",
-  "Listen, learn, and make it better.",
-];
 
 export default function AboutOpenMirror() {
   const foundation = foundationProduct();
@@ -33,27 +27,29 @@ export default function AboutOpenMirror() {
 
         <header>
           <h1 className="text-balance text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl">
-            An idea should not have to stay an idea.
+            About Open Mirror
           </h1>
           <p className="mt-6 text-pretty text-lg font-semibold leading-8 text-[#94a3b8]">
-            Open Mirror is a creative digital platform for building original
-            websites, mobile apps, games, tools, and encouragement—and putting
-            them live for the world to use.
+            Open Mirror is a creative digital platform. It takes original ideas
+            and makes them real — websites, mobile apps, games, and tools, live
+            and open to the world.
           </p>
         </header>
 
         {/* The one CrossHeartPray connection — its accent on the rule, one
-            quiet link in the prose. A nod, not an advertisement. */}
+            quiet registry-derived link in the prose. A nod, not an ad. */}
         <section
           className="mt-16 border-l-4 pl-5 sm:pl-6"
           style={{ borderColor: foundation?.accent ?? "#C4B5FD" }}
         >
-          <h2 className={heading}>CrossHeartPray came first.</h2>
+          <h2 className={heading}>It started with CrossHeartPray.</h2>
           <p className={body}>
-            It began with a daily Bible routine I wanted to carry with me.
-            Scripture, prayer, notes, and the things I did not want to lose.
+            CrossHeartPray came from a daily routine: Scripture, prayer, and
+            trying to keep the right things in front of me each day. It became
+            the first website.
           </p>
           <p className={body}>
+            Once{" "}
             {foundation ? (
               <a
                 href={foundation.href}
@@ -66,103 +62,56 @@ export default function AboutOpenMirror() {
             ) : (
               "CrossHeartPray"
             )}{" "}
-            turned that routine into something real and useful. It was inspired
-            by Travis, built around faith, and made available to anyone who
-            might need it.
+            was live, one thing was clear: an original idea can become a real
+            website, app, game, or tool quickly, and be open to people
+            anywhere. Open Mirror became the place for those ideas.
           </p>
         </section>
 
         <section className="mt-16">
-          <h2 className={heading}>Then one idea led to another.</h2>
+          <h2 className={heading}>Who it&apos;s for</h2>
           <p className={body}>
-            I realized I did not need a large company, a development team, or
-            years of waiting to put an original idea online. I could start with
-            something meaningful, build the first version, see what worked, and
-            improve it while people were already using it.
+            Faith. Family. Friends I have lost, and friends still to gain.
           </p>
-          <p className="mt-4 text-lg font-black text-[#e8edf5]">
-            That became Open Mirror.
+          <p className={body}>
+            And anyone in the world who finds something useful, encouraging,
+            meaningful, or fun here.
           </p>
         </section>
 
         <section className="mt-16">
-          <h2 className={heading}>Why it exists</h2>
-          <p className="mt-4 text-base font-black leading-8 text-[#e8edf5]">
-            Open Mirror is for faith and family.
+          <h2 className={heading}>How it gets built</h2>
+          <p className={body}>
+            The speed matters. Modern tools make it possible to start quickly,
+            build a real first version, test it, change it, and put it live.
+            New features and updates keep coming after that.
           </p>
           <p className={body}>
-            It is for friends I have lost, friends I have yet to meet, and
-            people anywhere in the world who may find encouragement, help, a
-            laugh, a useful tool, or a reason to begin something of their own.
+            The tools made the speed possible. They did not create the ideas,
+            the purpose, the faith, the words, the judgment, or the point of
+            view. The projects and the content are original.
           </p>
           <p className={body}>
-            Some projects are serious. Some solve small problems. Some are
-            simply fun. They all begin with an original idea and the belief
-            that it is worth finding out what the idea can become.
+            AI helps with coding, testing, troubleshooting, and deployment. It
+            is not the author of this site&apos;s faith, message, or content,
+            and it is never an authority on Scripture.
           </p>
         </section>
 
-        <section className="mt-16">
-          <h2 className={heading}>The tools changed the speed.</h2>
-          <p className={body}>
-            Modern building tools make it possible to move from an idea to a
-            working product faster than ever before.
-          </p>
-          <p className={body}>
-            I use them to write code, solve technical problems, test ideas,
-            deploy updates, and keep improving what is already live. New
-            features can sometimes move from a thought to the internet in a
-            single day.
-          </p>
-          <p className={body}>
-            The tools help build the software. They are not the voice behind
-            it.
-          </p>
-          <p className={body}>
-            The ideas, purpose, faith, words, curation, decisions, and
-            responsibility remain human. AI is a building tool here—not the
-            source of the message and never an authority on Scripture.
-          </p>
-        </section>
-
-        <section className="mt-16">
-          <h2 className={heading}>Always being built</h2>
-          <p className={body}>
-            Open Mirror is not meant to look finished and sit still.
-          </p>
-          <p className={body}>
-            Projects will grow. Some will change direction. Some will remain
-            simple. New ideas will appear, and useful features will continue to
-            be added.
-          </p>
-          <p className={body}>The standard is straightforward:</p>
-          <ul className="mt-4 space-y-1.5">
-            {STANDARD.map((line) => (
-              <li key={line} className="text-base font-black leading-8 text-[#e8edf5]">
-                {line}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Closing — the story ends where the work lives. */}
+        {/* Closing — one quiet path back to where the work lives. */}
         <section className="mt-16 border-t border-[#26324c] pt-10 text-center">
-          <p className="text-lg font-black leading-8">
-            <span className="block">This started personally.</span>
-            <span className="block">Now it is open to the world.</span>
-          </p>
           <Link
             href="/"
-            className="mt-6 inline-block rounded-full px-6 py-3 text-sm font-black"
+            className="inline-block rounded-full px-6 py-3 text-sm font-black"
             style={{ background: "var(--om-accent)", color: "var(--om-ink)" }}
           >
-            Explore the projects →
+            Explore Open Mirror →
           </Link>
         </section>
 
         {/* A quiet anchor so existing #disclaimer deep links still land. The
             full legal text lives only on /disclaimer, and the shared footer
-            already carries the one-line independence note — no repeat here. */}
+            already carries the link — no repeat here. */}
         <section id="disclaimer" className="mt-14 scroll-mt-24 border-t border-[#26324c] pt-6 text-center">
           <Link href="/disclaimer" className="text-xs font-semibold text-[#94a3b8] underline">
             Disclaimer and independence

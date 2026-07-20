@@ -1,6 +1,6 @@
 "use client";
 
-// Intake for /contact. Six fields, one Send button. Posts to /api/intake,
+// Intake for /contact. Five fields, one Send button. Posts to /api/intake,
 // which sends the message when RESEND_API_KEY is configured. If it isn't (or
 // the send fails), the same click falls back to opening the visitor's email
 // app prefilled — nothing pretends to have been sent.
@@ -21,7 +21,6 @@ type Fields = {
   creating: string;
   done: string;
   stuck: string;
-  help: string;
 };
 
 const EMPTY: Fields = {
@@ -30,7 +29,6 @@ const EMPTY: Fields = {
   creating: "",
   done: "",
   stuck: "",
-  help: "",
 };
 
 const REQUIRED: (keyof Fields)[] = ["name", "email", "creating"];
@@ -38,13 +36,12 @@ const REQUIRED: (keyof Fields)[] = ["name", "email", "creating"];
 const LABELS: Record<keyof Fields, string> = {
   name: "Name",
   email: "Email",
-  creating: "What are you trying to create?",
-  done: "What have you already done?",
+  creating: "What do you want to build?",
+  done: "What already exists?",
   stuck: "Where are you stuck?",
-  help: "What kind of help would be useful?",
 };
 
-const FIELD_ORDER: (keyof Fields)[] = ["name", "email", "creating", "done", "stuck", "help"];
+const FIELD_ORDER: (keyof Fields)[] = ["name", "email", "creating", "done", "stuck"];
 
 function buildEmailBody(f: Fields): string {
   const line = (key: keyof Fields) =>
@@ -179,14 +176,13 @@ export default function ContactForm() {
       {textField("creating", true, 3)}
       {textField("done", false, 2)}
       {textField("stuck", false, 2)}
-      {textField("help", false, 2)}
 
       <button
         type="submit"
         disabled={status === "sending"}
         className="mt-1 rounded-full bg-[#38BDF8] px-8 py-3.5 text-base font-black text-[#0C0C0C] disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Send your idea"}
+        {status === "sending" ? "Sending…" : "Send a project inquiry"}
       </button>
 
       {status === "sent" && (
