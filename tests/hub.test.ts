@@ -231,21 +231,37 @@ test("Reflect remains hidden everywhere public", () => {
   assert.equal(publicOnAbout("Reflect"), false, "Reflect must not leak onto About");
 });
 
-// ── About derives from the registry ─────────────────────────────────────────
+// ── About is the origin story, not a second homepage ───────────────────────
+//
+// Owner rule (2026-07-19): the About page tells the origin and purpose story
+// only. The project directory lives on the homepage; credits, resources, and
+// products live on their own pages. These lock the catalog out of About and
+// keep the closing action pointed at the real directory.
 
-test("About renders the family from the canonical registry", () => {
+test("About carries no project directory, product panel, resources, or credits", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /aboutFamilyProducts\(\)/, "About must read the registry, not a hand-kept list");
-  assert.match(about, /featuredProduct\(\)/);
-  assert.match(about, /foundationProduct\(\)/);
-  // A second hard-coded project array is exactly how projects went missing before.
-  assert.doesNotMatch(about, /const PROGRESSION/, "no competing hard-coded project array");
+  assert.doesNotMatch(about, /aboutFamilyProducts\(/, "the project directory lives on the homepage, not About");
+  assert.doesNotMatch(about, /featuredProduct\(|FeaturedPanel/, "no product promotion on About");
+  assert.doesNotMatch(about, /Free resources/, "resources belong on their own pages");
+  assert.doesNotMatch(about, /Credits and sources/, "the credits directory lives off About (src/lib/credits.ts)");
+  assert.doesNotMatch(about, /readiness-check/, "no product downloads promoted from About");
+});
+
+test("About keeps its one registry-derived CrossHeartPray link and closes into the directory", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /foundationProduct\(\)/, "the CrossHeartPray link must come from the registry");
+  assert.match(about, /Explore the projects/, "About must close with the path to the projects");
+  assert.match(about, /href="\/"/, "the closing action must land on the homepage directory");
+  // The disclaimer anchor keeps old deep links working.
+  assert.match(about, /id="disclaimer"/, "existing #disclaimer deep links must still land");
 });
 
 // ── The locked haikus ────────────────────────────────────────────────────────
 // Owner rule (2026-07-19): these three haikus are LOCKED, word for word,
 // heading for heading. They were once silently replaced; this test makes any
-// rewrite fail loudly. Never "improve" them.
+// rewrite fail loudly. Never "improve" them. They left the About page the
+// same day (About became the origin story) but the words stay preserved in
+// src/lib/haikus.ts for wherever they appear next.
 
 const LOCKED_HAIKUS: { title: string; lines: string[] }[] = [
   {
@@ -262,28 +278,22 @@ const LOCKED_HAIKUS: { title: string; lines: string[] }[] = [
   },
 ];
 
-test("the locked haikus appear on About exactly as the owner wrote them", () => {
-  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+test("the locked haikus are preserved exactly as the owner wrote them", () => {
+  const src = readFileSync(join(repoRoot, "src/lib/haikus.ts"), "utf8");
   for (const haiku of LOCKED_HAIKUS) {
-    assert.ok(about.includes(`"${haiku.title}"`), `haiku heading "${haiku.title}" is missing`);
+    assert.ok(src.includes(`"${haiku.title}"`), `haiku heading "${haiku.title}" is missing`);
     for (const line of haiku.lines) {
-      assert.ok(about.includes(`"${line}"`), `haiku line "${line}" was changed or removed`);
+      assert.ok(src.includes(`"${line}"`), `haiku line "${line}" was changed or removed`);
     }
   }
   for (const retired of ["Cross Heart Pray came first", "One build led to more", "Build what feels alive"]) {
-    assert.ok(!about.includes(retired), `retired haiku line "${retired}" must not come back`);
+    assert.ok(!src.includes(retired), `retired haiku line "${retired}" must not come back`);
   }
 });
 
-test("every public project reaches About or is deliberately excluded", () => {
+test("only Reflect is deliberately excluded from the public registry surfaces", () => {
   const excluded = products.filter((p) => p.showInAbout === false).map((p) => p.name);
-  assert.deepEqual(excluded, ["Reflect"], "only Reflect is intentionally kept off About");
-
-  const shown = new Set([...aboutFamilyProducts().map((p) => p.name), foundationProduct()!.name, featuredProduct()!.name]);
-  for (const p of products) {
-    if (p.showInAbout === false) continue;
-    assert.ok(shown.has(p.name), `${p.name} is public but reaches no About lane`);
-  }
+  assert.deepEqual(excluded, ["Reflect"], "only Reflect is intentionally hidden");
 });
 
 // ── Honest commerce ────────────────────────────────────────────────────────
@@ -378,40 +388,9 @@ test("the homepage renders no featured-product panel", () => {
   assert.doesNotMatch(home, /Preparing for Release/, "homepage must not carry the product's release label");
 });
 
-// ── About ordering: family first, product at the bottom ─────────────────────
-//
-// These assert the *rendered order* in the source, not just registry data:
-// the project family and the low sections (Free resources, Credits) come
-// first, and the single featured panel sits near the bottom — never above the
-// family, never turned back into a giant poster.
-
-test("About renders the project family before the featured product", () => {
-  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  const familyAt = about.indexOf("family.map(");
-  const featuredAt = about.indexOf("<FeaturedPanel p={featured}");
-  assert.ok(familyAt > 0, "About must render the family grid");
-  assert.ok(featuredAt > 0, "About must render the featured panel");
-  assert.ok(familyAt < featuredAt, "the project family must come before Old Laptop on About");
-});
-
-test("Old Laptop's panel sits below Free resources and Credits on About", () => {
-  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  const freeAt = about.indexOf("Free resources");
-  const creditsAt = about.indexOf("Credits and sources");
-  const featuredAt = about.indexOf("<FeaturedPanel p={featured}");
-  assert.ok(freeAt > 0 && creditsAt > 0 && featuredAt > 0, "About keeps its low sections and the featured panel");
-  assert.ok(featuredAt > freeAt, "Old Laptop must follow Free resources");
-  assert.ok(featuredAt > creditsAt, "Old Laptop must follow Credits and sources");
-});
-
-test("About keeps the featured panel compact — no giant poster treatment", () => {
-  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  // The compact panel renders exactly one featured panel and keeps its two
-  // honest actions; no price, no checkout.
-  assert.equal((about.match(/<FeaturedPanel /g) ?? []).length, 1, "exactly one featured panel on About");
-  const src = stripComments(about);
-  assert.doesNotMatch(src, /add to cart|buy now|checkout|\$\d/i, "About's product panel must not imply a purchase");
-});
+// The old About-ordering locks (family before product, resources above the
+// panel) retired with the catalog itself — "About carries no project
+// directory" above is the lock that replaced them.
 
 // ── Contact copy ────────────────────────────────────────────────────────────
 
