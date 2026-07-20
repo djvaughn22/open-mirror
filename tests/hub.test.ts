@@ -250,7 +250,7 @@ test("About carries no project directory, product panel, resources, or credits",
 test("About keeps its one registry-derived CrossHeartPray link and closes into the directory", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
   assert.match(about, /foundationProduct\(\)/, "the CrossHeartPray link must come from the registry");
-  assert.match(about, /Explore Open Mirror/, "About must close with the quiet path home");
+  assert.match(about, /See what is live/, "About must close with the quiet path home");
   assert.match(about, /href="\/"/, "the closing action must land on the homepage directory");
   // The disclaimer anchor keeps old deep links working.
   assert.match(about, /id="disclaimer"/, "existing #disclaimer deep links must still land");
@@ -415,19 +415,15 @@ test("Contact never repeats 'one focused project at a time'", () => {
   assert.ok(hits.length <= 1, `'one focused project at a time' must not repeat (found ${hits.length})`);
 });
 
-test("Contact keeps all five intake fields", () => {
-  // Owner rule (2026-07-19): the form asks exactly these five things —
-  // nothing about "help", services, or budgets.
-  const form = readFileSync(join(repoRoot, "src/components/ContactForm.tsx"), "utf8");
-  for (const label of [
-    "Name",
-    "Email",
-    "What do you want to build?",
-    "What already exists?",
-    "Where are you stuck?",
-  ]) {
-    assert.ok(form.includes(label), `the intake form must keep the "${label}" field`);
-  }
-  assert.doesNotMatch(form, /What kind of help would be useful\?/, "the sixth field stays retired");
-  assert.match(form, /Send a project inquiry/, "the form must keep its one quiet Send action");
+test("Contact is the email address and nothing more", () => {
+  // Owner rule (2026-07-19, say-less pass): the email address is enough. No
+  // intake form, no consulting or client language, one "Send an email" action.
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  assert.doesNotMatch(contact, /ContactForm/, "the intake form stays retired");
+  assert.match(contact, /Send an email/, "the one action is the email");
+  assert.match(contact, /mailto:\$\{SERVICE_EMAIL\}/, "the action must be a plain mailto");
+  assert.doesNotMatch(contact, /consult|client|inquir|project|partner|schedul|agreement/i,
+    "no consulting or client language on Contact");
+  assert.ok(!existsSync(join(repoRoot, "src/components/ContactForm.tsx")), "ContactForm.tsx was deleted");
+  assert.ok(!existsSync(join(repoRoot, "src/app/api/intake/route.ts")), "the intake route was deleted");
 });
