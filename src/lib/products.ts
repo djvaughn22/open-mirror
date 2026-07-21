@@ -314,6 +314,9 @@ export const products: Product[] = [
     status: "building",
     category: "creativity",
     featured: true,
+    // 2026-07-20 (owner): low-key like PleaseBeReady — discovered through the
+    // About featured panel and its own page, never a persistent menu row.
+    showInNav: false,
     image: "/products/old-laptop-to-build-machine.png",
     imageAlt:
       "An unused laptop with a dark screen beside the same laptop running a Build Log website, above the words: same laptop, Linux, real developer tools, and your own website live on the internet.",

@@ -178,42 +178,26 @@ test("CrossHeartPray is first in shared navigation", () => {
   assert.equal(navGroups()[0]?.key, "foundation", "the Foundation group opens the menu");
 });
 
-test("Old Computer to Build Machine is last in shared navigation", () => {
-  const order = navProductOrder();
-  assert.equal(
-    order.at(-1)?.name,
-    "Old Computer to Build Machine",
-    "the packaged product must close the menu"
-  );
-  assert.equal(navGroups().at(-1)?.key, "product", "the product group is the final group");
-});
-
-test("Old Computer sits below every free project", () => {
-  const names = navProductOrder().map((p) => p.name);
-  const laptop = names.indexOf("Old Computer to Build Machine");
-  for (const name of ["TheDJCares", "iDontCry", "OpenDoku", "WhatAmIAI", "Fambookagram", "Friendbookagram"]) {
-    assert.ok(laptop > names.indexOf(name), `Old Computer must follow ${name}`);
-  }
-});
-
-// 2026-07-20: PleaseBeReady left the persistent menu (it is discovered through
-// the directory and the About reminder card), so the resources group is empty
-// and drops out of the rendered order.
+// 2026-07-20 (owner): PleaseBeReady AND Old Computer both left the persistent
+// menu — low-key by design, discovered through the directory, About, and their
+// own pages. Their nav groups are empty and drop out of the rendered order.
 test("shared navigation follows the owner's group order", () => {
   assert.deepEqual(
     navGroups().map((g) => g.key),
-    ["foundation", "free", "inProgress", "exploring", "product"],
-    "Foundation → public → building → exploring → product"
+    ["foundation", "free", "inProgress", "exploring"],
+    "Foundation → public → building → exploring; resources and product stay low-key"
   );
 });
 
-test("Old Computer stays in shared navigation, labelled honestly", () => {
+test("Old Computer stays out of shared navigation but present on About, labelled honestly", () => {
   const laptop = byName("Old Computer to Build Machine");
-  assert.notEqual(laptop.showInNav, false, "Old Computer must stay reachable from the menu");
+  assert.equal(laptop.showInNav, false, "Old Computer must stay out of persistent navigation");
   assert.ok(
-    navProductOrder().some((p) => p.name === laptop.name),
-    "Old Computer must appear in the shared menu"
+    !navProductOrder().some((p) => p.name === laptop.name),
+    "Old Computer must not reach any menu group"
   );
+  assert.equal(laptop.featured, true, "…while keeping its About featured panel");
+  assert.notEqual(laptop.showInAbout, false, "…and staying discoverable on About");
   assert.equal(`${laptop.access} · ${laptop.accessNote}`, "Product · Preparing for Release");
 });
 

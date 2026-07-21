@@ -20,6 +20,15 @@ function menuItem(p: Product, note?: string): Item {
 const foundation = foundationProduct();
 const featured = featuredProduct();
 
+// Pinned resources and the packaged product render only while they belong in
+// the menu (2026-07-20: both are low-key now — discovered through the
+// directory and About, not from every page). The divider ahead of them only
+// renders when the group has rows, so no stray rule is left behind.
+const TAIL: Item[] = [
+  ...bottomPinnedProducts().filter((p) => p.showInNav !== false).map((p) => menuItem(p)),
+  ...(featured && featured.showInNav !== false ? [menuItem(featured, "Product")] : []),
+];
+
 const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/", emoji: "🪞" },
   // The Foundation sits directly under Home, with no divider between them.
@@ -27,11 +36,7 @@ const MENU: Item[] = [
   { divider: true },
   { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
   { label: "Contact", href: "/contact", emoji: "✉️" },
-  { divider: true },
-  // Pinned resources (when they belong in the menu), then the packaged
-  // product — always the last thing read.
-  ...bottomPinnedProducts().filter((p) => p.showInNav !== false).map((p) => menuItem(p)),
-  ...(featured && featured.showInNav !== false ? [menuItem(featured, "Product")] : []),
+  ...(TAIL.length > 0 ? [{ divider: true } as Item, ...TAIL] : []),
 ];
 
 export default function OpenMirrorNav() {
