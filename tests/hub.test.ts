@@ -322,8 +322,8 @@ test("About is the plain business page in the owner's structure", () => {
     "CrossHeartPray named once, plainly, in the opening");
   assert.match(about, /Here is what Open Mirror is working on\./, "the Projects intro");
   assert.match(about, /Work with Open Mirror/, "the closing section heading");
-  assert.match(about, /Start a conversation/, "the closing button label");
-  assert.match(about, /href="\/contact"/, "the closing action lands on Contact");
+  assert.match(about, /Email me/, "the closing button label is the plain email action");
+  assert.match(about, /mailto:\$\{SERVICE_EMAIL\}/, "the closing action is a direct email");
   // The disclaimer anchor keeps old deep links working.
   assert.match(about, /id="disclaimer"/, "existing #disclaimer deep links must still land");
   // Retired copy that must never come back (owner, 2026-07-20).
@@ -560,39 +560,47 @@ test("the homepage renders no featured-product panel", () => {
 // directory" above is the lock that replaced them.
 
 // ── Contact copy ────────────────────────────────────────────────────────────
-// Owner brief (2026-07-19, work-with rewrite): Contact says plainly that
-// people can hire or collaborate with Open Mirror. These locks replaced the
-// earlier say-less locks at the owner's direction.
+// Owner brief (2026-07-20, say-less rewrite — replaces the 2026-07-19
+// work-with locks at the owner's direction): Contact is a simple "email me
+// and we'll talk" page. No pitch, no service cards, no questionnaire, no
+// personal-reply promises. The retired copy below must never come back.
 
-test("Contact carries the work-with structure", () => {
+test("Contact is the simple email-me page", () => {
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
-  assert.match(services, /Work with Open Mirror/, "the eyebrow announces working with Open Mirror");
-  assert.match(services, /Bring me what you’re building\./, "the headline is the owner's line");
-  assert.match(services, /A practical way forward/, "the services section heading");
-  assert.match(services, /Shape the idea/, "card one: shape the idea");
-  assert.match(services, /Improve what exists/, "card two: improve what exists");
-  assert.match(services, /Find the next step/, "card three: find the next step");
-  assert.match(services, /Tell me what you’re working on\./, "the CTA heading");
-  assert.match(services, /read it personally/, "the personal-reply promise stays");
-  assert.match(services, /Start the conversation/, "the primary button label");
-});
-
-test("Contact action is a mailto with the inquiry subject and note body", () => {
   const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
-  const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
-  assert.match(contact, /mailto:\$\{SERVICE_EMAIL\}\?subject=/, "the action is a mailto with a subject");
-  assert.match(contact, /&body=/, "the mailto pre-fills the three-question note");
-  assert.match(services, /Open Mirror project inquiry/, "the subject line is locked");
-  assert.match(services, /What are you building\?/, "body question one");
-  assert.match(services, /Where are you stuck\?/, "body question two");
-  assert.match(services, /What would a good result look like\?/, "body question three");
-  assert.match(contact, /\{SERVICE_EMAIL\}/, "the address stays visible on the page");
+  assert.match(services, /Contact Open Mirror/, "the plain headline");
+  assert.match(services, /Email me and we'll talk\./, "the one-line message");
+  assert.match(services, /EMAIL_BUTTON = "Email me"/, "the plain button label");
+  // Retired 2026-07-20 (owner: too much, too personal-salesy). Never restore.
+  const retired = [
+    /Bring me what you’re building/,
+    /Tell me what you’re working on/,
+    /read it personally/,
+    /Start the conversation/,
+    /A practical way forward/,
+    /Shape the idea/,
+    /Improve what exists/,
+    /Find the next step/,
+    /What are you building\?/,
+    /No pitch deck/,
+  ];
+  for (const pattern of retired) {
+    assert.doesNotMatch(services + contact, pattern, `retired contact copy must stay gone: ${pattern}`);
+  }
 });
 
-test("Contact availability note is confident, not apologetic", () => {
+test("Contact action is a plain mailto, address visible, no pre-filled questionnaire", () => {
+  const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
+  assert.match(contact, /mailto:\$\{SERVICE_EMAIL\}\?subject=/, "the action is a mailto with a subject");
+  assert.doesNotMatch(contact, /&body=/, "no pre-filled note body");
+  assert.match(contact, /\{SERVICE_EMAIL\}/, "the address stays visible on the page");
+  assert.match(contact, /\{AVAILABILITY_NOTE\}/, "the evenings-and-weekends fact stays");
+});
+
+test("Contact availability note is plain, not apologetic", () => {
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
   assert.match(services, /alongside a full-time job/, "the availability note names the reality plainly");
-  assert.match(services, /reply personally during evenings and weekends/, "and says when replies come");
+  assert.match(services, /reply during evenings and weekends/, "and says when replies come");
   assert.doesNotMatch(services, /sorry|apolog|unfortunately|please note|be patient/i,
     "no apologetic or warning language around availability");
 });

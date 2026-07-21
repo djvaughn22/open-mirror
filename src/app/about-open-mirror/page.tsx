@@ -10,7 +10,11 @@ import {
 } from "../../lib/products";
 import { MISSION_HAIKUS } from "../../lib/haikus";
 import { BE_PREPARED_CARD } from "../../lib/destinations";
-import { AVAILABILITY_LINE } from "../../lib/services";
+import {
+  AVAILABILITY_LINE,
+  MAILTO_SUBJECT,
+  SERVICE_EMAIL,
+} from "../../lib/services";
 import AboutDestinationCard from "../../components/AboutDestinationCard";
 
 const META_DESCRIPTION =
@@ -37,9 +41,9 @@ const OPENING = [
 
 const PROJECTS_INTRO = "Here is what Open Mirror is working on.";
 
+// Say-less (owner, 2026-07-20): one plain line, one email button. No pitch.
 const WORK_WITH = [
-  "Open Mirror builds its own products and also takes on a small number of outside projects.",
-  "Have something you want to build, improve, or finish? Send a short note about what you have and where you are stuck.",
+  "Have something you want to build, fix, or finish? Email me and we'll talk.",
 ];
 
 const heading2 = "text-2xl font-black tracking-tight";
@@ -171,13 +175,16 @@ export default function AboutOpenMirror() {
           ))}
           <p className={body}>{AVAILABILITY_LINE}</p>
           <p className="mt-5">
-            <Link
-              href="/contact"
+            <a
+              href={`mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(MAILTO_SUBJECT)}`}
               className={`inline-block rounded-full px-7 py-3.5 text-sm font-black transition hover:opacity-90 ${focusRing}`}
               style={{ background: "var(--om-accent)", color: "var(--om-ink)" }}
             >
-              Start a conversation
-            </Link>
+              Email me
+            </a>
+          </p>
+          <p className="mt-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+            {SERVICE_EMAIL}
           </p>
         </section>
 

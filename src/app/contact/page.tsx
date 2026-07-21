@@ -2,19 +2,13 @@ import type { Metadata } from "next";
 import {
   AVAILABILITY_LINE,
   AVAILABILITY_NOTE,
-  CTA_BUTTON,
-  CTA_COPY,
-  CTA_HEADING,
+  BODY_LINE,
+  EMAIL_BUTTON,
   EYEBROW,
   HEADLINE,
-  INTRO,
-  MAILTO_BODY,
   MAILTO_SUBJECT,
   META_DESCRIPTION,
   PAGE_TITLE,
-  SECTION_COPY,
-  SECTION_HEADING,
-  SERVICES,
   SERVICE_EMAIL,
 } from "../../lib/services";
 
@@ -47,7 +41,7 @@ const structuredData = {
   publisher: { "@type": "Organization", name: "Open Mirror LLC" },
 };
 
-const MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(MAILTO_SUBJECT)}&body=${encodeURIComponent(MAILTO_BODY)}`;
+const MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(MAILTO_SUBJECT)}`;
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7dd3fc]";
@@ -69,64 +63,30 @@ export default function Contact() {
           {HEADLINE}
         </h1>
 
-        {INTRO.map((line) => (
-          <p
-            key={line}
-            className="mt-6 text-pretty text-base font-semibold leading-8 text-[#94a3b8]"
+        <p className="mt-6 text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
+          {BODY_LINE}
+        </p>
+
+        <p className="mt-8">
+          <a
+            href={MAILTO}
+            className={`inline-block rounded-full px-7 py-3.5 text-sm font-black transition hover:opacity-90 ${focusRing}`}
+            style={{ background: "var(--om-accent)", color: "var(--om-ink)" }}
           >
-            {line}
-          </p>
-        ))}
+            {EMAIL_BUTTON}
+          </a>
+        </p>
 
-        <section className="mt-12" aria-label={SECTION_HEADING}>
-          <h2 className="text-2xl font-black tracking-tight">{SECTION_HEADING}</h2>
-          <p className="mt-3 text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
-            {SECTION_COPY}
-          </p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {SERVICES.map((service) => (
-              <div
-                key={service.title}
-                className="rounded-2xl border border-[#26324c] bg-[#141d2e] p-5"
-              >
-                <h3 className="text-base font-black leading-6">{service.title}</h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-[#94a3b8]">
-                  {service.copy}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <p className="mt-4 text-sm font-semibold leading-7 text-[#94a3b8]">
+          <a
+            href={MAILTO}
+            className={`font-black text-[#7dd3fc] transition hover:underline ${focusRing}`}
+          >
+            {SERVICE_EMAIL}
+          </a>
+        </p>
 
-        <section
-          className="mt-12 rounded-3xl border border-[#26324c] bg-[#0f1826] p-6 sm:p-8"
-          aria-label={CTA_HEADING}
-        >
-          <h2 className="text-2xl font-black tracking-tight">{CTA_HEADING}</h2>
-          <p className="mt-3 text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
-            {CTA_COPY}
-          </p>
-          <p className="mt-6">
-            <a
-              href={MAILTO}
-              className={`inline-block rounded-full px-7 py-3.5 text-sm font-black transition hover:opacity-90 ${focusRing}`}
-              style={{ background: "var(--om-accent)", color: "var(--om-ink)" }}
-            >
-              {CTA_BUTTON}
-            </a>
-          </p>
-          <p className="mt-4 text-sm font-semibold leading-7 text-[#94a3b8]">
-            Or write directly:{" "}
-            <a
-              href={MAILTO}
-              className={`font-black text-[#7dd3fc] transition hover:underline ${focusRing}`}
-            >
-              {SERVICE_EMAIL}
-            </a>
-          </p>
-        </section>
-
-        <p className="mt-8 text-sm font-semibold leading-7 text-[#64748b]">
+        <p className="mt-10 text-sm font-semibold leading-7 text-[#64748b]">
           {AVAILABILITY_LINE}
         </p>
         <p className="mt-2 text-sm font-semibold leading-7 text-[#64748b]">
