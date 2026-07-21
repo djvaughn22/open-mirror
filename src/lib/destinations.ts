@@ -78,6 +78,39 @@ export type DestinationCardContent = {
 // into emergency marketing, urgency, or sales copy.
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Open Mirror Resale — the eBay-oriented sibling shop beside PleaseBeReady's
+// Amazon-oriented one. The public shop name, description, and store URL live
+// HERE and nowhere else, so the working name can change without a code search.
+//
+// GATED until real: the card stays unrendered (enabled: false, empty href)
+// until the owner's branded eBay Store actually exists and opens. To go live,
+// paste the real https://www.ebay.com/str/… address into `href` and set
+// `enabled: true` — never a guessed or placeholder URL, and never the private
+// Store Engine address.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const OPEN_MIRROR_RESALE_CARD: DestinationCardContent = {
+  eyebrow: "Shop",
+  heading: "Open Mirror Resale",
+  body: [
+    "Real items, clearly listed, through the Open Mirror eBay Store.",
+    "Browsing and checkout happen on eBay.",
+  ],
+  attribution: "An Open Mirror shop",
+  emblem: "🏷️",
+  destinations: [
+    {
+      label: "Shop on eBay",
+      href: "", // the real eBay Store URL, once it exists and opens.
+      kind: "store",
+      external: true,
+      enabled: false,
+      status: "available",
+    },
+  ],
+};
+
 export const BE_PREPARED_CARD: DestinationCardContent = {
   eyebrow: "A small reminder",
   heading: "Be prepared. Nothing dramatic.",

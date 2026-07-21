@@ -9,7 +9,7 @@ import {
   type Product,
 } from "../../lib/products";
 import { MISSION_HAIKUS } from "../../lib/haikus";
-import { BE_PREPARED_CARD } from "../../lib/destinations";
+import { BE_PREPARED_CARD, OPEN_MIRROR_RESALE_CARD } from "../../lib/destinations";
 import {
   AVAILABILITY_LINE,
   MAILTO_SUBJECT,
@@ -155,14 +155,15 @@ export default function AboutOpenMirror() {
           ))}
         </div>
 
-        {/* The pinned live resource renders as the quiet reminder card, not a
-            second project row. It renders only while the registry still pins
-            the live destination. */}
-        {pinned.length > 0 && (
-          <div className="mt-10">
-            <AboutDestinationCard card={BE_PREPARED_CARD} />
-          </div>
-        )}
+        {/* Shops: PleaseBeReady's Amazon-oriented card and, beside it, the
+            eBay-oriented Open Mirror Resale card. Each renders only while its
+            destination is confirmed live in the registry — the resale card
+            stays hidden until the real eBay Store URL exists and is enabled
+            in src/lib/destinations.ts. */}
+        <div className="mt-10 grid gap-3" aria-label="Shops">
+          {pinned.length > 0 && <AboutDestinationCard card={BE_PREPARED_CARD} />}
+          <AboutDestinationCard card={OPEN_MIRROR_RESALE_CARD} />
+        </div>
 
         {/* id="disclaimer" keeps old /about-open-mirror#disclaimer deep links
             landing near the bottom; the footer carries the visible link. */}

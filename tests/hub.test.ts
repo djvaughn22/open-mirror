@@ -26,7 +26,7 @@ import {
 } from "../src/lib/products.ts";
 // services.ts imports ./products without an extension (fine for Next, not for
 // the strip-types test runner), so its locks below scan the source instead.
-import { BE_PREPARED_CARD, liveDestinations } from "../src/lib/destinations.ts";
+import { BE_PREPARED_CARD, OPEN_MIRROR_RESALE_CARD, liveDestinations } from "../src/lib/destinations.ts";
 
 const repoRoot = join(import.meta.dirname, "..");
 const byName = (name: string): Product => {
@@ -249,6 +249,45 @@ test("the Be Prepared card keeps its exact destination and message", () => {
   const copy = `${BE_PREPARED_CARD.body.join(" ")} ${share.text}`;
   assert.doesNotMatch(copy, /disaster|too late|protect your family|survival|bunker|when.*strikes/i,
     "the reminder never becomes fear copy");
+});
+
+test("Open Mirror Resale stays a gated eBay shop card, never a dead link", () => {
+  assert.equal(OPEN_MIRROR_RESALE_CARD.heading, "Open Mirror Resale");
+  assert.match(OPEN_MIRROR_RESALE_CARD.body.join(" "), /Real items, clearly listed, through the Open Mirror eBay Store\./,
+    "the plain supporting copy is locked");
+  assert.match(OPEN_MIRROR_RESALE_CARD.body.join(" "), /checkout happen(s)? on eBay/i,
+    "the card must say checkout happens on eBay");
+
+  const entry = OPEN_MIRROR_RESALE_CARD.destinations[0];
+  assert.ok(entry, "the shop destination entry exists");
+  assert.equal(entry.label, "Shop on eBay");
+  assert.equal(entry.kind, "store");
+  assert.equal(entry.external, true, "the store opens in a new tab with safe attributes");
+
+  if (entry.enabled === false || entry.href.trim() === "") {
+    // Not yet live: nothing may render — no dead links, no placeholder store.
+    assert.equal(liveDestinations(OPEN_MIRROR_RESALE_CARD.destinations).length, 0,
+      "the resale card stays hidden until the real eBay Store URL exists");
+  } else {
+    // Once enabled it must point at a real public eBay Store, never the
+    // private Store Engine and never a guessed placeholder.
+    assert.match(entry.href, /^https:\/\/(www\.)?ebay\.com\//, "the shop link must be a public ebay.com URL");
+    assert.doesNotMatch(entry.href, /store-engine|vercel\.app|example|placeholder/i);
+  }
+
+  const copy = JSON.stringify(OPEN_MIRROR_RESALE_CARD);
+  assert.doesNotMatch(copy, /treasure|rare finds|curated luxury|prepper|scarcity|sustainab/i,
+    "resale copy stays grounded — no hype");
+});
+
+test("the About page renders the resale card beside PleaseBeReady in the Shops area", () => {
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /OPEN_MIRROR_RESALE_CARD/, "the resale card content comes from the destination config");
+  assert.match(about, /aria-label="Shops"/, "the two shop cards share one quiet Shops area");
+  assert.ok(
+    about.indexOf("OPEN_MIRROR_RESALE_CARD") > about.indexOf("BE_PREPARED_CARD"),
+    "PleaseBeReady stays first; the resale card sits beside/after it"
+  );
 });
 
 test("the destination card component stays generic and safe", () => {
