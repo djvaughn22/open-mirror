@@ -106,10 +106,10 @@ export const products: Product[] = [
     name: "CrossHeartPray",
     emoji: "✝️",
     description:
-      "Read the Bible, follow a 52-week reading plan, discover Life Essentials principles from Dr. Gene Getz, play Bible Bingo 7, and pray with Daily Hope — Scripture at the center.",
+      "Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7 — your daily faith routine.",
     aboutLine:
-      "Read the Bible, follow a 52-week plan, discover Life Essentials principles from Dr. Gene Getz, play Bible Bingo 7, and pray — Scripture at the center.",
-    aboutAction: "Visit CrossHeartPray",
+      "A daily faith routine — Daily Hope, a Bible reading plan, Life Essentials, and Bible Bingo. Gospel first.",
+    aboutAction: "Open CrossHeartPray",
     access: "Foundation",
     accessNote: "First Build",
     accent: "#C4B5FD",
