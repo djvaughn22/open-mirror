@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
-import { bottomPinnedProducts, featuredProduct, foundationProduct, type Product } from "../lib/products";
+import { bottomPinnedProducts, featuredProduct, type Product } from "../lib/products";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string; emoji?: string };
 
@@ -17,7 +17,6 @@ function menuItem(p: Product, note?: string): Item {
   return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note, emoji: p.emoji };
 }
 
-const foundation = foundationProduct();
 const featured = featuredProduct();
 
 // Pinned resources and the packaged product render only while they belong in
@@ -30,9 +29,9 @@ const TAIL: Item[] = [
 ];
 
 const MENU: Item[] = [
+  // CrossHeartPray (the Foundation) is reached through the shared footer
+  // (2026-07-30 family standard) — the menu holds only this site's pages.
   { label: "Open Mirror Home", href: "/", emoji: "🪞" },
-  // The Foundation sits directly under Home, with no divider between them.
-  ...(foundation ? [menuItem(foundation, "Foundation")] : []),
   { divider: true },
   { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
   { label: "Contact", href: "/contact", emoji: "✉️" },

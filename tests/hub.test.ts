@@ -156,10 +156,12 @@ test("the nav menu groups Exploring ideas", () => {
 
 test("the nav derives its order from the registry, not a hard-coded list", () => {
   const nav = readFileSync(join(repoRoot, "src/components/OpenMirrorNav.tsx"), "utf8");
-  // Compact menu (2026-07-19): the homepage is the directory, so the menu
-  // carries only Home, the Foundation, About, Contact, pinned resources, and
-  // the packaged product — every product row still pulled from the registry.
-  assert.match(nav, /foundationProduct\(\)/, "the Foundation row must come from the registry");
+  // Compact menu (2026-07-30): the homepage is the directory, so the menu
+  // carries only Home, About, Contact, pinned resources, and the packaged
+  // product — every product row still pulled from the registry. The
+  // Foundation (CrossHeartPray) moved to the shared footer's ✝️ ❤️ 🙏 link;
+  // it must NOT come back as a menu row.
+  assert.doesNotMatch(nav, /foundationProduct\(\)/, "the Foundation belongs to the footer, not the menu");
   assert.match(nav, /bottomPinnedProducts\(\)/, "pinned resources must come from the registry");
   assert.match(nav, /featuredProduct\(\)/, "the packaged product row must come from the registry");
   // A second hand-kept array of names is how ordering silently drifted before.

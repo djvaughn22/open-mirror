@@ -50,7 +50,7 @@ export default function RootLayout({
           {children}
           {/* The hub passes no identity — the footer's own Open Mirror lines
               already carry the name; a siteName here would duplicate it. */}
-          <OpenMirrorFooter />
+          <OpenMirrorFooter disclaimerHref="/disclaimer" />
         </VisualThemeProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-91WTHE5VQJ"
