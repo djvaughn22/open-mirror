@@ -105,8 +105,6 @@ for (const name of [
   "StepInTheRing",
   "OpenDoku",
   "WhatAmIAI",
-  "Fambookagram",
-  "Friendbookagram",
 ]) {
   test(`${name} is public and on About`, () => {
     const p = byName(name);
@@ -123,31 +121,18 @@ test("WhatAmIAI is represented honestly — free to use, still building", () => 
   assert.equal(p.accessNote, "Building");
 });
 
-// ── Fambookagram + Friendbookagram: public examples, in the menu ────────────
+// ── Fambookagram + Friendbookagram: retired 2026-08-02 ──────────────────────
+// Both concepts now live inside iDontCry (idontcry.com/fambookagram and
+// idontcry.com/friendbookagram). They must not reappear in the registry.
 
 for (const name of ["Fambookagram", "Friendbookagram"]) {
-  test(`${name} is an Exploring idea, not a failure`, () => {
-    const p = byName(name);
-    assert.equal(p.access, "Exploring");
-    assert.equal(p.status, "exploring");
-    // The placeholder-domain sentence is protected owner copy.
-    assert.match(p.description, /Placeholder domain while we test the concept/);
-  });
-
-  test(`${name} appears in shared navigation`, () => {
-    assert.notEqual(byName(name).showInNav, false, `${name} must stay in the nav menu`);
+  test(`${name} stays retired from the portfolio`, () => {
+    assert.ok(
+      !products.some((p) => p.name === name),
+      `${name} was retired into iDontCry on 2026-08-02 — do not re-add it to the registry`
+    );
   });
 }
-
-test("the nav menu groups Exploring ideas", () => {
-  const exploring = navGroups().find((g) => g.key === "exploring");
-  assert.equal(exploring?.heading, "Exploring ideas", "nav needs a labelled Exploring ideas group");
-  assert.deepEqual(
-    exploring?.items.map((p) => p.name),
-    ["Fambookagram", "Friendbookagram"],
-    "both exploring ideas belong in the menu"
-  );
-});
 
 // ── Shared navigation order ────────────────────────────────────────────────
 //
@@ -186,8 +171,8 @@ test("CrossHeartPray is first in shared navigation", () => {
 test("shared navigation follows the owner's group order", () => {
   assert.deepEqual(
     navGroups().map((g) => g.key),
-    ["foundation", "free", "inProgress", "exploring"],
-    "Foundation → public → building → exploring; resources and product stay low-key"
+    ["foundation", "free", "inProgress"],
+    "Foundation → public → building; resources and product stay low-key"
   );
 });
 

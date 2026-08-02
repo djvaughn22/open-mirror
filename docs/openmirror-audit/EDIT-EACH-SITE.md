@@ -32,8 +32,8 @@ git push                 # 4. save to GitHub — every site auto-deploys on push
 | WatchedNotWatched | `~/WatchedNotWatched/watched-not-watched` | `src/app/page.tsx` | push (auto) |
 | WhatAmIAI | `~/WhatAmIAI/whatamiai` | `app/page.tsx` | push (auto) |
 | PleaseBeReady | `~/PleaseBeReady/pleasebeready` | `app/page.tsx` | push (auto) |
-| Fambookagram | `~/Fambookagram/fambookagram` | `app/page.tsx` | push (auto) |
-| Friendbookagram | `~/Friendbookagram/friendbookagram` | `app/page.tsx` | push (auto) |
+| Fambookagram (retired 2026-08-02 → idontcry.com/fambookagram) | `~/Fambookagram/fambookagram` (archived) | — | — |
+| Friendbookagram (retired 2026-08-02 → idontcry.com/friendbookagram) | `~/Friendbookagram/friendbookagram` (archived) | — | — |
 
 ## The family colors (use these everywhere — cool, no red/yellow/orange)
 ```

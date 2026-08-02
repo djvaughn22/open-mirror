@@ -62,7 +62,7 @@ sessions do not re-litigate the mission.
 | OpenDoku + games | Puzzle games that feel like games | Play | Quiet footer + About page line | No business messaging in gameplay | None |
 | PleaseBeReady | Calm emergency prep | Work the checklists / gear links | Shared footer only | Honest statuses; no fake commerce | None |
 | WhatAmIAI | AI-usage self-reflection | Run a reflection | Shared footer only | Building status stays honest | None |
-| Fam/Friendbookagram | Parked private-feed concepts | (Exploring; not promoted) | Shared footer only | Placeholder-domain honesty stays | None |
+| Fam/Friendbookagram | Retired as standalone products (2026-08-02) | Concept pages inside iDontCry | — | Live at idontcry.com/fambookagram + /friendbookagram; no longer in the portfolio | None |
 | Design Shop / engines | Creation infrastructure (in StepInTheRing) | Make → improve → export | Natural bridge to Ring + owner at production time | Not a consulting advertisement | None |
 
 Open Mirror LLC is an independent digital product studio that turns useful ideas into working digital products.
@@ -110,7 +110,7 @@ It exists to turn imagination into useful, ownable, real-world value.
 - **WhatAmIAI** — Self-assessment and AI-usage reflection. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding.
 - **Reflect** — Hidden personal experiment. Route stays live; not promoted in the portfolio.
 - **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority.
-- **Fambookagram / Friendbookagram** — Parked concepts. Not imminent launches; code preserved for later reuse.
+- **Fambookagram / Friendbookagram** — Retired as standalone products on 2026-08-02. The concepts live on as playground pages inside iDontCry (idontcry.com/fambookagram, idontcry.com/friendbookagram); standalone repos archived with history preserved.
 - **Design Shop / Creation Engines** — Commercial creation infrastructure. Belongs with StepInTheRing, not the hub. Engines must eventually produce real finished outputs, not just ideas.
 
 ## Hub role

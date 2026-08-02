@@ -21,8 +21,6 @@ TARGETS=(
   "$HOME/TheDJCares/thedjcares/app"
   "$HOME/DontCloneMeTom/dont-clone-me-tom/app"
   "$HOME/PleaseBeReady/pleasebeready/app"
-  "$HOME/Fambookagram/fambookagram/app"
-  "$HOME/Friendbookagram/friendbookagram/app"
   "$HOME/WhatAmIAI/whatamiai/app"
   "$HOME/idontcry/src/app"
   "$HOME/WatchedNotWatched/watched-not-watched/src/app"

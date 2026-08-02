@@ -11,8 +11,8 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 - **Site accents** (the colored ".com" wherever a site name appears — master
   list in `src/app/page.tsx` Project arrays): CrossHeartPray #C4B5FD ·
   TheDJCares #A78BFA · WhatAmIAI #E879F9 · Reflect #93C5FD · DontCloneMeTom
-  #2DD4BF · iDontCry #38BDF8 · StepInTheRing #60A5FA · Fambookagram #C084FC ·
-  Friendbookagram #818CF8 · WatchedNotWatched #22D3EE · PleaseBeReady #34D399.
+  #2DD4BF · iDontCry #38BDF8 · StepInTheRing #60A5FA · WatchedNotWatched
+  #22D3EE · PleaseBeReady #34D399.
 - **Shared chrome is canonical here:** `packages/openmirror-ui/`
   (OpenMirrorNav, OpenMirrorFooter, OpenMirrorTheme = ☀️/🌙 toggle + light CSS).
   Edit those files ONLY here, then run `./scripts/sync-ui.sh` to copy into

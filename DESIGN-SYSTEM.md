@@ -20,8 +20,6 @@ Every non-CrossHeartPray site uses the **same flat surfaces** and differs only b
 |---|---|
 | PleaseBeReady | `#34D399` emerald |
 | DontCloneMeTom | `#FB923C` orange |
-| Fambookagram | `#FBBF24` amber |
-| Friendbookagram | `#818CF8` indigo |
 | WhatAmIAI | `#A78BFA` purple |
 | TheDJCares | `#FB7185` rose |
 

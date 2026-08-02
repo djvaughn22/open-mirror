@@ -2013,8 +2013,8 @@ html[data-om-theme="light"] body :is([class*="text-[#22d3ee]" i], [style*="color
 }
 
 /* The shared theme's #94a3b8 rules are case-sensitive, so an inline
-   `color:#94A3B8` (how the Exploring label renders — Fambookagram and
-   Friendbookagram) slipped through at 2.08:1 on light. Match either case. */
+   `color:#94A3B8` (how the Exploring status label renders) slipped through
+   at 2.08:1 on light. Match either case. */
 html[data-om-theme="light"] body :is([class*="text-[#94a3b8]" i], [style*="color:#94a3b8" i], [style*="color: #94a3b8" i]) {
   color: #475569 !important;
 }

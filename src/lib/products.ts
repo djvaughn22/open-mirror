@@ -263,37 +263,9 @@ export const products: Product[] = [
     status: "building",
     category: "creativity",
   },
-  {
-    // PROTECTED copy — a real, visible example of an idea still being tested.
-    // The placeholder-domain sentence is deliberate. Never hide, park, merge,
-    // rename, or rewrite this as a failed product.
-    name: "Fambookagram",
-    emoji: "👨‍👩‍👧‍👦",
-    description:
-      "Your family's private feed. Photos and moments — no ads, no algorithm, no strangers. Placeholder domain while we test the concept — if it proves valuable, expect a domain change.",
-    aboutLine: "A private family feed — an idea still being tested.",
-    aboutAction: "Take a look",
-    access: "Exploring",
-    accent: "#C084FC",
-    href: "https://fambookagram.com",
-    status: "exploring",
-    category: "family",
-  },
-  {
-    // PROTECTED copy — see Fambookagram above. Same role, same rules.
-    name: "Friendbookagram",
-    emoji: "🫂",
-    description:
-      "Where your friends actually stay in touch. Private, calm, invite-only. Placeholder domain while we test the concept — if it proves valuable, expect a domain change.",
-    aboutLine:
-      "Where friends actually stay in touch — an idea still being tested.",
-    aboutAction: "Take a look",
-    access: "Exploring",
-    accent: "#818CF8",
-    href: "https://friendbookagram.com",
-    status: "exploring",
-    category: "family",
-  },
+  // Fambookagram + Friendbookagram retired as standalone products on
+  // 2026-08-02 (owner decision). The concepts live on as playground pages:
+  // idontcry.com/fambookagram and idontcry.com/friendbookagram.
   {
     // The first packaged Open Mirror product. Featured — it renders as its own
     // panel, not as one more card. No checkout exists yet, so the qualifier

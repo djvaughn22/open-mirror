@@ -16,8 +16,8 @@ CrossHeartPray family of pages.
 - **Tests:** `npm test` — Node's built-in runner (`tests/hub.test.ts`), no framework.
   Locks the rules that are easy to break by accident: CrossHeartPray stays the
   Foundation and stays first, Old Laptop stays the featured product marked
-  "Preparing for Release", every public project (incl. Fambookagram and
-  Friendbookagram) stays public and in the nav, Reflect stays hidden, About keeps
+  "Preparing for Release", every public project stays public and in the nav,
+  Reflect stays hidden, About keeps
   deriving from the registry, and no paid ZIP reappears under `public/`.
   Run it after touching `src/lib/products.ts`.
 - **Routes:** `/` (portfolio), `/about-open-mirror`, `/contact`, `/reflect`, per-product pages (`/crossheartpray`, `/step-in-the-ring`, …), plus mirrored CHP pages (`/cross`, `/heart`, `/pray`, `/daily-hope`, `/bible-reading-plan`, `/bible-bingo/[boardId]`, `/explorebible`). `/talk-with-the-owner` and `/work-with-the-founder` permanently redirect to `/contact`.
