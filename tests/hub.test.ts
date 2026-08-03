@@ -301,7 +301,8 @@ test("About renders the reminder card from its config, below the projects", () =
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
   assert.match(about, /AboutDestinationCard/, "About uses the reusable card");
   assert.match(about, /BE_PREPARED_CARD/, "the card content comes from the destination config");
-  assert.match(about, /AVAILABILITY_LINE/, "the work-with section reads the availability switch");
+  // (2026-08-02: the availability switch renders on /contact only — About
+  // offers no services, just the contact and disclaimer landing sections.)
   assert.ok(
     about.indexOf("AboutDestinationCard card=") > about.indexOf('aria-label="Projects"'),
     "the reminder card sits below the projects, never above the page's own story"
@@ -347,11 +348,14 @@ test("About is the plain business page in the owner's structure", () => {
   assert.match(about, /CrossHeartPray came first and remains its own faith-based project\./,
     "CrossHeartPray named once, plainly, in the opening");
   assert.match(about, /Here is what Open Mirror is working on\./, "the Projects intro");
-  assert.match(about, /Work with Open Mirror/, "the closing section heading");
-  assert.match(about, /Email me/, "the closing button label is the plain email action");
-  assert.match(about, /mailto:\$\{SERVICE_EMAIL\}/, "the closing action is a direct email");
-  // The disclaimer anchor keeps old deep links working.
-  assert.match(about, /id="disclaimer"/, "existing #disclaimer deep links must still land");
+  // Footer landing sections (family standard, 2026-08-02): Contact and
+  // Disclaimer live ON About — no services pitch, no availability line.
+  assert.match(about, /id="contact"/, "the footer's Contact link must land here");
+  assert.match(about, /Email me/, "the contact button label is the plain email action");
+  assert.match(about, /mailto:\$\{SERVICE_EMAIL\}/, "the contact action is a direct email");
+  assert.doesNotMatch(about, /AVAILABILITY_LINE/, "About offers no services — just contact");
+  assert.match(about, /id="disclaimer"/, "the footer's Disclaimer link must land here");
+  assert.match(about, /independently owned and operated/, "the approved independence wording");
   // Retired copy that must never come back (owner, 2026-07-20).
   assert.doesNotMatch(about, /Travis/, "no personal names on About, ever");
   assert.doesNotMatch(about, /Ideas are better|One studio|What grew from it|Built by starting|sales funnel|starting points/,

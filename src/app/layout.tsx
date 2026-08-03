@@ -48,7 +48,7 @@ export default function RootLayout({
         <VisualThemeProvider>
           <OpenMirrorNav />
           {children}
-          <OpenMirrorFooter hub />
+          <OpenMirrorFooter aboutHref="/about-open-mirror" />
         </VisualThemeProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-91WTHE5VQJ"

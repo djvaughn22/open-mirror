@@ -10,11 +10,7 @@ import {
 } from "../../lib/products";
 import { MISSION_HAIKUS } from "../../lib/haikus";
 import { BE_PREPARED_CARD, OPEN_MIRROR_RESALE_CARD } from "../../lib/destinations";
-import {
-  AVAILABILITY_LINE,
-  MAILTO_SUBJECT,
-  SERVICE_EMAIL,
-} from "../../lib/services";
+import { MAILTO_SUBJECT, SERVICE_EMAIL } from "../../lib/services";
 import AboutDestinationCard from "../../components/AboutDestinationCard";
 
 const META_DESCRIPTION =
@@ -165,16 +161,16 @@ export default function AboutOpenMirror() {
           <AboutDestinationCard card={OPEN_MIRROR_RESALE_CARD} />
         </div>
 
-        {/* id="disclaimer" keeps old /about-open-mirror#disclaimer deep links
-            landing near the bottom; the footer carries the visible link. */}
-        <section id="disclaimer" className="mt-10 scroll-mt-24">
-          <h2 className={heading2}>Work with Open Mirror</h2>
+        {/* The footer's Contact and Disclaimer links land on these two
+            sections (family standard, 2026-08-02). No services offered —
+            just the one way to reach the owner. */}
+        <section id="contact" className="mt-10 scroll-mt-24">
+          <h2 className={heading2}>Contact</h2>
           {WORK_WITH.map((line) => (
             <p key={line} className={body}>
               {line}
             </p>
           ))}
-          <p className={body}>{AVAILABILITY_LINE}</p>
           <p className="mt-5">
             <a
               href={`mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(MAILTO_SUBJECT)}`}
@@ -186,6 +182,25 @@ export default function AboutOpenMirror() {
           </p>
           <p className="mt-4 text-sm font-semibold leading-7 text-[#94a3b8]">
             {SERVICE_EMAIL}
+          </p>
+        </section>
+
+        <section id="disclaimer" className="mt-10 scroll-mt-24">
+          <h2 className={heading2}>Disclaimer</h2>
+          <p className={body}>
+            Open Mirror LLC is independently owned and operated. Nothing
+            published by Open Mirror LLC is sponsored by, affiliated with,
+            endorsed by, or representative of the owner&rsquo;s full-time
+            employer.
+          </p>
+          <p className={body}>
+            <Link
+              href="/disclaimer"
+              className={`font-black text-[#7dd3fc] transition hover:underline ${focusRing}`}
+            >
+              Read the full disclaimer
+            </Link>
+            .
           </p>
         </section>
 
