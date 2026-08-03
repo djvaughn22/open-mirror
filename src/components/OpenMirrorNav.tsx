@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import OpenMirrorThemeToggle from "../../packages/openmirror-ui/OpenMirrorTheme";
 import { bottomPinnedProducts, featuredProduct, type Product } from "../lib/products";
+import { CONTACT_MAILTO } from "../lib/services";
 
 type Item = { label?: string; href?: string; external?: boolean; note?: string; divider?: boolean; heading?: string; emoji?: string };
 
@@ -34,7 +35,9 @@ const MENU: Item[] = [
   { label: "Open Mirror Home", href: "/", emoji: "🪞" },
   { divider: true },
   { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
-  { label: "Contact", href: "/contact", emoji: "✉️" },
+  // Contact opens email directly (2026-08-02) — the /contact route stays only
+  // as a compatibility page, outside normal navigation.
+  { label: "Contact", href: CONTACT_MAILTO, emoji: "✉️" },
   ...(TAIL.length > 0 ? [{ divider: true } as Item, ...TAIL] : []),
 ];
 

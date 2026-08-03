@@ -29,6 +29,12 @@ export const EMAIL_BUTTON = "Email me";
 
 export const MAILTO_SUBJECT = "Open Mirror";
 
+/** The one shared contact action (2026-08-02): every "Contact" link in the
+ *  family opens email to the verified address — never a contact webpage. */
+export const CONTACT_MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(
+  "Open Mirror Inquiry",
+)}`;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Consulting availability — one switch, one place (2026-07-20).
 //
