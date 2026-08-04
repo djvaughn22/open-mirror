@@ -394,10 +394,14 @@ test("the request flow pages exist", () => {
   }
 });
 
-test("the hero starts a device request and names both device families", () => {
+// 2026-08-04: the hero became the three-door chooser (Buy · Build Your Own ·
+// Sell or Donate) per the owner's refurbished-business brief. The device
+// request must stay reachable and both device families named.
+test("the hero offers the three doors and the device request stays reachable", () => {
   const page = stripComments(read(PAGE_PATH));
   assert.match(page, /Start a device request/);
-  assert.match(page, /See how it works/);
+  assert.match(page, /Buy a Build Machine/);
+  assert.match(page, /Sell or Donate/i);
   assert.doesNotMatch(page, /buy now/i);
   assert.match(page, /laptop/i);
   assert.match(page, /desktop/i);

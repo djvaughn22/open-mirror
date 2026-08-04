@@ -8,7 +8,9 @@ import {
   SERVICE_TERMS_PATH,
 } from "../../../lib/deviceRequest";
 import { deviceRequestConfigured } from "../../../lib/deviceRequestServer";
+import { availableListings } from "../../../lib/buildMachineInventory";
 import DeviceRequestForm from "./DeviceRequestForm";
+import BuildMachineInterestForm from "./BuildMachineInterestForm";
 
 // The first packaged Open Mirror product, featured from the About page.
 // Name and promise come from the registry entry (`featured: true`).
@@ -50,6 +52,102 @@ export const metadata: Metadata = {
     description: PROMISE,
   },
 };
+
+// 2026-08-04: the offering expanded into a real refurbished-computer
+// business with three doors — Buy a finished Build Machine, Build Your Own
+// (the original self-service + conversion paths, preserved), and Sell or
+// Donate retired equipment. Inventory renders only from
+// buildMachineInventory.ts, which stays empty until real tested machines
+// exist — the page shows an honest "coming soon" state instead of fake
+// listings. Internal economics and the phased pilot plan live in
+// docs/BUILD_MACHINE_BUSINESS.md, never in customer copy.
+
+// What every finished Build Machine is prepared to help someone do.
+const BUILD_MACHINE_PURPOSE = [
+  "Develop an idea",
+  "Learn how to build",
+  "Create websites, apps, tools, and games",
+  "Use a code editor, browser, and terminal",
+  "Work with guided AI tools in the browser",
+  "Move from idea to prototype",
+  "Test and improve the prototype",
+  "Reach a real first version — an MVP you can show",
+];
+
+// Likely categories. None of these imply stocked units — availability comes
+// only from individually tested inventory.
+const BUY_CATEGORIES: { name: string; note: string }[] = [
+  { name: "Build Machine Laptop", note: "Portable and self-contained" },
+  { name: "Build Machine Desktop", note: "Bring your own monitor and keyboard" },
+  { name: "Build Machine Mini", note: "Small, quiet, easy to place" },
+  { name: "Build Machine Workstation", note: "More power for bigger projects" },
+  {
+    name: "Build Machine Mac",
+    note: "Only when an appropriate machine is available",
+  },
+];
+
+// The preparation every sold machine goes through, in order.
+const PREP_PROCESS = [
+  "Ownership and hardware intake are verified.",
+  "Any company or personal management locks must be removed before a machine moves forward.",
+  "The original storage is securely sanitized or removed. The process is intended to follow documented media-sanitization practices.",
+  "The hardware is inspected and cleaned.",
+  "Upgrades are installed when they make sense — usually an SSD or more memory.",
+  "The supported Build Machine software environment is installed and configured.",
+  "Ports, networking, storage, memory, and major functions are tested.",
+  "The machine is packaged with a clear written condition report.",
+];
+
+// Customer-facing hardware guidance, kept behind expandable sections so the
+// page never becomes a wall of specifications.
+const STANDARDS_PREFERRED = [
+  "64-bit processor",
+  "Intel Core i5 or i7 — sixth generation or newer preferred",
+  "AMD Ryzen 3, 5, or 7",
+  "Comparable Intel Xeon workstation processors",
+  "8 GB RAM minimum · 16 GB preferred",
+  "128 GB SSD minimum on a completed entry machine · 256 GB preferred",
+  "Working USB boot support and unlocked firmware",
+  "Functional networking",
+  "No swollen battery, major liquid damage, or structural failure",
+];
+
+const STANDARDS_REVIEW = [
+  "Fourth- or fifth-generation Intel Core machines",
+  "Machines with 4 GB RAM that are economically upgradeable",
+  "Computers without drives, when standard replacement storage fits",
+  "Computers without chargers",
+  "Machines with weak but safe batteries",
+  "Repairable business-class systems",
+  "Workstations with proprietary parts",
+  "Intel Macs",
+  "All-in-one computers",
+];
+
+const STANDARDS_REJECT = [
+  "32-bit-only systems",
+  "Intel Atom, and very low-end Celeron or Pentium systems",
+  "Core 2 Duo and AMD E-series",
+  "Machines permanently limited to 4 GB RAM",
+  "Tiny soldered eMMC-only systems",
+  "Firmware-locked computers and Activation-Locked Macs",
+  "Corporate-management-locked devices",
+  "Swollen batteries and liquid-damaged systems",
+  "Equipment without clear legal ownership",
+];
+
+// What the Sell or Donate door is looking for.
+const SELL_DONATE_INTERESTED = [
+  "Business-class laptops",
+  "Desktops and small-form-factor computers",
+  "Mini PCs",
+  "Workstations",
+  "Selected Intel Macs",
+  "Selected Apple Silicon Macs — a separate premium lane",
+  "Computers without drives, when standard replacement storage can be installed",
+  "Capable machines that can't officially upgrade to Windows 11 but still have useful life",
+];
 
 const RELEASE_LIST_MAILTO = `mailto:${SERVICE_EMAIL}?subject=${encodeURIComponent(
   "Release list — Build Machine playbook"
@@ -348,7 +446,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I send a MacBook or Mac desktop?",
-    a: "Not during the pilot. Apple computers are excluded for now.",
+    a: "Not for conversion — Apple computers are excluded from the conversion pilot for now. If you want to sell or donate a Mac instead, use the interest form: selected Intel and Apple Silicon Macs are reviewed for the Build Machine lineup.",
   },
   {
     q: "Can I send a Chromebook?",
@@ -446,6 +544,8 @@ function PlainList({ items }: { items: string[] }) {
 
 export default function OldComputerToBuildMachine() {
   const requestFormEnabled = deviceRequestConfigured();
+  // Empty until real, tested machines exist — see buildMachineInventory.ts.
+  const listings = availableListings();
 
   return (
     <main className="min-h-screen bg-[#0b1220] text-[#e8edf5]">
@@ -458,25 +558,33 @@ export default function OldComputerToBuildMachine() {
           {TITLE}
         </h1>
         <p className="mx-auto mb-6 max-w-md text-balance text-center text-base font-semibold leading-7 text-[#94a3b8]">
-          Open Mirror turns an old laptop or desktop PC into a clean, working
-          build machine — reviewed, approved, and invoiced person to person.
+          Capable old computers still have work left in them. Choose one:
         </p>
-        <div className="mb-2 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mb-2 flex flex-col items-stretch justify-center gap-3">
           <a
-            href="#request"
+            href="#buy"
             className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-center text-sm font-black text-[#0C0C0C]"
           >
-            Start a device request
+            Buy a Build Machine
           </a>
-          <a
-            href="#how-it-works"
-            className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-center text-sm font-black text-[#e8edf5]"
-          >
-            See how it works
-          </a>
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+            <a
+              href="#build-your-own"
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-center text-sm font-black text-[#e8edf5] sm:flex-1"
+            >
+              Build Your Own
+            </a>
+            <a
+              href="#sell-or-donate"
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-center text-sm font-black text-[#e8edf5] sm:flex-1"
+            >
+              Sell or Donate Computers
+            </a>
+          </div>
         </div>
         <p className="mb-8 text-center text-xs font-bold text-[#64748b]">
-          Laptops and desktop PCs. No payment on this website.
+          Laptops, desktops, mini PCs, workstations, and selected Macs. No
+          payment on this website.
         </p>
 
         {PRODUCT?.image && (
@@ -509,8 +617,182 @@ export default function OldComputerToBuildMachine() {
           </p>
         </section>
 
+        {/* Buy a Build Machine — finished, tested machines */}
+        <section id="buy" className="mb-10 scroll-mt-8">
+          <Label>Buy a Build Machine</Label>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
+            A finished Build Machine is a computer Open Mirror has taken in,
+            wiped, inspected, upgraded where it made sense, configured, and
+            tested — ready to use the day it arrives. It is prepared to help
+            you:
+          </p>
+          <CardList items={BUILD_MACHINE_PURPOSE} />
+          <p className="mt-3 text-sm font-semibold leading-6 text-[#94a3b8]">
+            You own your ideas, your work, and everything you build. Guided
+            building tools from Open Mirror and{" "}
+            <a
+              href="https://stepinthering.com"
+              className="font-black text-[#7dd3fc] underline"
+            >
+              StepInTheRing
+            </a>{" "}
+            are a browser tab away.
+          </p>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            Honest limits: these are practical refurbished computers. They are
+            not promised to run large AI models locally, edit professional
+            video, play modern games, or train machine-learning systems.
+          </p>
+
+          <div className="mt-6">
+            <Label>The lineup</Label>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {BUY_CATEGORIES.map((c) => (
+                <li
+                  key={c.name}
+                  className="rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3"
+                >
+                  <p className="text-sm font-black">{c.name}</p>
+                  <p className="mt-0.5 text-xs font-semibold text-[#94a3b8]">
+                    {c.note}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+              Availability comes from individually tested inventory — no
+              machine is listed before it is real, sanitized, and has passed
+              its full functional test.
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Label>Available machines</Label>
+            {listings.length === 0 ? (
+              <div className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-6 text-center">
+                <p className="mb-2 text-sm font-black">Inventory coming soon</p>
+                <p className="mb-4 text-sm font-semibold leading-6 text-[#94a3b8]">
+                  The first batch of Build Machines is being sourced and
+                  prepared now. Each one will be listed individually with real
+                  photographs, exact specifications, what was replaced or
+                  upgraded, its condition report, its warranty and return
+                  terms, and its exact price.
+                </p>
+                <a
+                  href="#interest"
+                  className="inline-block rounded-full bg-[#34D399] px-6 py-3 text-sm font-black text-[#0C0C0C]"
+                >
+                  Join the first Build Machine release
+                </a>
+              </div>
+            ) : (
+              <ul className="grid gap-3">
+                {listings.map((m) => (
+                  <li
+                    key={m.id}
+                    className="rounded-3xl border border-[#26324c] bg-[#141d2e] p-5"
+                  >
+                    <p className="text-sm font-black">
+                      {m.category} · {m.manufacturer} {m.model}
+                    </p>
+                    <p className="mt-1 text-xs font-semibold leading-5 text-[#94a3b8]">
+                      {m.processor} · {m.ram} · {m.storage}
+                      {m.displaySize ? ` · ${m.displaySize}` : ""} · Grade{" "}
+                      {m.cosmeticGrade}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-[#cbd5e1]">
+                      {m.publicConditionNotes}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div className="mt-6">
+            <Label>How every sold machine is prepared</Label>
+            <ol className="flex flex-col gap-2">
+              {PREP_PROCESS.map((step, i) => (
+                <li
+                  key={step}
+                  className="flex items-start gap-3 text-sm font-semibold leading-6 text-[#cbd5e1]"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-xs font-black text-[#38BDF8]"
+                  >
+                    {i + 1}
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+              Sanitization is documented per machine. Open Mirror does not
+              claim a formal data-destruction certification.
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Label>What kinds of computers make the cut</Label>
+            <div className="flex flex-col gap-2">
+              <details className="group rounded-2xl border border-[#26324c] bg-[#141d2e]">
+                <summary className="cursor-pointer list-none px-4 py-3 text-sm font-black">
+                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90 motion-reduce:transition-none">
+                    ›
+                  </span>
+                  The preferred standard
+                </summary>
+                <div className="px-4 pb-4">
+                  <PlainList items={STANDARDS_PREFERRED} />
+                </div>
+              </details>
+              <details className="group rounded-2xl border border-[#26324c] bg-[#141d2e]">
+                <summary className="cursor-pointer list-none px-4 py-3 text-sm font-black">
+                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90 motion-reduce:transition-none">
+                    ›
+                  </span>
+                  Reviewed individually
+                </summary>
+                <div className="px-4 pb-4">
+                  <PlainList items={STANDARDS_REVIEW} />
+                </div>
+              </details>
+              <details className="group rounded-2xl border border-[#26324c] bg-[#141d2e]">
+                <summary className="cursor-pointer list-none px-4 py-3 text-sm font-black">
+                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90 motion-reduce:transition-none">
+                    ›
+                  </span>
+                  Normally not accepted
+                </summary>
+                <div className="px-4 pb-4">
+                  <PlainList items={STANDARDS_REJECT} />
+                </div>
+              </details>
+            </div>
+            <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+              A special focus: capable computers that can&apos;t officially
+              upgrade to Windows 11 but still have years of useful life on a
+              supported Linux system.
+            </p>
+          </div>
+        </section>
+
+        {/* Build Your Own — the preserved self-service + conversion paths */}
+        <section id="build-your-own" className="mb-6 scroll-mt-8">
+          <Label>Build Your Own</Label>
+          <p className="text-sm font-semibold leading-6 text-[#cbd5e1]">
+            Already have an old laptop or desktop? Two ways to turn it into a
+            Build Machine: do it yourself with the playbook, or send it to
+            Open Mirror for conversion. Instructions are specific to your
+            starting point — Windows and Linux paths are covered separately,
+            no single installer is claimed to cover every system, and Apple
+            computers are excluded from the conversion pilot.
+          </p>
+        </section>
+
         {/* 3 · Two offer cards */}
-        <section className="mb-10 grid gap-3 sm:grid-cols-2" aria-label="Two ways to get a build machine">
+        <section className="mb-10 grid gap-3 sm:grid-cols-2" aria-label="Two ways to build your own build machine">
           <div className="flex flex-col rounded-3xl border border-[#26324c] bg-[#141d2e] p-6">
             <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-[#34D399]">
               Path 1 · Build It Yourself
@@ -820,6 +1102,54 @@ export default function OldComputerToBuildMachine() {
               </details>
             ))}
           </div>
+        </section>
+
+        {/* Sell or donate computers */}
+        <section id="sell-or-donate" className="mb-10 scroll-mt-8">
+          <Label>Sell or donate computers</Label>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
+            Businesses and individuals often have retired equipment sitting in
+            a closet. Open Mirror buys and accepts donated computers to
+            prepare as Build Machines, and may be interested in:
+          </p>
+          <CardList items={SELL_DONATE_INTERESTED} />
+          <p className="mt-3 text-sm font-semibold leading-6 text-[#94a3b8]">
+            Every machine goes through the same intake: verified ownership,
+            management locks removed, original storage securely sanitized or
+            replaced. Quantity matters less than condition — one good laptop
+            or forty matching desktops are both welcome to ask about.
+          </p>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            For business equipment: ownership transfer must go through your
+            organization&apos;s authorized asset-disposition process. Open
+            Mirror cannot accept computers that still contain workplace data
+            or remain enrolled in company management — those locks must be
+            released by the organization first.
+          </p>
+          <div className="mt-4">
+            <a
+              href="#interest"
+              className="inline-block rounded-full bg-[#38BDF8] px-6 py-3 text-sm font-black text-[#0C0C0C]"
+            >
+              Tell Open Mirror what you have
+            </a>
+          </div>
+        </section>
+
+        {/* Interest form — one door for all five interest types */}
+        <section
+          id="interest"
+          className="mb-10 scroll-mt-8 rounded-3xl border border-[#26324c] bg-[#0f1826] p-6"
+        >
+          <h2 className="mb-2 text-xl font-black tracking-tight">
+            Build Machine interest
+          </h2>
+          <p className="mb-5 text-sm font-semibold leading-6 text-[#94a3b8]">
+            Buying, transforming your own, offering retired equipment, or just
+            wanting first-batch availability updates — one short email covers
+            all of it.
+          </p>
+          <BuildMachineInterestForm serviceEmail={SERVICE_EMAIL} />
         </section>
 
         {/* 18 · Service terms and privacy */}

@@ -274,10 +274,13 @@ export const products: Product[] = [
     // original /products/old-laptop-to-build-machine URL.
     name: "Old Computer to Build Machine",
     emoji: "💻",
+    // 2026-08-04: expanded into a refurbished-computer business — buy a
+    // finished Build Machine, convert your own, or sell/donate retired
+    // equipment. Name and route stay locked.
     description:
-      "Turn an old laptop or desktop PC into a clean build machine — ready to turn an idea into a live website.",
+      "Buy a ready-to-use Build Machine, or turn an old laptop or desktop you already own into one — capable computers put back to work.",
     aboutLine:
-      "Turn an old laptop or desktop PC into a real development machine, and put your first website online.",
+      "Buy a finished Build Machine, or turn an old computer you already own into a real development machine.",
     aboutAction: "View the product",
     access: "Product",
     accessNote: "Preparing for Release",
