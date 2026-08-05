@@ -244,7 +244,13 @@ function parseHebrewId(rawId) {
 
 
 function parseStepHebrewRef(ref) {
-  const match = String(ref).match(/^([1-3]?[A-Za-z]{2,3})\.(\d+)\.(\d+)#/);
+  // Psalms (and a few other books) with a superscription carry a second,
+  // parenthesized Hebrew-inclusive verse number — e.g. "Psa.3.1(3.2)#01=L" —
+  // where the Masoretic count treats the title as its own verse. That
+  // parenthetical does NOT match this app's English versification; the
+  // leading chapter.verse (title = verse 0, dropped downstream since no
+  // local verse 0 exists) is what lines up with the displayed English text.
+  const match = String(ref).match(/^([1-3]?[A-Za-z]{2,3})\.(\d+)\.(\d+)(?:\(\d+\.\d+\))?#/);
   if (!match) return null;
 
   const code = STEP_HEBREW_BOOK_CODES[match[1]];

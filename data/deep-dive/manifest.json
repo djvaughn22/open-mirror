@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-18T05:02:08.444Z",
-  "wordLinks": 246110,
-  "coveredVerses": 29073,
+  "generatedAt": "2026-08-05T23:04:04.204Z",
+  "wordLinks": 260090,
+  "coveredVerses": 31036,
   "books": [
     "1CH",
     "1CO",
@@ -72,6 +72,6 @@
   ],
   "lexiconMeaningCoverage": {
     "greek": 71331,
-    "hebrew": 174779
+    "hebrew": 188759
   }
 }
