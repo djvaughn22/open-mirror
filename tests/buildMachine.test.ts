@@ -209,3 +209,137 @@ test("the sell-or-donate door protects employers and sourcing privacy", () => {
   const shipped = stripComments(PAGE);
   assert.doesNotMatch(shipped, /\bemployer'?s? of\b|workplace sourcing|my employer/i, "no workplace sourcing details");
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Ecosystem correction locks (2026-08-04, owner brief): the Build Machine is
+// the physical entrance into iDontCry → Step In The Ring → local tools →
+// MVP1 — never a generic refurbished Linux computer with a random list of
+// free developer applications.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import {
+  SOFTWARE_MANIFEST,
+  TIER_PROFILES,
+  IDONTCRY_ROUTES,
+} from "../src/lib/buildMachineSoftware.ts";
+import {
+  FEATURED_IDONTCRY,
+  FEATURED_ENGINES,
+  JOURNEY_STEPS,
+} from "../src/lib/buildMachineEcosystem.ts";
+
+// Engine ids verified in step-in-the-ring/app/engines/engines.ts on
+// 2026-08-04, with their honest activation. Re-verify against the SITR repo
+// before changing this list.
+const VERIFIED_PUBLIC_ENGINES = new Set([
+  "idea", "build", "sell", "launch", "fix", "grow", "plan", "etsy",
+  "design-shop", "howto", "music",
+]);
+const OWNER_ONLY_ENGINES = new Set(["game", "story"]);
+
+test("every featured engine exists publicly and no owner-only engine is advertised", () => {
+  for (const e of FEATURED_ENGINES) {
+    assert.ok(VERIFIED_PUBLIC_ENGINES.has(e.id), `${e.id} is not a verified public engine`);
+    assert.ok(!OWNER_ONLY_ENGINES.has(e.id), `${e.id} is owner-only and must never be advertised`);
+    assert.match(e.url, /^https:\/\/stepinthering\.com\/engines\?engine=/, "engines deep-link via query param on the real domain");
+    assert.ok(e.status === "Works" || e.status === "Beta", "status mirrors SITR's honest labels");
+  }
+  const featuredIds = FEATURED_ENGINES.map((e) => e.id);
+  assert.ok(featuredIds.includes("idea"), "the Idea Engine anchors the progression");
+});
+
+test("every featured iDontCry experience uses a verified route on the real domain", () => {
+  const verified = new Set(Object.values(IDONTCRY_ROUTES).filter((v) => typeof v === "string"));
+  for (const x of FEATURED_IDONTCRY) {
+    assert.ok(verified.has(x.url), `${x.name} links to unverified route ${x.url}`);
+    assert.match(x.url, /^https:\/\/idontcry\.com/, "iDontCry links go to the real product, never hub copies");
+  }
+});
+
+test("the journey runs playground → choice → build → local → iterate → MVP1", () => {
+  assert.equal(JOURNEY_STEPS.length, 6);
+  assert.match(JOURNEY_STEPS[0].where, /iDontCry/);
+  assert.match(JOURNEY_STEPS[2].where, /Step In The Ring/);
+  assert.match(JOURNEY_STEPS[3].where, /Build Machine/i);
+  assert.equal(JOURNEY_STEPS[5].title, "MVP1");
+  assert.match(PAGE, /id="the-journey"/);
+  assert.match(PAGE, /JOURNEY_STEPS\.map/, "the page renders the journey from the shared data");
+  assert.match(PAGE, /physical entrance into the Open Mirror\s+ecosystem/i);
+});
+
+test("iDontCry is the starting playground and SITR the deeper building environment", () => {
+  assert.match(PAGE, /Start in iDontCry/);
+  assert.match(PAGE, /games, creative\s+tools, and ideas worth trying/i);
+  assert.match(PAGE, /family playground/i, "iDontCry stays a real product, not a funnel");
+  assert.match(PAGE, /promising idea becomes a real first\s+build/i);
+  assert.match(PAGE, /FEATURED_IDONTCRY\.map/);
+  assert.match(PAGE, /FEATURED_ENGINES\.map/);
+});
+
+test("every installed tool maps to the ecosystem — no random developer catalog", () => {
+  for (const s of SOFTWARE_MANIFEST) {
+    assert.ok(
+      s.relatedIDontCry.length + s.relatedSITR.length > 0,
+      `${s.id} answers no ecosystem question — it does not belong in the manifest`
+    );
+    for (const engineId of s.relatedSITR) {
+      assert.ok(VERIFIED_PUBLIC_ENGINES.has(engineId), `${s.id} references unknown engine ${engineId}`);
+    }
+    for (const routeKey of s.relatedIDontCry) {
+      assert.ok(routeKey in IDONTCRY_ROUTES, `${s.id} references unknown iDontCry route ${routeKey}`);
+    }
+    assert.equal(s.freeToUseLocally, true, `${s.id} must be free to use locally`);
+    assert.equal(s.requiresOpenMirrorAccount, false, `${s.id} must not require an Open Mirror account`);
+    assert.ok(s.publicExplanation.length > 20 && s.verifyCommand.length > 0);
+  }
+  assert.match(PAGE, /softwareByCategory\(\)\.map/, "the page derives software from the canonical manifest");
+});
+
+test("heavy services never default onto the entry tier", () => {
+  for (const s of SOFTWARE_MANIFEST.filter((x) => x.category === "Advanced building")) {
+    assert.ok(!s.tiers.includes("Start"), `${s.id} must not ship on Build Machine Start`);
+  }
+  assert.equal(TIER_PROFILES.map((t) => t.tier).join(","), "Start,Standard,Pro");
+});
+
+test("subscription honesty: nothing included, nothing locked, nothing preconfigured", () => {
+  const shipped = stripComments(PAGE);
+  assert.match(shipped, /No subscription, account, or paid entitlement is included/i);
+  assert.match(shipped, /terms[^.]*shown before you sign up/i);
+  assert.match(shipped, /remains a fully working Linux computer/i, "the machine must stay usable without subscribing");
+  assert.match(shipped, /No account of any kind is preconfigured/i);
+  assert.match(shipped, /no payment information is ever stored/i);
+  assert.doesNotMatch(shipped, /includes? (a |your )?(free |lifetime )?subscription/i, "never claim an included subscription");
+  assert.doesNotMatch(shipped, /lifetime (subscription|access)/i);
+  assert.match(shipped, /accounts you create and own/i, "outside accounts are clearly the customer's own");
+});
+
+test("no automatic cross-product synchronization is claimed", () => {
+  const shipped = stripComments(PAGE);
+  assert.match(shipped, /No\s+automatic transfer or synchronization between the products is\s+claimed/i);
+  assert.doesNotMatch(shipped, /automatically (syncs?|transfers?|moves?)/i);
+  assert.doesNotMatch(shipped, /seamless(ly)?/i, "no seamless-integration language");
+});
+
+test("the page never uses pressure-sales actions", () => {
+  const shipped = stripComments(PAGE);
+  assert.doesNotMatch(shipped, /order now|buy now|reserve yours|limited quantit|shop machines|only \d+ left/i);
+});
+
+test("customer ownership language stays visible", () => {
+  assert.match(PAGE, /You own your original\s+ideas/i);
+  assert.match(PAGE, /ideas,\s+projects, and output remain yours/i);
+});
+
+test("the first-run guide exists and creates no Open Mirror login", () => {
+  const guide = readFileSync(
+    join(repoRoot, "content/products/old-laptop-to-build-machine/first-run/FIRST-RUN-GUIDE.md"),
+    "utf8"
+  );
+  assert.match(guide, /no\s+Open Mirror, DJ, or service login anywhere on this machine/i);
+  assert.match(guide, /No payment information is ever stored/i);
+  assert.match(guide, /idontcry\.com/);
+  assert.match(guide, /stepinthering\.com\/engines/);
+  assert.match(guide, /Nothing transfers automatically/i);
+  assert.match(guide, /MVP1/);
+});

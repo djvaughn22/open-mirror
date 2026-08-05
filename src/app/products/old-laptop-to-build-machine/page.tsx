@@ -9,6 +9,18 @@ import {
 } from "../../../lib/deviceRequest";
 import { deviceRequestConfigured } from "../../../lib/deviceRequestServer";
 import { availableListings } from "../../../lib/buildMachineInventory";
+import {
+  softwareByCategory,
+  TIER_PROFILES,
+  IDONTCRY_URL,
+  SITR_URL,
+  SITR_ROUTES,
+} from "../../../lib/buildMachineSoftware";
+import {
+  FEATURED_IDONTCRY,
+  FEATURED_ENGINES,
+  JOURNEY_STEPS,
+} from "../../../lib/buildMachineEcosystem";
 import DeviceRequestForm from "./DeviceRequestForm";
 import BuildMachineInterestForm from "./BuildMachineInterestForm";
 
@@ -198,16 +210,17 @@ const PACKING_PREVIEW = [
   "Laptops with swollen or damaged batteries must not be shipped.",
 ];
 
-// What a finished build machine contains — laptop or desktop.
+// What a finished build machine contains — laptop or desktop. Ecosystem
+// framing (2026-08-04): the software list itself lives in the canonical
+// manifest; this is the customer-outcome summary.
 const MACHINE_CONTAINS = [
   "A clean, supported Linux operating system",
   "Current operating-system updates",
-  "A modern browser",
-  "Visual Studio Code",
-  "Git, connected to GitHub",
-  "Node.js",
-  "An Open Mirror starter project",
-  "A tested path from edit → save → live website",
+  "iDontCry and Step In The Ring one click away in a fresh browser",
+  "The full free Build Machine software setup, signed into nothing",
+  "The Build Machine welcome guide and a guided first project",
+  "Git for saving versions — your optional accounts stay yours",
+  "A tested path from played-with idea → real first build",
 ];
 
 // Why an old desktop can be a strong candidate.
@@ -557,31 +570,56 @@ export default function OldComputerToBuildMachine() {
         <h1 className="mb-4 text-balance text-center text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl">
           {TITLE}
         </h1>
-        <p className="mx-auto mb-6 max-w-md text-balance text-center text-base font-semibold leading-7 text-[#94a3b8]">
-          Capable old computers still have work left in them. Choose one:
+        <p className="mx-auto mb-2 max-w-md text-balance text-center text-base font-bold leading-7 text-[#cbd5e1]">
+          A computer built for turning ideas into real first builds.
         </p>
-        <div className="mb-2 flex flex-col items-stretch justify-center gap-3">
+        <p className="mx-auto mb-6 max-w-md text-balance text-center text-sm font-semibold leading-6 text-[#94a3b8]">
+          Start with games and creative tools in iDontCry. Take a promising
+          idea into Step In The Ring. Use the included free software to build,
+          test, and improve it on your own machine.
+        </p>
+        <div className="mb-3 flex flex-col items-stretch justify-center gap-3">
           <a
-            href="#buy"
+            href="#the-journey"
             className="inline-block rounded-full bg-[#38BDF8] px-8 py-3.5 text-center text-sm font-black text-[#0C0C0C]"
           >
-            Buy a Build Machine
+            See How It Works
           </a>
-          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+          <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:justify-center">
             <a
-              href="#build-your-own"
-              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-center text-sm font-black text-[#e8edf5] sm:flex-1"
+              href={IDONTCRY_URL}
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-5 py-3 text-center text-xs font-black text-[#e8edf5] sm:flex-1"
             >
-              Build Your Own
+              Explore iDontCry
             </a>
             <a
-              href="#sell-or-donate"
-              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-8 py-3.5 text-center text-sm font-black text-[#e8edf5] sm:flex-1"
+              href={SITR_URL}
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-5 py-3 text-center text-xs font-black text-[#e8edf5] sm:flex-1"
             >
-              Sell or Donate Computers
+              Explore Step In The Ring
+            </a>
+            <a
+              href="#software"
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-5 py-3 text-center text-xs font-black text-[#e8edf5] sm:flex-1"
+            >
+              See the Free Software Setup
             </a>
           </div>
         </div>
+        <p className="mb-3 text-center text-xs font-bold text-[#64748b]">
+          Capable old computers still have work left in them:{" "}
+          <a href="#buy" className="font-black text-[#7dd3fc] underline">
+            Buy a Build Machine
+          </a>
+          {" · "}
+          <a href="#build-your-own" className="font-black text-[#7dd3fc] underline">
+            Build Your Own
+          </a>
+          {" · "}
+          <a href="#sell-or-donate" className="font-black text-[#7dd3fc] underline">
+            Sell or Donate Computers
+          </a>
+        </p>
         <p className="mb-8 text-center text-xs font-bold text-[#64748b]">
           Laptops, desktops, mini PCs, workstations, and selected Macs. No
           payment on this website.
@@ -614,6 +652,251 @@ export default function OldComputerToBuildMachine() {
             Built from Open Mirror&apos;s original process for turning an older
             desktop PC into the machine used to create and publish its first
             products.
+          </p>
+        </section>
+
+        {/* The journey — the whole page is built around this sequence */}
+        <section id="the-journey" className="mb-10 scroll-mt-8">
+          <Label>How a Build Machine works</Label>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
+            A Build Machine is a physical entrance into the Open Mirror
+            ecosystem — not just a refurbished computer with free software on
+            it. The whole machine is arranged around one journey:
+          </p>
+          <ol className="flex flex-col gap-2">
+            {JOURNEY_STEPS.map((s, i) => (
+              <li key={s.title}>
+                <div className="rounded-2xl border border-[#26324c] bg-[#141d2e] px-4 py-4">
+                  <div className="flex items-start gap-3">
+                    <span
+                      aria-hidden
+                      className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#38BDF8] text-sm font-black text-[#0b1220]"
+                    >
+                      {i + 1}
+                    </span>
+                    <span>
+                      <span className="block text-sm font-black">
+                        {s.title}
+                        <span className="ml-2 text-xs font-bold text-[#7dd3fc]">
+                          {s.where}
+                        </span>
+                      </span>
+                      <span className="mt-1 block text-sm font-semibold leading-6 text-[#94a3b8]">
+                        {s.detail}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                {i < JOURNEY_STEPS.length - 1 && (
+                  <div aria-hidden className="py-1 text-center text-sm font-black text-[#38BDF8]">
+                    ↓
+                  </div>
+                )}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            You own your original ideas, your projects, and everything the
+            journey produces.
+          </p>
+        </section>
+
+        {/* Start in iDontCry */}
+        <section id="idontcry" className="mb-10 scroll-mt-8">
+          <Label>Step 1 · Start in iDontCry</Label>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
+            iDontCry is the approachable starting environment: games, creative
+            tools, and ideas worth trying. Play, explore, make things with
+            your family, and discover what you enjoy — no account and no
+            programming knowledge needed. It&apos;s a real family playground
+            in its own right, and it&apos;s also where build-worthy ideas tend
+            to show up.
+          </p>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {FEATURED_IDONTCRY.map((x) => (
+              <li
+                key={x.name}
+                className="rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3"
+              >
+                <p className="text-sm font-black">
+                  <a href={x.url} className="text-[#7dd3fc] underline">
+                    {x.name}
+                  </a>
+                  <span className="ml-2 text-[10px] font-black uppercase tracking-wider text-[#64748b]">
+                    {x.category}
+                  </span>
+                </p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-[#94a3b8]">
+                  {x.blurb}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4">
+            <a
+              href={IDONTCRY_URL}
+              className="inline-block rounded-full bg-[#34D399] px-6 py-3 text-sm font-black text-[#0C0C0C]"
+            >
+              Open iDontCry
+            </a>
+          </div>
+        </section>
+
+        {/* Continue in Step In The Ring */}
+        <section id="stepinthering" className="mb-10 scroll-mt-8">
+          <Label>Step 2 · Build it in Step In The Ring</Label>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
+            Step In The Ring is where a promising idea becomes a real first
+            build: take any idea — even one you dreamed up on iDontCry — and
+            turn it into a plan for version one. Different engines help with
+            different kinds of ideas:
+          </p>
+          <ul className="flex flex-col gap-2">
+            {FEATURED_ENGINES.map((e) => (
+              <li
+                key={e.id}
+                className="flex items-start justify-between gap-3 rounded-xl border border-[#26324c] bg-[#141d2e] px-4 py-3"
+              >
+                <div>
+                  <p className="text-sm font-black">
+                    <a href={e.url} className="text-[#7dd3fc] underline">
+                      {e.name}
+                    </a>
+                  </p>
+                  <p className="mt-0.5 text-xs font-semibold leading-5 text-[#94a3b8]">
+                    {e.helpsWith}
+                  </p>
+                </div>
+                <span
+                  className={`mt-0.5 shrink-0 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${
+                    e.status === "Works"
+                      ? "bg-[#34D399]/15 text-[#34D399]"
+                      : "bg-[#f59e0b]/15 text-[#fbbf24]"
+                  }`}
+                >
+                  {e.status}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            Status labels come straight from Step In The Ring&apos;s own
+            honest engine registry. Some Step In The Ring experiences may
+            require an account or a paid subscription as those open —
+            terms are always shown before you sign up, and nothing here
+            claims a subscription is included with a machine. Your ideas,
+            projects, and output remain yours.
+          </p>
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+            <a
+              href={SITR_ROUTES.engines}
+              className="inline-block rounded-full bg-[#34D399] px-6 py-3 text-center text-sm font-black text-[#0C0C0C]"
+            >
+              Build It in Step In The Ring
+            </a>
+            <a
+              href={SITR_ROUTES.build}
+              className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-6 py-3 text-center text-sm font-black text-[#e8edf5]"
+            >
+              The beginner build walkthrough
+            </a>
+          </div>
+        </section>
+
+        {/* What comes installed — derived from the canonical manifest */}
+        <section id="software" className="mb-10 scroll-mt-8">
+          <Label>Step 3 · The free software that comes installed</Label>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
+            The included software is not a random developer catalog. Every
+            application is there to help you do the actual work that iDontCry
+            sparks and Step In The Ring guides — and all of it is free to use,
+            signed into nothing.
+          </p>
+          <div className="flex flex-col gap-2">
+            {softwareByCategory().map((group) => (
+              <details
+                key={group.category}
+                className="group rounded-2xl border border-[#26324c] bg-[#141d2e]"
+              >
+                <summary className="cursor-pointer list-none px-4 py-3 text-sm font-black">
+                  <span aria-hidden className="mr-2 inline-block text-[#38BDF8] transition-transform group-open:rotate-90 motion-reduce:transition-none">
+                    ›
+                  </span>
+                  {group.category}
+                </summary>
+                <ul className="flex flex-col gap-3 px-4 pb-4">
+                  {group.entries.map((s) => (
+                    <li key={s.id} className="rounded-xl bg-[#0b1220] px-4 py-3">
+                      <p className="text-sm font-black">
+                        {s.name}
+                        <span className="ml-2 text-[10px] font-black uppercase tracking-wider text-[#64748b]">
+                          {s.tiers.join(" · ")}
+                        </span>
+                      </p>
+                      <p className="mt-1 text-xs font-semibold leading-5 text-[#94a3b8]">
+                        {s.publicExplanation}
+                      </p>
+                      {s.requiresOutsideAccount === "optional" && (
+                        <p className="mt-1 text-[11px] font-bold text-[#fbbf24]">
+                          Works with an optional outside account you create
+                          and own — separate from Open Mirror.
+                        </p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            Heavier services like containers and databases appear only on
+            Standard and Pro machines — entry machines stay light on purpose.
+          </p>
+        </section>
+
+        {/* Accounts and subscriptions, plainly */}
+        <section id="accounts" className="mb-10 scroll-mt-8 rounded-2xl border border-[#26324c] bg-[#141d2e] p-5">
+          <Label>Accounts and subscriptions, plainly</Label>
+          <PlainList
+            items={[
+              "The included computer software is free to use — locally, forever, with no account.",
+              "iDontCry is the free starting playground. It needs no account today.",
+              "Step In The Ring provides deeper guided building tools. Some Open Mirror tools may require an account or subscription as those services open.",
+              "Subscription terms and prices are shown before you sign up — never buried, never pre-checked, never hard to cancel.",
+              "No subscription, account, or paid entitlement is included with a machine unless its listing expressly says so.",
+              "Outside services — GitHub, AI assistants, hosting — are optional, separate, and use accounts you create and own.",
+              "No account of any kind is preconfigured on the machine, and no payment information is ever stored on it.",
+              "Without any subscription, the Build Machine remains a fully working Linux computer. Nothing on it is locked, disabled, or degraded by not subscribing.",
+            ]}
+          />
+        </section>
+
+        {/* The first run */}
+        <section id="first-run" className="mb-10 scroll-mt-8">
+          <Label>What the first run looks like</Label>
+          <ol className="flex flex-col gap-2">
+            {[
+              "Welcome to your Build Machine — a short guide, not a takeover. You stay in control of your computer.",
+              "You create your own local username and password, your own fresh browser profile, and — only when you choose — your own optional GitHub, AI-service, or Open Mirror accounts. Nothing arrives signed in.",
+              "You choose where to begin: Play and Create in iDontCry, Build an Idea in Step In The Ring, or Open the Free Local Tools.",
+              "A guided first project connects all three: pick a simple idea from playing in iDontCry, type it into the right Step In The Ring engine, open the resulting plan and starter files in the editor, run it locally, make one visible change, and return to the engine for the next step.",
+            ].map((step, i) => (
+              <li key={step} className="flex items-start gap-3 text-sm font-semibold leading-6 text-[#cbd5e1]">
+                <span
+                  aria-hidden
+                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-xs font-black text-[#38BDF8]"
+                >
+                  {i + 1}
+                </span>
+                {step}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            Honesty note: today the bridge between products is you — you carry
+            your idea from iDontCry into Step In The Ring yourself. No
+            automatic transfer or synchronization between the products is
+            claimed, because none exists yet.
           </p>
         </section>
 
@@ -663,6 +946,38 @@ export default function OldComputerToBuildMachine() {
               Availability comes from individually tested inventory — no
               machine is listed before it is real, sanitized, and has passed
               its full functional test.
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Label>Three software levels, matched to the journey</Label>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {TIER_PROFILES.map((t) => (
+                <div
+                  key={t.tier}
+                  className="rounded-2xl border border-[#26324c] bg-[#141d2e] p-4"
+                >
+                  <p className="mb-2 text-sm font-black">
+                    Build Machine {t.tier}
+                  </p>
+                  <ul className="flex flex-col gap-1.5">
+                    {t.designedFor.map((d) => (
+                      <li
+                        key={d}
+                        className="flex items-start gap-2 text-xs font-semibold leading-5 text-[#94a3b8]"
+                      >
+                        <span aria-hidden className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#38BDF8]" />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+              Levels describe the installed software and what the hardware
+              comfortably handles. They do not change any account or
+              subscription entitlement.
             </p>
           </div>
 
@@ -789,6 +1104,38 @@ export default function OldComputerToBuildMachine() {
             no single installer is claimed to cover every system, and Apple
             computers are excluded from the conversion pilot.
           </p>
+          <p className="mb-3 mt-4 text-sm font-semibold leading-6 text-[#94a3b8]">
+            The do-it-yourself path lands you in the same ecosystem as a
+            ready-built machine — it never just installs Linux and ends:
+          </p>
+          <ol className="flex flex-col gap-1.5">
+            {[
+              "Learn how the Build Machine ecosystem works (this page).",
+              "Check your computer's compatibility.",
+              "Back up everything you want to keep.",
+              "Choose the correct path for your PC — Mac paths are noted separately where supported.",
+              "Install the supported operating system.",
+              "Install the same free software setup listed above.",
+              "Open the Build Machine welcome guide.",
+              "Start in iDontCry.",
+              "Continue in Step In The Ring.",
+              "Open and work on your first local project.",
+              "Learn how to recover or reinstall the machine.",
+            ].map((step, i) => (
+              <li
+                key={step}
+                className="flex items-start gap-2.5 text-sm font-semibold leading-6 text-[#cbd5e1]"
+              >
+                <span
+                  aria-hidden
+                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#26324c] bg-[#141d2e] text-xs font-black text-[#38BDF8]"
+                >
+                  {i + 1}
+                </span>
+                {step}
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* 3 · Two offer cards */}
