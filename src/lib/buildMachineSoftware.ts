@@ -33,7 +33,9 @@ export const IDONTCRY_ROUTES = {
   football: `${IDONTCRY_URL}/games/circuit/football`,
   piano: `${IDONTCRY_URL}/piano`,
   dreamShop: `${IDONTCRY_URL}/dream-shop`,
-  fambookagram: `${IDONTCRY_URL}/fambookagram`,
+  // Fambookagram/Friendbookagram retired into the broader playground
+  // (2026-08-02) — never feature them. The family welcome page replaced it.
+  welcome: `${IDONTCRY_URL}/welcome`,
 } as const;
 
 export const SITR_ROUTES = {
@@ -42,6 +44,8 @@ export const SITR_ROUTES = {
   build: `${SITR_URL}/build`,
   projects: `${SITR_URL}/projects`,
   how: `${SITR_URL}/how`,
+  // Build Machine visitors carry a privacy-respecting source label only.
+  membership: `${SITR_URL}/membership?source=build-machine`,
   engine: (id: string) => `${SITR_URL}/engines?engine=${id}`,
 } as const;
 
@@ -104,7 +108,7 @@ export const SOFTWARE_MANIFEST: SoftwareEntry[] = [
     tiers: ["Start", "Standard", "Pro"],
     requiresOutsideAccount: "no",
     requiresOpenMirrorAccount: false,
-    relatedIDontCry: ["games", "circuit", "piano", "dreamShop", "fambookagram"],
+    relatedIDontCry: ["games", "circuit", "piano", "dreamShop", "welcome"],
     relatedSITR: ["idea", "build", "design-shop", "howto", "music", "plan"],
     freeToUseLocally: true,
     outsidePaidServicePossible: false,

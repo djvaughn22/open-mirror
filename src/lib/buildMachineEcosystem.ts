@@ -56,11 +56,11 @@ export const FEATURED_IDONTCRY: FeaturedExperience[] = [
       "Real piano lessons in the browser — a doorway into the music side of building.",
   },
   {
-    name: "Fambookagram",
-    url: IDONTCRY_ROUTES.fambookagram,
+    name: "The Family Welcome",
+    url: IDONTCRY_ROUTES.welcome,
     category: "Family",
     blurb:
-      "A family playground page — make things together and see what sticks.",
+      "What iDontCry is for a family — play together, make things together, and practice taking a dream all the way to a real build.",
   },
 ];
 

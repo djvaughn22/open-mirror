@@ -221,6 +221,7 @@ import {
   SOFTWARE_MANIFEST,
   TIER_PROFILES,
   IDONTCRY_ROUTES,
+  SITR_ROUTES,
 } from "../src/lib/buildMachineSoftware.ts";
 import {
   FEATURED_IDONTCRY,
@@ -342,4 +343,43 @@ test("the first-run guide exists and creates no Open Mirror login", () => {
   assert.match(guide, /stepinthering\.com\/engines/);
   assert.match(guide, /Nothing transfers automatically/i);
   assert.match(guide, /MVP1/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Membership-era corrections (2026-08-04, second owner brief).
+// ─────────────────────────────────────────────────────────────────────────────
+
+test("Fambookagram is not featured anywhere on the Build Machine page", () => {
+  assert.ok(
+    !FEATURED_IDONTCRY.some((x) => /fambookagram|friendbookagram/i.test(x.name + x.url)),
+    "the retired playground pages must never be featured"
+  );
+  assert.doesNotMatch(stripComments(PAGE), /fambookagram|friendbookagram/i);
+  assert.ok(
+    FEATURED_IDONTCRY.some((x) => x.url === "https://idontcry.com/welcome"),
+    "the family welcome replaced Fambookagram"
+  );
+});
+
+test("installed-software claims are planned, not definitive", () => {
+  const shipped = stripComments(PAGE);
+  assert.match(shipped, /planned free software setup/i);
+  assert.match(shipped, /planned to include these free\s+tools/i);
+  assert.match(shipped, /confirmed after the pilot machines pass\s+installation and hardware testing/i);
+  assert.match(shipped, /planned to contain/i, "the finished-machine list is planned, not promised");
+  assert.doesNotMatch(shipped, /comes installed|installed on every machine|every build machine includes/i);
+  assert.match(shipped, /self-service materials[\s\S]{0,120}real today/i, "existing self-service materials stay honestly available");
+});
+
+test("the ecosystem actions lead with free start and honest membership", () => {
+  const shipped = stripComments(PAGE);
+  assert.match(shipped, /Start Free in iDontCry/);
+  assert.match(shipped, /See Step In The Ring Membership/);
+  assert.match(shipped, /See the Planned Free Software Setup/);
+  assert.match(shipped, /PRICING\.sitrMembershipMonthly/, "the membership price renders only from the central PRICING config");
+  assert.match(shipped, /billed monthly, cancel any time/i);
+});
+
+test("the membership link carries only the privacy-safe source label", () => {
+  assert.equal(SITR_ROUTES.membership, "https://stepinthering.com/membership?source=build-machine");
 });

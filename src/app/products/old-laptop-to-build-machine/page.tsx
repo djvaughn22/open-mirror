@@ -13,7 +13,6 @@ import {
   softwareByCategory,
   TIER_PROFILES,
   IDONTCRY_URL,
-  SITR_URL,
   SITR_ROUTES,
 } from "../../../lib/buildMachineSoftware";
 import {
@@ -590,19 +589,19 @@ export default function OldComputerToBuildMachine() {
               href={IDONTCRY_URL}
               className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-5 py-3 text-center text-xs font-black text-[#e8edf5] sm:flex-1"
             >
-              Explore iDontCry
+              Start Free in iDontCry
             </a>
             <a
-              href={SITR_URL}
+              href={SITR_ROUTES.membership}
               className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-5 py-3 text-center text-xs font-black text-[#e8edf5] sm:flex-1"
             >
-              Explore Step In The Ring
+              See Step In The Ring Membership
             </a>
             <a
               href="#software"
               className="inline-block rounded-full border border-[#26324c] bg-[#141d2e] px-5 py-3 text-center text-xs font-black text-[#e8edf5] sm:flex-1"
             >
-              See the Free Software Setup
+              See the Planned Free Software Setup
             </a>
           </div>
         </div>
@@ -781,11 +780,12 @@ export default function OldComputerToBuildMachine() {
           </ul>
           <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
             Status labels come straight from Step In The Ring&apos;s own
-            honest engine registry. Some Step In The Ring experiences may
-            require an account or a paid subscription as those open —
-            terms are always shown before you sign up, and nothing here
-            claims a subscription is included with a machine. Your ideas,
-            projects, and output remain yours.
+            honest engine registry. The deeper guided engines and saved
+            projects open through Step In The Ring Membership —{" "}
+            {PRICING.sitrMembershipMonthly} when activated, billed monthly,
+            cancel any time — and terms are always shown before you sign up.
+            Nothing here claims a subscription is included with a machine.
+            Your ideas, projects, and output remain yours.
           </p>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row">
             <a
@@ -805,12 +805,19 @@ export default function OldComputerToBuildMachine() {
 
         {/* What comes installed — derived from the canonical manifest */}
         <section id="software" className="mb-10 scroll-mt-8">
-          <Label>Step 3 · The free software that comes installed</Label>
+          <Label>Step 3 · The planned free software setup</Label>
           <p className="mb-4 text-sm font-semibold leading-6 text-[#cbd5e1]">
-            The included software is not a random developer catalog. Every
-            application is there to help you do the actual work that iDontCry
-            sparks and Step In The Ring guides — and all of it is free to use,
-            signed into nothing.
+            The first ready-built release is planned to include these free
+            tools — the final setup is confirmed after the pilot machines pass
+            installation and hardware testing. This is not a random developer
+            catalog: every application is here to help you do the actual work
+            that iDontCry sparks and Step In The Ring guides, all of it free
+            to use and signed into nothing.
+          </p>
+          <p className="mb-4 text-xs font-semibold leading-6 text-[#64748b]">
+            Separate from this plan, the existing self-service materials — the
+            free readiness check and the playbook&apos;s scripts and
+            instructions — are real today and unchanged.
           </p>
           <div className="flex flex-col gap-2">
             {softwareByCategory().map((group) => (
@@ -861,7 +868,7 @@ export default function OldComputerToBuildMachine() {
             items={[
               "The included computer software is free to use — locally, forever, with no account.",
               "iDontCry is the free starting playground. It needs no account today.",
-              "Step In The Ring provides deeper guided building tools. Some Open Mirror tools may require an account or subscription as those services open.",
+              `Step In The Ring provides deeper guided building tools through Step In The Ring Membership — ${PRICING.sitrMembershipMonthly} when activated, billed monthly, cancel any time.`,
               "Subscription terms and prices are shown before you sign up — never buried, never pre-checked, never hard to cancel.",
               "No subscription, account, or paid entitlement is included with a machine unless its listing expressly says so.",
               "Outside services — GitHub, AI assistants, hosting — are optional, separate, and use accounts you create and own.",
@@ -1224,8 +1231,13 @@ export default function OldComputerToBuildMachine() {
 
         {/* 5 · What the customer gets */}
         <section className="mb-10">
-          <Label>What a finished build machine contains</Label>
+          <Label>What a finished Build Machine is planned to contain</Label>
           <CardList items={MACHINE_CONTAINS} />
+          <p className="mt-3 text-xs font-semibold leading-6 text-[#64748b]">
+            Confirmed per machine after pilot installation and hardware
+            testing — every unit&apos;s listing states exactly what it ships
+            with.
+          </p>
         </section>
 
         {/* 6 · Laptop and desktop support — two equal paths */}

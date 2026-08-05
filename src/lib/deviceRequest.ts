@@ -30,6 +30,9 @@ export const PRICING = {
   postPilotFrom: "$199",
   reviewLine:
     "Final pricing for an approved request is confirmed during review, before any invoice is sent.",
+  // Step In The Ring Membership — a separate Open Mirror subscription, never
+  // included with hardware. Shown on the Build Machine page for honesty.
+  sitrMembershipMonthly: "$7.77 per month",
 } as const;
 
 export const DEVICE_TYPES = ["Laptop", "Desktop"] as const;
