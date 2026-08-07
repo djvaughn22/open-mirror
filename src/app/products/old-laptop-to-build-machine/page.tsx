@@ -1100,6 +1100,35 @@ export default function OldComputerToBuildMachine() {
           </div>
         </section>
 
+        {/* Check if your computer is a candidate — the Build Machine Assessment */}
+        <section className="mb-10 rounded-3xl border border-[#26324c] bg-[#0f1826] p-6">
+          <h2 className="mb-2 text-lg font-black tracking-tight">
+            Not sure if your computer can become a Build Machine?
+          </h2>
+          <p className="mb-4 text-sm font-semibold leading-6 text-[#94a3b8]">
+            The Build Machine Assessment is an interactive tool that walks you through your computer's capabilities — no account needed, completely free. It helps you:
+          </p>
+          <ul className="mb-6 flex flex-col gap-2">
+            {[
+              "Check whether your computer is a reasonable candidate",
+              "Prepare your computer safely before any changes",
+              "Track installation and verification step by step",
+              "Produce a completion report you can download",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm font-semibold leading-6 text-[#cbd5e1]">
+                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#38BDF8]" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="https://stepinthering.com/build-machine"
+            className="inline-block rounded-full bg-[#34D399] px-6 py-3 text-sm font-black text-[#0C0C0C]"
+          >
+            Try the Build Machine Assessment
+          </a>
+        </section>
+
         {/* Build Your Own — the preserved self-service + conversion paths */}
         <section id="build-your-own" className="mb-6 scroll-mt-8">
           <Label>Build Your Own</Label>
