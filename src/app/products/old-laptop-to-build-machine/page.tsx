@@ -1106,7 +1106,7 @@ export default function OldComputerToBuildMachine() {
             Not sure if your computer can become a Build Machine?
           </h2>
           <p className="mb-4 text-sm font-semibold leading-6 text-[#94a3b8]">
-            The Build Machine Assessment is an interactive tool that walks you through your computer's capabilities — no account needed, completely free. It helps you:
+            The Build Machine Assessment is an interactive tool that walks you through your computer&apos;s capabilities — no account needed, completely free. It helps you:
           </p>
           <ul className="mb-6 flex flex-col gap-2">
             {[

@@ -250,7 +250,7 @@ test("every featured engine exists publicly and no owner-only engine is advertis
 });
 
 test("every featured iDontCry experience uses a verified route on the real domain", () => {
-  const verified = new Set(Object.values(IDONTCRY_ROUTES).filter((v) => typeof v === "string"));
+  const verified = new Set<string>(Object.values(IDONTCRY_ROUTES).filter((v) => typeof v === "string"));
   for (const x of FEATURED_IDONTCRY) {
     assert.ok(verified.has(x.url), `${x.name} links to unverified route ${x.url}`);
     assert.match(x.url, /^https:\/\/idontcry\.com/, "iDontCry links go to the real product, never hub copies");
