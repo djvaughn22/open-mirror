@@ -1837,6 +1837,67 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
 .pop { transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
 .pop:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,.5); }
 
+/* Homepage portfolio: typography-led feature navigation rows + primary CTA
+   (2026-08-12 visual polish — replaces the pill/chip treatment). Colors read
+   from the --om-* tokens so light mode adapts automatically, no separate
+   override rule needed. */
+.om-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 10px;
+  margin: 0 -10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--om-text);
+  font-size: 15px;
+  font-weight: 600;
+}
+.om-row:hover, .om-row:focus-visible {
+  background: var(--om-surface-2);
+}
+.om-row .om-arrow {
+  color: var(--om-sub);
+  transition: transform .15s ease, color .15s ease;
+  flex-shrink: 0;
+}
+.om-row:hover .om-arrow, .om-row:focus-visible .om-arrow {
+  transform: translateX(3px);
+  color: var(--om-text);
+}
+
+.om-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 2px;
+  margin: -12px -2px;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  min-height: 20px;
+}
+.om-cta .om-arrow {
+  transition: transform .15s ease;
+  flex-shrink: 0;
+}
+.om-cta:hover .om-arrow, .om-cta:focus-visible .om-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .om-row .om-arrow, .om-cta .om-arrow {
+    transition: none !important;
+  }
+  .om-row:hover .om-arrow, .om-row:focus-visible .om-arrow,
+  .om-cta:hover .om-arrow, .om-cta:focus-visible .om-arrow {
+    transform: none !important;
+  }
+}
+
 
 /* OPEN MIRROR FAMILY STYLE OVERRIDE START */
 :root {

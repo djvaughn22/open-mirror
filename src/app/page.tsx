@@ -22,61 +22,86 @@ const text = "#e8edf5";
 const sub = "#94a3b8";
 
 // Group headings carry the status for Foundation and Live; the quieter
-// statuses also get a small badge on the card.
+// statuses also get a small label on the card.
 const BADGED_STATUSES = new Set(["beta", "building", "exploring", "archived"]);
+
+// Feature-link labels carry a leading emoji for other surfaces (nav, About);
+// the homepage portfolio reads as typography-led navigation, so it is
+// stripped here at render time only — the registry string itself is untouched.
+const LEADING_EMOJI = new RegExp(
+  "^[\\p{Extended_Pictographic}\\u200D\\uFE0F]+\\s*",
+  "u"
+);
+function stripEmoji(label: string): string {
+  return label.replace(LEADING_EMOJI, "");
+}
 
 function Card({ p }: { p: Product }) {
   const isCom = p.href.startsWith("http");
   const dot = isCom ? ".com" : "";
   const badge = BADGED_STATUSES.has(p.status) ? STATUS_LABEL[p.status] : null;
-  if (p.links) {
-    // card with direct game links: stretched main link + real pills on top
-    return (
-      <div className="pop" style={{ position: "relative", background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
-        <a href={p.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${p.name}${dot}`} style={{ position: "absolute", inset: 0, borderRadius: 18 }} />
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-          <span aria-hidden style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
-          {badge ? (
-            <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: p.accent, border: `1px solid ${p.accent}55`, background: "transparent", borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{badge}</span>
-          ) : null}
-        </div>
-        <h2 style={{ fontSize: "clamp(1rem, 5.2vw, 1.4rem)", fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
+  // The Foundation is the one card that should read with more compositional
+  // confidence than the rest of the portfolio — a touch more room, a touch
+  // larger type. Driven by the registry's own status field, never the name.
+  const isFoundation = p.status === "foundation";
+
+  return (
+    <div
+      style={{
+        background: card,
+        // var(--om-border), not the literal hex: the light-theme override
+        // matches on the literal "#26324c" substring anywhere in an
+        // element's style attribute and rewrites the whole border-color
+        // shorthand !important — which would also flatten the accent
+        // borderLeft below to gray if this border used the same literal.
+        border: "1px solid var(--om-border)",
+        borderLeft: `3px solid ${p.accent}`,
+        borderRadius: 14,
+        padding: isFoundation ? "30px 26px" : "24px 24px",
+      }}
+    >
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", gap: "4px 12px" }}>
+        <h2 style={{ fontSize: isFoundation ? "clamp(1.15rem, 5.8vw, 1.65rem)" : "clamp(1.05rem, 5.2vw, 1.4rem)", fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
           {p.name}{isCom && <span style={{ color: p.accent }}>{dot}</span>}
         </h2>
-        <p style={{ fontSize: 14.5, color: sub, margin: 0, lineHeight: 1.55 }}>{p.description}</p>
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", position: "relative", zIndex: 1 }}>
+        {badge ? (
+          <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: p.accent }}>{badge}</span>
+        ) : null}
+      </div>
+
+      <p style={{ fontSize: isFoundation ? 15.5 : 14.5, color: sub, margin: "10px 0 0", lineHeight: 1.6, maxWidth: "58ch" }}>
+        {p.description}
+      </p>
+
+      {p.links ? (
+        <div style={{ marginTop: 18, paddingTop: 2, borderTop: `1px solid ${border}` }}>
           {p.links.map((l) => (
-            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" style={{ background: p.accent, color: "#0C0C0C", borderRadius: 50, padding: "9px 18px", fontSize: 14, fontWeight: 900, textDecoration: "none" }}>
-              {l.label} →
+            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="om-row">
+              <span>{stripEmoji(l.label)}</span>
+              <span aria-hidden className="om-arrow">→</span>
             </a>
           ))}
         </div>
+      ) : null}
+
+      <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px solid ${border}` }}>
+        <a
+          href={p.href}
+          {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          className="om-cta"
+          style={{ color: p.accent }}
+        >
+          <span>Explore {p.name}</span>
+          <span aria-hidden className="om-arrow">→</span>
+        </a>
       </div>
-    );
-  }
-  return (
-    <a href={p.href} {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})} style={{ textDecoration: "none" }}>
-      <div className="pop" style={{ background: card, border: `1px solid ${border}`, borderLeft: `5px solid ${p.accent}`, borderRadius: 18, padding: "20px 22px", display: "flex", flexDirection: "column", gap: 12, cursor: "pointer" }}>
-        {/* Icon on top, status to the right — frees the full width for the name */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-          <span aria-hidden style={{ flexShrink: 0, height: 46, width: 46, borderRadius: 14, background: p.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>{p.emoji}</span>
-          {badge ? (
-            <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em", color: p.accent, border: `1px solid ${p.accent}55`, background: "transparent", borderRadius: 50, padding: "3px 10px", flexShrink: 0 }}>{badge}</span>
-          ) : null}
-        </div>
-        {/* Domain always on one line — font scales down on narrow phones so it fits */}
-        <h2 style={{ fontSize: "clamp(1rem, 5.2vw, 1.4rem)", fontWeight: 900, color: text, margin: 0, letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>
-          {p.name}{isCom && <span style={{ color: p.accent }}>{dot}</span>}
-        </h2>
-        <p style={{ fontSize: 14.5, color: sub, margin: 0, lineHeight: 1.55 }}>{p.description}</p>
-      </div>
-    </a>
+    </div>
   );
 }
 
 function GroupLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ fontSize: 12, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.2em", color: sub, margin: "0 0 16px", textAlign: "center" }}>
+    <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: sub, margin: "0 0 16px", paddingBottom: 10, borderBottom: `1px solid ${border}`, textAlign: "left" }}>
       {children}
     </p>
   );
@@ -94,26 +119,26 @@ export default function OpenMirrorHub() {
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div style={{ maxWidth: 700, margin: "0 auto", padding: "44px 24px 90px" }}>
 
-        <header style={{ textAlign: "center", marginBottom: 44 }}>
-          <div aria-hidden style={{ fontSize: 30, marginBottom: 14, letterSpacing: 6 }}>✝️ 🧩 🧰 🎵 🐶</div>
+        <header style={{ textAlign: "center", marginBottom: 48 }}>
           <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
-          <p style={{ fontSize: 14, fontWeight: 700, color: "#93C5FD", margin: "0 0 10px", letterSpacing: "0.02em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: "#93C5FD", margin: "0 0 12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
             {STUDIO.label}
           </p>
           <p style={{ fontSize: 15, fontWeight: 600, color: sub, margin: "0 auto", maxWidth: 440, lineHeight: 1.6, whiteSpace: "pre-line" }}>
             {STUDIO.missionShort}
           </p>
+          <div aria-hidden style={{ height: 1, width: 64, background: border, margin: "28px auto 0" }} />
         </header>
 
         {/* CrossHeartPray is the Foundation and stays first.
             Featured products no longer appear on the homepage. */}
         {groups.map((g, i) => (
           <div key={g.status}>
-            <div style={{ marginTop: i === 0 ? 0 : 40 }}>
+            <div style={{ marginTop: i === 0 ? 0 : 44 }}>
               <GroupLabel>{g.label}</GroupLabel>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
                 {g.items.map((p) => <Card key={p.name} p={p} />)}
               </div>
             </div>
@@ -121,9 +146,9 @@ export default function OpenMirrorHub() {
         ))}
 
         {pinned.length > 0 && (
-          <div style={{ marginTop: 40 }}>
+          <div style={{ marginTop: 44 }}>
             <GroupLabel>{BOTTOM_PIN_LABEL}</GroupLabel>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {pinned.map((p) => <Card key={p.name} p={p} />)}
             </div>
           </div>
