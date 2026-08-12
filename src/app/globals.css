@@ -1898,20 +1898,22 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   }
 }
 
-/* Homepage portfolio: the "View features ↓" / "View games ↓" expand control
-   and the collapsible feature panel beneath it (2026-08-12 — collapsed by
-   default so a card's brand intro stays scannable). One rounded control per
-   card, not a repeated pill pattern, so it stays inside the "occasional
-   compact control" exception rather than reintroducing pill-heavy UI. */
+/* Homepage portfolio: the "Features ↓" / "Games ↓" expand control and the
+   collapsible feature panel beneath it (collapsed by default so a card's
+   brand intro stays scannable). Understated text + chevron, not a button —
+   no border/background box, so it reads as secondary disclosure rather
+   than a CTA. Padding + a canceling negative margin keep a real touch
+   target without adding visible bulk (same trick as .om-cta below). */
 .om-expand-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 18px;
-  padding: 11px 16px;
-  min-height: 44px;
-  border-radius: 10px;
-  border: 1px solid var(--om-border);
+  gap: 4px;
+  margin-top: 14px;
+  margin-right: -2px;
+  margin-bottom: -12px;
+  margin-left: -2px;
+  padding: 12px 2px;
+  border: none;
   background: none;
   color: var(--om-sub);
   font-size: 13px;
@@ -1920,9 +1922,7 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   cursor: pointer;
 }
 .om-expand-btn:hover, .om-expand-btn:focus-visible {
-  background: var(--om-surface-2);
   color: var(--om-text);
-  border-color: var(--om-sub);
 }
 .om-chevron {
   display: inline-block;
