@@ -636,6 +636,8 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
   ],
   iDontCry: [
     "https://idontcry.com/games/circuit/classic",
+    // 2026-08-11: the restored ring game — see products.ts comment.
+    "https://idontcry.com/games/circuit/classic/ring",
     "https://idontcry.com/games/circuit/surge",
     "https://idontcry.com/games/circuit/football",
     "https://idontcry.com/games/circuit/baseball",
@@ -664,10 +666,17 @@ for (const [name, hrefs] of Object.entries(EXPECTED_FEATURE_LINKS)) {
   });
 }
 
-test("the homepage renders each product's direct feature sub-links, not just its main card link", () => {
+// 2026-08-11: replaced by the feature-card system (src/lib/features.ts). A
+// product's direct sub-links are no longer rendered as pills stacked under
+// its own website card — they're promoted to first-class feature cards
+// (Try This First + More to Try), each pointing at its own real href. The
+// underlying protection (real hrefs, no admin routes, etc.) now lives on
+// the FEATURES registry itself — see tests/features.test.ts.
+test("the homepage renders feature cards from the registry, not a hard-coded list", () => {
   const home = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(home, /p\.links\.map/, "the homepage Card must render a product's sub-links as direct destinations");
-  assert.match(home, /href=\{l\.href\}/, "each sub-link pill must point at its own href, not the parent card's href");
+  assert.match(home, /startHereFeatures\(\)/, "Try This First must come from the feature registry");
+  assert.match(home, /featuresByCategory\(/, "More To Try must come from the feature registry");
+  assert.match(home, /href=\{f\.href\}/, "each feature card must point at its own href");
 });
 
 // ── Homepage: no featured product panel ─────────────────────────────────────

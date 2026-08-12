@@ -136,6 +136,11 @@ export const products: Product[] = [
     href: "https://thedjcares.com",
     status: "live",
     category: "faith",
+    // 2026-08-11: verified real, public route (server-gated by an access-mode
+    // env var that defaults to open/preview — no sign-in required today).
+    links: [
+      { label: "🎧 Digital DJ", href: "https://thedjcares.com/digital-dj" },
+    ],
   },
   {
     name: "DontCloneMeTom",
@@ -152,6 +157,13 @@ export const products: Product[] = [
     href: "https://dontclonemetom.com",
     status: "live",
     category: "family",
+    // 2026-08-11: verified real, public, distinct routes — not the bare
+    // homepage. The full grid is ZIP-search-gated on the homepage itself;
+    // these two always show something without any input from the visitor.
+    links: [
+      { label: "🐾 Dog of the Day", href: "https://dontclonemetom.com/today" },
+      { label: "🃏 Make a Dog Card", href: "https://dontclonemetom.com/cards" },
+    ],
   },
   {
     name: "iDontCry",
@@ -168,6 +180,10 @@ export const products: Product[] = [
     category: "play",
     links: [
       { label: "🔘 Circuit", href: "https://idontcry.com/games/circuit/classic" },
+      // 2026-08-11: the original ring game was restored the same night
+      // PulseShift shipped (owner direction: keep both, never replace) — it
+      // lives at its own route now and deserves its own direct link.
+      { label: "🔄 Circuit Ring", href: "https://idontcry.com/games/circuit/classic/ring" },
       { label: "⚡ Surge", href: "https://idontcry.com/games/circuit/surge" },
       { label: "🏈 Football", href: "https://idontcry.com/games/circuit/football" },
       { label: "⚾ Baseball", href: "https://idontcry.com/games/circuit/baseball" },
@@ -232,6 +248,11 @@ export const products: Product[] = [
     // 2026-07-20: discovered through the homepage directory and the About-page
     // reminder card, not from every page's persistent menu.
     showInNav: false,
+    // 2026-08-11: verified real, public, distinct route beyond the checklist
+    // homepage itself.
+    links: [
+      { label: "✅ Daily Readiness Check", href: "https://pleasebeready.com/today" },
+    ],
   },
   {
     // Hidden gem: the /reflect route stays live for people who know it,
@@ -266,6 +287,13 @@ export const products: Product[] = [
     href: "https://watchednotwatched.com",
     status: "live",
     category: "family",
+    // 2026-08-11: verified real, public routes — no account/AI required for
+    // any of these; /foryou is the deterministic, no-LLM recommendation path.
+    links: [
+      { label: "🔍 Search & Track", href: "https://watchednotwatched.com/search" },
+      { label: "🏆 Top 222", href: "https://watchednotwatched.com/top" },
+      { label: "🎯 For You", href: "https://watchednotwatched.com/foryou" },
+    ],
   },
   {
     name: "WhatAmIAI",
