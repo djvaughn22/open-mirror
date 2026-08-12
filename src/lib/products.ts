@@ -116,6 +116,12 @@ export const products: Product[] = [
     href: "https://crossheartpray.com",
     status: "foundation",
     category: "faith",
+    links: [
+      { label: "🌅 Daily Hope", href: "https://crossheartpray.com/daily-hope" },
+      { label: "📖 Bible Reading Plan", href: "https://crossheartpray.com/bible-reading-plan" },
+      { label: "📔 Life Essentials", href: "https://crossheartpray.com/life-essentials" },
+      { label: "🃏 Bible Bingo 7", href: "https://crossheartpray.com/explorebible" },
+    ],
   },
   {
     name: "TheDJCares",
@@ -160,6 +166,15 @@ export const products: Product[] = [
     href: "https://idontcry.com",
     status: "live",
     category: "play",
+    links: [
+      { label: "🔘 Circuit", href: "https://idontcry.com/games/circuit/classic" },
+      { label: "⚡ Surge", href: "https://idontcry.com/games/circuit/surge" },
+      { label: "🏈 Football", href: "https://idontcry.com/games/circuit/football" },
+      { label: "⚾ Baseball", href: "https://idontcry.com/games/circuit/baseball" },
+      { label: "🎿 Skiing", href: "https://idontcry.com/games/circuit/skiing" },
+      { label: "🤸 Pole Vault", href: "https://idontcry.com/games/circuit/pole-vault" },
+      { label: "🎹 Piano Corner", href: "https://idontcry.com/piano" },
+    ],
   },
   {
     name: "StepInTheRing",
@@ -176,6 +191,11 @@ export const products: Product[] = [
     href: "https://stepinthering.com",
     status: "live",
     category: "creativity",
+    links: [
+      { label: "🧭 First Build Coach", href: "https://stepinthering.com/build" },
+      { label: "❔ How It Works", href: "https://stepinthering.com/how" },
+      { label: "💻 Build Machine Assessment", href: "https://stepinthering.com/build-machine" },
+    ],
   },
   {
     name: "OpenDoku",

@@ -571,6 +571,105 @@ test("every product carries a visitor label and an accent", () => {
   }
 });
 
+// ── Feature-level direct links (2026-08-11: click the thing, open the thing)
+//
+// Owner rule: selecting a named game/engine/feature from the hub must open
+// THAT exact experience, never just the parent domain's homepage. These lock
+// the verified direct routes in place and stop admin/owner-only tooling from
+// ever leaking into a public card.
+
+const FORBIDDEN_LINK_SEGMENTS = [
+  "/admin", "/owner", "/engines", "/lab", "/uat", "/account",
+  "/api/", "localhost", "127.0.0.1", "/login",
+];
+
+test("no product or sub-link ever points at localhost or a test URL", () => {
+  for (const p of products) {
+    assert.doesNotMatch(p.href, /localhost|127\.0\.0\.1|0\.0\.0\.0|:3000|:3001|vercel\.app/i,
+      `${p.name} href must be a real production URL`);
+    for (const l of p.links ?? []) {
+      assert.doesNotMatch(l.href, /localhost|127\.0\.0\.1|0\.0\.0\.0|:3000|:3001|vercel\.app/i,
+        `${p.name} sub-link "${l.label}" must be a real production URL`);
+    }
+  }
+});
+
+test("no sub-link ever exposes an admin/owner/internal route", () => {
+  for (const p of products) {
+    for (const l of p.links ?? []) {
+      for (const segment of FORBIDDEN_LINK_SEGMENTS) {
+        assert.doesNotMatch(l.href.toLowerCase(), new RegExp(segment.replace(/[/.]/g, "\\$&")),
+          `${p.name} sub-link "${l.label}" (${l.href}) must never expose ${segment}`);
+      }
+    }
+  }
+});
+
+test("every feature sub-link stays on its own product's domain", () => {
+  for (const p of products) {
+    if (!p.links?.length || !p.href.startsWith("http")) continue;
+    const parentHost = new URL(p.href).host;
+    for (const l of p.links) {
+      assert.equal(new URL(l.href).host, parentHost,
+        `${p.name} sub-link "${l.label}" must stay on ${parentHost}, not link out to another domain`);
+    }
+  }
+});
+
+test("a sub-link is never identical to its own product's bare homepage", () => {
+  for (const p of products) {
+    for (const l of p.links ?? []) {
+      assert.notEqual(l.href.replace(/\/$/, ""), p.href.replace(/\/$/, ""),
+        `${p.name} sub-link "${l.label}" must be a specific feature route, not the bare homepage`);
+    }
+  }
+});
+
+// The exact verified routes, so a future edit can't silently regress a named
+// feature back to a homepage link or a guessed/renamed path.
+const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
+  CrossHeartPray: [
+    "https://crossheartpray.com/daily-hope",
+    "https://crossheartpray.com/bible-reading-plan",
+    "https://crossheartpray.com/life-essentials",
+    "https://crossheartpray.com/explorebible",
+  ],
+  iDontCry: [
+    "https://idontcry.com/games/circuit/classic",
+    "https://idontcry.com/games/circuit/surge",
+    "https://idontcry.com/games/circuit/football",
+    "https://idontcry.com/games/circuit/baseball",
+    "https://idontcry.com/games/circuit/skiing",
+    "https://idontcry.com/games/circuit/pole-vault",
+    "https://idontcry.com/piano",
+  ],
+  StepInTheRing: [
+    "https://stepinthering.com/build",
+    "https://stepinthering.com/how",
+    "https://stepinthering.com/build-machine",
+  ],
+  OpenDoku: [
+    "https://opendoku.com/slopedoku/",
+    "https://opendoku.com/surfdoku/",
+    "https://opendoku.com/minedoku/",
+  ],
+};
+
+for (const [name, hrefs] of Object.entries(EXPECTED_FEATURE_LINKS)) {
+  test(`${name} exposes its verified direct feature routes, not just its homepage`, () => {
+    const p = byName(name);
+    assert.ok(p.links && p.links.length > 0, `${name} must carry direct feature links`);
+    assert.deepEqual((p.links ?? []).map((l) => l.href), hrefs,
+      `${name}'s exposed routes changed — confirm the new route is real and public before updating this lock`);
+  });
+}
+
+test("the homepage renders each product's direct feature sub-links, not just its main card link", () => {
+  const home = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.match(home, /p\.links\.map/, "the homepage Card must render a product's sub-links as direct destinations");
+  assert.match(home, /href=\{l\.href\}/, "each sub-link pill must point at its own href, not the parent card's href");
+});
+
 // ── Homepage: no featured product panel ─────────────────────────────────────
 //
 // The homepage must never render the Old Laptop featured panel or any of its
