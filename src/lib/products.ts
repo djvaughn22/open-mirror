@@ -63,8 +63,14 @@ export type Product = {
   href: string;
   status: ProductStatus;
   category: "faith" | "family" | "creativity" | "play";
-  /** direct sub-links shown as pills on the card (e.g. individual games) */
+  /** direct sub-links shown as a collapsible feature list on the card (e.g. individual games) */
   links?: { label: string; href: string }[];
+  /**
+   * Word used in the homepage card's expand control: "View {word} ↓" /
+   * "Hide {word} ↑". Falls back to "features" — set this instead of
+   * hard-coding a product name in the page component.
+   */
+  expandLabel?: string;
   /** hidden from the homepage portfolio when false */
   showInPortfolio?: boolean;
   /** hidden from the About family when false */
@@ -225,6 +231,7 @@ export const products: Product[] = [
     href: "https://opendoku.com",
     status: "live",
     category: "play",
+    expandLabel: "games",
     links: [
       { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },

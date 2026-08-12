@@ -1898,6 +1898,62 @@ html[data-chp-visual-theme="light"] :is(button, span, mark, a)[class*="border-b"
   }
 }
 
+/* Homepage portfolio: the "View features ↓" / "View games ↓" expand control
+   and the collapsible feature panel beneath it (2026-08-12 — collapsed by
+   default so a card's brand intro stays scannable). One rounded control per
+   card, not a repeated pill pattern, so it stays inside the "occasional
+   compact control" exception rather than reintroducing pill-heavy UI. */
+.om-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 11px 16px;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--om-border);
+  background: none;
+  color: var(--om-sub);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.om-expand-btn:hover, .om-expand-btn:focus-visible {
+  background: var(--om-surface-2);
+  color: var(--om-text);
+  border-color: var(--om-sub);
+}
+.om-chevron {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+.om-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+/* max-height transition, not the grid-template-rows 0fr→1fr trick: verified
+   the fr-based auto-height animation doesn't compute in every rendering
+   engine this needs to run on. 900px comfortably covers every card's
+   expanded content (iDontCry's 8-row list is the tallest, ~500px) with
+   headroom for future links. */
+.om-expand {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 220ms ease;
+}
+.om-expand.is-open {
+  max-height: 900px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .om-expand, .om-chevron {
+    transition: none !important;
+  }
+}
+
 
 /* OPEN MIRROR FAMILY STYLE OVERRIDE START */
 :root {

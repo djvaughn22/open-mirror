@@ -466,8 +466,9 @@ const stripComments = (src: string) =>
   src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
 
 test("no public product claims to be purchasable without a checkout", () => {
-  // The homepage and About stay entirely price-free.
-  for (const rel of ["src/app/page.tsx", "src/app/about-open-mirror/page.tsx"]) {
+  // The homepage and About stay entirely price-free. The homepage's card
+  // markup lives in the ProductCard client component, not page.tsx itself.
+  for (const rel of ["src/app/page.tsx", "src/components/ProductCard.tsx", "src/app/about-open-mirror/page.tsx"]) {
     const src = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
     assert.doesNotMatch(src, /add to cart|buy now|proceed to checkout|\$\d/i, `${rel} must not imply a purchase`);
   }
@@ -667,9 +668,33 @@ for (const [name, hrefs] of Object.entries(EXPECTED_FEATURE_LINKS)) {
 }
 
 test("the homepage renders each product's direct feature sub-links, not just its main card link", () => {
-  const home = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(home, /p\.links\.map/, "the homepage Card must render a product's sub-links as direct destinations");
-  assert.match(home, /href=\{l\.href\}/, "each sub-link pill must point at its own href, not the parent card's href");
+  // The card markup (including each product's expandable feature list)
+  // lives in the ProductCard client component; page.tsx just maps the
+  // registry into it.
+  const productCard = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  assert.match(productCard, /p\.links\.map/, "ProductCard must render a product's sub-links as direct destinations");
+  assert.match(productCard, /href=\{l\.href\}/, "each sub-link must point at its own href, not the parent card's href");
+});
+
+// ── Expandable feature cards (2026-08-12) ───────────────────────────────────
+//
+// Feature lists collapse by default so the branded intro stays scannable.
+// The toggle must be a real, keyboard-accessible button wired to the panel
+// it controls — not a link, not a div with a click handler, and not nested
+// inside the sub-link anchors it reveals.
+
+test("the feature-list toggle is a real, accessible expand/collapse control", () => {
+  const productCard = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  assert.match(productCard, /"use client"/, "the interactive card must be a client component");
+  assert.match(productCard, /useState\(false\)/, "feature lists default to collapsed on load");
+  assert.match(productCard, /<button[^>]*type="button"[^>]*aria-expanded=\{open\}[^>]*aria-controls=\{panelId\}/,
+    "the toggle is a real button carrying both aria-expanded and aria-controls");
+  assert.match(productCard, /id=\{panelId\}/, "the controlled panel's id matches aria-controls");
+  assert.match(productCard, /onClick=\{\(\) => setOpen/, "the toggle actually flips the open state");
+  // The toggle button and the sub-link/CTA anchors must be siblings, not one
+  // inside the other — no nested interactive elements.
+  const buttonBlock = productCard.match(/<button[\s\S]*?<\/button>/)?.[0] ?? "";
+  assert.doesNotMatch(buttonBlock, /<a\s/, "the expand button must not contain a nested link");
 });
 
 // ── Homepage: no featured product panel ─────────────────────────────────────
@@ -679,7 +704,8 @@ test("the homepage renders each product's direct feature sub-links, not just its
 // image reappearing here is the exact regression these lock.
 
 test("the homepage renders no featured-product panel", () => {
-  const home = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  const home = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8")
+    + readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
   assert.doesNotMatch(home, /FeaturedPanel/, "homepage must not render a featured panel");
   assert.doesNotMatch(home, /featuredProduct\(/, "homepage must not pull the featured product");
   assert.doesNotMatch(home, /old-laptop-to-build-machine/i, "homepage must not reference the laptop product image or page");
