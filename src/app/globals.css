@@ -2152,3 +2152,20 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
     transform: none !important;
   }
 }
+
+/* Open Mirror product card clickable affordance — subtle hover/focus states
+   to indicate the entire card is a navigation target. */
+.om-product-card {
+  outline: 2px solid transparent;
+  outline-offset: -1px;
+}
+
+.om-product-card:hover {
+  border-color: var(--om-text) !important;
+  filter: brightness(1.05);
+}
+
+.om-product-card:focus-visible {
+  outline: 2px solid var(--om-accent, #38bdf8);
+  outline-offset: 2px;
+}

@@ -45,8 +45,31 @@ export default function ProductCard({ p }: { p: Product }) {
   const word = p.expandLabel ?? "features";
   const hasFeatures = !!p.links && p.links.length > 0;
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    // Don't navigate if clicking on interactive elements (button, link inside expand panel)
+    if (target.closest("button") || target.closest(".om-expand")) {
+      return;
+    }
+    // Navigate to the product's destination
+    if (isCom) {
+      window.open(p.href, "_blank");
+    } else {
+      window.location.href = p.href;
+    }
+  };
+
   return (
     <div
+      onClick={handleCardClick}
+      onKeyDown={(e) => {
+        if ((e.key === "Enter" || e.key === " ") && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          handleCardClick(e as any);
+        }
+      }}
+      role="button"
+      tabIndex={0}
       style={{
         background: card,
         // var(--om-border), not the literal hex: the light-theme override
@@ -58,7 +81,10 @@ export default function ProductCard({ p }: { p: Product }) {
         borderLeft: `3px solid ${p.accent}`,
         borderRadius: 14,
         padding: isFoundation ? "24px 22px" : "20px 22px",
+        cursor: "pointer",
+        transition: "all 0.2s ease",
       }}
+      className="om-product-card"
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }}>
         {isFoundation ? (
@@ -95,31 +121,25 @@ export default function ProductCard({ p }: { p: Product }) {
         ) : null}
       </div>
 
-      <a
-        href={p.href}
-        {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        style={{ textDecoration: "none", display: "inline-block" }}
+      <h2
+        style={{
+          fontSize: isFoundation ? "clamp(1.1rem, 5.4vw, 1.5rem)" : "clamp(1.02rem, 5vw, 1.35rem)",
+          fontWeight: 900,
+          color: text,
+          margin: "12px 0 0",
+          letterSpacing: "-0.01em",
+        }}
       >
-        <h2
-          style={{
-            fontSize: isFoundation ? "clamp(1.1rem, 5.4vw, 1.5rem)" : "clamp(1.02rem, 5vw, 1.35rem)",
-            fontWeight: 900,
-            color: text,
-            margin: "12px 0 0",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {p.name}
-          {isCom && <span style={{ color: p.accent }}>{dot}</span>}
-        </h2>
-      </a>
+        {p.name}
+        {isCom && <span style={{ color: p.accent }}>{dot}</span>}
+      </h2>
 
       <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "8px 0 0", lineHeight: 1.55 }}>
         {p.description}
       </p>
 
       {hasFeatures ? (
-        <button type="button" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((v) => !v)} className="om-expand-btn">
+        <button type="button" aria-expanded={open} aria-controls={panelId} onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }} className="om-expand-btn">
           <span>{word[0].toUpperCase()}{word.slice(1)}</span>
           <span aria-hidden className={open ? "om-chevron is-open" : "om-chevron"}>⌄</span>
         </button>
