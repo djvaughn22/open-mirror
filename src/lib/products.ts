@@ -184,17 +184,17 @@ export const products: Product[] = [
     href: "https://idontcry.com",
     status: "live",
     category: "play",
+    // 2026-08-16: canonical routes only. CircuitSwitchGame is ONE platform
+    // of five circuits — PulseShift, Surge, Ring, Recall, Redirect — and you
+    // switch between them inside the game, so listing each circuit here
+    // would only rebuild the pile of prototypes the platform replaced. The
+    // four sports are independent games at their own front doors.
     links: [
-      { label: "🔘 Circuit", href: "https://idontcry.com/games/circuit/classic" },
-      // 2026-08-11: the original ring game was restored the same night
-      // PulseShift shipped (owner direction: keep both, never replace) — it
-      // lives at its own route now and deserves its own direct link.
-      { label: "🔄 Circuit Ring", href: "https://idontcry.com/games/circuit/classic/ring" },
-      { label: "⚡ Surge", href: "https://idontcry.com/games/circuit/surge" },
-      { label: "🏈 Football", href: "https://idontcry.com/games/circuit/football" },
-      { label: "⚾ Baseball", href: "https://idontcry.com/games/circuit/baseball" },
-      { label: "🎿 Skiing", href: "https://idontcry.com/games/circuit/skiing" },
-      { label: "🤸 Pole Vault", href: "https://idontcry.com/games/circuit/pole-vault" },
+      { label: "🔀 CircuitSwitchGame", href: "https://idontcry.com/games/circuit" },
+      { label: "🏈 Football", href: "https://idontcry.com/games/football" },
+      { label: "⚾ Baseball", href: "https://idontcry.com/games/baseball" },
+      { label: "🎿 Skiing", href: "https://idontcry.com/games/skiing" },
+      { label: "🤸 Track & Field", href: "https://idontcry.com/games/track-and-field" },
       { label: "🎹 Piano Corner", href: "https://idontcry.com/piano" },
     ],
   },
