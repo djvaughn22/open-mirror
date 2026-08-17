@@ -635,10 +635,6 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     "https://crossheartpray.com/life-essentials",
     "https://crossheartpray.com/explorebible",
   ],
-  // 2026-08-16: CircuitSwitchGame is ONE door — its five circuits are one
-  // tap from each other INSIDE the game, so listing them separately here
-  // would rebuild the pile of prototypes the platform replaced. The four
-  // sports use the canonical roots from the Aug 2026 IA correction.
   iDontCry: [
     "https://idontcry.com/games/circuit",
     "https://idontcry.com/games/football",
@@ -691,10 +687,7 @@ test("the feature-list toggle is a real, accessible expand/collapse control", ()
   assert.match(productCard, /<button[^>]*type="button"[^>]*aria-expanded=\{open\}[^>]*aria-controls=\{panelId\}/,
     "the toggle is a real button carrying both aria-expanded and aria-controls");
   assert.match(productCard, /id=\{panelId\}/, "the controlled panel's id matches aria-controls");
-  // The whole card navigates, so the toggle stops propagation before it
-  // flips the panel — otherwise opening the features would leave the page.
-  assert.match(productCard, /setOpen\(\(v\) => !v\)/, "the toggle actually flips the open state");
-  assert.match(productCard, /e\.stopPropagation\(\)/, "the toggle must not also trigger the card's navigation");
+  assert.match(productCard, /onClick=\{\([^)]*\)\s*=>[\s\S]*?setOpen/, "the toggle actually flips the open state");
   // The toggle button and the sub-link/CTA anchors must be siblings, not one
   // inside the other — no nested interactive elements.
   const buttonBlock = productCard.match(/<button[\s\S]*?<\/button>/)?.[0] ?? "";

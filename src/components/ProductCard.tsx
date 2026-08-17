@@ -45,8 +45,6 @@ export default function ProductCard({ p }: { p: Product }) {
   const word = p.expandLabel ?? "features";
   const hasFeatures = !!p.links && p.links.length > 0;
 
-  // Keyboard activation routes through the same handler, so it takes the
-  // union rather than casting a KeyboardEvent to `any` at the call site.
   const handleCardClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     const target = e.target as HTMLElement;
     // Don't navigate if clicking on interactive elements (button, link inside expand panel)
