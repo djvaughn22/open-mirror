@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 // Full disclaimer (owner's brief, 2026-07-19). Ten sections carry the whole
 // thing: general information, as-is, not professional advice, AI, third
 // parties, trademarks, user responsibility, limitation of responsibility,
-// independent ownership, and questions. The employer is never named, never
+// independent ownership, and questions.
 // titled. Change words only on the owner's instruction.
 
 const INTRO =
@@ -51,7 +51,7 @@ const SECTIONS = [
   },
   {
     heading: "Independent ownership",
-    copy: "Open Mirror LLC is independently owned and operated. Nothing published by Open Mirror LLC is sponsored by, affiliated with, endorsed by, or representative of the owner’s full-time employer.",
+    copy: "Open Mirror LLC is independently owned and operated. Open Mirror products and content are created and published independently.",
   },
   {
     heading: "Questions",
