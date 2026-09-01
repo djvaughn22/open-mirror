@@ -1,0 +1,92 @@
+{
+  "id": "2026-10-09-lafayette",
+  "version": 1,
+  "sport": "football",
+  "seasonId": "2026",
+  "date": "2026-10-09",
+  "team": "Wildwood",
+  "opponent": "Lafayette",
+  "homeAway": "home",
+  "teamScore": 42,
+  "opponentScore": 35,
+  "result": "W",
+  "recordAfter": {
+    "wins": 5,
+    "losses": 2,
+    "ties": 0
+  },
+  "players": [
+    {
+      "name": "Mason",
+      "stats": {
+        "rushingYards": {
+          "amount": 186,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+            "approvedByOperator": true
+          }
+        },
+        "rushingTd": {
+          "amount": 3,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Eli",
+      "stats": {
+        "interceptions": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    }
+  ],
+  "narrative": [
+    {
+      "text": "Wildwood trailed 21-7.",
+      "provenance": {
+        "kind": "evidence",
+        "quote": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+        "approvedByOperator": true
+      },
+      "deficit": {
+        "us": 7,
+        "them": 21
+      }
+    }
+  ],
+  "next": {
+    "opponent": "Eureka",
+    "when": "Friday",
+    "provenance": {
+      "kind": "evidence",
+      "quote": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+      "approvedByOperator": true
+    }
+  },
+  "scoreProvenance": {
+    "kind": "evidence",
+    "quote": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+    "approvedByOperator": true
+  },
+  "evidence": [
+    {
+      "id": "seed-1",
+      "kind": "pasted-text",
+      "text": "Won 42-35 over Lafayette. We were down 21-7. Mason had 186 rushing and 3 TD. Eli had a late pick. We're 5-2 now and Eureka is Friday.",
+      "label": "Coach's note"
+    }
+  ],
+  "demo": true,
+  "createdAt": "2026-10-09T23:30:00.000Z"
+}

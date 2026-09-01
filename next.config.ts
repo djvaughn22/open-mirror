@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The Sports Desk archive is plain JSON on disk. Trace it into the server
+  // bundle so the deployed routes can read the games the repo ships with.
+  outputFileTracingIncludes: {
+    "/sports": ["./data/sports/**"],
+    "/sports/[gameId]": ["./data/sports/**"],
+    "/sports/[gameId]/card": ["./data/sports/**"],
+    "/sports-desk": ["./data/sports/**"],
+    "/api/sports/games": ["./data/sports/**"],
+    "/api/sports/games/[gameId]": ["./data/sports/**"],
+  },
   async redirects() {
     // The hub is the portfolio directory. Pages that predate the split into
     // standalone sites live on permanently as redirects — no saved URL breaks.

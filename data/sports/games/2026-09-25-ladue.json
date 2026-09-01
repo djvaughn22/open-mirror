@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-25-ladue",
+  "version": 1,
+  "sport": "football",
+  "seasonId": "2026",
+  "date": "2026-09-25",
+  "team": "Wildwood",
+  "opponent": "Ladue",
+  "homeAway": "home",
+  "teamScore": 35,
+  "opponentScore": 21,
+  "result": "W",
+  "recordAfter": {
+    "wins": 3,
+    "losses": 2,
+    "ties": 0
+  },
+  "players": [
+    {
+      "name": "Mason",
+      "stats": {
+        "rushingYards": {
+          "amount": 131,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+            "approvedByOperator": true
+          }
+        },
+        "rushingTd": {
+          "amount": 2,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Cole",
+      "stats": {
+        "passingYards": {
+          "amount": 168,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+            "approvedByOperator": true
+          }
+        },
+        "passingTd": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Eli",
+      "stats": {
+        "interceptions": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+            "approvedByOperator": true
+          }
+        },
+        "tackles": {
+          "amount": 7,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    }
+  ],
+  "narrative": [],
+  "scoreProvenance": {
+    "kind": "evidence",
+    "quote": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+    "approvedByOperator": true
+  },
+  "evidence": [
+    {
+      "id": "seed-1",
+      "kind": "pasted-text",
+      "text": "Beat Ladue 35-21. Mason had 131 rushing and 2 TD. Cole threw for 168 and a touchdown pass. Eli had a pick and 7 tackles.",
+      "label": "Coach's note"
+    }
+  ],
+  "demo": true,
+  "createdAt": "2026-09-25T23:30:00.000Z"
+}

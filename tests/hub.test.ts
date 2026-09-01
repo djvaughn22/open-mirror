@@ -794,6 +794,8 @@ test("Disclaimer carries all ten sections and the dateline", () => {
     assert.ok(disclaimer.includes(heading), `Disclaimer section present: ${heading}`);
   }
   assert.match(disclaimer, /Last updated: July 2026/, "the small-print dateline is present");
-  assert.match(disclaimer, /owner’s full-time employer/, "the employer is referenced, never named");
+  // 2026-08-17 (owner, commit 0341e97): the employer reference was removed
+  // from the disclaimer entirely. This lock follows that decision.
+  assert.doesNotMatch(disclaimer, /employer/i, "no employer language, named or referenced");
   assert.doesNotMatch(disclaimer, /founder/i, "'owner', never 'founder'");
 });

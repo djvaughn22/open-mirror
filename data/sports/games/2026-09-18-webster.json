@@ -1,0 +1,83 @@
+{
+  "id": "2026-09-18-webster",
+  "version": 1,
+  "sport": "football",
+  "seasonId": "2026",
+  "date": "2026-09-18",
+  "team": "Wildwood",
+  "opponent": "Webster",
+  "homeAway": "away",
+  "teamScore": 13,
+  "opponentScore": 35,
+  "result": "L",
+  "recordAfter": {
+    "wins": 2,
+    "losses": 2,
+    "ties": 0
+  },
+  "players": [
+    {
+      "name": "Mason",
+      "stats": {
+        "rushingYards": {
+          "amount": 104,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Lost 13-35 at Webster. We were down 28-6. Mason had 104 rushing and a TD. Cole threw for 121.",
+            "approvedByOperator": true
+          }
+        },
+        "rushingTd": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Lost 13-35 at Webster. We were down 28-6. Mason had 104 rushing and a TD. Cole threw for 121.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Cole",
+      "stats": {
+        "passingYards": {
+          "amount": 121,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Lost 13-35 at Webster. We were down 28-6. Mason had 104 rushing and a TD. Cole threw for 121.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    }
+  ],
+  "narrative": [
+    {
+      "text": "Wildwood trailed 28-6.",
+      "provenance": {
+        "kind": "evidence",
+        "quote": "Lost 13-35 at Webster. We were down 28-6. Mason had 104 rushing and a TD. Cole threw for 121.",
+        "approvedByOperator": true
+      },
+      "deficit": {
+        "us": 6,
+        "them": 28
+      }
+    }
+  ],
+  "scoreProvenance": {
+    "kind": "evidence",
+    "quote": "Lost 13-35 at Webster. We were down 28-6. Mason had 104 rushing and a TD. Cole threw for 121.",
+    "approvedByOperator": true
+  },
+  "evidence": [
+    {
+      "id": "seed-1",
+      "kind": "pasted-text",
+      "text": "Lost 13-35 at Webster. We were down 28-6. Mason had 104 rushing and a TD. Cole threw for 121.",
+      "label": "Coach's note"
+    }
+  ],
+  "demo": true,
+  "createdAt": "2026-09-18T23:30:00.000Z"
+}

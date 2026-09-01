@@ -1,0 +1,78 @@
+{
+  "id": "2026-09-11-kirkwood",
+  "version": 1,
+  "sport": "football",
+  "seasonId": "2026",
+  "date": "2026-09-11",
+  "team": "Wildwood",
+  "opponent": "Kirkwood",
+  "homeAway": "home",
+  "teamScore": 21,
+  "opponentScore": 10,
+  "result": "W",
+  "recordAfter": {
+    "wins": 2,
+    "losses": 1,
+    "ties": 0
+  },
+  "players": [
+    {
+      "name": "Mason",
+      "stats": {
+        "rushingYards": {
+          "amount": 112,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Kirkwood 21-10. Mason had 112 rushing and 2 TD. Eli had 9 tackles and a pick.",
+            "approvedByOperator": true
+          }
+        },
+        "rushingTd": {
+          "amount": 2,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Kirkwood 21-10. Mason had 112 rushing and 2 TD. Eli had 9 tackles and a pick.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Eli",
+      "stats": {
+        "tackles": {
+          "amount": 9,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Kirkwood 21-10. Mason had 112 rushing and 2 TD. Eli had 9 tackles and a pick.",
+            "approvedByOperator": true
+          }
+        },
+        "interceptions": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Beat Kirkwood 21-10. Mason had 112 rushing and 2 TD. Eli had 9 tackles and a pick.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    }
+  ],
+  "narrative": [],
+  "scoreProvenance": {
+    "kind": "evidence",
+    "quote": "Beat Kirkwood 21-10. Mason had 112 rushing and 2 TD. Eli had 9 tackles and a pick.",
+    "approvedByOperator": true
+  },
+  "evidence": [
+    {
+      "id": "seed-1",
+      "kind": "pasted-text",
+      "text": "Beat Kirkwood 21-10. Mason had 112 rushing and 2 TD. Eli had 9 tackles and a pick.",
+      "label": "Coach's note"
+    }
+  ],
+  "demo": true,
+  "createdAt": "2026-09-11T23:30:00.000Z"
+}

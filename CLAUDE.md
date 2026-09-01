@@ -88,3 +88,51 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 **Documentation:** `OPEN_MIRROR_ETSY_FIRST_STORE_BATCH.md` at repo root contains 25 product ideas, 5 complete listing drafts, and social launch strategy.
 
 **Next work:** Implement Etsy API sync or manual product updates to shop. Route is ready to extend.
+
+## Sports Desk (MVP 1 — 2026-09-01)
+
+An AI-powered local high-school sports desk living inside the hub. One sport
+(football), one team, one operator, many games, public readers. The product is
+the pipeline, not the model:
+
+**messy evidence → structured facts → human verification → archive → Story
+Finder → Game Edition → share card**
+
+**Routes** (deliberately outside the nav, like `/reflect`):
+- `/sports-desk` — operator: paste evidence, verify, approve, correct, remove.
+- `/sports` — public season index.
+- `/sports/[gameId]` — the **Game Edition**, the public product.
+- `/sports/[gameId]/card` — the one shareable card, exportable as PNG in-browser.
+- `/api/sports/extract`, `/api/sports/games`, `/api/sports/games/[gameId]`.
+
+**Engine** (`src/lib/sports/`, presentation-free):
+`types` · `football` (the only sport adapter) · `extract` (deterministic, no
+model) · `validate` · `approve` · `store` (SportsStore seam) · `history` ·
+`storyFinder` · `writer` · `factGuard` · `edition` · `share` · `modelWriter`.
+
+**Non-negotiables — do not weaken these:**
+- **AI can write, AI cannot make facts.** Every published number and name goes
+  through `factGuard.ts` against the approved fact set. Unknown token, no
+  publish. It fails closed, and a rejected model rewrite is *reported*, never
+  swallowed.
+- Every stored stat carries `provenance` (evidence / operator / calculated /
+  interpretation). `validate.ts` refuses a stat without one.
+- The Story Finder counts; it never asks a model whether something is a season
+  high. Discoveries are written by TypeScript.
+- Extraction runs with **no model, no network, no cost**. A model is optional
+  (`SPORTS_DESK_MODEL*`), narrow (prose only), vendor-neutral (any
+  OpenAI-shaped endpoint, including a local Ollama), and off by default.
+- Minors: store only sports facts. Never infer or accept medical, personal,
+  disciplinary, or contact information. Corrections and removal are one step.
+
+**Storage:** approved games are JSON at `data/sports/games/*.json` — a
+git-backed archive, $0, no database. Record locally, commit the file, push to
+publish. `SportsStore` in `store.ts` is the seam if that ever needs Postgres.
+
+**Demo season:** `scripts/seed-sports-desk.ts` writes seven seeded games flagged
+`demo: true`. Editions disclose a seeded archive. Delete `data/sports/games/`
+and change `src/lib/sports/team.ts` to cover a real team.
+
+**Tests:** `tests/sportsDesk.test.ts` locks the arithmetic and the
+hallucination boundary (including the spec's own case: "186 rushing yards"
+must never become "186 rushing yards on 24 carries").

@@ -1,0 +1,70 @@
+{
+  "id": "2026-09-04-rockwood",
+  "version": 1,
+  "sport": "football",
+  "seasonId": "2026",
+  "date": "2026-09-04",
+  "team": "Wildwood",
+  "opponent": "Rockwood",
+  "homeAway": "away",
+  "teamScore": 17,
+  "opponentScore": 24,
+  "result": "L",
+  "recordAfter": {
+    "wins": 1,
+    "losses": 1,
+    "ties": 0
+  },
+  "players": [
+    {
+      "name": "Mason",
+      "stats": {
+        "rushingYards": {
+          "amount": 71,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Lost 17-24 at Rockwood. Mason had 71 rushing. Cole threw for 143 and a touchdown pass.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Cole",
+      "stats": {
+        "passingYards": {
+          "amount": 143,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Lost 17-24 at Rockwood. Mason had 71 rushing. Cole threw for 143 and a touchdown pass.",
+            "approvedByOperator": true
+          }
+        },
+        "passingTd": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Lost 17-24 at Rockwood. Mason had 71 rushing. Cole threw for 143 and a touchdown pass.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    }
+  ],
+  "narrative": [],
+  "scoreProvenance": {
+    "kind": "evidence",
+    "quote": "Lost 17-24 at Rockwood. Mason had 71 rushing. Cole threw for 143 and a touchdown pass.",
+    "approvedByOperator": true
+  },
+  "evidence": [
+    {
+      "id": "seed-1",
+      "kind": "pasted-text",
+      "text": "Lost 17-24 at Rockwood. Mason had 71 rushing. Cole threw for 143 and a touchdown pass.",
+      "label": "Coach's note"
+    }
+  ],
+  "demo": true,
+  "createdAt": "2026-09-04T23:30:00.000Z"
+}

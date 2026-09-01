@@ -1,0 +1,112 @@
+{
+  "id": "2026-10-02-fox",
+  "version": 1,
+  "sport": "football",
+  "seasonId": "2026",
+  "date": "2026-10-02",
+  "team": "Wildwood",
+  "opponent": "Fox",
+  "homeAway": "away",
+  "teamScore": 24,
+  "opponentScore": 20,
+  "result": "W",
+  "recordAfter": {
+    "wins": 4,
+    "losses": 2,
+    "ties": 0
+  },
+  "players": [
+    {
+      "name": "Mason",
+      "stats": {
+        "rushingYards": {
+          "amount": 118,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+            "approvedByOperator": true
+          }
+        },
+        "rushingTd": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Cole",
+      "stats": {
+        "passingYards": {
+          "amount": 98,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+            "approvedByOperator": true
+          }
+        },
+        "passingTd": {
+          "amount": 1,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    },
+    {
+      "name": "Eli",
+      "stats": {
+        "sacks": {
+          "amount": 2,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+            "approvedByOperator": true
+          }
+        },
+        "tackles": {
+          "amount": 8,
+          "provenance": {
+            "kind": "evidence",
+            "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+            "approvedByOperator": true
+          }
+        }
+      }
+    }
+  ],
+  "narrative": [
+    {
+      "text": "Wildwood trailed 17-7.",
+      "provenance": {
+        "kind": "evidence",
+        "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+        "approvedByOperator": true
+      },
+      "deficit": {
+        "us": 7,
+        "them": 17
+      }
+    }
+  ],
+  "scoreProvenance": {
+    "kind": "evidence",
+    "quote": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+    "approvedByOperator": true
+  },
+  "evidence": [
+    {
+      "id": "seed-1",
+      "kind": "pasted-text",
+      "text": "Won 24-20 at Fox. We were down 17-7. Mason had 118 rushing and a TD. Cole threw for 98 and a score. Eli had 2 sacks and 8 tackles.",
+      "label": "Coach's note"
+    }
+  ],
+  "demo": true,
+  "createdAt": "2026-10-02T23:30:00.000Z"
+}
