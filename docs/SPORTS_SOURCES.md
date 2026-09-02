@@ -1,5 +1,24 @@
 # St. Louis wire — sources, and why
 
+> **Sept 2 2026 — the active product direction moved.** The personal/family
+> version of this engine now lives in iDontCry (`djvaughn22/idontcry`, `/sports`)
+> as **My Teams**: DJ follows his kids' and nephews' teams one at a time, and
+> targeted source discovery configures each one automatically. No athletic
+> director, no school sign-up, no coach reporting a score.
+>
+> That correction came from the finding at the bottom of this file — St. Louis
+> publishes schedules broadly and results almost never — which makes a city wire
+> depend on participation nobody has agreed to, and makes following four teams
+> work today.
+>
+> **Open Mirror Sports is unchanged and still runs.** The trust layer, the school
+> registry, the adapters and the writer were COPIED into iDontCry, not moved; the
+> first-party submission network, the operator desk and the Game Edition model
+> stayed here. This file remains the authority on what we are permitted to read,
+> and iDontCry's rights guard is built from it.
+> See `idontcry/docs/SPORTS.md` for the migration boundary.
+
+
 Every source here was checked before it was automated. The rule is not "can we
 fetch it" — it is "are we allowed to, and is it a fact rather than someone
 else's writing". A source that fails either test is documented below and left
