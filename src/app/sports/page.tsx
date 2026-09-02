@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { longDateOf, weekdayOf } from "@/lib/sports/brief";
-import { buildCityFeed, type FeedStory } from "@/lib/sports/feed";
+import { buildCityFeed, loadFeedEvents, type FeedStory } from "@/lib/sports/feed";
 import { sportLabel } from "@/lib/sports/graph/sports";
 import { ST_LOUIS } from "@/lib/sports/metros/stLouis";
 import type { SportId } from "@/lib/sports/graph/types";
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
 };
 
 const SHELL = "mx-auto w-full max-w-[46rem] px-4 sm:px-6";
+
+const SCHOOL_NAMES = new Map(ST_LOUIS.schools.map((s) => [s.id, s.shortName]));
+const schoolShortName = (id: string) => SCHOOL_NAMES.get(id) ?? id.replace(/^unresolved:/, "");
 
 function StoryCard({ story }: { story: FeedStory }) {
   const { event, brief, sources } = story;
@@ -74,6 +77,16 @@ function StoryCard({ story }: { story: FeedStory }) {
       <p className="m-0 mt-2 text-[0.95rem] font-medium leading-6 text-[#cbd5e1]">{brief.body}</p>
 
       <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-semibold text-[#64748b]">
+        {event.sides.map((side) => (
+          <Link
+            key={side.schoolId}
+            href={`/sports/schools/${side.schoolId}`}
+            className="text-[#94a3b8] underline underline-offset-2 hover:text-[#e2e8f0]"
+          >
+            {schoolShortName(side.schoolId)}
+          </Link>
+        ))}
+        <span>·</span>
         <span>Reported by</span>
         {sources.map((s) => (
           <a key={s.url} href={s.url} rel="noreferrer noopener" target="_blank" className="underline underline-offset-2 hover:text-[#94a3b8]">
@@ -94,7 +107,7 @@ export default async function SportsFeedPage({
   searchParams: Promise<{ sport?: string }>;
 }) {
   const params = await searchParams;
-  const feed = buildCityFeed({ sport: params.sport as SportId | undefined });
+  const feed = buildCityFeed({ sport: params.sport as SportId | undefined, events: await loadFeedEvents() });
   const active = params.sport;
 
   return (
@@ -113,6 +126,22 @@ export default async function SportsFeedPage({
             back to the page it came from.
           </p>
         </header>
+
+        {/* The way in for anyone holding a score we do not have yet. */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link
+            href="/sports/report"
+            className="rounded-full bg-[#7dd3fc] px-4 py-2 text-[12px] font-black text-[#0b0e14]"
+          >
+            Report a score
+          </Link>
+          <Link
+            href="/sports/for-schools"
+            className="rounded-full border border-[#2a3242] px-4 py-2 text-[12px] font-bold text-[#94a3b8] hover:text-[#e2e8f0]"
+          >
+            Coaches: get your team link
+          </Link>
+        </div>
 
         {/* Sport filters — only sports we actually have */}
         {feed.sports.length > 0 ? (

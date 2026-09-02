@@ -11,7 +11,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { buildBrief, type Brief } from "./brief.ts";
-import { eventStore } from "./graph/eventStore.ts";
+import { sportsRepository } from "./repo/index.ts";
 import { sportLabel } from "./graph/sports.ts";
 import { findMetroStories } from "./metroStories.ts";
 import { ST_LOUIS } from "./metros/stLouis.ts";
@@ -71,10 +71,18 @@ export interface BuildFeedOptions {
   events?: CanonicalEvent[];
 }
 
+/**
+ * Read every event this deployment knows about — the crawler's file archive and
+ * anything submitted since, merged by the repository.
+ */
+export async function loadFeedEvents(): Promise<CanonicalEvent[]> {
+  return sportsRepository().listEvents();
+}
+
 export function buildCityFeed(options: BuildFeedOptions = {}): CityFeed {
   const metro = ST_LOUIS;
   const schools = new Map<string, School>(metro.schools.map((s) => [s.id, s]));
-  const all = options.events ?? eventStore.list();
+  const all = options.events ?? [];
   const today = options.today ?? new Date().toISOString().slice(0, 10);
   const days = options.days ?? 14;
   const earliest = new Date(Date.parse(`${today}T00:00:00Z`) - days * 86_400_000).toISOString().slice(0, 10);

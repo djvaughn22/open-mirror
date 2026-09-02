@@ -51,3 +51,9 @@ next-env.d.ts
 
 # packaged paid bundles — never served, never committed
 /dist
+
+# Sports first-party network — local development only.
+# Production writes these to Postgres. A developer's local credential hashes
+# and test submissions must never be committed.
+data/sports/submissions.json
+data/sports/credentials.json

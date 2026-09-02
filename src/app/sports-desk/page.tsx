@@ -17,8 +17,9 @@ import Link from "next/link";
 
 import Desk from "@/components/sports/Desk";
 import ReviewQueue from "@/components/sports/ReviewQueue";
-import { eventStore } from "@/lib/sports/graph/eventStore";
+import { sportsRepository } from "@/lib/sports/repo";
 import { ST_LOUIS } from "@/lib/sports/metros/stLouis";
+import { SPORTS } from "@/lib/sports/graph/sports";
 import { store } from "@/lib/sports/store";
 import { TEAM } from "@/lib/sports/team";
 import type { School } from "@/lib/sports/graph/types";
@@ -31,9 +32,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function SportsDeskPage() {
+export default async function SportsDeskPage() {
+  const repo = sportsRepository();
   const games = store.list();
-  const events = eventStore.list();
+  const events = await repo.listEvents();
   const schools = new Map<string, School>(ST_LOUIS.schools.map((s) => [s.id, s]));
 
   const conflicted = events.filter((e) => e.confidence === "conflicted");
@@ -46,6 +48,24 @@ export default function SportsDeskPage() {
   const unresolvedNames = [...nameCounts.entries()]
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
+  // Only reports that actually need a person. An authorized report that
+  // published cleanly must never appear here — that is the whole point.
+  const pending = await repo.listSubmissions({ status: "review", limit: 40 });
+  const published = await repo.listSubmissions({ status: "published", limit: 200 });
+  const sportName = (id: string) => SPORTS.find((s) => s.id === id)?.label ?? id;
+  const pendingSubmissions = pending.map((s) => ({
+    id: s.id,
+    origin: s.origin,
+    schoolName: schools.get(s.input.schoolId)?.shortName ?? s.input.schoolId,
+    opponentName: s.input.opponentName,
+    sport: sportName(s.input.sport),
+    scoreline: `${schools.get(s.input.schoolId)?.shortName ?? s.input.schoolId} ${s.input.ourScore}, ${s.input.opponentName} ${s.input.theirScore}`,
+    date: s.input.date,
+    reason: s.reason,
+    receivedAt: s.receivedAt,
+    note: s.input.note,
+  }));
 
   return (
     <div className="min-h-screen bg-[#0b0e14] text-[#e8edf5]">
@@ -61,6 +81,10 @@ export default function SportsDeskPage() {
         unresolvedNames={unresolvedNames}
         schools={schools}
         publishedCount={events.filter((e) => e.publishable).length}
+        pendingSubmissions={pendingSubmissions}
+        autoPublishedCount={published.filter((s) => s.origin === "authorized").length}
+        storage={repo.describe()}
+        storageWritable={await repo.writable()}
       />
 
       <div className="mx-auto w-full max-w-[46rem] px-4 pb-4 sm:px-6">

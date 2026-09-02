@@ -21,7 +21,7 @@ import ShareActions from "@/components/sports/ShareActions";
 import ShareCard from "@/components/sports/ShareCard";
 import { buildBrief } from "@/lib/sports/brief";
 import { buildEdition } from "@/lib/sports/edition";
-import { eventStore } from "@/lib/sports/graph/eventStore";
+import { sportsRepository } from "@/lib/sports/repo";
 import { findMetroStories } from "@/lib/sports/metroStories";
 import { ST_LOUIS } from "@/lib/sports/metros/stLouis";
 import { shareCardData } from "@/lib/sports/share";
@@ -35,11 +35,12 @@ type Params = { params: Promise<{ gameId: string }> };
 export const dynamic = "force-dynamic";
 
 /** The schools map and brief for one wire event, or undefined if the id is a desk game. */
-function wireEvent(gameId: string) {
-  const event = eventStore.get(gameId);
+async function wireEvent(gameId: string) {
+  const repo = sportsRepository();
+  const event = await repo.getEvent(gameId);
   if (!event) return undefined;
   const schools = new Map(ST_LOUIS.schools.map((s) => [s.id, s]));
-  const archive = eventStore.list();
+  const archive = await repo.listEvents();
   const today = new Date().toISOString().slice(0, 10);
   const brief = buildBrief({
     event,
@@ -53,7 +54,7 @@ function wireEvent(gameId: string) {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { gameId } = await params;
 
-  const wire = wireEvent(gameId);
+  const wire = await wireEvent(gameId);
   if (wire) {
     return {
       title: wire.brief.headline,
@@ -93,7 +94,7 @@ export default async function GameEditionPage({ params }: Params) {
   const { gameId } = await params;
 
   // The wire first: this is where the city feed sends every reader.
-  const wire = wireEvent(gameId);
+  const wire = await wireEvent(gameId);
   if (wire) return <EventDetail event={wire.event} brief={wire.brief} schools={wire.schools} />;
 
   const game = store.get(gameId);
