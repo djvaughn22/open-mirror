@@ -22,7 +22,7 @@
       "id": "mascot-media:micdsathletics.com|micds|unresolved:richmond high school|football|2026-09-04",
       "sourceId": "mascot-media:micdsathletics.com",
       "sourceUrl": "https://www.micdsathletics.com/sport/football/boys/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "football",
       "date": "2026-09-04",
       "reporter": {
@@ -36,7 +36,7 @@
       "raw": {
         "sourceId": "mascot-media:micdsathletics.com",
         "sourceUrl": "https://www.micdsathletics.com/sport/football/boys/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "MICDS",
         "opponent": "Richmond High School",
         "date": "2026-09-04",
@@ -55,7 +55,7 @@
     "Richmond High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

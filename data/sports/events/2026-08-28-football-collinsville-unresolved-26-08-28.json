@@ -24,7 +24,7 @@
       "id": "mascot-media:kahokathletics.com|collinsville|unresolved:springfield hs|football|2026-08-28",
       "sourceId": "mascot-media:kahokathletics.com",
       "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "football",
       "date": "2026-08-28",
       "reporter": {
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "mascot-media:kahokathletics.com",
         "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "Collinsville",
         "opponent": "Springfield HS",
         "date": "2026-08-28",
@@ -65,7 +65,7 @@
     "Springfield HS"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

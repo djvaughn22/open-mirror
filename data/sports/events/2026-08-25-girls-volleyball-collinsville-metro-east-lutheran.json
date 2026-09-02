@@ -24,7 +24,7 @@
       "id": "mascot-media:kahokathletics.com|collinsville|metro-east-lutheran|girls-volleyball|2026-08-25",
       "sourceId": "mascot-media:kahokathletics.com",
       "sourceUrl": "https://www.kahokathletics.com/sport/volleyball/girls/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "girls-volleyball",
       "date": "2026-08-25",
       "reporter": {
@@ -44,7 +44,7 @@
       "raw": {
         "sourceId": "mascot-media:kahokathletics.com",
         "sourceUrl": "https://www.kahokathletics.com/sport/volleyball/girls/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "Collinsville",
         "opponent": "Metro East Lutheran High School",
         "date": "2026-08-25",
@@ -66,7 +66,7 @@
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

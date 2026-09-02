@@ -25,7 +25,7 @@
       "id": "eventlink:hazelwood-central-high-school|hazelwood-central|sluh|football|2026-08-28",
       "sourceId": "eventlink:hazelwood-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "football",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T18:00:00",
@@ -43,7 +43,7 @@
       "raw": {
         "sourceId": "eventlink:hazelwood-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Hazelwood Central",
         "opponent": "St. Louis University High",
         "date": "2026-08-28",
@@ -58,7 +58,7 @@
       "id": "school-site-finalsite:sluh.org|sluh|hazelwood-central|football|2026-08-28",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/football",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "football",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T18:00:00-05:00",
@@ -79,7 +79,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/football",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "SLUH",
         "opponent": "Hazelwood Central",
         "date": "2026-08-28",
@@ -104,7 +104,7 @@
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

@@ -48,14 +48,65 @@ selected options; each row carries date, AT/VS, opponent, venue and a
 **Finalsite Athletics** — server-rendered `fsEventTable` rows. Documented in
 `docs/SPORTS_SOURCES.md`.
 
-## Why BigTeams was not built
+## BigTeams: investigated properly, and EXCLUDED
 
-Four schools, real results, and robots permits the content paths — so it is a
-legitimate target. It was skipped on time, not on principle: the pages are ~2MB
-with a `/main/teamnews/seasonid/...` structure that needs more parsing work
-than the sprint had left, and its end-user agreement deserves a proper read
-first. **It is the highest-value next adapter**: those four schools are
-Illinois-side results, where coverage is currently thinnest.
+Its `robots.txt` permits the content paths, so the previous sprint left it as
+"not built, not blocked". Reading the terms settled it. The BigTeams end-user
+agreement prohibits:
+
+> "Accessing or searching any part of the Services by any means other than our
+> publicly supported interfaces (for example, *scraping*)"
+
+robots.txt permitting a crawl does not override a term that forbids it, so
+BigTeams is excluded. Alton, Granite City, St. Clair and Duchesne stay
+uncovered as direct reporters.
+
+## Hudl / Hudl Fan: EXCLUDED
+
+Kirkwood and others link to `fan.hudl.com`. Its robots.txt is permissive
+(`Allow: /`), but Hudl's Acceptable Use Policy forbids:
+
+> "use any robot, spider, or other automatic device, process, or means to
+> access the Hudl Site or Products for any purpose, including … copying any of
+> the material"
+
+and separately bans access "by any means other than Hudl's publicly supported
+interfaces (for example, scraping)". Excluded. The Kirkwood links are ticketing
+pages in any case, not scores.
+
+## Correction to the previous census
+
+The earlier census reported **rSchoolToday** at several districts. That was a
+false positive: the detector matched the substring "rschool" inside
+`ritenour**school**s.org` and `kirkwoodpioneer**school**store.com`. No St. Louis
+school in this sample actually uses rSchoolToday.
+
+## The structural finding
+
+After exhausting the metro, the shape of this market is clear and it is not
+what you would guess:
+
+**St. Louis high schools publish SCHEDULES broadly and RESULTS almost not at
+all.** EventLink carries 27 schools' fixtures and no scores. Every other wide
+platform that does carry scores — BigTeams, Hudl, ArbiterLive, MaxPreps,
+MSHSAA — forbids automated access in robots or in terms.
+
+What is left is the handful of schools that publish results in their own HTML:
+SLUH, De Smet and Priory (Finalsite), MICDS and Collinsville (Mascot Media).
+Five direct reporters. Searched and ruled out this sprint:
+
+- 30 private schools re-crawled for Finalsite schedule tables — **zero** new.
+  Most run a calendar element with no results at all (Whitfield is typical).
+- 550 candidate `*athletics.com/.org` domains for Mascot Media — only
+  Collinsville, which was already configured.
+- 32 candidate St. Louis athletic conference domains — none exist; the hits
+  were a college conference and parked domains.
+- EventLink probed for a scores endpoint under six handler names — all return
+  the page, confirming it has none.
+
+This is a supply problem, not an effort problem. The next real gain comes from
+schools choosing to publish results, or from a permitted source appearing —
+not from another parser.
 
 ## What the census does not cover
 

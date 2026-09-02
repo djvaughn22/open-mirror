@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-central-high-school|parkway-central|sluh|boys-swimming|2026-09-03",
       "sourceId": "eventlink:parkway-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-swimming",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T16:15:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway Central",
         "opponent": "SLUH",
         "date": "2026-09-03",
@@ -56,7 +56,7 @@
       "id": "school-site-finalsite:sluh.org|sluh|parkway-central|boys-swimming|2026-09-03",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-swimming",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T16:15:00-05:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "SLUH",
         "opponent": "Parkway Central",
         "date": "2026-09-03",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

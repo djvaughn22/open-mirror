@@ -25,7 +25,7 @@
       "id": "school-site-finalsite:sluh.org|sluh|st-mary-s|boys-soccer|2026-09-01",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-soccer",
       "date": "2026-09-01",
       "startsAt": "2026-09-01T17:00:00-05:00",
@@ -45,7 +45,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "SLUH",
         "opponent": "St. Mary's H.S.",
         "date": "2026-09-01",
@@ -67,7 +67,7 @@
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:02.832Z"
 }

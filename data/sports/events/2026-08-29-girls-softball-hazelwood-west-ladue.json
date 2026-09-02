@@ -23,7 +23,7 @@
       "id": "eventlink:hazelwood-west-high-school|hazelwood-west|ladue|girls-softball|2026-08-29",
       "sourceId": "eventlink:hazelwood-west-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-softball",
       "date": "2026-08-29",
       "startsAt": "2026-08-29T10:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:hazelwood-west-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Hazelwood West",
         "opponent": "Ladue Horton Watkins High School",
         "date": "2026-08-29",
@@ -56,7 +56,7 @@
       "id": "eventlink:ladue-horton-watkins-high-school|ladue|hazelwood-west|girls-softball|2026-08-29",
       "sourceId": "eventlink:ladue-horton-watkins-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-softball",
       "date": "2026-08-29",
       "startsAt": "2026-08-29T10:00:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:ladue-horton-watkins-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Ladue",
         "opponent": "Hazelwood West High School",
         "date": "2026-08-29",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

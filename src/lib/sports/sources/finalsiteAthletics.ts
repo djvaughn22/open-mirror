@@ -149,6 +149,65 @@ function homeAwayOf(opponentCellHtml: string, opponentName: string, location: st
   return "unknown";
 }
 
+/**
+ * The other shape Finalsite serves athletics in.
+ *
+ * A school's athletics landing page often carries a "recent scores" element
+ * built from <article> items rather than a <table> — same class vocabulary,
+ * different container. It is worth reading because it is cross-sport: one
+ * request returns that school's latest results in every sport it plays, where
+ * the per-sport tables need one request each.
+ */
+export function parseFinalsiteScoreList(html: string, options: ParseOptions): RawObservation[] {
+  const { page, fetchedAt, since, until, note } = options;
+  const out: RawObservation[] = [];
+
+  for (const article of html.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/gi)) {
+    const body = article[1];
+    const opponentName = textOf(
+      body.match(/<[^>]*class="[^"]*fsAthleticsOpponentName\b[^"]*"[^>]*>([\s\S]*?)<\/[a-z]+>/i)?.[1] ?? "",
+    );
+    if (!opponentName) continue;
+    // Scrimmages and invitationals have no second school to resolve.
+    if (/fsAthleticsCustomOpponent/.test(body)) continue;
+
+    const teamLabel = textOf(body.match(/<[^>]*class="[^"]*fsTitle\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i)?.[1] ?? "");
+    const team = teamLabel ? splitTeamName(teamLabel) : { sportLabel: "", levelLabel: undefined };
+    if (!team.sportLabel) {
+      note?.(`${page.url}: a scores entry against ${opponentName} named no team and was skipped`);
+      continue;
+    }
+
+    const { date, startsAt } = parseDateCell(body);
+    if (!date) continue;
+    if (date < since || date > until) continue;
+
+    const result = parseResult(textOf(body.match(/<[^>]*class="[^"]*fsAthleticsResult\b[^"]*"[^>]*>([\s\S]*?)<\/span>/i)?.[1] ?? ""));
+    const score = parseScore(textOf(body.match(/<[^>]*class="[^"]*fsAthleticsScore\b[^"]*"[^>]*>([\s\S]*?)<\/span>/i)?.[1] ?? ""));
+
+    out.push({
+      sourceId: publisherSourceId(page),
+      sourceUrl: page.url,
+      fetchedAt,
+      reportingSchool: page.schoolName,
+      opponent: opponentName,
+      date,
+      startsAt,
+      sportLabel: team.sportLabel,
+      levelLabel: team.levelLabel,
+      sportHint: page.sportHint,
+      // This widget carries no venue, and the "vs." marker is not trustworthy
+      // on these sites, so home/away stays honestly unknown.
+      homeAway: "unknown",
+      result,
+      scoreFor: score?.[0],
+      scoreAgainst: score?.[1],
+    });
+  }
+
+  return out;
+}
+
 export interface ParseOptions {
   page: FinalsiteTeamPage;
   fetchedAt: string;
@@ -167,6 +226,10 @@ export interface ParseOptions {
 export function parseFinalsiteTeamPage(html: string, options: ParseOptions): RawObservation[] {
   const { page, fetchedAt, since, until, note } = options;
   const observations: RawObservation[] = [];
+
+  // A landing page can carry both shapes at once. Both are read; normalization
+  // collapses any row that appears in both.
+  observations.push(...parseFinalsiteScoreList(html, options));
 
   for (const table of tablesWithClass(html, "fsEventTable")) {
     const { sportLabel, levelLabel } = splitTeamName(table.precedingText);

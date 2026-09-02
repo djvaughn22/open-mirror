@@ -23,7 +23,7 @@
       "id": "eventlink:mehlville-high-school|mehlville|unresolved:mehlville green and white intra squad|football|2026-08-22",
       "sourceId": "eventlink:mehlville-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "football",
       "date": "2026-08-22",
       "startsAt": "2026-08-22T11:00:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:mehlville-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Mehlville",
         "opponent": "Mehlville Green and White Intra Squad",
         "date": "2026-08-22",
@@ -58,7 +58,7 @@
     "Mehlville Green and White Intra Squad"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

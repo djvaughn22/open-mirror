@@ -23,7 +23,7 @@
       "id": "eventlink:eureka-sr-high-school|eureka|unresolved:jackson high school|girls-softball|2026-08-22",
       "sourceId": "eventlink:eureka-sr-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-softball",
       "date": "2026-08-22",
       "startsAt": "2026-08-22T10:00:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:eureka-sr-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Eureka",
         "opponent": "JACKSON HIGH SCHOOL",
         "date": "2026-08-22",
@@ -58,7 +58,7 @@
     "JACKSON HIGH SCHOOL"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

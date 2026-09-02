@@ -23,7 +23,7 @@
       "id": "eventlink:marquette-high-school|marquette|unresolved:columbia high school|boys-soccer|2026-09-03",
       "sourceId": "eventlink:marquette-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-soccer",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T19:00:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:marquette-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Marquette",
         "opponent": "Columbia High School",
         "date": "2026-09-03",
@@ -58,7 +58,7 @@
     "Columbia High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

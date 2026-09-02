@@ -13,17 +13,16 @@
       "schoolId": "unresolved:Hickman"
     }
   ],
-  "homeKnown": true,
+  "homeKnown": false,
   "status": "scheduled",
-  "location": "Hickman",
   "confidence": "unresolved",
   "conflicts": [],
   "observations": [
     {
       "id": "school-site-finalsite:desmet.org|de-smet|unresolved:hickman|boys-soccer|2026-09-01",
       "sourceId": "school-site-finalsite:desmet.org",
-      "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "sourceUrl": "https://www.desmet.org/athletics",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-soccer",
       "date": "2026-09-01",
       "startsAt": "2026-09-01T18:30:00-05:00",
@@ -32,22 +31,19 @@
         "reportedAs": "De Smet Jesuit"
       },
       "unresolvedOpponent": "Hickman",
-      "homeAway": "away",
-      "location": "Hickman",
+      "homeAway": "unknown",
       "status": "scheduled",
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
-        "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "sourceUrl": "https://www.desmet.org/athletics",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "De Smet Jesuit",
         "opponent": "Hickman",
         "date": "2026-09-01",
         "startsAt": "2026-09-01T18:30:00-05:00",
-        "sportLabel": "Varsity",
-        "levelLabel": "Varsity",
-        "sportHint": "soccer",
-        "homeAway": "away",
-        "location": "Hickman"
+        "sportLabel": "Soccer Varsity",
+        "levelLabel": "Soccer Varsity",
+        "homeAway": "unknown"
       }
     }
   ],
@@ -59,7 +55,7 @@
     "Hickman"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:02.832Z"
 }

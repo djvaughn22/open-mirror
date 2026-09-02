@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-south-high-school|parkway-south|parkway-west|field-hockey|2026-09-02",
       "sourceId": "eventlink:parkway-south-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "field-hockey",
       "date": "2026-09-02",
       "startsAt": "2026-09-02T17:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-south-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway South",
         "opponent": "Parkway West High School",
         "date": "2026-09-02",
@@ -56,7 +56,7 @@
       "id": "eventlink:parkway-west-high-school|parkway-west|parkway-south|field-hockey|2026-09-02",
       "sourceId": "eventlink:parkway-west-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "field-hockey",
       "date": "2026-09-02",
       "startsAt": "2026-09-02T17:30:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-west-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway West",
         "opponent": "Parkway South High School",
         "date": "2026-09-02",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

@@ -20,6 +20,10 @@ alone, not worked around.
   The declared `Crawl-delay: 5` is honoured by a per-host queue in
   `sources/http.ts`. The bot identifies itself with a contact address. No
   authentication is bypassed, no rate limit is evaded, no headers are spoofed.
+- **Two shapes, both read:** the per-sport `fsEventTable`, and the cross-sport
+  "recent scores" list built from `<article>` items that some schools put on
+  their athletics landing page. The list is cheaper — one request returns every
+  sport that school plays.
 - **Currently configured:** sluh.org, desmet.org, priory.org, vianney.com.
 
 Adding a school is a row in `metros/stLouis.ts`, not a code change.
@@ -55,12 +59,18 @@ Adding a school is a row in `metros/stLouis.ts`, not a code change.
 district links its schedules there; we do not read it, and Hazelwood's results
 reach us only when an opponent reports them.
 
-### BigTeams / VNN — NOT BUILT, NOT BLOCKED
+### BigTeams / VNN — EXCLUDED BY TERMS
 
 Alton, Granite City, St. Clair and Duchesne publish results here, and robots
-permits the content paths. It was skipped on time rather than on principle, and
-its end-user agreement deserves a read before automating. This is the highest
-value next adapter — see `docs/STL_SOURCE_CENSUS.md`.
+permits the content paths — but the BigTeams end-user agreement prohibits
+"accessing or searching any part of the Services by any means other than our
+publicly supported interfaces (for example, scraping)". A permissive robots.txt
+does not override that. Excluded.
+
+### Hudl / Hudl Fan — EXCLUDED BY TERMS
+
+Permissive robots.txt, but Hudl's Acceptable Use Policy forbids "any robot,
+spider, or other automatic device" and scraping outright. Excluded.
 
 
 ### MSHSAA (mshsaa.org) — BLOCKED BY ROBOTS

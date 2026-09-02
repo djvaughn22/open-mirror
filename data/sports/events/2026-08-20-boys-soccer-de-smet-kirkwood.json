@@ -13,17 +13,16 @@
       "schoolId": "kirkwood"
     }
   ],
-  "homeKnown": true,
+  "homeKnown": false,
   "status": "scheduled",
-  "location": "De Smet Jesuit",
   "confidence": "single-source",
   "conflicts": [],
   "observations": [
     {
       "id": "school-site-finalsite:desmet.org|de-smet|kirkwood|boys-soccer|2026-08-20",
       "sourceId": "school-site-finalsite:desmet.org",
-      "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "sourceUrl": "https://www.desmet.org/athletics",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-soccer",
       "date": "2026-08-20",
       "startsAt": "2026-08-20T17:00:00-05:00",
@@ -35,22 +34,19 @@
         "schoolId": "kirkwood",
         "reportedAs": "Kirkwood"
       },
-      "homeAway": "home",
-      "location": "De Smet Jesuit",
+      "homeAway": "unknown",
       "status": "scheduled",
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
-        "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "sourceUrl": "https://www.desmet.org/athletics",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "De Smet Jesuit",
         "opponent": "Kirkwood",
         "date": "2026-08-20",
         "startsAt": "2026-08-20T17:00:00-05:00",
-        "sportLabel": "Varsity",
-        "levelLabel": "Varsity",
-        "sportHint": "soccer",
-        "homeAway": "home",
-        "location": "De Smet Jesuit"
+        "sportLabel": "Soccer Varsity",
+        "levelLabel": "Soccer Varsity",
+        "homeAway": "unknown"
       }
     }
   ],
@@ -60,7 +56,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:02.832Z"
 }

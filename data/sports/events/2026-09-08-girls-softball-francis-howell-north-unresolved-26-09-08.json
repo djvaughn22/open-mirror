@@ -23,7 +23,7 @@
       "id": "eventlink:francis-howell-north-high-school|francis-howell-north|unresolved:gac league troy buchanan|girls-softball|2026-09-08",
       "sourceId": "eventlink:francis-howell-north-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-softball",
       "date": "2026-09-08",
       "startsAt": "2026-09-08T16:15:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:francis-howell-north-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Francis Howell North",
         "opponent": "GAC League Troy Buchanan",
         "date": "2026-09-08",
@@ -58,7 +58,7 @@
     "GAC League Troy Buchanan"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

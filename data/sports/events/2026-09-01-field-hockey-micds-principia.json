@@ -6,14 +6,16 @@
   "date": "2026-09-01",
   "sides": [
     {
-      "schoolId": "principia"
+      "schoolId": "principia",
+      "score": 0
     },
     {
-      "schoolId": "micds"
+      "schoolId": "micds",
+      "score": 8
     }
   ],
   "homeKnown": true,
-  "status": "scheduled",
+  "status": "final",
   "location": "Principia St. Louis, MO",
   "confidence": "single-source",
   "conflicts": [],
@@ -22,7 +24,7 @@
       "id": "mascot-media:micdsathletics.com|micds|principia|field-hockey|2026-09-01",
       "sourceId": "mascot-media:micdsathletics.com",
       "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "field-hockey",
       "date": "2026-09-01",
       "reporter": {
@@ -34,18 +36,24 @@
         "reportedAs": "Principia"
       },
       "homeAway": "away",
+      "result": "W",
+      "scoreFor": 8,
+      "scoreAgainst": 0,
       "location": "Principia St. Louis, MO",
-      "status": "scheduled",
+      "status": "final",
       "raw": {
         "sourceId": "mascot-media:micdsathletics.com",
         "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "MICDS",
         "opponent": "Principia",
         "date": "2026-09-01",
         "sportLabel": "girls field hockey",
         "levelLabel": "Varsity",
         "homeAway": "away",
+        "result": "W",
+        "scoreFor": 8,
+        "scoreAgainst": 0,
         "location": "Principia St. Louis, MO"
       }
     }
@@ -53,10 +61,12 @@
   "sourceIds": [
     "mascot-media:micdsathletics.com"
   ],
-  "scoreSourceIds": [],
+  "scoreSourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
   "unresolvedNames": [],
-  "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "publishable": true,
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

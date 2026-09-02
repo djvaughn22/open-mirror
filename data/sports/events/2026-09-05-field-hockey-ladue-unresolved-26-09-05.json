@@ -23,7 +23,7 @@
       "id": "eventlink:ladue-horton-watkins-high-school|ladue|unresolved:huntington beach high school|field-hockey|2026-09-05",
       "sourceId": "eventlink:ladue-horton-watkins-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "field-hockey",
       "date": "2026-09-05",
       "startsAt": "2026-09-05T14:00:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:ladue-horton-watkins-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Ladue",
         "opponent": "Huntington Beach High School",
         "date": "2026-09-05",
@@ -58,7 +58,7 @@
     "Huntington Beach High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

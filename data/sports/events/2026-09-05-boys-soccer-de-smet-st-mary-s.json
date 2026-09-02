@@ -23,7 +23,7 @@
       "id": "school-site-finalsite:desmet.org|de-smet|st-mary-s|boys-soccer|2026-09-05",
       "sourceId": "school-site-finalsite:desmet.org",
       "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-soccer",
       "date": "2026-09-05",
       "startsAt": "2026-09-05T12:00:00-05:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
         "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "De Smet Jesuit",
         "opponent": "St. Mary's",
         "date": "2026-09-05",
@@ -60,7 +60,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:02.832Z"
 }

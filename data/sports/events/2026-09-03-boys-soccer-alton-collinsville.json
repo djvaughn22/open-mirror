@@ -22,7 +22,7 @@
       "id": "mascot-media:kahokathletics.com|collinsville|alton|boys-soccer|2026-09-03",
       "sourceId": "mascot-media:kahokathletics.com",
       "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "boys-soccer",
       "date": "2026-09-03",
       "reporter": {
@@ -39,7 +39,7 @@
       "raw": {
         "sourceId": "mascot-media:kahokathletics.com",
         "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "Collinsville",
         "opponent": "Alton High School",
         "date": "2026-09-03",
@@ -56,7 +56,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

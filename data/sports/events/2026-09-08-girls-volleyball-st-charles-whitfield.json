@@ -23,7 +23,7 @@
       "id": "eventlink:st-charles-high-school|st-charles|whitfield|girls-volleyball|2026-09-08",
       "sourceId": "eventlink:st-charles-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-volleyball",
       "date": "2026-09-08",
       "startsAt": "2026-09-08T17:15:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:st-charles-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "St. Charles",
         "opponent": "Whitfield School",
         "date": "2026-09-08",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

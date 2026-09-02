@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-central-high-school|parkway-central|parkway-south|football|2026-08-28",
       "sourceId": "eventlink:parkway-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "football",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T19:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway Central",
         "opponent": "Parkway South High School",
         "date": "2026-08-28",
@@ -56,7 +56,7 @@
       "id": "eventlink:parkway-south-high-school|parkway-south|parkway-central|football|2026-08-28",
       "sourceId": "eventlink:parkway-south-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "football",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T19:00:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-south-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway South",
         "opponent": "Parkway Central High School",
         "date": "2026-08-28",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

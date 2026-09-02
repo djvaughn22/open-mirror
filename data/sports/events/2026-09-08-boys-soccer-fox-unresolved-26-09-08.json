@@ -23,7 +23,7 @@
       "id": "eventlink:fox-high-school|fox|unresolved:jackson sr. high school|boys-soccer|2026-09-08",
       "sourceId": "eventlink:fox-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-soccer",
       "date": "2026-09-08",
       "startsAt": "2026-09-08T18:00:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:fox-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Fox",
         "opponent": "Jackson Sr. High School",
         "date": "2026-09-08",
@@ -58,7 +58,7 @@
     "Jackson Sr. High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

@@ -23,7 +23,7 @@
       "id": "eventlink:clayton-high-school|clayton|micds|girls-volleyball|2026-09-04",
       "sourceId": "eventlink:clayton-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-volleyball",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T17:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:clayton-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Clayton",
         "opponent": "Mary Institute and St Louis Country Day School",
         "date": "2026-09-04",
@@ -56,7 +56,7 @@
       "id": "mascot-media:micdsathletics.com|micds|clayton|girls-volleyball|2026-09-04",
       "sourceId": "mascot-media:micdsathletics.com",
       "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "girls-volleyball",
       "date": "2026-09-04",
       "reporter": {
@@ -73,7 +73,7 @@
       "raw": {
         "sourceId": "mascot-media:micdsathletics.com",
         "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "MICDS",
         "opponent": "Clayton High School",
         "date": "2026-09-04",
@@ -91,7 +91,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

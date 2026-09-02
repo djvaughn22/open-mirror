@@ -1,16 +1,16 @@
 {
-  "id": "2026-08-21-football-de-smet-timberland",
+  "id": "2026-09-03-boys-swimming-de-smet-westminster-christian",
   "version": 1,
   "metro": "st-louis",
-  "sport": "football",
-  "date": "2026-08-21",
-  "startsAt": "2026-08-21T18:00:00-05:00",
+  "sport": "boys-swimming",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00-05:00",
   "sides": [
     {
       "schoolId": "de-smet"
     },
     {
-      "schoolId": "timberland"
+      "schoolId": "westminster-christian"
     }
   ],
   "homeKnown": false,
@@ -19,33 +19,34 @@
   "conflicts": [],
   "observations": [
     {
-      "id": "school-site-finalsite:desmet.org|de-smet|timberland|football|2026-08-21",
+      "id": "school-site-finalsite:desmet.org|de-smet|westminster-christian|boys-swimming|2026-09-03",
       "sourceId": "school-site-finalsite:desmet.org",
-      "sourceUrl": "https://www.desmet.org/athletics",
+      "sourceUrl": "https://www.desmet.org/athletics/teams/swimming",
       "fetchedAt": "2026-09-02T03:44:02.832Z",
-      "sport": "football",
-      "date": "2026-08-21",
-      "startsAt": "2026-08-21T18:00:00-05:00",
+      "sport": "boys-swimming",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00-05:00",
       "reporter": {
         "schoolId": "de-smet",
         "reportedAs": "De Smet Jesuit"
       },
       "opponent": {
-        "schoolId": "timberland",
-        "reportedAs": "Timberland"
+        "schoolId": "westminster-christian",
+        "reportedAs": "Westminster Christian Academy"
       },
       "homeAway": "unknown",
       "status": "scheduled",
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
-        "sourceUrl": "https://www.desmet.org/athletics",
+        "sourceUrl": "https://www.desmet.org/athletics/teams/swimming",
         "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "De Smet Jesuit",
-        "opponent": "Timberland",
-        "date": "2026-08-21",
-        "startsAt": "2026-08-21T18:00:00-05:00",
-        "sportLabel": "Football Varsity",
-        "levelLabel": "Football Varsity",
+        "opponent": "Westminster Christian Academy",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00-05:00",
+        "sportLabel": "Swimming Varsity",
+        "levelLabel": "Swimming Varsity",
+        "sportHint": "swimming",
         "homeAway": "unknown"
       }
     }

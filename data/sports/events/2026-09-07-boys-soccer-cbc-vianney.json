@@ -23,7 +23,7 @@
       "id": "eventlink:st-john-vianney-high-school|vianney|cbc|boys-soccer|2026-09-07",
       "sourceId": "eventlink:st-john-vianney-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-soccer",
       "date": "2026-09-07",
       "startsAt": "2026-09-07T11:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:st-john-vianney-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "St. John Vianney",
         "opponent": "CHRISTIAN BROTHERS COLLEGE HIGH SCHOOL",
         "date": "2026-09-07",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

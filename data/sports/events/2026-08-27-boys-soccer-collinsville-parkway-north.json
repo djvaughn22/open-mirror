@@ -24,7 +24,7 @@
       "id": "mascot-media:kahokathletics.com|collinsville|parkway-north|boys-soccer|2026-08-27",
       "sourceId": "mascot-media:kahokathletics.com",
       "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "boys-soccer",
       "date": "2026-08-27",
       "reporter": {
@@ -44,7 +44,7 @@
       "raw": {
         "sourceId": "mascot-media:kahokathletics.com",
         "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "Collinsville",
         "opponent": "Parkway North",
         "date": "2026-08-27",
@@ -66,7 +66,7 @@
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

@@ -23,7 +23,7 @@
       "id": "eventlink:duchesne-pioneers|duchesne|st-charles|girls-tennis|2026-08-28",
       "sourceId": "eventlink:duchesne-pioneers",
       "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-tennis",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T15:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:duchesne-pioneers",
         "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Duchesne",
         "opponent": "St Charles High School (McNair)",
         "date": "2026-08-28",
@@ -56,7 +56,7 @@
       "id": "eventlink:st-charles-high-school|st-charles|duchesne|girls-tennis|2026-08-28",
       "sourceId": "eventlink:st-charles-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-tennis",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T15:30:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:st-charles-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "St. Charles",
         "opponent": "Duchesne High School",
         "date": "2026-08-28",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

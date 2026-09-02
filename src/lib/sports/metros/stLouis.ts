@@ -30,10 +30,23 @@ const TEAM_PAGES: FinalsiteTeamPage[] = [
   { schoolId: "sluh", schoolName: "SLUH", url: "https://www.sluh.org/athletics/teams-schedules" },
   { schoolId: "sluh", schoolName: "SLUH", url: "https://www.sluh.org/athletics/teams-schedules/football", sportHint: "football" },
   { schoolId: "sluh", schoolName: "SLUH", url: "https://www.sluh.org/athletics/teams-schedules/soccer", sportHint: "soccer" },
-  { schoolId: "de-smet", schoolName: "De Smet Jesuit", url: "https://www.desmet.org/athletics/teams/football", sportHint: "football" },
-  { schoolId: "de-smet", schoolName: "De Smet Jesuit", url: "https://www.desmet.org/athletics/teams/soccer", sportHint: "soccer" },
-  { schoolId: "priory", schoolName: "Priory", url: "https://www.priory.org/athletics/sports/soccer", sportHint: "soccer" },
-  { schoolId: "priory", schoolName: "Priory", url: "https://www.priory.org/athletics/sports/football", sportHint: "football" },
+  // De Smet's athletics landing page carries a cross-sport "recent scores"
+  // list — every sport it plays, in one request.
+  { schoolId: "de-smet", schoolName: "De Smet Jesuit", url: "https://www.desmet.org/athletics" },
+  // De Smet and Priory publish a table per sport. Only the fall sports are
+  // fetched: an out-of-season page is a request that can only return nothing.
+  ...["football", "soccer", "swimming", "waterpolo", "volleyball"].map((sport) => ({
+    schoolId: "de-smet",
+    schoolName: "De Smet Jesuit",
+    url: `https://www.desmet.org/athletics/teams/${sport}`,
+    sportHint: sport === "waterpolo" ? "water polo" : sport,
+  })),
+  ...["soccer", "football"].map((sport) => ({
+    schoolId: "priory",
+    schoolName: "Priory",
+    url: `https://www.priory.org/athletics/sports/${sport}`,
+    sportHint: sport,
+  })),
   { schoolId: "vianney", schoolName: "St. John Vianney", url: "https://www.vianney.com/athletics" },
 ];
 
@@ -80,10 +93,13 @@ const EVENTLINK_SCHOOLS: EventLinkSchool[] = [
  * are the ones that can actually produce a brief.
  */
 const MASCOT_PAGES: MascotMediaTeamPage[] = [
-  ...["football/boys", "soccer/boys", "field hockey/girls", "volleyball/girls", "swimming and diving/girls", "cross country/girls", "cross country/boys", "golf/girls", "tennis/girls"].map(
+  // Head-to-head fall sports only. Cross country, golf and swimming are scored
+  // as meets, and the canonical model is two-sided — forcing a meet into it
+  // would invent an opponent, so those pages are deliberately not fetched.
+  ...["football/boys", "soccer/boys", "field hockey/girls", "volleyball/girls", "tennis/girls", "water polo/boys"].map(
     (sport) => ({ schoolId: "micds", schoolName: "MICDS", url: `https://www.micdsathletics.com/sport/${sport}/?tab=schedule` }),
   ),
-  ...["football/boys", "soccer/boys", "volleyball/girls", "softball/girls", "golf/girls", "tennis/girls", "cross country/coed"].map(
+  ...["football/boys", "soccer/boys", "volleyball/girls", "volleyball/boys", "softball/girls", "tennis/girls"].map(
     (sport) => ({ schoolId: "collinsville", schoolName: "Collinsville", url: `https://www.kahokathletics.com/sport/${sport}/?tab=schedule` }),
   ),
 ];

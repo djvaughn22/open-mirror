@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-west-high-school|parkway-west|parkway-south|girls-golf|2026-08-31",
       "sourceId": "eventlink:parkway-west-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-golf",
       "date": "2026-08-31",
       "startsAt": "2026-08-31T15:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-west-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway West",
         "opponent": "Parkway South High School",
         "date": "2026-08-31",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

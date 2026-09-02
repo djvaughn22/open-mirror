@@ -23,7 +23,7 @@
       "id": "eventlink:lindbergh-high-school|lindbergh|unresolved:parkway west high school, lafayette high school|girls-golf|2026-09-01",
       "sourceId": "eventlink:lindbergh-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-golf",
       "date": "2026-09-01",
       "startsAt": "2026-09-01T15:45:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:lindbergh-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Lindbergh",
         "opponent": "Parkway West High School, Lafayette High School",
         "date": "2026-09-01",
@@ -58,7 +58,7 @@
     "Parkway West High School, Lafayette High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

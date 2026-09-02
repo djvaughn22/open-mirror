@@ -23,7 +23,7 @@
       "id": "eventlink:mehlville-high-school|mehlville|bishop-dubourg|girls-tennis|2026-09-04",
       "sourceId": "eventlink:mehlville-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-tennis",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T16:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:mehlville-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Mehlville",
         "opponent": "Bishop Dubourg High School",
         "date": "2026-09-04",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

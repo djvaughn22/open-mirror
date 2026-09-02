@@ -44,26 +44,48 @@ export interface PoliteFetchOptions {
   crawlDelaySeconds: number;
   timeoutMs?: number;
   userAgent?: string;
+  /** Extra attempts for a server that said "not now". Default 1. */
+  retries?: number;
 }
 
 export function politeFetcher(options: PoliteFetchOptions): (url: string) => Promise<string> {
-  const { crawlDelaySeconds, timeoutMs = 20_000, userAgent = USER_AGENT } = options;
+  const { crawlDelaySeconds, timeoutMs = 20_000, userAgent = USER_AGENT, retries = 1 } = options;
+
+  const once = async (url: string): Promise<string> => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, {
+        headers: { "User-Agent": userAgent, Accept: "text/html,application/xhtml+xml,application/json" },
+        redirect: "follow",
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.text();
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
   return async (url: string) => {
     const host = new URL(url).host;
     return queued(host, crawlDelaySeconds, async () => {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const response = await fetch(url, {
-          headers: { "User-Agent": userAgent, Accept: "text/html,application/xhtml+xml" },
-          redirect: "follow",
-          signal: controller.signal,
-        });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return await response.text();
-      } finally {
-        clearTimeout(timer);
+      let lastError: unknown;
+      for (let attempt = 0; attempt <= retries; attempt += 1) {
+        try {
+          return await once(url);
+        } catch (error) {
+          lastError = error;
+          const message = error instanceof Error ? error.message : String(error);
+          // 429 and 5xx mean "not now", so back off and try once more. A 404 or
+          // a 403 means "no" and is not retried — repeating a refused request
+          // is exactly the behaviour a crawl delay exists to prevent.
+          const retryable = /HTTP (429|50\d)/.test(message) || /abort|timeout|network|fetch failed/i.test(message);
+          if (!retryable || attempt === retries) break;
+          await sleep(Math.max(crawlDelaySeconds, 5) * 1000 * (attempt + 2));
+        }
       }
+      throw lastError;
     });
   };
 }

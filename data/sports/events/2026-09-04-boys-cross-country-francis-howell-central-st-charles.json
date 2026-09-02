@@ -23,7 +23,7 @@
       "id": "eventlink:francis-howell-central-high-school|francis-howell-central|st-charles|boys-cross-country|2026-09-04",
       "sourceId": "eventlink:francis-howell-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-cross-country",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T18:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:francis-howell-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Francis Howell Central",
         "opponent": "St Charles High School",
         "date": "2026-09-04",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

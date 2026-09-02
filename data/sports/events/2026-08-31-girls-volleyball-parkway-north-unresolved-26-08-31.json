@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-north-high-school|parkway-north|unresolved:notre dame high school (saint louis)|girls-volleyball|2026-08-31",
       "sourceId": "eventlink:parkway-north-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-volleyball",
       "date": "2026-08-31",
       "startsAt": "2026-08-31T18:00:00",
@@ -38,7 +38,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-north-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway North",
         "opponent": "Notre Dame High School (Saint Louis)",
         "date": "2026-08-31",
@@ -58,7 +58,7 @@
     "Notre Dame High School (Saint Louis)"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

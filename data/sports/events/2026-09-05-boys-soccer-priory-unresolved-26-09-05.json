@@ -22,7 +22,7 @@
       "id": "school-site-finalsite:priory.org|priory|unresolved:veritas christian academy|boys-soccer|2026-09-05",
       "sourceId": "school-site-finalsite:priory.org",
       "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-soccer",
       "date": "2026-09-05",
       "startsAt": "2026-09-05T10:00:00-05:00",
@@ -36,7 +36,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:priory.org",
         "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "Priory",
         "opponent": "Veritas Christian Academy",
         "date": "2026-09-05",
@@ -56,7 +56,7 @@
     "Veritas Christian Academy"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:02.832Z"
 }

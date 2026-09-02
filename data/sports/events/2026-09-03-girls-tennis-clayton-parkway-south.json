@@ -47,7 +47,7 @@
       "id": "eventlink:clayton-high-school|clayton|parkway-south|girls-tennis|2026-09-03",
       "sourceId": "eventlink:clayton-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-tennis",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T16:00:00",
@@ -65,7 +65,7 @@
       "raw": {
         "sourceId": "eventlink:clayton-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Clayton",
         "opponent": "Parkway South High School",
         "date": "2026-09-03",
@@ -80,7 +80,7 @@
       "id": "eventlink:parkway-south-high-school|parkway-south|clayton|girls-tennis|2026-09-03",
       "sourceId": "eventlink:parkway-south-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-tennis",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T16:00:00",
@@ -98,7 +98,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-south-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway South",
         "opponent": "Clayton High School",
         "date": "2026-09-03",
@@ -117,7 +117,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

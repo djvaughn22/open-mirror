@@ -23,7 +23,7 @@
       "id": "eventlink:ladue-horton-watkins-high-school|ladue|marquette|boys-swimming|2026-09-04",
       "sourceId": "eventlink:ladue-horton-watkins-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-swimming",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T16:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:ladue-horton-watkins-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Ladue",
         "opponent": "Marquette High School",
         "date": "2026-09-04",
@@ -56,7 +56,7 @@
       "id": "eventlink:marquette-high-school|marquette|ladue|boys-swimming|2026-09-04",
       "sourceId": "eventlink:marquette-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-swimming",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T16:30:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:marquette-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Marquette",
         "opponent": "Ladue Horton Watkins High School",
         "date": "2026-09-04",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

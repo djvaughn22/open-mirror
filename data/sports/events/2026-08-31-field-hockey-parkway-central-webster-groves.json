@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-central-high-school|parkway-central|webster-groves|field-hockey|2026-08-31",
       "sourceId": "eventlink:parkway-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "field-hockey",
       "date": "2026-08-31",
       "startsAt": "2026-08-31T16:15:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway Central",
         "opponent": "Webster Groves High School",
         "date": "2026-08-31",
@@ -56,7 +56,7 @@
       "id": "eventlink:wghs|webster-groves|parkway-central|field-hockey|2026-08-31",
       "sourceId": "eventlink:wghs",
       "sourceUrl": "https://websites.eventlink.com/s/wghs",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "field-hockey",
       "date": "2026-08-31",
       "startsAt": "2026-08-31T17:30:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:wghs",
         "sourceUrl": "https://websites.eventlink.com/s/wghs",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Webster Groves",
         "opponent": "Parkway Central High School",
         "date": "2026-08-31",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

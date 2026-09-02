@@ -22,7 +22,7 @@
       "id": "mascot-media:kahokathletics.com|collinsville|unresolved:mt. vernon high school|football|2026-09-05",
       "sourceId": "mascot-media:kahokathletics.com",
       "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "football",
       "date": "2026-09-05",
       "reporter": {
@@ -36,7 +36,7 @@
       "raw": {
         "sourceId": "mascot-media:kahokathletics.com",
         "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "Collinsville",
         "opponent": "Mt. Vernon High School",
         "date": "2026-09-05",
@@ -55,7 +55,7 @@
     "Mt. Vernon High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

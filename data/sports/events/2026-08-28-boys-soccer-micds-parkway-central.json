@@ -25,7 +25,7 @@
       "id": "eventlink:parkway-central-high-school|parkway-central|micds|boys-soccer|2026-08-28",
       "sourceId": "eventlink:parkway-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-soccer",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T16:15:00",
@@ -43,7 +43,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway Central",
         "opponent": "Mary Institute and St Louis Country Day School (MICDS)",
         "date": "2026-08-28",
@@ -58,7 +58,7 @@
       "id": "mascot-media:micdsathletics.com|micds|parkway-central|boys-soccer|2026-08-28",
       "sourceId": "mascot-media:micdsathletics.com",
       "sourceUrl": "https://www.micdsathletics.com/sport/soccer/boys/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "boys-soccer",
       "date": "2026-08-28",
       "reporter": {
@@ -78,7 +78,7 @@
       "raw": {
         "sourceId": "mascot-media:micdsathletics.com",
         "sourceUrl": "https://www.micdsathletics.com/sport/soccer/boys/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "MICDS",
         "opponent": "Parkway Central",
         "date": "2026-08-28",
@@ -101,7 +101,7 @@
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

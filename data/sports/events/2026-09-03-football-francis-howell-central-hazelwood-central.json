@@ -23,7 +23,7 @@
       "id": "eventlink:francis-howell-central-high-school|francis-howell-central|hazelwood-central|football|2026-09-03",
       "sourceId": "eventlink:francis-howell-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "football",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T18:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:francis-howell-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Francis Howell Central",
         "opponent": "Hazelwood Central High School",
         "date": "2026-09-03",
@@ -56,7 +56,7 @@
       "id": "eventlink:hazelwood-central-high-school|hazelwood-central|francis-howell-central|football|2026-09-03",
       "sourceId": "eventlink:hazelwood-central-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "football",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T18:00:00",
@@ -74,7 +74,7 @@
       "raw": {
         "sourceId": "eventlink:hazelwood-central-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Hazelwood Central",
         "opponent": "Francis Howell Central High School",
         "date": "2026-09-03",
@@ -93,7 +93,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

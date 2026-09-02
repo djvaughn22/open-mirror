@@ -23,8 +23,13 @@ import { buildBrief } from "../src/lib/sports/brief.ts";
 import { reconcile } from "../src/lib/sports/graph/confidence.ts";
 import { buildSocialPost } from "../src/lib/sports/social.ts";
 import { isNonMatchupOpponent, normalizeObservations } from "../src/lib/sports/graph/normalize.ts";
+import { memoryEventStore } from "../src/lib/sports/graph/eventStore.ts";
 import { buildSchoolIndex, resolveSchool } from "../src/lib/sports/graph/resolve.ts";
+import { ingestMetro } from "../src/lib/sports/ingest.ts";
+import { ST_LOUIS } from "../src/lib/sports/metros/stLouis.ts";
+import { politeFetcher } from "../src/lib/sports/sources/http.ts";
 import { ST_LOUIS_SCHOOLS } from "../src/lib/sports/metros/stLouisSchools.ts";
+import { parseFinalsiteScoreList } from "../src/lib/sports/sources/finalsiteAthletics.ts";
 import {
   eventsUrl,
   expandLevel,
@@ -380,4 +385,152 @@ test("the share card never claims a score is confirmed when one source reported 
   // Credits name the schools, not the vendors whose software they run on.
   assert.deepEqual([...post.card.credits].sort(), ["Hazelwood Central", "SLUH"]);
   assert.ok(!post.caption.includes("eventlink.com"));
+});
+
+// ── Finalsite's other shape: a cross-sport scores list ──────────────────────
+
+const SCORELIST = fixture("finalsite-scorelist.html");
+
+test("a Finalsite scores list parses the same facts a schedule table would", () => {
+  const observations = parseFinalsiteScoreList(SCORELIST, {
+    page: { schoolId: "de-smet", schoolName: "De Smet Jesuit", url: "https://www.desmet.org/athletics" },
+    fetchedAt: NOW,
+    since: "2026-08-01",
+    until: "2026-12-31",
+  });
+
+  assert.ok(observations.length > 0, "the fixture yields entries");
+  // This element is cross-sport: one request, several sports.
+  assert.ok(new Set(observations.map((o) => o.sportLabel)).size >= 2);
+
+  const played = observations.find((o) => o.scoreFor !== undefined);
+  assert.ok(played, "at least one entry carries a result");
+  assert.match(played.date, /^2026-\d{2}-\d{2}$/);
+
+  // This widget prints no venue, and "vs." is not trustworthy on these sites,
+  // so home/away must stay unknown rather than be guessed.
+  for (const o of observations) assert.equal(o.homeAway, "unknown");
+});
+
+test("the scores list still respects the varsity line", () => {
+  const observations = parseFinalsiteScoreList(SCORELIST, {
+    page: { schoolId: "de-smet", schoolName: "De Smet Jesuit", url: "https://www.desmet.org/athletics" },
+    fetchedAt: NOW,
+    since: "2026-08-01",
+    until: "2026-12-31",
+  });
+  // Labels here are undivided ("Soccer Junior Varsity"), so the level has to
+  // fall back to the whole label or JV results publish as varsity.
+  const { observations: normalized } = normalizeObservations(observations, INDEX);
+  for (const o of normalized) {
+    assert.doesNotMatch(o.raw.levelLabel ?? "", /junior varsity|sophomore|freshmen|\bjv\b/i);
+  }
+});
+
+// ── Politeness and resilience ───────────────────────────────────────────────
+
+test("a server that says 'not now' is retried; a refusal is not", async () => {
+  let attempts429 = 0;
+  let attempts404 = 0;
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = String(input);
+    if (url.includes("busy")) {
+      attempts429 += 1;
+      if (attempts429 === 1) return new Response("", { status: 429 });
+      return new Response("ok", { status: 200 });
+    }
+    attempts404 += 1;
+    return new Response("", { status: 404 });
+  }) as typeof fetch;
+
+  try {
+    // crawlDelaySeconds 0 keeps the test instant; the backoff multiplies it.
+    const get = politeFetcher({ crawlDelaySeconds: 0, retries: 1 });
+    assert.equal(await get("https://example.test/busy"), "ok");
+    assert.equal(attempts429, 2, "429 is retried once");
+
+    await assert.rejects(() => get("https://example.test/gone"), /HTTP 404/);
+    assert.equal(attempts404, 1, "a 404 means no, and is not repeated");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+// ── Coverage metrics ────────────────────────────────────────────────────────
+
+test("a direct score reporter is a school whose OWN source carried a score", async () => {
+  const store = memoryEventStore();
+  const metro = {
+    ...ST_LOUIS,
+    sources: {
+      eventLinkSchools: [],
+      mascotMediaPages: [],
+      finalsiteTeamPages: [
+        {
+          schoolId: "sluh",
+          schoolName: "SLUH",
+          url: "https://www.sluh.org/athletics/teams-schedules/football",
+          sportHint: "football",
+        },
+      ],
+    },
+  };
+  const { report } = await ingestMetro({
+    metro,
+    since: "2026-08-01",
+    until: "2026-12-31",
+    now: NOW,
+    store,
+    fetcher: async () => readFileSync(join(process.cwd(), "tests", "fixtures", "sluh-football.html"), "utf8"),
+  });
+
+  // SLUH reported; Hazelwood Central appears on the feed but told us nothing.
+  assert.deepEqual(report.directScoreReporterIds, ["sluh"]);
+  assert.equal(report.directScoreReportingSchools, 1);
+  assert.equal(report.schoolsWithPublishedEvents, 2, "one result names two schools");
+  assert.ok(
+    report.schoolsWithPublishedEvents > report.directScoreReportingSchools,
+    "these two numbers must not be conflated",
+  );
+  assert.equal(report.completedEvents, 1);
+  assert.equal(report.resultsCoverageRatio, 1);
+  assert.deepEqual(report.coverageLeaks, []);
+});
+
+test("a completed game that cannot publish is counted as a coverage leak", async () => {
+  const store = memoryEventStore();
+  const metro = {
+    ...ST_LOUIS,
+    sources: {
+      eventLinkSchools: [],
+      mascotMediaPages: [],
+      finalsiteTeamPages: [
+        { schoolId: "sluh", schoolName: "SLUH", url: "https://x.test/a", sportHint: "football" },
+      ],
+    },
+  };
+  // A real, completed game against a school we cannot identify.
+  const html = `<div class="fsAthleticsTeamName">Football - Varsity</div>
+    <table class="fsEventTable"><tbody><tr>
+      <td class="fsAthleticsOpponents"><span class="fsAthleticsOpponentName">Somewhere Unknown High</span></td>
+      <td class="fsAthleticsDate"><time datetime="2026-08-28T19:00:00-05:00"></time></td>
+      <td class="fsAthleticsLocations">SLUH</td>
+      <td class="fsAthleticsResult">Win</td>
+      <td class="fsAthleticsScore">21-7</td>
+    </tr></tbody></table>`;
+
+  const { report } = await ingestMetro({
+    metro,
+    since: "2026-08-01",
+    until: "2026-12-31",
+    now: NOW,
+    store,
+    fetcher: async () => html,
+  });
+
+  assert.equal(report.completedEvents, 1);
+  assert.equal(report.publishableEvents, 0);
+  assert.equal(report.resultsCoverageRatio, 0);
+  assert.deepEqual(report.coverageLeaks, [{ reason: "unresolved opponent", count: 1 }]);
 });

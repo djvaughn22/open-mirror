@@ -23,7 +23,7 @@
       "id": "eventlink:washington-high-school|washington|union|girls-volleyball|2026-09-08",
       "sourceId": "eventlink:washington-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-volleyball",
       "date": "2026-09-08",
       "startsAt": "2026-09-08T18:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:washington-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Washington",
         "opponent": "Union High School",
         "date": "2026-09-08",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

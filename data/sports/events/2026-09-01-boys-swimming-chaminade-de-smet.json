@@ -23,7 +23,7 @@
       "id": "eventlink:chaminade-college-preparatory-school|chaminade|de-smet|boys-swimming|2026-09-01",
       "sourceId": "eventlink:chaminade-college-preparatory-school",
       "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-swimming",
       "date": "2026-09-01",
       "startsAt": "2026-09-01T16:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:chaminade-college-preparatory-school",
         "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Chaminade",
         "opponent": "De Smet",
         "date": "2026-09-01",
@@ -51,15 +51,47 @@
         "homeAway": "away",
         "location": "Chaminade College Prep School"
       }
+    },
+    {
+      "id": "school-site-finalsite:desmet.org|de-smet|chaminade|boys-swimming|2026-09-01",
+      "sourceId": "school-site-finalsite:desmet.org",
+      "sourceUrl": "https://www.desmet.org/athletics",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T16:00:00-05:00",
+      "reporter": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet Jesuit"
+      },
+      "opponent": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "homeAway": "unknown",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:desmet.org",
+        "sourceUrl": "https://www.desmet.org/athletics",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
+        "reportingSchool": "De Smet Jesuit",
+        "opponent": "Chaminade",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T16:00:00-05:00",
+        "sportLabel": "Swimming Varsity",
+        "levelLabel": "Swimming Varsity",
+        "homeAway": "unknown"
+      }
     }
   ],
   "sourceIds": [
-    "eventlink:chaminade-college-preparatory-school"
+    "eventlink:chaminade-college-preparatory-school",
+    "school-site-finalsite:desmet.org"
   ],
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

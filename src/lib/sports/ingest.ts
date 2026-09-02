@@ -64,10 +64,27 @@ export interface IngestReport {
   nonVarsityRejected: number;
   canonicalSchoolsObserved: number;
   /**
-   * THE PRIMARY NUMBER: unique schools appearing in at least one publishable
-   * event. Counted across both sides, because a result names two schools.
+   * Unique schools appearing in at least one publishable event. Counted across
+   * both sides, because a result names two schools.
    */
   schoolsWithPublishedEvents: number;
+  /**
+   * THE NUMBER THAT ACTUALLY MEASURES THE NETWORK: schools whose OWN permitted
+   * source supplied at least one usable final result.
+   *
+   * This is deliberately reported apart from `schoolsWithPublishedEvents`,
+   * because the two diverge wildly — five schools reporting their own scores
+   * is what put twenty-five schools on the feed. The second number grows when
+   * a reporter plays someone new; only the first grows when the network does.
+   */
+  directScoreReportingSchools: number;
+  directScoreReporterIds: string[];
+  /** Events that look played — final, both participants known — score or not. */
+  completedEvents: number;
+  /** publishableEvents / completedEvents, or undefined when nothing completed. */
+  resultsCoverageRatio?: number;
+  /** Why a completed-looking event did not publish. This is where coverage leaks. */
+  coverageLeaks: Array<{ reason: string; count: number }>;
   canonicalEvents: number;
   /** Events whose SCORE was reported by two or more independent sources. */
   corroborated: number;
@@ -192,6 +209,37 @@ export async function ingestMetro(options: IngestOptions): Promise<IngestResult>
   const sportsRepresented = [...new Set(published.map((e) => e.sport))].sort();
   const schoolsRepresented = new Set(published.flatMap((e) => e.sides.map((s) => s.schoolId))).size;
 
+  // A school is a direct reporter only when ITS OWN source carried a score.
+  // Appearing as somebody else's opponent does not count, which is the whole
+  // point of tracking this separately.
+  const directReporters = new Set<string>();
+  for (const e of events) {
+    for (const o of e.observations) {
+      if (o.scoreFor !== undefined && o.scoreAgainst !== undefined) directReporters.add(o.reporter.schoolId);
+    }
+  }
+
+  // Where coverage leaks: events that look like a game was played but did not
+  // reach a reader, and the specific reason for each.
+  const completed = events.filter(
+    (e) => e.status === "final" || e.observations.some((o) => o.scoreFor !== undefined),
+  );
+  const leaks = new Map<string, number>();
+  for (const e of completed) {
+    if (e.publishable) continue;
+    const reason =
+      e.confidence === "unresolved"
+        ? "unresolved opponent"
+        : e.confidence === "conflicted"
+          ? "sources conflict"
+          : e.sides.some((s) => s.score === undefined)
+            ? "no score reported"
+            : e.status !== "final"
+              ? "not marked final"
+              : "other";
+    leaks.set(reason, (leaks.get(reason) ?? 0) + 1);
+  }
+
   const report: IngestReport = {
     metro: metro.id,
     startedAt,
@@ -207,6 +255,11 @@ export async function ingestMetro(options: IngestOptions): Promise<IngestResult>
     nonVarsityRejected: normalized.dropped.filter((d) => d.reason === "not-varsity").length,
     canonicalSchoolsObserved: new Set(events.flatMap((e) => e.sides.map((s) => s.schoolId)).filter((id) => !id.startsWith("unresolved:"))).size,
     schoolsWithPublishedEvents: schoolsRepresented,
+    directScoreReportingSchools: directReporters.size,
+    directScoreReporterIds: [...directReporters].sort(),
+    completedEvents: completed.length,
+    resultsCoverageRatio: completed.length > 0 ? published.length / completed.length : undefined,
+    coverageLeaks: [...leaks.entries()].map(([reason, count]) => ({ reason, count })).sort((a, b) => b.count - a.count),
     canonicalEvents: events.length,
     corroborated,
     fixtureCorroborated,
@@ -249,8 +302,11 @@ export function formatReport(report: IngestReport): string {
   lines.push(`  briefs: ${report.briefsGenerated}`);
   lines.push(`  sports: ${report.sportsRepresented.join(", ") || "none"}`);
   lines.push(`  schools observed: ${report.canonicalSchoolsObserved}`);
-  lines.push(`  SCHOOLS WITH A PUBLISHED EVENT: ${report.schoolsWithPublishedEvents}`);
-  lines.push(`  publishable events: ${report.publishableEvents}`);
+  lines.push(`  DIRECT SCORE-REPORTING SCHOOLS: ${report.directScoreReportingSchools}  (${report.directScoreReporterIds.join(", ")})`);
+  lines.push(`  schools represented by results: ${report.schoolsWithPublishedEvents}`);
+  lines.push(`  publishable events: ${report.publishableEvents} of ${report.completedEvents} completed` +
+    (report.resultsCoverageRatio !== undefined ? ` (${Math.round(report.resultsCoverageRatio * 100)}%)` : ""));
+  for (const leak of report.coverageLeaks) lines.push(`      leaked ${leak.count} — ${leak.reason}`);
   lines.push(`  model calls: ${report.modelCalls}   paid cost: $${report.estimatedCostUsd.toFixed(2)}`);
   return lines.join("\n");
 }

@@ -23,7 +23,7 @@
       "id": "eventlink:wghs|webster-groves|ladue|boys-swimming|2026-08-29",
       "sourceId": "eventlink:wghs",
       "sourceUrl": "https://websites.eventlink.com/s/wghs",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-swimming",
       "date": "2026-08-29",
       "startsAt": "2026-08-29T00:00:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:wghs",
         "sourceUrl": "https://websites.eventlink.com/s/wghs",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Webster Groves",
         "opponent": "Ladue High School",
         "date": "2026-08-29",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

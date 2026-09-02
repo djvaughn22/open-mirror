@@ -23,7 +23,7 @@
       "id": "eventlink:parkway-south-high-school|parkway-south|lafayette|girls-tennis|2026-09-01",
       "sourceId": "eventlink:parkway-south-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "girls-tennis",
       "date": "2026-09-01",
       "startsAt": "2026-09-01T16:30:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "eventlink:parkway-south-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Parkway South",
         "opponent": "Lafayette Sr High School",
         "date": "2026-09-01",
@@ -59,7 +59,7 @@
   "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }

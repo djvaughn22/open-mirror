@@ -22,7 +22,7 @@
       "id": "mascot-media:micdsathletics.com|micds|unresolved:new trier high school|field-hockey|2026-09-05",
       "sourceId": "mascot-media:micdsathletics.com",
       "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
-      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "fetchedAt": "2026-09-02T03:44:30.288Z",
       "sport": "field-hockey",
       "date": "2026-09-05",
       "reporter": {
@@ -36,7 +36,7 @@
       "raw": {
         "sourceId": "mascot-media:micdsathletics.com",
         "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
-        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "fetchedAt": "2026-09-02T03:44:30.288Z",
         "reportingSchool": "MICDS",
         "opponent": "New Trier High School",
         "date": "2026-09-05",
@@ -55,7 +55,7 @@
     "New Trier High School"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:30.288Z"
 }

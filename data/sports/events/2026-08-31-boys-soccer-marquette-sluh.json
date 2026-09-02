@@ -25,7 +25,7 @@
       "id": "eventlink:marquette-high-school|marquette|sluh|boys-soccer|2026-08-31",
       "sourceId": "eventlink:marquette-high-school",
       "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
-      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "fetchedAt": "2026-09-02T03:44:47.778Z",
       "sport": "boys-soccer",
       "date": "2026-08-31",
       "startsAt": "2026-08-31T20:00:00",
@@ -43,7 +43,7 @@
       "raw": {
         "sourceId": "eventlink:marquette-high-school",
         "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
-        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "fetchedAt": "2026-09-02T03:44:47.778Z",
         "reportingSchool": "Marquette",
         "opponent": "St Louis University High School",
         "date": "2026-08-31",
@@ -58,7 +58,7 @@
       "id": "school-site-finalsite:sluh.org|sluh|marquette|boys-soccer|2026-08-31",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-      "fetchedAt": "2026-09-02T03:09:50.600Z",
+      "fetchedAt": "2026-09-02T03:44:02.832Z",
       "sport": "boys-soccer",
       "date": "2026-08-31",
       "startsAt": "2026-08-31T20:00:00-05:00",
@@ -78,7 +78,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-        "fetchedAt": "2026-09-02T03:09:50.600Z",
+        "fetchedAt": "2026-09-02T03:44:02.832Z",
         "reportingSchool": "SLUH",
         "opponent": "Marquette",
         "date": "2026-08-31",
@@ -101,7 +101,7 @@
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T03:09:50.597Z",
-  "updatedAt": "2026-09-02T03:09:50.597Z",
-  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+  "createdAt": "2026-09-02T03:44:02.826Z",
+  "updatedAt": "2026-09-02T03:44:02.826Z",
+  "lastVerifiedAt": "2026-09-02T03:44:47.778Z"
 }
