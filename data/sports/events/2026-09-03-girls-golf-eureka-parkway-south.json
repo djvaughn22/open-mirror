@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-golf-eureka-parkway-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T15:30:00",
+  "sides": [
+    {
+      "schoolId": "eureka"
+    },
+    {
+      "schoolId": "parkway-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Eureka Sr High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|parkway-south|girls-golf|2026-09-03",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-golf",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T15:30:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South High School"
+      },
+      "homeAway": "home",
+      "location": "Eureka Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Parkway South High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T15:30:00",
+        "sportLabel": "Girls Golf",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Eureka Sr High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

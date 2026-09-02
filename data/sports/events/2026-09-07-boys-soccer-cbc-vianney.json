@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-07-boys-soccer-cbc-vianney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-07",
+  "startsAt": "2026-09-07T11:30:00",
+  "sides": [
+    {
+      "schoolId": "cbc"
+    },
+    {
+      "schoolId": "vianney"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Chaminade College Prep School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|cbc|boys-soccer|2026-09-07",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-07",
+      "startsAt": "2026-09-07T11:30:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "cbc",
+        "reportedAs": "CHRISTIAN BROTHERS COLLEGE HIGH SCHOOL"
+      },
+      "homeAway": "away",
+      "location": "Chaminade College Prep School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "CHRISTIAN BROTHERS COLLEGE HIGH SCHOOL",
+        "date": "2026-09-07",
+        "startsAt": "2026-09-07T11:30:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Sophmore",
+        "homeAway": "away",
+        "location": "Chaminade College Prep School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-29-boys-soccer-eureka-francis-howell-north",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T11:00:00",
+  "sides": [
+    {
+      "schoolId": "eureka"
+    },
+    {
+      "schoolId": "francis-howell-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Eureka Sr High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|francis-howell-north|boys-soccer|2026-08-29",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T11:00:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North High School"
+      },
+      "homeAway": "home",
+      "location": "Eureka Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Francis Howell North High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T11:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Eureka Sr High School"
+      }
+    },
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|eureka|boys-soccer|2026-08-29",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T11:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "opponent": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka Sr High School"
+      },
+      "homeAway": "away",
+      "location": "Eureka Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "Eureka Sr High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T11:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Eureka Sr High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school",
+    "eventlink:francis-howell-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

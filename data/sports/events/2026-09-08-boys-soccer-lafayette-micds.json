@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-08-boys-soccer-lafayette-micds",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "lafayette"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mary Institute and St Louis Country Day School (MICDS) (O'Hara Field) St. Louis, MO",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|lafayette|boys-soccer|2026-09-08",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "lafayette",
+        "reportedAs": "Lafayette Senior High School"
+      },
+      "homeAway": "home",
+      "location": "Mary Institute and St Louis Country Day School (MICDS) (O'Hara Field) St. Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Lafayette Senior High School",
+        "date": "2026-09-08",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Mary Institute and St Louis Country Day School (MICDS) (O'Hara Field) St. Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

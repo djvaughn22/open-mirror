@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-volleyball-eureka-rockwood-summit",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T17:30:00",
+  "sides": [
+    {
+      "schoolId": "rockwood-summit"
+    },
+    {
+      "schoolId": "eureka"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Rockwood Summit High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|rockwood-summit|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:30:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "rockwood-summit",
+        "reportedAs": "Rockwood Summit High School"
+      },
+      "homeAway": "away",
+      "location": "Rockwood Summit High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Rockwood Summit High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Rockwood Summit High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

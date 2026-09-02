@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-08-girls-tennis-lafayette-micds",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-08",
+  "sides": [
+    {
+      "schoolId": "lafayette"
+    },
+    {
+      "schoolId": "micds"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lafayette High School-Rockwood St.Louis, MO",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|lafayette|girls-tennis|2026-09-08",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/tennis/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "lafayette",
+        "reportedAs": "Lafayette High School"
+      },
+      "homeAway": "away",
+      "location": "Lafayette High School-Rockwood St.Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/tennis/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Lafayette High School",
+        "date": "2026-09-08",
+        "sportLabel": "girls tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Lafayette High School-Rockwood St.Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

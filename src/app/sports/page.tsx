@@ -29,7 +29,11 @@ const SHELL = "mx-auto w-full max-w-[46rem] px-4 sm:px-6";
 
 function StoryCard({ story }: { story: FeedStory }) {
   const { event, brief, sources } = story;
-  const confirmed = event.sourceIds.length >= 2;
+  // Two kinds of corroboration, and the badge must not blur them: a second
+  // school agreeing on the SCORE is a much stronger claim than a calendar
+  // confirming the game happened.
+  const scoreConfirmed = event.scoreSourceIds.length >= 2;
+  const fixtureConfirmed = !scoreConfirmed && event.sourceIds.length >= 2;
 
   return (
     <article className="rounded-2xl border border-[#232a38] bg-[#12161f] p-4 sm:p-5">
@@ -39,15 +43,25 @@ function StoryCard({ story }: { story: FeedStory }) {
         </span>
         <span
           className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] ${
-            confirmed ? "bg-[#14331f] text-[#86efac]" : "bg-[#1c2331] text-[#94a3b8]"
+            scoreConfirmed
+              ? "bg-[#14331f] text-[#86efac]"
+              : fixtureConfirmed
+                ? "bg-[#1b2a3a] text-[#7dd3fc]"
+                : "bg-[#1c2331] text-[#94a3b8]"
           }`}
           title={
-            confirmed
-              ? "Two schools reported this result and they agree."
-              : "Reported by one school. We show it, and we say so."
+            scoreConfirmed
+              ? "Two schools reported this score and they agree."
+              : fixtureConfirmed
+                ? "A second school's calendar confirms this game was played, but only one school reported the score."
+                : "Reported by one school. We show it, and we say so."
           }
         >
-          {confirmed ? `${event.sourceIds.length} sources agree` : "1 source"}
+          {scoreConfirmed
+            ? `${event.scoreSourceIds.length} sources agree`
+            : fixtureConfirmed
+              ? "Game confirmed · 1 score"
+              : "1 source"}
         </span>
       </div>
 

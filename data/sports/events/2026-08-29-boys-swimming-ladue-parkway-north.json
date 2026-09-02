@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-29-boys-swimming-ladue-parkway-north",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T08:00:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "parkway-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue Horton Watkins High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-north-high-school|parkway-north|ladue|boys-swimming|2026-08-29",
+      "sourceId": "eventlink:parkway-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T08:00:00",
+      "reporter": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue Horton Watkins High School"
+      },
+      "homeAway": "away",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway North",
+        "opponent": "Ladue Horton Watkins High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T08:00:00",
+        "sportLabel": "Boys Swimming & Diving",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Ladue Horton Watkins High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

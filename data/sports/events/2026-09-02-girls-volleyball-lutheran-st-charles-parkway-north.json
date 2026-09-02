@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-02-girls-volleyball-lutheran-st-charles-parkway-north",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T17:30:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-st-charles"
+    },
+    {
+      "schoolId": "parkway-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lutheran High School of St Charles",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-north-high-school|parkway-north|lutheran-st-charles|girls-volleyball|2026-09-02",
+      "sourceId": "eventlink:parkway-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T17:30:00",
+      "reporter": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North"
+      },
+      "opponent": {
+        "schoolId": "lutheran-st-charles",
+        "reportedAs": "Lutheran High School of St Charles"
+      },
+      "homeAway": "away",
+      "location": "Lutheran High School of St Charles",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway North",
+        "opponent": "Lutheran High School of St Charles",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Lutheran High School of St Charles"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

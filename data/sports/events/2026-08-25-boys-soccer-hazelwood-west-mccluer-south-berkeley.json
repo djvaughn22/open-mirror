@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-25-boys-soccer-hazelwood-west-mccluer-south-berkeley",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-25",
+  "startsAt": "2026-08-25T16:00:00",
+  "sides": [
+    {
+      "schoolId": "hazelwood-west"
+    },
+    {
+      "schoolId": "mccluer-south-berkeley"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hazelwood West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|mccluer-south-berkeley|boys-soccer|2026-08-25",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-25",
+      "startsAt": "2026-08-25T16:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "mccluer-south-berkeley",
+        "reportedAs": "STEAM Academy at McCluer South-Berkeley High"
+      },
+      "homeAway": "home",
+      "location": "Hazelwood West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "STEAM Academy at McCluer South-Berkeley High",
+        "date": "2026-08-25",
+        "startsAt": "2026-08-25T16:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Hazelwood West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-29-girls-volleyball-micds-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-29",
+  "sides": [
+    {
+      "schoolId": "webster-groves",
+      "score": 0
+    },
+    {
+      "schoolId": "micds",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "The Beal Center - Court 7 Chesterfield, MO",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|webster-groves|girls-volleyball|2026-08-29",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-29",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "homeAway": "away",
+      "result": "W",
+      "scoreFor": 2,
+      "scoreAgainst": 0,
+      "location": "The Beal Center - Court 7 Chesterfield, MO",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Webster Groves",
+        "date": "2026-08-29",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "W",
+        "scoreFor": 2,
+        "scoreAgainst": 0,
+        "location": "The Beal Center - Court 7 Chesterfield, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

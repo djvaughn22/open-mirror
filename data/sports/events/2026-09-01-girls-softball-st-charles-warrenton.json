@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-girls-softball-st-charles-warrenton",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:45:00",
+  "sides": [
+    {
+      "schoolId": "warrenton"
+    },
+    {
+      "schoolId": "st-charles"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Warrenton High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|warrenton|girls-softball|2026-09-01",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:45:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "warrenton",
+        "reportedAs": "Warrenton High School"
+      },
+      "homeAway": "away",
+      "location": "Warrenton High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Warrenton High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:45:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Warrenton High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

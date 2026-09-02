@@ -4,7 +4,7 @@
   "metro": "st-louis",
   "sport": "boys-soccer",
   "date": "2026-09-03",
-  "startsAt": "2026-09-03T18:00:00-05:00",
+  "startsAt": "2026-09-03T18:00:00",
   "sides": [
     {
       "schoolId": "ladue"
@@ -15,15 +15,48 @@
   ],
   "homeKnown": true,
   "status": "scheduled",
-  "location": "Ladue High School",
+  "location": "Ladue Horton Watkins High School",
   "confidence": "single-source",
   "conflicts": [],
   "observations": [
     {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|de-smet|boys-soccer|2026-09-03",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T18:00:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet Jesuit"
+      },
+      "homeAway": "home",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "De Smet Jesuit",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Ladue Horton Watkins High School"
+      }
+    },
+    {
       "id": "school-site-finalsite:desmet.org|de-smet|ladue|boys-soccer|2026-09-03",
       "sourceId": "school-site-finalsite:desmet.org",
       "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-09-03",
       "startsAt": "2026-09-03T18:00:00-05:00",
@@ -41,7 +74,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
         "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "De Smet Jesuit",
         "opponent": "Ladue",
         "date": "2026-09-03",
@@ -55,11 +88,13 @@
     }
   ],
   "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school",
     "school-site-finalsite:desmet.org"
   ],
+  "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
 }

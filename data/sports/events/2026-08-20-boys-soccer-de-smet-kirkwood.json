@@ -23,7 +23,7 @@
       "id": "school-site-finalsite:desmet.org|de-smet|kirkwood|boys-soccer|2026-08-20",
       "sourceId": "school-site-finalsite:desmet.org",
       "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-08-20",
       "startsAt": "2026-08-20T17:00:00-05:00",
@@ -41,7 +41,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
         "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "De Smet Jesuit",
         "opponent": "Kirkwood",
         "date": "2026-08-20",
@@ -57,9 +57,10 @@
   "sourceIds": [
     "school-site-finalsite:desmet.org"
   ],
+  "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
 }

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-22-girls-softball-eureka-troy-buchanan",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-22",
+  "startsAt": "2026-08-22T10:00:00",
+  "sides": [
+    {
+      "schoolId": "eureka"
+    },
+    {
+      "schoolId": "troy-buchanan"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Rockwood Summit High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|troy-buchanan|girls-softball|2026-08-22",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-22",
+      "startsAt": "2026-08-22T10:00:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "troy-buchanan",
+        "reportedAs": "Troy Buchanan High School"
+      },
+      "homeAway": "home",
+      "location": "Rockwood Summit High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Troy Buchanan High School",
+        "date": "2026-08-22",
+        "startsAt": "2026-08-22T10:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Rockwood Summit High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

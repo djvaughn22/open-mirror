@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-27-girls-golf-duchesne-winfield",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T14:30:00",
+  "sides": [
+    {
+      "schoolId": "duchesne"
+    },
+    {
+      "schoolId": "winfield"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Duchesne High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|winfield|girls-golf|2026-08-27",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-golf",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T14:30:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "opponent": {
+        "schoolId": "winfield",
+        "reportedAs": "Winfield High School"
+      },
+      "homeAway": "home",
+      "location": "Duchesne High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "Winfield High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T14:30:00",
+        "sportLabel": "Girls Golf",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Duchesne High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

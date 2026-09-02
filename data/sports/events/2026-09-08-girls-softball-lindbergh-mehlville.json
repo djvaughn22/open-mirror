@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-08-girls-softball-lindbergh-mehlville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:15:00",
+  "sides": [
+    {
+      "schoolId": "lindbergh"
+    },
+    {
+      "schoolId": "mehlville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lindbergh High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lindbergh-high-school|lindbergh|mehlville|girls-softball|2026-09-08",
+      "sourceId": "eventlink:lindbergh-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh"
+      },
+      "opponent": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville High School"
+      },
+      "homeAway": "home",
+      "location": "Lindbergh High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lindbergh-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lindbergh",
+        "opponent": "Mehlville High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Lindbergh High School"
+      }
+    },
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|lindbergh|girls-softball|2026-09-08",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T00:00:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "opponent": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh Sr High School"
+      },
+      "homeAway": "away",
+      "location": "TBD",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "Lindbergh Sr High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T00:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "TBD"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lindbergh-high-school",
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

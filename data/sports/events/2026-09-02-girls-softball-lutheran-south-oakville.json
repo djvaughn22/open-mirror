@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-02-girls-softball-lutheran-south-oakville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:15:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-south"
+    },
+    {
+      "schoolId": "oakville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lutheran High School South",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|oakville|girls-softball|2026-09-02",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:15:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "oakville",
+        "reportedAs": "Oakville Sr. High School"
+      },
+      "homeAway": "home",
+      "location": "Lutheran High School South",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "Oakville Sr. High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Lutheran High School South"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

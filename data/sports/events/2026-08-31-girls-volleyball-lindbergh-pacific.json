@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-volleyball-lindbergh-pacific",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:30:00",
+  "sides": [
+    {
+      "schoolId": "pacific"
+    },
+    {
+      "schoolId": "lindbergh"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Pacific High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lindbergh-high-school|lindbergh|pacific|girls-volleyball|2026-08-31",
+      "sourceId": "eventlink:lindbergh-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:30:00",
+      "reporter": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh"
+      },
+      "opponent": {
+        "schoolId": "pacific",
+        "reportedAs": "Pacific High School"
+      },
+      "homeAway": "away",
+      "location": "Pacific High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lindbergh-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lindbergh",
+        "opponent": "Pacific High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Pacific High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lindbergh-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

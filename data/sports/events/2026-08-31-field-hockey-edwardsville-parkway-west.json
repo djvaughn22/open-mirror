@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-field-hockey-edwardsville-parkway-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:30:00",
+  "sides": [
+    {
+      "schoolId": "parkway-west"
+    },
+    {
+      "schoolId": "edwardsville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-west-high-school|parkway-west|edwardsville|field-hockey|2026-08-31",
+      "sourceId": "eventlink:parkway-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:30:00",
+      "reporter": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West"
+      },
+      "opponent": {
+        "schoolId": "edwardsville",
+        "reportedAs": "Edwardsville"
+      },
+      "homeAway": "home",
+      "location": "Parkway West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway West",
+        "opponent": "Edwardsville",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:30:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

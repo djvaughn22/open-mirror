@@ -22,8 +22,8 @@
     {
       "id": "school-site-finalsite:sluh.org|sluh|unresolved:springfield glendale|boys-soccer|2026-09-04",
       "sourceId": "school-site-finalsite:sluh.org",
-      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T16:00:00-05:00",
@@ -37,15 +37,14 @@
       "status": "scheduled",
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
-        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "SLUH",
         "opponent": "Springfield Glendale",
         "date": "2026-09-04",
         "startsAt": "2026-09-04T16:00:00-05:00",
         "sportLabel": "Soccer",
         "levelLabel": "Varsity",
-        "sportHint": "soccer",
         "homeAway": "home",
         "location": "SLUH"
       }
@@ -54,11 +53,12 @@
   "sourceIds": [
     "school-site-finalsite:sluh.org"
   ],
+  "scoreSourceIds": [],
   "unresolvedNames": [
     "Springfield Glendale"
   ],
   "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
 }

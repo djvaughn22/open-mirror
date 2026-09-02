@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-02-girls-tennis-clayton-marquette",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:15:00",
+  "sides": [
+    {
+      "schoolId": "marquette"
+    },
+    {
+      "schoolId": "clayton"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Marquette High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:clayton-high-school|clayton|marquette|girls-tennis|2026-09-02",
+      "sourceId": "eventlink:clayton-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:15:00",
+      "reporter": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton"
+      },
+      "opponent": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette High School"
+      },
+      "homeAway": "away",
+      "location": "Marquette High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:clayton-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Clayton",
+        "opponent": "Marquette High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Marquette High School"
+      }
+    },
+    {
+      "id": "eventlink:marquette-high-school|marquette|clayton|girls-tennis|2026-09-02",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:15:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton High School"
+      },
+      "homeAway": "home",
+      "location": "Marquette High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Clayton High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Marquette High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:clayton-high-school",
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

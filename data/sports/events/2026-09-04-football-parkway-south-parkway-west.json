@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-04-football-parkway-south-parkway-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T18:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-south"
+    },
+    {
+      "schoolId": "parkway-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway South High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|parkway-west|football|2026-09-04",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T18:00:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "opponent": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West High School"
+      },
+      "homeAway": "home",
+      "location": "Parkway South High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "Parkway West High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T18:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway South High School"
+      }
+    },
+    {
+      "id": "eventlink:parkway-west-high-school|parkway-west|parkway-south|football|2026-09-04",
+      "sourceId": "eventlink:parkway-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T18:00:00",
+      "reporter": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West"
+      },
+      "opponent": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South High School"
+      },
+      "homeAway": "away",
+      "location": "Parkway South High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway West",
+        "opponent": "Parkway South High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T18:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway South High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-south-high-school",
+    "eventlink:parkway-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

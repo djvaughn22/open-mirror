@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-31-girls-tennis-francis-howell-central-marquette",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T15:30:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell-central"
+    },
+    {
+      "schoolId": "marquette"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Francis Howell Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-central-high-school|francis-howell-central|marquette|girls-tennis|2026-08-31",
+      "sourceId": "eventlink:francis-howell-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T15:30:00",
+      "reporter": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central"
+      },
+      "opponent": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette High School"
+      },
+      "homeAway": "home",
+      "location": "Francis Howell Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell Central",
+        "opponent": "Marquette High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Francis Howell Central High School"
+      }
+    },
+    {
+      "id": "eventlink:marquette-high-school|marquette|francis-howell-central|girls-tennis|2026-08-31",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T16:15:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central High School"
+      },
+      "homeAway": "away",
+      "location": "Francis Howell Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Francis Howell Central High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Francis Howell Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-central-high-school",
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

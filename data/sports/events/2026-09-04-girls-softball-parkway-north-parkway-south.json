@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-04-girls-softball-parkway-north-parkway-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T16:30:00",
+  "sides": [
+    {
+      "schoolId": "parkway-north"
+    },
+    {
+      "schoolId": "parkway-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway North High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-north-high-school|parkway-north|parkway-south|girls-softball|2026-09-04",
+      "sourceId": "eventlink:parkway-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T16:30:00",
+      "reporter": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North"
+      },
+      "opponent": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South High School"
+      },
+      "homeAway": "home",
+      "location": "Parkway North High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway North",
+        "opponent": "Parkway South High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T16:30:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway North High School"
+      }
+    },
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|parkway-north|girls-softball|2026-09-04",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T16:30:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "opponent": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North High School"
+      },
+      "homeAway": "away",
+      "location": "Parkway North High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "Parkway North High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T16:30:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway North High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-north-high-school",
+    "eventlink:parkway-south-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

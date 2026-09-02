@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-field-hockey-eureka-parkway-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T17:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-south"
+    },
+    {
+      "schoolId": "eureka"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway South High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|parkway-south|field-hockey|2026-09-01",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T17:00:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South High School"
+      },
+      "homeAway": "away",
+      "location": "Parkway South High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Parkway South High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T17:00:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway South High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

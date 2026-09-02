@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-boys-soccer-cbc-lindbergh",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T18:00:00",
+  "sides": [
+    {
+      "schoolId": "lindbergh"
+    },
+    {
+      "schoolId": "cbc"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lindbergh High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lindbergh-high-school|lindbergh|cbc|boys-soccer|2026-09-03",
+      "sourceId": "eventlink:lindbergh-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T18:00:00",
+      "reporter": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh"
+      },
+      "opponent": {
+        "schoolId": "cbc",
+        "reportedAs": "Christian Brothers College"
+      },
+      "homeAway": "home",
+      "location": "Lindbergh High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lindbergh-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lindbergh",
+        "opponent": "Christian Brothers College",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Lindbergh High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lindbergh-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

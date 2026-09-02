@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-tennis-francis-howell-north-timberland",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T15:30:00",
+  "sides": [
+    {
+      "schoolId": "timberland"
+    },
+    {
+      "schoolId": "francis-howell-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Timberland High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|timberland|girls-tennis|2026-09-08",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T15:30:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "opponent": {
+        "schoolId": "timberland",
+        "reportedAs": "Timberland High School"
+      },
+      "homeAway": "away",
+      "location": "Timberland High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "Timberland High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Timberland High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

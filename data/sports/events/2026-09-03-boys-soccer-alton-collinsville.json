@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-03-boys-soccer-alton-collinsville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-03",
+  "sides": [
+    {
+      "schoolId": "alton"
+    },
+    {
+      "schoolId": "collinsville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Alton High School Alton, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|alton|boys-soccer|2026-09-03",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "alton",
+        "reportedAs": "Alton High School"
+      },
+      "homeAway": "away",
+      "location": "Alton High School Alton, IL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Alton High School",
+        "date": "2026-09-03",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Alton High School Alton, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-boys-swimming-borgia-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T16:15:00",
+  "sides": [
+    {
+      "schoolId": "borgia"
+    },
+    {
+      "schoolId": "washington"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Francis Borgia High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|borgia|boys-swimming|2026-09-04",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T16:15:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "borgia",
+        "reportedAs": "St Francis Borgia High School"
+      },
+      "homeAway": "away",
+      "location": "St Francis Borgia High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "St Francis Borgia High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T16:15:00",
+        "sportLabel": "Boys Swimming",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Francis Borgia High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

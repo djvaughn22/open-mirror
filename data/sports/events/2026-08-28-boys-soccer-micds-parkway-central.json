@@ -1,0 +1,107 @@
+{
+  "id": "2026-08-28-boys-soccer-micds-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T16:15:00",
+  "sides": [
+    {
+      "schoolId": "parkway-central",
+      "score": 1
+    },
+    {
+      "schoolId": "micds",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Parkway Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|micds|boys-soccer|2026-08-28",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:15:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "micds",
+        "reportedAs": "Mary Institute and St Louis Country Day School (MICDS)"
+      },
+      "homeAway": "home",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Mary Institute and St Louis Country Day School (MICDS)",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:15:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway Central High School"
+      }
+    },
+    {
+      "id": "mascot-media:micdsathletics.com|micds|parkway-central|boys-soccer|2026-08-28",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "homeAway": "away",
+      "result": "W",
+      "scoreFor": 2,
+      "scoreAgainst": 1,
+      "location": "Parkway Central St. Louis, MO",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Parkway Central",
+        "date": "2026-08-28",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "W",
+        "scoreFor": 2,
+        "scoreAgainst": 1,
+        "location": "Parkway Central St. Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school",
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

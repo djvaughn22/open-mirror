@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-girls-softball-st-charles-ursuline",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T16:00:00",
+  "sides": [
+    {
+      "schoolId": "ursuline"
+    },
+    {
+      "schoolId": "st-charles"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ursuline Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|ursuline|girls-softball|2026-09-04",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T16:00:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "ursuline",
+        "reportedAs": "Ursuline Academy"
+      },
+      "homeAway": "away",
+      "location": "Ursuline Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Ursuline Academy",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T16:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Ursuline Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

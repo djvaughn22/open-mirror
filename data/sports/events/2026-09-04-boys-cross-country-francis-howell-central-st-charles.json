@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-boys-cross-country-francis-howell-central-st-charles",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-cross-country",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T18:00:00",
+  "sides": [
+    {
+      "schoolId": "st-charles"
+    },
+    {
+      "schoolId": "francis-howell-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Charles High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-central-high-school|francis-howell-central|st-charles|boys-cross-country|2026-09-04",
+      "sourceId": "eventlink:francis-howell-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-cross-country",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T18:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central"
+      },
+      "opponent": {
+        "schoolId": "st-charles",
+        "reportedAs": "St Charles High School"
+      },
+      "homeAway": "away",
+      "location": "St Charles High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell Central",
+        "opponent": "St Charles High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T18:00:00",
+        "sportLabel": "Boys Cross Country",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Charles High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

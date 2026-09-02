@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-volleyball-borgia-eureka",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T17:45:00",
+  "sides": [
+    {
+      "schoolId": "eureka"
+    },
+    {
+      "schoolId": "borgia"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Eureka Sr High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|borgia|girls-volleyball|2026-09-03",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T17:45:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "borgia",
+        "reportedAs": "St Francis Borgia High School"
+      },
+      "homeAway": "home",
+      "location": "Eureka Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "St Francis Borgia High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T17:45:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Eureka Sr High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

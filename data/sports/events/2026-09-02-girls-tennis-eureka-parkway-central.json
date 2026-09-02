@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-02-girls-tennis-eureka-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-central"
+    },
+    {
+      "schoolId": "eureka"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|parkway-central|girls-tennis|2026-09-02",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:00:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central High School"
+      },
+      "homeAway": "away",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Parkway Central High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway Central High School"
+      }
+    },
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|eureka|girls-tennis|2026-09-02",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:15:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka Sr High School"
+      },
+      "homeAway": "home",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Eureka Sr High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school",
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

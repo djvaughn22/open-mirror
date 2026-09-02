@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-boys-soccer-francis-howell-north-troy-buchanan",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T17:45:00",
+  "sides": [
+    {
+      "schoolId": "troy-buchanan"
+    },
+    {
+      "schoolId": "francis-howell-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Troy Buchanan High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|troy-buchanan|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:45:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "opponent": {
+        "schoolId": "troy-buchanan",
+        "reportedAs": "Troy Buchanan High School"
+      },
+      "homeAway": "away",
+      "location": "Troy Buchanan High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "Troy Buchanan High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:45:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Troy Buchanan High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

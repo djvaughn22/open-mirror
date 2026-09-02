@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-girls-tennis-oakville-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T16:00:00",
+  "sides": [
+    {
+      "schoolId": "washington"
+    },
+    {
+      "schoolId": "oakville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Washington High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|oakville|girls-tennis|2026-08-28",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:00:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "oakville",
+        "reportedAs": "Oakville Sr. High School"
+      },
+      "homeAway": "home",
+      "location": "Washington High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "Oakville Sr. High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Washington High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -23,7 +23,7 @@
       "id": "school-site-finalsite:sluh.org|sluh|cbc|football|2026-09-04",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "football",
       "date": "2026-09-04",
       "startsAt": "2026-09-04T19:00:00-05:00",
@@ -41,47 +41,13 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "SLUH",
         "opponent": "CBC",
         "date": "2026-09-04",
         "startsAt": "2026-09-04T19:00:00-05:00",
         "sportLabel": "Football",
         "levelLabel": "Varsity",
-        "homeAway": "away",
-        "location": "CBC"
-      }
-    },
-    {
-      "id": "school-site-finalsite:sluh.org|sluh|cbc|football|2026-09-04",
-      "sourceId": "school-site-finalsite:sluh.org",
-      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/football",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
-      "sport": "football",
-      "date": "2026-09-04",
-      "startsAt": "2026-09-04T19:00:00-05:00",
-      "reporter": {
-        "schoolId": "sluh",
-        "reportedAs": "SLUH"
-      },
-      "opponent": {
-        "schoolId": "cbc",
-        "reportedAs": "CBC"
-      },
-      "homeAway": "away",
-      "location": "CBC",
-      "status": "scheduled",
-      "raw": {
-        "sourceId": "school-site-finalsite:sluh.org",
-        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/football",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
-        "reportingSchool": "SLUH",
-        "opponent": "CBC",
-        "date": "2026-09-04",
-        "startsAt": "2026-09-04T19:00:00-05:00",
-        "sportLabel": "Football",
-        "levelLabel": "Varsity",
-        "sportHint": "football",
         "homeAway": "away",
         "location": "CBC"
       }
@@ -90,9 +56,10 @@
   "sourceIds": [
     "school-site-finalsite:sluh.org"
   ],
+  "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
 }

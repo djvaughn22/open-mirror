@@ -13,7 +13,7 @@
 // later.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { sportLabel } from "./graph/sports.ts";
+import { sportLabel, sportMeta } from "./graph/sports.ts";
 import { hasScore, isTie, winnerOf, type CanonicalEvent, type EventProvenance, type School } from "./graph/types.ts";
 
 export interface MetroDiscovery {
@@ -64,6 +64,13 @@ function calc(method: string, ids: string[]): EventProvenance {
  * scoped to it, out loud, until the archive is old enough to say more.
  */
 const TRACKED = "in games tracked here";
+
+/** Singular unit a margin is measured in for this sport. */
+function marginNoun(sport: CanonicalEvent["sport"]): string {
+  const noun = sportMeta(sport)?.scoreNoun ?? "points";
+  // scoreNoun is plural ("goals", "sets", "runs"); a margin takes the singular.
+  return noun.replace(/s$/, "");
+}
 
 export interface StoryContext {
   event: CanonicalEvent;
@@ -158,7 +165,9 @@ export function findMetroStories(ctx: StoryContext): MetroDiscovery[] {
         id: "biggest-margin",
         kind: "biggest-margin",
         strength: 52,
-        text: `The ${margin}-point margin is the widest in ${sportLabel(event.sport).toLowerCase()} ${TRACKED} this season.`,
+        // Soccer is decided by goals, volleyball by sets. Calling either a
+      // "point" is the kind of small wrongness a local reader notices first.
+      text: `The ${margin}-${marginNoun(event.sport)} margin is the widest in ${sportLabel(event.sport).toLowerCase()} ${TRACKED} this season.`,
         provenance: calc(`compared against ${priorAll.length} earlier stored games in this sport`, [event.id, ...priorAll.map((e) => e.id)]),
       });
     }
@@ -168,7 +177,7 @@ export function findMetroStories(ctx: StoryContext): MetroDiscovery[] {
         id: "closest-game",
         kind: "closest-game",
         strength: 50,
-        text: `A ${margin}-point game is the closest finish in ${sportLabel(event.sport).toLowerCase()} ${TRACKED} this season.`,
+        text: `A ${margin}-${marginNoun(event.sport)} game is the closest finish in ${sportLabel(event.sport).toLowerCase()} ${TRACKED} this season.`,
         provenance: calc(`compared against ${priorAll.length} earlier stored games in this sport`, [event.id, ...priorAll.map((e) => e.id)]),
       });
     }

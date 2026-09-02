@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-02-girls-volleyball-francis-howell-north-parkway-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T17:00:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell-north"
+    },
+    {
+      "schoolId": "parkway-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Francis Howell North High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|parkway-west|girls-volleyball|2026-09-02",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T17:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "opponent": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West High School"
+      },
+      "homeAway": "home",
+      "location": "Francis Howell North High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "Parkway West High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T17:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Francis Howell North High School"
+      }
+    },
+    {
+      "id": "eventlink:parkway-west-high-school|parkway-west|francis-howell-north|girls-volleyball|2026-09-02",
+      "sourceId": "eventlink:parkway-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T17:00:00",
+      "reporter": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West"
+      },
+      "opponent": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North High School"
+      },
+      "homeAway": "away",
+      "location": "Francis Howell North High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway West",
+        "opponent": "Francis Howell North High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T17:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Francis Howell North High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-north-high-school",
+    "eventlink:parkway-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

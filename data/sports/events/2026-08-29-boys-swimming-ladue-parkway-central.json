@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-29-boys-swimming-ladue-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T08:00:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "parkway-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue Horton Watkins High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|ladue|boys-swimming|2026-08-29",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T08:00:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue Horton Watkins High School"
+      },
+      "homeAway": "away",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Ladue Horton Watkins High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T08:00:00",
+        "sportLabel": "Boys Swimming",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Ladue Horton Watkins High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

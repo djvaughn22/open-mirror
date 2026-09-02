@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-girls-volleyball-jennings-maplewood-rh",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T17:00:00",
+  "sides": [
+    {
+      "schoolId": "maplewood-rh"
+    },
+    {
+      "schoolId": "jennings"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Maplewood Richmond Heights High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:maplewood-richmond-heights-high-school|maplewood-rh|jennings|girls-volleyball|2026-08-28",
+      "sourceId": "eventlink:maplewood-richmond-heights-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/maplewood-richmond-heights-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T17:00:00",
+      "reporter": {
+        "schoolId": "maplewood-rh",
+        "reportedAs": "Maplewood Richmond Heights"
+      },
+      "opponent": {
+        "schoolId": "jennings",
+        "reportedAs": "Jennings High School"
+      },
+      "homeAway": "home",
+      "location": "Maplewood Richmond Heights High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:maplewood-richmond-heights-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/maplewood-richmond-heights-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Maplewood Richmond Heights",
+        "opponent": "Jennings High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T17:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Maplewood Richmond Heights High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:maplewood-richmond-heights-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

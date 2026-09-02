@@ -1,0 +1,64 @@
+{
+  "id": "2026-08-31-girls-volleyball-parkway-north-unresolved-26-08-31",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T18:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-north"
+    },
+    {
+      "schoolId": "unresolved:Notre Dame High School (Saint Louis)"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway North High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-north-high-school|parkway-north|unresolved:notre dame high school (saint louis)|girls-volleyball|2026-08-31",
+      "sourceId": "eventlink:parkway-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T18:00:00",
+      "reporter": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North"
+      },
+      "unresolvedOpponent": "Notre Dame High School (Saint Louis)",
+      "homeAway": "home",
+      "location": "Parkway North High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway North",
+        "opponent": "Notre Dame High School (Saint Louis)",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T18:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway North High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Notre Dame High School (Saint Louis)"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

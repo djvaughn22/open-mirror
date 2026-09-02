@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-20-boys-soccer-lindbergh-mehlville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-20",
+  "startsAt": "2026-08-20T18:45:00",
+  "sides": [
+    {
+      "schoolId": "lindbergh"
+    },
+    {
+      "schoolId": "mehlville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St John Vianney High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|lindbergh|boys-soccer|2026-08-20",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-20",
+      "startsAt": "2026-08-20T18:45:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "opponent": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh High School"
+      },
+      "homeAway": "away",
+      "location": "St John Vianney High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "Lindbergh High School",
+        "date": "2026-08-20",
+        "startsAt": "2026-08-20T18:45:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St John Vianney High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

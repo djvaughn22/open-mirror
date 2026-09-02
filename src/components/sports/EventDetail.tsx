@@ -20,12 +20,13 @@ import type { CanonicalEvent, School } from "@/lib/sports/graph/types";
 const CONFIDENCE_COPY: Record<CanonicalEvent["confidence"], { label: string; detail: string; tone: string }> = {
   confirmed: {
     label: "Confirmed",
-    detail: "More than one school reported this game and their accounts agree.",
+    detail: "More than one school reported this score and their accounts agree.",
     tone: "bg-[#14331f] text-[#86efac]",
   },
   "single-source": {
-    label: "One source",
-    detail: "One school reported this game. Nothing contradicts it, and nothing corroborates it yet.",
+    label: "One score reported",
+    detail:
+      "One school reported this score. Nothing contradicts it. Another school's calendar may confirm the game was played — that is listed below — but a calendar never carries a result, so the score itself still rests on one account.",
     tone: "bg-[#1c2331] text-[#94a3b8]",
   },
   conflicted: {
@@ -112,7 +113,7 @@ export default function EventDetail({
                   {nameOf(o.reporter.schoolId)} reported{" "}
                   {o.scoreFor !== undefined && o.scoreAgainst !== undefined
                     ? `${o.scoreFor}-${o.scoreAgainst}`
-                    : "a scheduled game"}{" "}
+                    : "this game on its calendar, with no score"}{" "}
                   {o.homeAway === "away" ? "away at" : o.homeAway === "home" ? "at home against" : "against"}{" "}
                   {o.unresolvedOpponent ?? nameOf(o.opponent?.schoolId ?? "")}
                 </p>

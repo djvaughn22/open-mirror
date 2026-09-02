@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-soccer-brentwood-de-soto",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:30:00",
+  "sides": [
+    {
+      "schoolId": "de-soto"
+    },
+    {
+      "schoolId": "brentwood"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Desoto High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:brentwood-eagles|brentwood|de-soto|boys-soccer|2026-09-01",
+      "sourceId": "eventlink:brentwood-eagles",
+      "sourceUrl": "https://websites.eventlink.com/s/brentwood-eagles",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:30:00",
+      "reporter": {
+        "schoolId": "brentwood",
+        "reportedAs": "Brentwood"
+      },
+      "opponent": {
+        "schoolId": "de-soto",
+        "reportedAs": "Desoto High School"
+      },
+      "homeAway": "away",
+      "location": "Desoto High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:brentwood-eagles",
+        "sourceUrl": "https://websites.eventlink.com/s/brentwood-eagles",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Brentwood",
+        "opponent": "Desoto High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:30:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Desoto High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:brentwood-eagles"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

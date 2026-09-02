@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-swimming-chaminade-de-smet",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T16:00:00",
+  "sides": [
+    {
+      "schoolId": "de-smet"
+    },
+    {
+      "schoolId": "chaminade"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Chaminade College Prep School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:chaminade-college-preparatory-school|chaminade|de-smet|boys-swimming|2026-09-01",
+      "sourceId": "eventlink:chaminade-college-preparatory-school",
+      "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T16:00:00",
+      "reporter": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "opponent": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet"
+      },
+      "homeAway": "away",
+      "location": "Chaminade College Prep School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:chaminade-college-preparatory-school",
+        "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Chaminade",
+        "opponent": "De Smet",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T16:00:00",
+        "sportLabel": "Boys Swimming & Diving",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Chaminade College Prep School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:chaminade-college-preparatory-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

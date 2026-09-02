@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-21-football-althoff-collinsville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-21",
+  "sides": [
+    {
+      "schoolId": "althoff",
+      "score": 53
+    },
+    {
+      "schoolId": "collinsville",
+      "score": 20
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Althoff Catholic High School Belleville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|althoff|football|2026-08-21",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "football",
+      "date": "2026-08-21",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "althoff",
+        "reportedAs": "Althoff Catholic High School"
+      },
+      "homeAway": "away",
+      "result": "L",
+      "scoreFor": 20,
+      "scoreAgainst": 53,
+      "location": "Althoff Catholic High School Belleville, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Althoff Catholic High School",
+        "date": "2026-08-21",
+        "sportLabel": "boys football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "L",
+        "scoreFor": 20,
+        "scoreAgainst": 53,
+        "location": "Althoff Catholic High School Belleville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

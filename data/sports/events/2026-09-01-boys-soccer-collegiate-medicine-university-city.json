@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-soccer-collegiate-medicine-university-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:00:00",
+  "sides": [
+    {
+      "schoolId": "university-city"
+    },
+    {
+      "schoolId": "collegiate-medicine"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "University City High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:university-city-high-school|university-city|collegiate-medicine|boys-soccer|2026-09-01",
+      "sourceId": "eventlink:university-city-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:00:00",
+      "reporter": {
+        "schoolId": "university-city",
+        "reportedAs": "University City"
+      },
+      "opponent": {
+        "schoolId": "collegiate-medicine",
+        "reportedAs": "Collegiate School of Medicine and Bioscience"
+      },
+      "homeAway": "home",
+      "location": "University City High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:university-city-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "University City",
+        "opponent": "Collegiate School of Medicine and Bioscience",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "University City High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:university-city-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

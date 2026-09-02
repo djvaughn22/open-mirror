@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-29-girls-softball-ladue-lutheran-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T12:00:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "lutheran-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue Horton Watkins High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|lutheran-south|girls-softball|2026-08-29",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T12:00:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran High School South"
+      },
+      "homeAway": "home",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "Lutheran High School South",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T12:00:00",
+        "sportLabel": "Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Ladue Horton Watkins High School"
+      }
+    },
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|ladue|girls-softball|2026-08-29",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T12:00:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue Horton Watkins High School"
+      },
+      "homeAway": "away",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "Ladue Horton Watkins High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T12:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Ladue Horton Watkins High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school",
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

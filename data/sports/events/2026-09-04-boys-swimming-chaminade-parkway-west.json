@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-boys-swimming-chaminade-parkway-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T16:30:00",
+  "sides": [
+    {
+      "schoolId": "parkway-west"
+    },
+    {
+      "schoolId": "chaminade"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:chaminade-college-preparatory-school|chaminade|parkway-west|boys-swimming|2026-09-04",
+      "sourceId": "eventlink:chaminade-college-preparatory-school",
+      "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T16:30:00",
+      "reporter": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "opponent": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West High School"
+      },
+      "homeAway": "away",
+      "location": "Parkway West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:chaminade-college-preparatory-school",
+        "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Chaminade",
+        "opponent": "Parkway West High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T16:30:00",
+        "sportLabel": "Boys Swimming & Diving",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:chaminade-college-preparatory-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

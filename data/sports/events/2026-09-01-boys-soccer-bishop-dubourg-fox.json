@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-soccer-bishop-dubourg-fox",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T16:00:00",
+  "sides": [
+    {
+      "schoolId": "bishop-dubourg"
+    },
+    {
+      "schoolId": "fox"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Bishop Dubourg High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:fox-high-school|fox|bishop-dubourg|boys-soccer|2026-09-01",
+      "sourceId": "eventlink:fox-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T16:00:00",
+      "reporter": {
+        "schoolId": "fox",
+        "reportedAs": "Fox"
+      },
+      "opponent": {
+        "schoolId": "bishop-dubourg",
+        "reportedAs": "Bishop Dubourg High School"
+      },
+      "homeAway": "away",
+      "location": "Bishop Dubourg High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:fox-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Fox",
+        "opponent": "Bishop Dubourg High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T16:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Bishop Dubourg High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:fox-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

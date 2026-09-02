@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-03-boys-soccer-marquette-unresolved-26-09-03",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T19:00:00",
+  "sides": [
+    {
+      "schoolId": "marquette"
+    },
+    {
+      "schoolId": "unresolved:Columbia High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Columbia High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:marquette-high-school|marquette|unresolved:columbia high school|boys-soccer|2026-09-03",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T19:00:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "unresolvedOpponent": "Columbia High School",
+      "homeAway": "away",
+      "location": "Columbia High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Columbia High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T19:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Columbia High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Columbia High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

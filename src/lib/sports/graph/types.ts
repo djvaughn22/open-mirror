@@ -222,8 +222,18 @@ export interface CanonicalEvent {
   conflicts: Conflict[];
   /** Every contributing observation. Dedupe never discards provenance. */
   observations: NormalizedObservation[];
-  /** Distinct sources backing this event, for the credit line. */
+  /** Distinct sources backing this event at all, for the credit line. */
   sourceIds: string[];
+  /**
+   * Distinct sources that actually reported a SCORE.
+   *
+   * This is deliberately separate from `sourceIds`. A calendar source can
+   * confirm that two schools played on a date and who hosted, while carrying no
+   * result at all — real corroboration of the fixture, none of the score.
+   * Counting those together would let the page claim "two sources agree" about
+   * a number only one of them ever stated.
+   */
+  scoreSourceIds: string[];
   /** Names a source used that we could not resolve. Drives the review queue. */
   unresolvedNames: string[];
   /** False whenever anything material is unknown, conflicted, or unresolved. */

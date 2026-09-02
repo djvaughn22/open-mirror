@@ -1,0 +1,71 @@
+{
+  "id": "2026-08-25-boys-soccer-collinsville-unresolved-26-08-25",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-25",
+  "sides": [
+    {
+      "schoolId": "collinsville",
+      "score": 0
+    },
+    {
+      "schoolId": "unresolved:Chatham Glenwood",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Kahok Stadium Collinsville, IL",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|unresolved:chatham glenwood|boys-soccer|2026-08-25",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-25",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "unresolvedOpponent": "Chatham Glenwood",
+      "homeAway": "home",
+      "result": "L",
+      "scoreFor": 0,
+      "scoreAgainst": 2,
+      "location": "Kahok Stadium Collinsville, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Chatham Glenwood",
+        "date": "2026-08-25",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "result": "L",
+        "scoreFor": 0,
+        "scoreAgainst": 2,
+        "location": "Kahok Stadium Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [
+    "Chatham Glenwood"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

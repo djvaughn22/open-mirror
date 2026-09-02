@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-08-boys-soccer-hazelwood-west-university-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:15:00",
+  "sides": [
+    {
+      "schoolId": "university-city"
+    },
+    {
+      "schoolId": "hazelwood-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "University City High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|university-city|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "university-city",
+        "reportedAs": "University City High School"
+      },
+      "homeAway": "away",
+      "location": "University City High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "University City High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "University City High School"
+      }
+    },
+    {
+      "id": "eventlink:university-city-high-school|university-city|hazelwood-west|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:university-city-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "university-city",
+        "reportedAs": "University City"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West High School"
+      },
+      "homeAway": "home",
+      "location": "University City High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:university-city-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "University City",
+        "opponent": "Hazelwood West High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "University City High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school",
+    "eventlink:university-city-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

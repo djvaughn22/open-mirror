@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-02-girls-softball-mccluer-north-mehlville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:15:00",
+  "sides": [
+    {
+      "schoolId": "mehlville"
+    },
+    {
+      "schoolId": "mccluer-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mehlville High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|mccluer-north|girls-softball|2026-09-02",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:15:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "opponent": {
+        "schoolId": "mccluer-north",
+        "reportedAs": "McCluer North High School"
+      },
+      "homeAway": "home",
+      "location": "Mehlville High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "McCluer North High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Mehlville High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

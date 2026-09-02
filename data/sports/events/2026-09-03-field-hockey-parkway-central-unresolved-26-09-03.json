@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-03-field-hockey-parkway-central-unresolved-26-09-03",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T17:30:00",
+  "sides": [
+    {
+      "schoolId": "parkway-central"
+    },
+    {
+      "schoolId": "unresolved:United Field Hockey"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway Central High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|unresolved:united field hockey|field-hockey|2026-09-03",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T17:30:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "unresolvedOpponent": "United Field Hockey",
+      "homeAway": "home",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "United Field Hockey",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T17:30:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "United Field Hockey"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-tennis-fort-zumwalt-north-francis-howell",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T15:30:00",
+  "sides": [
+    {
+      "schoolId": "fort-zumwalt-north"
+    },
+    {
+      "schoolId": "francis-howell"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fort Zumwalt North High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-high-school|francis-howell|fort-zumwalt-north|girls-tennis|2026-09-08",
+      "sourceId": "eventlink:francis-howell-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T15:30:00",
+      "reporter": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-north",
+        "reportedAs": "Fort Zumwalt North High School"
+      },
+      "homeAway": "away",
+      "location": "Fort Zumwalt North High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell",
+        "opponent": "Fort Zumwalt North High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Fort Zumwalt North High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

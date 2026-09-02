@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-06-field-hockey-ladue-unresolved-26-09-06",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-06",
+  "startsAt": "2026-09-06T11:20:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "unresolved:North Oldham High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Sportport Field #3",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|unresolved:north oldham high school|field-hockey|2026-09-06",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-06",
+      "startsAt": "2026-09-06T11:20:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "unresolvedOpponent": "North Oldham High School",
+      "homeAway": "away",
+      "location": "Sportport Field #3",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "North Oldham High School",
+        "date": "2026-09-06",
+        "startsAt": "2026-09-06T11:20:00",
+        "sportLabel": "Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Sportport Field #3"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "North Oldham High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

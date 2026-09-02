@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-volleyball-webster-groves-windsor",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:00:00",
+  "sides": [
+    {
+      "schoolId": "windsor"
+    },
+    {
+      "schoolId": "webster-groves"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "WINDSOR HIGH",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|windsor|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "windsor",
+        "reportedAs": "WINDSOR HIGH"
+      },
+      "homeAway": "away",
+      "location": "WINDSOR HIGH",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "WINDSOR HIGH",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": ", V",
+        "homeAway": "away",
+        "location": "WINDSOR HIGH"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

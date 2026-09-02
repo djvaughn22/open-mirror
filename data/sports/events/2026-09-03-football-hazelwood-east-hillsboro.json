@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-football-hazelwood-east-hillsboro",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T18:00:00",
+  "sides": [
+    {
+      "schoolId": "hazelwood-east"
+    },
+    {
+      "schoolId": "hillsboro"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hazelwood East High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-east-high-school|hazelwood-east|hillsboro|football|2026-09-03",
+      "sourceId": "eventlink:hazelwood-east-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-east-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T18:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-east",
+        "reportedAs": "Hazelwood East"
+      },
+      "opponent": {
+        "schoolId": "hillsboro",
+        "reportedAs": "Hillsboro High School"
+      },
+      "homeAway": "home",
+      "location": "Hazelwood East High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-east-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-east-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood East",
+        "opponent": "Hillsboro High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T18:00:00",
+        "sportLabel": "Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Hazelwood East High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-east-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

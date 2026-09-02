@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-27-girls-tennis-collinsville-granite-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-27",
+  "sides": [
+    {
+      "schoolId": "granite-city",
+      "score": 0
+    },
+    {
+      "schoolId": "collinsville",
+      "score": 9
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Granite City HS Granite City, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|granite-city|girls-tennis|2026-08-27",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-27",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "granite-city",
+        "reportedAs": "Granite City High School"
+      },
+      "homeAway": "away",
+      "result": "W",
+      "scoreFor": 9,
+      "scoreAgainst": 0,
+      "location": "Granite City HS Granite City, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Granite City High School",
+        "date": "2026-08-27",
+        "sportLabel": "girls tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "W",
+        "scoreFor": 9,
+        "scoreAgainst": 0,
+        "location": "Granite City HS Granite City, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

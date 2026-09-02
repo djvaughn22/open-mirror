@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-29-girls-softball-hazelwood-west-ladue",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T10:00:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "hazelwood-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue Horton Watkins High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|ladue|girls-softball|2026-08-29",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T10:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue Horton Watkins High School"
+      },
+      "homeAway": "away",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "Ladue Horton Watkins High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T10:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Ladue Horton Watkins High School"
+      }
+    },
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|hazelwood-west|girls-softball|2026-08-29",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T10:00:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West High School"
+      },
+      "homeAway": "home",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "Hazelwood West High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T10:00:00",
+        "sportLabel": "Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Ladue Horton Watkins High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school",
+    "eventlink:ladue-horton-watkins-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

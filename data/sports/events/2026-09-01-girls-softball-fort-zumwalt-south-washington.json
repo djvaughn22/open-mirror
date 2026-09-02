@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-girls-softball-fort-zumwalt-south-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T17:30:00",
+  "sides": [
+    {
+      "schoolId": "washington"
+    },
+    {
+      "schoolId": "fort-zumwalt-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Washington High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|fort-zumwalt-south|girls-softball|2026-09-01",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T17:30:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-south",
+        "reportedAs": "Ft Zumwalt South High School"
+      },
+      "homeAway": "home",
+      "location": "Washington High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "Ft Zumwalt South High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T17:30:00",
+        "sportLabel": "Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Washington High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

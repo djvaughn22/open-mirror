@@ -61,13 +61,18 @@ export function clusterObservations(observations: NormalizedObservation[]): {
       unmatchable.push(o);
       continue;
     }
-    const existing = clusters.find(
-      (c) =>
-        c.sport === o.sport &&
-        c.pair[0] === pair[0] &&
-        c.pair[1] === pair[1] &&
-        Math.abs(dayNumber(c.date) - dayNumber(o.date)) <= 1,
-    );
+    // The ±1 day tolerance exists for a late finish filed after midnight, and
+    // it only makes sense when a result is involved. Two SCHEDULED games on
+    // consecutive days are a tournament series — two real, separate games — and
+    // merging them invents a date conflict out of a correct calendar.
+    const existing = clusters.find((c) => {
+      if (c.sport !== o.sport || c.pair[0] !== pair[0] || c.pair[1] !== pair[1]) return false;
+      const gap = Math.abs(dayNumber(c.date) - dayNumber(o.date));
+      if (gap === 0) return true;
+      if (gap > 1) return false;
+      const scored = (x: NormalizedObservation) => x.scoreFor !== undefined && x.scoreAgainst !== undefined;
+      return scored(o) || c.observations.some(scored);
+    });
     if (existing) {
       existing.observations.push(o);
       // Keep the earliest reported date: a game filed after midnight belongs to

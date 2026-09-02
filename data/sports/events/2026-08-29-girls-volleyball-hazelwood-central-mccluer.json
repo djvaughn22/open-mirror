@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-29-girls-volleyball-hazelwood-central-mccluer",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T08:00:00",
+  "sides": [
+    {
+      "schoolId": "mccluer"
+    },
+    {
+      "schoolId": "hazelwood-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "McCluer High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-central-high-school|hazelwood-central|mccluer|girls-volleyball|2026-08-29",
+      "sourceId": "eventlink:hazelwood-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T08:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central"
+      },
+      "opponent": {
+        "schoolId": "mccluer",
+        "reportedAs": "McCluer High School"
+      },
+      "homeAway": "away",
+      "location": "McCluer High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood Central",
+        "opponent": "McCluer High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T08:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "McCluer High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

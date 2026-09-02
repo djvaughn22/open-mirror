@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-volleyball-affton-ladue",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T17:30:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "affton"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue Horton Watkins High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|affton|girls-volleyball|2026-09-03",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T17:30:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "affton",
+        "reportedAs": "Affton High School"
+      },
+      "homeAway": "home",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "Affton High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Ladue Horton Watkins High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

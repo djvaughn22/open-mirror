@@ -1,0 +1,97 @@
+{
+  "id": "2026-09-08-girls-volleyball-ladue-micds",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T17:30:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "micds"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue Horton Watkins High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|micds|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:30:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "micds",
+        "reportedAs": "Mary Institute and St Louis Country Day School"
+      },
+      "homeAway": "home",
+      "location": "Ladue Horton Watkins High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "Mary Institute and St Louis Country Day School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Ladue Horton Watkins High School"
+      }
+    },
+    {
+      "id": "mascot-media:micdsathletics.com|micds|ladue|girls-volleyball|2026-09-08",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue Horton Watkins High School"
+      },
+      "homeAway": "away",
+      "location": "Ladue Horton Watkins High School St. Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Ladue Horton Watkins High School",
+        "date": "2026-09-08",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Ladue Horton Watkins High School St. Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school",
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

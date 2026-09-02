@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-01-girls-golf-lindbergh-unresolved-26-09-01",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T15:45:00",
+  "sides": [
+    {
+      "schoolId": "lindbergh"
+    },
+    {
+      "schoolId": "unresolved:Parkway West High School, Lafayette High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Forest Hills Golf Course",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lindbergh-high-school|lindbergh|unresolved:parkway west high school, lafayette high school|girls-golf|2026-09-01",
+      "sourceId": "eventlink:lindbergh-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-golf",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T15:45:00",
+      "reporter": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh"
+      },
+      "unresolvedOpponent": "Parkway West High School, Lafayette High School",
+      "homeAway": "away",
+      "location": "Forest Hills Golf Course",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lindbergh-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lindbergh",
+        "opponent": "Parkway West High School, Lafayette High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T15:45:00",
+        "sportLabel": "Girls Golf",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Forest Hills Golf Course"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lindbergh-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Parkway West High School, Lafayette High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

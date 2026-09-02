@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-field-hockey-lutheran-south-notre-dame",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:00:00",
+  "sides": [
+    {
+      "schoolId": "notre-dame"
+    },
+    {
+      "schoolId": "lutheran-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Notre Dame High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|notre-dame|field-hockey|2026-09-03",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:00:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "notre-dame",
+        "reportedAs": "Notre Dame High School"
+      },
+      "homeAway": "away",
+      "location": "Notre Dame High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "Notre Dame High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:00:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Notre Dame High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

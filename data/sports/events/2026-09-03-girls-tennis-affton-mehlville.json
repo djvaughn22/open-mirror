@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-tennis-affton-mehlville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00",
+  "sides": [
+    {
+      "schoolId": "affton"
+    },
+    {
+      "schoolId": "mehlville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Whitecliff",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|affton|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "opponent": {
+        "schoolId": "affton",
+        "reportedAs": "Affton High School"
+      },
+      "homeAway": "away",
+      "location": "Whitecliff",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "Affton High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Whitecliff"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-football-fox-northwest-cedar-hill",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T19:00:00",
+  "sides": [
+    {
+      "schoolId": "northwest-cedar-hill"
+    },
+    {
+      "schoolId": "fox"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Northwest High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:fox-high-school|fox|northwest-cedar-hill|football|2026-09-04",
+      "sourceId": "eventlink:fox-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T19:00:00",
+      "reporter": {
+        "schoolId": "fox",
+        "reportedAs": "Fox"
+      },
+      "opponent": {
+        "schoolId": "northwest-cedar-hill",
+        "reportedAs": "Northwest High School"
+      },
+      "homeAway": "away",
+      "location": "Northwest High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:fox-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Fox",
+        "opponent": "Northwest High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Northwest High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:fox-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

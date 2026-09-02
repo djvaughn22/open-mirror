@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-31-boys-soccer-hazelwood-west-maplewood-rh",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:30:00",
+  "sides": [
+    {
+      "schoolId": "maplewood-rh"
+    },
+    {
+      "schoolId": "hazelwood-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Maplewood Richmond Heights High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|maplewood-rh|boys-soccer|2026-08-31",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:30:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "maplewood-rh",
+        "reportedAs": "Maplewood Richmond Heights High School"
+      },
+      "homeAway": "away",
+      "location": "Maplewood Richmond Heights High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "Maplewood Richmond Heights High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:30:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Maplewood Richmond Heights High School"
+      }
+    },
+    {
+      "id": "eventlink:maplewood-richmond-heights-high-school|maplewood-rh|hazelwood-west|boys-soccer|2026-08-31",
+      "sourceId": "eventlink:maplewood-richmond-heights-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/maplewood-richmond-heights-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:30:00",
+      "reporter": {
+        "schoolId": "maplewood-rh",
+        "reportedAs": "Maplewood Richmond Heights"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West High School"
+      },
+      "homeAway": "home",
+      "location": "Maplewood Richmond Heights High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:maplewood-richmond-heights-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/maplewood-richmond-heights-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Maplewood Richmond Heights",
+        "opponent": "Hazelwood West High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:30:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Maplewood Richmond Heights High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school",
+    "eventlink:maplewood-richmond-heights-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-boys-soccer-fort-zumwalt-west-marquette",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T17:45:00",
+  "sides": [
+    {
+      "schoolId": "fort-zumwalt-west"
+    },
+    {
+      "schoolId": "marquette"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fort Zumwalt West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:marquette-high-school|marquette|fort-zumwalt-west|boys-soccer|2026-08-28",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T17:45:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-west",
+        "reportedAs": "Fort Zumwalt West High School"
+      },
+      "homeAway": "away",
+      "location": "Fort Zumwalt West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Fort Zumwalt West High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T17:45:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Fort Zumwalt West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

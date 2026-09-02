@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-29-boys-soccer-collinsville-orchard-farm",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-29",
+  "sides": [
+    {
+      "schoolId": "orchard-farm",
+      "score": 3
+    },
+    {
+      "schoolId": "collinsville",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Alton High Scnool Alton, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|orchard-farm|boys-soccer|2026-08-29",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "orchard-farm",
+        "reportedAs": "Orchard Farm"
+      },
+      "homeAway": "away",
+      "result": "L",
+      "scoreFor": 2,
+      "scoreAgainst": 3,
+      "location": "Alton High Scnool Alton, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Orchard Farm",
+        "date": "2026-08-29",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "L",
+        "scoreFor": 2,
+        "scoreAgainst": 3,
+        "location": "Alton High Scnool Alton, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-04-football-eureka-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T19:00:00",
+  "sides": [
+    {
+      "schoolId": "eureka"
+    },
+    {
+      "schoolId": "unresolved:HANNIBAL SR. HIGH"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Eureka Sr High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|unresolved:hannibal sr. high|football|2026-09-04",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T19:00:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "unresolvedOpponent": "HANNIBAL SR. HIGH",
+      "homeAway": "home",
+      "location": "Eureka Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "HANNIBAL SR. HIGH",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Eureka Sr High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "HANNIBAL SR. HIGH"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

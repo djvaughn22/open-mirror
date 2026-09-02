@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-01-field-hockey-micds-principia",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-01",
+  "sides": [
+    {
+      "schoolId": "principia"
+    },
+    {
+      "schoolId": "micds"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Principia St. Louis, MO",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|principia|field-hockey|2026-09-01",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "field-hockey",
+      "date": "2026-09-01",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "principia",
+        "reportedAs": "Principia"
+      },
+      "homeAway": "away",
+      "location": "Principia St. Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Principia",
+        "date": "2026-09-01",
+        "sportLabel": "girls field hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Principia St. Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

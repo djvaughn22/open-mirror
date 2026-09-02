@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-03-girls-tennis-parkway-central-parkway-north",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00",
+  "sides": [
+    {
+      "schoolId": "parkway-central"
+    },
+    {
+      "schoolId": "parkway-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|parkway-north|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North High School"
+      },
+      "homeAway": "home",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Parkway North High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway Central High School"
+      }
+    },
+    {
+      "id": "eventlink:parkway-north-high-school|parkway-north|parkway-central|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:parkway-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North"
+      },
+      "opponent": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central High School"
+      },
+      "homeAway": "away",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway North",
+        "opponent": "Parkway Central High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school",
+    "eventlink:parkway-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-girls-softball-francis-howell-north-north-point",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T15:00:00",
+  "sides": [
+    {
+      "schoolId": "north-point"
+    },
+    {
+      "schoolId": "francis-howell-north"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Troy Buchanan High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|north-point|girls-softball|2026-08-28",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T15:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "opponent": {
+        "schoolId": "north-point",
+        "reportedAs": "North Point High School"
+      },
+      "homeAway": "away",
+      "location": "Troy Buchanan High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "North Point High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T15:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Troy Buchanan High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-29-boys-soccer-alton-collinsville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-29",
+  "sides": [
+    {
+      "schoolId": "alton",
+      "score": 1
+    },
+    {
+      "schoolId": "collinsville",
+      "score": 0
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Alton High School Alton, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|alton|boys-soccer|2026-08-29",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "alton",
+        "reportedAs": "Alton"
+      },
+      "homeAway": "away",
+      "result": "L",
+      "scoreFor": 0,
+      "scoreAgainst": 1,
+      "location": "Alton High School Alton, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Alton",
+        "date": "2026-08-29",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "L",
+        "scoreFor": 0,
+        "scoreAgainst": 1,
+        "location": "Alton High School Alton, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

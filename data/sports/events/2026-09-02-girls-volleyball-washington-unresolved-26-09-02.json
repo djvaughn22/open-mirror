@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-02-girls-volleyball-washington-unresolved-26-09-02",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T18:15:00",
+  "sides": [
+    {
+      "schoolId": "washington"
+    },
+    {
+      "schoolId": "unresolved:Owensville High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Owensville High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|unresolved:owensville high school|girls-volleyball|2026-09-02",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T18:15:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "unresolvedOpponent": "Owensville High School",
+      "homeAway": "away",
+      "location": "Owensville High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "Owensville High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T18:15:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Owensville High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Owensville High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

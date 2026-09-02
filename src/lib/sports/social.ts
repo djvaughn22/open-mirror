@@ -24,7 +24,7 @@ export interface SocialCard {
   dateLabel: string;
   /** Hosts that reported it. A card without a credit does not ship. */
   credits: string[];
-  /** True when more than one school reported it and they agree. */
+  /** True when more than one school reported the SCORE and they agree. */
   corroborated: boolean;
 }
 
@@ -48,7 +48,9 @@ export function cardKicker(event: CanonicalEvent): string {
   const loser = a.score! < b.score! ? a : b;
   if (loser.score === 0) return "SHUTOUT";
   if (margin === 1) return "ONE-SCORE GAME";
-  if (event.sourceIds.length >= 2) return "CONFIRMED FINAL";
+  // "Confirmed" has to mean two sources agreed on THIS SCORE. A calendar that
+  // confirms the game was played says nothing about the number on the card.
+  if (event.scoreSourceIds.length >= 2) return "CONFIRMED FINAL";
   return "FINAL";
 }
 
@@ -62,7 +64,14 @@ export function buildSocialPost(
   schools: Map<string, School>,
   siteUrl: string,
 ): SocialPost {
-  const credits = [...new Set(event.observations.map((o) => new URL(o.sourceUrl).host.replace(/^www\./, "")))];
+  // Credit the schools that published, not the platforms they run on.
+  const credits = [
+    ...new Set(
+      event.observations.map(
+        (o) => schools.get(o.reporter.schoolId)?.shortName ?? new URL(o.sourceUrl).host.replace(/^www\./, ""),
+      ),
+    ),
+  ];
   const names = event.sides.map((s) => schools.get(s.schoolId)?.shortName ?? s.schoolId);
 
   const caption = [
@@ -85,7 +94,8 @@ export function buildSocialPost(
       sport: sportLabel(event.sport).toUpperCase(),
       dateLabel: `${weekdayOf(event.date)}, ${longDateOf(event.date)}`,
       credits,
-      corroborated: event.sourceIds.length >= 2,
+      // Corroborated means two sources agreed on the SCORE, nothing weaker.
+      corroborated: event.scoreSourceIds.length >= 2,
     },
     url: `${siteUrl.replace(/\/$/, "")}/sports/${event.id}`,
   };

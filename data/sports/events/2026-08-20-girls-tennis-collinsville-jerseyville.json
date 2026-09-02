@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-20-girls-tennis-collinsville-jerseyville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-20",
+  "sides": [
+    {
+      "schoolId": "collinsville",
+      "score": 0
+    },
+    {
+      "schoolId": "jerseyville",
+      "score": 9
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Kahok Tennis Courts Collinsville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|jerseyville|girls-tennis|2026-08-20",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-20",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "jerseyville",
+        "reportedAs": "Jerseyville HS"
+      },
+      "homeAway": "home",
+      "result": "L",
+      "scoreFor": 0,
+      "scoreAgainst": 9,
+      "location": "Kahok Tennis Courts Collinsville, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Jerseyville HS",
+        "date": "2026-08-20",
+        "sportLabel": "girls tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "result": "L",
+        "scoreFor": 0,
+        "scoreAgainst": 9,
+        "location": "Kahok Tennis Courts Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

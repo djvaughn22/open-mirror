@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-boys-soccer-vianney-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00",
+  "sides": [
+    {
+      "schoolId": "webster-groves"
+    },
+    {
+      "schoolId": "vianney"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Webster Groves High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|webster-groves|boys-soccer|2026-09-03",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves High School"
+      },
+      "homeAway": "away",
+      "location": "Webster Groves High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "Webster Groves High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Sophmore",
+        "homeAway": "away",
+        "location": "Webster Groves High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

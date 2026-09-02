@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-football-marquette-st-dominic",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T18:30:00",
+  "sides": [
+    {
+      "schoolId": "marquette"
+    },
+    {
+      "schoolId": "st-dominic"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Marquette High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:marquette-high-school|marquette|st-dominic|football|2026-09-04",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T18:30:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "st-dominic",
+        "reportedAs": "St Dominic High School"
+      },
+      "homeAway": "home",
+      "location": "Marquette High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "St Dominic High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T18:30:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Marquette High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-21-football-de-smet-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-21",
+  "startsAt": "2026-08-21T18:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-central"
+    },
+    {
+      "schoolId": "de-smet"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|de-smet|football|2026-08-21",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-08-21",
+      "startsAt": "2026-08-21T18:00:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet Jesuit"
+      },
+      "homeAway": "home",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "De Smet Jesuit",
+        "date": "2026-08-21",
+        "startsAt": "2026-08-21T18:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-02-field-hockey-lutheran-south-unresolved-26-09-02",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:15:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-south"
+    },
+    {
+      "schoolId": "unresolved:United Field Hockey"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Clayton High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|unresolved:united field hockey|field-hockey|2026-09-02",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:15:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "unresolvedOpponent": "United Field Hockey",
+      "homeAway": "away",
+      "location": "Clayton High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "United Field Hockey",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:15:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Clayton High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "United Field Hockey"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

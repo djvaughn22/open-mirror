@@ -45,12 +45,19 @@ export interface CityFeed {
   lastUpdated?: string;
 }
 
-/** The publisher host, shown as the credit. */
-function sourceLinks(event: CanonicalEvent): FeedStory["sources"] {
+/**
+ * Who reported it — the SCHOOL, not the platform.
+ *
+ * Every source we read is a school publishing its own results, so "Hazelwood
+ * Central" is both more honest and more useful to a reader than
+ * "websites.eventlink.com", which names the vendor the school happens to use.
+ * The link still points at the exact page the fact came from.
+ */
+function sourceLinks(event: CanonicalEvent, schools: Map<string, School>): FeedStory["sources"] {
   const seen = new Map<string, string>();
   for (const o of event.observations) {
-    const host = new URL(o.sourceUrl).host.replace(/^www\./, "");
-    if (!seen.has(host)) seen.set(host, o.sourceUrl);
+    const label = schools.get(o.reporter.schoolId)?.shortName ?? new URL(o.sourceUrl).host.replace(/^www\./, "");
+    if (!seen.has(label)) seen.set(label, o.sourceUrl);
   }
   return [...seen.entries()].map(([label, url]) => ({ label, url }));
 }
@@ -90,7 +97,7 @@ export function buildCityFeed(options: BuildFeedOptions = {}): CityFeed {
       discoveries: findMetroStories({ event, archive: published, schools }),
       today,
     }),
-    sources: sourceLinks(event),
+    sources: sourceLinks(event, schools),
   });
 
   const byDate = new Map<string, CanonicalEvent[]>();

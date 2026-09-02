@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-03-girls-volleyball-collinsville-east-st-louis",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-03",
+  "sides": [
+    {
+      "schoolId": "collinsville"
+    },
+    {
+      "schoolId": "east-st-louis"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fletcher Gym Collinsville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|east-st-louis|girls-volleyball|2026-09-03",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-03",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "east-st-louis",
+        "reportedAs": "East St. Louis High School"
+      },
+      "homeAway": "home",
+      "location": "Fletcher Gym Collinsville, IL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "East St. Louis High School",
+        "date": "2026-09-03",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Fletcher Gym Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

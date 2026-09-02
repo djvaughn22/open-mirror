@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-02-boys-swimming-parkway-south-unresolved-26-09-02",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T15:30:00",
+  "sides": [
+    {
+      "schoolId": "parkway-south"
+    },
+    {
+      "schoolId": "unresolved:TRI- FZW & FZE (Fort Zumwalt West High School)"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St. PetersRec-Plex",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|unresolved:tri- fzw & fze (fort zumwalt west high school)|boys-swimming|2026-09-02",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T15:30:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "unresolvedOpponent": "TRI- FZW & FZE (Fort Zumwalt West High School)",
+      "homeAway": "away",
+      "location": "St. PetersRec-Plex",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "TRI- FZW & FZE (Fort Zumwalt West High School)",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T15:30:00",
+        "sportLabel": "Boys Swimming",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St. PetersRec-Plex"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-south-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "TRI- FZW & FZE (Fort Zumwalt West High School)"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

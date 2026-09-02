@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-volleyball-fort-zumwalt-south-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:15:00",
+  "sides": [
+    {
+      "schoolId": "fort-zumwalt-south"
+    },
+    {
+      "schoolId": "parkway-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fort Zumwalt South High",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|fort-zumwalt-south|girls-volleyball|2026-08-31",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:15:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-south",
+        "reportedAs": "Fort Zumwalt South High"
+      },
+      "homeAway": "away",
+      "location": "Fort Zumwalt South High",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Fort Zumwalt South High",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:15:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Fort Zumwalt South High"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

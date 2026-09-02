@@ -1,0 +1,71 @@
+{
+  "id": "2026-08-28-football-collinsville-unresolved-26-08-28",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-28",
+  "sides": [
+    {
+      "schoolId": "collinsville",
+      "score": 14
+    },
+    {
+      "schoolId": "unresolved:Springfield HS",
+      "score": 10
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Kahok Stadium Collinsville, IL",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|unresolved:springfield hs|football|2026-08-28",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "unresolvedOpponent": "Springfield HS",
+      "homeAway": "home",
+      "result": "W",
+      "scoreFor": 14,
+      "scoreAgainst": 10,
+      "location": "Kahok Stadium Collinsville, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Springfield HS",
+        "date": "2026-08-28",
+        "sportLabel": "boys football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "result": "W",
+        "scoreFor": 14,
+        "scoreAgainst": 10,
+        "location": "Kahok Stadium Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [
+    "Springfield HS"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

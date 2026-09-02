@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-28-football-duchesne-lutheran-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T19:00:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-south"
+    },
+    {
+      "schoolId": "duchesne"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lutheran South High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|lutheran-south|football|2026-08-28",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T19:00:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "opponent": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South High School"
+      },
+      "homeAway": "away",
+      "location": "Lutheran South High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "Lutheran South High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Lutheran South High School"
+      }
+    },
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|duchesne|football|2026-08-28",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T19:00:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne High School"
+      },
+      "homeAway": "home",
+      "location": "Lutheran High School South",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "Duchesne High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Lutheran High School South"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers",
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

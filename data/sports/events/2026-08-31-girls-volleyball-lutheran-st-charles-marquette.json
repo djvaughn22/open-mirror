@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-volleyball-lutheran-st-charles-marquette",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:30:00",
+  "sides": [
+    {
+      "schoolId": "marquette"
+    },
+    {
+      "schoolId": "lutheran-st-charles"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Marquette High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:marquette-high-school|marquette|lutheran-st-charles|girls-volleyball|2026-08-31",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:30:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "lutheran-st-charles",
+        "reportedAs": "Lutheran High School of St Charles"
+      },
+      "homeAway": "home",
+      "location": "Marquette High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Lutheran High School of St Charles",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Marquette High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

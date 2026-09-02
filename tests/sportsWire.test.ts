@@ -370,6 +370,8 @@ test("fixture page in, published brief out: the whole pipeline with no network",
   const metro = {
     ...ST_LOUIS,
     sources: {
+      eventLinkSchools: [],
+      mascotMediaPages: [],
       finalsiteTeamPages: [
         { schoolId: "sluh", schoolName: "SLUH", url: "https://www.sluh.org/athletics/teams-schedules/football", sportHint: "football" },
       ],
@@ -401,10 +403,13 @@ test("fixture page in, published brief out: the whole pipeline with no network",
   const feed = buildCityFeed({ events: store.list(), today: "2026-08-29" });
   assert.equal(feed.days.length, 1);
   assert.equal(feed.days[0].stories.length, 1);
+  // The credit names the school that published the result, not the vendor
+  // whose software it happens to run on.
   assert.deepEqual(
     feed.days[0].stories[0].sources.map((s) => s.label),
-    ["sluh.org"],
+    ["SLUH"],
   );
+  assert.match(feed.days[0].stories[0].sources[0].url, /^https:\/\/www\.sluh\.org\//);
   assert.deepEqual(feed.sports.map((s) => s.id), ["football"]);
 });
 
@@ -413,6 +418,8 @@ test("a source that fails is reported, and does not take the run down with it", 
   const metro = {
     ...ST_LOUIS,
     sources: {
+      eventLinkSchools: [],
+      mascotMediaPages: [],
       finalsiteTeamPages: [
         { schoolId: "sluh", schoolName: "SLUH", url: "https://www.sluh.org/a", sportHint: "football" },
         { schoolId: "de-smet", schoolName: "De Smet", url: "https://www.desmet.org/b", sportHint: "football" },
@@ -459,11 +466,11 @@ test("every channel gets the same facts, credited, with nothing invented", () =>
   // The caption is the brief. There is no second, punchier version of the truth.
   assert.ok(post.caption.includes(brief.body));
   assert.ok(post.caption.includes(brief.scoreline));
-  assert.match(post.caption, /Reported by .*sluh\.org.*\./);
-  assert.match(post.caption, /Reported by .*desmet\.org.*\./);
+  assert.match(post.caption, /Reported by .*SLUH.*\./);
+  assert.match(post.caption, /Reported by .*De Smet.*\./);
 
   assert.equal(post.card.corroborated, true);
-  assert.deepEqual([...post.card.credits].sort(), ["desmet.org", "sluh.org"]);
+  assert.deepEqual([...post.card.credits].sort(), ["De Smet", "SLUH"]);
   assert.equal(post.url, "https://example.test/sports/" + event.id);
 
   // Hashtags are derived from the two schools and the sport, so they cannot
@@ -505,6 +512,8 @@ test("a stale unresolved record is cleared once the school name resolves", async
   const metro = {
     ...ST_LOUIS,
     sources: {
+      eventLinkSchools: [],
+      mascotMediaPages: [],
       finalsiteTeamPages: [
         { schoolId: "sluh", schoolName: "SLUH", url: "https://www.sluh.org/athletics/teams-schedules/football", sportHint: "football" },
       ],

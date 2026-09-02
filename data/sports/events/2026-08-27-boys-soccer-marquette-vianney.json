@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-27-boys-soccer-marquette-vianney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T16:00:00",
+  "sides": [
+    {
+      "schoolId": "vianney"
+    },
+    {
+      "schoolId": "marquette"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St John Vianney High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|marquette|boys-soccer|2026-08-27",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T16:00:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette High School"
+      },
+      "homeAway": "home",
+      "location": "St John Vianney High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "Marquette High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T16:00:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Sophmore",
+        "homeAway": "home",
+        "location": "St John Vianney High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

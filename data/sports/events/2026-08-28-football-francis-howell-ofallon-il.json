@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-football-francis-howell-ofallon-il",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T18:30:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell"
+    },
+    {
+      "schoolId": "ofallon-il"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Francis Howell High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-high-school|francis-howell|ofallon-il|football|2026-08-28",
+      "sourceId": "eventlink:francis-howell-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T18:30:00",
+      "reporter": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell"
+      },
+      "opponent": {
+        "schoolId": "ofallon-il",
+        "reportedAs": "O'Fallon Township High School"
+      },
+      "homeAway": "home",
+      "location": "Francis Howell High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell",
+        "opponent": "O'Fallon Township High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T18:30:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Francis Howell High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

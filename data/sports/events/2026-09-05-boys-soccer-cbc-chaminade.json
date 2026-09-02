@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-05-boys-soccer-cbc-chaminade",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-05",
+  "startsAt": "2026-09-05T12:00:00",
+  "sides": [
+    {
+      "schoolId": "cbc"
+    },
+    {
+      "schoolId": "chaminade"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Christian Brothers College High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:chaminade-college-preparatory-school|chaminade|cbc|boys-soccer|2026-09-05",
+      "sourceId": "eventlink:chaminade-college-preparatory-school",
+      "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-05",
+      "startsAt": "2026-09-05T12:00:00",
+      "reporter": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "opponent": {
+        "schoolId": "cbc",
+        "reportedAs": "Christian Brothers College High School"
+      },
+      "homeAway": "away",
+      "location": "Christian Brothers College High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:chaminade-college-preparatory-school",
+        "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Chaminade",
+        "opponent": "Christian Brothers College High School",
+        "date": "2026-09-05",
+        "startsAt": "2026-09-05T12:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Christian Brothers College High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:chaminade-college-preparatory-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

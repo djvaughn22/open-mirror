@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-girls-volleyball-mehlville-micds",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T00:00:00",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "mehlville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "TBD",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|micds|girls-volleyball|2026-08-28",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T00:00:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "opponent": {
+        "schoolId": "micds",
+        "reportedAs": "Mary Institute and St Louis Country Day School (MICDS)"
+      },
+      "homeAway": "away",
+      "location": "TBD",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "Mary Institute and St Louis Country Day School (MICDS)",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T00:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "TBD"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

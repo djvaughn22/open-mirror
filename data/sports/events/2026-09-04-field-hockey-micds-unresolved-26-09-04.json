@@ -1,0 +1,61 @@
+{
+  "id": "2026-09-04-field-hockey-micds-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-04",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "unresolved:Collegiate School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Sport Port St. Louis, MO",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|unresolved:collegiate school|field-hockey|2026-09-04",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "field-hockey",
+      "date": "2026-09-04",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "unresolvedOpponent": "Collegiate School",
+      "homeAway": "away",
+      "location": "Sport Port St. Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Collegiate School",
+        "date": "2026-09-04",
+        "sportLabel": "girls field hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Sport Port St. Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Collegiate School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

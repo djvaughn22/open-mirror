@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-boys-soccer-duchesne-wright-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T18:00:00",
+  "sides": [
+    {
+      "schoolId": "duchesne"
+    },
+    {
+      "schoolId": "wright-city"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Duchesne High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|wright-city|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T18:00:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "opponent": {
+        "schoolId": "wright-city",
+        "reportedAs": "Wright City High School"
+      },
+      "homeAway": "home",
+      "location": "Duchesne High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "Wright City High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Duchesne High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-08-girls-softball-francis-howell-north-unresolved-26-09-08",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:15:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell-north"
+    },
+    {
+      "schoolId": "unresolved:GAC League Troy Buchanan"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Troy Buchanan High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|unresolved:gac league troy buchanan|girls-softball|2026-09-08",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "unresolvedOpponent": "GAC League Troy Buchanan",
+      "homeAway": "away",
+      "location": "Troy Buchanan High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "GAC League Troy Buchanan",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Troy Buchanan High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "GAC League Troy Buchanan"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-08-girls-tennis-collinsville-ofallon-il",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-08",
+  "sides": [
+    {
+      "schoolId": "ofallon-il"
+    },
+    {
+      "schoolId": "collinsville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "OFallon High School O'Fallon, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|ofallon-il|girls-tennis|2026-09-08",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "ofallon-il",
+        "reportedAs": "OFallon High School"
+      },
+      "homeAway": "away",
+      "location": "OFallon High School O'Fallon, IL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "OFallon High School",
+        "date": "2026-09-08",
+        "sportLabel": "girls tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "OFallon High School O'Fallon, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

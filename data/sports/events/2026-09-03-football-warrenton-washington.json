@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-football-warrenton-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T19:00:00",
+  "sides": [
+    {
+      "schoolId": "washington"
+    },
+    {
+      "schoolId": "warrenton"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Washington High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|warrenton|football|2026-09-03",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T19:00:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "warrenton",
+        "reportedAs": "Warrenton High School"
+      },
+      "homeAway": "home",
+      "location": "Washington High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "Warrenton High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Washington High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

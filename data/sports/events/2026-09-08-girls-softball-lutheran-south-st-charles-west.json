@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-softball-lutheran-south-st-charles-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:15:00",
+  "sides": [
+    {
+      "schoolId": "st-charles-west"
+    },
+    {
+      "schoolId": "lutheran-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St. Charles West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|st-charles-west|girls-softball|2026-09-08",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "st-charles-west",
+        "reportedAs": "St. Charles West High School"
+      },
+      "homeAway": "away",
+      "location": "St. Charles West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "St. Charles West High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St. Charles West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

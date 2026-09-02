@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-softball-brentwood-hancock",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:15:00",
+  "sides": [
+    {
+      "schoolId": "hancock"
+    },
+    {
+      "schoolId": "brentwood"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hancock",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:brentwood-eagles|brentwood|hancock|girls-softball|2026-09-08",
+      "sourceId": "eventlink:brentwood-eagles",
+      "sourceUrl": "https://websites.eventlink.com/s/brentwood-eagles",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "brentwood",
+        "reportedAs": "Brentwood"
+      },
+      "opponent": {
+        "schoolId": "hancock",
+        "reportedAs": "Hancock"
+      },
+      "homeAway": "away",
+      "location": "Hancock",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:brentwood-eagles",
+        "sourceUrl": "https://websites.eventlink.com/s/brentwood-eagles",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Brentwood",
+        "opponent": "Hancock",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Hancock"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:brentwood-eagles"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

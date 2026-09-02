@@ -1,0 +1,72 @@
+{
+  "id": "2026-09-01-boys-soccer-collinsville-granite-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "sides": [
+    {
+      "schoolId": "collinsville",
+      "score": 1
+    },
+    {
+      "schoolId": "granite-city",
+      "score": 4
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Kahok Stadium Collinsville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|granite-city|boys-soccer|2026-09-01",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "granite-city",
+        "reportedAs": "Granite City High School"
+      },
+      "homeAway": "home",
+      "result": "L",
+      "scoreFor": 1,
+      "scoreAgainst": 4,
+      "location": "Kahok Stadium Collinsville, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Granite City High School",
+        "date": "2026-09-01",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "result": "L",
+        "scoreFor": 1,
+        "scoreAgainst": 4,
+        "location": "Kahok Stadium Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

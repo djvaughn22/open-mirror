@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-08-girls-volleyball-clayton-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T17:30:00",
+  "sides": [
+    {
+      "schoolId": "clayton"
+    },
+    {
+      "schoolId": "parkway-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Clayton High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:clayton-high-school|clayton|parkway-central|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:clayton-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:30:00",
+      "reporter": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton"
+      },
+      "opponent": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central High School"
+      },
+      "homeAway": "home",
+      "location": "Clayton High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:clayton-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Clayton",
+        "opponent": "Parkway Central High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Clayton High School"
+      }
+    },
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|clayton|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:30:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton High School"
+      },
+      "homeAway": "away",
+      "location": "Clayton High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Clayton High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Clayton High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:clayton-high-school",
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-02-girls-tennis-kirkwood-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:00:00",
+  "sides": [
+    {
+      "schoolId": "kirkwood"
+    },
+    {
+      "schoolId": "webster-groves"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Kirkwood High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|kirkwood|girls-tennis|2026-09-02",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:00:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "kirkwood",
+        "reportedAs": "Kirkwood High School"
+      },
+      "homeAway": "away",
+      "location": "Kirkwood High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "Kirkwood High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": ", V",
+        "homeAway": "away",
+        "location": "Kirkwood High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

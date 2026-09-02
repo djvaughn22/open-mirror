@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-28-girls-tennis-lutheran-south-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T16:00:00",
+  "sides": [
+    {
+      "schoolId": "webster-groves"
+    },
+    {
+      "schoolId": "lutheran-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Webster Groves High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|webster-groves|girls-tennis|2026-08-28",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:00:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves High School"
+      },
+      "homeAway": "away",
+      "location": "Webster Groves High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "Webster Groves High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Webster Groves High School"
+      }
+    },
+    {
+      "id": "eventlink:wghs|webster-groves|lutheran-south|girls-tennis|2026-08-28",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:00:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran High School South"
+      },
+      "homeAway": "home",
+      "location": "Webster Groves High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "Lutheran High School South",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": ", V",
+        "homeAway": "home",
+        "location": "Webster Groves High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lutheran-high-school-south",
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -57,9 +57,23 @@ export interface IngestReport {
   rawObservations: number;
   normalizedObservations: number;
   droppedObservations: Array<{ reason: DropReason; count: number }>;
+  /** Distinct platform families that produced at least one observation. */
+  platformFamilies: string[];
+  sourceHostsAttempted: number;
+  varsityObservations: number;
+  nonVarsityRejected: number;
+  canonicalSchoolsObserved: number;
+  /**
+   * THE PRIMARY NUMBER: unique schools appearing in at least one publishable
+   * event. Counted across both sides, because a result names two schools.
+   */
+  schoolsWithPublishedEvents: number;
   canonicalEvents: number;
-  /** Events built from more than one independent source. */
+  /** Events whose SCORE was reported by two or more independent sources. */
   corroborated: number;
+  /** Events where a second source confirms the fixture but reported no score. */
+  fixtureCorroborated: number;
+  publishableEvents: number;
   /** Observations that merged into an existing event rather than creating one. */
   duplicatesMerged: number;
   conflicts: number;
@@ -130,7 +144,12 @@ export async function ingestMetro(options: IngestOptions): Promise<IngestResult>
   // Every observation beyond the first on an event is a duplicate we merged
   // rather than a second story we published.
   const duplicatesMerged = events.reduce((sum, e) => sum + Math.max(0, e.observations.length - 1), 0);
-  const corroborated = events.filter((e) => e.sourceIds.length >= 2).length;
+  const corroborated = events.filter((e) => e.scoreSourceIds.length >= 2).length;
+  // A calendar source confirming a game happened is real evidence, and worth
+  // counting — but it is a different claim from two sources agreeing on a score.
+  const fixtureCorroborated = events.filter(
+    (e) => e.sourceIds.length >= 2 && e.scoreSourceIds.length < 2,
+  ).length;
   const conflicts = events.filter((e) => e.confidence === "conflicted").length;
   const unresolvedEvents = events.filter((e) => e.confidence === "unresolved").length;
 
@@ -182,8 +201,16 @@ export async function ingestMetro(options: IngestOptions): Promise<IngestResult>
     rawObservations: raws.length,
     normalizedObservations: normalized.observations.length,
     droppedObservations: countBy(normalized.dropped, (d) => d.reason),
+    platformFamilies: [...new Set(sourceReports.filter((r) => r.observations > 0).map((r) => r.sourceId))].sort(),
+    sourceHostsAttempted: sourceReports.reduce((n, r) => n + r.attempted, 0),
+    varsityObservations: normalized.observations.length,
+    nonVarsityRejected: normalized.dropped.filter((d) => d.reason === "not-varsity").length,
+    canonicalSchoolsObserved: new Set(events.flatMap((e) => e.sides.map((s) => s.schoolId)).filter((id) => !id.startsWith("unresolved:"))).size,
+    schoolsWithPublishedEvents: schoolsRepresented,
     canonicalEvents: events.length,
     corroborated,
+    fixtureCorroborated,
+    publishableEvents: published.length,
     duplicatesMerged,
     conflicts,
     unresolvedEvents,
@@ -210,17 +237,20 @@ export function formatReport(report: IngestReport): string {
     lines.push(`  source ${s.sourceId}: ${s.succeeded}/${s.attempted} pages, ${s.observations} observations, ${s.failed} failed`);
     for (const f of s.failures.slice(0, 5)) lines.push(`      ! ${f.url} — ${f.reason}`);
   }
-  lines.push(`  observations: ${report.rawObservations} raw → ${report.normalizedObservations} usable`);
+  lines.push(`  observations: ${report.rawObservations} raw → ${report.varsityObservations} varsity (${report.nonVarsityRejected} non-varsity rejected)`);
   for (const d of report.droppedObservations) lines.push(`      dropped ${d.count} (${d.reason})`);
   lines.push(`  events: ${report.canonicalEvents} canonical, ${report.duplicatesMerged} duplicate observations merged`);
-  lines.push(`  corroborated by 2+ accounts: ${report.corroborated}`);
+  lines.push(`  score corroborated by 2+ sources: ${report.corroborated}`);
+  lines.push(`  fixture corroborated (2nd source, no score): ${report.fixtureCorroborated}`);
   lines.push(`  conflicts: ${report.conflicts}   unresolved: ${report.unresolvedEvents}   stale cleared: ${report.prunedStale}`);
   if (report.unresolvedNames.length > 0) {
     lines.push(`      names needing an alias: ${report.unresolvedNames.slice(0, 12).join(", ")}`);
   }
   lines.push(`  briefs: ${report.briefsGenerated}`);
   lines.push(`  sports: ${report.sportsRepresented.join(", ") || "none"}`);
-  lines.push(`  schools represented: ${report.schoolsRepresented}`);
+  lines.push(`  schools observed: ${report.canonicalSchoolsObserved}`);
+  lines.push(`  SCHOOLS WITH A PUBLISHED EVENT: ${report.schoolsWithPublishedEvents}`);
+  lines.push(`  publishable events: ${report.publishableEvents}`);
   lines.push(`  model calls: ${report.modelCalls}   paid cost: $${report.estimatedCostUsd.toFixed(2)}`);
   return lines.join("\n");
 }

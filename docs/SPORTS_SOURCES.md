@@ -20,11 +20,48 @@ alone, not worked around.
   The declared `Crawl-delay: 5` is honoured by a per-host queue in
   `sources/http.ts`. The bot identifies itself with a contact address. No
   authentication is bypassed, no rate limit is evaded, no headers are spoofed.
-- **Currently configured:** sluh.org, desmet.org, priory.org.
+- **Currently configured:** sluh.org, desmet.org, priory.org, vianney.com.
 
 Adding a school is a row in `metros/stLouis.ts`, not a code change.
 
+### EventLink calendars — ACTIVE (fixtures only)
+
+- **Adapter:** `src/lib/sports/sources/eventlink.ts`
+- **What it is:** the public JSON endpoint each school's own EventLink page
+  calls — `/s/{slug}?handler=Events&startDate=…&endDate=…`. 27 St. Louis schools
+  confirmed against the live endpoint.
+- **It carries no scores.** None, in any field. So it can never publish a
+  result; it supplies fixtures, home/away and cancellations, which corroborate
+  a score reported elsewhere and fill the schedule rail.
+- **Why appropriate:** eventlink.com's robots.txt is `User-agent: * /
+  Disallow:` — an empty disallow, permitting everything. We read the same public
+  endpoint the page itself calls, at one polite request per school.
+
+### Mascot Media athletics sites — ACTIVE
+
+- **Adapter:** `src/lib/sports/sources/mascotMedia.ts`
+- **What it is:** school-branded athletics sites (MICDS, Collinsville) with
+  server-rendered `/sport/{sport}/{gender}/?tab=schedule` pages carrying full
+  results: date, AT/VS, opponent, venue, and a W/L score.
+- **Why appropriate:** robots.txt is `Allow: /` with only `/admin/`, `/cms/` and
+  `/api/` disallowed — none of which we touch — and it names AI crawlers as
+  allowed. Facts only.
+
 ## What we deliberately do NOT read
+
+### ArbiterLive — BLOCKED BY ROBOTS
+
+`arbiterlive.com/robots.txt` is `User-agent: * / Disallow: /`. Hazelwood's
+district links its schedules there; we do not read it, and Hazelwood's results
+reach us only when an opponent reports them.
+
+### BigTeams / VNN — NOT BUILT, NOT BLOCKED
+
+Alton, Granite City, St. Clair and Duchesne publish results here, and robots
+permits the content paths. It was skipped on time rather than on principle, and
+its end-user agreement deserves a read before automating. This is the highest
+value next adapter — see `docs/STL_SOURCE_CENSUS.md`.
+
 
 ### MSHSAA (mshsaa.org) — BLOCKED BY ROBOTS
 
@@ -63,13 +100,15 @@ about it is.
 
 ## Known gaps
 
-- Most St. Louis **public** districts are not on Finalsite Athletics, or place
-  athletics on a platform this adapter does not read. That is the single biggest
-  coverage hole, and it is an adapter problem rather than a permission problem.
-- Football coverage is thin because the season has barely started; boys soccer
-  currently carries more games.
-- Illinois Metro East schools are in the school registry with aliases, but no
-  source is configured for them yet.
+- **Results, not schools, are the bottleneck now.** 27 schools publish fixtures
+  through EventLink, but only six publish scores in a form we can read
+  (Finalsite ×4, Mascot Media ×2). Every additional results source multiplies
+  coverage, because one reported result names two schools.
+- BigTeams would add four Illinois-side results sources, where coverage is
+  thinnest.
+- Cross country and other meet-scored sports are deliberately dropped as
+  non-matchups: a meet is not a two-sided event, and forcing it into one would
+  misreport it.
 
 ## Adding a source
 

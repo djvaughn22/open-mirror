@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-03-girls-tennis-francis-howell-francis-howell-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T15:30:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell"
+    },
+    {
+      "schoolId": "francis-howell-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Francis Howell High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-central-high-school|francis-howell-central|francis-howell|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:francis-howell-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T15:30:00",
+      "reporter": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central"
+      },
+      "opponent": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell High School"
+      },
+      "homeAway": "away",
+      "location": "Francis Howell High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell Central",
+        "opponent": "Francis Howell High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Francis Howell High School"
+      }
+    },
+    {
+      "id": "eventlink:francis-howell-high-school|francis-howell|francis-howell-central|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:francis-howell-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T15:30:00",
+      "reporter": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell"
+      },
+      "opponent": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central High School"
+      },
+      "homeAway": "home",
+      "location": "Francis Howell High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell",
+        "opponent": "Francis Howell Central High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Francis Howell High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-central-high-school",
+    "eventlink:francis-howell-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

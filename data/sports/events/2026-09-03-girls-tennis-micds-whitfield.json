@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-03-girls-tennis-micds-whitfield",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-03",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "whitfield"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "MICDS - Tennis Courts Middle St.Louis, MO",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|whitfield|girls-tennis|2026-09-03",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/tennis/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "whitfield",
+        "reportedAs": "Whitfield School"
+      },
+      "homeAway": "home",
+      "location": "MICDS - Tennis Courts Middle St.Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/tennis/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Whitfield School",
+        "date": "2026-09-03",
+        "sportLabel": "girls tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "MICDS - Tennis Courts Middle St.Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

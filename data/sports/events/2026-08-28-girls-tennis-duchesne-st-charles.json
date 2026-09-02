@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-28-girls-tennis-duchesne-st-charles",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T15:30:00",
+  "sides": [
+    {
+      "schoolId": "st-charles"
+    },
+    {
+      "schoolId": "duchesne"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Charles High School (McNair)",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|st-charles|girls-tennis|2026-08-28",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T15:30:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "opponent": {
+        "schoolId": "st-charles",
+        "reportedAs": "St Charles High School (McNair)"
+      },
+      "homeAway": "away",
+      "location": "St Charles High School (McNair)",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "St Charles High School (McNair)",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Charles High School (McNair)"
+      }
+    },
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|duchesne|girls-tennis|2026-08-28",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T15:30:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne High School"
+      },
+      "homeAway": "home",
+      "location": "St Charles High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Duchesne High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "St Charles High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers",
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

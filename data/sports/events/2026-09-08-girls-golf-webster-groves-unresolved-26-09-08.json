@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-08-girls-golf-webster-groves-unresolved-26-09-08",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T08:00:00",
+  "sides": [
+    {
+      "schoolId": "webster-groves"
+    },
+    {
+      "schoolId": "unresolved:Cresent Farms"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Cresent Farms",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|unresolved:cresent farms|girls-golf|2026-09-08",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-golf",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T08:00:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "unresolvedOpponent": "Cresent Farms",
+      "homeAway": "away",
+      "location": "Cresent Farms",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "Cresent Farms",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T08:00:00",
+        "sportLabel": "Girls Golf",
+        "levelLabel": ", V",
+        "homeAway": "away",
+        "location": "Cresent Farms"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Cresent Farms"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

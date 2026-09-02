@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-04-football-mehlville-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T19:00:00",
+  "sides": [
+    {
+      "schoolId": "mehlville"
+    },
+    {
+      "schoolId": "unresolved:St Pius X Catholic High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mehlville High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|unresolved:st pius x catholic high school|football|2026-09-04",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T19:00:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "unresolvedOpponent": "St Pius X Catholic High School",
+      "homeAway": "home",
+      "location": "Mehlville High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "St Pius X Catholic High School",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Mehlville High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "St Pius X Catholic High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

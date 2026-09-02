@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-swimming-rockwood-summit-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T16:15:00",
+  "sides": [
+    {
+      "schoolId": "rockwood-summit"
+    },
+    {
+      "schoolId": "washington"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Westminster Christian Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|rockwood-summit|boys-swimming|2026-09-01",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T16:15:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "rockwood-summit",
+        "reportedAs": "Rockwood Summit Sr High School"
+      },
+      "homeAway": "away",
+      "location": "Westminster Christian Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "Rockwood Summit Sr High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T16:15:00",
+        "sportLabel": "Boys Swimming",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Westminster Christian Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

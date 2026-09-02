@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-soccer-sullivan-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T19:45:00",
+  "sides": [
+    {
+      "schoolId": "sullivan"
+    },
+    {
+      "schoolId": "washington"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "SULLIVAN SR. HIGH",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|sullivan|boys-soccer|2026-09-01",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T19:45:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "sullivan",
+        "reportedAs": "SULLIVAN SR. HIGH"
+      },
+      "homeAway": "away",
+      "location": "SULLIVAN SR. HIGH",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "SULLIVAN SR. HIGH",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T19:45:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "SULLIVAN SR. HIGH"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

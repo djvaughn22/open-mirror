@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-girls-volleyball-francis-howell-central-st-dominic",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:00:00",
+  "sides": [
+    {
+      "schoolId": "st-dominic"
+    },
+    {
+      "schoolId": "francis-howell-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Dominic High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-central-high-school|francis-howell-central|st-dominic|girls-volleyball|2026-09-01",
+      "sourceId": "eventlink:francis-howell-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central"
+      },
+      "opponent": {
+        "schoolId": "st-dominic",
+        "reportedAs": "St Dominic High School"
+      },
+      "homeAway": "away",
+      "location": "St Dominic High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell Central",
+        "opponent": "St Dominic High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Dominic High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-27-girls-volleyball-oakville-parkway-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T17:45:00",
+  "sides": [
+    {
+      "schoolId": "oakville"
+    },
+    {
+      "schoolId": "parkway-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Oakville Sr. High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-west-high-school|parkway-west|oakville|girls-volleyball|2026-08-27",
+      "sourceId": "eventlink:parkway-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T17:45:00",
+      "reporter": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West"
+      },
+      "opponent": {
+        "schoolId": "oakville",
+        "reportedAs": "Oakville Sr. High School"
+      },
+      "homeAway": "away",
+      "location": "Oakville Sr. High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway West",
+        "opponent": "Oakville Sr. High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T17:45:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Oakville Sr. High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

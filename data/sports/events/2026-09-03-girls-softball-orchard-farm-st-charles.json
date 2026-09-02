@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-softball-orchard-farm-st-charles",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00",
+  "sides": [
+    {
+      "schoolId": "st-charles"
+    },
+    {
+      "schoolId": "orchard-farm"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Charles West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|orchard-farm|girls-softball|2026-09-03",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "orchard-farm",
+        "reportedAs": "Orchard Farm Sr High School"
+      },
+      "homeAway": "home",
+      "location": "St Charles West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Orchard Farm Sr High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "St Charles West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-27-girls-golf-francis-howell-central-timberland",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T15:30:00",
+  "sides": [
+    {
+      "schoolId": "timberland"
+    },
+    {
+      "schoolId": "francis-howell-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Pheasant Run",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-central-high-school|francis-howell-central|timberland|girls-golf|2026-08-27",
+      "sourceId": "eventlink:francis-howell-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-golf",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T15:30:00",
+      "reporter": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central"
+      },
+      "opponent": {
+        "schoolId": "timberland",
+        "reportedAs": "Timberland High School"
+      },
+      "homeAway": "away",
+      "location": "Pheasant Run",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell Central",
+        "opponent": "Timberland High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T15:30:00",
+        "sportLabel": "Girls Golf",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Pheasant Run"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

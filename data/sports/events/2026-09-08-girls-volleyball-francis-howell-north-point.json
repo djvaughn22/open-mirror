@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-girls-volleyball-francis-howell-north-point",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T17:00:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell"
+    },
+    {
+      "schoolId": "north-point"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Francis Howell High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-high-school|francis-howell|north-point|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:francis-howell-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:00:00",
+      "reporter": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell"
+      },
+      "opponent": {
+        "schoolId": "north-point",
+        "reportedAs": "North Point High School"
+      },
+      "homeAway": "home",
+      "location": "Francis Howell High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell",
+        "opponent": "North Point High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Francis Howell High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

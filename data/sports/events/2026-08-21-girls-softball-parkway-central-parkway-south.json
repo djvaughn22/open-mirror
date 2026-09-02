@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-21-girls-softball-parkway-central-parkway-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-21",
+  "startsAt": "2026-08-21T16:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-south"
+    },
+    {
+      "schoolId": "parkway-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway South High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|parkway-central|girls-softball|2026-08-21",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-21",
+      "startsAt": "2026-08-21T16:00:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "opponent": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central High School"
+      },
+      "homeAway": "home",
+      "location": "Parkway South High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "Parkway Central High School",
+        "date": "2026-08-21",
+        "startsAt": "2026-08-21T16:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway South High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-south-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

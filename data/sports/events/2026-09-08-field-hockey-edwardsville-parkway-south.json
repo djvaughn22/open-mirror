@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-field-hockey-edwardsville-parkway-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-south"
+    },
+    {
+      "schoolId": "edwardsville"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway South High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|edwardsville|field-hockey|2026-09-08",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "opponent": {
+        "schoolId": "edwardsville",
+        "reportedAs": "Edwardsville"
+      },
+      "homeAway": "home",
+      "location": "Parkway South High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "Edwardsville",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway South High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-south-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

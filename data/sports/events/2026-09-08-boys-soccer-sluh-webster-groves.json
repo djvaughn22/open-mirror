@@ -4,7 +4,7 @@
   "metro": "st-louis",
   "sport": "boys-soccer",
   "date": "2026-09-08",
-  "startsAt": "2026-09-08T16:30:00-05:00",
+  "startsAt": "2026-09-08T16:30:00",
   "sides": [
     {
       "schoolId": "webster-groves"
@@ -20,10 +20,43 @@
   "conflicts": [],
   "observations": [
     {
+      "id": "eventlink:wghs|webster-groves|sluh|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:30:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "sluh",
+        "reportedAs": "St Louis University High School"
+      },
+      "homeAway": "home",
+      "location": "Webster Groves High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "St Louis University High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:30:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Webster Groves High School"
+      }
+    },
+    {
       "id": "school-site-finalsite:sluh.org|sluh|webster-groves|boys-soccer|2026-09-08",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-09-08",
       "startsAt": "2026-09-08T16:30:00-05:00",
@@ -41,7 +74,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "SLUH",
         "opponent": "Webster Groves",
         "date": "2026-09-08",
@@ -55,11 +88,13 @@
     }
   ],
   "sourceIds": [
+    "eventlink:wghs",
     "school-site-finalsite:sluh.org"
   ],
+  "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
 }

@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-boys-soccer-fort-zumwalt-east-parkway-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T18:45:00",
+  "sides": [
+    {
+      "schoolId": "fort-zumwalt-east"
+    },
+    {
+      "schoolId": "parkway-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fort Zumwalt East High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-central-high-school|parkway-central|fort-zumwalt-east|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:parkway-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T18:45:00",
+      "reporter": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-east",
+        "reportedAs": "Fort Zumwalt East High School"
+      },
+      "homeAway": "away",
+      "location": "Fort Zumwalt East High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway Central",
+        "opponent": "Fort Zumwalt East High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T18:45:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Fort Zumwalt East High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

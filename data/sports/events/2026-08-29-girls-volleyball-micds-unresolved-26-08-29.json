@@ -1,0 +1,71 @@
+{
+  "id": "2026-08-29-girls-volleyball-micds-unresolved-26-08-29",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-29",
+  "sides": [
+    {
+      "schoolId": "micds",
+      "score": 2
+    },
+    {
+      "schoolId": "unresolved:Rock Bridge",
+      "score": 1
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "The Beal Center Chesterfield, MO",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|unresolved:rock bridge|girls-volleyball|2026-08-29",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-29",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "unresolvedOpponent": "Rock Bridge",
+      "homeAway": "away",
+      "result": "W",
+      "scoreFor": 2,
+      "scoreAgainst": 1,
+      "location": "The Beal Center Chesterfield, MO",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Rock Bridge",
+        "date": "2026-08-29",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "W",
+        "scoreFor": 2,
+        "scoreAgainst": 1,
+        "location": "The Beal Center Chesterfield, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "unresolvedNames": [
+    "Rock Bridge"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

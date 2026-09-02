@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-tennis-fort-zumwalt-east-hazelwood-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T15:30:00",
+  "sides": [
+    {
+      "schoolId": "fort-zumwalt-east"
+    },
+    {
+      "schoolId": "hazelwood-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fort Zumwalt East High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|fort-zumwalt-east|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T15:30:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-east",
+        "reportedAs": "Fort Zumwalt East High School"
+      },
+      "homeAway": "away",
+      "location": "Fort Zumwalt East High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "Fort Zumwalt East High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Fort Zumwalt East High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

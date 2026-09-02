@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-04-girls-golf-parkway-west-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T07:15:00",
+  "sides": [
+    {
+      "schoolId": "parkway-west"
+    },
+    {
+      "schoolId": "unresolved:Webster Scamble"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Quail Creek Golf Course",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-west-high-school|parkway-west|unresolved:webster scamble|girls-golf|2026-09-04",
+      "sourceId": "eventlink:parkway-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-golf",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T07:15:00",
+      "reporter": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West"
+      },
+      "unresolvedOpponent": "Webster Scamble",
+      "homeAway": "away",
+      "location": "Quail Creek Golf Course",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway West",
+        "opponent": "Webster Scamble",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T07:15:00",
+        "sportLabel": "Girls Golf",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Quail Creek Golf Course"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Webster Scamble"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

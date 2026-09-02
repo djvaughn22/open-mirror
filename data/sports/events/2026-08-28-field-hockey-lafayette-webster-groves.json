@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-field-hockey-lafayette-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T16:15:00",
+  "sides": [
+    {
+      "schoolId": "lafayette"
+    },
+    {
+      "schoolId": "webster-groves"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Rockwood Summit Sr High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|lafayette|field-hockey|2026-08-28",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:15:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "lafayette",
+        "reportedAs": "Lafayette High School"
+      },
+      "homeAway": "away",
+      "location": "Rockwood Summit Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "Lafayette High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:15:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Rockwood Summit Sr High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

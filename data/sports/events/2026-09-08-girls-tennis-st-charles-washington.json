@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-08-girls-tennis-st-charles-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:00:00",
+  "sides": [
+    {
+      "schoolId": "st-charles"
+    },
+    {
+      "schoolId": "washington"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Charles High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|washington|girls-tennis|2026-09-08",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "washington",
+        "reportedAs": "Washington High School"
+      },
+      "homeAway": "home",
+      "location": "St Charles High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Washington High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "St Charles High School"
+      }
+    },
+    {
+      "id": "eventlink:washington-high-school|washington|st-charles|girls-tennis|2026-09-08",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "st-charles",
+        "reportedAs": "St Charles High School"
+      },
+      "homeAway": "away",
+      "location": "St Charles High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "St Charles High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Charles High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-charles-high-school",
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

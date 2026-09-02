@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-29-boys-cross-country-clayton-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-cross-country",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T09:00:00",
+  "sides": [
+    {
+      "schoolId": "clayton"
+    },
+    {
+      "schoolId": "webster-groves"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Clayton High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|clayton|boys-cross-country|2026-08-29",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-cross-country",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T09:00:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton High School"
+      },
+      "homeAway": "away",
+      "location": "Clayton High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "Clayton High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T09:00:00",
+        "sportLabel": "Boys Cross Country",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Clayton High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

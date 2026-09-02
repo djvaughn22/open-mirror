@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-softball-francis-howell-north-point",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T16:15:00",
+  "sides": [
+    {
+      "schoolId": "north-point"
+    },
+    {
+      "schoolId": "francis-howell"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "North Point High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-high-school|francis-howell|north-point|girls-softball|2026-08-31",
+      "sourceId": "eventlink:francis-howell-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T16:15:00",
+      "reporter": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell"
+      },
+      "opponent": {
+        "schoolId": "north-point",
+        "reportedAs": "North Point High School"
+      },
+      "homeAway": "away",
+      "location": "North Point High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell",
+        "opponent": "North Point High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "North Point High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

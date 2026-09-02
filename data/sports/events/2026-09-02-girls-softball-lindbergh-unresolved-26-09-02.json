@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-02-girls-softball-lindbergh-unresolved-26-09-02",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T17:30:00",
+  "sides": [
+    {
+      "schoolId": "lindbergh"
+    },
+    {
+      "schoolId": "unresolved:JACKSON SR. HIGH"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lindbergh High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lindbergh-high-school|lindbergh|unresolved:jackson sr. high|girls-softball|2026-09-02",
+      "sourceId": "eventlink:lindbergh-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T17:30:00",
+      "reporter": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh"
+      },
+      "unresolvedOpponent": "JACKSON SR. HIGH",
+      "homeAway": "home",
+      "location": "Lindbergh High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lindbergh-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lindbergh",
+        "opponent": "JACKSON SR. HIGH",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T17:30:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Lindbergh High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lindbergh-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "JACKSON SR. HIGH"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

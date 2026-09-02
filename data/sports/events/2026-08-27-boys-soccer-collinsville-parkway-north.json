@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-27-boys-soccer-collinsville-parkway-north",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-27",
+  "sides": [
+    {
+      "schoolId": "parkway-north",
+      "score": 1
+    },
+    {
+      "schoolId": "collinsville",
+      "score": 4
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "West Elementary School Alton, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|parkway-north|boys-soccer|2026-08-27",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-27",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "parkway-north",
+        "reportedAs": "Parkway North"
+      },
+      "homeAway": "away",
+      "result": "W",
+      "scoreFor": 4,
+      "scoreAgainst": 1,
+      "location": "West Elementary School Alton, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Parkway North",
+        "date": "2026-08-27",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "W",
+        "scoreFor": 4,
+        "scoreAgainst": 1,
+        "location": "West Elementary School Alton, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

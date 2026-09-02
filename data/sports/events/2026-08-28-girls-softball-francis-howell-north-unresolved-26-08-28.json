@@ -1,0 +1,64 @@
+{
+  "id": "2026-08-28-girls-softball-francis-howell-north-unresolved-26-08-28",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T11:00:00",
+  "sides": [
+    {
+      "schoolId": "francis-howell-north"
+    },
+    {
+      "schoolId": "unresolved:MACON SR. HIGH"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Troy Buchanan High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-north-high-school|francis-howell-north|unresolved:macon sr. high|girls-softball|2026-08-28",
+      "sourceId": "eventlink:francis-howell-north-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T11:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-north",
+        "reportedAs": "Francis Howell North"
+      },
+      "unresolvedOpponent": "MACON SR. HIGH",
+      "homeAway": "away",
+      "location": "Troy Buchanan High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-north-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-north-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell North",
+        "opponent": "MACON SR. HIGH",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T11:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Troy Buchanan High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-north-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "MACON SR. HIGH"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

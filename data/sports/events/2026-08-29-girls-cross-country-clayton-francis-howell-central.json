@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-29-girls-cross-country-clayton-francis-howell-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-cross-country",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T00:00:00",
+  "sides": [
+    {
+      "schoolId": "clayton"
+    },
+    {
+      "schoolId": "francis-howell-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Clayton High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-central-high-school|francis-howell-central|clayton|girls-cross-country|2026-08-29",
+      "sourceId": "eventlink:francis-howell-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-cross-country",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T00:00:00",
+      "reporter": {
+        "schoolId": "francis-howell-central",
+        "reportedAs": "Francis Howell Central"
+      },
+      "opponent": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton High School"
+      },
+      "homeAway": "away",
+      "location": "Clayton High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell Central",
+        "opponent": "Clayton High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T00:00:00",
+        "sportLabel": "Girls Cross Country",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Clayton High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

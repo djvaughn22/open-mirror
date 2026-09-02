@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-08-boys-soccer-hazelwood-central-hazelwood-east",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:15:00",
+  "sides": [
+    {
+      "schoolId": "hazelwood-central"
+    },
+    {
+      "schoolId": "hazelwood-east"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hazelwood Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-central-high-school|hazelwood-central|hazelwood-east|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:hazelwood-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:15:00",
+      "reporter": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-east",
+        "reportedAs": "Hazelwood East High School"
+      },
+      "homeAway": "home",
+      "location": "Hazelwood Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood Central",
+        "opponent": "Hazelwood East High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:15:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Hazelwood Central High School"
+      }
+    },
+    {
+      "id": "eventlink:hazelwood-east-high-school|hazelwood-east|hazelwood-central|boys-soccer|2026-09-08",
+      "sourceId": "eventlink:hazelwood-east-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-east-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-east",
+        "reportedAs": "Hazelwood East"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central High School"
+      },
+      "homeAway": "away",
+      "location": "Hazelwood Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-east-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-east-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood East",
+        "opponent": "Hazelwood Central High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Hazelwood Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-central-high-school",
+    "eventlink:hazelwood-east-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-02-girls-volleyball-fox-unresolved-26-09-02",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T17:30:00",
+  "sides": [
+    {
+      "schoolId": "fox"
+    },
+    {
+      "schoolId": "unresolved:Poplar Bluff High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Fox High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:fox-high-school|fox|unresolved:poplar bluff high school|girls-volleyball|2026-09-02",
+      "sourceId": "eventlink:fox-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T17:30:00",
+      "reporter": {
+        "schoolId": "fox",
+        "reportedAs": "Fox"
+      },
+      "unresolvedOpponent": "Poplar Bluff High School",
+      "homeAway": "home",
+      "location": "Fox High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:fox-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Fox",
+        "opponent": "Poplar Bluff High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Fox High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:fox-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Poplar Bluff High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

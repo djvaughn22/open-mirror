@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-boys-soccer-st-charles-winfield",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T17:00:00",
+  "sides": [
+    {
+      "schoolId": "winfield"
+    },
+    {
+      "schoolId": "st-charles"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Winfield High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|winfield|boys-soccer|2026-09-03",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T17:00:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "winfield",
+        "reportedAs": "Winfield High School"
+      },
+      "homeAway": "away",
+      "location": "Winfield High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Winfield High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T17:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Winfield High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

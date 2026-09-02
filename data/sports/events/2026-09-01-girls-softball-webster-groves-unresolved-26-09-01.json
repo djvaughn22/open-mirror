@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-01-girls-softball-webster-groves-unresolved-26-09-01",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T17:30:00",
+  "sides": [
+    {
+      "schoolId": "webster-groves"
+    },
+    {
+      "schoolId": "unresolved:ST JOSEPH SCHOOL"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "ST JOSEPH SCHOOL",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|unresolved:st joseph school|girls-softball|2026-09-01",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T17:30:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "unresolvedOpponent": "ST JOSEPH SCHOOL",
+      "homeAway": "away",
+      "location": "ST JOSEPH SCHOOL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "ST JOSEPH SCHOOL",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T17:30:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": ", V",
+        "homeAway": "away",
+        "location": "ST JOSEPH SCHOOL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "ST JOSEPH SCHOOL"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

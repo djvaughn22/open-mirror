@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-football-lutheran-st-charles-university-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T19:00:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-st-charles"
+    },
+    {
+      "schoolId": "university-city"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lutheran High School of St Charles",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:university-city-high-school|university-city|lutheran-st-charles|football|2026-08-28",
+      "sourceId": "eventlink:university-city-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T19:00:00",
+      "reporter": {
+        "schoolId": "university-city",
+        "reportedAs": "University City"
+      },
+      "opponent": {
+        "schoolId": "lutheran-st-charles",
+        "reportedAs": "Lutheran High School of St Charles"
+      },
+      "homeAway": "away",
+      "location": "Lutheran High School of St Charles",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:university-city-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "University City",
+        "opponent": "Lutheran High School of St Charles",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Lutheran High School of St Charles"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:university-city-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

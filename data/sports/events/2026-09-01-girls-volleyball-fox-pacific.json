@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-girls-volleyball-fox-pacific",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:00:00",
+  "sides": [
+    {
+      "schoolId": "pacific"
+    },
+    {
+      "schoolId": "fox"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Pacific High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:fox-high-school|fox|pacific|girls-volleyball|2026-09-01",
+      "sourceId": "eventlink:fox-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:00:00",
+      "reporter": {
+        "schoolId": "fox",
+        "reportedAs": "Fox"
+      },
+      "opponent": {
+        "schoolId": "pacific",
+        "reportedAs": "Pacific High School"
+      },
+      "homeAway": "away",
+      "location": "Pacific High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:fox-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Fox",
+        "opponent": "Pacific High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Pacific High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:fox-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

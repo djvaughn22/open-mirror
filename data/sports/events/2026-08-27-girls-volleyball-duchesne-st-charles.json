@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-27-girls-volleyball-duchesne-st-charles",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T18:00:00",
+  "sides": [
+    {
+      "schoolId": "duchesne"
+    },
+    {
+      "schoolId": "st-charles"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Duchesne High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|st-charles|girls-volleyball|2026-08-27",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T18:00:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "opponent": {
+        "schoolId": "st-charles",
+        "reportedAs": "St Charles High School"
+      },
+      "homeAway": "home",
+      "location": "Duchesne High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "St Charles High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T18:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Duchesne High School"
+      }
+    },
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|duchesne|girls-volleyball|2026-08-27",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T18:00:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne High School"
+      },
+      "homeAway": "away",
+      "location": "Duchesne High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Duchesne High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T18:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Duchesne High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers",
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

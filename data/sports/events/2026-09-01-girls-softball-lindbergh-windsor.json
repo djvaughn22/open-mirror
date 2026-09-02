@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-girls-softball-lindbergh-windsor",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:00:00",
+  "sides": [
+    {
+      "schoolId": "windsor"
+    },
+    {
+      "schoolId": "lindbergh"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Windsor High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:lindbergh-high-school|lindbergh|windsor|girls-softball|2026-09-01",
+      "sourceId": "eventlink:lindbergh-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:00:00",
+      "reporter": {
+        "schoolId": "lindbergh",
+        "reportedAs": "Lindbergh"
+      },
+      "opponent": {
+        "schoolId": "windsor",
+        "reportedAs": "Windsor High School"
+      },
+      "homeAway": "away",
+      "location": "Windsor High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lindbergh-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/lindbergh-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lindbergh",
+        "opponent": "Windsor High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Windsor High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:lindbergh-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

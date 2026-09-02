@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-girls-tennis-hazelwood-west-mccluer-south-berkeley",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T15:30:00",
+  "sides": [
+    {
+      "schoolId": "hazelwood-west"
+    },
+    {
+      "schoolId": "mccluer-south-berkeley"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hazelwood West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|mccluer-south-berkeley|girls-tennis|2026-08-28",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T15:30:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "mccluer-south-berkeley",
+        "reportedAs": "STEAM Academy at McCluer South-Berkeley High"
+      },
+      "homeAway": "home",
+      "location": "Hazelwood West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "STEAM Academy at McCluer South-Berkeley High",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T15:30:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Hazelwood West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

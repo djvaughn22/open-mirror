@@ -4,7 +4,7 @@
   "metro": "st-louis",
   "sport": "boys-soccer",
   "date": "2026-08-29",
-  "startsAt": "2026-08-29T12:30:00-05:00",
+  "startsAt": "2026-08-29T12:30:00",
   "sides": [
     {
       "schoolId": "chaminade",
@@ -17,15 +17,48 @@
   ],
   "homeKnown": true,
   "status": "final",
-  "location": "Chaminade",
+  "location": "Chaminade College Preparatory School",
   "confidence": "single-source",
   "conflicts": [],
   "observations": [
     {
+      "id": "eventlink:chaminade-college-preparatory-school|chaminade|sluh|boys-soccer|2026-08-29",
+      "sourceId": "eventlink:chaminade-college-preparatory-school",
+      "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T12:30:00",
+      "reporter": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "opponent": {
+        "schoolId": "sluh",
+        "reportedAs": "St Louis University High School"
+      },
+      "homeAway": "home",
+      "location": "Chaminade College Preparatory School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:chaminade-college-preparatory-school",
+        "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Chaminade",
+        "opponent": "St Louis University High School",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T12:30:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Chaminade College Preparatory School"
+      }
+    },
+    {
       "id": "school-site-finalsite:sluh.org|sluh|chaminade|boys-soccer|2026-08-29",
       "sourceId": "school-site-finalsite:sluh.org",
       "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-08-29",
       "startsAt": "2026-08-29T12:30:00-05:00",
@@ -45,7 +78,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:sluh.org",
         "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "SLUH",
         "opponent": "Chaminade",
         "date": "2026-08-29",
@@ -53,46 +86,6 @@
         "sportLabel": "Soccer",
         "levelLabel": "Varsity",
         "homeAway": "away",
-        "scoreFor": 2,
-        "scoreAgainst": 2,
-        "location": "Chaminade"
-      }
-    },
-    {
-      "id": "school-site-finalsite:sluh.org|sluh|chaminade|boys-soccer|2026-08-29",
-      "sourceId": "school-site-finalsite:sluh.org",
-      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
-      "sport": "boys-soccer",
-      "date": "2026-08-29",
-      "startsAt": "2026-08-29T12:30:00-05:00",
-      "reporter": {
-        "schoolId": "sluh",
-        "reportedAs": "SLUH"
-      },
-      "opponent": {
-        "schoolId": "chaminade",
-        "reportedAs": "Chaminade"
-      },
-      "homeAway": "away",
-      "result": "T",
-      "scoreFor": 2,
-      "scoreAgainst": 2,
-      "location": "Chaminade",
-      "status": "final",
-      "raw": {
-        "sourceId": "school-site-finalsite:sluh.org",
-        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
-        "reportingSchool": "SLUH",
-        "opponent": "Chaminade",
-        "date": "2026-08-29",
-        "startsAt": "2026-08-29T12:30:00-05:00",
-        "sportLabel": "Soccer",
-        "levelLabel": "Varsity",
-        "sportHint": "soccer",
-        "homeAway": "away",
-        "result": "T",
         "scoreFor": 2,
         "scoreAgainst": 2,
         "location": "Chaminade"
@@ -100,11 +93,15 @@
     }
   ],
   "sourceIds": [
+    "eventlink:chaminade-college-preparatory-school",
+    "school-site-finalsite:sluh.org"
+  ],
+  "scoreSourceIds": [
     "school-site-finalsite:sluh.org"
   ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
 }

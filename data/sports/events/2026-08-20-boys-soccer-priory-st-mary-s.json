@@ -22,7 +22,7 @@
       "id": "school-site-finalsite:priory.org|priory|st-mary-s|boys-soccer|2026-08-20",
       "sourceId": "school-site-finalsite:priory.org",
       "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-08-20",
       "startsAt": "2026-08-20T16:15:00-05:00",
@@ -39,7 +39,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:priory.org",
         "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "Priory",
         "opponent": "St. Mary's",
         "date": "2026-08-20",
@@ -54,9 +54,10 @@
   "sourceIds": [
     "school-site-finalsite:priory.org"
   ],
+  "scoreSourceIds": [],
   "unresolvedNames": [],
   "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
 }

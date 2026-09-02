@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-03-football-clayton-st-charles",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T19:00:00",
+  "sides": [
+    {
+      "schoolId": "st-charles"
+    },
+    {
+      "schoolId": "clayton"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Charles High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:clayton-high-school|clayton|st-charles|football|2026-09-03",
+      "sourceId": "eventlink:clayton-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T19:00:00",
+      "reporter": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton"
+      },
+      "opponent": {
+        "schoolId": "st-charles",
+        "reportedAs": "St Charles High School"
+      },
+      "homeAway": "away",
+      "location": "St Charles High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:clayton-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Clayton",
+        "opponent": "St Charles High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T19:00:00",
+        "sportLabel": "Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Charles High School"
+      }
+    },
+    {
+      "id": "eventlink:st-charles-high-school|st-charles|clayton|football|2026-09-03",
+      "sourceId": "eventlink:st-charles-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T19:00:00",
+      "reporter": {
+        "schoolId": "st-charles",
+        "reportedAs": "St. Charles"
+      },
+      "opponent": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton High School"
+      },
+      "homeAway": "home",
+      "location": "St Charles High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-charles-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-charles-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. Charles",
+        "opponent": "Clayton High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T19:00:00",
+        "sportLabel": "Boys Football 11-Man",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "St Charles High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:clayton-high-school",
+    "eventlink:st-charles-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

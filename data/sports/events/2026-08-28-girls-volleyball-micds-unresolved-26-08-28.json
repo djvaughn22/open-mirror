@@ -1,0 +1,71 @@
+{
+  "id": "2026-08-28-girls-volleyball-micds-unresolved-26-08-28",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-28",
+  "sides": [
+    {
+      "schoolId": "micds",
+      "score": 1
+    },
+    {
+      "schoolId": "unresolved:Farmington",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "The Beal Center - Court 8 Chesterfield, MO",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|unresolved:farmington|girls-volleyball|2026-08-28",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-28",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "unresolvedOpponent": "Farmington",
+      "homeAway": "away",
+      "result": "L",
+      "scoreFor": 1,
+      "scoreAgainst": 2,
+      "location": "The Beal Center - Court 8 Chesterfield, MO",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Farmington",
+        "date": "2026-08-28",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "L",
+        "scoreFor": 1,
+        "scoreAgainst": 2,
+        "location": "The Beal Center - Court 8 Chesterfield, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "unresolvedNames": [
+    "Farmington"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

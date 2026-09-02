@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-28-girls-volleyball-micds-north-point",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-28",
+  "sides": [
+    {
+      "schoolId": "north-point",
+      "score": 1
+    },
+    {
+      "schoolId": "micds",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "The Beal Center - Court 8 Chesterfield, MO",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|north-point|girls-volleyball|2026-08-28",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-28",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "opponent": {
+        "schoolId": "north-point",
+        "reportedAs": "North Point HS"
+      },
+      "homeAway": "away",
+      "result": "W",
+      "scoreFor": 2,
+      "scoreAgainst": 1,
+      "location": "The Beal Center - Court 8 Chesterfield, MO",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "North Point HS",
+        "date": "2026-08-28",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "W",
+        "scoreFor": 2,
+        "scoreAgainst": 1,
+        "location": "The Beal Center - Court 8 Chesterfield, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

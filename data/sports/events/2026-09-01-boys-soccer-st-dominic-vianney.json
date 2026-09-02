@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-boys-soccer-st-dominic-vianney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T17:30:00",
+  "sides": [
+    {
+      "schoolId": "vianney"
+    },
+    {
+      "schoolId": "st-dominic"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St John Vianney High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|st-dominic|boys-soccer|2026-09-01",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T17:30:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "st-dominic",
+        "reportedAs": "St Dominic High School"
+      },
+      "homeAway": "home",
+      "location": "St John Vianney High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "St Dominic High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T17:30:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Sophmore",
+        "homeAway": "home",
+        "location": "St John Vianney High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

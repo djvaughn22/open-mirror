@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-02-girls-volleyball-clayton-westminster-christian",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T17:30:00",
+  "sides": [
+    {
+      "schoolId": "westminster-christian"
+    },
+    {
+      "schoolId": "clayton"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Westminster Christian Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:clayton-high-school|clayton|westminster-christian|girls-volleyball|2026-09-02",
+      "sourceId": "eventlink:clayton-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T17:30:00",
+      "reporter": {
+        "schoolId": "clayton",
+        "reportedAs": "Clayton"
+      },
+      "opponent": {
+        "schoolId": "westminster-christian",
+        "reportedAs": "Westminster Christian Academy"
+      },
+      "homeAway": "away",
+      "location": "Westminster Christian Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:clayton-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/clayton-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Clayton",
+        "opponent": "Westminster Christian Academy",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Westminster Christian Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:clayton-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

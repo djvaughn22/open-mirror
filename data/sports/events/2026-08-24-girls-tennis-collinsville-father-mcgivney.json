@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-24-girls-tennis-collinsville-father-mcgivney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-24",
+  "sides": [
+    {
+      "schoolId": "collinsville",
+      "score": 2
+    },
+    {
+      "schoolId": "father-mcgivney",
+      "score": 7
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Kahok Tennis Courts Collinsville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|father-mcgivney|girls-tennis|2026-08-24",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-24",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "father-mcgivney",
+        "reportedAs": "Father McGivney Catholic High School"
+      },
+      "homeAway": "home",
+      "result": "L",
+      "scoreFor": 2,
+      "scoreAgainst": 7,
+      "location": "Kahok Tennis Courts Collinsville, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/tennis/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Father McGivney Catholic High School",
+        "date": "2026-08-24",
+        "sportLabel": "girls tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "result": "L",
+        "scoreFor": 2,
+        "scoreAgainst": 7,
+        "location": "Kahok Tennis Courts Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

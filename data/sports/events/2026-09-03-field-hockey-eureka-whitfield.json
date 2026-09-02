@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-field-hockey-eureka-whitfield",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00",
+  "sides": [
+    {
+      "schoolId": "whitfield"
+    },
+    {
+      "schoolId": "eureka"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Principia",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:eureka-sr-high-school|eureka|whitfield|field-hockey|2026-09-03",
+      "sourceId": "eventlink:eureka-sr-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "eureka",
+        "reportedAs": "Eureka"
+      },
+      "opponent": {
+        "schoolId": "whitfield",
+        "reportedAs": "Whitfield"
+      },
+      "homeAway": "away",
+      "location": "Principia",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:eureka-sr-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/eureka-sr-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Eureka",
+        "opponent": "Whitfield",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Principia"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:eureka-sr-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-08-girls-tennis-duchesne-unresolved-26-09-08",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T14:00:00",
+  "sides": [
+    {
+      "schoolId": "duchesne"
+    },
+    {
+      "schoolId": "unresolved:Helias Catholic High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Helias  Catholic High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|unresolved:helias catholic high school|girls-tennis|2026-09-08",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T14:00:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "unresolvedOpponent": "Helias Catholic High School",
+      "homeAway": "away",
+      "location": "Helias  Catholic High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "Helias Catholic High School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T14:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Helias  Catholic High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Helias Catholic High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

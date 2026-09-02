@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-volleyball-hazelwood-west-st-charles-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:15:00",
+  "sides": [
+    {
+      "schoolId": "hazelwood-west"
+    },
+    {
+      "schoolId": "st-charles-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hazelwood West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|st-charles-west|girls-volleyball|2026-08-31",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:15:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "st-charles-west",
+        "reportedAs": "St Charles West High School"
+      },
+      "homeAway": "home",
+      "location": "Hazelwood West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "St Charles West High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:15:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Hazelwood West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

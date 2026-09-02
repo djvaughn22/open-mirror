@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-tennis-ladue-villa-duchesne",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T16:00:00",
+  "sides": [
+    {
+      "schoolId": "villa-duchesne"
+    },
+    {
+      "schoolId": "ladue"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Villa Duchesne",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|villa-duchesne|girls-tennis|2026-08-31",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T16:00:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "villa-duchesne",
+        "reportedAs": "Villa Duchesne"
+      },
+      "homeAway": "away",
+      "location": "Villa Duchesne",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "Villa Duchesne",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Villa Duchesne"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

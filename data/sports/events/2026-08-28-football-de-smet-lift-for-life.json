@@ -25,7 +25,7 @@
       "id": "school-site-finalsite:desmet.org|de-smet|lift-for-life|football|2026-08-28",
       "sourceId": "school-site-finalsite:desmet.org",
       "sourceUrl": "https://www.desmet.org/athletics/teams/football",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "football",
       "date": "2026-08-28",
       "startsAt": "2026-08-28T18:00:00-05:00",
@@ -45,7 +45,7 @@
       "raw": {
         "sourceId": "school-site-finalsite:desmet.org",
         "sourceUrl": "https://www.desmet.org/athletics/teams/football",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "De Smet Jesuit",
         "opponent": "Lift for Life",
         "date": "2026-08-28",
@@ -63,9 +63,12 @@
   "sourceIds": [
     "school-site-finalsite:desmet.org"
   ],
+  "scoreSourceIds": [
+    "school-site-finalsite:desmet.org"
+  ],
   "unresolvedNames": [],
   "publishable": true,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
 }

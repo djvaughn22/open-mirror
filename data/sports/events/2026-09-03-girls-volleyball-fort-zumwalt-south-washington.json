@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-volleyball-fort-zumwalt-south-washington",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T18:00:00",
+  "sides": [
+    {
+      "schoolId": "washington"
+    },
+    {
+      "schoolId": "fort-zumwalt-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Washington High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:washington-high-school|washington|fort-zumwalt-south|girls-volleyball|2026-09-03",
+      "sourceId": "eventlink:washington-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T18:00:00",
+      "reporter": {
+        "schoolId": "washington",
+        "reportedAs": "Washington"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-south",
+        "reportedAs": "Ft. Zumwalt South"
+      },
+      "homeAway": "home",
+      "location": "Washington High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:washington-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/washington-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Washington",
+        "opponent": "Ft. Zumwalt South",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T18:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Washington High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:washington-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

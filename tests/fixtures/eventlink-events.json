@@ -1,0 +1,1394 @@
+[
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 238,
+    "day": 26,
+    "dayOfWeek": 3,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 0,
+    "second": 57,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 576570000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 57657000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 0,
+     "second": 57,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 576570000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 57657000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 26,
+     "dayOfWeek": 3,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 238
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 26,
+    "dayOfWeek": 3,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 238
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 0,
+    "second": 57,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 576570000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 57657000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 238,
+   "day": 26,
+   "dayOfWeek": 3,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 0,
+   "second": 57,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 576570000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 57657000000000
+  },
+  "title": "Parkway West High School",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Tennis (Girls V)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": true,
+  "id": "0e4fa988-8918-485c-94ef-5e0f135418f9",
+  "cancelDateTime": null
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 239,
+    "day": 27,
+    "dayOfWeek": 4,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 15,
+    "second": 0,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 585000000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 58500000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 15,
+     "second": 0,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 585000000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 58500000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 27,
+     "dayOfWeek": 4,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 239
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 27,
+    "dayOfWeek": 4,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 239
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 15,
+    "second": 0,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 585000000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 58500000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 239,
+   "day": 27,
+   "dayOfWeek": 4,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 15,
+   "second": 0,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 585000000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 58500000000000
+  },
+  "title": "Tri- Z West/St. Dom",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Volleyball (Girls F)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": true,
+  "id": "d0890b90-d239-46a0-a6bf-470c2fc449bc",
+  "cancelDateTime": null
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 239,
+    "day": 27,
+    "dayOfWeek": 4,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 7,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 594070000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 59407000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 30,
+     "second": 7,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 594070000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 59407000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 27,
+     "dayOfWeek": 4,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 239
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 27,
+    "dayOfWeek": 4,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 239
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 7,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 594070000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 59407000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 239,
+   "day": 27,
+   "dayOfWeek": 4,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 30,
+   "second": 7,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 594070000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 59407000000000
+  },
+  "title": "Francis Howell North High School",
+  "location": "Francis Howell North High School",
+  "primaryCalendarTitle": "Softball (Girls V)",
+  "ticketConfigurationEvents": [],
+  "isHome": false,
+  "isGame": true,
+  "id": "b6af23f7-90e1-411c-a954-8f5279dc302e",
+  "cancelDateTime": null
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 239,
+    "day": 27,
+    "dayOfWeek": 4,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 7,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 594070000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 59407000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 30,
+     "second": 7,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 594070000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 59407000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 27,
+     "dayOfWeek": 4,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 239
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 27,
+    "dayOfWeek": 4,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 239
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 7,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 594070000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 59407000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 239,
+   "day": 27,
+   "dayOfWeek": 4,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 30,
+   "second": 7,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 594070000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 59407000000000
+  },
+  "title": "Francis Howell North High School",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Softball (Girls JV)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": true,
+  "id": "912559b0-a84c-4277-8a54-d0b74b048568",
+  "cancelDateTime": null
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 239,
+    "day": 27,
+    "dayOfWeek": 4,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 19,
+    "millisecond": 458,
+    "tickOfSecond": 4580000,
+    "tickOfDay": 594194580000,
+    "nanosecondOfSecond": 458000000,
+    "nanosecondOfDay": 59419458000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 30,
+     "second": 19,
+     "millisecond": 458,
+     "tickOfSecond": 4580000,
+     "tickOfDay": 594194580000,
+     "nanosecondOfSecond": 458000000,
+     "nanosecondOfDay": 59419458000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 27,
+     "dayOfWeek": 4,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 239
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 27,
+    "dayOfWeek": 4,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 239
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 19,
+    "millisecond": 458,
+    "tickOfSecond": 4580000,
+    "tickOfDay": 594194580000,
+    "nanosecondOfSecond": 458000000,
+    "nanosecondOfDay": 59419458000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 239,
+   "day": 27,
+   "dayOfWeek": 4,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 30,
+   "second": 19,
+   "millisecond": 458,
+   "tickOfSecond": 4580000,
+   "tickOfDay": 594194580000,
+   "nanosecondOfSecond": 458000000,
+   "nanosecondOfDay": 59419458000000
+  },
+  "title": "Parkway South High School",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Soccer (Boys F)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": true,
+  "id": "23ae0f47-90fa-4e0f-8ecd-06aca045a6b1",
+  "cancelDateTime": null
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 239,
+    "day": 27,
+    "dayOfWeek": 4,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 48,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 594480000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 59448000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 30,
+     "second": 48,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 594480000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 59448000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 27,
+     "dayOfWeek": 4,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 239
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 27,
+    "dayOfWeek": 4,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 239
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 30,
+    "second": 48,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 594480000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 59448000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 239,
+   "day": 27,
+   "dayOfWeek": 4,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 30,
+   "second": 48,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 594480000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 59448000000000
+  },
+  "title": "Mehlville High School",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Soccer (Boys JV)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": true,
+  "id": "87accc95-b0d9-412a-810e-8ba4f6191c58",
+  "cancelDateTime": null
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 238,
+    "day": 26,
+    "dayOfWeek": 3,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 0,
+    "second": 57,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 576570000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 57657000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 0,
+     "second": 57,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 576570000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 57657000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 26,
+     "dayOfWeek": 3,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 238
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 26,
+    "dayOfWeek": 3,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 238
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 0,
+    "second": 57,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 576570000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 57657000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 238,
+   "day": 26,
+   "dayOfWeek": 3,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 0,
+   "second": 57,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 576570000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 57657000000000
+  },
+  "title": "Cancelled Opponent High School",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Tennis (Girls V)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": true,
+  "id": "0e4fa988-8918-485c-94ef-5e0f135418f9",
+  "cancelDateTime": "2026-08-25T12:00:00Z"
+ },
+ {
+  "isAllDay": false,
+  "isPastEvent": true,
+  "isTimeTBD": false,
+  "startDateTime": {
+   "offset": {
+    "seconds": -18000,
+    "milliseconds": -18000000,
+    "ticks": -180000000000,
+    "nanoseconds": -18000000000000
+   },
+   "zone": {
+    "id": "America/Chicago",
+    "minOffset": {
+     "seconds": -21600,
+     "milliseconds": -21600000,
+     "ticks": -216000000000,
+     "nanoseconds": -21600000000000
+    },
+    "maxOffset": {
+     "seconds": -18000,
+     "milliseconds": -18000000,
+     "ticks": -180000000000,
+     "nanoseconds": -18000000000000
+    }
+   },
+   "localDateTime": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "month": 8,
+    "dayOfYear": 238,
+    "day": 26,
+    "dayOfWeek": 3,
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 0,
+    "second": 57,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 576570000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 57657000000000,
+    "timeOfDay": {
+     "hour": 16,
+     "clockHourOfHalfDay": 4,
+     "minute": 0,
+     "second": 57,
+     "millisecond": 0,
+     "tickOfSecond": 0,
+     "tickOfDay": 576570000000,
+     "nanosecondOfSecond": 0,
+     "nanosecondOfDay": 57657000000000
+    },
+    "date": {
+     "calendar": {
+      "id": "ISO",
+      "name": "ISO",
+      "minYear": -9998,
+      "maxYear": 9999,
+      "eras": [
+       {
+        "name": "BCE"
+       },
+       {
+        "name": "CE"
+       }
+      ]
+     },
+     "year": 2026,
+     "month": 8,
+     "day": 26,
+     "dayOfWeek": 3,
+     "yearOfEra": 2026,
+     "era": {
+      "name": "CE"
+     },
+     "dayOfYear": 238
+    }
+   },
+   "calendar": {
+    "id": "ISO",
+    "name": "ISO",
+    "minYear": -9998,
+    "maxYear": 9999,
+    "eras": [
+     {
+      "name": "BCE"
+     },
+     {
+      "name": "CE"
+     }
+    ]
+   },
+   "date": {
+    "calendar": {
+     "id": "ISO",
+     "name": "ISO",
+     "minYear": -9998,
+     "maxYear": 9999,
+     "eras": [
+      {
+       "name": "BCE"
+      },
+      {
+       "name": "CE"
+      }
+     ]
+    },
+    "year": 2026,
+    "month": 8,
+    "day": 26,
+    "dayOfWeek": 3,
+    "yearOfEra": 2026,
+    "era": {
+     "name": "CE"
+    },
+    "dayOfYear": 238
+   },
+   "timeOfDay": {
+    "hour": 16,
+    "clockHourOfHalfDay": 4,
+    "minute": 0,
+    "second": 57,
+    "millisecond": 0,
+    "tickOfSecond": 0,
+    "tickOfDay": 576570000000,
+    "nanosecondOfSecond": 0,
+    "nanosecondOfDay": 57657000000000
+   },
+   "era": {
+    "name": "CE"
+   },
+   "year": 2026,
+   "yearOfEra": 2026,
+   "month": 8,
+   "dayOfYear": 238,
+   "day": 26,
+   "dayOfWeek": 3,
+   "hour": 16,
+   "clockHourOfHalfDay": 4,
+   "minute": 0,
+   "second": 57,
+   "millisecond": 0,
+   "tickOfSecond": 0,
+   "tickOfDay": 576570000000,
+   "nanosecondOfSecond": 0,
+   "nanosecondOfDay": 57657000000000
+  },
+  "title": "Team Practice",
+  "location": "Eureka Sr High School",
+  "primaryCalendarTitle": "Tennis (Girls V)",
+  "ticketConfigurationEvents": [],
+  "isHome": true,
+  "isGame": false,
+  "id": "0e4fa988-8918-485c-94ef-5e0f135418f9",
+  "cancelDateTime": null
+ }
+]

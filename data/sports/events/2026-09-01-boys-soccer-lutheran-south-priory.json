@@ -7,14 +7,16 @@
   "startsAt": "2026-09-01T19:00:00-05:00",
   "sides": [
     {
-      "schoolId": "lutheran-south"
+      "schoolId": "lutheran-south",
+      "score": 1
     },
     {
-      "schoolId": "priory"
+      "schoolId": "priory",
+      "score": 3
     }
   ],
   "homeKnown": false,
-  "status": "scheduled",
+  "status": "final",
   "confidence": "single-source",
   "conflicts": [],
   "observations": [
@@ -22,7 +24,7 @@
       "id": "school-site-finalsite:priory.org|priory|lutheran-south|boys-soccer|2026-09-01",
       "sourceId": "school-site-finalsite:priory.org",
       "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
-      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "fetchedAt": "2026-09-02T03:09:50.600Z",
       "sport": "boys-soccer",
       "date": "2026-09-01",
       "startsAt": "2026-09-01T19:00:00-05:00",
@@ -35,11 +37,14 @@
         "reportedAs": "Lutheran South"
       },
       "homeAway": "unknown",
-      "status": "scheduled",
+      "result": "W",
+      "scoreFor": 3,
+      "scoreAgainst": 1,
+      "status": "final",
       "raw": {
         "sourceId": "school-site-finalsite:priory.org",
         "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
-        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "fetchedAt": "2026-09-02T03:09:50.600Z",
         "reportingSchool": "Priory",
         "opponent": "Lutheran South",
         "date": "2026-09-01",
@@ -47,16 +52,22 @@
         "sportLabel": "Varsity Soccer",
         "levelLabel": "Varsity Soccer",
         "sportHint": "soccer",
-        "homeAway": "unknown"
+        "homeAway": "unknown",
+        "result": "W",
+        "scoreFor": 3,
+        "scoreAgainst": 1
       }
     }
   ],
   "sourceIds": [
     "school-site-finalsite:priory.org"
   ],
+  "scoreSourceIds": [
+    "school-site-finalsite:priory.org"
+  ],
   "unresolvedNames": [],
-  "publishable": false,
-  "createdAt": "2026-09-02T01:08:11.178Z",
-  "updatedAt": "2026-09-02T01:20:03.639Z",
-  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:09:50.600Z"
 }

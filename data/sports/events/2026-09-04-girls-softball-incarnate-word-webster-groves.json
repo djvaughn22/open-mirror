@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-04-girls-softball-incarnate-word-webster-groves",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T16:30:00",
+  "sides": [
+    {
+      "schoolId": "incarnate-word"
+    },
+    {
+      "schoolId": "webster-groves"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Incarnate Word Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:wghs|webster-groves|incarnate-word|girls-softball|2026-09-04",
+      "sourceId": "eventlink:wghs",
+      "sourceUrl": "https://websites.eventlink.com/s/wghs",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T16:30:00",
+      "reporter": {
+        "schoolId": "webster-groves",
+        "reportedAs": "Webster Groves"
+      },
+      "opponent": {
+        "schoolId": "incarnate-word",
+        "reportedAs": "Incarnate Word Academy"
+      },
+      "homeAway": "away",
+      "location": "Incarnate Word Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:wghs",
+        "sourceUrl": "https://websites.eventlink.com/s/wghs",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Webster Groves",
+        "opponent": "Incarnate Word Academy",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T16:30:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": ", V",
+        "homeAway": "away",
+        "location": "Incarnate Word Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:wghs"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

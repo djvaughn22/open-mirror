@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-04-football-university-city-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T19:00:00",
+  "sides": [
+    {
+      "schoolId": "university-city"
+    },
+    {
+      "schoolId": "unresolved:Lawton Oklahoma"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "University City High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:university-city-high-school|university-city|unresolved:lawton oklahoma|football|2026-09-04",
+      "sourceId": "eventlink:university-city-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T19:00:00",
+      "reporter": {
+        "schoolId": "university-city",
+        "reportedAs": "University City"
+      },
+      "unresolvedOpponent": "Lawton Oklahoma",
+      "homeAway": "away",
+      "location": "University City High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:university-city-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "University City",
+        "opponent": "Lawton Oklahoma",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "University City High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:university-city-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Lawton Oklahoma"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

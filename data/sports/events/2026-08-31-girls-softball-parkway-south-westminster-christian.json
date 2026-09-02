@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-girls-softball-parkway-south-westminster-christian",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T16:15:00",
+  "sides": [
+    {
+      "schoolId": "westminster-christian"
+    },
+    {
+      "schoolId": "parkway-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Westminster Christian Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|westminster-christian|girls-softball|2026-08-31",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T16:15:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "opponent": {
+        "schoolId": "westminster-christian",
+        "reportedAs": "Westminster Christian Academy"
+      },
+      "homeAway": "away",
+      "location": "Westminster Christian Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "Westminster Christian Academy",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Westminster Christian Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-south-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

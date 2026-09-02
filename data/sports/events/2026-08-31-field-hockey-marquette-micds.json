@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-31-field-hockey-marquette-micds",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T17:45:00",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "marquette"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mary Institute and St Louis Country Day School (MICDS)",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:marquette-high-school|marquette|micds|field-hockey|2026-08-31",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T17:45:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "micds",
+        "reportedAs": "Mary Institute and St Louis Country Day School (MICDS)"
+      },
+      "homeAway": "away",
+      "location": "Mary Institute and St Louis Country Day School (MICDS)",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Mary Institute and St Louis Country Day School (MICDS)",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T17:45:00",
+        "sportLabel": "Girls Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Mary Institute and St Louis Country Day School (MICDS)"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

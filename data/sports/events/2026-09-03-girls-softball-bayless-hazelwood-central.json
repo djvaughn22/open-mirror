@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-softball-bayless-hazelwood-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00",
+  "sides": [
+    {
+      "schoolId": "bayless"
+    },
+    {
+      "schoolId": "hazelwood-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Bayless Sr High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-central-high-school|hazelwood-central|bayless|girls-softball|2026-09-03",
+      "sourceId": "eventlink:hazelwood-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00",
+      "reporter": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central"
+      },
+      "opponent": {
+        "schoolId": "bayless",
+        "reportedAs": "Bayless Sr High School"
+      },
+      "homeAway": "away",
+      "location": "Bayless Sr High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood Central",
+        "opponent": "Bayless Sr High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Bayless Sr High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

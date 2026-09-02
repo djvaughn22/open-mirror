@@ -1,0 +1,99 @@
+{
+  "id": "2026-09-03-football-ladue-vianney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T19:00:00",
+  "sides": [
+    {
+      "schoolId": "vianney"
+    },
+    {
+      "schoolId": "ladue"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St John Vianney High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|vianney|football|2026-09-03",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T19:00:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "vianney",
+        "reportedAs": "St John Vianney High School"
+      },
+      "homeAway": "away",
+      "location": "St John Vianney High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "St John Vianney High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T19:00:00",
+        "sportLabel": "Football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St John Vianney High School"
+      }
+    },
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|ladue|football|2026-09-03",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T19:00:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue Horton Watkins High School"
+      },
+      "homeAway": "home",
+      "location": "St John Vianney High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "Ladue Horton Watkins High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T19:00:00",
+        "sportLabel": "Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "St John Vianney High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school",
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

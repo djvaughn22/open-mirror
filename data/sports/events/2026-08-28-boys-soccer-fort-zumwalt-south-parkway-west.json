@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-28-boys-soccer-fort-zumwalt-south-parkway-west",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T18:00:00",
+  "sides": [
+    {
+      "schoolId": "parkway-west"
+    },
+    {
+      "schoolId": "fort-zumwalt-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway West High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-west-high-school|parkway-west|fort-zumwalt-south|boys-soccer|2026-08-28",
+      "sourceId": "eventlink:parkway-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T18:00:00",
+      "reporter": {
+        "schoolId": "parkway-west",
+        "reportedAs": "Parkway West"
+      },
+      "opponent": {
+        "schoolId": "fort-zumwalt-south",
+        "reportedAs": "Fort Zumwalt South High"
+      },
+      "homeAway": "home",
+      "location": "Parkway West High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway West",
+        "opponent": "Fort Zumwalt South High",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Parkway West High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-west-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

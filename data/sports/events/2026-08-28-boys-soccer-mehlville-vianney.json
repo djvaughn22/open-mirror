@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-28-boys-soccer-mehlville-vianney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T18:00:00",
+  "sides": [
+    {
+      "schoolId": "mehlville"
+    },
+    {
+      "schoolId": "vianney"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mehlville High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|vianney|boys-soccer|2026-08-28",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T18:00:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "opponent": {
+        "schoolId": "vianney",
+        "reportedAs": "St John Vianney High School"
+      },
+      "homeAway": "home",
+      "location": "Mehlville High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "St John Vianney High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Mehlville High School"
+      }
+    },
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|mehlville|boys-soccer|2026-08-28",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:15:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville High School"
+      },
+      "homeAway": "away",
+      "location": "Mehlville High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "Mehlville High School",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:15:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Sophmore",
+        "homeAway": "away",
+        "location": "Mehlville High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school",
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

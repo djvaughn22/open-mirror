@@ -7,7 +7,9 @@
 // than a rewrite.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import type { EventLinkSchool } from "../sources/eventlink.ts";
 import type { FinalsiteTeamPage } from "../sources/finalsiteAthletics.ts";
+import type { MascotMediaTeamPage } from "../sources/mascotMedia.ts";
 import type { MetroId, School } from "../graph/types.ts";
 
 export interface MetroConfig {
@@ -21,5 +23,7 @@ export interface MetroConfig {
   schools: School[];
   sources: {
     finalsiteTeamPages: FinalsiteTeamPage[];
+    eventLinkSchools: EventLinkSchool[];
+    mascotMediaPages: MascotMediaTeamPage[];
   };
 }

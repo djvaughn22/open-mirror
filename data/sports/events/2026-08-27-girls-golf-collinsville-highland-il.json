@@ -1,0 +1,62 @@
+{
+  "id": "2026-08-27-girls-golf-collinsville-highland-il",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-golf",
+  "date": "2026-08-27",
+  "sides": [
+    {
+      "schoolId": "collinsville"
+    },
+    {
+      "schoolId": "highland-il"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Arlington Greens Golf Course Collinsville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|highland-il|girls-golf|2026-08-27",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/golf/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-golf",
+      "date": "2026-08-27",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "highland-il",
+        "reportedAs": "Highland High School"
+      },
+      "homeAway": "home",
+      "location": "Arlington Greens Golf Course Collinsville, IL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/golf/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Highland High School",
+        "date": "2026-08-27",
+        "sportLabel": "girls golf",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Arlington Greens Golf Course Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

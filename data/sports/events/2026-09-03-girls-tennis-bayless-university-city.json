@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-girls-tennis-bayless-university-city",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:00:00",
+  "sides": [
+    {
+      "schoolId": "bayless"
+    },
+    {
+      "schoolId": "university-city"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Bayless High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:university-city-high-school|university-city|bayless|girls-tennis|2026-09-03",
+      "sourceId": "eventlink:university-city-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:00:00",
+      "reporter": {
+        "schoolId": "university-city",
+        "reportedAs": "University City"
+      },
+      "opponent": {
+        "schoolId": "bayless",
+        "reportedAs": "Bayless High School"
+      },
+      "homeAway": "away",
+      "location": "Bayless High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:university-city-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "University City",
+        "opponent": "Bayless High School",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Bayless High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:university-city-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

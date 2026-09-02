@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-27-girls-softball-hazelwood-west-lutheran-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T16:15:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-south"
+    },
+    {
+      "schoolId": "hazelwood-west"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Lutheran High School South",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-west-high-school|hazelwood-west|lutheran-south|girls-softball|2026-08-27",
+      "sourceId": "eventlink:hazelwood-west-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T16:15:00",
+      "reporter": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West"
+      },
+      "opponent": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran High School South"
+      },
+      "homeAway": "away",
+      "location": "Lutheran High School South",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-west-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-west-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood West",
+        "opponent": "Lutheran High School South",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Lutheran High School South"
+      }
+    },
+    {
+      "id": "eventlink:lutheran-high-school-south|lutheran-south|hazelwood-west|girls-softball|2026-08-27",
+      "sourceId": "eventlink:lutheran-high-school-south",
+      "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T16:15:00",
+      "reporter": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-west",
+        "reportedAs": "Hazelwood West High School"
+      },
+      "homeAway": "home",
+      "location": "Lutheran High School South",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:lutheran-high-school-south",
+        "sourceUrl": "https://websites.eventlink.com/s/lutheran-high-school-south",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Lutheran South",
+        "opponent": "Hazelwood West High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T16:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Lutheran High School South"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-west-high-school",
+    "eventlink:lutheran-high-school-south"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

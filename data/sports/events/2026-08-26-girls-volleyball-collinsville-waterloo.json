@@ -1,0 +1,72 @@
+{
+  "id": "2026-08-26-girls-volleyball-collinsville-waterloo",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-26",
+  "sides": [
+    {
+      "schoolId": "waterloo",
+      "score": 2
+    },
+    {
+      "schoolId": "collinsville",
+      "score": 1
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Waterloo HS Waterloo, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|waterloo|girls-volleyball|2026-08-26",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/volleyball/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-26",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "waterloo",
+        "reportedAs": "Waterloo High School"
+      },
+      "homeAway": "away",
+      "result": "L",
+      "scoreFor": 1,
+      "scoreAgainst": 2,
+      "location": "Waterloo HS Waterloo, IL",
+      "status": "final",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/volleyball/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Waterloo High School",
+        "date": "2026-08-26",
+        "sportLabel": "girls volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "result": "L",
+        "scoreFor": 1,
+        "scoreAgainst": 2,
+        "location": "Waterloo HS Waterloo, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

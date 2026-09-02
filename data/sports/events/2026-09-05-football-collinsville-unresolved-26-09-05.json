@@ -1,0 +1,61 @@
+{
+  "id": "2026-09-05-football-collinsville-unresolved-26-09-05",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-05",
+  "sides": [
+    {
+      "schoolId": "collinsville"
+    },
+    {
+      "schoolId": "unresolved:Mt. Vernon High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mt. Vernon HS Mt. Vernon , IL",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|unresolved:mt. vernon high school|football|2026-09-05",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "football",
+      "date": "2026-09-05",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "unresolvedOpponent": "Mt. Vernon High School",
+      "homeAway": "away",
+      "location": "Mt. Vernon HS Mt. Vernon , IL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/football/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Mt. Vernon High School",
+        "date": "2026-09-05",
+        "sportLabel": "boys football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Mt. Vernon HS Mt. Vernon , IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Mt. Vernon High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

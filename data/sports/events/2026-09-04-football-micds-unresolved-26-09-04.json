@@ -1,0 +1,61 @@
+{
+  "id": "2026-09-04-football-micds-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "unresolved:Richmond High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Richmond High School Richmond, MO",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|unresolved:richmond high school|football|2026-09-04",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/football/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "unresolvedOpponent": "Richmond High School",
+      "homeAway": "away",
+      "location": "Richmond High School Richmond, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/football/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "Richmond High School",
+        "date": "2026-09-04",
+        "sportLabel": "boys football",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Richmond High School Richmond, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Richmond High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-27-boys-soccer-belleville-east-hazelwood-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T16:15:00",
+  "sides": [
+    {
+      "schoolId": "hazelwood-central"
+    },
+    {
+      "schoolId": "belleville-east"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Hazelwood Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-central-high-school|hazelwood-central|belleville-east|boys-soccer|2026-08-27",
+      "sourceId": "eventlink:hazelwood-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T16:15:00",
+      "reporter": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central"
+      },
+      "opponent": {
+        "schoolId": "belleville-east",
+        "reportedAs": "Belleville High School-East"
+      },
+      "homeAway": "home",
+      "location": "Hazelwood Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood Central",
+        "opponent": "Belleville High School-East",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T16:15:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Hazelwood Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

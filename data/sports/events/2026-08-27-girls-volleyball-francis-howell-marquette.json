@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-27-girls-volleyball-francis-howell-marquette",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-08-27",
+  "startsAt": "2026-08-27T17:30:00",
+  "sides": [
+    {
+      "schoolId": "marquette"
+    },
+    {
+      "schoolId": "francis-howell"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Marquette High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:francis-howell-high-school|francis-howell|marquette|girls-volleyball|2026-08-27",
+      "sourceId": "eventlink:francis-howell-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T17:30:00",
+      "reporter": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell"
+      },
+      "opponent": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette High School"
+      },
+      "homeAway": "away",
+      "location": "Marquette High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:francis-howell-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/francis-howell-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Francis Howell",
+        "opponent": "Marquette High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Marquette High School"
+      }
+    },
+    {
+      "id": "eventlink:marquette-high-school|marquette|francis-howell|girls-volleyball|2026-08-27",
+      "sourceId": "eventlink:marquette-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-08-27",
+      "startsAt": "2026-08-27T17:30:00",
+      "reporter": {
+        "schoolId": "marquette",
+        "reportedAs": "Marquette"
+      },
+      "opponent": {
+        "schoolId": "francis-howell",
+        "reportedAs": "Francis Howell High School"
+      },
+      "homeAway": "home",
+      "location": "Marquette High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:marquette-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/marquette-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Marquette",
+        "opponent": "Francis Howell High School",
+        "date": "2026-08-27",
+        "startsAt": "2026-08-27T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Marquette High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:francis-howell-high-school",
+    "eventlink:marquette-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

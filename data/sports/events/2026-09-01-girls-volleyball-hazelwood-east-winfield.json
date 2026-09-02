@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-girls-volleyball-hazelwood-east-winfield",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T00:00:00",
+  "sides": [
+    {
+      "schoolId": "winfield"
+    },
+    {
+      "schoolId": "hazelwood-east"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Winfield High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:hazelwood-east-high-school|hazelwood-east|winfield|girls-volleyball|2026-09-01",
+      "sourceId": "eventlink:hazelwood-east-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-east-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T00:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-east",
+        "reportedAs": "Hazelwood East"
+      },
+      "opponent": {
+        "schoolId": "winfield",
+        "reportedAs": "Winfield"
+      },
+      "homeAway": "away",
+      "location": "Winfield High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-east-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-east-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood East",
+        "opponent": "Winfield",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T00:00:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Winfield High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:hazelwood-east-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

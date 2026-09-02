@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-08-girls-volleyball-maplewood-rh-unresolved-26-09-08",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-volleyball",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T17:30:00",
+  "sides": [
+    {
+      "schoolId": "maplewood-rh"
+    },
+    {
+      "schoolId": "unresolved:The Principia School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "The Principia School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:maplewood-richmond-heights-high-school|maplewood-rh|unresolved:the principia school|girls-volleyball|2026-09-08",
+      "sourceId": "eventlink:maplewood-richmond-heights-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/maplewood-richmond-heights-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-volleyball",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T17:30:00",
+      "reporter": {
+        "schoolId": "maplewood-rh",
+        "reportedAs": "Maplewood Richmond Heights"
+      },
+      "unresolvedOpponent": "The Principia School",
+      "homeAway": "away",
+      "location": "The Principia School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:maplewood-richmond-heights-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/maplewood-richmond-heights-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Maplewood Richmond Heights",
+        "opponent": "The Principia School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T17:30:00",
+        "sportLabel": "Girls Volleyball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "The Principia School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:maplewood-richmond-heights-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "The Principia School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

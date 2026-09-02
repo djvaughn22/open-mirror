@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-02-girls-tennis-mehlville-unresolved-26-09-02",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-tennis",
+  "date": "2026-09-02",
+  "startsAt": "2026-09-02T16:00:00",
+  "sides": [
+    {
+      "schoolId": "mehlville"
+    },
+    {
+      "schoolId": "unresolved:Farmington High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Mehlville High School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:mehlville-high-school|mehlville|unresolved:farmington high school|girls-tennis|2026-09-02",
+      "sourceId": "eventlink:mehlville-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-tennis",
+      "date": "2026-09-02",
+      "startsAt": "2026-09-02T16:00:00",
+      "reporter": {
+        "schoolId": "mehlville",
+        "reportedAs": "Mehlville"
+      },
+      "unresolvedOpponent": "Farmington High School",
+      "homeAway": "home",
+      "location": "Mehlville High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:mehlville-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/mehlville-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Mehlville",
+        "opponent": "Farmington High School",
+        "date": "2026-09-02",
+        "startsAt": "2026-09-02T16:00:00",
+        "sportLabel": "Girls Tennis",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Mehlville High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:mehlville-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Farmington High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

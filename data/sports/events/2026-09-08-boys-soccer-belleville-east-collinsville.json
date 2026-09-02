@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-08-boys-soccer-belleville-east-collinsville",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-08",
+  "sides": [
+    {
+      "schoolId": "collinsville"
+    },
+    {
+      "schoolId": "belleville-east"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Kahok Stadium Collinsville, IL",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:kahokathletics.com|collinsville|belleville-east|boys-soccer|2026-09-08",
+      "sourceId": "mascot-media:kahokathletics.com",
+      "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-08",
+      "reporter": {
+        "schoolId": "collinsville",
+        "reportedAs": "Collinsville"
+      },
+      "opponent": {
+        "schoolId": "belleville-east",
+        "reportedAs": "Belleville East High School"
+      },
+      "homeAway": "home",
+      "location": "Kahok Stadium Collinsville, IL",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:kahokathletics.com",
+        "sourceUrl": "https://www.kahokathletics.com/sport/soccer/boys/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "Collinsville",
+        "opponent": "Belleville East High School",
+        "date": "2026-09-08",
+        "sportLabel": "boys soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Kahok Stadium Collinsville, IL"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:kahokathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

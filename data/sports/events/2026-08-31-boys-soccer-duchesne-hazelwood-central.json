@@ -1,0 +1,99 @@
+{
+  "id": "2026-08-31-boys-soccer-duchesne-hazelwood-central",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T18:00:00",
+  "sides": [
+    {
+      "schoolId": "duchesne"
+    },
+    {
+      "schoolId": "hazelwood-central"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Duchesne High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:duchesne-pioneers|duchesne|hazelwood-central|boys-soccer|2026-08-31",
+      "sourceId": "eventlink:duchesne-pioneers",
+      "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T18:00:00",
+      "reporter": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central High School"
+      },
+      "homeAway": "home",
+      "location": "Duchesne High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:duchesne-pioneers",
+        "sourceUrl": "https://websites.eventlink.com/s/duchesne-pioneers",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Duchesne",
+        "opponent": "Hazelwood Central High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Duchesne High School"
+      }
+    },
+    {
+      "id": "eventlink:hazelwood-central-high-school|hazelwood-central|duchesne|boys-soccer|2026-08-31",
+      "sourceId": "eventlink:hazelwood-central-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T18:00:00",
+      "reporter": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central"
+      },
+      "opponent": {
+        "schoolId": "duchesne",
+        "reportedAs": "Duchesne High School"
+      },
+      "homeAway": "away",
+      "location": "Duchesne High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:hazelwood-central-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/hazelwood-central-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Hazelwood Central",
+        "opponent": "Duchesne High School",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T18:00:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Duchesne High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:duchesne-pioneers",
+    "eventlink:hazelwood-central-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

@@ -27,6 +27,7 @@ export function normalizeSchoolName(raw: string): string {
   t = t.replace(/&/g, " and ");
   t = t.replace(/\bst\b/g, "saint").replace(/\bste\b/g, "sainte").replace(/\bmt\b/g, "mount");
   t = t.replace(/\bsr\b/g, "senior").replace(/\bjr\b/g, "junior");
+  t = t.replace(/\bacad\b/g, "academy");
   t = t.replace(/\bcath\b/g, "catholic").replace(/\bchr\b/g, "christian");
   t = t.replace(/\bco op\b|\bcoop\b/g, " ");
   // "H.S." arrives as "h s" once the periods are gone; rejoin it so the suffix
@@ -34,7 +35,10 @@ export function normalizeSchoolName(raw: string): string {
   t = t.replace(/\bh s\b/g, "hs");
   // Suffixes that carry no identity. "Academy", "Prep" and "College" are NOT
   // in this list: they separate real, distinct schools in this metro.
-  t = t.replace(/\b(high school|highschool|high|hs|senior high|sr high|school|schools)\b/g, " ");
+  // "Oakville", "Oakville High School" and "Oakville Sr. High School" are one
+  // school. "Senior" has to go too — leaving it in cost thirteen observations
+  // of a real school that the registry already knew about.
+  t = t.replace(/\b(high school|highschool|high|hs|senior high|sr high|school|schools|senior)\b/g, " ");
   return t.replace(/\s+/g, " ").trim();
 }
 

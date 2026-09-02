@@ -1,0 +1,64 @@
+{
+  "id": "2026-08-31-boys-soccer-university-city-unresolved-26-08-31",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-31",
+  "startsAt": "2026-08-31T18:45:00",
+  "sides": [
+    {
+      "schoolId": "university-city"
+    },
+    {
+      "schoolId": "unresolved:Veritas Christian Academy"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Veritas Christian Academy",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:university-city-high-school|university-city|unresolved:veritas christian academy|boys-soccer|2026-08-31",
+      "sourceId": "eventlink:university-city-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-31",
+      "startsAt": "2026-08-31T18:45:00",
+      "reporter": {
+        "schoolId": "university-city",
+        "reportedAs": "University City"
+      },
+      "unresolvedOpponent": "Veritas Christian Academy",
+      "homeAway": "away",
+      "location": "Veritas Christian Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:university-city-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/university-city-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "University City",
+        "opponent": "Veritas Christian Academy",
+        "date": "2026-08-31",
+        "startsAt": "2026-08-31T18:45:00",
+        "sportLabel": "Boys Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Veritas Christian Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:university-city-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "Veritas Christian Academy"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

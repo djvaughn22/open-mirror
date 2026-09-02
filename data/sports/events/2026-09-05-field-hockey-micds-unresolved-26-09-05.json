@@ -1,0 +1,61 @@
+{
+  "id": "2026-09-05-field-hockey-micds-unresolved-26-09-05",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-05",
+  "sides": [
+    {
+      "schoolId": "micds"
+    },
+    {
+      "schoolId": "unresolved:New Trier High School"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Sport Port St. Louis, MO",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "mascot-media:micdsathletics.com|micds|unresolved:new trier high school|field-hockey|2026-09-05",
+      "sourceId": "mascot-media:micdsathletics.com",
+      "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
+      "fetchedAt": "2026-09-02T03:10:00.827Z",
+      "sport": "field-hockey",
+      "date": "2026-09-05",
+      "reporter": {
+        "schoolId": "micds",
+        "reportedAs": "MICDS"
+      },
+      "unresolvedOpponent": "New Trier High School",
+      "homeAway": "away",
+      "location": "Sport Port St. Louis, MO",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "mascot-media:micdsathletics.com",
+        "sourceUrl": "https://www.micdsathletics.com/sport/field hockey/girls/?tab=schedule",
+        "fetchedAt": "2026-09-02T03:10:00.827Z",
+        "reportingSchool": "MICDS",
+        "opponent": "New Trier High School",
+        "date": "2026-09-05",
+        "sportLabel": "girls field hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Sport Port St. Louis, MO"
+      }
+    }
+  ],
+  "sourceIds": [
+    "mascot-media:micdsathletics.com"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "New Trier High School"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:00.827Z"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-15-girls-softball-fox-st-josephs-academy",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-15",
+  "startsAt": "2026-08-15T10:00:00",
+  "sides": [
+    {
+      "schoolId": "st-josephs-academy"
+    },
+    {
+      "schoolId": "fox"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St. Joesph's Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:fox-high-school|fox|st-josephs-academy|girls-softball|2026-08-15",
+      "sourceId": "eventlink:fox-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-15",
+      "startsAt": "2026-08-15T10:00:00",
+      "reporter": {
+        "schoolId": "fox",
+        "reportedAs": "Fox"
+      },
+      "opponent": {
+        "schoolId": "st-josephs-academy",
+        "reportedAs": "St. Joesph's Academy"
+      },
+      "homeAway": "away",
+      "location": "St. Joesph's Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:fox-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/fox-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Fox",
+        "opponent": "St. Joesph's Academy",
+        "date": "2026-08-15",
+        "startsAt": "2026-08-15T10:00:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St. Joesph's Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:fox-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

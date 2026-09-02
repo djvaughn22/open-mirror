@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-04-football-chaminade-unresolved-26-09-04",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-04",
+  "startsAt": "2026-09-04T19:00:00",
+  "sides": [
+    {
+      "schoolId": "chaminade"
+    },
+    {
+      "schoolId": "unresolved:POPLAR BLUFF HIGH"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Chaminade College Prep School",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:chaminade-college-preparatory-school|chaminade|unresolved:poplar bluff high|football|2026-09-04",
+      "sourceId": "eventlink:chaminade-college-preparatory-school",
+      "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "football",
+      "date": "2026-09-04",
+      "startsAt": "2026-09-04T19:00:00",
+      "reporter": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "unresolvedOpponent": "POPLAR BLUFF HIGH",
+      "homeAway": "home",
+      "location": "Chaminade College Prep School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:chaminade-college-preparatory-school",
+        "sourceUrl": "https://websites.eventlink.com/s/chaminade-college-preparatory-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Chaminade",
+        "opponent": "POPLAR BLUFF HIGH",
+        "date": "2026-09-04",
+        "startsAt": "2026-09-04T19:00:00",
+        "sportLabel": "Boys Football",
+        "levelLabel": "Varsity",
+        "homeAway": "home",
+        "location": "Chaminade College Prep School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:chaminade-college-preparatory-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [
+    "POPLAR BLUFF HIGH"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

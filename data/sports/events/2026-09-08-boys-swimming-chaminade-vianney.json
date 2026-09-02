@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-boys-swimming-chaminade-vianney",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:00:00",
+  "sides": [
+    {
+      "schoolId": "chaminade"
+    },
+    {
+      "schoolId": "vianney"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Chaminade College Prep School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:st-john-vianney-high-school|vianney|chaminade|boys-swimming|2026-09-08",
+      "sourceId": "eventlink:st-john-vianney-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "vianney",
+        "reportedAs": "St. John Vianney"
+      },
+      "opponent": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade College Prep School"
+      },
+      "homeAway": "away",
+      "location": "Chaminade College Prep School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:st-john-vianney-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/st-john-vianney-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "St. John Vianney",
+        "opponent": "Chaminade College Prep School",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Swimming",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Chaminade College Prep School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:st-john-vianney-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

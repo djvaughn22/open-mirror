@@ -48,7 +48,7 @@ async function main() {
     for (const e of published) {
       const brief = briefs.get(e.id);
       if (!brief) continue;
-      console.log(`\n  ${brief.headline}   [${e.confidence}, ${e.sourceIds.length} source(s), ${brief.wordCount} words]`);
+      console.log(`\n  ${brief.headline}   [${e.confidence}, ${e.scoreSourceIds.length} score src / ${e.sourceIds.length} total, ${brief.wordCount} words]`);
       console.log(`  ${brief.body}`);
     }
     console.log("");

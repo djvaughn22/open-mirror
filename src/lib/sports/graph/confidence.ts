@@ -124,11 +124,14 @@ export function buildEvent(cluster: EventCluster, opts: BuildEventOptions): Cano
       : "unknown";
 
   const sourceIds = distinctSources(observations);
+  // Only sources that stated a score can corroborate one. A calendar source
+  // confirms the fixture and nothing more.
+  const scoreSourceIds = distinctSources(scored);
   const material = conflicts.some((c) => c.field === "score" || c.field === "date");
 
   let confidence: EventConfidence;
   if (material) confidence = "conflicted";
-  else if (sourceIds.length >= 2) confidence = "confirmed";
+  else if (scoreSourceIds.length >= 2) confidence = "confirmed";
   else confidence = "single-source";
 
   const location =
@@ -158,6 +161,7 @@ export function buildEvent(cluster: EventCluster, opts: BuildEventOptions): Cano
     conflicts,
     observations: [...observations].sort((a, b) => a.id.localeCompare(b.id)),
     sourceIds,
+    scoreSourceIds,
     unresolvedNames: [],
     publishable,
     createdAt: opts.existing?.createdAt ?? opts.now,
@@ -192,6 +196,7 @@ export function buildUnresolvedEvent(o: NormalizedObservation, opts: BuildEventO
     conflicts: [],
     observations: [o],
     sourceIds: [o.sourceId],
+    scoreSourceIds: o.scoreFor !== undefined && o.scoreAgainst !== undefined ? [o.sourceId] : [],
     unresolvedNames: [o.unresolvedOpponent ?? ""].filter(Boolean),
     publishable: false,
     createdAt: opts.existing?.createdAt ?? opts.now,

@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-08-field-hockey-ladue-st-josephs-academy",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "field-hockey",
+  "date": "2026-09-08",
+  "startsAt": "2026-09-08T16:00:00",
+  "sides": [
+    {
+      "schoolId": "st-josephs-academy"
+    },
+    {
+      "schoolId": "ladue"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "St Josephs Academy",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:ladue-horton-watkins-high-school|ladue|st-josephs-academy|field-hockey|2026-09-08",
+      "sourceId": "eventlink:ladue-horton-watkins-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "field-hockey",
+      "date": "2026-09-08",
+      "startsAt": "2026-09-08T16:00:00",
+      "reporter": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "opponent": {
+        "schoolId": "st-josephs-academy",
+        "reportedAs": "St Josephs Academy"
+      },
+      "homeAway": "away",
+      "location": "St Josephs Academy",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:ladue-horton-watkins-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/ladue-horton-watkins-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Ladue",
+        "opponent": "St Josephs Academy",
+        "date": "2026-09-08",
+        "startsAt": "2026-09-08T16:00:00",
+        "sportLabel": "Field Hockey",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "St Josephs Academy"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:ladue-horton-watkins-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}

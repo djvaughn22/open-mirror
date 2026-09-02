@@ -1,0 +1,62 @@
+{
+  "id": "2026-08-28-girls-softball-cor-jesu-parkway-south",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "girls-softball",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T13:15:00",
+  "sides": [
+    {
+      "schoolId": "cor-jesu"
+    },
+    {
+      "schoolId": "parkway-south"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "eventlink:parkway-south-high-school|parkway-south|cor-jesu|girls-softball|2026-08-28",
+      "sourceId": "eventlink:parkway-south-high-school",
+      "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+      "fetchedAt": "2026-09-02T03:10:26.858Z",
+      "sport": "girls-softball",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T13:15:00",
+      "reporter": {
+        "schoolId": "parkway-south",
+        "reportedAs": "Parkway South"
+      },
+      "opponent": {
+        "schoolId": "cor-jesu",
+        "reportedAs": "Cor Jesu Academy"
+      },
+      "homeAway": "away",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "eventlink:parkway-south-high-school",
+        "sourceUrl": "https://websites.eventlink.com/s/parkway-south-high-school",
+        "fetchedAt": "2026-09-02T03:10:26.858Z",
+        "reportingSchool": "Parkway South",
+        "opponent": "Cor Jesu Academy",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T13:15:00",
+        "sportLabel": "Girls Softball",
+        "levelLabel": "Varsity",
+        "homeAway": "away"
+      }
+    }
+  ],
+  "sourceIds": [
+    "eventlink:parkway-south-high-school"
+  ],
+  "scoreSourceIds": [],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T03:09:50.597Z",
+  "updatedAt": "2026-09-02T03:09:50.597Z",
+  "lastVerifiedAt": "2026-09-02T03:10:26.858Z"
+}
