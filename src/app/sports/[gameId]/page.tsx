@@ -1,18 +1,29 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// THE GAME EDITION — the public product.
+// One game, in detail.
 //
-// A local sports page rebuilt for a phone: headline, what happened, the
-// numbers, what the archive turned up, the story, what's next, and one card
-// worth sending to somebody. Everything on it traces to a verified fact.
+// Two kinds of thing live at this URL, and the id says which:
+//
+//   · a CANONICAL EVENT from the automated wire — the common case now, and what
+//     every card in the city feed links to. Rendered with its full provenance.
+//   · a GAME EDITION from the manual desk — the long-form single-team story
+//     Sprint 1 built. Still reachable, still correct, no longer the centre.
+//
+// The wire is checked first because it is the product; the desk is the
+// fallback path for a game the wire could not get.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import EventDetail from "@/components/sports/EventDetail";
 import ShareActions from "@/components/sports/ShareActions";
 import ShareCard from "@/components/sports/ShareCard";
+import { buildBrief } from "@/lib/sports/brief";
 import { buildEdition } from "@/lib/sports/edition";
+import { eventStore } from "@/lib/sports/graph/eventStore";
+import { findMetroStories } from "@/lib/sports/metroStories";
+import { ST_LOUIS } from "@/lib/sports/metros/stLouis";
 import { shareCardData } from "@/lib/sports/share";
 import { store } from "@/lib/sports/store";
 import { TEAM } from "@/lib/sports/team";
@@ -21,12 +32,37 @@ import { STUDIO } from "@/lib/products";
 
 type Params = { params: Promise<{ gameId: string }> };
 
-export function generateStaticParams() {
-  return store.list().map((g) => ({ gameId: g.id }));
+export const dynamic = "force-dynamic";
+
+/** The schools map and brief for one wire event, or undefined if the id is a desk game. */
+function wireEvent(gameId: string) {
+  const event = eventStore.get(gameId);
+  if (!event) return undefined;
+  const schools = new Map(ST_LOUIS.schools.map((s) => [s.id, s]));
+  const archive = eventStore.list();
+  const today = new Date().toISOString().slice(0, 10);
+  const brief = buildBrief({
+    event,
+    schools,
+    discoveries: findMetroStories({ event, archive, schools }),
+    today,
+  });
+  return { event, brief, schools };
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { gameId } = await params;
+
+  const wire = wireEvent(gameId);
+  if (wire) {
+    return {
+      title: wire.brief.headline,
+      description: wire.brief.body,
+      alternates: { canonical: `/sports/${gameId}` },
+      openGraph: { title: wire.brief.headline, description: wire.brief.body, type: "article" },
+    };
+  }
+
   const game = store.get(gameId);
   if (!game) return { title: "Game not found" };
   const edition = buildEdition({ game, archive: store.list(), mascot: TEAM.mascot });
@@ -55,6 +91,11 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 export default async function GameEditionPage({ params }: Params) {
   const { gameId } = await params;
+
+  // The wire first: this is where the city feed sends every reader.
+  const wire = wireEvent(gameId);
+  if (wire) return <EventDetail event={wire.event} brief={wire.brief} schools={wire.schools} />;
+
   const game = store.get(gameId);
   if (!game) notFound();
 

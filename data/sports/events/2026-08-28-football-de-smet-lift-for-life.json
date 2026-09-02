@@ -1,0 +1,71 @@
+{
+  "id": "2026-08-28-football-de-smet-lift-for-life",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T18:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "de-smet",
+      "score": 20
+    },
+    {
+      "schoolId": "lift-for-life",
+      "score": 0
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "De Smet Jesuit",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:desmet.org|de-smet|lift-for-life|football|2026-08-28",
+      "sourceId": "school-site-finalsite:desmet.org",
+      "sourceUrl": "https://www.desmet.org/athletics/teams/football",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T18:00:00-05:00",
+      "reporter": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet Jesuit"
+      },
+      "opponent": {
+        "schoolId": "lift-for-life",
+        "reportedAs": "Lift for Life"
+      },
+      "homeAway": "home",
+      "scoreFor": 20,
+      "scoreAgainst": 0,
+      "location": "De Smet Jesuit",
+      "status": "final",
+      "raw": {
+        "sourceId": "school-site-finalsite:desmet.org",
+        "sourceUrl": "https://www.desmet.org/athletics/teams/football",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "De Smet Jesuit",
+        "opponent": "Lift for Life",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T18:00:00-05:00",
+        "sportLabel": "Varsity",
+        "levelLabel": "Varsity",
+        "sportHint": "football",
+        "homeAway": "home",
+        "scoreFor": 20,
+        "scoreAgainst": 0,
+        "location": "De Smet Jesuit"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:desmet.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

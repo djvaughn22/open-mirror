@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-05-boys-soccer-de-smet-st-mary-s",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-05",
+  "startsAt": "2026-09-05T12:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "de-smet"
+    },
+    {
+      "schoolId": "st-mary-s"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "De Smet Jesuit",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:desmet.org|de-smet|st-mary-s|boys-soccer|2026-09-05",
+      "sourceId": "school-site-finalsite:desmet.org",
+      "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-05",
+      "startsAt": "2026-09-05T12:00:00-05:00",
+      "reporter": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet Jesuit"
+      },
+      "opponent": {
+        "schoolId": "st-mary-s",
+        "reportedAs": "St. Mary's"
+      },
+      "homeAway": "home",
+      "location": "De Smet Jesuit",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:desmet.org",
+        "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "De Smet Jesuit",
+        "opponent": "St. Mary's",
+        "date": "2026-09-05",
+        "startsAt": "2026-09-05T12:00:00-05:00",
+        "sportLabel": "Varsity",
+        "levelLabel": "Varsity",
+        "sportHint": "soccer",
+        "homeAway": "home",
+        "location": "De Smet Jesuit"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:desmet.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

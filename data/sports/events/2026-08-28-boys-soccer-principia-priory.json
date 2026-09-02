@@ -1,0 +1,70 @@
+{
+  "id": "2026-08-28-boys-soccer-principia-priory",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T16:15:00-05:00",
+  "sides": [
+    {
+      "schoolId": "principia",
+      "score": 0
+    },
+    {
+      "schoolId": "priory",
+      "score": 3
+    }
+  ],
+  "homeKnown": false,
+  "status": "final",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:priory.org|priory|principia|boys-soccer|2026-08-28",
+      "sourceId": "school-site-finalsite:priory.org",
+      "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T16:15:00-05:00",
+      "reporter": {
+        "schoolId": "priory",
+        "reportedAs": "Priory"
+      },
+      "opponent": {
+        "schoolId": "principia",
+        "reportedAs": "Principia"
+      },
+      "homeAway": "unknown",
+      "result": "W",
+      "scoreFor": 3,
+      "scoreAgainst": 0,
+      "status": "final",
+      "raw": {
+        "sourceId": "school-site-finalsite:priory.org",
+        "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "Priory",
+        "opponent": "Principia",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T16:15:00-05:00",
+        "sportLabel": "Varsity Soccer",
+        "levelLabel": "Varsity Soccer",
+        "sportHint": "soccer",
+        "homeAway": "unknown",
+        "result": "W",
+        "scoreFor": 3,
+        "scoreAgainst": 0
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:priory.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

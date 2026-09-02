@@ -1,0 +1,110 @@
+{
+  "id": "2026-08-29-boys-soccer-chaminade-sluh",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-08-29",
+  "startsAt": "2026-08-29T12:30:00-05:00",
+  "sides": [
+    {
+      "schoolId": "chaminade",
+      "score": 2
+    },
+    {
+      "schoolId": "sluh",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "Chaminade",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:sluh.org|sluh|chaminade|boys-soccer|2026-08-29",
+      "sourceId": "school-site-finalsite:sluh.org",
+      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T12:30:00-05:00",
+      "reporter": {
+        "schoolId": "sluh",
+        "reportedAs": "SLUH"
+      },
+      "opponent": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "homeAway": "away",
+      "scoreFor": 2,
+      "scoreAgainst": 2,
+      "location": "Chaminade",
+      "status": "final",
+      "raw": {
+        "sourceId": "school-site-finalsite:sluh.org",
+        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "SLUH",
+        "opponent": "Chaminade",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T12:30:00-05:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "scoreFor": 2,
+        "scoreAgainst": 2,
+        "location": "Chaminade"
+      }
+    },
+    {
+      "id": "school-site-finalsite:sluh.org|sluh|chaminade|boys-soccer|2026-08-29",
+      "sourceId": "school-site-finalsite:sluh.org",
+      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-08-29",
+      "startsAt": "2026-08-29T12:30:00-05:00",
+      "reporter": {
+        "schoolId": "sluh",
+        "reportedAs": "SLUH"
+      },
+      "opponent": {
+        "schoolId": "chaminade",
+        "reportedAs": "Chaminade"
+      },
+      "homeAway": "away",
+      "result": "T",
+      "scoreFor": 2,
+      "scoreAgainst": 2,
+      "location": "Chaminade",
+      "status": "final",
+      "raw": {
+        "sourceId": "school-site-finalsite:sluh.org",
+        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/soccer",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "SLUH",
+        "opponent": "Chaminade",
+        "date": "2026-08-29",
+        "startsAt": "2026-08-29T12:30:00-05:00",
+        "sportLabel": "Soccer",
+        "levelLabel": "Varsity",
+        "sportHint": "soccer",
+        "homeAway": "away",
+        "result": "T",
+        "scoreFor": 2,
+        "scoreAgainst": 2,
+        "location": "Chaminade"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:sluh.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

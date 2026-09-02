@@ -1,0 +1,61 @@
+{
+  "id": "2026-09-05-boys-soccer-priory-unresolved-26-09-05",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-05",
+  "startsAt": "2026-09-05T10:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "priory"
+    },
+    {
+      "schoolId": "unresolved:Veritas Christian Academy"
+    }
+  ],
+  "homeKnown": false,
+  "status": "scheduled",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:priory.org|priory|unresolved:veritas christian academy|boys-soccer|2026-09-05",
+      "sourceId": "school-site-finalsite:priory.org",
+      "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-05",
+      "startsAt": "2026-09-05T10:00:00-05:00",
+      "reporter": {
+        "schoolId": "priory",
+        "reportedAs": "Priory"
+      },
+      "unresolvedOpponent": "Veritas Christian Academy",
+      "homeAway": "unknown",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:priory.org",
+        "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "Priory",
+        "opponent": "Veritas Christian Academy",
+        "date": "2026-09-05",
+        "startsAt": "2026-09-05T10:00:00-05:00",
+        "sportLabel": "Varsity Soccer",
+        "levelLabel": "Varsity Soccer",
+        "sportHint": "soccer",
+        "homeAway": "unknown"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:priory.org"
+  ],
+  "unresolvedNames": [
+    "Veritas Christian Academy"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

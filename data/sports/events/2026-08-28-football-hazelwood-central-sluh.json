@@ -1,0 +1,73 @@
+{
+  "id": "2026-08-28-football-hazelwood-central-sluh",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-08-28",
+  "startsAt": "2026-08-28T18:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "sluh",
+      "score": 43
+    },
+    {
+      "schoolId": "hazelwood-central",
+      "score": 2
+    }
+  ],
+  "homeKnown": true,
+  "status": "final",
+  "location": "SLUH",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:sluh.org|sluh|hazelwood-central|football|2026-08-28",
+      "sourceId": "school-site-finalsite:sluh.org",
+      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/football",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "football",
+      "date": "2026-08-28",
+      "startsAt": "2026-08-28T18:00:00-05:00",
+      "reporter": {
+        "schoolId": "sluh",
+        "reportedAs": "SLUH"
+      },
+      "opponent": {
+        "schoolId": "hazelwood-central",
+        "reportedAs": "Hazelwood Central"
+      },
+      "homeAway": "home",
+      "result": "W",
+      "scoreFor": 43,
+      "scoreAgainst": 2,
+      "location": "SLUH",
+      "status": "final",
+      "raw": {
+        "sourceId": "school-site-finalsite:sluh.org",
+        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules/football",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "SLUH",
+        "opponent": "Hazelwood Central",
+        "date": "2026-08-28",
+        "startsAt": "2026-08-28T18:00:00-05:00",
+        "sportLabel": "Football",
+        "levelLabel": "Varsity",
+        "sportHint": "football",
+        "homeAway": "home",
+        "result": "W",
+        "scoreFor": 43,
+        "scoreAgainst": 2,
+        "location": "SLUH"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:sluh.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": true,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

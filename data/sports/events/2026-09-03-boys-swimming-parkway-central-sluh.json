@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-03-boys-swimming-parkway-central-sluh",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-swimming",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T16:15:00-05:00",
+  "sides": [
+    {
+      "schoolId": "parkway-central"
+    },
+    {
+      "schoolId": "sluh"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Parkway Central High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:sluh.org|sluh|parkway-central|boys-swimming|2026-09-03",
+      "sourceId": "school-site-finalsite:sluh.org",
+      "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-swimming",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T16:15:00-05:00",
+      "reporter": {
+        "schoolId": "sluh",
+        "reportedAs": "SLUH"
+      },
+      "opponent": {
+        "schoolId": "parkway-central",
+        "reportedAs": "Parkway Central"
+      },
+      "homeAway": "away",
+      "location": "Parkway Central High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:sluh.org",
+        "sourceUrl": "https://www.sluh.org/athletics/teams-schedules",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "SLUH",
+        "opponent": "Parkway Central",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T16:15:00-05:00",
+        "sportLabel": "Swimming & Diving",
+        "levelLabel": "Varsity",
+        "homeAway": "away",
+        "location": "Parkway Central High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:sluh.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

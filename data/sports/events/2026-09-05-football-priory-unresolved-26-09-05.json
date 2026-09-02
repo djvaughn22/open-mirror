@@ -1,0 +1,64 @@
+{
+  "id": "2026-09-05-football-priory-unresolved-26-09-05",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-05",
+  "startsAt": "2026-09-05T13:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "priory"
+    },
+    {
+      "schoolId": "unresolved:Kennett HS"
+    }
+  ],
+  "homeKnown": false,
+  "status": "scheduled",
+  "location": "Playing Fields - Stadium",
+  "confidence": "unresolved",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:priory.org|priory|unresolved:kennett hs|football|2026-09-05",
+      "sourceId": "school-site-finalsite:priory.org",
+      "sourceUrl": "https://www.priory.org/athletics/sports/football",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "football",
+      "date": "2026-09-05",
+      "startsAt": "2026-09-05T13:00:00-05:00",
+      "reporter": {
+        "schoolId": "priory",
+        "reportedAs": "Priory"
+      },
+      "unresolvedOpponent": "Kennett HS",
+      "homeAway": "unknown",
+      "location": "Playing Fields - Stadium",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:priory.org",
+        "sourceUrl": "https://www.priory.org/athletics/sports/football",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "Priory",
+        "opponent": "Kennett HS",
+        "date": "2026-09-05",
+        "startsAt": "2026-09-05T13:00:00-05:00",
+        "sportLabel": "Varsity Football",
+        "levelLabel": "Varsity Football",
+        "sportHint": "football",
+        "homeAway": "unknown",
+        "location": "Playing Fields - Stadium"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:priory.org"
+  ],
+  "unresolvedNames": [
+    "Kennett HS"
+  ],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

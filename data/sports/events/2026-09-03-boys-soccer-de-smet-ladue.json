@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-03-boys-soccer-de-smet-ladue",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-03",
+  "startsAt": "2026-09-03T18:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "ladue"
+    },
+    {
+      "schoolId": "de-smet"
+    }
+  ],
+  "homeKnown": true,
+  "status": "scheduled",
+  "location": "Ladue High School",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:desmet.org|de-smet|ladue|boys-soccer|2026-09-03",
+      "sourceId": "school-site-finalsite:desmet.org",
+      "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-03",
+      "startsAt": "2026-09-03T18:00:00-05:00",
+      "reporter": {
+        "schoolId": "de-smet",
+        "reportedAs": "De Smet Jesuit"
+      },
+      "opponent": {
+        "schoolId": "ladue",
+        "reportedAs": "Ladue"
+      },
+      "homeAway": "away",
+      "location": "Ladue High School",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:desmet.org",
+        "sourceUrl": "https://www.desmet.org/athletics/teams/soccer",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "De Smet Jesuit",
+        "opponent": "Ladue",
+        "date": "2026-09-03",
+        "startsAt": "2026-09-03T18:00:00-05:00",
+        "sportLabel": "Varsity",
+        "levelLabel": "Varsity",
+        "sportHint": "soccer",
+        "homeAway": "away",
+        "location": "Ladue High School"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:desmet.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

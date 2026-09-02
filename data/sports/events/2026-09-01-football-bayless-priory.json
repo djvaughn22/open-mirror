@@ -1,0 +1,65 @@
+{
+  "id": "2026-09-01-football-bayless-priory",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "football",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T18:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "bayless"
+    },
+    {
+      "schoolId": "priory"
+    }
+  ],
+  "homeKnown": false,
+  "status": "scheduled",
+  "location": "Playing Fields - Stadium",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:priory.org|priory|bayless|football|2026-09-01",
+      "sourceId": "school-site-finalsite:priory.org",
+      "sourceUrl": "https://www.priory.org/athletics/sports/football",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "football",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T18:00:00-05:00",
+      "reporter": {
+        "schoolId": "priory",
+        "reportedAs": "Priory"
+      },
+      "opponent": {
+        "schoolId": "bayless",
+        "reportedAs": "Bayless High School"
+      },
+      "homeAway": "unknown",
+      "location": "Playing Fields - Stadium",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:priory.org",
+        "sourceUrl": "https://www.priory.org/athletics/sports/football",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "Priory",
+        "opponent": "Bayless High School",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T18:00:00-05:00",
+        "sportLabel": "B Football",
+        "levelLabel": "B Football",
+        "sportHint": "football",
+        "homeAway": "unknown",
+        "location": "Playing Fields - Stadium"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:priory.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}

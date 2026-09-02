@@ -1,0 +1,62 @@
+{
+  "id": "2026-09-01-boys-soccer-lutheran-south-priory",
+  "version": 1,
+  "metro": "st-louis",
+  "sport": "boys-soccer",
+  "date": "2026-09-01",
+  "startsAt": "2026-09-01T19:00:00-05:00",
+  "sides": [
+    {
+      "schoolId": "lutheran-south"
+    },
+    {
+      "schoolId": "priory"
+    }
+  ],
+  "homeKnown": false,
+  "status": "scheduled",
+  "confidence": "single-source",
+  "conflicts": [],
+  "observations": [
+    {
+      "id": "school-site-finalsite:priory.org|priory|lutheran-south|boys-soccer|2026-09-01",
+      "sourceId": "school-site-finalsite:priory.org",
+      "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
+      "fetchedAt": "2026-09-02T01:20:03.644Z",
+      "sport": "boys-soccer",
+      "date": "2026-09-01",
+      "startsAt": "2026-09-01T19:00:00-05:00",
+      "reporter": {
+        "schoolId": "priory",
+        "reportedAs": "Priory"
+      },
+      "opponent": {
+        "schoolId": "lutheran-south",
+        "reportedAs": "Lutheran South"
+      },
+      "homeAway": "unknown",
+      "status": "scheduled",
+      "raw": {
+        "sourceId": "school-site-finalsite:priory.org",
+        "sourceUrl": "https://www.priory.org/athletics/sports/soccer",
+        "fetchedAt": "2026-09-02T01:20:03.644Z",
+        "reportingSchool": "Priory",
+        "opponent": "Lutheran South",
+        "date": "2026-09-01",
+        "startsAt": "2026-09-01T19:00:00-05:00",
+        "sportLabel": "Varsity Soccer",
+        "levelLabel": "Varsity Soccer",
+        "sportHint": "soccer",
+        "homeAway": "unknown"
+      }
+    }
+  ],
+  "sourceIds": [
+    "school-site-finalsite:priory.org"
+  ],
+  "unresolvedNames": [],
+  "publishable": false,
+  "createdAt": "2026-09-02T01:08:11.178Z",
+  "updatedAt": "2026-09-02T01:20:03.639Z",
+  "lastVerifiedAt": "2026-09-02T01:20:03.644Z"
+}
