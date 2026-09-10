@@ -101,7 +101,7 @@ for (const name of [
   "WatchedNotWatched",
   "iDontCry",
   "PleaseBeReady",
-  "DontCloneMeTom",
+  "DontCloneMeTom.com",
   "StepInTheRing",
   "OpenDoku",
   "WhatAmIAI",
@@ -798,4 +798,58 @@ test("Disclaimer carries all ten sections and the dateline", () => {
   // from the disclaimer entirely. This lock follows that decision.
   assert.doesNotMatch(disclaimer, /employer/i, "no employer language, named or referenced");
   assert.doesNotMatch(disclaimer, /founder/i, "'owner', never 'founder'");
+});
+
+// ── DontCloneMeTom.com: the label carries .com, the URL stays lowercase ─────
+// Owner, 2026-09-09. The registry name used to be the bare "DontCloneMeTom",
+// so the About page and the card's "Explore …" CTA promoted the project
+// without its .com. The name now carries the suffix itself; ProductCard and
+// the hub menu must split it back off rather than appending a second one.
+
+test("DontCloneMeTom.com is labelled with .com everywhere it is promoted", () => {
+  const p = byName("DontCloneMeTom.com");
+  assert.equal(p.name, "DontCloneMeTom.com");
+  assert.equal(p.href, "https://dontclonemetom.com", "the URL stays lowercase");
+  for (const l of p.links ?? []) {
+    assert.ok(
+      l.href.startsWith("https://dontclonemetom.com"),
+      `${l.label} must point at the lowercase URL`
+    );
+  }
+});
+
+test("no product is registered under a bare DontCloneMeTom name", () => {
+  assert.equal(
+    products.filter((p) => /dontclonemetom/i.test(p.name)).length,
+    1,
+    "exactly one DontCloneMeTom.com entry"
+  );
+  assert.ok(
+    !products.some((p) => p.name === "DontCloneMeTom"),
+    "the bare name must not come back"
+  );
+});
+
+test("the card and the menu never render DontCloneMeTom.com.com", () => {
+  const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  const nav = readFileSync(join(repoRoot, "src/components/OpenMirrorNav.tsx"), "utf8");
+  // Both places that compose a ".com" onto a registry name must first check
+  // whether the name already ends in one.
+  assert.match(card, /nameHasCom = p\.name\.endsWith\("\.com"\)/);
+  assert.match(card, /baseName = nameHasCom \? p\.name\.slice\(0, -4\) : p\.name/);
+  assert.match(nav, /!p\.name\.endsWith\("\.com"\)/);
+  assert.ok(!card.includes("{p.name}\n        {isCom &&"), "old unconditional append is gone");
+});
+
+test("hub copy that names the rescue project says DontCloneMeTom.com", () => {
+  for (const rel of ["src/lib/credits.ts", "src/lib/products.ts"]) {
+    const src = readFileSync(join(repoRoot, rel), "utf8");
+    for (const line of src.split("\n")) {
+      if (!/DontCloneMeTom/.test(line)) continue;
+      assert.ok(
+        /DontCloneMeTom\.com/.test(line),
+        `${rel}: brand reference without .com → ${line.trim()}`
+      );
+    }
+  }
 });

@@ -15,7 +15,8 @@ type Item = { label?: string; href?: string; external?: boolean; note?: string; 
 // menu shows still derives from the registry — no hard-coded product names.
 function menuItem(p: Product, note?: string): Item {
   const external = p.href.startsWith("http");
-  return { label: external ? `${p.name}.com` : p.name, href: p.href, external, note, emoji: p.emoji };
+  const label = external && !p.name.endsWith(".com") ? `${p.name}.com` : p.name;
+  return { label, href: p.href, external, note, emoji: p.emoji };
 }
 
 const featured = featuredProduct();

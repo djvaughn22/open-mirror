@@ -149,7 +149,7 @@ export const products: Product[] = [
     ],
   },
   {
-    name: "DontCloneMeTom",
+    name: "DontCloneMeTom.com",
     emoji: "🐶",
     description:
       "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",

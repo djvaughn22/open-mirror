@@ -34,7 +34,12 @@ export default function ProductCard({ p }: { p: Product }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const isCom = p.href.startsWith("http");
-  const dot = isCom ? ".com" : "";
+  // A registry name may already carry its own ".com" (DontCloneMeTom.com,
+  // owner 2026-09-09). Split it back off so the accent still lands on the
+  // suffix instead of the card rendering a second one.
+  const nameHasCom = p.name.endsWith(".com");
+  const baseName = nameHasCom ? p.name.slice(0, -4) : p.name;
+  const dot = nameHasCom || isCom ? ".com" : "";
   const badge = BADGED_STATUSES.has(p.status) ? STATUS_LABEL[p.status] : null;
   // The Foundation is the one card that should read with more compositional
   // confidence than the rest of the portfolio, and the one product with a
@@ -130,8 +135,8 @@ export default function ProductCard({ p }: { p: Product }) {
           letterSpacing: "-0.01em",
         }}
       >
-        {p.name}
-        {isCom && <span style={{ color: p.accent }}>{dot}</span>}
+        {baseName}
+        {dot ? <span style={{ color: p.accent }}>{dot}</span> : null}
       </h2>
 
       <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "8px 0 0", lineHeight: 1.55 }}>
