@@ -175,9 +175,9 @@ export const products: Product[] = [
     name: "iDontCry",
     emoji: "😂",
     description:
-      "The family's playground — dad jokes, games, and a Dream Lab to dream up anything, free.",
+      "The family's playground — a high-school Sports Desk, dad jokes, games, and a Dream Lab to dream up anything, free.",
     aboutLine:
-      "The family's playground — dad jokes, games, and a Dream Lab to dream up anything.",
+      "The family's playground — a Sports Desk, dad jokes, games, and a Dream Lab to dream up anything.",
     aboutAction: "Play",
     access: "Free",
     accent: "#38BDF8",
@@ -190,12 +190,15 @@ export const products: Product[] = [
     // would only rebuild the pile of prototypes the platform replaced. The
     // four sports are independent games at their own front doors.
     links: [
+      { label: "🏟️ Sports Desk", href: "https://idontcry.com/sports" },
       { label: "🔀 CircuitSwitchGame", href: "https://idontcry.com/games/circuit" },
       { label: "🏈 Football", href: "https://idontcry.com/games/football" },
       { label: "⚾ Baseball", href: "https://idontcry.com/games/baseball" },
       { label: "🎿 Skiing", href: "https://idontcry.com/games/skiing" },
       { label: "🤸 Track & Field", href: "https://idontcry.com/games/track-and-field" },
       { label: "🎹 Piano Corner", href: "https://idontcry.com/piano" },
+      { label: "🛍️ Dream Shop", href: "https://idontcry.com/dream-shop" },
+      { label: "🛎️ Digital Front Desk (demo)", href: "https://idontcry.com/digital-front-desk" },
     ],
   },
   {
@@ -217,6 +220,9 @@ export const products: Product[] = [
       { label: "🧭 First Build Coach", href: "https://stepinthering.com/build" },
       { label: "❔ How It Works", href: "https://stepinthering.com/how" },
       { label: "💻 Build Machine Assessment", href: "https://stepinthering.com/build-machine" },
+      { label: "🧱 Owner's Builds", href: "https://stepinthering.com/builds" },
+      { label: "✅ Ready to Build", href: "https://stepinthering.com/products/ready-to-build" },
+      { label: "🥊 Five Hour Sprint", href: "https://stepinthering.com/products/five-hour-sprint" },
     ],
   },
   {

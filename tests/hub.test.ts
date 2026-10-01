@@ -635,18 +635,27 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     "https://crossheartpray.com/life-essentials",
     "https://crossheartpray.com/explorebible",
   ],
+  // 2026-09-30: Sports Desk (iDontCry's lead product) and Dream Shop added;
+  // both returned 200 live before this lock changed.
   iDontCry: [
+    "https://idontcry.com/sports",
     "https://idontcry.com/games/circuit",
     "https://idontcry.com/games/football",
     "https://idontcry.com/games/baseball",
     "https://idontcry.com/games/skiing",
     "https://idontcry.com/games/track-and-field",
     "https://idontcry.com/piano",
+    "https://idontcry.com/dream-shop",
+    "https://idontcry.com/digital-front-desk",
   ],
   StepInTheRing: [
     "https://stepinthering.com/build",
     "https://stepinthering.com/how",
     "https://stepinthering.com/build-machine",
+    // 2026-09-30: SITR's Owner's Builds and two services; all 200 live.
+    "https://stepinthering.com/builds",
+    "https://stepinthering.com/products/ready-to-build",
+    "https://stepinthering.com/products/five-hour-sprint",
   ],
   OpenDoku: [
     "https://opendoku.com/slopedoku/",
