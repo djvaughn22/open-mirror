@@ -121,12 +121,13 @@ export const STUDIO = {
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
-   * The purpose, in the owner's words (2026-10-08). About only — never a
-   * homepage block, never on a satellite site.
+   * The About page's opening, in the owner's direction (2026-10-08, second
+   * pass): plain, warm, direct. About only — never a homepage block, never on
+   * a satellite site. PleaseBeReady is deliberately not named here.
    */
   purpose: [
-    "Open Mirror exists to spread God's love and help people protect what matters.",
-    "That means a place to pray and read the Bible every day, faithful music, videos, and podcasts, help learning to create and going after a dream, and support for efforts to save puppies.",
+    "Open Mirror LLC is an independent company behind a group of separate websites. Each project has its own name, audience, and purpose.",
+    "Christian faith guides the work. The projects include resources for prayer and Christian media, family entertainment, turning ideas into real projects, and supporting dog rescue. Some projects are established; others are still being tested or developed.",
   ],
   missionShort:
     "Creating useful, original products across\nfaith, family, creativity, and play.",
@@ -148,7 +149,7 @@ export const products: Product[] = [
     description:
       "Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7 — your daily faith routine.",
     aboutLine:
-      "A daily faith routine — Daily Hope, a Bible reading plan, Life Essentials, and Bible Bingo. Gospel first.",
+      "Daily Bible reading and prayer: Daily Hope, a Bible reading plan, Life Essentials, and Bible Bingo.",
     aboutAction: "Open CrossHeartPray",
     access: "Foundation",
     accessNote: "First Build",
@@ -169,7 +170,7 @@ export const products: Product[] = [
     description:
       "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.",
     aboutLine:
-      "Hand-picked Christian music, sermons, podcasts, and encouragement — Gospel first, no algorithm.",
+      "Christian music, sermons, and podcasts, picked by hand.",
     aboutAction: "Listen",
     access: "Free",
     accent: "#A78BFA",
@@ -188,7 +189,7 @@ export const products: Product[] = [
     description:
       "The family's playground — a high-school Sports Desk, dad jokes, games, and a Dream Lab to dream up anything, free.",
     aboutLine:
-      "The family's playground — a Sports Desk, dad jokes, games, and a Dream Lab to dream up anything.",
+      "Family entertainment: local high-school scores, dad jokes, and games.",
     aboutAction: "Play",
     access: "Free",
     accent: "#38BDF8",
@@ -220,7 +221,7 @@ export const products: Product[] = [
     // Trimmed 2026-07-19 (owner copy rule): the About page never mentions
     // prompts or build tooling, so the About line ends at the plan.
     aboutLine:
-      "A rough idea becomes a clear plan for version one.",
+      "Helps you turn a rough idea into a clear plan for a first version.",
     aboutAction: "Start building",
     access: "Free",
     accent: "#60A5FA",
@@ -248,7 +249,7 @@ export const products: Product[] = [
     // Rescue-first, inspired by the cloned-dog headline. NOT "a dog named Tom" —
     // the name speaks for the rescue dog: "Don't clone me, Tom. I'm already here."
     aboutLine:
-      "A rescue-first campaign inspired by a cloned-dog headline. Meet real adoptable dogs already waiting for homes.",
+      "Shows real adoptable dogs that are waiting for homes.",
     aboutAction: "Meet the dogs",
     access: "Free",
     accent: "#2DD4BF",
@@ -271,7 +272,8 @@ export const products: Product[] = [
       // 2026-10-08: the build-tooling clause ("pushed and deployed with one
       // prompt") left with the no-AI direction; the owner's words otherwise stand.
       "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. Newest: MineDoku, dreamed up on iDontCry.",
-    aboutLine: "One puzzle engine, a growing family of games.",
+    aboutLine:
+      "Puzzle games built on one engine: SlopeDoku, SurfDoku, and MineDoku.",
     aboutAction: "Play",
     access: "Free",
     accent: "#7DD3FC",
@@ -295,7 +297,7 @@ export const products: Product[] = [
     description:
       "Remember what you watched. Thumb movies and shows up or down, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
     aboutLine:
-      "Thumb what you watch, then get picks based on what you liked. No account.",
+      "Keep track of the movies and shows you've watched and get picks based on what you liked. No account needed.",
     aboutAction: "Start a list",
     access: "Free",
     accent: "#22D3EE",
@@ -318,7 +320,7 @@ export const products: Product[] = [
     description:
       "See the patterns in the questions you ask, think through one real situation, or look at how you approach tools and decisions. No labels — you're not a category.",
     aboutLine:
-      "See your own patterns, one honest look at a time. Runs on your device, no labels.",
+      "A tool for noticing patterns in the questions you ask and the decisions you make. It runs on your device.",
     aboutAction: "Take a look",
     // Free to use today, still being polished — the qualifier says so plainly.
     access: "Free",
@@ -336,7 +338,7 @@ export const products: Product[] = [
     description:
       "Friendly emergency prep for everyone. Calm, practical, one step at a time.",
     aboutLine:
-      "Friendly emergency preparedness — calm, practical, one small step at a time.",
+      "Free checklists for getting a household ready for storms and power outages.",
     aboutAction: "Get ready",
     access: "Free",
     accent: "#34D399",
@@ -388,7 +390,7 @@ export const products: Product[] = [
     description:
       "Buy a ready-to-use Build Machine, or turn an old laptop or desktop you already own into one — capable computers put back to work.",
     aboutLine:
-      "Buy a finished Build Machine, or turn an old computer you already own into a real development machine.",
+      "Turning older laptops and desktops into working development computers.",
     aboutAction: "View the product",
     access: "Product",
     accessNote: "Preparing for Release",

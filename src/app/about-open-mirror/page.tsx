@@ -10,13 +10,12 @@ import {
   STUDIO,
   type Product,
 } from "../../lib/products";
-import { MISSION_HAIKUS } from "../../lib/haikus";
-import { BE_PREPARED_CARD, OPEN_MIRROR_RESALE_CARD } from "../../lib/destinations";
+import { OPEN_MIRROR_RESALE_CARD } from "../../lib/destinations";
 import { MAILTO_SUBJECT, SERVICE_EMAIL } from "../../lib/services";
 import AboutDestinationCard from "../../components/AboutDestinationCard";
 
 const META_DESCRIPTION =
-  "Open Mirror LLC is the business behind the projects collected here: prayer and faithful media, family sports and games, help building an idea, and a dog rescue campaign.";
+  "Open Mirror LLC is an independent company behind a group of separate websites: prayer and Christian media, family entertainment, turning ideas into real projects, and supporting dog rescue.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -24,27 +23,15 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about-open-mirror" },
 };
 
-// Plain-voice rewrite (owner's brief, 2026-07-20): the page is about Open
-// Mirror and its projects, nothing else. No slogans, no manifesto, no
-// personal names or backstory, no explanatory sections before the projects.
-// Every project entry derives from the registry; the haikus render from
-// src/lib/haikus.ts with no commentary around them.
+// Plain, warm, direct (owner, 2026-10-08, second pass). The opening is the
+// owner's direction, kept in the registry (`STUDIO.purpose`); every project
+// line is a short factual description from the registry. No slogans, no
+// sentimental reminders, no haiku sequence, no repeated taglines.
 
-// 2026-10-08 (owner): About is where the fuller purpose lives — in the
-// owner's words, from the registry (`STUDIO.purpose`) — so the homepage can
-// stay a quiet welcome. Still no slogans and no manifesto sections.
-const OPENING = [
-  "Open Mirror LLC is the business behind the projects collected here.",
-  ...STUDIO.purpose,
-  "CrossHeartPray came first and remains its own faith-based project. The rest are separate projects with their own names, purposes, and audiences.",
-  "Some projects are finished. Some are still being tested, and those are marked as betas or experiments.",
-];
+const PROJECTS_INTRO = "Each name links to the project's own website.";
 
-const PROJECTS_INTRO = "Here is what Open Mirror is working on.";
-
-// Say-less (owner, 2026-07-20): one plain line, one email button. No pitch.
 const WORK_WITH = [
-  "Have something you want to build, fix, or finish? Email me and we'll talk.",
+  "Questions, corrections, or a project you'd like help with? Send an email.",
 ];
 
 const heading2 = "text-2xl font-black tracking-tight";
@@ -116,6 +103,8 @@ function ProjectCard({ product, note }: { product: Product; note?: string }) {
 export default function AboutOpenMirror() {
   const foundation = foundationProduct();
   const allFamily = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
+  // PleaseBeReady.com is listed, low-key, after everything else — never part
+  // of the opening.
   const family = allFamily.filter((p) => !p.experiment);
   const experiments = allFamily.filter((p) => p.experiment);
   const pinned = bottomPinnedProducts();
@@ -133,7 +122,7 @@ export default function AboutOpenMirror() {
           Open Mirror LLC
         </h1>
 
-        {OPENING.map((line) => (
+        {STUDIO.purpose.map((line) => (
           <p key={line} className="mt-4 text-pretty text-base font-semibold leading-8 text-[#94a3b8]">
             {line}
           </p>
@@ -161,32 +150,21 @@ export default function AboutOpenMirror() {
               </div>
             </>
           )}
+          {pinned.length > 0 && (
+            <>
+              <h3 className="mt-8 text-lg font-black tracking-tight">Also</h3>
+              <div className="mt-3 grid gap-3">
+                {pinned.map((p) => (
+                  <ProjectCard key={p.name} product={p} />
+                ))}
+              </div>
+            </>
+          )}
         </section>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-3" aria-label="How Open Mirror works">
-          {MISSION_HAIKUS.map((haiku) => (
-            <div key={haiku.title} className="rounded-2xl border border-[#26324c] bg-[#141d2e] p-5">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#7dd3fc]">
-                {haiku.title}
-              </p>
-              <p className="mt-3 text-[13px] font-semibold leading-6 text-[#94a3b8]">
-                {haiku.lines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Shops: PleaseBeReady's Amazon-oriented card and, beside it, the
-            eBay-oriented Open Mirror Resale card. Each renders only while its
-            destination is confirmed live in the registry — the resale card
-            stays hidden until the real eBay Store URL exists and is enabled
-            in src/lib/destinations.ts. */}
+        {/* The eBay resale card renders only once its real store exists
+            (gated in src/lib/destinations.ts); until then nothing shows. */}
         <div className="mt-10 grid gap-3" aria-label="Shops">
-          {pinned.length > 0 && <AboutDestinationCard card={BE_PREPARED_CARD} />}
           <AboutDestinationCard card={OPEN_MIRROR_RESALE_CARD} />
         </div>
 
@@ -217,8 +195,8 @@ export default function AboutOpenMirror() {
         <section id="disclaimer" className="mt-10 scroll-mt-24">
           <h2 className={heading2}>Disclaimer</h2>
           <p className={body}>
-            Open Mirror LLC is independently owned and operated. Open Mirror
-            products and content are created and published independently.
+            Open Mirror LLC is independently owned and operated, and each
+            project is published on its own.
           </p>
           <p className={body}>
             <Link

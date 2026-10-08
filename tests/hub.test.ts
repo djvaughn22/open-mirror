@@ -274,14 +274,14 @@ test("Open Mirror Resale stays a gated eBay shop card, never a dead link", () =>
     "resale copy stays grounded — no hype");
 });
 
-test("the About page renders the resale card beside PleaseBeReady in the Shops area", () => {
+// 2026-10-08 (owner): the "Be prepared. Nothing dramatic." reminder left
+// About; the gated resale card keeps its quiet Shops area, still below the
+// projects, and still renders nothing until its real store exists.
+test("the About page keeps only the gated resale card in the Shops area", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
   assert.match(about, /OPEN_MIRROR_RESALE_CARD/, "the resale card content comes from the destination config");
-  assert.match(about, /aria-label="Shops"/, "the two shop cards share one quiet Shops area");
-  assert.ok(
-    about.indexOf("OPEN_MIRROR_RESALE_CARD") > about.indexOf("BE_PREPARED_CARD"),
-    "PleaseBeReady stays first; the resale card sits beside/after it"
-  );
+  assert.match(about, /aria-label="Shops"/);
+  assert.doesNotMatch(about, /BE_PREPARED_CARD/, "the standalone reminder section is gone");
 });
 
 test("the destination card component stays generic and safe", () => {
@@ -304,16 +304,11 @@ test("only enabled, labelled, linked destinations render", () => {
   assert.deepEqual(rendered.map((d) => d.label), ["Real"], "disabled and empty destinations stay hidden");
 });
 
-test("About renders the reminder card from its config, below the projects", () => {
+test("About lists PleaseBeReady.com low-key, after every other project", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /AboutDestinationCard/, "About uses the reusable card");
-  assert.match(about, /BE_PREPARED_CARD/, "the card content comes from the destination config");
-  // (2026-08-02: the availability switch renders on /contact only — About
-  // offers no services, just the contact and disclaimer landing sections.)
-  assert.ok(
-    about.indexOf("AboutDestinationCard card=") > about.indexOf('aria-label="Projects"'),
-    "the reminder card sits below the projects, never above the page's own story"
-  );
+  assert.match(about, /AboutDestinationCard/, "About still uses the reusable card for shops");
+  assert.ok(about.indexOf("pinned.map") > about.indexOf("experiments.map"), "PleaseBeReady comes after the betas");
+  assert.doesNotMatch(STUDIO.purpose.join(" "), /PleaseBeReady|prepar/i, "and stays out of the opening");
 });
 
 test("consulting availability is one switch with calm public lines", () => {
@@ -348,15 +343,11 @@ test("Reflect remains hidden everywhere public", () => {
 
 test("About is the plain business page in the owner's structure", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /Open Mirror LLC is the business behind the projects collected here\./,
-    "the owner's plain opening");
-  assert.match(about, /\.\.\.STUDIO\.purpose/, "the fuller purpose lives on About, from the registry (owner, 2026-10-08)");
-  assert.match(about, /Some projects are finished\. Some are still being tested/,
-    "the honest status paragraph");
+  assert.match(about, /STUDIO\.purpose\.map/, "the opening comes from the registry (owner, 2026-10-08)");
+  assert.equal(STUDIO.purpose[0], "Open Mirror LLC is an independent company behind a group of separate websites. Each project has its own name, audience, and purpose.");
+  assert.match(STUDIO.purpose[1], /^Christian faith guides the work\./);
+  assert.match(STUDIO.purpose[1], /Some projects are established; others are still being tested or developed\.$/);
   assert.match(about, /Betas and experiments/, "experiments are named as such on About");
-  assert.match(about, /CrossHeartPray came first and remains its own faith-based project\./,
-    "CrossHeartPray named once, plainly, in the opening");
-  assert.match(about, /Here is what Open Mirror is working on\./, "the Projects intro");
   // Footer landing sections (family standard, 2026-08-02): Contact and
   // Disclaimer live ON About — no services pitch, no availability line.
   assert.match(about, /id="contact"/, "the footer's Contact link must land here");
@@ -365,10 +356,13 @@ test("About is the plain business page in the owner's structure", () => {
   assert.doesNotMatch(about, /AVAILABILITY_LINE/, "About offers no services — just contact");
   assert.match(about, /id="disclaimer"/, "the footer's Disclaimer link must land here");
   assert.match(about, /independently owned and operated/, "the approved independence wording");
-  // Retired copy that must never come back (owner, 2026-07-20).
+  // Retired copy that must never come back.
   assert.doesNotMatch(about, /Travis/, "no personal names on About, ever");
   assert.doesNotMatch(about, /Ideas are better|One studio|What grew from it|Built by starting|sales funnel|starting points/,
     "the studio-story slogans stay retired");
+  assert.doesNotMatch(about, /MISSION_HAIKUS|Nothing dramatic/, "no haiku sequence and no sentimental reminder (owner, 2026-10-08)");
+  const lines = products.map((p) => p.aboutLine ?? "").join(" ");
+  assert.doesNotMatch(lines, /Gospel first/i, "no repeated taglines in the project lines");
 });
 
 test("About derives every project from the registry", () => {
@@ -387,11 +381,8 @@ test("About derives every project from the registry", () => {
   }
 });
 
-test("About renders the locked haikus from their single source", () => {
-  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /MISSION_HAIKUS/, "haikus must be imported from src/lib/haikus.ts");
-  assert.doesNotMatch(about, /Pick one thing to build/, "haiku lines are never copied inline");
-});
+// The haikus left About on 2026-10-08 (owner: "forced"); their words stay
+// preserved in src/lib/haikus.ts by the lock further down.
 
 test("About public copy stays clean", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
@@ -919,9 +910,9 @@ test("below the doors, the homepage follows the owner's hierarchy", () => {
   assert.match(card, /p\.experiment \? STATUS_LABEL\.beta/, "a live experiment reads as a Beta");
 });
 
-test("the purpose is the owner's, and stays free of sales and AI language", () => {
+test("the About opening is the owner's, and stays free of sales and AI language", () => {
   const text = STUDIO.purpose.join(" ");
-  assert.match(text, /spread God's love and help people protect what matters/);
+  assert.match(text, /Christian faith guides the work/);
   assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 
