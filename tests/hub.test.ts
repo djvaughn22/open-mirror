@@ -168,13 +168,13 @@ test("CrossHeartPray is first in shared navigation", () => {
 });
 
 // 2026-07-20 (owner): PleaseBeReady AND Old Computer both left the persistent
-// menu — low-key by design, discovered through the directory, About, and their
-// own pages. Their nav groups are empty and drop out of the rendered order.
+// menu. 2026-10-08 (owner): PleaseBeReady is back, in the tail resources
+// group; Old Computer stays out, so its group still drops from the order.
 test("shared navigation follows the owner's group order", () => {
   assert.deepEqual(
     navGroups().map((g) => g.key),
-    ["foundation", "free", "inProgress"],
-    "Foundation → public → building; resources and product stay low-key"
+    ["foundation", "free", "inProgress", "resources"],
+    "Foundation → public → building → resources; the product stays low-key"
   );
 });
 
@@ -210,15 +210,16 @@ test("Reflect never reaches the shared menu", () => {
 // locks stop it from quietly returning to shared navigation, and stop the
 // reminder card from drifting into sales copy or a dead link.
 
-test("PleaseBeReady left the shared menu but stays in the directory", () => {
+// 2026-10-08 (owner): PleaseBeReady is a priority household door, so it is
+// back in the family menu (supersedes the 2026-07-20 removal). It stays in
+// the tail "resources" group, never among the paid product.
+test("PleaseBeReady is in the family menu, the directory and About", () => {
   const p = byName("PleaseBeReady");
-  assert.equal(p.showInNav, false, "PleaseBeReady must stay out of persistent navigation");
-  assert.notEqual(p.showInPortfolio, false, "…while staying in the homepage directory");
+  assert.notEqual(p.showInNav, false, "PleaseBeReady belongs in the family menu");
+  assert.notEqual(p.showInPortfolio, false, "…and in the homepage directory");
   assert.notEqual(p.showInAbout, false, "…and in the About family");
-  assert.ok(
-    !navProductOrder().some((x) => x.name === "PleaseBeReady"),
-    "PleaseBeReady must not reach any menu group"
-  );
+  const resources = navGroups().find((g) => g.key === "resources");
+  assert.ok(resources?.items.some((x) => x.name === "PleaseBeReady"), "it sits in the resources group");
   const nav = readFileSync(join(repoRoot, "src/components/OpenMirrorNav.tsx"), "utf8");
   assert.match(nav, /showInNav !== false/, "the nav must respect showInNav for pinned resources");
 });

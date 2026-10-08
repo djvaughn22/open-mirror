@@ -137,6 +137,9 @@ conversion rates are not claimed anywhere until measured.
   in family-relevant places. TheDJCares may link PleaseBeReady once, optionally,
   on its About page. **CrossHeartPray sends and receives no sales or
   retargeting links**; its only family tie stays the quiet shared footer.
+- **2026-10-08 update:** PleaseBeReady is back in the hub's family menu
+  (tail "resources" group) and has one row in iDontCry's Everything
+  directory. Satellite menus still list only their own pages, by design.
 
 ### Rules
 

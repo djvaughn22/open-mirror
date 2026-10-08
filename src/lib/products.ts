@@ -262,9 +262,9 @@ export const products: Product[] = [
     status: "live",
     category: "family",
     pinBottom: true,
-    // 2026-07-20: discovered through the homepage directory and the About-page
-    // reminder card, not from every page's persistent menu.
-    showInNav: false,
+    // 2026-07-20 it left the menu; 2026-10-08 (owner): back in the family
+    // menu as a priority household door. It renders in the "resources"
+    // group at the menu's tail, so it never sits between products for sale.
     // 2026-08-11: verified real, public, distinct route beyond the checklist
     // homepage itself.
     links: [
