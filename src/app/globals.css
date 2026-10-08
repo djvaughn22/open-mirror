@@ -2105,6 +2105,13 @@ html[data-om-theme="light"] :is([class*="text-[#f59e0b]" i], [style*="color:#f59
   color: #9a5504 !important;
 }
 
+/* Invalid form fields: the shared light theme repaints every `border-*` class
+   one grey (!important), which erased the "needs a look" outline on the
+   partnership and device forms. Keep it visible, amber not red. */
+html[data-om-theme="light"] body [aria-invalid="true"]:is(input, textarea, select) {
+  border-color: #b45309 !important;
+}
+
 /* These accents ARE handled by the shared theme, but it darkens them only to
    ~4.34:1–4.45:1 on a light card — just under AA. The `body` in each selector
    raises specificity above the shared rule so these win wherever they land.

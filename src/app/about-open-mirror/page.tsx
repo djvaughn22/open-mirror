@@ -168,6 +168,24 @@ export default function AboutOpenMirror() {
           <AboutDestinationCard card={OPEN_MIRROR_RESALE_CARD} />
         </div>
 
+        {/* The one way into /partnership (owner, 2026-10-08): a quiet line,
+            not a pitch. Never repeated on Home, the nav, or a satellite. */}
+        <section id="partnership" className="mt-10 scroll-mt-24">
+          <h2 className={heading2}>Partnership</h2>
+          <p className={body}>
+            Open Mirror welcomes conversations with Christian investors and experienced operators who
+            value useful products, honest work, and long-term partnership.
+          </p>
+          <p className="mt-4">
+            <Link
+              href="/partnership"
+              className={`font-black text-[#7dd3fc] transition hover:underline ${focusRing}`}
+            >
+              Explore a partnership →
+            </Link>
+          </p>
+        </section>
+
         {/* The footer's Contact and Disclaimer links land on these two
             sections (family standard, 2026-08-02). No services offered —
             just the one way to reach the owner. */}

@@ -76,6 +76,22 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 - Legacy copies of some sites exist as hub routes (e.g. `/crossheartpray`);
   the live sites are the standalone repos — don't edit legacy routes.
 
+## Partnership (`/partnership`, owner brief 2026-10-08)
+
+A quiet invitation for Christian investors and experienced operators. One
+entry point only: the Partnership section on About. Never in the nav, the
+homepage, /contact, or a satellite. `noindex` on purpose.
+
+- Copy invites a conversation. Never promise a return, name an amount, or
+  read like a securities offering; keep the "not an offer to sell" line.
+- Never collect proof of funds, fund sizes, net worth, or account numbers.
+- Verification is real: `/api/partnership` emails a six-digit code (Resend)
+  and forwards the inquiry to the owner only after the code matches. Logic
+  and tests: `src/lib/partnershipServer.ts`, `tests/partnership.test.ts`.
+- Online sending needs ONE env var in Vercel: `PARTNERSHIP_FROM_EMAIL`, a
+  sender on a domain verified in Resend. Until then the form hands answers to
+  the visitor's own email app and says so. Inbox defaults to `STUDIO.email`.
+
 ## Open Mirror Shop
 
 **Route:** `/shop`
