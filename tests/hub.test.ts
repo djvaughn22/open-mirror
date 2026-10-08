@@ -890,3 +890,14 @@ test("doors and registry copy carry no AI positioning or unproven claims", () =>
   const copy = [...DOORS.map((d) => `${d.title} ${d.line} ${d.cta}`), ...products.map((p) => p.description)].join(" ");
   assert.doesNotMatch(copy, /\bAI\b|artificial intelligence|cheapest|thousands of|best in|guaranteed/i);
 });
+
+test("door clicks are counted by key only, and never from Do Not Track browsers", () => {
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.match(page, /data-door=\{d\.key\}/);
+  assert.match(page, /<DoorMeasure \/>/);
+  const m = readFileSync(join(repoRoot, "src/components/DoorMeasure.tsx"), "utf8");
+  assert.match(m, /gtag\("event", "door_click", \{ door \}\)/);
+  assert.match(m, /doNotTrack === "1"/);
+  assert.match(m, /globalPrivacyControl/);
+  assert.doesNotMatch(m, /fetch\(|sendBeacon/);
+});

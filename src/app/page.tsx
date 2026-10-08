@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
 import {
   BOTTOM_PIN_LABEL,
@@ -60,9 +61,10 @@ export default function OpenMirrorHub() {
           <h2 id="doors-title" style={{ fontSize: 18, fontWeight: 900, color: text, margin: "0 0 14px", textAlign: "center" }}>
             Where do you want to start?
           </h2>
+          <DoorMeasure />
           <div className="om-doors">
             {doors.map((d) => (
-              <a key={d.key} href={d.href} className="om-door" style={{ border: "1px solid var(--om-border)", borderTop: `3px solid ${d.accent}`, background: "#141d2e", borderRadius: 16, padding: "18px 18px 16px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+              <a key={d.key} href={d.href} data-door={d.key} className="om-door" style={{ border: "1px solid var(--om-border)", borderTop: `3px solid ${d.accent}`, background: "#141d2e", borderRadius: 16, padding: "18px 18px 16px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                 <span style={{ fontSize: 16, fontWeight: 900, color: text }}>
                   <span aria-hidden style={{ marginRight: 8 }}>{d.emoji}</span>{d.title}
                 </span>
