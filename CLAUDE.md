@@ -21,10 +21,21 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   the CrossHeartPray link. No word after About. That is the brand.
 - **Copy style:** DJ's words. Short, plain, human. Never wordy or AI-sounding.
   Faith stays only on CrossHeartPray + TheDJCares; every other site is secular.
-- **Mission (background, not copy):** Open Mirror helps people create — look at
-  yourself, ask "what do I want to create?", sit down, start building. Keep it
-  subtle and in-flow: never write mirror/mission language onto pages, and never
-  tell readers what they're thinking or feeling.
+- **Purpose (owner, 2026-10-08):** "Open Mirror exists to spread God's love and
+  help people protect what matters: connect with CrossHeartPray, discover
+  faithful music, videos, and podcasts, learn to create and pursue their
+  dreams, and support efforts to save puppies." It is quiet on the hub
+  homepage (one welcoming line, `STUDIO.welcome`) and written out only on the
+  hub's About (`STUDIO.purpose`). Never a homepage manifesto, never pasted
+  onto a satellite, and never tells readers what they're thinking or feeling.
+- **Hierarchy (owner, 2026-10-08):** CrossHeartPray = outreach for prayer and
+  faithful media (easy to find and share, never a door or sales path);
+  iDontCry = the family doorway (plain site copy, jokes stay in joke content
+  and buttons); Step In The Ring = the practical build path; PleaseBeReady =
+  a useful secondary resource, discovered from relevant pages, kept out of
+  the purpose statement and never pitched; everything else is a beta or an
+  experiment (`experiment: true` in the registry) until it is ready. No
+  AI-branded features or AI messaging. No revenue plans in public copy.
 - **Mission haikus (First / More / Keep going — owner-replaced Jul 15 2026):**
   the origin-first sequence ("Cross Heart Pray came first…") is verbatim in
   `OPEN_MIRROR_PORTFOLIO_DOCTRINE.md`, verified 5-7-5. It appears ONLY on the

@@ -23,7 +23,9 @@ import {
   foundationProduct,
   navGroups,
   navProductOrder,
+  homeSections,
   products,
+  STUDIO,
   productsByStatus,
   type Product,
 } from "../src/lib/products.ts";
@@ -174,8 +176,8 @@ test("CrossHeartPray is first in shared navigation", () => {
 test("shared navigation follows the owner's group order", () => {
   assert.deepEqual(
     navGroups().map((g) => g.key),
-    ["foundation", "free", "inProgress", "resources"],
-    "Foundation → public → building → resources; the product stays low-key"
+    ["foundation", "free", "experiments", "resources"],
+    "Foundation → public → betas and experiments → resources; the product stays low-key"
   );
 });
 
@@ -347,8 +349,10 @@ test("About is the plain business page in the owner's structure", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
   assert.match(about, /Open Mirror LLC is the business behind the projects collected here\./,
     "the owner's plain opening");
-  assert.match(about, /Some projects are finished\. Some are still being tested\./,
+  assert.match(about, /\.\.\.STUDIO\.purpose/, "the fuller purpose lives on About, from the registry (owner, 2026-10-08)");
+  assert.match(about, /Some projects are finished\. Some are still being tested/,
     "the honest status paragraph");
+  assert.match(about, /Betas and experiments/, "experiments are named as such on About");
   assert.match(about, /CrossHeartPray came first and remains its own faith-based project\./,
     "CrossHeartPray named once, plainly, in the opening");
   assert.match(about, /Here is what Open Mirror is working on\./, "the Projects intro");
@@ -883,18 +887,41 @@ test("the homepage opens on exactly two doors: family and build", () => {
   }
 });
 
-test("PleaseBeReady stays findable: homepage card under More projects, and the menu", () => {
+test("PleaseBeReady stays findable but secondary: last on the homepage, and in the menu", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /<GroupLabel>More projects<\/GroupLabel>/);
   assert.ok(bottomPinnedProducts().some((p) => p.name === "PleaseBeReady"), "its card stays on the homepage");
+  assert.ok(page.indexOf("homeSections()") < page.indexOf("bottomPinnedProducts()") || /pinned\.map/.test(page),
+    "it renders after every other homepage section");
   assert.ok(navProductOrder().some((p) => p.name === "PleaseBeReady"), "and in the family menu");
+  assert.ok(!homeSections().some((s) => s.items.some((p) => p.name === "PleaseBeReady")), "never inside a main section");
+  assert.doesNotMatch(STUDIO.purpose.join(" "), /PleaseBeReady|prepar/i, "and out of the purpose statement");
 });
 
-test("the homepage header stays quiet: name, one descriptor, no mission block", () => {
+test("the homepage header stays quiet: name, one welcoming line, no mission block", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.doesNotMatch(page, /missionShort/);
-  assert.match(page, /An independent creative studio\./);
+  assert.doesNotMatch(page, /missionShort|STUDIO\.purpose/);
+  assert.match(page, /\{STUDIO\.welcome\}/);
+  assert.ok(STUDIO.welcome.length < 80, "one short line");
   assert.match(page, /href="\/about-open-mirror"/);
+});
+
+test("below the doors, the homepage follows the owner's hierarchy", () => {
+  const sections = homeSections();
+  assert.deepEqual(sections.map((s) => s.key), ["faith", "rescue", "experiments"]);
+  assert.deepEqual(sections[0].items.map((p) => p.name), ["CrossHeartPray", "TheDJCares"], "prayer and faithful media first");
+  assert.deepEqual(sections[1].items.map((p) => p.name), ["DontCloneMeTom.com"]);
+  assert.deepEqual(sections[2].items.map((p) => p.name), ["OpenDoku", "WatchedNotWatched", "WhatAmIAI"]);
+  for (const d of DOORS) assert.ok(!sections.some((s) => s.items.some((p) => p.name === d.product)), `${d.product} is a door, not repeated`);
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.match(page, /<ShareLink/, "CrossHeartPray is easy to share from the homepage");
+  const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  assert.match(card, /p\.experiment \? STATUS_LABEL\.beta/, "a live experiment reads as a Beta");
+});
+
+test("the purpose is the owner's, and stays free of sales and AI language", () => {
+  const text = STUDIO.purpose.join(" ");
+  assert.match(text, /spread God's love and help people protect what matters/);
+  assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 
 test("CrossHeartPray is never a door or near a conversion path", () => {

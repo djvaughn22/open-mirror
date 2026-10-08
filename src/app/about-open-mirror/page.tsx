@@ -6,6 +6,7 @@ import {
   bottomPinnedProducts,
   featuredProduct,
   foundationProduct,
+  STUDIO,
   type Product,
 } from "../../lib/products";
 import { MISSION_HAIKUS } from "../../lib/haikus";
@@ -14,7 +15,7 @@ import { MAILTO_SUBJECT, SERVICE_EMAIL } from "../../lib/services";
 import AboutDestinationCard from "../../components/AboutDestinationCard";
 
 const META_DESCRIPTION =
-  "Open Mirror LLC is the business behind the projects collected here — websites, apps, games, creative tools, and digital products.";
+  "Open Mirror LLC is the business behind the projects collected here: prayer and faithful media, family sports and games, help building an idea, and a dog rescue campaign.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -28,11 +29,14 @@ export const metadata: Metadata = {
 // Every project entry derives from the registry; the haikus render from
 // src/lib/haikus.ts with no commentary around them.
 
+// 2026-10-08 (owner): About is where the fuller purpose lives — in the
+// owner's words, from the registry (`STUDIO.purpose`) — so the homepage can
+// stay a quiet welcome. Still no slogans and no manifesto sections.
 const OPENING = [
   "Open Mirror LLC is the business behind the projects collected here.",
-  "It builds websites, apps, games, creative tools, digital products, and other things worth trying.",
-  "Some projects are finished. Some are still being tested. Some will change as they are used.",
-  "CrossHeartPray came first and remains its own faith-based project. The rest are separate products with their own names, purposes, and audiences.",
+  ...STUDIO.purpose,
+  "CrossHeartPray came first and remains its own faith-based project. The rest are separate projects with their own names, purposes, and audiences.",
+  "Some projects are finished. Some are still being tested, and those are marked as betas or experiments.",
 ];
 
 const PROJECTS_INTRO = "Here is what Open Mirror is working on.";
@@ -63,6 +67,16 @@ function ProductName({ product }: { product: Product }) {
 
 /** Small status chip — only for projects still being built, tested, or prepared. */
 function StatusChip({ product }: { product: Product }) {
+  if (product.experiment && product.status === "live") {
+    return (
+      <span
+        className="rounded-full border border-[#26324c] px-2 py-0.5 text-[11px] font-black uppercase tracking-[0.08em]"
+        style={{ color: ACCESS_TONE.Exploring }}
+      >
+        Beta
+      </span>
+    );
+  }
   const label =
     product.accessNote ?? (product.access === "Exploring" ? "Exploring" : undefined);
   if (!label || product.status === "live" || product.status === "foundation") return null;
@@ -98,7 +112,9 @@ function ProjectCard({ product, note }: { product: Product; note?: string }) {
 
 export default function AboutOpenMirror() {
   const foundation = foundationProduct();
-  const family = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
+  const allFamily = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
+  const family = allFamily.filter((p) => !p.experiment);
+  const experiments = allFamily.filter((p) => p.experiment);
   const pinned = bottomPinnedProducts();
   const featured = featuredProduct();
 
@@ -129,9 +145,19 @@ export default function AboutOpenMirror() {
               <ProjectCard key={p.name} product={p} />
             ))}
           </div>
-          <div className="mt-3 grid gap-3">
-            {featured && <ProjectCard product={featured} />}
-          </div>
+          {(experiments.length > 0 || featured) && (
+            <>
+              <h3 className="mt-8 text-lg font-black tracking-tight">Betas and experiments</h3>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {experiments.map((p) => (
+                  <ProjectCard key={p.name} product={p} />
+                ))}
+              </div>
+              <div className="mt-3 grid gap-3">
+                {featured && <ProjectCard product={featured} />}
+              </div>
+            </>
+          )}
         </section>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-3" aria-label="How Open Mirror works">

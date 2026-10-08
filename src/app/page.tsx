@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
+import ShareLink from "../components/ShareLink";
 import {
   BOTTOM_PIN_LABEL,
   bottomPinnedProducts,
   doorProducts,
-  productsByStatus,
-  STATUS_LABEL,
-  STATUS_ORDER,
+  foundationProduct,
+  homeSections,
   STUDIO,
 } from "../lib/products";
 
 export const metadata: Metadata = {
-  description: STUDIO.mission,
+  description: STUDIO.welcome,
   alternates: { canonical: "/" },
 };
 
@@ -31,26 +31,23 @@ function GroupLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function OpenMirrorHub() {
-  const groups = STATUS_ORDER.map((status) => ({
-    status,
-    label: STATUS_LABEL[status],
-    items: productsByStatus(status),
-  })).filter((g) => g.items.length > 0);
+  const sections = homeSections();
   const pinned = bottomPinnedProducts();
   const doors = doorProducts();
+  const foundation = foundationProduct();
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "44px 24px 90px" }}>
 
-        {/* Quiet header: the name and one understated descriptor. The fuller
-            company description lives on About (2026-10-08). */}
+        {/* Quiet header: the name and one welcoming line. The fuller purpose
+            lives on About, never here as a block (owner, 2026-10-08). */}
         <header style={{ textAlign: "center", marginBottom: 36 }}>
           <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 8px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 600, color: sub, margin: 0 }}>
-            An independent creative studio. <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
+            {STUDIO.welcome} <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
           </p>
         </header>
 
@@ -73,22 +70,30 @@ export default function OpenMirrorHub() {
           </div>
         </section>
 
-        <GroupLabel>More projects</GroupLabel>
-        <p style={{ fontSize: 13, fontWeight: 600, color: sub, margin: "-6px 0 28px", lineHeight: 1.6 }}>
-          Each project shows its honest status. Some are finished, some are still being tested.
-        </p>
-
-        {/* CrossHeartPray is the Foundation and stays first.
-            Featured products no longer appear on the homepage. */}
-        {groups.map((g, i) => (
-          <div key={g.status}>
-            <div style={{ marginTop: i === 0 ? 0 : 44 }}>
-              <GroupLabel>{g.label}</GroupLabel>
-              <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                {g.items.map((p) => <ProductCard key={p.name} p={p} />)}
-              </div>
+        {/* Below the doors, in the owner's order (2026-10-08): prayer and
+            faithful media first — CrossHeartPray easy to find and to share,
+            never a door or a sales path — then the rescue project, then the
+            betas and experiments, then PleaseBeReady as a quiet resource. */}
+        {sections.map((s, i) => (
+          <section key={s.key} aria-label={s.label} style={{ marginTop: i === 0 ? 0 : 44 }}>
+            <GroupLabel>{s.label}</GroupLabel>
+            {s.note && (
+              <p style={{ fontSize: 13, fontWeight: 600, color: sub, margin: "-6px 0 18px", lineHeight: 1.6 }}>{s.note}</p>
+            )}
+            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+              {s.items.map((p) => <ProductCard key={p.name} p={p} />)}
             </div>
-          </div>
+            {s.key === "faith" && foundation && (
+              <p style={{ margin: "14px 0 0" }}>
+                <ShareLink
+                  label={`Share ${foundation.name}`}
+                  title={foundation.name}
+                  text={foundation.aboutLine ?? foundation.description}
+                  url={foundation.href}
+                />
+              </p>
+            )}
+          </section>
         ))}
 
         {pinned.length > 0 && (

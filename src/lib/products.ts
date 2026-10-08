@@ -77,6 +77,14 @@ export type Product = {
   showInAbout?: boolean;
   /** hidden from the nav menu when false */
   showInNav?: boolean;
+  /**
+   * A beta or an experiment (owner, 2026-10-08): public and usable, but not
+   * yet one of the projects Open Mirror's purpose rests on. Shown under
+   * "Betas and experiments" everywhere, with a Beta badge while it is live.
+   */
+  experiment?: boolean;
+  /** an explicit homepage section, when neither `experiment` nor the faith category places it */
+  homeSection?: "rescue";
   /** pulled out of the status groups and pinned to the very bottom of the homepage and About page */
   pinBottom?: boolean;
   /**
@@ -94,8 +102,19 @@ export type Product = {
 export const STUDIO = {
   name: "Open Mirror LLC",
   label: "Independent Creative Studio",
+  // The homepage's one welcoming line (and its meta description). Quiet on
+  // purpose: the fuller purpose lives on About.
+  welcome: "Small projects for faith, family, and making things.",
   mission:
-    "Open Mirror LLC is an independent creative studio building useful, original products across faith, family, creativity, and play — all made to help people create.",
+    "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
+  /**
+   * The purpose, in the owner's words (2026-10-08). About only — never a
+   * homepage block, never on a satellite site.
+   */
+  purpose: [
+    "Open Mirror exists to spread God's love and help people protect what matters.",
+    "That means a place to pray and read the Bible every day, faithful music, videos, and podcasts, help learning to create and going after a dream, and support for efforts to save puppies.",
+  ],
   missionShort:
     "Creating useful, original products across\nfaith, family, creativity, and play.",
   supportLine:
@@ -104,7 +123,9 @@ export const STUDIO = {
   email: "ask@openmirrorllc.com",
 };
 
-// Array order is display order within each status group.
+// Array order is display order (owner's hierarchy, 2026-10-08): prayer and
+// faithful media, the family and build doors, the rescue project, then the
+// betas and experiments, then PleaseBeReady as a secondary resource.
 export const products: Product[] = [
   {
     // PROTECTED — the Foundation and first build. Gospel-first identity, its
@@ -146,29 +167,6 @@ export const products: Product[] = [
     // env var that defaults to open/preview — no sign-in required today).
     links: [
       { label: "🎧 Digital DJ", href: "https://thedjcares.com/digital-dj" },
-    ],
-  },
-  {
-    name: "DontCloneMeTom.com",
-    emoji: "🐶",
-    description:
-      "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",
-    // Rescue-first, inspired by the cloned-dog headline. NOT "a dog named Tom" —
-    // the name speaks for the rescue dog: "Don't clone me, Tom. I'm already here."
-    aboutLine:
-      "A rescue-first campaign inspired by a cloned-dog headline. Meet real adoptable dogs already waiting for homes.",
-    aboutAction: "Meet the dogs",
-    access: "Free",
-    accent: "#2DD4BF",
-    href: "https://dontclonemetom.com",
-    status: "live",
-    category: "family",
-    // 2026-08-11: verified real, public, distinct routes — not the bare
-    // homepage. The full grid is ZIP-search-gated on the homepage itself;
-    // these two always show something without any input from the visitor.
-    links: [
-      { label: "🐾 Dog of the Day", href: "https://dontclonemetom.com/today" },
-      { label: "🃏 Make a Dog Card", href: "https://dontclonemetom.com/cards" },
     ],
   },
   {
@@ -230,15 +228,43 @@ export const products: Product[] = [
     ],
   },
   {
+    name: "DontCloneMeTom.com",
+    emoji: "🐶",
+    description:
+      "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",
+    // Rescue-first, inspired by the cloned-dog headline. NOT "a dog named Tom" —
+    // the name speaks for the rescue dog: "Don't clone me, Tom. I'm already here."
+    aboutLine:
+      "A rescue-first campaign inspired by a cloned-dog headline. Meet real adoptable dogs already waiting for homes.",
+    aboutAction: "Meet the dogs",
+    access: "Free",
+    accent: "#2DD4BF",
+    href: "https://dontclonemetom.com",
+    status: "live",
+    category: "family",
+    homeSection: "rescue",
+    // 2026-08-11: verified real, public, distinct routes — not the bare
+    // homepage. The full grid is ZIP-search-gated on the homepage itself;
+    // these two always show something without any input from the visitor.
+    links: [
+      { label: "🐾 Dog of the Day", href: "https://dontclonemetom.com/today" },
+      { label: "🃏 Make a Dog Card", href: "https://dontclonemetom.com/cards" },
+    ],
+  },
+  {
     name: "OpenDoku",
     emoji: "🧩",
     description:
-      "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. Newest: MineDoku, dreamed up on iDontCry, built in StepInTheRing through the gate, and pushed and deployed with one prompt.",
+      // 2026-10-08: the build-tooling clause ("pushed and deployed with one
+      // prompt") left with the no-AI direction; the owner's words otherwise stand.
+      "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. Newest: MineDoku, dreamed up on iDontCry.",
     aboutLine: "One puzzle engine, a growing family of games.",
     aboutAction: "Play",
     access: "Free",
     accent: "#7DD3FC",
     href: "https://opendoku.com",
+    // 2026-10-08 (owner): a beta/experiment until it is ready.
+    experiment: true,
     status: "live",
     category: "play",
     expandLabel: "games",
@@ -247,6 +273,49 @@ export const products: Product[] = [
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
       { label: "⛏️ MineDoku", href: "https://opendoku.com/minedoku/" },
     ],
+  },
+  {
+    name: "WatchedNotWatched",
+    emoji: "🎬",
+    // No emoji inside the sentence — on phones without the glyphs it used to
+    // read "Thumb movies and shows or , sort…".
+    description:
+      "Remember what you watched. Thumb movies and shows up or down, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
+    aboutLine:
+      "Thumb what you watch, then get picks based on what you liked. No account.",
+    aboutAction: "Start a list",
+    access: "Free",
+    accent: "#22D3EE",
+    href: "https://watchednotwatched.com",
+    // 2026-10-08 (owner): a beta/experiment until it is ready.
+    experiment: true,
+    status: "live",
+    category: "family",
+    // 2026-08-11: verified real, public routes — no account/AI required for
+    // any of these; /foryou is the deterministic, no-LLM recommendation path.
+    links: [
+      { label: "🔍 Search & Track", href: "https://watchednotwatched.com/search" },
+      { label: "🏆 Top 222", href: "https://watchednotwatched.com/top" },
+      { label: "🎯 For You", href: "https://watchednotwatched.com/foryou" },
+    ],
+  },
+  {
+    name: "WhatAmIAI",
+    emoji: "🤖",
+    description:
+      "See the patterns in the questions you ask, think through one real situation, or look at how you approach tools and decisions. No labels — you're not a category.",
+    aboutLine:
+      "See your own patterns, one honest look at a time. Runs on your device, no labels.",
+    aboutAction: "Take a look",
+    // Free to use today, still being polished — the qualifier says so plainly.
+    access: "Free",
+    accessNote: "Building",
+    accent: "#E879F9",
+    href: "https://whatamiai.com",
+    // 2026-10-08 (owner): a beta/experiment until it is ready.
+    experiment: true,
+    status: "building",
+    category: "creativity",
   },
   {
     name: "PleaseBeReady",
@@ -288,45 +357,6 @@ export const products: Product[] = [
     showInPortfolio: false,
     showInAbout: false,
     showInNav: false,
-  },
-  {
-    name: "WatchedNotWatched",
-    emoji: "🎬",
-    // No emoji inside the sentence — on phones without the glyphs it used to
-    // read "Thumb movies and shows or , sort…".
-    description:
-      "Remember what you watched. Thumb movies and shows up or down, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
-    aboutLine:
-      "Thumb what you watch, then get picks based on what you liked. No account.",
-    aboutAction: "Start a list",
-    access: "Free",
-    accent: "#22D3EE",
-    href: "https://watchednotwatched.com",
-    status: "live",
-    category: "family",
-    // 2026-08-11: verified real, public routes — no account/AI required for
-    // any of these; /foryou is the deterministic, no-LLM recommendation path.
-    links: [
-      { label: "🔍 Search & Track", href: "https://watchednotwatched.com/search" },
-      { label: "🏆 Top 222", href: "https://watchednotwatched.com/top" },
-      { label: "🎯 For You", href: "https://watchednotwatched.com/foryou" },
-    ],
-  },
-  {
-    name: "WhatAmIAI",
-    emoji: "🤖",
-    description:
-      "See the patterns in the questions you ask, think through one real situation, or look at how you approach tools and decisions. No labels — you're not a category.",
-    aboutLine:
-      "See your own patterns, one honest look at a time. Runs on your device, no labels.",
-    aboutAction: "Take a look",
-    // Free to use today, still being polished — the qualifier says so plainly.
-    access: "Free",
-    accessNote: "Building",
-    accent: "#E879F9",
-    href: "https://whatamiai.com",
-    status: "building",
-    category: "creativity",
   },
   // Fambookagram + Friendbookagram retired as standalone products on
   // 2026-08-02 (owner decision). The concepts live on as playground pages:
@@ -387,14 +417,14 @@ export const DOORS: Door[] = [
   {
     key: "family",
     title: "Family & play",
-    line: "Games, a high-school Sports Desk, and labs for dreaming things up. Free for parents and kids.",
+    line: "For dads, moms, and families: local high-school scores, games, and dad jokes. Free.",
     product: "iDontCry",
     cta: "Open iDontCry",
   },
   {
     key: "build",
     title: "Build an idea",
-    line: "Turn a rough idea into clear steps for a first version you can finish. Free while in open beta.",
+    line: "For when you're ready to make an idea real: clear, practical steps to a first version you can finish. Free while in open beta.",
     product: "StepInTheRing",
     cta: "Start building",
   },
@@ -407,6 +437,38 @@ export function doorProducts(): (Door & { href: string; accent: string; emoji: s
     if (!p) throw new Error(`door ${d.key} names a product missing from the registry: ${d.product}`);
     return { ...d, href: p.href, accent: p.accent, emoji: p.emoji };
   });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// The homepage below the doors (owner's hierarchy, 2026-10-08). Each section
+// is named for what a visitor finds there, never for an internal status, and
+// lists registry products in registry order. The door products are not
+// repeated here, PleaseBeReady keeps its own quiet section at the bottom
+// (`bottomPinnedProducts`), and the featured product stays About-only.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type HomeSectionKey = "faith" | "rescue" | "experiments";
+
+export const HOME_SECTIONS: { key: HomeSectionKey; label: string; note?: string }[] = [
+  { key: "faith", label: "Prayer and faithful media" },
+  { key: "rescue", label: "Dog rescue" },
+  { key: "experiments", label: "Betas and experiments", note: "Still being tested, and some will change." },
+];
+
+/** Which homepage section a product belongs to, or undefined when it has its own place. */
+export function homeSectionOf(p: Product): HomeSectionKey | undefined {
+  if (p.showInPortfolio === false || p.pinBottom || p.featured) return undefined;
+  if (DOORS.some((d) => d.product === p.name)) return undefined;
+  if (p.experiment) return "experiments";
+  if (p.category === "faith") return "faith";
+  if (p.homeSection) return p.homeSection;
+  return "experiments";
+}
+
+export function homeSections(): { key: HomeSectionKey; label: string; note?: string; items: Product[] }[] {
+  return HOME_SECTIONS.map((s) => ({ ...s, items: products.filter((p) => homeSectionOf(p) === s.key) })).filter(
+    (s) => s.items.length > 0,
+  );
 }
 
 /** Portfolio display order: Foundation → Live → Beta → Building → Exploring → Archived. */
@@ -454,7 +516,8 @@ export function foundationProduct(): Product | undefined {
 }
 
 /** Bottom-of-page section shared by the homepage and About page. */
-export const BOTTOM_PIN_LABEL = "Live resource for emergency planning";
+// A secondary, useful resource — not part of the main purpose (owner, 2026-10-08).
+export const BOTTOM_PIN_LABEL = "Be prepared";
 
 export function bottomPinnedProducts(): Product[] {
   return products.filter(
@@ -467,7 +530,7 @@ export function bottomPinnedProducts(): Product[] {
 //
 //   1. CrossHeartPray — the Foundation
 //   2. Public projects, free to use
-//   3. Building projects
+//   3. Building projects, then betas and experiments
 //   4. Exploring ideas
 //   5. PleaseBeReady and approved resources
 //   6. Old Computer to Build Machine — last
@@ -481,6 +544,7 @@ export type NavGroupKey =
   | "foundation"
   | "free"
   | "inProgress"
+  | "experiments"
   | "exploring"
   | "resources"
   | "product";
@@ -513,12 +577,17 @@ export function navGroups(): NavGroup[] {
     {
       key: "free",
       heading: "Free to use",
-      items: pick((p) => p.status === "live" && ungrouped(p)),
+      items: pick((p) => p.status === "live" && !p.experiment && ungrouped(p)),
     },
     {
       key: "inProgress",
       heading: "In progress",
-      items: pick((p) => (p.status === "building" || p.status === "beta") && ungrouped(p)),
+      items: pick((p) => (p.status === "building" || p.status === "beta") && !p.experiment && ungrouped(p)),
+    },
+    {
+      key: "experiments",
+      heading: "Betas and experiments",
+      items: pick((p) => p.experiment === true && ungrouped(p)),
     },
     {
       key: "exploring",

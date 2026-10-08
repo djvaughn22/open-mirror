@@ -392,7 +392,7 @@ const ROADMAP = [
   "Measure installation time, support needs, compatibility, and real cost.",
   "Test approved laptops, mini PCs, and small desktops through a limited United States mail-in pilot.",
   "Add selected desktop towers once packaging and shipping procedures are proven.",
-  "Expand only after the process is safe, profitable, and repeatable.",
+  "Expand only after the process is safe, reliable, and repeatable.",
 ];
 
 const FAQ: { q: string; a: string }[] = [

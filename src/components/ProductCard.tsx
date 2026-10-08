@@ -40,7 +40,9 @@ export default function ProductCard({ p }: { p: Product }) {
   const nameHasCom = p.name.endsWith(".com");
   const baseName = nameHasCom ? p.name.slice(0, -4) : p.name;
   const dot = nameHasCom || isCom ? ".com" : "";
-  const badge = BADGED_STATUSES.has(p.status) ? STATUS_LABEL[p.status] : null;
+  // A live experiment reads as a Beta (owner, 2026-10-08); one still being
+  // built keeps its honest "Building".
+  const badge = BADGED_STATUSES.has(p.status) ? STATUS_LABEL[p.status] : p.experiment ? STATUS_LABEL.beta : null;
   // The Foundation is the one card that should read with more compositional
   // confidence than the rest of the portfolio, and the one product with a
   // real dedicated brand mark on disk (public/crossheartpray-icon.svg) rather
