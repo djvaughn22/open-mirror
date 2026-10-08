@@ -98,18 +98,91 @@ Open Mirror does not exist to collect websites.
 
 It exists to turn imagination into useful, ownable, real-world value.
 
+## Portfolio direction (owner-approved, 2026-10-07)
+
+This section is the current direction for brand, traffic, UX and messaging.
+Where older sections of this file disagree on those topics, this one wins.
+Older sections stay as written, as the record of earlier decisions.
+
+**Goal:** use limited build time to produce working products, real visitor
+evidence, and honest revenue opportunities. Optimize for useful outcomes and
+measured results, not feature count, traffic, or number of sites touched.
+
+### Roles
+
+| Property | Role now | Status (2026-10-07) | Primary visitor | Main action |
+|---|---|---|---|---|
+| Open Mirror LLC (hub) | Umbrella company and portfolio map | Live | Anyone arriving at the company | Pick one of three doors |
+| iDontCry | Free family doorway | Live (games, Sports Desk); Dream Lab/Shop and front desk demo are beta | Parents and kids | Play, follow a team, dream something up |
+| Step In The Ring | Execution product: turns an idea into finished steps | Live, free, open beta. No paid offer exists | Someone with one idea to build | Start a build; use a free tool |
+| PleaseBeReady | Primary consumer revenue opportunity: free help, affiliate gear, future paid tools | Live. Free help + affiliate links. Paid tools: not built | A household getting ready | Pick a need, do one free step |
+| CrossHeartPray | Independent Scripture and prayer outreach | Foundation, live | Anyone seeking a daily faith routine | Daily Hope, reading plan |
+| TheDJCares | Its own audience: curated Gospel-first media | Live | Listeners | Listen / watch |
+| DontCloneMeTom, WatchedNotWatched, OpenDoku, WhatAmIAI, Build Machine | Beta or learning surfaces | As labelled in `src/lib/products.ts` | Their own audiences | — |
+
+Nothing here is more built than its label. Revenue, user counts and
+conversion rates are not claimed anywhere until measured.
+
+### Flow
+
+- **Hub homepage:** three doors first — Family & play (iDontCry), Build an
+  idea (Step In The Ring), Prepare a household (PleaseBeReady). Source:
+  `DOORS` in `src/lib/products.ts`. Everything else stays listed below with
+  its honest status, outside the conversion path.
+- **PleaseBeReady first visit:** pick a household need → one small free step
+  sourced to an official guide → that need's checklist → optional gear,
+  folded and disclosed. Paid tools are labelled "None yet."
+- **Handoffs:** iDontCry offers Step In The Ring where a child or parent has a
+  real creation idea (Dream Lab, Dream Shop, Game Lab), and PleaseBeReady only
+  in family-relevant places. TheDJCares may link PleaseBeReady once, optionally,
+  on its About page. **CrossHeartPray sends and receives no sales or
+  retargeting links**; its only family tie stays the quiet shared footer.
+
+### Rules
+
+- No AI features, AI product positioning, or AI messaging in public copy.
+  Describe the work and the result in ordinary words.
+- No account requirements, paid APIs, subscriptions, billing changes, or new
+  infrastructure added to make the portfolio look bigger.
+- No comparative price claim ("cheapest", "best price") without a dated
+  competitive-price table behind it.
+- A paid option appears only when a real, working, validated offer exists.
+  Until then, the page says plainly that there is none.
+- Protect working pages, games, saved progress, routes and analytics. Do not
+  delete a working experience to simplify navigation.
+
+### First test and measurement
+
+Measured with what already exists — no new tracking. PleaseBeReady and the
+hub already load Google Analytics; Step In The Ring has its own privacy-safe
+usage counter (`/owner/usage`).
+
+1. **Hub door use:** share of homepage visits that leave through each door
+   (outbound clicks in Analytics; needs GA4 enhanced measurement on, which
+   has not been checked). Question: do visitors pick a door, or
+   scroll past it?
+2. **PleaseBeReady first step:** visits that pick a need and then open a
+   checklist guide link; gear-link clicks as a share of visits (Amazon
+   Associates reports clicks and orders). Question: does the free step come
+   before the gear?
+3. **Step In The Ring:** builds started and kept (`/owner/usage`).
+
+Read the numbers after four weeks (around 2026-11-04) before building more.
+Detailed offer test plans stay in the owner's private notes, not in this
+public repo.
+
 ## Current portfolio roles
 
 - **CrossHeartPray** — Foundation. Bible-first, humble, useful, calm, source-backed. Not an AI product, wellness brand, or sales funnel.
 - **TheDJCares** — Curated supporting product. Trusted music, teaching, encouragement. Warm, low-noise, Gospel-first. Not an open platform or algorithm.
 - **DontCloneMeTom** — Rescue-focused mission product. Helps real adoptable dogs find homes. Hero: "Every good boy and girl deserves a good home."
 - **iDontCry** — Family creative playground. Broad imagination and creation for kids and families. Not the Engine Room.
-- **StepInTheRing** — Build system and Engine Room. "Take any idea and turn it into a real first build. AI in your corner." The Engine Room lives here, not in the hub.
+- **StepInTheRing** — Build system and Engine Room. "Take any idea and turn it into a real first build. AI in your corner." The Engine Room lives here, not in the hub. *(2026-10-07: no AI positioning in public copy; see Portfolio direction.)*
 - **OpenDoku** — Reusable game and puzzle engine. Individual games are experiments, not all major releases.
 - **WatchedNotWatched** — Active consumer-product build. Personal watch list and recommendations. Local-first, no account. No family-filter/scene-skipping claims; no universal-provider claims.
 - **WhatAmIAI** — Self-assessment and AI-usage reflection. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding.
 - **Reflect** — Hidden personal experiment. Route stays live; not promoted in the portfolio.
-- **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority.
+- **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority. *(Superseded 2026-10-07: now the primary consumer revenue opportunity; see Portfolio direction.)*
 - **Fambookagram / Friendbookagram** — Retired as standalone products on 2026-08-02. The concepts live on as playground pages inside iDontCry (idontcry.com/fambookagram, idontcry.com/friendbookagram); standalone repos archived with history preserved.
 - **Design Shop / Creation Engines** — Commercial creation infrastructure. Belongs with StepInTheRing, not the hub. Engines must eventually produce real finished outputs, not just ideas.
 

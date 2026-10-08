@@ -222,7 +222,11 @@ export const products: Product[] = [
       { label: "💻 Build Machine Assessment", href: "https://stepinthering.com/build-machine" },
       { label: "🧱 Owner's Builds", href: "https://stepinthering.com/builds" },
       { label: "✅ Ready to Build", href: "https://stepinthering.com/products/ready-to-build" },
-      { label: "🥊 Five Hour Sprint", href: "https://stepinthering.com/products/five-hour-sprint" },
+      // 2026-10-07: the Five Hour Sprint service page was retired on SITR
+      // (it 307s to the sprint tool); the free tools and the honest
+      // live/beta status page replace it here.
+      { label: "🧰 Free Tools", href: "https://stepinthering.com/tools" },
+      { label: "📋 What's Built", href: "https://stepinthering.com/whats-built" },
     ],
   },
   {
@@ -358,6 +362,58 @@ export const products: Product[] = [
       "An unused laptop with a dark screen beside the same laptop running a Build Log website, above the words: same laptop, Linux, real developer tools, and your own website live on the internet.",
   },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// The three growth doors (owner direction, 2026-10-07).
+//
+// The homepage opens on three choices — family/play, build an idea, prepare a
+// household — so a visitor reaches the right product in one step. Everything
+// else (the Foundation, outreach, beta and learning projects) stays visible
+// below with its honest status, outside this path. CrossHeartPray is never a
+// door: it is outreach, not part of any conversion path.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type Door = {
+  key: "family" | "build" | "prepare";
+  title: string;
+  line: string;
+  /** registry name of the product this door opens */
+  product: string;
+  cta: string;
+};
+
+export const DOORS: Door[] = [
+  {
+    key: "family",
+    title: "Family & play",
+    line: "Games, a high-school Sports Desk, and labs for dreaming things up. Free for parents and kids.",
+    product: "iDontCry",
+    cta: "Open iDontCry",
+  },
+  {
+    key: "build",
+    title: "Build an idea",
+    line: "Turn a rough idea into clear steps for a first version you can finish. Free while in open beta.",
+    product: "StepInTheRing",
+    cta: "Start building",
+  },
+  {
+    key: "prepare",
+    title: "Prepare a household",
+    line: "Pick what you're getting ready for, do one small free step today, then work the checklist.",
+    product: "PleaseBeReady",
+    cta: "Get ready",
+  },
+];
+
+/** The doors joined to their registry entries (accent, href) — pages never hard-code either. */
+export function doorProducts(): (Door & { href: string; accent: string; emoji: string })[] {
+  return DOORS.map((d) => {
+    const p = products.find((x) => x.name === d.product);
+    if (!p) throw new Error(`door ${d.key} names a product missing from the registry: ${d.product}`);
+    return { ...d, href: p.href, accent: p.accent, emoji: p.emoji };
+  });
+}
 
 /** Portfolio display order: Foundation → Live → Beta → Building → Exploring → Archived. */
 export const STATUS_ORDER: ProductStatus[] = [

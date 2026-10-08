@@ -3,6 +3,7 @@ import ProductCard from "../components/ProductCard";
 import {
   BOTTOM_PIN_LABEL,
   bottomPinnedProducts,
+  doorProducts,
   productsByStatus,
   STATUS_LABEL,
   STATUS_ORDER,
@@ -35,6 +36,7 @@ export default function OpenMirrorHub() {
     items: productsByStatus(status),
   })).filter((g) => g.items.length > 0);
   const pinned = bottomPinnedProducts();
+  const doors = doorProducts();
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
@@ -52,6 +54,29 @@ export default function OpenMirrorHub() {
           </p>
           <div aria-hidden style={{ height: 1, width: 64, background: border, margin: "28px auto 0" }} />
         </header>
+
+        {/* The three doors: one obvious step to the right product. */}
+        <section aria-labelledby="doors-title" style={{ marginBottom: 52 }}>
+          <h2 id="doors-title" style={{ fontSize: 18, fontWeight: 900, color: text, margin: "0 0 14px", textAlign: "center" }}>
+            Where do you want to start?
+          </h2>
+          <div className="om-doors">
+            {doors.map((d) => (
+              <a key={d.key} href={d.href} className="om-door" style={{ border: "1px solid var(--om-border)", borderTop: `3px solid ${d.accent}`, background: "#141d2e", borderRadius: 16, padding: "18px 18px 16px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                <span style={{ fontSize: 16, fontWeight: 900, color: text }}>
+                  <span aria-hidden style={{ marginRight: 8 }}>{d.emoji}</span>{d.title}
+                </span>
+                <span style={{ fontSize: 14, fontWeight: 600, color: sub, lineHeight: 1.55, flex: 1 }}>{d.line}</span>
+                <span style={{ fontSize: 13, fontWeight: 800, color: d.accent }}>{d.cta} →</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <GroupLabel>Everything Open Mirror makes</GroupLabel>
+        <p style={{ fontSize: 13, fontWeight: 600, color: sub, margin: "-6px 0 28px", lineHeight: 1.6 }}>
+          Each project shows its honest status. Some are finished, some are still being tested.
+        </p>
 
         {/* CrossHeartPray is the Foundation and stays first.
             Featured products no longer appear on the homepage. */}

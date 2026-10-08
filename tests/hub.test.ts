@@ -15,6 +15,8 @@ import { join } from "node:path";
 import test from "node:test";
 
 import {
+  DOORS,
+  doorProducts,
   aboutFamilyProducts,
   featuredProduct,
   foundationProduct,
@@ -655,7 +657,10 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     // 2026-09-30: SITR's Owner's Builds and two services; all 200 live.
     "https://stepinthering.com/builds",
     "https://stepinthering.com/products/ready-to-build",
-    "https://stepinthering.com/products/five-hour-sprint",
+    // 2026-10-07: five-hour-sprint (retired, 307) replaced by the free tools
+    // and the live/beta status page; both 200 live.
+    "https://stepinthering.com/tools",
+    "https://stepinthering.com/whats-built",
   ],
   OpenDoku: [
     "https://opendoku.com/slopedoku/",
@@ -861,4 +866,26 @@ test("hub copy that names the rescue project says DontCloneMeTom.com", () => {
       );
     }
   }
+});
+
+// ── The three growth doors (owner direction 2026-10-07) ─────────────────────
+
+test("the homepage opens on exactly three doors: family, build, prepare", () => {
+  assert.deepEqual(DOORS.map((d) => d.key), ["family", "build", "prepare"]);
+  assert.deepEqual(DOORS.map((d) => d.product), ["iDontCry", "StepInTheRing", "PleaseBeReady"]);
+  for (const d of doorProducts()) {
+    assert.match(d.href, /^https:\/\//, `${d.key} door must link to a live site`);
+    assert.ok(d.line.length > 20 && d.cta.length > 0, `${d.key} door needs a plain line and an action`);
+  }
+});
+
+test("CrossHeartPray is never a door or near a conversion path", () => {
+  assert.ok(!DOORS.some((d) => /crossheart/i.test(d.product)), "CrossHeartPray stays out of the doors");
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.match(page, /doorProducts\(\)/, "the homepage renders the doors from the registry");
+});
+
+test("doors and registry copy carry no AI positioning or unproven claims", () => {
+  const copy = [...DOORS.map((d) => `${d.title} ${d.line} ${d.cta}`), ...products.map((p) => p.description)].join(" ");
+  assert.doesNotMatch(copy, /\bAI\b|artificial intelligence|cheapest|thousands of|best in|guaranteed/i);
 });
