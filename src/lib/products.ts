@@ -406,6 +406,9 @@ export const products: Product[] = [
 
 export type Door = {
   key: "family" | "build";
+  /** the card headline: the brand, written the way the brand writes itself */
+  headline: string;
+  /** the smaller subtitle under the headline: what the door is for */
   title: string;
   line: string;
   /** registry name of the product this door opens (its href and accent) */
@@ -416,12 +419,14 @@ export type Door = {
   icon: string;
 };
 
-// 2026-10-08 (owner): the doors present AUDIENCES, not brands. No product name
-// or domain on either card, no joke copy; each still links straight to its
-// own site (no Open Mirror interstitial), where the brand is unchanged.
+// 2026-10-08 (owner, corrected the same day): each card's HEADLINE is the
+// brand — iDontCry, Step In The Ring — with "Family & play" / "Build an idea"
+// as a smaller subtitle. Plain descriptions, no joke copy, no domain on the
+// card; each links straight to its own site (no Open Mirror interstitial).
 export const DOORS: Door[] = [
   {
     key: "family",
+    headline: "iDontCry",
     title: "Family & play",
     line: "For dads, moms, and kids: local high-school scores, games, and things to make together. Free.",
     product: "iDontCry",
@@ -430,6 +435,7 @@ export const DOORS: Door[] = [
   },
   {
     key: "build",
+    headline: "Step In The Ring",
     title: "Build an idea",
     line: "For when you're ready to make an idea real: clear, practical steps to a first version you can finish. Free while in open beta.",
     product: "StepInTheRing",

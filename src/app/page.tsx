@@ -60,8 +60,11 @@ export default function OpenMirrorHub() {
           <div className="om-doors">
             {doors.map((d) => (
               <a key={d.key} href={d.href} data-door={d.key} className="om-door" style={{ border: "1px solid var(--om-border)", borderTop: `3px solid ${d.accent}`, background: "#141d2e", borderRadius: 16, padding: "18px 18px 16px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 8 }}>
-                <span style={{ fontSize: 16, fontWeight: 900, color: text }}>
-                  <span aria-hidden style={{ marginRight: 8 }}>{d.icon}</span>{d.title}
+                <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <span style={{ fontSize: 19, fontWeight: 900, color: text, lineHeight: 1.2 }}>
+                    <span aria-hidden style={{ marginRight: 8 }}>{d.icon}</span>{d.headline}
+                  </span>
+                  <span data-door-subtitle style={{ fontSize: 13, fontWeight: 800, color: d.accent, letterSpacing: "0.01em" }}>{d.title}</span>
                 </span>
                 <span style={{ fontSize: 14, fontWeight: 600, color: sub, lineHeight: 1.55, flex: 1 }}>{d.line}</span>
                 <span style={{ fontSize: 13, fontWeight: 800, color: d.accent }}>{d.cta} →</span>

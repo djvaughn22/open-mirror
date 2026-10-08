@@ -924,17 +924,21 @@ test("the purpose is the owner's, and stays free of sales and AI language", () =
   assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 
-test("the door cards name an audience, never a brand, and link straight to the site", () => {
-  assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Build an idea"], "headings are exact");
+// 2026-10-08 (owner, corrected): the brand is the headline, the audience
+// line is a smaller subtitle, and the domain is only the link destination.
+test("each door card leads with its brand, then its subtitle, and links straight to the site", () => {
+  assert.deepEqual(DOORS.map((d) => d.headline), ["iDontCry", "Step In The Ring"], "brand headlines, exactly");
+  assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Build an idea"], "subtitles, exactly");
   for (const d of doorProducts()) {
-    const card = `${d.title} ${d.line} ${d.cta} ${d.icon}`;
-    assert.doesNotMatch(card, /idontcry|step\s*in\s*the\s*ring|stepinthering|\.com/i, `${d.key} card shows no brand or domain`);
+    const card = `${d.headline} ${d.title} ${d.line} ${d.cta} ${d.icon}`;
+    assert.doesNotMatch(card, /\.com/i, `${d.key} card shows no domain`);
     assert.doesNotMatch(card, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
     assert.match(d.href, /^https:\/\/(idontcry|stepinthering)\.com$/, `${d.key} links straight to its own site`);
   }
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
   assert.match(page, /href=\{d\.href\}/, "no hub interstitial between the door and the site");
-  assert.doesNotMatch(page, /d\.emoji/, "doors use their own neutral icon, not the brand emoji");
+  assert.ok(page.indexOf("{d.headline}") < page.indexOf("{d.title}"), "the headline renders above the subtitle");
+  assert.match(page, /fontSize: 19[^}]*\}\}>\s*<span aria-hidden[^>]*>\{d\.icon\}<\/span>\{d\.headline\}/, "the brand is the larger line");
 });
 
 test("CrossHeartPray is never a door or near a conversion path", () => {
