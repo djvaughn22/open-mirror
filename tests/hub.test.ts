@@ -120,6 +120,16 @@ for (const name of [
   });
 }
 
+test("About groups WatchedNotWatched.com with the main projects and keeps the rest under Betas and experiments", () => {
+  const wnw = products.find((p) => p.name === "WatchedNotWatched")!;
+  assert.notEqual(wnw.experiment, true, "no Beta badge, no experiments group");
+  const family = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
+  assert.deepEqual(family.filter((p) => p.experiment).map((p) => p.name), ["OpenDoku", "WhatAmIAI"]);
+  assert.ok(family.some((p) => p.name === "WatchedNotWatched" && !p.experiment));
+  assert.equal(featuredProduct()?.accessNote, "Preparing for Release", "the Build Machine keeps its accurate label");
+  assert.equal(products.find((p) => p.name === "WhatAmIAI")?.status, "building");
+});
+
 test("WhatAmIAI is represented honestly — free to use, still building", () => {
   const p = byName("WhatAmIAI");
   assert.equal(p.status, "building");
@@ -805,10 +815,14 @@ test("Disclaimer carries all ten sections and the dateline", () => {
   for (const heading of headings) {
     assert.ok(disclaimer.includes(heading), `Disclaimer section present: ${heading}`);
   }
-  assert.match(disclaimer, /Last updated: July 2026/, "the small-print dateline is present");
-  // 2026-08-17 (owner, commit 0341e97): the employer reference was removed
-  // from the disclaimer entirely. This lock follows that decision.
-  assert.doesNotMatch(disclaimer, /employer/i, "no employer language, named or referenced");
+  assert.match(disclaimer, /Last updated: October 2026/, "the small-print dateline is present");
+  // 2026-10-08 (owner): the employer-independence statement is back (it was
+  // removed on 2026-08-17), in general terms only — no employer is named.
+  for (const page of [disclaimer, readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8")]) {
+    const flat = page.replace(/\s+/g, " ").replace(/&apos;/g, "'");
+    assert.match(flat, /independently owned and operated/);
+    assert.match(flat, /not affiliated with, sponsored by, or endorsed by the owner's current or former employers or their affiliates/);
+  }
   assert.doesNotMatch(disclaimer, /founder/i, "'owner', never 'founder'");
 });
 
@@ -899,10 +913,12 @@ test("the homepage header stays quiet: name, one welcoming line, no mission bloc
 
 test("below the doors, the homepage follows the owner's hierarchy", () => {
   const sections = homeSections();
-  assert.deepEqual(sections.map((s) => s.key), ["faith", "rescue", "experiments"]);
+  assert.deepEqual(sections.map((s) => s.key), ["faith", "rescue", "projects", "experiments"]);
   assert.deepEqual(sections[0].items.map((p) => p.name), ["CrossHeartPray", "TheDJCares"], "prayer and faithful media first");
   assert.deepEqual(sections[1].items.map((p) => p.name), ["DontCloneMeTom.com"]);
-  assert.deepEqual(sections[2].items.map((p) => p.name), ["OpenDoku", "WatchedNotWatched", "WhatAmIAI"]);
+  // 2026-10-08 (owner): WatchedNotWatched.com is a regular project, not a beta.
+  assert.deepEqual(sections[2].items.map((p) => p.name), ["WatchedNotWatched"]);
+  assert.deepEqual(sections[3].items.map((p) => p.name), ["OpenDoku", "WhatAmIAI"]);
   for (const d of DOORS) assert.ok(!sections.some((s) => s.items.some((p) => p.name === d.product)), `${d.product} is a door, not repeated`);
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
   assert.match(page, /<ShareLink/, "CrossHeartPray is easy to share from the homepage");

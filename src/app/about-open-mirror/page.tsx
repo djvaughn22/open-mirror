@@ -195,8 +195,10 @@ export default function AboutOpenMirror() {
         <section id="disclaimer" className="mt-10 scroll-mt-24">
           <h2 className={heading2}>Disclaimer</h2>
           <p className={body}>
-            Open Mirror LLC is independently owned and operated, and each
-            project is published on its own.
+            Open Mirror LLC and its projects are
+            independently owned and operated. They are
+            not affiliated with, sponsored by, or endorsed by the owner&apos;s current or former employers or their affiliates,
+            and the projects and any views in them are independent.
           </p>
           <p className={body}>
             <Link

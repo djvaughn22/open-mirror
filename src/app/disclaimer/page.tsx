@@ -51,7 +51,10 @@ const SECTIONS = [
   },
   {
     heading: "Independent ownership",
-    copy: "Open Mirror LLC is independently owned and operated. Open Mirror products and content are created and published independently.",
+    // 2026-10-08 (owner): the employer-independence statement is back, in
+    // general terms — no employer is named and no claim is made about any
+    // employer's resources. Supersedes the 2026-08-17 removal.
+    copy: "Open Mirror LLC and its projects are independently owned and operated. They are not affiliated with, sponsored by, or endorsed by the owner's current or former employers or their affiliates. The projects, and any views expressed in them, are independent and do not represent any employer.",
   },
   {
     heading: "Questions",
@@ -107,7 +110,7 @@ export default function Disclaimer() {
         </div>
 
         <p className="mt-8 text-sm font-semibold leading-7 text-[#64748b]">
-          Last updated: July 2026
+          Last updated: October 2026
         </p>
 
       </div>

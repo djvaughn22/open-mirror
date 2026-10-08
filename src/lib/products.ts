@@ -302,8 +302,8 @@ export const products: Product[] = [
     access: "Free",
     accent: "#22D3EE",
     href: "https://watchednotwatched.com",
-    // 2026-10-08 (owner): a beta/experiment until it is ready.
-    experiment: true,
+    // 2026-10-08 (owner, later the same day): promoted to a regular project —
+    // no Beta badge, out of "Betas and experiments" on Home and About.
     status: "live",
     category: "family",
     // 2026-08-11: verified real, public routes — no account/AI required for
@@ -476,11 +476,12 @@ export function doorProducts(): (Door & { href: string; accent: string })[] {
 // (`bottomPinnedProducts`), and the featured product stays About-only.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type HomeSectionKey = "faith" | "rescue" | "experiments";
+export type HomeSectionKey = "faith" | "rescue" | "projects" | "experiments";
 
 export const HOME_SECTIONS: { key: HomeSectionKey; label: string; note?: string }[] = [
   { key: "faith", label: "Prayer and faithful media" },
   { key: "rescue", label: "Dog rescue" },
+  { key: "projects", label: "Projects" },
   { key: "experiments", label: "Betas and experiments", note: "Still being tested, and some will change." },
 ];
 
@@ -491,7 +492,9 @@ export function homeSectionOf(p: Product): HomeSectionKey | undefined {
   if (p.experiment) return "experiments";
   if (p.category === "faith") return "faith";
   if (p.homeSection) return p.homeSection;
-  return "experiments";
+  // A public, non-experimental project with no section of its own is a
+  // regular project (WatchedNotWatched.com, 2026-10-08).
+  return "projects";
 }
 
 export function homeSections(): { key: HomeSectionKey; label: string; note?: string; items: Product[] }[] {
