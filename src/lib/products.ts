@@ -364,17 +364,18 @@ export const products: Product[] = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// The three growth doors (owner direction, 2026-10-07).
+// The homepage doors (owner direction 2026-10-07; narrowed 2026-10-08).
 //
-// The homepage opens on three choices — family/play, build an idea, prepare a
-// household — so a visitor reaches the right product in one step. Everything
-// else (the Foundation, outreach, beta and learning projects) stays visible
-// below with its honest status, outside this path. CrossHeartPray is never a
-// door: it is outreach, not part of any conversion path.
+// The first screen offers two choices — family/play (iDontCry) and build an
+// idea (Step In The Ring) — so a visitor reaches the right product in one
+// step. Everything else, PleaseBeReady included, stays listed lower on the
+// page under "More projects" with its honest status, and PleaseBeReady keeps
+// its family-menu row. CrossHeartPray is never a door: it is outreach, not
+// part of any conversion path.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type Door = {
-  key: "family" | "build" | "prepare";
+  key: "family" | "build";
   title: string;
   line: string;
   /** registry name of the product this door opens */
@@ -396,13 +397,6 @@ export const DOORS: Door[] = [
     line: "Turn a rough idea into clear steps for a first version you can finish. Free while in open beta.",
     product: "StepInTheRing",
     cta: "Start building",
-  },
-  {
-    key: "prepare",
-    title: "Prepare a household",
-    line: "Pick what you're getting ready for, do one small free step today, then work the checklist.",
-    product: "PleaseBeReady",
-    cta: "Get ready",
   },
 ];
 

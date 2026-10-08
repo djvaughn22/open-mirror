@@ -2170,14 +2170,14 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   outline-offset: 2px;
 }
 
-/* Homepage three doors (2026-10-07): stacked on phones, three across when wide. */
+/* Homepage doors (2026-10-07; two since 2026-10-08): stacked on phones, side by side when wide. */
 .om-doors {
   display: grid;
   gap: 12px;
   grid-template-columns: 1fr;
 }
 @media (min-width: 640px) {
-  .om-doors { grid-template-columns: repeat(3, 1fr); }
+  .om-doors { grid-template-columns: repeat(2, 1fr); }
 }
 .om-door { transition: transform .16s ease; }
 .om-door:hover { transform: translateY(-2px); }

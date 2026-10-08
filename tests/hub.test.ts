@@ -16,6 +16,7 @@ import test from "node:test";
 
 import {
   DOORS,
+  bottomPinnedProducts,
   doorProducts,
   aboutFamilyProducts,
   featuredProduct,
@@ -871,13 +872,29 @@ test("hub copy that names the rescue project says DontCloneMeTom.com", () => {
 
 // ── The three growth doors (owner direction 2026-10-07) ─────────────────────
 
-test("the homepage opens on exactly three doors: family, build, prepare", () => {
-  assert.deepEqual(DOORS.map((d) => d.key), ["family", "build", "prepare"]);
-  assert.deepEqual(DOORS.map((d) => d.product), ["iDontCry", "StepInTheRing", "PleaseBeReady"]);
+// 2026-10-08 (owner): two doors. PleaseBeReady left the first screen but
+// stays findable lower on the homepage and in the family menu (next test).
+test("the homepage opens on exactly two doors: family and build", () => {
+  assert.deepEqual(DOORS.map((d) => d.key), ["family", "build"]);
+  assert.deepEqual(DOORS.map((d) => d.product), ["iDontCry", "StepInTheRing"]);
   for (const d of doorProducts()) {
     assert.match(d.href, /^https:\/\//, `${d.key} door must link to a live site`);
     assert.ok(d.line.length > 20 && d.cta.length > 0, `${d.key} door needs a plain line and an action`);
   }
+});
+
+test("PleaseBeReady stays findable: homepage card under More projects, and the menu", () => {
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.match(page, /<GroupLabel>More projects<\/GroupLabel>/);
+  assert.ok(bottomPinnedProducts().some((p) => p.name === "PleaseBeReady"), "its card stays on the homepage");
+  assert.ok(navProductOrder().some((p) => p.name === "PleaseBeReady"), "and in the family menu");
+});
+
+test("the homepage header stays quiet: name, one descriptor, no mission block", () => {
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.doesNotMatch(page, /missionShort/);
+  assert.match(page, /An independent creative studio\./);
+  assert.match(page, /href="\/about-open-mirror"/);
 });
 
 test("CrossHeartPray is never a door or near a conversion path", () => {
@@ -897,6 +914,7 @@ test("door clicks are counted by key only, and never from Do Not Track browsers"
   assert.match(page, /<DoorMeasure \/>/);
   const m = readFileSync(join(repoRoot, "src/components/DoorMeasure.tsx"), "utf8");
   assert.match(m, /gtag\("event", "door_click", \{ door \}\)/);
+  assert.match(m, /\^\(family\|build\)\$/);
   assert.match(m, /doNotTrack === "1"/);
   assert.match(m, /globalPrivacyControl/);
   assert.doesNotMatch(m, /fetch\(|sendBeacon/);

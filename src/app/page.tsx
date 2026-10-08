@@ -43,20 +43,18 @@ export default function OpenMirrorHub() {
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "44px 24px 90px" }}>
 
-        <header style={{ textAlign: "center", marginBottom: 48 }}>
-          <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
+        {/* Quiet header: the name and one understated descriptor. The fuller
+            company description lives on About (2026-10-08). */}
+        <header style={{ textAlign: "center", marginBottom: 36 }}>
+          <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 8px", lineHeight: 1.05 }}>
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
-          <p style={{ fontSize: 13, fontWeight: 700, color: "#93C5FD", margin: "0 0 12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-            {STUDIO.label}
+          <p style={{ fontSize: 14, fontWeight: 600, color: sub, margin: 0 }}>
+            An independent creative studio. <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
           </p>
-          <p style={{ fontSize: 15, fontWeight: 600, color: sub, margin: "0 auto", maxWidth: 440, lineHeight: 1.6, whiteSpace: "pre-line" }}>
-            {STUDIO.missionShort}
-          </p>
-          <div aria-hidden style={{ height: 1, width: 64, background: border, margin: "28px auto 0" }} />
         </header>
 
-        {/* The three doors: one obvious step to the right product. */}
+        {/* The two doors: one obvious step to the right product. */}
         <section aria-labelledby="doors-title" style={{ marginBottom: 52 }}>
           <h2 id="doors-title" style={{ fontSize: 18, fontWeight: 900, color: text, margin: "0 0 14px", textAlign: "center" }}>
             Where do you want to start?
@@ -75,7 +73,7 @@ export default function OpenMirrorHub() {
           </div>
         </section>
 
-        <GroupLabel>Everything Open Mirror makes</GroupLabel>
+        <GroupLabel>More projects</GroupLabel>
         <p style={{ fontSize: 13, fontWeight: 600, color: sub, margin: "-6px 0 28px", lineHeight: 1.6 }}>
           Each project shows its honest status. Some are finished, some are still being tested.
         </p>
