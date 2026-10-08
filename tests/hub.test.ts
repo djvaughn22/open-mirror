@@ -25,6 +25,7 @@ import {
   navProductOrder,
   homeSections,
   products,
+  siteName,
   STUDIO,
   productsByStatus,
   type Product,
@@ -924,21 +925,34 @@ test("the purpose is the owner's, and stays free of sales and AI language", () =
   assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 
-// 2026-10-08 (owner, corrected): the brand is the headline, the audience
-// line is a smaller subtitle, and the domain is only the link destination.
-test("each door card leads with its brand, then its subtitle, and links straight to the site", () => {
-  assert.deepEqual(DOORS.map((d) => d.headline), ["iDontCry", "Step In The Ring"], "brand headlines, exactly");
+// 2026-10-08 (owner, corrected twice): the full ".com" site brand is the
+// headline, the audience line is a smaller subtitle, and each card links
+// straight to that same site.
+test("each door card leads with its .com brand, then its subtitle, and links straight to the site", () => {
+  assert.deepEqual(DOORS.map((d) => d.headline), ["iDontCry.com", "StepInTheRing.com"], "brand headlines, exactly");
   assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Build an idea"], "subtitles, exactly");
   for (const d of doorProducts()) {
-    const card = `${d.headline} ${d.title} ${d.line} ${d.cta} ${d.icon}`;
-    assert.doesNotMatch(card, /\.com/i, `${d.key} card shows no domain`);
-    assert.doesNotMatch(card, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
-    assert.match(d.href, /^https:\/\/(idontcry|stepinthering)\.com$/, `${d.key} links straight to its own site`);
+    assert.equal(new URL(d.href).hostname, d.headline.toLowerCase(), `${d.key} headline is the very site it links to`);
+    assert.doesNotMatch(`${d.title} ${d.line} ${d.cta} ${d.icon}`, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
   }
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
   assert.match(page, /href=\{d\.href\}/, "no hub interstitial between the door and the site");
-  assert.ok(page.indexOf("{d.headline}") < page.indexOf("{d.title}"), "the headline renders above the subtitle");
-  assert.match(page, /fontSize: 19[^}]*\}\}>\s*<span aria-hidden[^>]*>\{d\.icon\}<\/span>\{d\.headline\}/, "the brand is the larger line");
+  assert.ok(page.indexOf("d.headline") < page.indexOf("{d.title}"), "the headline renders above the subtitle");
+  assert.match(page, /fontSize: 19/, "the brand is the larger line");
+});
+
+test("every site card on the hub shows its real .com name, matching its own link", () => {
+  for (const p of products) {
+    const { base, dot } = siteName(p);
+    if (!p.href.startsWith("https://")) {
+      assert.equal(dot, "", `${p.name} is a hub page, not a site, and gets no .com`);
+      continue;
+    }
+    assert.equal(`${base}${dot}`.toLowerCase(), new URL(p.href).hostname.replace(/^www\./, ""),
+      `${p.name}'s shown name must be its verified domain`);
+  }
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /siteName\(product\)\.dot/, "About's project names carry the .com too");
 });
 
 test("CrossHeartPray is never a door or near a conversion path", () => {

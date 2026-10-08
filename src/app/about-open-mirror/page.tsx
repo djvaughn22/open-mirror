@@ -6,6 +6,7 @@ import {
   bottomPinnedProducts,
   featuredProduct,
   foundationProduct,
+  siteName,
   STUDIO,
   type Product,
 } from "../../lib/products";
@@ -60,7 +61,9 @@ function ProductName({ product }: { product: Product }) {
     </Link>
   ) : (
     <a href={product.href} target="_blank" rel="noopener noreferrer" className={cls}>
-      {product.name}
+      {/* The site's canonical ".com" brand name (owner, 2026-10-08). */}
+      {siteName(product).base}
+      <span style={{ color: product.accent }}>{siteName(product).dot}</span>
     </a>
   );
 }

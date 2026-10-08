@@ -99,6 +99,19 @@ export type Product = {
   imageAlt?: string;
 };
 
+/**
+ * A site's brand name as the hub shows it: its canonical ".com" name
+ * (owner, 2026-10-08), split so the suffix can carry the site's accent.
+ * Only for products that ARE a site (an https href); a hub route like
+ * /reflect has no domain and gets none. The domain is the product's own
+ * verified href host — never composed from a guess.
+ */
+export function siteName(p: Pick<Product, "name" | "href">): { base: string; dot: string } {
+  if (!/^https:\/\//.test(p.href)) return { base: p.name, dot: "" };
+  const base = p.name.endsWith(".com") ? p.name.slice(0, -4) : p.name;
+  return { base, dot: ".com" };
+}
+
 export const STUDIO = {
   name: "Open Mirror LLC",
   label: "Independent Creative Studio",
@@ -419,14 +432,14 @@ export type Door = {
   icon: string;
 };
 
-// 2026-10-08 (owner, corrected the same day): each card's HEADLINE is the
-// brand — iDontCry, Step In The Ring — with "Family & play" / "Build an idea"
-// as a smaller subtitle. Plain descriptions, no joke copy, no domain on the
-// card; each links straight to its own site (no Open Mirror interstitial).
+// 2026-10-08 (owner, corrected twice the same day): each card's HEADLINE is
+// the full site brand — iDontCry.com, StepInTheRing.com — with "Family &
+// play" / "Build an idea" as a smaller subtitle. Plain descriptions, no joke
+// copy; each links straight to its own site (no Open Mirror interstitial).
 export const DOORS: Door[] = [
   {
     key: "family",
-    headline: "iDontCry",
+    headline: "iDontCry.com",
     title: "Family & play",
     line: "For dads, moms, and kids: local high-school scores, games, and things to make together. Free.",
     product: "iDontCry",
@@ -435,7 +448,7 @@ export const DOORS: Door[] = [
   },
   {
     key: "build",
-    headline: "Step In The Ring",
+    headline: "StepInTheRing.com",
     title: "Build an idea",
     line: "For when you're ready to make an idea real: clear, practical steps to a first version you can finish. Free while in open beta.",
     product: "StepInTheRing",
