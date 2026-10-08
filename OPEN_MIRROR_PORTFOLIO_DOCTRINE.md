@@ -112,10 +112,10 @@ measured results, not feature count, traffic, or number of sites touched.
 
 | Property | Role now | Status (2026-10-07) | Primary visitor | Main action |
 |---|---|---|---|---|
-| Open Mirror LLC (hub) | Umbrella company and portfolio map | Live | Anyone arriving at the company | Pick one of three doors |
+| Open Mirror LLC (hub) | Umbrella company and portfolio map | Live | Anyone arriving at the company | Pick one of two doors |
 | iDontCry | Free family doorway | Live (games, Sports Desk); Dream Lab/Shop and front desk demo are beta | Parents and kids | Play, follow a team, dream something up |
 | Step In The Ring | Execution product: turns an idea into finished steps | Live, free, open beta. No paid offer exists | Someone with one idea to build | Start a build; use a free tool |
-| PleaseBeReady | Primary consumer revenue opportunity: free help, affiliate gear, future paid tools | Live. Free help + affiliate links. Paid tools: not built | A household getting ready | Pick a need, do one free step |
+| PleaseBeReady | Household preparedness: free help and optional affiliate gear | Live. Free help + affiliate links. Paid tools: not built | A household getting ready | Pick a need, do one free step |
 | CrossHeartPray | Independent Scripture and prayer outreach | Foundation, live | Anyone seeking a daily faith routine | Daily Hope, reading plan |
 | TheDJCares | Its own audience: curated Gospel-first media | Live | Listeners | Listen / watch |
 | DontCloneMeTom, WatchedNotWatched, OpenDoku, WhatAmIAI, Build Machine | Beta or learning surfaces | As labelled in `src/lib/products.ts` | Their own audiences | — |
@@ -125,10 +125,12 @@ conversion rates are not claimed anywhere until measured.
 
 ### Flow
 
-- **Hub homepage:** three doors first — Family & play (iDontCry), Build an
-  idea (Step In The Ring), Prepare a household (PleaseBeReady). Source:
-  `DOORS` in `src/lib/products.ts`. Everything else stays listed below with
-  its honest status, outside the conversion path.
+- **Hub homepage (since 2026-10-08):** two doors first — Family & play
+  (iDontCry) and Build an idea (Step In The Ring). Source: `DOORS` in
+  `src/lib/products.ts`. Everything else, PleaseBeReady included, stays
+  listed lower under "More projects" with its honest status, outside the
+  first-screen path. The header is the name plus one quiet descriptor; the
+  fuller description lives on About.
 - **PleaseBeReady first visit:** pick a household need → one small free step
   sourced to an official guide → that need's checklist → optional gear,
   folded and disclosed. Paid tools are labelled "None yet."
@@ -185,7 +187,7 @@ public repo.
 - **WatchedNotWatched** — Active consumer-product build. Personal watch list and recommendations. Local-first, no account. No family-filter/scene-skipping claims; no universal-provider claims.
 - **WhatAmIAI** — Self-assessment and AI-usage reflection. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding.
 - **Reflect** — Hidden personal experiment. Route stays live; not promoted in the portfolio.
-- **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority. *(Superseded 2026-10-07: now the primary consumer revenue opportunity; see Portfolio direction.)*
+- **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority. *(Superseded 2026-10-07: now a priority household-preparedness product; see Portfolio direction.)*
 - **Fambookagram / Friendbookagram** — Retired as standalone products on 2026-08-02. The concepts live on as playground pages inside iDontCry (idontcry.com/fambookagram, idontcry.com/friendbookagram); standalone repos archived with history preserved.
 - **Design Shop / Creation Engines** — Commercial creation infrastructure. Belongs with StepInTheRing, not the hub. Engines must eventually produce real finished outputs, not just ideas.
 
