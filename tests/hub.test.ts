@@ -924,6 +924,19 @@ test("the purpose is the owner's, and stays free of sales and AI language", () =
   assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 
+test("the door cards name an audience, never a brand, and link straight to the site", () => {
+  assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Build an idea"], "headings are exact");
+  for (const d of doorProducts()) {
+    const card = `${d.title} ${d.line} ${d.cta} ${d.icon}`;
+    assert.doesNotMatch(card, /idontcry|step\s*in\s*the\s*ring|stepinthering|\.com/i, `${d.key} card shows no brand or domain`);
+    assert.doesNotMatch(card, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
+    assert.match(d.href, /^https:\/\/(idontcry|stepinthering)\.com$/, `${d.key} links straight to its own site`);
+  }
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  assert.match(page, /href=\{d\.href\}/, "no hub interstitial between the door and the site");
+  assert.doesNotMatch(page, /d\.emoji/, "doors use their own neutral icon, not the brand emoji");
+});
+
 test("CrossHeartPray is never a door or near a conversion path", () => {
   assert.ok(!DOORS.some((d) => /crossheart/i.test(d.product)), "CrossHeartPray stays out of the doors");
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");

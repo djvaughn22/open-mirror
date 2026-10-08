@@ -408,34 +408,42 @@ export type Door = {
   key: "family" | "build";
   title: string;
   line: string;
-  /** registry name of the product this door opens */
+  /** registry name of the product this door opens (its href and accent) */
   product: string;
+  /** audience-focused link label — never the product's name (owner, 2026-10-08) */
   cta: string;
+  /** the door's own neutral icon, not the product's brand emoji */
+  icon: string;
 };
 
+// 2026-10-08 (owner): the doors present AUDIENCES, not brands. No product name
+// or domain on either card, no joke copy; each still links straight to its
+// own site (no Open Mirror interstitial), where the brand is unchanged.
 export const DOORS: Door[] = [
   {
     key: "family",
     title: "Family & play",
-    line: "For dads, moms, and families: local high-school scores, games, and dad jokes. Free.",
+    line: "For dads, moms, and kids: local high-school scores, games, and things to make together. Free.",
     product: "iDontCry",
-    cta: "Open iDontCry",
+    cta: "Start with your family",
+    icon: "🏡",
   },
   {
     key: "build",
     title: "Build an idea",
     line: "For when you're ready to make an idea real: clear, practical steps to a first version you can finish. Free while in open beta.",
     product: "StepInTheRing",
-    cta: "Start building",
+    cta: "Start your idea",
+    icon: "🛠️",
   },
 ];
 
 /** The doors joined to their registry entries (accent, href) — pages never hard-code either. */
-export function doorProducts(): (Door & { href: string; accent: string; emoji: string })[] {
+export function doorProducts(): (Door & { href: string; accent: string })[] {
   return DOORS.map((d) => {
     const p = products.find((x) => x.name === d.product);
     if (!p) throw new Error(`door ${d.key} names a product missing from the registry: ${d.product}`);
-    return { ...d, href: p.href, accent: p.accent, emoji: p.emoji };
+    return { ...d, href: p.href, accent: p.accent };
   });
 }
 
