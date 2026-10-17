@@ -52,32 +52,13 @@ export default function ProductCard({ p }: { p: Product }) {
   const word = p.expandLabel ?? "features";
   const hasFeatures = !!p.links && p.links.length > 0;
 
-  const handleCardClick = (e: React.MouseEvent | React.KeyboardEvent) => {
-    const target = e.target as HTMLElement;
-    // Don't navigate if clicking on interactive elements (button, link inside expand panel)
-    if (target.closest("button") || target.closest(".om-expand")) {
-      return;
-    }
-    // Navigate to the product's destination
-    if (isCom) {
-      window.open(p.href, "_blank");
-    } else {
-      window.location.href = p.href;
-    }
-  };
-
   return (
+    // The card's one link is the visible "Visit …" line; its ::after (globals.css,
+    // .om-card-link) stretches over the card so a tap anywhere still opens the
+    // site, while keyboard and screen-reader users meet a single real link.
     <div
-      onClick={handleCardClick}
-      onKeyDown={(e) => {
-        if ((e.key === "Enter" || e.key === " ") && !e.ctrlKey && !e.metaKey) {
-          e.preventDefault();
-          handleCardClick(e);
-        }
-      }}
-      role="button"
-      tabIndex={0}
       style={{
+        position: "relative",
         background: card,
         // var(--om-border), not the literal hex: the light-theme override
         // matches on the literal "#26324c" substring anywhere in an
@@ -87,17 +68,16 @@ export default function ProductCard({ p }: { p: Product }) {
         border: "1px solid var(--om-border)",
         borderLeft: `3px solid ${p.accent}`,
         borderRadius: 14,
-        padding: isFoundation ? "24px 22px" : "20px 22px",
-        cursor: "pointer",
+        padding: isFoundation ? "20px 20px 18px" : "18px 20px 16px",
         transition: "all 0.2s ease",
       }}
       className="om-product-card"
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         {isFoundation ? (
           // The real established mark — cross, heart, pray — already on disk
           // from CrossHeartPray's own brand work.
-          <Image src="/crossheartpray-icon.svg" alt="" width={56} height={56} priority style={{ borderRadius: 14, display: "block" }} />
+          <Image src="/crossheartpray-icon.svg" alt="" width={52} height={52} priority style={{ borderRadius: 14, display: "block", flexShrink: 0 }} />
         ) : (
           // Every product's real, already-shipped icon.svg favicon is this
           // exact template — a dark rounded tile holding its emoji glyph
@@ -121,6 +101,21 @@ export default function ProductCard({ p }: { p: Product }) {
             {p.emoji}
           </span>
         )}
+        <h2
+          style={{
+            flex: 1,
+            minWidth: 0,
+            fontSize: isFoundation ? "clamp(1.1rem, 5.4vw, 1.5rem)" : "clamp(1.02rem, 5vw, 1.35rem)",
+            fontWeight: 900,
+            color: text,
+            margin: 0,
+            letterSpacing: "-0.01em",
+            overflowWrap: "anywhere",
+          }}
+        >
+          {baseName}
+          {dot ? <span style={{ color: p.accent }}>{dot}</span> : null}
+        </h2>
         {badge ? (
           <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: p.accent }}>
             {badge}
@@ -128,50 +123,37 @@ export default function ProductCard({ p }: { p: Product }) {
         ) : null}
       </div>
 
-      <h2
-        style={{
-          fontSize: isFoundation ? "clamp(1.1rem, 5.4vw, 1.5rem)" : "clamp(1.02rem, 5vw, 1.35rem)",
-          fontWeight: 900,
-          color: text,
-          margin: "12px 0 0",
-          letterSpacing: "-0.01em",
-        }}
-      >
-        {baseName}
-        {dot ? <span style={{ color: p.accent }}>{dot}</span> : null}
-      </h2>
-
-      <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "8px 0 0", lineHeight: 1.55 }}>
+      <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "12px 0 0", lineHeight: 1.55 }}>
         {p.description}
       </p>
 
-      {hasFeatures ? (
-        <button type="button" aria-expanded={open} aria-controls={panelId} onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }} className="om-expand-btn">
-          <span>{word[0].toUpperCase()}{word.slice(1)}</span>
-          <span aria-hidden className={open ? "om-chevron is-open" : "om-chevron"}>⌄</span>
-        </button>
-      ) : null}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "4px 16px", marginTop: 12 }}>
+        <a
+          href={p.href}
+          {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          className="om-cta om-card-link"
+          style={{ color: p.accent }}
+        >
+          <span>Visit {baseName}{dot}</span>
+          <span aria-hidden className="om-arrow">→</span>
+        </a>
+        {hasFeatures ? (
+          <button type="button" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((v) => !v)} className="om-expand-btn">
+            <span>{word[0].toUpperCase()}{word.slice(1)}</span>
+            <span aria-hidden className={open ? "om-chevron is-open" : "om-chevron"}>⌄</span>
+          </button>
+        ) : null}
+      </div>
 
       {hasFeatures && p.links ? (
         <div id={panelId} className={open ? "om-expand is-open" : "om-expand"} inert={!open}>
-          <div style={{ marginTop: 20, paddingTop: 2, borderTop: `1px solid ${border}` }}>
+          <div style={{ marginTop: 14, paddingTop: 2, borderTop: `1px solid ${border}` }}>
             {p.links.map((l) => (
               <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="om-row">
                 <span>{stripEmoji(l.label)}</span>
                 <span aria-hidden className="om-arrow">→</span>
               </a>
             ))}
-          </div>
-          <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px solid ${border}` }}>
-            <a
-              href={p.href}
-              {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="om-cta"
-              style={{ color: p.accent }}
-            >
-              <span>Explore {p.name}</span>
-              <span aria-hidden className="om-arrow">→</span>
-            </a>
           </div>
         </div>
       ) : null}

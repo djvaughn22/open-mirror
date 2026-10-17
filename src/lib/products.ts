@@ -117,7 +117,7 @@ export const STUDIO = {
   label: "Independent Creative Studio",
   // The homepage's one welcoming line (and its meta description). Quiet on
   // purpose: the fuller purpose lives on About.
-  welcome: "Small projects for faith, family, and making things.",
+  welcome: "A family of free websites for faith, family, and making things.",
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
@@ -147,7 +147,7 @@ export const products: Product[] = [
     name: "CrossHeartPray",
     emoji: "✝️",
     description:
-      "Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7 — your daily faith routine.",
+      "Daily Bible reading and prayer: Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7.",
     aboutLine:
       "Daily Bible reading and prayer: Daily Hope, a Bible reading plan, Life Essentials, and Bible Bingo.",
     aboutAction: "Open CrossHeartPray",
@@ -245,7 +245,7 @@ export const products: Product[] = [
     name: "DontCloneMeTom.com",
     emoji: "🐶",
     description:
-      "Real adoptable dogs looking for homes — meet them right on the page. A kind rescue campaign.",
+      "Find real adoptable dogs near your ZIP code. Each one links to the rescue or shelter caring for it.",
     // Rescue-first, inspired by the cloned-dog headline. NOT "a dog named Tom" —
     // the name speaks for the rescue dog: "Don't clone me, Tom. I'm already here."
     aboutLine:
@@ -271,7 +271,7 @@ export const products: Product[] = [
     description:
       // 2026-10-08: the build-tooling clause ("pushed and deployed with one
       // prompt") left with the no-AI direction; the owner's words otherwise stand.
-      "Puzzle games that start easy and climb to two puzzles in every tile — same brain, different weather. Newest: MineDoku, dreamed up on iDontCry.",
+      "Number puzzle games that start easy and get harder: SlopeDoku, SurfDoku, and MineDoku.",
     aboutLine:
       "Puzzle games built on one engine: SlopeDoku, SurfDoku, and MineDoku.",
     aboutAction: "Play",
@@ -295,7 +295,7 @@ export const products: Product[] = [
     // No emoji inside the sentence — on phones without the glyphs it used to
     // read "Thumb movies and shows or , sort…".
     description:
-      "Remember what you watched. Thumb movies and shows up or down, sort the Top 222 of any decade or genre, and get picks based on what you liked. No account — saved on your device.",
+      "Mark the movies and shows you've seen, browse the Top 222 by decade or genre, and get picks based on what you liked. Your list is saved on your device.",
     aboutLine:
       "Keep track of the movies and shows you've watched and get picks based on what you liked. No account needed.",
     aboutAction: "Start a list",
@@ -318,7 +318,7 @@ export const products: Product[] = [
     name: "WhatAmIAI",
     emoji: "🤖",
     description:
-      "See the patterns in the questions you ask, think through one real situation, or look at how you approach tools and decisions. No labels — you're not a category.",
+      "Short tap-to-answer tools for thinking through a decision, your money, a habit, or your phone use. Your answers stay on your device.",
     aboutLine:
       "A tool for noticing patterns in the questions you ask and the decisions you make. It runs on your device.",
     aboutAction: "Take a look",
@@ -336,7 +336,7 @@ export const products: Product[] = [
     name: "PleaseBeReady",
     emoji: "🧰",
     description:
-      "Friendly emergency prep for everyone. Calm, practical, one step at a time.",
+      "Free checklists for getting your household ready for storms and power outages.",
     aboutLine:
       "Free checklists for getting a household ready for storms and power outages.",
     aboutAction: "Get ready",
@@ -452,7 +452,7 @@ export const DOORS: Door[] = [
     key: "build",
     headline: "StepInTheRing.com",
     title: "Build an idea",
-    line: "For when you're ready to make an idea real: clear, practical steps to a first version you can finish. Free while in open beta.",
+    line: "Have an idea for a website, an app, or a song? Describe it in your own words and get practical steps to a first version. Free while in open beta.",
     product: "StepInTheRing",
     cta: "Start your idea",
     icon: "🛠️",

@@ -2177,6 +2177,29 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   outline-offset: 2px;
 }
 
+/* The card's visible "Visit …" link (2026-10-16) is its only navigation: the
+   ::after stretches it over the whole card, and the Features toggle and its
+   panel sit above that layer so they keep working. */
+.om-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+}
+.om-card-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.om-product-card .om-expand-btn,
+.om-product-card .om-expand {
+  position: relative;
+  z-index: 1;
+}
+.om-product-card .om-expand-btn {
+  margin: -12px -2px -12px auto;
+}
+
 /* Homepage doors (2026-10-07; two since 2026-10-08): stacked on phones, side by side when wide. */
 .om-doors {
   display: grid;
