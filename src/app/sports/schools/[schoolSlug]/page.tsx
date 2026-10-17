@@ -154,7 +154,7 @@ export default async function SchoolPage({ params }: Params) {
           </h2>
           <p className="m-0 mt-2.5 text-[0.9rem] font-medium leading-6 text-[#94a3b8]">
             Send us your final after the game and this page updates itself — with the story, the share graphic and a
-            place on the St. Louis feed. Free, and there is nothing to learn.
+            place on the St. Louis feed. There is nothing to learn.
           </p>
           <Link
             href="/sports/for-schools"

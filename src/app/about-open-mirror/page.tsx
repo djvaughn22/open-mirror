@@ -10,9 +10,7 @@ import {
   STUDIO,
   type Product,
 } from "../../lib/products";
-import { OPEN_MIRROR_RESALE_CARD } from "../../lib/destinations";
 import { MAILTO_SUBJECT, SERVICE_EMAIL } from "../../lib/services";
-import AboutDestinationCard from "../../components/AboutDestinationCard";
 
 const META_DESCRIPTION =
   "Open Mirror LLC is an independent company behind a group of separate websites: prayer and Christian media, family entertainment, turning ideas into real projects, and supporting dog rescue.";
@@ -31,7 +29,7 @@ export const metadata: Metadata = {
 const PROJECTS_INTRO = "Each name links to the project's own website.";
 
 const WORK_WITH = [
-  "Questions, corrections, or a project you'd like help with? Send an email.",
+  "Questions, corrections, or notes about one of the sites? Send an email.",
 ];
 
 const heading2 = "text-2xl font-black tracking-tight";
@@ -160,30 +158,6 @@ export default function AboutOpenMirror() {
               </div>
             </>
           )}
-        </section>
-
-        {/* The eBay resale card renders only once its real store exists
-            (gated in src/lib/destinations.ts); until then nothing shows. */}
-        <div className="mt-10 grid gap-3" aria-label="Shops">
-          <AboutDestinationCard card={OPEN_MIRROR_RESALE_CARD} />
-        </div>
-
-        {/* The one way into /partnership (owner, 2026-10-08): a quiet line,
-            not a pitch. Never repeated on Home, the nav, or a satellite. */}
-        <section id="partnership" className="mt-10 scroll-mt-24">
-          <h2 className={heading2}>Partnership</h2>
-          <p className={body}>
-            Open Mirror welcomes conversations with Christian investors and experienced operators who
-            value useful products, honest work, and long-term partnership.
-          </p>
-          <p className="mt-4">
-            <Link
-              href="/partnership"
-              className={`font-black text-[#7dd3fc] transition hover:underline ${focusRing}`}
-            >
-              Explore a partnership →
-            </Link>
-          </p>
         </section>
 
         {/* The footer's Contact and Disclaimer links land on these two

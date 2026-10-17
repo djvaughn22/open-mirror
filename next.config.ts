@@ -54,6 +54,14 @@ const nextConfig: NextConfig = {
       { source: "/about", destination: "/about-open-mirror", permanent: true },
       { source: "/work-with-the-founder", destination: "/contact", permanent: true },
       { source: "/talk-with-the-owner", destination: "/contact", permanent: true },
+      // 2026-10-17 (owner): selling and investor pages are the wrong direction
+      // for now. Their URLs land somewhere useful instead of serving that copy:
+      // the partnership invitation goes to About, and the Build Machine product
+      // pages and readiness PDF go to StepInTheRing's Ready to Build guide,
+      // which covers turning a computer you already have into one that builds.
+      { source: "/partnership", destination: "/about-open-mirror", permanent: false },
+      { source: "/products/old-laptop-to-build-machine/:path*", destination: "https://stepinthering.com/products/ready-to-build", permanent: false },
+      { source: "/downloads/old-laptop-readiness-check.pdf", destination: "https://stepinthering.com/products/ready-to-build", permanent: false },
       ...toCrossHeartPray,
       ...toStandaloneSites,
     ];

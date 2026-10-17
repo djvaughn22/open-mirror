@@ -23,7 +23,7 @@ export const META_DESCRIPTION =
 
 /** The whole message. One line. */
 export const BODY_LINE =
-  "Have an idea, a project, or a question? Email me and we'll talk.";
+  "Questions or corrections about one of the sites? Email me.";
 
 export const EMAIL_BUTTON = "Email me";
 
@@ -48,9 +48,10 @@ export type ConsultingAvailability =
   | "one-project" // the normal state: one outside project at a time
   | "at-capacity" // heads-down on existing work
   | "contact-welcome" // nothing promised either way; notes welcome
-  | "not-accepting"; // no outside work for now
+  | "not-accepting" // no outside work for now
+  | "notes-welcome"; // 2026-10-17 (owner): no business framing for now; notes about the sites welcome
 
-export const AVAILABILITY: ConsultingAvailability = "one-project";
+export const AVAILABILITY: ConsultingAvailability = "notes-welcome";
 
 const AVAILABILITY_LINES: Record<ConsultingAvailability, string> = {
   "one-project":
@@ -60,6 +61,8 @@ const AVAILABILITY_LINES: Record<ConsultingAvailability, string> = {
   "contact-welcome": "You are welcome to email about what you are building.",
   "not-accepting":
     "Open Mirror is not taking outside projects right now, but you can still email.",
+  "notes-welcome":
+    "Notes are welcome too: what helped, what didn't work, and what was confusing.",
 };
 
 export const AVAILABILITY_LINE = AVAILABILITY_LINES[AVAILABILITY];

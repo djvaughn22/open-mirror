@@ -32,7 +32,7 @@ import {
 } from "../src/lib/products.ts";
 // services.ts imports ./products without an extension (fine for Next, not for
 // the strip-types test runner), so its locks below scan the source instead.
-import { BE_PREPARED_CARD, OPEN_MIRROR_RESALE_CARD, liveDestinations } from "../src/lib/destinations.ts";
+import { BE_PREPARED_CARD, liveDestinations } from "../src/lib/destinations.ts";
 
 const repoRoot = join(import.meta.dirname, "..");
 const byName = (name: string): Product => {
@@ -64,40 +64,30 @@ test("only one product is the Foundation", () => {
 
 // ── The featured product ────────────────────────────────────────────────────
 
-// 2026-07-19: the packaged product broadened from laptops to old computers
-// (laptops, mini PCs, small desktops, selected towers). The route keeps its
-// original /products/old-laptop-to-build-machine URL.
-test("Old Computer to Build Machine is the featured product", () => {
-  const featured = featuredProduct();
-  assert.equal(featured?.name, "Old Computer to Build Machine");
-  assert.equal(featured?.access, "Product");
-  assert.equal(featured?.href, "/products/old-laptop-to-build-machine", "the original URL must never break");
+// 2026-10-17 (owner): selling, pricing and investor pages are the wrong
+// direction for now. The Build Machine product and the partnership invitation
+// were retired; their URLs redirect instead of serving that copy.
+test("no product is featured or labelled for sale", () => {
+  assert.equal(featuredProduct(), undefined);
+  assert.equal(products.filter((p) => p.featured === true).length, 0);
+  assert.equal(products.filter((p) => p.access === "Product").length, 0);
+  assert.ok(!products.some((p) => /build machine/i.test(p.name)), "the Build Machine product is out of the registry");
 });
 
-test("Old Computer is marked Preparing for Release", () => {
-  assert.equal(featuredProduct()?.accessNote, "Preparing for Release");
-});
-
-test("exactly one product is featured", () => {
-  assert.equal(products.filter((p) => p.featured === true).length, 1);
-});
-
-test("Old Computer does NOT appear on the homepage (featured products are About-only)", () => {
-  // The homepage only shows groups filtered by status and showInPortfolio.
-  // A featured product should not be in the status groups on the homepage.
-  const featured = featuredProduct();
-  assert.ok(featured, "featured product exists");
-  const homepageItems = products.filter(
-    (p) => p.status !== "archived" && p.showInPortfolio !== false && p.pinBottom !== true && p.featured !== true
-  );
-  assert.ok(!homepageItems.some((p) => p.name === "Old Computer to Build Machine"), "Old Computer must not appear on homepage");
-});
-
-test("the featured product has an image with real alt text", () => {
-  const featured = featuredProduct()!;
-  assert.ok(featured.image, "featured product needs a launch image");
-  assert.ok(existsSync(join(repoRoot, "public", featured.image!)), `${featured.image} must exist under public/`);
-  assert.ok((featured.imageAlt ?? "").length > 20, "featured image needs useful alt text");
+test("the retired Build Machine and Partnership URLs redirect instead of serving copy", () => {
+  const config = readFileSync(join(repoRoot, "next.config.ts"), "utf8");
+  assert.match(config, /source: "\/partnership", destination: "\/about-open-mirror"/);
+  assert.match(config, /source: "\/products\/old-laptop-to-build-machine\/:path\*", destination: "https:\/\/stepinthering\.com\/products\/ready-to-build"/);
+  assert.match(config, /source: "\/downloads\/old-laptop-readiness-check\.pdf", destination: "https:\/\/stepinthering\.com\/products\/ready-to-build"/);
+  for (const rel of [
+    "src/app/partnership",
+    "src/app/api/partnership",
+    "src/app/products/old-laptop-to-build-machine",
+    "src/app/api/device-request",
+    "public/downloads/old-laptop-readiness-check.pdf",
+  ]) {
+    assert.ok(!existsSync(join(repoRoot, rel)), `${rel} must stay removed`);
+  }
 });
 
 // ── Public projects stay public ─────────────────────────────────────────────
@@ -126,7 +116,6 @@ test("About groups WatchedNotWatched.com with the main projects and keeps the re
   const family = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
   assert.deepEqual(family.filter((p) => p.experiment).map((p) => p.name), ["OpenDoku", "WhatAmIAI"]);
   assert.ok(family.some((p) => p.name === "WatchedNotWatched" && !p.experiment));
-  assert.equal(featuredProduct()?.accessNote, "Preparing for Release", "the Build Machine keeps its accurate label");
   assert.equal(products.find((p) => p.name === "WhatAmIAI")?.status, "building");
 });
 
@@ -192,18 +181,6 @@ test("shared navigation follows the owner's group order", () => {
   );
 });
 
-test("Old Computer stays out of shared navigation but present on About, labelled honestly", () => {
-  const laptop = byName("Old Computer to Build Machine");
-  assert.equal(laptop.showInNav, false, "Old Computer must stay out of persistent navigation");
-  assert.ok(
-    !navProductOrder().some((p) => p.name === laptop.name),
-    "Old Computer must not reach any menu group"
-  );
-  assert.equal(laptop.featured, true, "…while keeping its About featured panel");
-  assert.notEqual(laptop.showInAbout, false, "…and staying discoverable on About");
-  assert.equal(`${laptop.access} · ${laptop.accessNote}`, "Product · Preparing for Release");
-});
-
 test("shared navigation shows every public product exactly once", () => {
   const names = navProductOrder().map((p) => p.name);
   assert.deepEqual([...new Set(names)], names, "no product may appear in two menu groups");
@@ -255,43 +232,14 @@ test("the Be Prepared card keeps its exact destination and message", () => {
     "the reminder never becomes fear copy");
 });
 
-test("Open Mirror Resale stays a gated eBay shop card, never a dead link", () => {
-  assert.equal(OPEN_MIRROR_RESALE_CARD.heading, "Open Mirror Resale");
-  assert.match(OPEN_MIRROR_RESALE_CARD.body.join(" "), /Real items, clearly listed, through the Open Mirror eBay Store\./,
-    "the plain supporting copy is locked");
-  assert.match(OPEN_MIRROR_RESALE_CARD.body.join(" "), /checkout happen(s)? on eBay/i,
-    "the card must say checkout happens on eBay");
-
-  const entry = OPEN_MIRROR_RESALE_CARD.destinations[0];
-  assert.ok(entry, "the shop destination entry exists");
-  assert.equal(entry.label, "Shop on eBay");
-  assert.equal(entry.kind, "store");
-  assert.equal(entry.external, true, "the store opens in a new tab with safe attributes");
-
-  if (entry.enabled === false || entry.href.trim() === "") {
-    // Not yet live: nothing may render — no dead links, no placeholder store.
-    assert.equal(liveDestinations(OPEN_MIRROR_RESALE_CARD.destinations).length, 0,
-      "the resale card stays hidden until the real eBay Store URL exists");
-  } else {
-    // Once enabled it must point at a real public eBay Store, never the
-    // private Store Engine and never a guessed placeholder.
-    assert.match(entry.href, /^https:\/\/(www\.)?ebay\.com\//, "the shop link must be a public ebay.com URL");
-    assert.doesNotMatch(entry.href, /store-engine|vercel\.app|example|placeholder/i);
-  }
-
-  const copy = JSON.stringify(OPEN_MIRROR_RESALE_CARD);
-  assert.doesNotMatch(copy, /treasure|rare finds|curated luxury|prepper|scarcity|sustainab/i,
-    "resale copy stays grounded — no hype");
-});
-
-// 2026-10-08 (owner): the "Be prepared. Nothing dramatic." reminder left
-// About; the gated resale card keeps its quiet Shops area, still below the
-// projects, and still renders nothing until its real store exists.
-test("the About page keeps only the gated resale card in the Shops area", () => {
+// 2026-10-17 (owner): selling is the wrong direction for now. The dormant
+// eBay resale card and About's Shops area are gone.
+test("About has no Shops area and no resale card", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /OPEN_MIRROR_RESALE_CARD/, "the resale card content comes from the destination config");
-  assert.match(about, /aria-label="Shops"/);
+  assert.doesNotMatch(about, /aria-label="Shops"|OPEN_MIRROR_RESALE_CARD|AboutDestinationCard/);
   assert.doesNotMatch(about, /BE_PREPARED_CARD/, "the standalone reminder section is gone");
+  const destinations = readFileSync(join(repoRoot, "src/lib/destinations.ts"), "utf8");
+  assert.doesNotMatch(destinations, /export const OPEN_MIRROR_RESALE_CARD/);
 });
 
 test("the destination card component stays generic and safe", () => {
@@ -316,7 +264,6 @@ test("only enabled, labelled, linked destinations render", () => {
 
 test("About lists PleaseBeReady.com low-key, after every other project", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
-  assert.match(about, /AboutDestinationCard/, "About still uses the reusable card for shops");
   assert.ok(about.indexOf("pinned.map") > about.indexOf("experiments.map"), "PleaseBeReady comes after the betas");
   assert.doesNotMatch(STUDIO.purpose.join(" "), /PleaseBeReady|prepar/i, "and stays out of the opening");
 });
@@ -327,7 +274,10 @@ test("consulting availability is one switch with calm public lines", () => {
     "the one availability switch exists");
   assert.match(services, /AVAILABILITY_LINE = AVAILABILITY_LINES\[AVAILABILITY\]/,
     "the public line derives from the switch");
-  assert.match(services, /one outside project at a time/, "the one-project language is present");
+  // 2026-10-17 (owner): no business framing for now; the public line invites notes about the sites.
+  assert.match(services, /export const AVAILABILITY: ConsultingAvailability = "notes-welcome";/,
+    "the switch is set to notes about the sites");
+  assert.match(services, /what helped, what didn't work, and what was confusing/, "the notes line is present");
   assert.doesNotMatch(services, /only one spot|\bapply now\b|accepting clients|limited spots|\bact now\b|discovery call/i,
     "availability is never an urgency tactic");
   const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
@@ -466,8 +416,8 @@ test("the packaging script builds to a git-ignored, non-served directory", () =>
   assert.match(readFileSync(join(repoRoot, ".gitignore"), "utf8"), /^\/dist$/m, "dist/ must be git-ignored");
 });
 
-test("the free readiness check is present and public", () => {
-  assert.ok(existsSync(join(repoRoot, "public/downloads/old-laptop-readiness-check.pdf")));
+test("the retired readiness PDF is not served from public/", () => {
+  assert.ok(!existsSync(join(repoRoot, "public/downloads/old-laptop-readiness-check.pdf")));
 });
 
 // Comments legitimately say things like "no price, no checkout" — scan the code
@@ -482,66 +432,10 @@ test("no public product claims to be purchasable without a checkout", () => {
     const src = stripComments(readFileSync(join(repoRoot, rel), "utf8"));
     assert.doesNotMatch(src, /add to cart|buy now|proceed to checkout|\$\d/i, `${rel} must not imply a purchase`);
   }
-  // The product page (2026-07-19) may show PILOT prices and explain the
-  // manual Novo invoice workflow, but never checkout language — its actions
-  // are a release-list email and the device request form. Payment happens on
-  // the hosted invoice, never on this site.
-  const productPage = "src/app/products/old-laptop-to-build-machine/page.tsx";
-  const page = stripComments(readFileSync(join(repoRoot, productPage), "utf8"));
-  assert.doesNotMatch(page, /add to cart|buy now|proceed to checkout|purchase now|order now|pay now/i,
-    `${productPage} must not imply an active checkout`);
-  assert.match(page, /no payment is taken on\s+this website/i,
-    "the page must say no payment is taken on this website");
-  assert.doesNotMatch(page, /paypal\.me|friends and family|venmo\.com|@[a-z0-9_]+\s*on venmo/i,
-    "never a personal payment handle or Friends-and-Family instruction");
-  assert.doesNotMatch(page, /\$\d/, "dollar amounts come only from the centralized PRICING config");
-  assert.match(page, /pilot pricing/i, "any price shown must be framed as pilot pricing");
-  assert.match(page, /Join the release list/, "the playbook action is the release list, not a purchase");
-  assert.match(page, /Nothing is purchasable yet/, "the page must say nothing is purchasable yet");
   // Anything labelled Product needs an honest availability qualifier.
   for (const p of products.filter((x) => x.access === "Product")) {
     assert.ok(p.accessNote, `${p.name} is a Product and needs an availability qualifier`);
   }
-});
-
-// ── The conversion pilot stays honest ───────────────────────────────────────
-//
-// 2026-07-19: the page carries a two-path offer (playbook + conversion
-// pilot). These lock the safety copy that must never regress.
-
-test("the conversion pilot page keeps its shipping and data-erasure warnings", () => {
-  const page = readFileSync(
-    join(repoRoot, "src/app/products/old-laptop-to-build-machine/page.tsx"),
-    "utf8"
-  );
-  assert.match(page, /Do not ship anything until Open Mirror has reviewed/i,
-    "customers must be told not to ship before explicit acceptance");
-  assert.match(page, /internal drive will be erased/i, "the erasure warning must stay visible");
-  assert.match(page, /does not include backup,\s*recovery, or transfer of personal files/i,
-    "no-backup scope must stay explicit");
-  assert.match(page, /desktop/i, "the offer covers desktops");
-  assert.match(page, /laptop/i, "the offer covers laptops");
-  assert.doesNotMatch(page, /certified data destruction[^,.]*(included|guaranteed)/i,
-    "never claim certified data destruction");
-  assert.doesNotMatch(page, /\bfounder\b/i, "'owner' only — never 'founder'");
-});
-
-// 2026-07-19 (later the same day): the mailto-only compatibility check grew
-// into the real device-request workflow — server endpoint, owner review,
-// manual Novo invoice. The locks below replace the old mailto-only rule.
-test("the device request form posts to the request endpoint and never asks for secrets", () => {
-  const form = readFileSync(
-    join(repoRoot, "src/app/products/old-laptop-to-build-machine/DeviceRequestForm.tsx"),
-    "utf8"
-  );
-  assert.match(form, /fetch\("\/api\/device-request"/, "submission posts to the server endpoint");
-  assert.match(form, /mailto:\$\{SERVICE_EMAIL\}/, "the email fallback must exist for the disabled state");
-  const shipped = stripComments(form);
-  assert.doesNotMatch(shipped, /type="password"/i, "never collect a password");
-  assert.doesNotMatch(shipped, /card number|cvv|routing number|social security|\bssn\b/i, "never collect payment or identity credentials");
-  assert.doesNotMatch(shipped, /process\.env/, "no server env leaks into the client form");
-  assert.match(form, /name="website"/, "the honeypot field must stay");
-  assert.doesNotMatch(shipped, /OM-DEV-[A-Z2-9]/, "request numbers are server-generated, never client-side");
 });
 
 // ── Copy that must not regress ─────────────────────────────────────────────
@@ -745,7 +639,7 @@ test("Contact is the simple email-me page", () => {
   const services = readFileSync(join(repoRoot, "src/lib/services.ts"), "utf8");
   const contact = readFileSync(join(repoRoot, "src/app/contact/page.tsx"), "utf8");
   assert.match(services, /Contact Open Mirror/, "the plain headline");
-  assert.match(services, /Email me and we'll talk\./, "the one-line message");
+  assert.match(services, /Questions or corrections about one of the sites\? Email me\./, "the one-line message");
   assert.match(services, /EMAIL_BUTTON = "Email me"/, "the plain button label");
   // Retired 2026-07-20 (owner: too much, too personal-salesy). Never restore.
   const retired = [

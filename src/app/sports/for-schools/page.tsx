@@ -6,9 +6,9 @@ import Link from "next/link";
 import { SERVICE_EMAIL } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Free coverage for your team",
+  title: "Coverage for your team",
   description:
-    "Send your final score after the game. Open Mirror writes the story, builds the graphic, keeps the archive and puts it on the St. Louis feed. Free.",
+    "Send your final score after the game. Open Mirror writes the story, builds the graphic, keeps the archive and puts it on the St. Louis feed.",
   alternates: { canonical: "/sports/for-schools" },
 };
 
@@ -30,7 +30,7 @@ export default function ForSchoolsPage() {
 
         <p className="m-0 mt-8 text-[10px] font-black uppercase tracking-[0.24em] text-[#7dd3fc]">For coaches and ADs</p>
         <h1 className="m-0 mt-2 text-[2.3rem] font-black leading-[1.03] tracking-tight sm:text-[2.8rem]">
-          Free coverage for your team
+          Coverage for your team
         </h1>
         <p className="m-0 mt-4 text-[1.05rem] font-semibold leading-7 text-[#cbd5e1]">
           Send your final score after the game. That is the whole ask — about fifteen seconds on your phone.
@@ -54,10 +54,10 @@ export default function ForSchoolsPage() {
         </section>
 
         <section className="mt-9 rounded-2xl border border-[#232a38] bg-[#101520] p-5">
-          <h2 className="m-0 text-[11px] font-black uppercase tracking-[0.18em] text-[#7dd3fc]">What it costs</h2>
+          <h2 className="m-0 text-[11px] font-black uppercase tracking-[0.18em] text-[#7dd3fc]">What you need</h2>
           <p className="m-0 mt-2.5 text-[0.95rem] font-semibold leading-6 text-[#cbd5e1]">
-            Nothing. There is no subscription, no app to install, no account to create and no password to remember.
-            You get a link. You tap it, type two numbers, and you are done.
+            Just a link. There is no app to install, no account to create and no password to remember.
+            You tap the link, type two numbers, and you are done.
           </p>
         </section>
 

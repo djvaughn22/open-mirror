@@ -117,7 +117,7 @@ export const STUDIO = {
   label: "Independent Creative Studio",
   // The homepage's one welcoming line (and its meta description). Quiet on
   // purpose: the fuller purpose lives on About.
-  welcome: "A family of free websites for faith, family, and making things.",
+  welcome: "A family of websites for faith, family, and making things.",
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
@@ -187,7 +187,7 @@ export const products: Product[] = [
     name: "iDontCry",
     emoji: "😂",
     description:
-      "The family's playground — a high-school Sports Desk, dad jokes, games, and a Dream Lab to dream up anything, free.",
+      "The family's playground — a high-school Sports Desk, dad jokes, games, and a Dream Lab to dream up anything.",
     aboutLine:
       "Family entertainment: local high-school scores, dad jokes, and games.",
     aboutAction: "Play",
@@ -237,7 +237,7 @@ export const products: Product[] = [
       // 2026-10-07: the Five Hour Sprint service page was retired on SITR
       // (it 307s to the sprint tool); the free tools and the honest
       // live/beta status page replace it here.
-      { label: "🧰 Free Tools", href: "https://stepinthering.com/tools" },
+      { label: "🧰 Tools", href: "https://stepinthering.com/tools" },
       { label: "📋 What's Built", href: "https://stepinthering.com/whats-built" },
     ],
   },
@@ -376,36 +376,6 @@ export const products: Product[] = [
   // Fambookagram + Friendbookagram retired as standalone products on
   // 2026-08-02 (owner decision). The concepts live on as playground pages:
   // idontcry.com/fambookagram and idontcry.com/friendbookagram.
-  {
-    // The first packaged Open Mirror product. Featured — it renders as its own
-    // panel, not as one more card. No checkout exists yet, so the qualifier
-    // stays "Preparing for Release" until delivery actually works. Broadened
-    // 2026-07-19 from "Old Laptop" to cover desktops too; the route keeps the
-    // original /products/old-laptop-to-build-machine URL.
-    name: "Old Computer to Build Machine",
-    emoji: "💻",
-    // 2026-08-04: expanded into a refurbished-computer business — buy a
-    // finished Build Machine, convert your own, or sell/donate retired
-    // equipment. Name and route stay locked.
-    description:
-      "Buy a ready-to-use Build Machine, or turn an old laptop or desktop you already own into one — capable computers put back to work.",
-    aboutLine:
-      "Turning older laptops and desktops into working development computers.",
-    aboutAction: "View the product",
-    access: "Product",
-    accessNote: "Preparing for Release",
-    accent: "#F59E0B",
-    href: "/products/old-laptop-to-build-machine",
-    status: "building",
-    category: "creativity",
-    featured: true,
-    // 2026-07-20 (owner): low-key like PleaseBeReady — discovered through the
-    // About featured panel and its own page, never a persistent menu row.
-    showInNav: false,
-    image: "/products/old-laptop-to-build-machine.png",
-    imageAlt:
-      "An unused laptop with a dark screen beside the same laptop running a Build Log website, above the words: same laptop, Linux, real developer tools, and your own website live on the internet.",
-  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -443,7 +413,7 @@ export const DOORS: Door[] = [
     key: "family",
     headline: "iDontCry.com",
     title: "Family & play",
-    line: "For dads, moms, and kids: local high-school scores, games, and things to make together. Free.",
+    line: "For dads, moms, and kids: local high-school scores, games, and things to make together.",
     product: "iDontCry",
     cta: "Start with your family",
     icon: "🏡",
@@ -452,7 +422,7 @@ export const DOORS: Door[] = [
     key: "build",
     headline: "StepInTheRing.com",
     title: "Build an idea",
-    line: "Have an idea for a website, an app, or a song? Describe it in your own words and get practical steps to a first version. Free while in open beta.",
+    line: "Have an idea for a website, an app, or a song? Describe it in your own words and get practical steps to a first version. Still in open beta.",
     product: "StepInTheRing",
     cta: "Start your idea",
     icon: "🛠️",
@@ -565,7 +535,7 @@ export function bottomPinnedProducts(): Product[] {
 //   3. Building projects, then betas and experiments
 //   4. Exploring ideas
 //   5. PleaseBeReady and approved resources
-//   6. Old Computer to Build Machine — last
+//   6. A packaged product, if one ever exists — last (none since 2026-10-17)
 //
 // The Foundation opens the menu and the packaged product closes it, so nothing
 // between them reads as a funnel toward a sale. Menus render these groups in
@@ -608,7 +578,7 @@ export function navGroups(): NavGroup[] {
     },
     {
       key: "free",
-      heading: "Free to use",
+      heading: "Live now",
       items: pick((p) => p.status === "live" && !p.experiment && ungrouped(p)),
     },
     {

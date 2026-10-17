@@ -236,7 +236,7 @@ ${formattedPassages}
       return NextResponse.json(
         {
           error:
-            "Open Mirror is connected, but the AI account needs API billing or quota added before reflections can be generated.",
+            "Reflections aren't available right now. Please try again later.",
         },
         { status: 429 }
       );
