@@ -340,9 +340,9 @@ export const products: Product[] = [
     name: "PleaseBeReady",
     emoji: "🧰",
     description:
-      "Free checklists for getting your household ready for storms and power outages.",
+      "Helpful checklists for getting your household ready for storms and power outages.",
     aboutLine:
-      "Free checklists for getting a household ready for storms and power outages.",
+      "Helpful checklists for getting a household ready for storms and power outages.",
     aboutAction: "Get ready",
     access: "Free",
     accent: "#34D399",
