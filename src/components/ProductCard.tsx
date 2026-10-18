@@ -10,7 +10,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import Image from "next/image";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { copySiteLink } from "../lib/copyLink";
 import { STATUS_LABEL, type Product } from "../lib/products";
 
 const card = "#141d2e";
@@ -65,18 +66,20 @@ export default function ProductCard({ p }: { p: Product }) {
   const word = p.expandLabel ?? "features";
   const hasFeatures = !!p.links && p.links.length > 0;
 
-  // The share icon copies this card's own site address. If the clipboard is
-  // blocked, the address itself is shown so the action still works. Nothing
-  // is tracked.
+  const clearTimer = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(clearTimer.current), []);
+
+  // The share icon copies this card's own site address. "Link copied" shows
+  // only once the clipboard write has succeeded, then fades; if the clipboard
+  // is missing or refuses, the address itself stays on screen so it can be
+  // copied by hand. Each click cancels the previous fade so it can never wipe
+  // a newer message. Nothing is tracked.
   async function copyLink() {
+    window.clearTimeout(clearTimer.current);
     const url = new URL(p.href, window.location.href).href;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopyStatus("Link copied");
-      window.setTimeout(() => setCopyStatus(""), 2500);
-    } catch {
-      setCopyStatus(url);
-    }
+    const result = await copySiteLink(url, typeof navigator === "undefined" ? undefined : navigator.clipboard);
+    setCopyStatus(result.message);
+    if (result.copied) clearTimer.current = window.setTimeout(() => setCopyStatus(""), 2500);
   }
 
   return (

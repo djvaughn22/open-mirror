@@ -851,7 +851,7 @@ test("homepage cards open as a normal link, share by copying their own URL, and 
   assert.equal(shareButtons.length, 1, "exactly one share icon per card");
   assert.match(card, /<button[^>]*type="button"[^>]*onClick=\{copyLink\}[^>]*aria-label=\{`Copy link to \$\{baseName\}\$\{dot\}`\}/, "the icon is a labelled button");
   assert.match(card, /new URL\(p\.href, window\.location\.href\)/, "it copies this card's own site address");
-  assert.match(card, /navigator\.clipboard\.writeText\(url\)/, "the address goes to the clipboard");
+  assert.match(card, /copySiteLink\(url, [^)]*navigator\.clipboard\)/, "the address goes to the clipboard (truthful feedback: tests/copyLink.test.ts)");
   assert.match(card, /aria-live="polite"/, "the result is announced");
   assert.match(css, /\.om-product-card \.om-card-share,?[\s\S]*?z-index:\s*1;/, "the icon sits above the card link overlay");
 
