@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
-import ShareLink from "../components/ShareLink";
 import {
   BOTTOM_PIN_LABEL,
   bottomPinnedProducts,
   doorProducts,
-  foundationProduct,
   homeSections,
   STUDIO,
 } from "../lib/products";
@@ -34,7 +32,6 @@ export default function OpenMirrorHub() {
   const sections = homeSections();
   const pinned = bottomPinnedProducts();
   const doors = doorProducts();
-  const foundation = foundationProduct();
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
@@ -76,7 +73,7 @@ export default function OpenMirrorHub() {
         </section>
 
         {/* Below the doors, in the owner's order (2026-10-08): prayer and
-            faithful media first — CrossHeartPray easy to find and to share,
+            faithful media first — CrossHeartPray easy to find (every card has its own copy-link icon),
             never a door or a sales path — then the rescue project, then the
             betas and experiments, then PleaseBeReady as a quiet resource. */}
         {sections.map((s, i) => (
@@ -88,16 +85,6 @@ export default function OpenMirrorHub() {
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {s.items.map((p) => <ProductCard key={p.name} p={p} />)}
             </div>
-            {s.key === "faith" && foundation && (
-              <p style={{ margin: "14px 0 0" }}>
-                <ShareLink
-                  label={`Share ${foundation.name}`}
-                  title={foundation.name}
-                  text={foundation.aboutLine ?? foundation.description}
-                  url={foundation.href}
-                />
-              </p>
-            )}
           </section>
         ))}
 

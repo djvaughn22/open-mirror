@@ -2167,9 +2167,10 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   outline-offset: -1px;
 }
 
+/* Border color only — no filter or transform on hover, so nothing re-lays out
+   under the pointer. */
 .om-product-card:hover {
   border-color: var(--om-text) !important;
-  filter: brightness(1.05);
 }
 
 .om-product-card:focus-visible {
@@ -2178,8 +2179,16 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
 }
 
 /* The card's visible "Visit …" link (2026-10-16) is its only navigation: the
-   ::after stretches it over the whole card, and the Features toggle and its
-   panel sit above that layer so they keep working. */
+   ::after stretches it over the whole card, and the share icon, the Features
+   toggle and its panel sit above that layer so they keep working.
+   The global a[href]:hover lift must never reach this link: a transform makes
+   the link the containing block for its ::after, the overlay shrinks to the
+   link under the pointer, hover drops, and the cursor flickers in a loop. */
+.om-product-card .om-card-link,
+.om-product-card .om-card-link:hover,
+.om-product-card .om-expand-btn:hover {
+  transform: none !important;
+}
 .om-card-link::after {
   content: "";
   position: absolute;
@@ -2192,9 +2201,51 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   border-radius: 6px;
 }
 .om-product-card .om-expand-btn,
-.om-product-card .om-expand {
+.om-product-card .om-expand,
+.om-product-card .om-card-share,
+.om-product-card .om-card-share-status {
   position: relative;
   z-index: 1;
+}
+
+/* Per-card share icon: copies that site's address. A 40px target, quiet
+   until hovered, no lift. */
+.om-card-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: -6px -8px -6px 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  color: var(--om-sub);
+  cursor: pointer;
+  transition: color .15s ease, background-color .15s ease;
+}
+.om-product-card .om-card-share:hover {
+  transform: none !important;
+  color: var(--om-text);
+  background: var(--om-surface-2);
+}
+.om-card-share:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  color: var(--om-text);
+}
+.om-card-share-status {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--om-sub);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.om-card-share-status:empty {
+  margin: 0;
 }
 .om-product-card .om-expand-btn {
   margin: -12px -2px -12px auto;

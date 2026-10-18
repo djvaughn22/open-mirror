@@ -3,7 +3,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Homepage portfolio card: left-aligned brand intro (mark, name, description)
 // that's always visible, plus a collapsible feature list for the product's
-// direct sub-links. Client component (needs useState for the expand toggle);
+// direct sub-links, and one share icon that copies the site's address.
+// Client component (needs useState for the expand toggle and copy status);
 // src/app/page.tsx stays a server component and just maps the registry into
 // these.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -30,8 +31,20 @@ function stripEmoji(label: string): string {
   return label.replace(LEADING_EMOJI, "");
 }
 
+// A plain link icon (two chain links), drawn in currentColor so it follows
+// the theme. No emoji, no brand glyph.
+function LinkIcon() {
+  return (
+    <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5" />
+      <path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" />
+    </svg>
+  );
+}
+
 export default function ProductCard({ p }: { p: Product }) {
   const [open, setOpen] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("");
   const panelId = useId();
   const isCom = p.href.startsWith("http");
   // A registry name may already carry its own ".com" (DontCloneMeTom.com,
@@ -52,10 +65,26 @@ export default function ProductCard({ p }: { p: Product }) {
   const word = p.expandLabel ?? "features";
   const hasFeatures = !!p.links && p.links.length > 0;
 
+  // The share icon copies this card's own site address. If the clipboard is
+  // blocked, the address itself is shown so the action still works. Nothing
+  // is tracked.
+  async function copyLink() {
+    const url = new URL(p.href, window.location.href).href;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopyStatus("Link copied");
+      window.setTimeout(() => setCopyStatus(""), 2500);
+    } catch {
+      setCopyStatus(url);
+    }
+  }
+
   return (
     // The card's one link is the visible "Visit …" line; its ::after (globals.css,
-    // .om-card-link) stretches over the card so a tap anywhere still opens the
-    // site, while keyboard and screen-reader users meet a single real link.
+    // .om-card-link) stretches over the card so a click anywhere opens the site
+    // as a normal link (new tab, copy address and middle-click all work), while
+    // keyboard and screen-reader users meet a single real link. The share icon
+    // and the Features toggle sit above that layer.
     <div
       style={{
         position: "relative",
@@ -121,7 +150,17 @@ export default function ProductCard({ p }: { p: Product }) {
             {badge}
           </span>
         ) : null}
+        <button
+          type="button"
+          onClick={copyLink}
+          aria-label={`Copy link to ${baseName}${dot}`}
+          title={`Copy link to ${baseName}${dot}`}
+          className="om-card-share"
+        >
+          <LinkIcon />
+        </button>
       </div>
+      <p aria-live="polite" className="om-card-share-status">{copyStatus}</p>
 
       <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "12px 0 0", lineHeight: 1.55 }}>
         {p.description}

@@ -821,10 +821,47 @@ test("below the doors, the homepage follows the owner's hierarchy", () => {
   assert.deepEqual(sections[2].items.map((p) => p.name), ["WatchedNotWatched"]);
   assert.deepEqual(sections[3].items.map((p) => p.name), ["OpenDoku", "WhatAmIAI"]);
   for (const d of DOORS) assert.ok(!sections.some((s) => s.items.some((p) => p.name === d.product)), `${d.product} is a door, not repeated`);
-  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /<ShareLink/, "CrossHeartPray is easy to share from the homepage");
   const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
   assert.match(card, /p\.experiment \? STATUS_LABEL\.beta/, "a live experiment reads as a Beta");
+});
+
+// 2026-10-17: the whole card opens its site as a normal link, hover no longer
+// flickers the cursor, and each card carries one share icon that copies its
+// own site address. The separate text "Share …" button under the faith
+// section is gone.
+test("homepage cards open as a normal link, share by copying their own URL, and hover without flicker", () => {
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  const css = readFileSync(join(repoRoot, "src/app/globals.css"), "utf8");
+
+  // Normal link: a real <a href={p.href}> whose ::after covers the card.
+  assert.match(card, /<a\s+href=\{p\.href\}[\s\S]*?className="om-cta om-card-link"/, "the card's link is a real anchor to the site");
+  assert.match(css, /\.om-card-link::after\s*\{[^}]*position:\s*absolute;[^}]*inset:\s*0;/, "the link's overlay stretches over the whole card");
+  assert.doesNotMatch(card, /onClick=\{[^}]*location/, "navigation is the link itself, not a click handler");
+
+  // No flicker: the global hover lift must not transform the card link (a
+  // transform shrinks the ::after overlay out from under the pointer), and the
+  // card's own hover changes no filter or transform.
+  assert.match(css, /\.om-product-card \.om-card-link:hover[^{]*\{\s*transform:\s*none !important;/, "the card link never lifts on hover");
+  const cardHover = css.match(/\.om-product-card:hover\s*\{([^}]*)\}/)?.[1] ?? "";
+  assert.doesNotMatch(cardHover, /filter|transform/, "card hover only changes the border");
+
+  // One share icon per card that copies that site's URL.
+  const shareButtons = card.match(/className="om-card-share"/g) ?? [];
+  assert.equal(shareButtons.length, 1, "exactly one share icon per card");
+  assert.match(card, /<button[^>]*type="button"[^>]*onClick=\{copyLink\}[^>]*aria-label=\{`Copy link to \$\{baseName\}\$\{dot\}`\}/, "the icon is a labelled button");
+  assert.match(card, /new URL\(p\.href, window\.location\.href\)/, "it copies this card's own site address");
+  assert.match(card, /navigator\.clipboard\.writeText\(url\)/, "the address goes to the clipboard");
+  assert.match(card, /aria-live="polite"/, "the result is announced");
+  assert.match(css, /\.om-product-card \.om-card-share,?[\s\S]*?z-index:\s*1;/, "the icon sits above the card link overlay");
+
+  // The separate text share control is gone.
+  assert.doesNotMatch(page, /ShareLink|Share \$\{/, "no separate text share control on the homepage");
+  assert.ok(!existsSync(join(repoRoot, "src/components/ShareLink.tsx")), "the old ShareLink component is removed");
+
+  // Features expansion and its links still work, above the overlay.
+  assert.match(card, /aria-expanded=\{open\}/);
+  assert.match(css, /\.om-product-card \.om-expand-btn,\s*\.om-product-card \.om-expand,/, "the toggle and panel stay clickable");
 });
 
 test("the About opening is the owner's, and stays free of sales and AI language", () => {
