@@ -564,11 +564,14 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     "https://stepinthering.com/tools",
     "https://stepinthering.com/whats-built",
   ],
-  // 2026-10-17: the two photo puzzles lead after OpenDoku's redesign; both
-  // 200 live (Face Regions | OpenDoku, Face Slide | OpenDoku).
+  // 2026-10-17: the two photo puzzles lead after OpenDoku's redesign, then
+  // all five originals in OpenDoku's own order. Each 200 live with its own
+  // title ("Face Regions | OpenDoku", "Picture Sudoku | OpenDoku", …).
   OpenDoku: [
     "https://opendoku.com/face-regions/",
     "https://opendoku.com/face-slide/",
+    "https://opendoku.com/picture-sudoku/",
+    "https://opendoku.com/mega-slide/",
     "https://opendoku.com/slopedoku/",
     "https://opendoku.com/surfdoku/",
     "https://opendoku.com/minedoku/",

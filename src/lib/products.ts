@@ -270,10 +270,10 @@ export const products: Product[] = [
     emoji: "🧩",
     description:
       // 2026-10-17 (owner): the photo puzzles lead after OpenDoku's redesign;
-      // the three number games stay listed as the originals.
-      "Puzzles starring your people: add a photo and a name, then play Face Regions or Face Slide. The original puzzle games are there too: SlopeDoku, SurfDoku, and MineDoku.",
+      // the five original games follow in OpenDoku's own order.
+      "Puzzles starring your people: add a photo and a name, then play Face Regions or Face Slide. The original puzzle games are there too: Picture Sudoku, Mega Slide, SlopeDoku, SurfDoku, and MineDoku.",
     aboutLine:
-      "Photo puzzles made from your own pictures, Face Regions and Face Slide, plus the original puzzle games: SlopeDoku, SurfDoku, and MineDoku.",
+      "Photo puzzles made from your own pictures, Face Regions and Face Slide, plus the original puzzle games: Picture Sudoku, Mega Slide, SlopeDoku, SurfDoku, and MineDoku.",
     aboutAction: "Play",
     access: "Free",
     accent: "#7DD3FC",
@@ -286,6 +286,8 @@ export const products: Product[] = [
     links: [
       { label: "🎨 Face Regions", href: "https://opendoku.com/face-regions/" },
       { label: "🖼️ Face Slide", href: "https://opendoku.com/face-slide/" },
+      { label: "🍓 Picture Sudoku", href: "https://opendoku.com/picture-sudoku/" },
+      { label: "🌄 Mega Slide", href: "https://opendoku.com/mega-slide/" },
       { label: "🏔️ SlopeDoku", href: "https://opendoku.com/slopedoku/" },
       { label: "🌞 SurfDoku", href: "https://opendoku.com/surfdoku/" },
       { label: "⛏️ MineDoku", href: "https://opendoku.com/minedoku/" },
