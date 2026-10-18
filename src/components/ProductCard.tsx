@@ -43,7 +43,7 @@ function LinkIcon() {
   );
 }
 
-export default function ProductCard({ p }: { p: Product }) {
+export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subtitle?: string; doorKey?: string }) {
   const [open, setOpen] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
   const panelId = useId();
@@ -166,12 +166,14 @@ export default function ProductCard({ p }: { p: Product }) {
       <p aria-live="polite" className="om-card-share-status">{copyStatus}</p>
 
       <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "12px 0 0", lineHeight: 1.55 }}>
+        {subtitle && <span style={{ display: "block", color: p.accent, marginBottom: 6 }}>{subtitle}</span>}
         {p.description}
       </p>
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "4px 16px", marginTop: 12 }}>
         <a
           href={p.href}
+          data-door={doorKey}
           {...(isCom ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className="om-cta om-card-link"
           style={{ color: p.accent }}

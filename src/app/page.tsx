@@ -5,6 +5,8 @@ import {
   BOTTOM_PIN_LABEL,
   bottomPinnedProducts,
   doorProducts,
+  foundationProduct,
+  products,
   homeSections,
   STUDIO,
 } from "../lib/products";
@@ -29,7 +31,10 @@ function GroupLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function OpenMirrorHub() {
-  const sections = homeSections();
+  const foundation = foundationProduct();
+  const sections = homeSections()
+    .map((s) => ({ ...s, items: s.items.filter((p) => p !== foundation) }))
+    .filter((s) => s.items.length > 0);
   const pinned = bottomPinnedProducts();
   const doors = doorProducts();
 
@@ -44,38 +49,26 @@ export default function OpenMirrorHub() {
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 600, color: sub, margin: 0 }}>
-            {STUDIO.welcome} <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
+            Glad you’re here. {STUDIO.welcome} <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
           </p>
         </header>
 
-        {/* The two doors: one obvious step to the right product. */}
-        <section aria-labelledby="doors-title" style={{ marginBottom: 52 }}>
-          <h2 id="doors-title" style={{ fontSize: 18, fontWeight: 900, color: text, margin: "0 0 14px", textAlign: "center" }}>
-            Where do you want to start?
-          </h2>
+        {foundation && (
+          <section aria-label="CrossHeartPray" style={{ marginBottom: 18 }}>
+            <ProductCard p={foundation} />
+          </section>
+        )}
+
+        <section aria-label="Family and making things" style={{ marginBottom: 44 }}>
           <DoorMeasure />
-          <div className="om-doors">
-            {doors.map((d) => (
-              <a key={d.key} href={d.href} data-door={d.key} className="om-door" style={{ border: "1px solid var(--om-border)", borderTop: `3px solid ${d.accent}`, background: "#141d2e", borderRadius: 16, padding: "18px 18px 16px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 8 }}>
-                <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  <span style={{ fontSize: 19, fontWeight: 900, color: text, lineHeight: 1.2 }}>
-                    <span aria-hidden style={{ marginRight: 8 }}>{d.icon}</span>
-                    {d.headline.replace(/\.com$/, "")}
-                    {d.headline.endsWith(".com") && <span style={{ color: d.accent }}>.com</span>}
-                  </span>
-                  <span data-door-subtitle style={{ fontSize: 13, fontWeight: 800, color: d.accent, letterSpacing: "0.01em" }}>{d.title}</span>
-                </span>
-                <span style={{ fontSize: 14, fontWeight: 600, color: sub, lineHeight: 1.55, flex: 1 }}>{d.line}</span>
-                <span style={{ fontSize: 13, fontWeight: 800, color: d.accent }}>{d.cta} →</span>
-              </a>
-            ))}
+          <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+            {doors.map((d) => {
+              const product = products.find((p) => p.name === d.product)!;
+              return <ProductCard key={d.key} p={{ ...product, emoji: d.icon, description: d.line }} subtitle={d.title} doorKey={d.key} />;
+            })}
           </div>
         </section>
 
-        {/* Below the doors, in the owner's order (2026-10-08): prayer and
-            faithful media first — CrossHeartPray easy to find (every card has its own copy-link icon),
-            never a door or a sales path — then the rescue project, then the
-            betas and experiments, then PleaseBeReady as a quiet resource. */}
         {sections.map((s, i) => (
           <section key={s.key} aria-label={s.label} style={{ marginTop: i === 0 ? 0 : 44 }}>
             <GroupLabel>{s.label}</GroupLabel>

@@ -785,7 +785,7 @@ test("hub copy that names the rescue project says DontCloneMeTom.com", () => {
 
 // 2026-10-08 (owner): two doors. PleaseBeReady left the first screen but
 // stays findable lower on the homepage and in the family menu (next test).
-test("the homepage opens on exactly two doors: family and build", () => {
+test("the homepage keeps family and build in that order", () => {
   assert.deepEqual(DOORS.map((d) => d.key), ["family", "build"]);
   assert.deepEqual(DOORS.map((d) => d.product), ["iDontCry", "StepInTheRing"]);
   for (const d of doorProducts()) {
@@ -881,9 +881,13 @@ test("each door card leads with its .com brand, then its subtitle, and links str
     assert.doesNotMatch(`${d.title} ${d.line} ${d.cta} ${d.icon}`, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
   }
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /href=\{d\.href\}/, "no hub interstitial between the door and the site");
-  assert.ok(page.indexOf("d.headline") < page.indexOf("{d.title}"), "the headline renders above the subtitle");
-  assert.match(page, /fontSize: 19/, "the brand is the larger line");
+  assert.match(page, /<ProductCard key=\{d\.key\}/, "both apps use the share-enabled card");
+  assert.match(page, /subtitle=\{d\.title\}/);
+  assert.match(page, /description: d\.line/, "plain door copy stays on the homepage");
+  assert.ok(page.indexOf("<ProductCard p={foundation}") < page.indexOf("{doors.map"), "CrossHeartPray comes before family and build");
+  assert.ok(page.indexOf("{doors.map") < page.indexOf("{sections.map"), "the other apps follow");
+  assert.match(page, /items: s\.items\.filter\(\(p\) => p !== foundation\)/, "the first app is not repeated below");
+  assert.doesNotMatch(page, /Where do you want to start\?/);
 });
 
 test("every site card on the hub shows its real .com name, matching its own link", () => {
@@ -913,7 +917,9 @@ test("doors and registry copy carry no AI positioning or unproven claims", () =>
 
 test("door clicks are counted by key only, and never from Do Not Track browsers", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /data-door=\{d\.key\}/);
+  assert.match(page, /doorKey=\{d\.key\}/);
+  const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  assert.match(card, /data-door=\{doorKey\}/);
   assert.match(page, /<DoorMeasure \/>/);
   const m = readFileSync(join(repoRoot, "src/components/DoorMeasure.tsx"), "utf8");
   assert.match(m, /gtag\("event", "door_click", \{ door \}\)/);
