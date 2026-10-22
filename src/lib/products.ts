@@ -117,7 +117,7 @@ export const STUDIO = {
   label: "Independent Creative Studio",
   // The homepage's one welcoming line (and its meta description). Quiet on
   // purpose: the fuller purpose lives on About.
-  welcome: "A family of apps to follow, laugh, learn, play, create, explore, pray, meditate, and prepare.",
+  welcome: "A family of websites for faith, family, and making things.",
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
