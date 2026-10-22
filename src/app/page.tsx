@@ -13,6 +13,13 @@ import {
 
 export const metadata: Metadata = {
   description: STUDIO.welcome,
+  openGraph: {
+    siteName: STUDIO.name,
+    title: `${STUDIO.name} — ${STUDIO.label}`,
+    description: STUDIO.welcome,
+    url: STUDIO.url,
+    type: "website",
+  },
   alternates: { canonical: "/" },
 };
 
@@ -46,10 +53,10 @@ export default function OpenMirrorHub() {
             lives on About, never here as a block (owner, 2026-10-08). */}
         <header style={{ textAlign: "center", marginBottom: 36 }}>
           <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 8px", lineHeight: 1.05 }}>
-            Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
+            Welcome to Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 600, color: sub, margin: 0 }}>
-            Glad you’re here. {STUDIO.welcome} <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
+            {STUDIO.welcome} <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
           </p>
         </header>
 
