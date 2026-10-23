@@ -49,7 +49,7 @@ export default function OpenMirrorHub() {
             Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
           </h1>
           <p style={{ fontSize: 14, fontWeight: 600, color: sub, margin: 0 }}>
-            Glad you’re here. {STUDIO.welcome} <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
+            A safe place for faith, family, and creativity. All are welcome. <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
           </p>
         </header>
 
