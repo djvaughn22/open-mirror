@@ -134,10 +134,13 @@ export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subt
           </span>
         )}
         {/* The domain shrinks to fit its column (never below 14px), and if it
-            still can't fit, wraps only before ".com" so the domain stays readable. */}
-        <div style={{ flex: 1, minWidth: 0, containerType: "inline-size" }}>
+            still can't fit, wraps only before ".com" so the domain stays readable.
+            The status label sits beside it and drops under it when space runs out. */}
+        <div style={{ flex: 1, minWidth: 0, containerType: "inline-size", display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 14, rowGap: 2 }}>
           <h2
             style={{
+              flex: "0 1 auto",
+              minWidth: 0,
               fontSize: `max(14px, min(${isFoundation ? "clamp(1.1rem, 5.4vw, 1.5rem)" : "clamp(1.02rem, 5vw, 1.35rem)"}, calc(100cqi / ${((baseName.length + dot.length) * 0.62).toFixed(2)})))`,
               fontWeight: 900,
               color: text,
@@ -149,12 +152,12 @@ export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subt
             {baseName}
             {dot ? <><wbr /><span style={{ color: p.accent, whiteSpace: "nowrap" }}>{dot}</span></> : null}
           </h2>
+          {badge ? (
+            <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: p.accent }}>
+              {badge}
+            </span>
+          ) : null}
         </div>
-        {badge ? (
-          <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: p.accent }}>
-            {badge}
-          </span>
-        ) : null}
         <button
           type="button"
           onClick={copyLink}
