@@ -3,7 +3,7 @@
 // (owner, 2026-08-02):
 //   OpenMirrorLLC.com · About · ✝️ ❤️ 🙏
 //   Contact · Disclaimer          (anchors into THIS site's own About page)
-//   Open Mirror LLC is a small independent company.
+//   © 2026 Open Mirror LLC, a small independent company.   (© added 2026-11-03, owner)
 // The canonical component is the single source every satellite syncs from, so
 // these checks protect the whole portfolio, not just the hub.
 //
@@ -53,16 +53,15 @@ test("line two: Contact · Disclaimer anchor into the site's own About", () => {
   assert.ok(!src.includes("mailto:"), "the footer never opens email directly");
 });
 
-test("line three: the plain ownership sentence", () => {
-  assert.ok(
-    src.includes("Open Mirror LLC is a small independent company."),
-    "supporting text, not a link",
-  );
+test("line three: copyright and the plain ownership phrase", () => {
+  // Owner, 2026-11-03: the © joined line three instead of becoming a fourth line.
+  assert.ok(src.includes("<span>© 2026 Open Mirror LLC,</span>"), "copyright, plain text");
+  assert.ok(src.includes("<span>a small independent company.</span>"), "supporting text, not a link");
+  assert.ok(src.includes(".om-footer-legal span{display:inline-block}"), "breaks between phrases, never mid-phrase");
 });
 
 test("the old clutter never returns", () => {
   for (const banned of [
-    "©", // copyright row
     "About Open Mirror", // old duplicate label — now just "About"
     ">CrossHeartPray</a>", // written link — the icons carry it
     "tagline", // per-site slogan prop
