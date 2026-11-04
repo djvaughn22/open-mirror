@@ -7,19 +7,25 @@ export const metadata: Metadata = {
   alternates: { canonical: "/disclaimer" },
 };
 
-// Full disclaimer (owner's brief, 2026-07-19). Ten sections carry the whole
-// thing: general information, as-is, not professional advice, AI, third
-// parties, trademarks, user responsibility, limitation of responsibility,
-// independent ownership, and questions.
-// titled. Change words only on the owner's instruction.
+// Full disclaimer (owner's brief, 2026-07-19; property-by-property revision,
+// owner's brief 2026-11-03). Each site is read in light of its own purpose —
+// there is no blanket "informational or entertainment" label — and Scripture
+// on CrossHeartPray sits outside the general limits. Then: as-is, not
+// professional advice, AI, third parties, trademarks, user responsibility,
+// limitation of responsibility, independent ownership, and questions.
+// Change words only on the owner's instruction.
 
 const INTRO =
-  "Open Mirror LLC creates and publishes original software, websites, games, creative tools, digital products, and informational resources. Please use them thoughtfully and understand the following before relying on anything published here.";
+  "Open Mirror LLC publishes a group of separate websites. This page applies to all of them, and each site's About page covers what is specific to that site.";
 
 const SECTIONS = [
   {
-    heading: "General information",
-    copy: "Open Mirror content and products are provided for general informational, educational, creative, and entertainment purposes. They may be changed, improved, removed, or discontinued at any time.",
+    heading: "Each site has its own purpose",
+    copy: "Each Open Mirror website has its own purpose. CrossHeartPray is a Christian resource centered on Scripture. The other sites offer Christian music and media, dog-rescue listings, games, sports scores, emergency-preparation checklists and product suggestions, reflection and creative tools, and a movie, TV, and book tracker. What each site publishes, and its limits, should be understood in light of that site's purpose. Sites and features may change, improve, or be retired at any time.",
+  },
+  {
+    heading: "Scripture",
+    copy: "CrossHeartPray presents Scripture as God's Word. Its Bible text comes from published translations and is shown as published; Open Mirror LLC does not write, rewrite, or alter it. Prayers, reading plans, devotional and study notes, original-language helps, and teaching from other ministries are the work of people, shared alongside Scripture to help in reading it; they are not Scripture. The limits described on this page apply to the websites, their features, and those materials, not to Scripture itself.",
   },
   {
     heading: "Provided as-is",
@@ -27,7 +33,7 @@ const SECTIONS = [
   },
   {
     heading: "Not professional advice",
-    copy: "Nothing published by Open Mirror LLC should be treated as legal, financial, medical, mental-health, safety, employment, or other professional advice. Important decisions should be reviewed with an appropriately qualified professional.",
+    copy: "Nothing published by Open Mirror LLC should be treated as legal, financial, medical, mental-health, safety, employment, or other professional advice. Important decisions should be reviewed with an appropriately qualified professional. In an emergency, contact emergency services and follow official local guidance.",
   },
   {
     heading: "Artificial intelligence",
@@ -35,7 +41,7 @@ const SECTIONS = [
   },
   {
     heading: "Third-party services",
-    copy: "Open Mirror products may reference or connect to third-party websites, stores, platforms, videos, APIs, products, or services. Open Mirror LLC does not control those third parties and is not responsible for their availability, content, security, policies, pricing, or actions.",
+    copy: "Open Mirror products may reference or connect to third-party websites, stores, platforms, videos, APIs, products, or services. Open Mirror LLC does not control those third parties and is not responsible for their availability, content, security, policies, pricing, or actions. Sites that include affiliate links say so, and Open Mirror LLC may earn a commission from qualifying purchases made through them.",
   },
   {
     heading: "Names and trademarks",
@@ -110,7 +116,7 @@ export default function Disclaimer() {
         </div>
 
         <p className="mt-8 text-sm font-semibold leading-7 text-[#64748b]">
-          Last updated: October 2026
+          Last updated: November 2026
         </p>
 
       </div>

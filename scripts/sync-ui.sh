@@ -24,6 +24,10 @@ TARGETS=(
   "$HOME/WhatAmIAI/whatamiai/app"
   "$HOME/idontcry/src/app"
   "$HOME/WatchedNotWatched/watched-not-watched/src/app"
+  # Added 2026-11-03: the two -agram sites were hand-copied and missed the
+  # October footer contrast fix.
+  "$HOME/Fambookagram/fambookagram/app"
+  "$HOME/Friendbookagram/friendbookagram/app"
 )
 # CrossHeartPray (corrected 2026-07-16, commit 3491570): it keeps its OWN
 # single header — no OpenMirrorNav/OpenMirrorFooter. Only the shared theme

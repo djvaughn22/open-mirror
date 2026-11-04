@@ -697,12 +697,15 @@ test("Contact makes no forbidden promises and collects nothing", () => {
 
 // ── Disclaimer copy ─────────────────────────────────────────────────────────
 // Owner brief (2026-07-19): the full ten-section disclaimer replaced the
-// three-sentence version at the owner's direction.
+// three-sentence version at the owner's direction. Owner brief (2026-11-03):
+// the blanket "informational … entertainment" opening became a per-site
+// purpose section, and Scripture got its own section outside the limits.
 
-test("Disclaimer carries all ten sections and the dateline", () => {
+test("Disclaimer carries every section and the dateline", () => {
   const disclaimer = readFileSync(join(repoRoot, "src/app/disclaimer/page.tsx"), "utf8");
   const headings = [
-    "General information",
+    "Each site has its own purpose",
+    "Scripture",
     "Provided as-is",
     "Not professional advice",
     "Artificial intelligence",
@@ -716,7 +719,7 @@ test("Disclaimer carries all ten sections and the dateline", () => {
   for (const heading of headings) {
     assert.ok(disclaimer.includes(heading), `Disclaimer section present: ${heading}`);
   }
-  assert.match(disclaimer, /Last updated: October 2026/, "the small-print dateline is present");
+  assert.match(disclaimer, /Last updated: November 2026/, "the small-print dateline is present");
   // 2026-10-08 (owner): the employer-independence statement is back (it was
   // removed on 2026-08-17), in general terms only — no employer is named.
   for (const page of [disclaimer, readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8")]) {
@@ -725,6 +728,19 @@ test("Disclaimer carries all ten sections and the dateline", () => {
     assert.match(flat, /not affiliated with, sponsored by, or endorsed by the owner's current or former employers or their affiliates/);
   }
   assert.doesNotMatch(disclaimer, /founder/i, "'owner', never 'founder'");
+});
+
+test("Disclaimer keeps Scripture apart from the general limits", () => {
+  const disclaimer = readFileSync(join(repoRoot, "src/app/disclaimer/page.tsx"), "utf8");
+  assert.doesNotMatch(disclaimer, /entertainment purposes/i, "no blanket informational/entertainment label for every site");
+  assert.match(disclaimer, /CrossHeartPray presents Scripture as God's Word/);
+  assert.match(disclaimer, /does not write, rewrite, or alter it/, "Bible text is never written or changed");
+  assert.match(disclaimer, /they are not Scripture/, "human-made helps are named as such");
+  assert.match(disclaimer, /not to Scripture itself/, "the limits on the page never reach Scripture");
+  assert.ok(
+    disclaimer.indexOf('"Scripture"') < disclaimer.indexOf('"Provided as-is"'),
+    "Scripture is set apart before the general limits begin",
+  );
 });
 
 // ── DontCloneMeTom.com: the label carries .com, the URL stays lowercase ─────
