@@ -444,7 +444,34 @@ test("StepInTheRing does not promise seven questions", () => {
   const sitr = byName("StepInTheRing");
   const copy = `${sitr.description} ${sitr.aboutLine ?? ""}`;
   assert.doesNotMatch(copy, /seven question|7 question|fight plan/i);
-  assert.match(copy, /version one/i, "SITR should describe its real promise");
+  assert.match(copy, /until it's right/i, "SITR should describe its real promise");
+});
+
+// 2026-11-05 owner brief: Step In The Ring is a workspace for making things with
+// AI. The site runs no AI itself, so nothing here may suggest it does. Its words
+// live in that repo's app/site/brand.ts; this listing follows them.
+test("the StepInTheRing listing carries the site's own promise, and no fight", () => {
+  const sitr = byName("StepInTheRing");
+  const door = DOORS.find((d) => d.product === "StepInTheRing");
+  for (const line of [sitr.description, door?.line ?? ""]) {
+    assert.match(line, /\bAI\b/, "it says what the product is for");
+    assert.match(line, /no coding/, "it says you can start without coding");
+    assert.match(line, /until it's right/, "it says you keep going");
+    assert.doesNotMatch(line, /AI[- ]powered|our AI|vibe/i, "it never suggests the site runs an AI, and stays plain");
+  }
+  assert.notEqual(sitr.emoji, "🥊", "the ring is a place you step into, never a fight");
+});
+
+test("the StepInTheRing About line keeps the About page's rule", () => {
+  assert.doesNotMatch(byName("StepInTheRing").aboutLine ?? "", /\bAI\b|artificial intelligence|\bprompt/i,
+    "About never mentions AI or build tooling");
+});
+
+test("the StepInTheRing links use the names those pages have on that site", () => {
+  const labels = (byName("StepInTheRing").links ?? []).map((l) => l.label).join(" ");
+  assert.match(labels, /Made here/);
+  assert.match(labels, /What Works Today/);
+  assert.doesNotMatch(labels, /Owner's Builds|What's Built/);
 });
 
 test("the hub does not claim StepInTheRing publishes games for visitors", () => {
@@ -556,7 +583,7 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     "https://stepinthering.com/build",
     "https://stepinthering.com/how",
     "https://stepinthering.com/build-machine",
-    // 2026-09-30: SITR's Owner's Builds and two services; all 200 live.
+    // 2026-09-30: SITR's showroom and two services; all 200 live.
     "https://stepinthering.com/builds",
     "https://stepinthering.com/products/ready-to-build",
     // 2026-10-07: five-hour-sprint (retired, 307) replaced by the free tools
@@ -926,9 +953,17 @@ test("CrossHeartPray is never a door or near a conversion path", () => {
   assert.match(page, /doorProducts\(\)/, "the homepage renders the doors from the registry");
 });
 
-test("doors and registry copy carry no AI positioning or unproven claims", () => {
-  const copy = [...DOORS.map((d) => `${d.title} ${d.line} ${d.cta}`), ...products.map((p) => p.description)].join(" ");
-  assert.doesNotMatch(copy, /\bAI\b|artificial intelligence|cheapest|thousands of|best in|guaranteed/i);
+test("doors and registry copy carry no unproven claims, and no AI positioning outside Step In The Ring", () => {
+  const doorCopy = (d: (typeof DOORS)[number]) => `${d.title} ${d.line} ${d.cta}`;
+  const all = [...DOORS.map(doorCopy), ...products.map((p) => p.description)].join(" ");
+  assert.doesNotMatch(all, /cheapest|thousands of|best in|guaranteed/i);
+  // Step In The Ring is the one exception (owner brief, 2026-11-05): making things
+  // with AI is the product. Every other site keeps the 2026-10-07 rule.
+  const others = [
+    ...DOORS.filter((d) => d.product !== "StepInTheRing").map(doorCopy),
+    ...products.filter((p) => p.name !== "StepInTheRing").map((p) => p.description),
+  ].join(" ");
+  assert.doesNotMatch(others, /\bAI\b|artificial intelligence/i);
 });
 
 test("door clicks are counted by key only, and never from Do Not Track browsers", () => {

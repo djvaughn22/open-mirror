@@ -216,14 +216,17 @@ export const products: Product[] = [
   },
   {
     name: "StepInTheRing",
-    emoji: "🥊",
+    emoji: "🟦",
+    // 2026-11-05 owner brief: its promise is working with AI, so it says so. The
+    // site itself runs no AI (it writes the messages a person pastes into one),
+    // and this is the one listing here that talks about AI.
     description:
-      "Take any idea — even one you dreamed up on iDontCry — and turn it into a real first build. Say it however it comes out; get back a plan for version one and a builder prompt.",
-    // Trimmed 2026-07-19 (owner copy rule): the About page never mentions
-    // prompts or build tooling, so the About line ends at the plan.
+      "A workspace for making things with AI. Say what you want to make in your own words, no coding needed, then keep telling the AI what to change until it's right.",
+    // The About page never mentions AI, prompts or build tooling (owner copy
+    // rule, 2026-07-19), so this line says what you can do and stops there.
     aboutLine:
-      "Helps you turn a rough idea into a clear plan for a first version.",
-    aboutAction: "Start building",
+      "Helps you make what you have in mind with no coding, and keep changing it until it's right.",
+    aboutAction: "Make something",
     access: "Free",
     accent: "#60A5FA",
     href: "https://stepinthering.com",
@@ -233,13 +236,13 @@ export const products: Product[] = [
       { label: "🧭 First Build Coach", href: "https://stepinthering.com/build" },
       { label: "❔ How It Works", href: "https://stepinthering.com/how" },
       { label: "💻 Build Machine Assessment", href: "https://stepinthering.com/build-machine" },
-      { label: "🧱 Owner's Builds", href: "https://stepinthering.com/builds" },
+      { label: "🧱 Made here", href: "https://stepinthering.com/builds" },
       { label: "✅ Ready to Build", href: "https://stepinthering.com/products/ready-to-build" },
       // 2026-10-07: the Five Hour Sprint service page was retired on SITR
       // (it 307s to the sprint tool); the free tools and the honest
       // live/beta status page replace it here.
       { label: "🧰 Tools", href: "https://stepinthering.com/tools" },
-      { label: "📋 What's Built", href: "https://stepinthering.com/whats-built" },
+      { label: "📋 What Works Today", href: "https://stepinthering.com/whats-built" },
     ],
   },
   {
@@ -427,7 +430,7 @@ export const DOORS: Door[] = [
     key: "build",
     headline: "StepInTheRing.com",
     title: "Build an idea",
-    line: "Have an idea for a website, an app, or a song? Describe it in your own words and get practical steps to a first version. Still in open beta.",
+    line: "Make a website, a game, a story or a study guide with AI, no coding needed. Keep telling it what to change until it's right. Still in open beta.",
     product: "StepInTheRing",
     cta: "Start your idea",
     icon: "🛠️",
