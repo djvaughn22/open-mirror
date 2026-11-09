@@ -14,6 +14,8 @@ Three chrome components are **canonical in this repo** and copied byte-for-byte 
 
 **Never edit the copies in site repos.** Edit here, run `./scripts/sync-ui.sh`, then build + commit + push each satellite.
 
+**One exception (2026-11-08):** StepInTheRing keeps its own `OpenMirrorTheme.tsx` (a Dark/Light/System control and its mobile white-flash fix), so `sync-ui.sh` gives it the header and footer but never the theme. A hub theme change doesn't reach it; port it there by hand.
+
 Everything else is **per-site by design** — colors, fonts, heroes, cards, voice. Sites are allowed to look different; they must *behave* the same.
 
 ## Theme mechanics (all 12 sites)

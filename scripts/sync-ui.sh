@@ -33,6 +33,11 @@ TARGETS=(
 # single header — no OpenMirrorNav/OpenMirrorFooter. Only the shared theme
 # machinery stays in sync there (its ChpProductNav imports OpenMirrorTheme).
 CHP_COMPONENTS="$HOME/OpenMirror/crossheartpray/src/components"
+# StepInTheRing (2026-11-08): it keeps its OWN OpenMirrorTheme.tsx — a
+# Dark/Light/System control and the mobile white-flash fix (SITR 6d16ef5,
+# 84a13a2) that the hub theme doesn't have. The nav and footer still sync
+# there; the theme is never overwritten. Port a hub theme change by hand.
+SITR_OWN_THEME="$HOME/StepInTheRing/step-in-the-ring/app/OpenMirrorTheme.tsx"
 
 for t in "${TARGETS[@]}"; do
   if [ ! -d "$t" ]; then
@@ -40,6 +45,10 @@ for t in "${TARGETS[@]}"; do
     continue
   fi
   for f in "${FILES[@]}"; do
+    if [ "$t/$f" = "$SITR_OWN_THEME" ]; then
+      echo "kept (own theme): $t/$f"
+      continue
+    fi
     cp "$SRC/$f" "$t/$f"
   done
   echo "synced -> $t"
