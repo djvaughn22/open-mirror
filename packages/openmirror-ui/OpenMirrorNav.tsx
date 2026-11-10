@@ -50,7 +50,7 @@ export type OmNavLink = {
 };
 export type OmNavGroup = { label: string; links: OmNavLink[] };
 
-/** "pleasebeready.com" for an outside link, null for one of this site's pages. */
+/** "example.com" for an outside link, null for one of this site's pages. */
 function outsideHost(href: string): string | null {
   if (!/^https?:\/\//.test(href)) return null;
   try {
