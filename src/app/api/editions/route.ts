@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { checkEdition, looksAutomated, type EditionInput } from "../../../lib/editions";
-import { deliver } from "../../../lib/editionsServer";
+import { deliver, deliveryConfigured } from "../../../lib/editionsServer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,7 +27,8 @@ function allow(ip: string, max: number, windowMs: number): boolean {
 const FALLBACK = "Email ask@openmirrorllc.com instead and we will reply there.";
 
 export async function GET() {
-  return NextResponse.json({ stamp: Date.now() }, { headers: { "Cache-Control": "no-store" } });
+  const c = deliveryConfigured();
+  return NextResponse.json({ stamp: Date.now(), online: c.db || c.email }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function POST(req: NextRequest) {

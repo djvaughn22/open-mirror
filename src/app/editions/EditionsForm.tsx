@@ -24,13 +24,37 @@ const label: React.CSSProperties = { display: "block", fontSize: 14, fontWeight:
 export default function EditionsForm() {
   const [stamp, setStamp] = useState<number | null>(null);
   const [state, setState] = useState<State>({ kind: "idle" });
+  const [online, setOnline] = useState(true);
 
   useEffect(() => {
     fetch("/api/editions", { cache: "no-store" })
       .then((r) => r.json())
-      .then((j: { stamp?: number }) => setStamp(typeof j.stamp === "number" ? j.stamp : Date.now()))
+      .then((j: { stamp?: number; online?: boolean }) => {
+        setStamp(typeof j.stamp === "number" ? j.stamp : Date.now());
+        setOnline(j.online !== false);
+      })
       .catch(() => setStamp(Date.now()));
   }, []);
+
+  // Online delivery not set up on this deployment: say so and offer email,
+  // rather than letting someone fill in a form that cannot arrive.
+  if (!online) {
+    return (
+      <div style={{ border: `1px solid ${border}`, borderRadius: 14, padding: "18px 20px" }}>
+        <p style={{ margin: 0, lineHeight: 1.65 }}>
+          Requests are taken by email for now. Say which site you have in mind and what you would like it to do.
+        </p>
+        <p style={{ margin: "14px 0 0" }}>
+          <a
+            href="mailto:ask@openmirrorllc.com?subject=Edition%20request"
+            style={{ display: "inline-block", background: "var(--om-accent, #38BDF8)", color: "var(--om-ink, #0b1220)", borderRadius: 999, padding: "13px 26px", fontSize: 15, fontWeight: 900, textDecoration: "none" }}
+          >
+            Email a request
+          </a>
+        </p>
+      </div>
+    );
+  }
 
   if (state.kind === "sent") {
     return (
