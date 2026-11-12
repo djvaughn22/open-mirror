@@ -57,3 +57,6 @@ next-env.d.ts
 # and test submissions must never be committed.
 data/sports/submissions.json
 data/sports/credentials.json
+
+# private commerce data (public repo): real catalog, sales records
+/private/
