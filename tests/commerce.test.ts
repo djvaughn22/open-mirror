@@ -6,14 +6,13 @@ import { summarize, remainingToGoal } from "../src/lib/commerce/metrics.ts";
 const passed = Object.fromEntries(CHECKLIST_KEYS.map((k) => [k, { passed: true, on: "2026-11-11" }]));
 const good = (o: Partial<CatalogProduct> = {}): CatalogProduct => ({
   id: "sample-pack", brand: "idontcry", type: "original_download", title: "Sample", description: "Fixture",
-  images: [], priceCents: 400, currency: "USD", available: true, status: "published", provider: "etsy",
-  checkoutUrl: "https://example.com/x", delivery: "platform_download",
+  images: [], priceCents: 400, currency: "USD", available: true, status: "published", channels: [{ provider: "etsy", checkoutUrl: "https://example.com/x", delivery: "platform_download" }],
   rights: { owner: "Open Mirror LLC", verified: true, thirdPartyAssets: [], license: "personal use" },
   refundPolicy: "30 days", supportContact: "support@example.com", analytics: { productKey: "sample-pack" },
   holds: [], checklist: passed, reviewOn: "2027-01-15", ...o,
 });
 const aff = (o: Partial<CatalogProduct> = {}): CatalogProduct => good({
-  id: "gear-x", type: "affiliate", provider: "amazon_associates", delivery: "external_retailer",
+  id: "gear-x", type: "affiliate", channels: [{ provider: "amazon_associates", checkoutUrl: "https://example.com/a", delivery: "external_retailer" }],
   priceCents: undefined, currency: undefined, refundPolicy: undefined, supportContact: undefined,
   disclosureKey: "amazon-associates", analytics: { productKey: "gear-x" }, ...o,
 });
@@ -21,8 +20,8 @@ const aff = (o: Partial<CatalogProduct> = {}): CatalogProduct => good({
 test("a complete direct product validates", () => assert.deepEqual(validateCatalog([good()]), []));
 test("a complete affiliate referral validates and is a referral", () => {
   assert.deepEqual(validateCatalog([aff()]), []);
-  assert.equal(channelOf(aff()), "referral");
-  assert.equal(channelOf(good()), "direct");
+  assert.equal(channelOf("affiliate", { provider: "amazon_associates" }), "referral");
+  assert.equal(channelOf("original_download", { provider: "etsy" }), "direct");
 });
 test("duplicate ids and analytics keys are rejected", () => {
   const e = validateCatalog([good(), good()]).join("|");
@@ -43,7 +42,7 @@ test("direct sales need price, refund policy and support", () => {
   assert.match(e, /priceCents/); assert.match(e, /refundPolicy/); assert.match(e, /supportContact/);
 });
 test("referrals cannot carry a price, need a disclosure, cannot self-deliver", () => {
-  const e = validateCatalog([aff({ priceCents: 999, disclosureKey: undefined, delivery: "platform_download" })]).join();
+  const e = validateCatalog([aff({ priceCents: 999, disclosureKey: undefined, channels: [{ provider: "amazon_associates", delivery: "platform_download" }] })]).join();
   assert.match(e, /no price/); assert.match(e, /disclosureKey/); assert.match(e, /cannot be delivered/);
 });
 test("noncommercial brands stay draft", () => {
@@ -51,7 +50,7 @@ test("noncommercial brands stay draft", () => {
   assert.deepEqual(validateCatalog([good({ brand: "thedjcares", status: "draft" })]), []);
 });
 test("checkout URLs must be https and prices positive integers", () => {
-  const e = validateCatalog([good({ checkoutUrl: "http://x.com", priceCents: 4.5 })]).join();
+  const e = validateCatalog([good({ channels: [{ provider: "etsy", checkoutUrl: "http://x.com", delivery: "platform_download" }], priceCents: 4.5 })]).join();
   assert.match(e, /https/); assert.match(e, /positive integer/);
 });
 test("drafts may be incomplete", () =>
@@ -69,4 +68,17 @@ test("summarize nets fees, fulfillment and refunds, counts repeat buyers", () =>
 });
 test("remainingToGoal never goes negative", () => {
   assert.equal(remainingToGoal(0), 40000); assert.equal(remainingToGoal(50000), 0);
+});
+
+test("one product can sell on several channels; each needs delivery and https", () => {
+  const two = good({ channels: [
+    { provider: "etsy", checkoutUrl: "https://example.com/e", delivery: "platform_download" },
+    { provider: "payhip", checkoutUrl: "https://example.com/p", delivery: "platform_download", priceCents: 500 }] });
+  assert.deepEqual(validateCatalog([two]), []);
+  assert.match(validateCatalog([good({ channels: [{ provider: "payhip", delivery: "none" }] })]).join(), /delivery method/);
+});
+test("a ready product needs a real channel; mixing referral and direct is rejected", () => {
+  assert.match(validateCatalog([good({ status: "ready", channels: [] })]).join(), /real sales channel/);
+  const mixed = good({ channels: [{ provider: "etsy", delivery: "platform_download" }, { provider: "amazon_associates", delivery: "external_retailer" }] });
+  assert.match(validateCatalog([mixed]).join(), /mixes referral and direct/);
 });

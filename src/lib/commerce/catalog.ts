@@ -39,6 +39,13 @@ export const CHECKLIST_KEYS = [
 export type ChecklistKey = (typeof CHECKLIST_KEYS)[number];
 export type Checklist = Partial<Record<ChecklistKey, { passed: boolean; on: string; note?: string }>>;
 
+export type SalesChannel = {
+  provider: Provider;
+  checkoutUrl?: string;          // https only
+  delivery: Delivery;
+  priceCents?: number;           // optional per-channel override of the product price
+};
+
 export type CatalogProduct = {
   id: string;                    // lowercase slug, unique across the portfolio
   brand: Brand;                  // owning brand
@@ -50,9 +57,8 @@ export type CatalogProduct = {
   currency?: "USD";
   available: boolean;
   status: Status;
-  provider: Provider;
-  checkoutUrl?: string;          // https only
-  delivery: Delivery;
+  /** One product, many sales channels (e.g. Etsy now, Payhip or direct later). */
+  channels: SalesChannel[];
   rights: { owner: string; verified: boolean; thirdPartyAssets: string[]; license: string };
   refundPolicy?: string;         // required for direct sales
   supportContact?: string;       // required for direct sales
@@ -67,9 +73,9 @@ const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 /** Affiliate and external-retailer links are referrals; everything else is a direct purchase. */
-export function channelOf(p: Pick<CatalogProduct, "type" | "provider" | "delivery">): "referral" | "direct" {
-  if (p.type === "affiliate") return "referral";
-  if (p.provider === "amazon_associates" || p.provider === "other_affiliate") return "referral";
+export function channelOf(type: ProductType, c: Pick<SalesChannel, "provider">): "referral" | "direct" {
+  if (type === "affiliate") return "referral";
+  if (c.provider === "amazon_associates" || c.provider === "other_affiliate") return "referral";
   return "direct";
 }
 
@@ -86,20 +92,28 @@ export function validateCatalog(products: CatalogProduct[]): string[] {
     keys.add(p.analytics?.productKey);
     if (!BRANDS.includes(p.brand)) errs.push(`${at} unknown brand`);
     if (!PRODUCT_TYPES.includes(p.type)) errs.push(`${at} unknown type`);
-    if (!PROVIDERS.includes(p.provider)) errs.push(`${at} unknown provider`);
-    if (!DELIVERY.includes(p.delivery)) errs.push(`${at} unknown delivery`);
+    for (const c of p.channels ?? []) {
+      if (!PROVIDERS.includes(c.provider)) errs.push(`${at} unknown provider`);
+      if (!DELIVERY.includes(c.delivery)) errs.push(`${at} unknown delivery`);
+      if (c.checkoutUrl && !/^https:\/\//.test(c.checkoutUrl)) errs.push(`${at} checkoutUrl must be https`);
+      if (c.priceCents !== undefined && (!Number.isInteger(c.priceCents) || c.priceCents <= 0))
+        errs.push(`${at} channel priceCents must be a positive integer`);
+    }
     if (!p.title?.trim() || !p.description?.trim()) errs.push(`${at} title and description required`);
     if (!SLUG.test(p.analytics?.productKey ?? "")) errs.push(`${at} analytics.productKey must be a slug`);
-    if (p.checkoutUrl && !/^https:\/\//.test(p.checkoutUrl)) errs.push(`${at} checkoutUrl must be https`);
     if (p.priceCents !== undefined && (!Number.isInteger(p.priceCents) || p.priceCents <= 0))
       errs.push(`${at} priceCents must be a positive integer`);
     if (p.reviewOn && !DATE.test(p.reviewOn)) errs.push(`${at} reviewOn must be YYYY-MM-DD`);
 
-    const channel = channelOf(p);
-    if (channel === "referral") {
-      if (p.priceCents !== undefined) errs.push(`${at} referral items carry no price (the retailer sets it)`);
+    const kinds = new Set((p.channels ?? []).map((c) => channelOf(p.type, c)));
+    const hasReferral = kinds.has("referral");
+    const hasDirect = kinds.has("direct");
+    if (hasReferral && hasDirect) errs.push(`${at} mixes referral and direct channels; split into two products`);
+    if (hasReferral) {
+      if (p.priceCents !== undefined || p.channels.some((c) => c.priceCents !== undefined))
+        errs.push(`${at} referral items carry no price (the retailer sets it)`);
       if (!p.disclosureKey) errs.push(`${at} referral items need a disclosureKey`);
-      if (p.delivery === "platform_download" || p.delivery === "email_link")
+      if (p.channels.some((c) => c.delivery === "platform_download" || c.delivery === "email_link"))
         errs.push(`${at} referral items cannot be delivered by us`);
     }
     if (NONCOMMERCIAL.includes(p.brand) && p.status !== "draft")
@@ -107,12 +121,14 @@ export function validateCatalog(products: CatalogProduct[]): string[] {
 
     const live = p.status === "ready" || p.status === "published";
     if (!live) continue;
-    if (channel === "direct") {
+    if (!p.channels.length || p.channels.every((c) => c.provider === "none"))
+      errs.push(`${at} at least one real sales channel required`);
+    if (hasDirect) {
       if (p.priceCents === undefined) errs.push(`${at} direct products need priceCents`);
       if (p.currency !== "USD") errs.push(`${at} currency must be USD`);
       if (!p.refundPolicy?.trim()) errs.push(`${at} refundPolicy required`);
       if (!p.supportContact?.trim()) errs.push(`${at} supportContact required`);
-      if (p.provider === "none" || p.delivery === "none") errs.push(`${at} provider and delivery required`);
+      if (p.channels.some((c) => c.provider !== "none" && c.delivery === "none")) errs.push(`${at} every channel needs a delivery method`);
     }
     if (!p.rights?.verified) errs.push(`${at} rights not verified`);
     if (!p.rights?.owner || !p.rights?.license) errs.push(`${at} rights owner and license required`);
@@ -120,7 +136,7 @@ export function validateCatalog(products: CatalogProduct[]): string[] {
     if (p.status === "published") {
       if (!p.available) errs.push(`${at} published but not available`);
       if (p.holds.length) errs.push(`${at} published with open holds: ${p.holds.join("; ")}`);
-      if (!p.checkoutUrl) errs.push(`${at} published without checkoutUrl`);
+      if (!p.channels.some((c) => c.checkoutUrl)) errs.push(`${at} published without a checkoutUrl`);
       for (const k of CHECKLIST_KEYS) if (!p.checklist[k]?.passed) errs.push(`${at} checklist item "${k}" not passed`);
     }
   }
