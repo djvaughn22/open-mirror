@@ -12,7 +12,7 @@ let pool: Pool | undefined;
 let ready: Promise<void> | undefined;
 
 function dbUrl(): string | undefined {
-  const u = process.env.DATABASE_URL?.trim();
+  const u = (process.env.DATABASE_URL || process.env.SPORTS_DATABASE_URL)?.trim();
   return u ? u : undefined;
 }
 
@@ -23,7 +23,9 @@ export function deliveryConfigured(): { db: boolean; email: boolean } {
   };
 }
 
-async function save(r: EditionClean, ref: string): Promise<boolean> {
+
+/** Connect and create the table if needed. Cached on success only. */
+export async function dbReady(): Promise<boolean> {
   const url = dbUrl();
   if (!url) return false;
   pool ??= new Pool({ connectionString: url, max: 2, idleTimeoutMillis: 10_000, connectionTimeoutMillis: 8_000, ssl: url.includes("localhost") ? undefined : { rejectUnauthorized: true } });
@@ -33,10 +35,22 @@ async function save(r: EditionClean, ref: string): Promise<boolean> {
       status text NOT NULL DEFAULT 'new')`).then(() => undefined).catch((e) => { ready = undefined; throw e; });
   try {
     await ready;
+    return true;
+  } catch (e) {
+    // Error class/code only, never row contents.
+    console.error("[editions] database not ready:", (e as { code?: string })?.code ?? (e instanceof Error ? e.name : "unknown"));
+    return false;
+  }
+}
+
+async function save(r: EditionClean, ref: string): Promise<boolean> {
+  if (!(await dbReady()) || !pool) return false;
+  try {
     await pool.query("INSERT INTO edition_requests (ref, property, name, email, business, message) VALUES ($1,$2,$3,$4,$5,$6)", [ref, r.property, r.name, r.email, r.business, r.message]);
     return true;
-  } catch {
-    return false; // never log contents
+  } catch (e) {
+    console.error("[editions] insert failed:", (e as { code?: string })?.code ?? "unknown"); // never contents
+    return false;
   }
 }
 
@@ -51,10 +65,37 @@ async function emailOwner(r: EditionClean, ref: string): Promise<boolean> {
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ from, to: [STUDIO.email], reply_to: r.email, subject: mail.subject, text: mail.text }),
     });
+    if (!res.ok) console.error("[editions] email send failed:", res.status);
     return res.ok;
   } catch {
+    console.error("[editions] email send failed: network");
     return false;
   }
+}
+
+let emailCheck: { at: number; ok: boolean } | undefined;
+
+/** Resend configured AND the sender's domain is verified there. Cached 10 min. */
+export async function emailReady(): Promise<boolean> {
+  if (!deliveryConfigured().email) return false;
+  if (emailCheck && Date.now() - emailCheck.at < 600_000) return emailCheck.ok;
+  const from = (process.env.EDITIONS_FROM_EMAIL || process.env.PARTNERSHIP_FROM_EMAIL || process.env.DEVICE_REQUEST_FROM_EMAIL)!.trim();
+  const domain = from.replace(/.*@/, "").replace(/>.*/, "").toLowerCase();
+  let ok = false;
+  try {
+    const res = await fetch("https://api.resend.com/domains", { headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}` } });
+    if (res.ok) {
+      const j = (await res.json()) as { data?: { name?: string; status?: string }[] };
+      ok = !!j.data?.some((d) => d.name?.toLowerCase() === domain && d.status === "verified");
+    } else {
+      // A send-only key cannot list domains; we cannot tell, so trust the config.
+      ok = res.status === 401 || res.status === 403;
+    }
+  } catch {
+    ok = false;
+  }
+  emailCheck = { at: Date.now(), ok };
+  return ok;
 }
 
 export function makeRef(): string {
