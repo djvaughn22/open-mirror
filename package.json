@@ -10,7 +10,8 @@
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "wire": "node --experimental-strip-types scripts/ingest.ts",
     "credential": "node --experimental-strip-types scripts/credential.ts",
-    "catalog:check": "node --experimental-strip-types scripts/catalog-check.ts"
+    "catalog:check": "node --experimental-strip-types scripts/catalog-check.ts",
+    "sales:summary": "node --experimental-strip-types scripts/sales-summary.ts"
   },
   "dependencies": {
     "@types/pg": "^8.23.1",

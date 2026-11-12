@@ -42,3 +42,30 @@ export function summarize(sales: SaleRecord[]): Summary {
 
 /** Net proceeds still needed to reach a goal; never negative. */
 export const remainingToGoal = (netCents: number, goalCents = 40000) => Math.max(0, goalCents - netCents);
+
+/** Parse the owner's sales.csv (header: date,productKey,channel,gross,fees,fulfillment,refunded,customerRef,supportMinutes).
+ *  Money columns are dollars as typed from the platform; returned as integer cents. Throws on a bad row. */
+export function parseSalesCsv(text: string): SaleRecord[] {
+  const lines = text.split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith("#"));
+  const head = lines.shift()?.split(",").map((h) => h.trim());
+  if (!head || head[0] !== "date" || head[1] !== "productKey") throw new Error("sales.csv: bad header");
+  const money = (v: string, row: number, name: string) => {
+    if (!v) return 0;
+    if (!/^-?\d+(\.\d{1,2})?$/.test(v)) throw new Error(`sales.csv row ${row}: ${name} "${v}" is not dollars`);
+    return Math.round(parseFloat(v) * 100);
+  };
+  return lines.map((line, i) => {
+    const c = line.split(",").map((x) => x.trim());
+    const get = (n: string) => (head.indexOf(n) >= 0 ? c[head.indexOf(n)] ?? "" : "");
+    if (!get("productKey")) throw new Error(`sales.csv row ${i + 1}: productKey missing`);
+    return {
+      productKey: get("productKey"),
+      grossCents: money(get("gross"), i + 1, "gross"),
+      feeCents: money(get("fees"), i + 1, "fees"),
+      fulfillmentCents: money(get("fulfillment"), i + 1, "fulfillment"),
+      refundedCents: money(get("refunded"), i + 1, "refunded"),
+      customerRef: get("customerRef") || undefined,
+      supportMinutes: get("supportMinutes") ? Number(get("supportMinutes")) : undefined,
+    };
+  });
+}

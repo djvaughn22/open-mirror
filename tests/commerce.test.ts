@@ -82,3 +82,14 @@ test("a ready product needs a real channel; mixing referral and direct is reject
   const mixed = good({ channels: [{ provider: "etsy", delivery: "platform_download" }, { provider: "amazon_associates", delivery: "external_retailer" }] });
   assert.match(validateCatalog([mixed]).join(), /mixes referral and direct/);
 });
+
+import { parseSalesCsv } from "../src/lib/commerce/metrics.ts";
+test("parseSalesCsv reads dollars into cents and rejects bad rows", () => {
+  const rows = parseSalesCsv("date,productKey,channel,gross,fees,fulfillment,refunded,customerRef,supportMinutes\n# note\n2026-12-01,pbr-just-in-case,etsy,12.00,1.59,0,0,u1,5\n2026-12-02,pbr-just-in-case,etsy,12,1.59,,12,u2,\n");
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].grossCents, 1200); assert.equal(rows[0].feeCents, 159); assert.equal(rows[0].supportMinutes, 5);
+  assert.equal(rows[1].refundedCents, 1200);
+  assert.equal(summarize(rows).netCents, 1200 - 159 + 1200 - 159 - 1200);
+  assert.throws(() => parseSalesCsv("date,productKey,gross\n2026-12-01,x,twelve"), /not dollars/);
+  assert.throws(() => parseSalesCsv("a,b\n1,2"), /bad header/);
+});
