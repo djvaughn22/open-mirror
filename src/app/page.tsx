@@ -90,6 +90,11 @@ export default function OpenMirrorHub() {
           </div>
         )}
 
+        <p style={{ marginTop: 44, textAlign: "center", fontSize: 14, fontWeight: 600, color: sub }}>
+          Want a version of one of these sites for your business or group?{" "}
+          <a href="/editions" style={{ color: "#38BDF8", textDecoration: "underline", textUnderlineOffset: 3 }}>Ask about an edition</a>
+        </p>
+
       </div>
     </main>
   );
