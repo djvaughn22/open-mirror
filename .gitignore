@@ -60,3 +60,6 @@ data/sports/credentials.json
 
 # private commerce data (public repo): real catalog, sales records
 /private/
+
+# unreleased paid products live in a private copy, never in this public repo
+/content/products/
