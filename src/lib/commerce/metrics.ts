@@ -9,6 +9,8 @@ export const EVENTS = {
 
 export type SaleRecord = {
   productKey: string;
+  date?: string;             // YYYY-MM-DD, as shown on the platform
+  channel?: string;          // e.g. etsy, payhip, direct
   grossCents: number;
   feeCents: number;          // marketplace + processor fees, as reported
   fulfillmentCents: number;  // print/ship costs, 0 for downloads
@@ -60,6 +62,8 @@ export function parseSalesCsv(text: string): SaleRecord[] {
     if (!get("productKey")) throw new Error(`sales.csv row ${i + 1}: productKey missing`);
     return {
       productKey: get("productKey"),
+      date: get("date") || undefined,
+      channel: get("channel") || undefined,
       grossCents: money(get("gross"), i + 1, "gross"),
       feeCents: money(get("fees"), i + 1, "fees"),
       fulfillmentCents: money(get("fulfillment"), i + 1, "fulfillment"),
@@ -68,4 +72,21 @@ export function parseSalesCsv(text: string): SaleRecord[] {
       supportMinutes: get("supportMinutes") ? Number(get("supportMinutes")) : undefined,
     };
   });
+}
+
+/** Monday (UTC) of the week a YYYY-MM-DD date falls in, as YYYY-MM-DD. "unknown" if the date is missing or malformed. */
+export function weekStart(date?: string): string {
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return "unknown";
+  const d = new Date(`${date}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return "unknown";
+  const back = (d.getUTCDay() + 6) % 7;
+  d.setUTCDate(d.getUTCDate() - back);
+  return d.toISOString().slice(0, 10);
+}
+
+/** Summaries grouped by any key (product, channel, week). A refund counts in the row it was typed on. */
+export function summarizeBy(sales: SaleRecord[], key: (s: SaleRecord) => string): Map<string, Summary> {
+  const groups = new Map<string, SaleRecord[]>();
+  for (const s of sales) { const k = key(s); groups.set(k, [...(groups.get(k) ?? []), s]); }
+  return new Map([...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => [k, summarize(v)]));
 }

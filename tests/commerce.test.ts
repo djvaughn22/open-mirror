@@ -93,3 +93,40 @@ test("parseSalesCsv reads dollars into cents and rejects bad rows", () => {
   assert.throws(() => parseSalesCsv("date,productKey,gross\n2026-12-01,x,twelve"), /not dollars/);
   assert.throws(() => parseSalesCsv("a,b\n1,2"), /bad header/);
 });
+
+// SYNTHETIC orders (fixture strings only; never written to private/commerce/sales.csv)
+import { summarizeBy, weekStart } from "../src/lib/commerce/metrics.ts";
+const SYNTHETIC = [
+  "date,productKey,channel,gross,fees,fulfillment,refunded,customerRef,supportMinutes",
+  "2026-12-01,book,etsy,12.00,1.59,0,0,a,2",       // first sale (Tuesday)
+  "2026-12-03,book,payhip,12.00,1.25,0,0,b,0",     // second channel, same week
+  "2026-12-08,plan,etsy,6.00,1.07,0,0,a,0",        // next week, repeat buyer, other product
+  "2026-12-09,book,etsy,12.00,1.59,0,12.00,c,10",  // full refund, fees not returned
+  "2026-12-13,book,etsy,12.00,1.59,0,0,d,0",       // Sunday belongs to the week of Dec 7
+].join("\n");
+test("synthetic orders: first sale, channels, fees, refunds, weeks, products", () => {
+  const rows = parseSalesCsv(SYNTHETIC);
+  assert.equal(summarize(rows.slice(0, 1)).netCents, 1200 - 159);               // first sale net
+  const total = summarize(rows);
+  assert.equal(total.orders, 5);
+  assert.equal(total.grossCents, 5400); assert.equal(total.feesCents, 159 + 125 + 107 + 159 + 159);
+  assert.equal(total.refundsCents, 1200);
+  assert.equal(total.netCents, 5400 - 709 - 1200);
+  assert.equal(total.repeatCustomers, 1);
+  const ch = summarizeBy(rows, (r) => r.channel ?? "unknown");
+  assert.deepEqual([...ch.keys()], ["etsy", "payhip"]);
+  assert.equal(ch.get("payhip")!.netCents, 1200 - 125);
+  assert.equal(ch.get("etsy")!.netCents, total.netCents - (1200 - 125));
+  const pr = summarizeBy(rows, (r) => r.productKey);
+  assert.equal(pr.get("plan")!.netCents, 600 - 107);
+  const wk = summarizeBy(rows, (r) => weekStart(r.date));
+  assert.deepEqual([...wk.keys()], ["2026-11-30", "2026-12-07"]);
+  assert.equal(wk.get("2026-11-30")!.orders, 2);
+  assert.equal(wk.get("2026-12-07")!.orders, 3);
+  assert.equal(wk.get("2026-12-07")!.refundsCents, 1200);
+  assert.equal(remainingToGoal(total.netCents), 40000 - total.netCents);
+});
+test("weekStart handles Mondays, Sundays and bad dates", () => {
+  assert.equal(weekStart("2026-12-07"), "2026-12-07"); assert.equal(weekStart("2026-12-13"), "2026-12-07");
+  assert.equal(weekStart("garbage"), "unknown"); assert.equal(weekStart(undefined), "unknown");
+});
