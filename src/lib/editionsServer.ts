@@ -65,7 +65,10 @@ async function emailOwner(r: EditionClean, ref: string): Promise<boolean> {
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ from, to: [STUDIO.email], reply_to: r.email, subject: mail.subject, text: mail.text }),
     });
-    if (!res.ok) console.error("[editions] email send failed:", res.status);
+    if (!res.ok) {
+      console.error("[editions] email send failed:", res.status);
+      emailCheck = { at: Date.now(), ok: false }; // flip the page to the email button
+    }
     return res.ok;
   } catch {
     console.error("[editions] email send failed: network");
@@ -87,10 +90,9 @@ export async function emailReady(): Promise<boolean> {
     if (res.ok) {
       const j = (await res.json()) as { data?: { name?: string; status?: string }[] };
       ok = !!j.data?.some((d) => d.name?.toLowerCase() === domain && d.status === "verified");
-    } else {
-      // A send-only key cannot list domains; we cannot tell, so trust the config.
-      ok = res.status === 401 || res.status === 403;
     }
+    // Otherwise (e.g. a send-only key that cannot list domains) we cannot
+    // prove the sender works, so we do not show the form on email alone.
   } catch {
     ok = false;
   }
