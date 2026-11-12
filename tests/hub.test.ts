@@ -409,11 +409,16 @@ test("no paid ZIP is served from public/", () => {
   assert.deepEqual(archives, [], `public/ must never serve an archive: ${archives.join(", ")}`);
 });
 
-test("the packaging script builds to a git-ignored, non-served directory", () => {
-  const script = readFileSync(join(repoRoot, "scripts/package-old-laptop-bundle.sh"), "utf8");
-  assert.match(script, /^OUT="dist\//m, "the bundle must be packaged into dist/");
-  assert.doesNotMatch(script, /OUT="public\//, "the bundle must never be packaged into public/");
-  assert.match(readFileSync(join(repoRoot, ".gitignore"), "utf8"), /^\/dist$/m, "dist/ must be git-ignored");
+test("the old-laptop business docs and scripts are not tracked in the public repo", () => {
+  for (const f of [
+    "docs/BUILD_MACHINE_BUSINESS.md",
+    "docs/BUILD_MACHINE_ECOSYSTEM.md",
+    "docs/PRODUCT_FOUNDATION_OLD_LAPTOP.md",
+    "scripts/build-launch-images.py",
+    "scripts/package-old-laptop-bundle.sh",
+  ]) {
+    assert.ok(!existsSync(join(repoRoot, f)), `${f} must live only in the private backup`);
+  }
 });
 
 test("the retired readiness PDF is not served from public/", () => {

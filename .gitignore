@@ -63,3 +63,9 @@ data/sports/credentials.json
 
 # unreleased paid products live in a private copy, never in this public repo
 /content/products/
+
+# Old-laptop business docs (private backup only)
+/docs/BUILD_MACHINE_*.md
+/docs/PRODUCT_FOUNDATION_OLD_LAPTOP.md
+/scripts/build-launch-images.py
+/scripts/package-old-laptop-bundle.sh
