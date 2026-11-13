@@ -221,7 +221,7 @@ export const products: Product[] = [
     // site itself runs no AI (it writes the messages a person pastes into one),
     // and this is the one listing here that talks about AI.
     description:
-      "A workspace for making things with AI. Say what you want to make in your own words, no coding needed, then keep telling the AI what to change until it's right.",
+      "A website builder for small businesses: start from an example for your kind of work, make it yours, and download files you own, with no coding. Making other things with AI is still there, one level down.",
     // The About page never mentions AI, prompts or build tooling (owner copy
     // rule, 2026-07-19), so this line says what you can do and stops there.
     aboutLine:
@@ -429,10 +429,12 @@ export const DOORS: Door[] = [
   {
     key: "build",
     headline: "StepInTheRing.com",
-    title: "Build an idea",
-    line: "Make a website, a game, a story or a study guide with AI, no coding needed. Keep telling it what to change until it's right. Still in open beta.",
+    // 2026-11-12 (overnight brief): Step In The Ring now leads as a website
+    // builder for small businesses. Free first; no prices here.
+    title: "Get your business online",
+    line: "A website builder for small businesses. Start from an example written for your kind of work, make it yours, and download files you own. No coding, no account.",
     product: "StepInTheRing",
-    cta: "Start your idea",
+    cta: "Choose your example",
     icon: "🛠️",
   },
 ];

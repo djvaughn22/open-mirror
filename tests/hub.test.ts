@@ -459,9 +459,11 @@ test("the StepInTheRing listing carries the site's own promise, and no fight", (
   const sitr = byName("StepInTheRing");
   const door = DOORS.find((d) => d.product === "StepInTheRing");
   for (const line of [sitr.description, door?.line ?? ""]) {
-    assert.match(line, /\bAI\b/, "it says what the product is for");
-    assert.match(line, /no coding/, "it says you can start without coding");
-    assert.match(line, /until it's right/, "it says you keep going");
+    // 2026-11-12: the site leads as a website builder for small businesses.
+    assert.match(line, /website builder for small businesses/, "it says what the product is for");
+    assert.match(line, /no coding/i, "it says you can start without coding");
+    assert.match(line, /files you own/, "it says the result is yours");
+    assert.doesNotMatch(line, /\$\d|\bprice/i, "free first: no prices on the listing");
     assert.doesNotMatch(line, /AI[- ]powered|our AI|vibe/i, "it never suggests the site runs an AI, and stays plain");
   }
   assert.notEqual(sitr.emoji, "🥊", "the ring is a place you step into, never a fight");
@@ -923,7 +925,7 @@ test("the About opening is the owner's, and stays free of sales and AI language"
 // straight to that same site.
 test("each door card leads with its .com brand, then its subtitle, and links straight to the site", () => {
   assert.deepEqual(DOORS.map((d) => d.headline), ["iDontCry.com", "StepInTheRing.com"], "brand headlines, exactly");
-  assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Build an idea"], "subtitles, exactly");
+  assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Get your business online"], "subtitles, exactly");
   for (const d of doorProducts()) {
     assert.equal(new URL(d.href).hostname, d.headline.toLowerCase(), `${d.key} headline is the very site it links to`);
     assert.doesNotMatch(`${d.title} ${d.line} ${d.cta} ${d.icon}`, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
