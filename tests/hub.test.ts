@@ -15,9 +15,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 import {
-  DOORS,
   bottomPinnedProducts,
-  doorProducts,
   aboutFamilyProducts,
   featuredProduct,
   foundationProduct,
@@ -25,6 +23,7 @@ import {
   navProductOrder,
   homeSections,
   products,
+  siteKey,
   siteName,
   STUDIO,
   productsByStatus,
@@ -457,8 +456,7 @@ test("StepInTheRing does not promise seven questions", () => {
 // live in that repo's app/site/brand.ts; this listing follows them.
 test("the StepInTheRing listing carries the site's own promise, and no fight", () => {
   const sitr = byName("StepInTheRing");
-  const door = DOORS.find((d) => d.product === "StepInTheRing");
-  for (const line of [sitr.description, door?.line ?? ""]) {
+  for (const line of [sitr.description]) {
     // 2026-11-12: the site leads as a website builder for small businesses.
     assert.match(line, /website builder for small businesses/, "it says what the product is for");
     assert.match(line, /no coding/i, "it says you can start without coding");
@@ -586,15 +584,11 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     "https://idontcry.com/dream-shop",
     "https://idontcry.com/digital-front-desk",
   ],
+  // 2026-11-14: the website starter leads, as it does on the site; all five 200 live.
   StepInTheRing: [
-    "https://stepinthering.com/build",
-    "https://stepinthering.com/how",
-    "https://stepinthering.com/build-machine",
-    // 2026-09-30: SITR's showroom and two services; all 200 live.
+    "https://stepinthering.com/start",
+    "https://stepinthering.com/examples",
     "https://stepinthering.com/builds",
-    "https://stepinthering.com/products/ready-to-build",
-    // 2026-10-07: five-hour-sprint (retired, 307) replaced by the free tools
-    // and the live/beta status page; both 200 live.
     "https://stepinthering.com/tools",
     "https://stepinthering.com/whats-built",
   ],
@@ -833,46 +827,47 @@ test("hub copy that names the rescue project says DontCloneMeTom.com", () => {
 
 // ── The three growth doors (owner direction 2026-10-07) ─────────────────────
 
-// 2026-10-08 (owner): two doors. PleaseBeReady left the first screen but
-// stays findable lower on the homepage and in the family menu (next test).
-test("the homepage keeps family and build in that order", () => {
-  assert.deepEqual(DOORS.map((d) => d.key), ["family", "build"]);
-  assert.deepEqual(DOORS.map((d) => d.product), ["iDontCry", "StepInTheRing"]);
-  for (const d of doorProducts()) {
-    assert.match(d.href, /^https:\/\//, `${d.key} door must link to a live site`);
-    assert.ok(d.line.length > 20 && d.cta.length > 0, `${d.key} door needs a plain line and an action`);
-  }
+// 2026-11-14 (owner brief): the homepage says what Open Mirror is, then groups
+// every public site by what a visitor comes to do. It replaces the Oct 8
+// layout (two doors, status sections, PleaseBeReady pinned last).
+test("the homepage groups every public site once, by what a visitor comes to do", () => {
+  const sections = homeSections();
+  assert.deepEqual(sections.map((s) => s.label), [
+    "Faith and encouragement",
+    "Sports, games and entertainment",
+    "Everyday life",
+    "Create and build",
+  ]);
+  assert.deepEqual(sections[0].items.map((p) => p.name), ["CrossHeartPray", "TheDJCares"], "CrossHeartPray leads the page");
+  assert.deepEqual(sections[1].items.map((p) => p.name), ["iDontCry", "OpenDoku", "WatchedNotWatched"]);
+  assert.deepEqual(sections[2].items.map((p) => p.name), ["PleaseBeReady", "DontCloneMeTom.com", "WhatAmIAI"]);
+  assert.deepEqual(sections[3].items.map((p) => p.name), ["StepInTheRing"]);
+  const shown = sections.flatMap((s) => s.items.map((p) => p.name));
+  const publicNames = products.filter((p) => p.showInPortfolio !== false).map((p) => p.name);
+  assert.deepEqual([...shown].sort(), [...publicNames].sort(), "every public product appears exactly once");
+  assert.ok(!shown.includes("Reflect"), "Reflect stays hidden");
+  const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
+  assert.match(card, /p\.experiment \? STATUS_LABEL\.beta/, "a live experiment reads as a Beta");
 });
 
-test("PleaseBeReady stays findable but secondary: last on the homepage, and in the menu", () => {
-  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.ok(bottomPinnedProducts().some((p) => p.name === "PleaseBeReady"), "its card stays on the homepage");
-  assert.ok(page.indexOf("homeSections()") < page.indexOf("bottomPinnedProducts()") || /pinned\.map/.test(page),
-    "it renders after every other homepage section");
+test("PleaseBeReady is described as the store and planner it is, and stays in the menu", () => {
+  const pbr = byName("PleaseBeReady");
+  assert.match(pbr.description, /store and planner/);
+  assert.doesNotMatch(pbr.description, /checklists for storms/i, "the old checklist-only line is gone");
+  assert.ok(homeSections().find((s) => s.key === "everyday")?.items.includes(pbr));
   assert.ok(navProductOrder().some((p) => p.name === "PleaseBeReady"), "and in the family menu");
-  assert.ok(!homeSections().some((s) => s.items.some((p) => p.name === "PleaseBeReady")), "never inside a main section");
   assert.doesNotMatch(STUDIO.purpose.join(" "), /PleaseBeReady|prepar/i, "and out of the purpose statement");
 });
 
-test("the homepage header stays quiet: name, one welcoming line, no mission block", () => {
+test("the homepage header says what Open Mirror is in plain words, with no mission block", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
   assert.doesNotMatch(page, /missionShort|STUDIO\.purpose/);
   assert.match(page, /\{STUDIO\.welcome\}/);
-  assert.ok(STUDIO.welcome.length < 80, "one short line");
+  assert.match(STUDIO.welcome, /independent studio/);
+  assert.match(STUDIO.welcome, /websites/);
+  assert.ok(STUDIO.welcome.length < 240, "two or three short sentences, not a block");
+  assert.doesNotMatch(STUDIO.welcome, /\bfree\b|journey|empower|innovative/i, "plain words, no money copy");
   assert.match(page, /href="\/about-open-mirror"/);
-});
-
-test("below the doors, the homepage follows the owner's hierarchy", () => {
-  const sections = homeSections();
-  assert.deepEqual(sections.map((s) => s.key), ["faith", "rescue", "projects", "experiments"]);
-  assert.deepEqual(sections[0].items.map((p) => p.name), ["CrossHeartPray", "TheDJCares"], "prayer and faithful media first");
-  assert.deepEqual(sections[1].items.map((p) => p.name), ["DontCloneMeTom.com"]);
-  // 2026-10-08 (owner): WatchedNotWatched.com is a regular project, not a beta.
-  assert.deepEqual(sections[2].items.map((p) => p.name), ["WatchedNotWatched"]);
-  assert.deepEqual(sections[3].items.map((p) => p.name), ["OpenDoku", "WhatAmIAI"]);
-  for (const d of DOORS) assert.ok(!sections.some((s) => s.items.some((p) => p.name === d.product)), `${d.product} is a door, not repeated`);
-  const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
-  assert.match(card, /p\.experiment \? STATUS_LABEL\.beta/, "a live experiment reads as a Beta");
 });
 
 // 2026-10-17: the whole card opens its site as a normal link, hover no longer
@@ -920,24 +915,13 @@ test("the About opening is the owner's, and stays free of sales and AI language"
   assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 
-// 2026-10-08 (owner, corrected twice): the full ".com" site brand is the
-// headline, the audience line is a smaller subtitle, and each card links
-// straight to that same site.
-test("each door card leads with its .com brand, then its subtitle, and links straight to the site", () => {
-  assert.deepEqual(DOORS.map((d) => d.headline), ["iDontCry.com", "StepInTheRing.com"], "brand headlines, exactly");
-  assert.deepEqual(DOORS.map((d) => d.title), ["Family & play", "Get your business online"], "subtitles, exactly");
-  for (const d of doorProducts()) {
-    assert.equal(new URL(d.href).hostname, d.headline.toLowerCase(), `${d.key} headline is the very site it links to`);
-    assert.doesNotMatch(`${d.title} ${d.line} ${d.cta} ${d.icon}`, /😂|joke|lol|haha/i, `${d.key} card carries no joke copy`);
-  }
+// 2026-11-14: the doors are gone; every site is a card in its group, each
+// linking straight to its own site.
+test("every homepage card is the registry's own card, linking straight to its site", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /<ProductCard key=\{d\.key\}/, "both apps use the share-enabled card");
-  assert.match(page, /subtitle=\{d\.title\}/);
-  assert.match(page, /description: d\.line/, "plain door copy stays on the homepage");
-  assert.ok(page.indexOf("<ProductCard p={foundation}") < page.indexOf("{doors.map"), "CrossHeartPray comes before family and build");
-  assert.ok(page.indexOf("{doors.map") < page.indexOf("{sections.map"), "the other apps follow");
-  assert.match(page, /items: s\.items\.filter\(\(p\) => p !== foundation\)/, "the first app is not repeated below");
-  assert.doesNotMatch(page, /Where do you want to start\?/);
+  assert.match(page, /<ProductCard key=\{p\.name\} p=\{p\} doorKey=\{siteKey\(p\)\} \/>/, "every app uses the share-enabled card");
+  assert.doesNotMatch(page, /doorProducts|Where do you want to start\?/);
+  for (const s of homeSections()) for (const p of s.items) assert.match(p.href, /^https:\/\//, `${p.name} links to a live site`);
 });
 
 test("every site card on the hub shows its real .com name, matching its own link", () => {
@@ -954,35 +938,50 @@ test("every site card on the hub shows its real .com name, matching its own link
   assert.match(about, /siteName\(product\)\.dot/, "About's project names carry the .com too");
 });
 
-test("CrossHeartPray is never a door or near a conversion path", () => {
-  assert.ok(!DOORS.some((d) => /crossheart/i.test(d.product)), "CrossHeartPray stays out of the doors");
+test("CrossHeartPray leads the homepage and sits nowhere near a conversion path", () => {
+  assert.equal(homeSections()[0].items[0].name, "CrossHeartPray");
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /doorProducts\(\)/, "the homepage renders the doors from the registry");
+  assert.ok(page.indexOf("{sections.map") < page.indexOf('href="/editions"'), "the editions line comes after every site");
 });
 
-test("doors and registry copy carry no unproven claims, and no AI positioning outside Step In The Ring", () => {
-  const doorCopy = (d: (typeof DOORS)[number]) => `${d.title} ${d.line} ${d.cta}`;
-  const all = [...DOORS.map(doorCopy), ...products.map((p) => p.description)].join(" ");
+test("registry copy carries no unproven claims, and no AI positioning outside Step In The Ring", () => {
+  const all = products.map((p) => p.description).join(" ");
   assert.doesNotMatch(all, /cheapest|thousands of|best in|guaranteed/i);
   // Step In The Ring is the one exception (owner brief, 2026-11-05): making things
   // with AI is the product. Every other site keeps the 2026-10-07 rule.
-  const others = [
-    ...DOORS.filter((d) => d.product !== "StepInTheRing").map(doorCopy),
-    ...products.filter((p) => p.name !== "StepInTheRing").map((p) => p.description),
-  ].join(" ");
+  const others = products.filter((p) => p.name !== "StepInTheRing").map((p) => p.description).join(" ");
   assert.doesNotMatch(others, /\bAI\b|artificial intelligence/i);
 });
 
-test("door clicks are counted by key only, and never from Do Not Track browsers", () => {
+test("homepage card clicks are counted by site key only, and never from Do Not Track browsers", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.match(page, /doorKey=\{d\.key\}/);
+  assert.match(page, /doorKey=\{siteKey\(p\)\}/);
+  assert.equal(siteKey({ name: "DontCloneMeTom.com" }), "dontclonemetom");
+  assert.equal(siteKey({ name: "StepInTheRing" }), "stepinthering");
   const card = readFileSync(join(repoRoot, "src/components/ProductCard.tsx"), "utf8");
   assert.match(card, /data-door=\{doorKey\}/);
   assert.match(page, /<DoorMeasure \/>/);
   const m = readFileSync(join(repoRoot, "src/components/DoorMeasure.tsx"), "utf8");
-  assert.match(m, /gtag\("event", "door_click", \{ door \}\)/);
-  assert.match(m, /\^\(family\|build\)\$/);
+  assert.match(m, /gtag\("event", "site_card_click", \{ site \}\)/);
   assert.match(m, /doNotTrack === "1"/);
   assert.match(m, /globalPrivacyControl/);
   assert.doesNotMatch(m, /fetch\(|sendBeacon/);
 });
+
+test("the hub tells search engines what to index, and keeps the old sports wire out", () => {
+  const robots = readFileSync(join(repoRoot, "src/app/robots.ts"), "utf8");
+  assert.match(robots, /sitemap\.xml/);
+  assert.match(robots, /disallow: \["\/api\/"\]/);
+  const sitemap = readFileSync(join(repoRoot, "src/app/sitemap.ts"), "utf8");
+  assert.doesNotMatch(sitemap, /"\/sports/, "the superseded sports pages are not in the sitemap");
+  const sportsLayout = readFileSync(join(repoRoot, "src/app/sports/layout.tsx"), "utf8");
+  assert.match(sportsLayout, /index: false/);
+});
+
+test("the shared sync never writes into CrossHeartPray unless the owner opts in", () => {
+  const sync = readFileSync(join(repoRoot, "scripts/sync-ui.sh"), "utf8");
+  const chpCopy = sync.match(/if \[([^\n]*)\][^\n]*\n\s*cp "\$SRC\/OpenMirrorTheme\.tsx" "\$CHP_COMPONENTS/);
+  assert.ok(chpCopy, "the CrossHeartPray copy sits behind one condition");
+  assert.match(chpCopy![1], /SYNC_CROSSHEARTPRAY:-0\}" = "1"/, "and that condition is an explicit opt-in");
+});
+

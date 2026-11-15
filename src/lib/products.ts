@@ -83,8 +83,6 @@ export type Product = {
    * "Betas and experiments" everywhere, with a Beta badge while it is live.
    */
   experiment?: boolean;
-  /** an explicit homepage section, when neither `experiment` nor the faith category places it */
-  homeSection?: "rescue";
   /** pulled out of the status groups and pinned to the very bottom of the homepage and About page */
   pinBottom?: boolean;
   /**
@@ -118,7 +116,9 @@ export const STUDIO = {
   // The homepage's one welcoming line (and its meta description). Quiet on
   // purpose: the fuller purpose lives on About.
   // The owner's homepage line (2026-10-22); also the homepage description.
-  welcome: "A safe place for faith, family, and creativity. All are welcome.",
+  // 2026-11-14 (owner brief): the homepage must say what Open Mirror is within
+  // ten seconds. Plain words; no mission block.
+  welcome: "A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, reflection, and building your own. Each site has its own name and purpose. All are welcome.",
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
@@ -187,8 +187,9 @@ export const products: Product[] = [
   {
     name: "iDontCry",
     emoji: "😂",
+    // 2026-11-14: iDontCry leads with sports, then games and jokes (its own new tagline).
     description:
-      "The family's playground — a high-school Sports Desk, dad jokes, games, and a Dream Lab to dream up anything.",
+      "Local high school scores, college and pro teams, games you can play right in the browser, and jokes worth sending.",
     aboutLine:
       "Family entertainment: local high-school scores, dad jokes, and games.",
     aboutAction: "Play",
@@ -221,26 +222,26 @@ export const products: Product[] = [
     // site itself runs no AI (it writes the messages a person pastes into one),
     // and this is the one listing here that talks about AI.
     description:
-      "A website builder for small businesses: start from an example for your kind of work, make it yours, and download files you own, with no coding. Making other things with AI is still there, one level down.",
+      "A website builder for small businesses: start from an example for your kind of work, make it yours, and download files you own, with no coding. The Engine Room and tools for making other things are there too.",
     // The About page never mentions AI, prompts or build tooling (owner copy
     // rule, 2026-07-19), so this line says what you can do and stops there.
+    // 2026-11-14: updated to the website starter the site now leads with.
     aboutLine:
-      "Helps you make what you have in mind with no coding, and keep changing it until it's right.",
+      "A website starter for small businesses: start from an example, keep changing it until it's right, and download the files.",
     aboutAction: "Make something",
     access: "Free",
     accent: "#60A5FA",
     href: "https://stepinthering.com",
     status: "live",
     category: "creativity",
+    // 2026-11-14: the site leads with the website starter, so the card does
+    // too. The older workshop pages stay live and listed on SITR's own
+    // Everything page; the Ready to Build kit is not on sale, so it is not
+    // advertised here.
     links: [
-      { label: "🧭 First Build Coach", href: "https://stepinthering.com/build" },
-      { label: "❔ How It Works", href: "https://stepinthering.com/how" },
-      { label: "💻 Build Machine Assessment", href: "https://stepinthering.com/build-machine" },
-      { label: "🧱 Made here", href: "https://stepinthering.com/builds" },
-      { label: "✅ Ready to Build", href: "https://stepinthering.com/products/ready-to-build" },
-      // 2026-10-07: the Five Hour Sprint service page was retired on SITR
-      // (it 307s to the sprint tool); the free tools and the honest
-      // live/beta status page replace it here.
+      { label: "🧱 Website starter", href: "https://stepinthering.com/start" },
+      { label: "🖼️ Examples", href: "https://stepinthering.com/examples" },
+      { label: "🏗️ Made here", href: "https://stepinthering.com/builds" },
       { label: "🧰 Tools", href: "https://stepinthering.com/tools" },
       { label: "📋 What Works Today", href: "https://stepinthering.com/whats-built" },
     ],
@@ -260,7 +261,6 @@ export const products: Product[] = [
     href: "https://dontclonemetom.com",
     status: "live",
     category: "family",
-    homeSection: "rescue",
     // 2026-08-11: verified real, public, distinct routes — not the bare
     // homepage. The full grid is ZIP-search-gated on the homepage itself;
     // these two always show something without any input from the visitor.
@@ -343,10 +343,11 @@ export const products: Product[] = [
   {
     name: "PleaseBeReady",
     emoji: "🧰",
+    // 2026-11-14: it is a store and planner now (31 kits, 16 aisles), not a checklist site.
     description:
-      "Helpful checklists for getting your household ready for storms and power outages.",
+      "A store and planner for getting ready: pick what's coming, from a winter storm to a new puppy, get a ready-made list, and shop it. Lists stay on your device.",
     aboutLine:
-      "Helpful checklists for getting a household ready for storms and power outages.",
+      "A store and planner for getting ready, with ready-made lists for storms, outages, a new puppy, a first car and more.",
     aboutAction: "Get ready",
     access: "Free",
     accent: "#34D399",
@@ -360,6 +361,9 @@ export const products: Product[] = [
     // 2026-08-11: verified real, public, distinct route beyond the checklist
     // homepage itself.
     links: [
+      { label: "🧰 Kits", href: "https://pleasebeready.com/kits" },
+      { label: "💧 Food & Water", href: "https://pleasebeready.com/food-water" },
+      { label: "👟 Compare shoes and boots", href: "https://pleasebeready.com/footwear" },
       { label: "✅ Daily Readiness Check", href: "https://pleasebeready.com/today" },
     ],
   },
@@ -387,100 +391,40 @@ export const products: Product[] = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// The homepage doors (owner direction 2026-10-07; narrowed 2026-10-08).
-//
-// The first screen offers two choices — family/play (iDontCry) and build an
-// idea (Step In The Ring) — so a visitor reaches the right product in one
-// step. Everything else, PleaseBeReady included, stays listed lower on the
-// page under "More projects" with its honest status, and PleaseBeReady keeps
-// its family-menu row. CrossHeartPray is never a door: it is outreach, not
-// part of any conversion path.
+// The homepage (owner brief, 2026-11-14). It replaces the Oct 8 layout (two
+// doors, status sections, PleaseBeReady pinned last): every public site sits
+// in one of four groups named for what a visitor comes to do, CrossHeartPray
+// first and on its own terms. About and the menu keep their own order.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type Door = {
-  key: "family" | "build";
-  /** the card headline: the brand, written the way the brand writes itself */
-  headline: string;
-  /** the smaller subtitle under the headline: what the door is for */
-  title: string;
-  line: string;
-  /** registry name of the product this door opens (its href and accent) */
-  product: string;
-  /** audience-focused link label — never the product's name (owner, 2026-10-08) */
-  cta: string;
-  /** the door's own neutral icon, not the product's brand emoji */
-  icon: string;
-};
+export type HomeSectionKey = "faith" | "play" | "everyday" | "build";
 
-// 2026-10-08 (owner, corrected twice the same day): each card's HEADLINE is
-// the full site brand — iDontCry.com, StepInTheRing.com — with "Family &
-// play" / "Build an idea" as a smaller subtitle. Plain descriptions, no joke
-// copy; each links straight to its own site (no Open Mirror interstitial).
-export const DOORS: Door[] = [
-  {
-    key: "family",
-    headline: "iDontCry.com",
-    title: "Family & play",
-    line: "For dads, moms, and kids: local high-school scores, games, and things to make together.",
-    product: "iDontCry",
-    cta: "Start with your family",
-    icon: "🏡",
-  },
-  {
-    key: "build",
-    headline: "StepInTheRing.com",
-    // 2026-11-12 (overnight brief): Step In The Ring now leads as a website
-    // builder for small businesses. Free first; no prices here.
-    title: "Get your business online",
-    line: "A website builder for small businesses. Start from an example written for your kind of work, make it yours, and download files you own. No coding, no account.",
-    product: "StepInTheRing",
-    cta: "Choose your example",
-    icon: "🛠️",
-  },
-];
-
-/** The doors joined to their registry entries (accent, href) — pages never hard-code either. */
-export function doorProducts(): (Door & { href: string; accent: string })[] {
-  return DOORS.map((d) => {
-    const p = products.find((x) => x.name === d.product);
-    if (!p) throw new Error(`door ${d.key} names a product missing from the registry: ${d.product}`);
-    return { ...d, href: p.href, accent: p.accent };
-  });
+/** "DontCloneMeTom.com" → "dontclonemetom": the short key a homepage card click is counted under. */
+export function siteKey(p: Pick<Product, "name">): string {
+  return p.name.toLowerCase().replace(/\.com$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// The homepage below the doors (owner's hierarchy, 2026-10-08). Each section
-// is named for what a visitor finds there, never for an internal status, and
-// lists registry products in registry order. The door products are not
-// repeated here, PleaseBeReady keeps its own quiet section at the bottom
-// (`bottomPinnedProducts`), and the featured product stays About-only.
-// ─────────────────────────────────────────────────────────────────────────────
-
-export type HomeSectionKey = "faith" | "rescue" | "projects" | "experiments";
-
-export const HOME_SECTIONS: { key: HomeSectionKey; label: string; note?: string }[] = [
-  { key: "faith", label: "Prayer and faithful media" },
-  { key: "rescue", label: "Dog rescue" },
-  { key: "projects", label: "Projects" },
-  { key: "experiments", label: "Betas and experiments", note: "Still being tested, and some will change." },
+export const HOME_SECTIONS: { key: HomeSectionKey; label: string; names: string[] }[] = [
+  { key: "faith", label: "Faith and encouragement", names: ["CrossHeartPray", "TheDJCares"] },
+  { key: "play", label: "Sports, games and entertainment", names: ["iDontCry", "OpenDoku", "WatchedNotWatched"] },
+  { key: "everyday", label: "Everyday life", names: ["PleaseBeReady", "DontCloneMeTom.com", "WhatAmIAI"] },
+  { key: "build", label: "Create and build", names: ["StepInTheRing"] },
 ];
 
-/** Which homepage section a product belongs to, or undefined when it has its own place. */
+/** Which homepage group a product belongs to, or undefined when it is kept off the homepage. */
 export function homeSectionOf(p: Product): HomeSectionKey | undefined {
-  if (p.showInPortfolio === false || p.pinBottom || p.featured) return undefined;
-  if (DOORS.some((d) => d.product === p.name)) return undefined;
-  if (p.experiment) return "experiments";
-  if (p.category === "faith") return "faith";
-  if (p.homeSection) return p.homeSection;
-  // A public, non-experimental project with no section of its own is a
-  // regular project (WatchedNotWatched.com, 2026-10-08).
-  return "projects";
+  if (p.showInPortfolio === false || p.featured) return undefined;
+  return HOME_SECTIONS.find((s) => s.names.includes(p.name))?.key;
 }
 
-export function homeSections(): { key: HomeSectionKey; label: string; note?: string; items: Product[] }[] {
-  return HOME_SECTIONS.map((s) => ({ ...s, items: products.filter((p) => homeSectionOf(p) === s.key) })).filter(
-    (s) => s.items.length > 0,
-  );
+export function homeSections(): { key: HomeSectionKey; label: string; items: Product[] }[] {
+  return HOME_SECTIONS.map(({ key, label, names }) => ({
+    key,
+    label,
+    items: names
+      .map((n) => products.find((p) => p.name === n))
+      .filter((p): p is Product => Boolean(p) && homeSectionOf(p as Product) === key),
+  })).filter((s) => s.items.length > 0);
 }
 
 /** Portfolio display order: Foundation → Live → Beta → Building → Exploring → Archived. */

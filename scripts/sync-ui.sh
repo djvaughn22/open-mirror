@@ -54,9 +54,14 @@ for t in "${TARGETS[@]}"; do
   echo "synced -> $t"
 done
 
-if [ -d "$CHP_COMPONENTS" ]; then
+# 2026-11-14 (owner brief): CrossHeartPray is protected and stays untouched.
+# A default run never writes into it. Only when the owner asks for a theme
+# sync there, run:  SYNC_CROSSHEARTPRAY=1 ./scripts/sync-ui.sh
+if [ "${SYNC_CROSSHEARTPRAY:-0}" = "1" ] && [ -d "$CHP_COMPONENTS" ]; then
   cp "$SRC/OpenMirrorTheme.tsx" "$CHP_COMPONENTS/OpenMirrorTheme.tsx"
-  echo "synced (theme only) -> $CHP_COMPONENTS"
+  echo "synced (theme only, owner opt-in) -> $CHP_COMPONENTS"
+else
+  echo "skipped CrossHeartPray (protected; set SYNC_CROSSHEARTPRAY=1 only on the owner's request)"
 fi
 
 echo
