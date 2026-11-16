@@ -113,16 +113,27 @@ test("About groups WatchedNotWatched.com with the main projects and keeps the re
   const wnw = products.find((p) => p.name === "WatchedNotWatched")!;
   assert.notEqual(wnw.experiment, true, "no Beta badge, no experiments group");
   const family = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
-  assert.deepEqual(family.filter((p) => p.experiment).map((p) => p.name), ["OpenDoku", "WhatAmIAI"]);
+  assert.deepEqual(family.filter((p) => p.experiment).map((p) => p.name), ["OpenDoku"]);
   assert.ok(family.some((p) => p.name === "WatchedNotWatched" && !p.experiment));
-  assert.equal(products.find((p) => p.name === "WhatAmIAI")?.status, "building");
+  assert.ok(family.some((p) => p.name === "WhatAmIAI" && !p.experiment), "the flagship is a product, not an experiment");
 });
 
-test("WhatAmIAI is represented honestly — free to use, still building", () => {
+test("WhatAmIAI is the family history product, represented honestly", () => {
   const p = byName("WhatAmIAI");
-  assert.equal(p.status, "building");
-  assert.equal(p.access, "Free");
-  assert.equal(p.accessNote, "Building");
+  assert.equal(p.model, "subscription");
+  assert.equal(p.status, "live");
+  assert.equal(p.access, "Free", "free to use; paid plans are not open");
+  assert.match(p.description, /family history/i);
+  assert.doesNotMatch(`${p.description} ${p.aboutLine}`, /\$|price|paid|free|subscription/i, "no money copy on the card");
+});
+
+test("giving projects are marked and kept apart from products", () => {
+  assert.equal(byName("CrossHeartPray").model, "giving");
+  assert.equal(byName("TheDJCares").model, "giving");
+  for (const p of products) if (!["CrossHeartPray", "TheDJCares"].includes(p.name)) assert.notEqual(p.model, "giving", p.name);
+  const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
+  assert.match(about, /Giving projects/);
+  assert.match(about, /No ads and no subscriptions\./);
 });
 
 // ── Fambookagram + Friendbookagram: retired 2026-08-02 ──────────────────────
@@ -834,14 +845,16 @@ test("the homepage groups every public site once, by what a visitor comes to do"
   const sections = homeSections();
   assert.deepEqual(sections.map((s) => s.label), [
     "Faith and encouragement",
+    "Family history",
     "Sports, games and entertainment",
     "Everyday life",
     "Create and build",
   ]);
   assert.deepEqual(sections[0].items.map((p) => p.name), ["CrossHeartPray", "TheDJCares"], "CrossHeartPray leads the page");
-  assert.deepEqual(sections[1].items.map((p) => p.name), ["iDontCry", "OpenDoku", "WatchedNotWatched"]);
-  assert.deepEqual(sections[2].items.map((p) => p.name), ["PleaseBeReady", "DontCloneMeTom.com", "WhatAmIAI"]);
-  assert.deepEqual(sections[3].items.map((p) => p.name), ["StepInTheRing"]);
+  assert.deepEqual(sections[1].items.map((p) => p.name), ["WhatAmIAI"]);
+  assert.deepEqual(sections[2].items.map((p) => p.name), ["iDontCry", "OpenDoku", "WatchedNotWatched"]);
+  assert.deepEqual(sections[3].items.map((p) => p.name), ["PleaseBeReady", "DontCloneMeTom.com"]);
+  assert.deepEqual(sections[4].items.map((p) => p.name), ["StepInTheRing"]);
   const shown = sections.flatMap((s) => s.items.map((p) => p.name));
   const publicNames = products.filter((p) => p.showInPortfolio !== false).map((p) => p.name);
   assert.deepEqual([...shown].sort(), [...publicNames].sort(), "every public product appears exactly once");

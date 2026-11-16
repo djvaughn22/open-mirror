@@ -44,8 +44,22 @@ export const ACCESS_TONE: Record<AccessLabel, string> = {
   Exploring: "#94A3B8",
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// How each site is run (owner brief, 2026-11-15). Internal organization only:
+// pages show the plain distinction "product" vs "giving project", never
+// revenue figures or revenue-model labels.
+//   subscription — WhatAmIAI (planned paid plans; not open yet)
+//   service      — StepInTheRing (website help, quoted first)
+//   affiliate    — PleaseBeReady (clearly marked affiliate links)
+//   ads-eligible — entertainment and utility sites that may carry ads later
+//   giving       — CrossHeartPray and TheDJCares: no ads, sales or subscriptions
+// ─────────────────────────────────────────────────────────────────────────────
+export type BusinessModel = "subscription" | "service" | "affiliate" | "ads-eligible" | "giving";
+
 export type Product = {
   name: string;
+  /** how the site is run; "giving" sites are never used for sales */
+  model?: BusinessModel;
   emoji: string;
   /** short factual description — homepage card */
   description: string;
@@ -118,7 +132,7 @@ export const STUDIO = {
   // The owner's homepage line (2026-10-22); also the homepage description.
   // 2026-11-14 (owner brief): the homepage must say what Open Mirror is within
   // ten seconds. Plain words; no mission block.
-  welcome: "A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, reflection, and building your own. Each site has its own name and purpose. All are welcome.",
+  welcome: "A small independent studio making useful websites for everyday life: faith, family history, sports and games, getting ready, and building your own. Each site has its own name and purpose. All are welcome.",
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
@@ -128,7 +142,8 @@ export const STUDIO = {
    */
   purpose: [
     "Open Mirror LLC is an independent company behind a group of separate websites. Each project has its own name, audience, and purpose.",
-    "Christian faith guides the work. The projects include resources for prayer and Christian media, family entertainment, turning ideas into real projects, and supporting dog rescue. Some projects are established; others are still being tested or developed.",
+    "Christian faith guides the work. The projects include resources for prayer and Christian media, family history, family entertainment, turning ideas into real projects, and supporting dog rescue. Some projects are established; others are still being tested or developed.",
+    "CrossHeartPray and TheDJCares are giving projects, kept free of ads and subscriptions. The other sites are the company's products.",
   ],
   missionShort:
     "Creating useful, original products across\nfaith, family, creativity, and play.",
@@ -141,11 +156,14 @@ export const STUDIO = {
 // Array order is display order (owner's hierarchy, 2026-10-08): prayer and
 // faithful media, the family and build doors, the rescue project, then the
 // betas and experiments, then PleaseBeReady as a secondary resource.
+// 2026-11-15: WhatAmIAI, the flagship product, comes right after the giving
+// projects.
 export const products: Product[] = [
   {
     // PROTECTED — the Foundation and first build. Gospel-first identity, its
     // own thing. Never a funnel, a sales example, or a generic faith card.
     name: "CrossHeartPray",
+    model: "giving",
     emoji: "✝️",
     description:
       "Daily Bible reading and prayer: Daily Hope, a Bible reading plan, Gene Getz's Life Essentials, and Bible Bingo 7.",
@@ -167,6 +185,7 @@ export const products: Product[] = [
   },
   {
     name: "TheDJCares",
+    model: "giving",
     emoji: "🎵",
     description:
       "Hand-picked music, sermons, podcasts, and encouragement — Gospel first.",
@@ -185,7 +204,29 @@ export const products: Product[] = [
     ],
   },
   {
+    name: "WhatAmIAI",
+    model: "subscription",
+    emoji: "🌳",
+    // 2026-11-15 (owner brief): WhatAmIAI is now the family history product,
+    // Open Mirror's flagship. Paid plans are planned, not open.
+    description:
+      "Family history with the evidence showing: build your tree, see which facts records prove, search old newspapers, and turn what you find into stories with sources.",
+    aboutLine:
+      "Family history with the evidence showing: records, family memories and open questions kept apart.",
+    aboutAction: "Start with one person",
+    // Free to use today; planned paid plans are not open, so it is not
+    // labelled as a product for sale (owner rule, 2026-10-17).
+    access: "Free",
+    accessNote: "New",
+    accent: "#E879F9",
+    href: "https://whatamiai.com",
+    // "live" once this branch ships together with the WhatAmIAI rebuild.
+    status: "live",
+    category: "family",
+  },
+  {
     name: "iDontCry",
+    model: "ads-eligible",
     emoji: "😂",
     // 2026-11-14: iDontCry leads with sports, then games and jokes (its own new tagline).
     description:
@@ -217,6 +258,7 @@ export const products: Product[] = [
   },
   {
     name: "StepInTheRing",
+    model: "service",
     emoji: "🟦",
     // 2026-11-05 owner brief: its promise is working with AI, so it says so. The
     // site itself runs no AI (it writes the messages a person pastes into one),
@@ -248,6 +290,7 @@ export const products: Product[] = [
   },
   {
     name: "DontCloneMeTom.com",
+    model: "ads-eligible",
     emoji: "🐶",
     description:
       "Find real adoptable dogs near your ZIP code. Each one links to the rescue or shelter caring for it.",
@@ -271,6 +314,7 @@ export const products: Product[] = [
   },
   {
     name: "OpenDoku",
+    model: "ads-eligible",
     emoji: "🧩",
     description:
       // 2026-10-17 (owner): the photo puzzles lead after OpenDoku's redesign;
@@ -299,6 +343,7 @@ export const products: Product[] = [
   },
   {
     name: "WatchedNotWatched",
+    model: "ads-eligible",
     emoji: "🎬",
     // No emoji inside the sentence — on phones without the glyphs it used to
     // read "Thumb movies and shows or , sort…".
@@ -323,25 +368,8 @@ export const products: Product[] = [
     ],
   },
   {
-    name: "WhatAmIAI",
-    emoji: "🤖",
-    description:
-      "Short tap-to-answer tools for thinking through a decision, your money, a habit, or your phone use. Your answers stay on your device.",
-    aboutLine:
-      "A tool for noticing patterns in the questions you ask and the decisions you make. It runs on your device.",
-    aboutAction: "Take a look",
-    // Free to use today, still being polished — the qualifier says so plainly.
-    access: "Free",
-    accessNote: "Building",
-    accent: "#E879F9",
-    href: "https://whatamiai.com",
-    // 2026-10-08 (owner): a beta/experiment until it is ready.
-    experiment: true,
-    status: "building",
-    category: "creativity",
-  },
-  {
     name: "PleaseBeReady",
+    model: "affiliate",
     emoji: "🧰",
     // 2026-11-14: it is a store and planner now (31 kits, 16 aisles), not a checklist site.
     description:
@@ -371,6 +399,7 @@ export const products: Product[] = [
     // Hidden gem: the /reflect route stays live for people who know it,
     // but it is not promoted on the homepage, About page, or nav.
     name: "Reflect",
+    model: "ads-eligible",
     emoji: "🪞",
     description:
       "A quiet minute — one honest prompt, then a few things to sit with.",
@@ -397,7 +426,7 @@ export const products: Product[] = [
 // first and on its own terms. About and the menu keep their own order.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type HomeSectionKey = "faith" | "play" | "everyday" | "build";
+export type HomeSectionKey = "faith" | "history" | "play" | "everyday" | "build";
 
 /** "DontCloneMeTom.com" → "dontclonemetom": the short key a homepage card click is counted under. */
 export function siteKey(p: Pick<Product, "name">): string {
@@ -406,8 +435,10 @@ export function siteKey(p: Pick<Product, "name">): string {
 
 export const HOME_SECTIONS: { key: HomeSectionKey; label: string; names: string[] }[] = [
   { key: "faith", label: "Faith and encouragement", names: ["CrossHeartPray", "TheDJCares"] },
+  // 2026-11-15: the flagship product gets its own group, right after faith.
+  { key: "history", label: "Family history", names: ["WhatAmIAI"] },
   { key: "play", label: "Sports, games and entertainment", names: ["iDontCry", "OpenDoku", "WatchedNotWatched"] },
-  { key: "everyday", label: "Everyday life", names: ["PleaseBeReady", "DontCloneMeTom.com", "WhatAmIAI"] },
+  { key: "everyday", label: "Everyday life", names: ["PleaseBeReady", "DontCloneMeTom.com"] },
   { key: "build", label: "Create and build", names: ["StepInTheRing"] },
 ];
 
@@ -445,6 +476,11 @@ export function productsByStatus(status: ProductStatus): Product[] {
       p.pinBottom !== true &&
       p.featured !== true
   );
+}
+
+/** Giving projects are never used for sales; pages group them apart from products. */
+export function isGiving(p: Pick<Product, "model">): boolean {
+  return p.model === "giving";
 }
 
 /** The one featured product, or undefined. Pages ask for it — they never name it. */

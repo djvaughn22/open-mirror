@@ -5,6 +5,7 @@ import {
   aboutFamilyProducts,
   bottomPinnedProducts,
   featuredProduct,
+  isGiving,
   foundationProduct,
   siteName,
   STUDIO,
@@ -103,7 +104,9 @@ export default function AboutOpenMirror() {
   const allFamily = aboutFamilyProducts().filter((p) => p.pinBottom !== true);
   // PleaseBeReady.com is listed, low-key, after everything else — never part
   // of the opening.
-  const family = allFamily.filter((p) => !p.experiment);
+  // 2026-11-15: giving projects first (CrossHeartPray leads), then products.
+  const giving = allFamily.filter((p) => !p.experiment && isGiving(p));
+  const family = allFamily.filter((p) => !p.experiment && !isGiving(p));
   const experiments = allFamily.filter((p) => p.experiment);
   const pinned = bottomPinnedProducts();
   const featured = featuredProduct();
@@ -129,8 +132,16 @@ export default function AboutOpenMirror() {
         <section className="mt-10" aria-label="Projects">
           <h2 className={heading2}>Projects</h2>
           <p className={body}>{PROJECTS_INTRO}</p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <h3 className="mt-8 text-lg font-black tracking-tight">Giving projects</h3>
+          <p className={body}>No ads and no subscriptions.</p>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {foundation && <ProjectCard product={foundation} />}
+            {giving.map((p) => (
+              <ProjectCard key={p.name} product={p} />
+            ))}
+          </div>
+          <h3 className="mt-8 text-lg font-black tracking-tight">Products</h3>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {family.map((p) => (
               <ProjectCard key={p.name} product={p} />
             ))}
