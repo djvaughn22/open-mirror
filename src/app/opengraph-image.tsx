@@ -36,7 +36,7 @@ export default function OpengraphImage() {
           <span style={{ color: BRAND }}>LLC</span>
         </div>
         <div style={{ marginTop: 28, fontSize: 36, color: SUB, lineHeight: 1.35, display: "flex" }}>
-          A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, and building your own.
+          A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, family history, and building your own.
         </div>
       </div>
     ),

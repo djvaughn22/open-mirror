@@ -890,6 +890,9 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
   assert.match(STUDIO.welcome, /websites/);
   assert.ok(STUDIO.welcome.length < 240, "two or three short sentences, not a block");
   assert.doesNotMatch(STUDIO.welcome, /\bfree\b|journey|empower|innovative/i, "plain words, no money copy");
+  // 2026-11-19 (owner): family history is named, here and on the share image.
+  assert.match(STUDIO.welcome, /reflection, family history, and building your own/);
+  assert.match(readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8"), /getting ready, family history, and building your own/);
   assert.match(page, /href="\/about-open-mirror"/);
 });
 

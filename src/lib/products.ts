@@ -118,7 +118,9 @@ export const STUDIO = {
   // The owner's homepage line (2026-10-22); also the homepage description.
   // 2026-11-14 (owner brief): the homepage must say what Open Mirror is within
   // ten seconds. Plain words; no mission block.
-  welcome: "A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, reflection, and building your own. Each site has its own name and purpose. All are welcome.",
+  // 2026-11-19 (owner): "family history" added after WhatAmIAI's family
+  // history pages went live; the list follows the homepage's group order.
+  welcome: "A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, reflection, family history, and building your own. Each site has its own name and purpose. All are welcome.",
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**
