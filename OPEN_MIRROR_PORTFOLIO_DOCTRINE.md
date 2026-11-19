@@ -61,7 +61,7 @@ sessions do not re-litigate the mission.
 | WatchedNotWatched | Personal watch list + discovery | Thumb titles, work the board | Shared footer only | Never interrupt the watch-list flow | None |
 | OpenDoku + games | Puzzle games that feel like games | Play | Quiet footer + About page line | No business messaging in gameplay | None |
 | PleaseBeReady | Calm emergency prep | Work the checklists / gear links | Shared footer only | Honest statuses; no fake commerce | None |
-| WhatAmIAI | AI-usage self-reflection | Run a reflection | Shared footer only | Building status stays honest | None |
+| WhatAmIAI | Reflection tools; family history beside them since 2026-11-19 (Discover, My Family) | Run a reflection; look up one person | Shared footer only | Building status stays honest; family facts show their sources; no analytics on family history pages | None |
 | Fam/Friendbookagram | Retired as standalone products (2026-08-02) | Concept pages inside iDontCry | — | Live at idontcry.com/fambookagram + /friendbookagram; no longer in the portfolio | None |
 | Design Shop / engines | Creation infrastructure (in StepInTheRing) | Make → improve → export | Natural bridge to Ring + owner at production time | Not a consulting advertisement | None |
 
@@ -185,7 +185,7 @@ public repo.
 - **StepInTheRing** — Build system and Engine Room. "Take any idea and turn it into a real first build. AI in your corner." The Engine Room lives here, not in the hub. *(2026-10-07: no AI positioning in public copy; see Portfolio direction.)*
 - **OpenDoku** — Reusable game and puzzle engine. Individual games are experiments, not all major releases.
 - **WatchedNotWatched** — Active consumer-product build. Personal watch list and recommendations. Local-first, no account. No family-filter/scene-skipping claims; no universal-provider claims.
-- **WhatAmIAI** — Self-assessment and AI-usage reflection. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding.
+- **WhatAmIAI** — Self-assessment and AI-usage reflection. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding. *(2026-11-19: family history now sits beside the reflection tools as two pages, Discover and My Family. Family facts never claim more than their sources; see the whatamiai repo's HANDOFF.md.)*
 - **Reflect** — Hidden personal experiment. Route stays live; not promoted in the portfolio.
 - **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority. *(Superseded 2026-10-07: now a priority household-preparedness product; see Portfolio direction.)*
 - **Fambookagram / Friendbookagram** — Retired as standalone products on 2026-08-02. The concepts live on as playground pages inside iDontCry (idontcry.com/fambookagram, idontcry.com/friendbookagram); standalone repos archived with history preserved.

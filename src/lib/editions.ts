@@ -23,7 +23,7 @@ export const EDITION_PROPERTIES: EditionProperty[] = [
   { id: "website-starter", name: "Website starter (Step In The Ring)", line: "Pick an example, make it yours, download the files.", rightsVerified: false },
   { id: "opendoku", name: "OpenDoku", line: "A puzzle and photo-game site.", rightsVerified: false },
   { id: "watched-not-watched", name: "WatchedNotWatched", line: "A simple watched / not-watched tracker.", rightsVerified: false },
-  { id: "whatamiai", name: "WhatAmIAI", line: "A plain-language guide to using AI.", rightsVerified: false },
+  { id: "whatamiai", name: "WhatAmIAI", line: "Reflection tools and family history pages.", rightsVerified: false },
   { id: "sports-desk", name: "Local sports desk (iDontCry)", line: "Teams, scores and schedules for one community.", rightsVerified: false },
   { id: "other", name: "Something else", line: "Tell us what you have in mind.", rightsVerified: false },
 ];

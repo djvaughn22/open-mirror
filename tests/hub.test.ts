@@ -32,6 +32,7 @@ import {
 // services.ts imports ./products without an extension (fine for Next, not for
 // the strip-types test runner), so its locks below scan the source instead.
 import { BE_PREPARED_CARD, liveDestinations } from "../src/lib/destinations.ts";
+import { EDITION_PROPERTIES } from "../src/lib/editions.ts";
 
 const repoRoot = join(import.meta.dirname, "..");
 const byName = (name: string): Product => {
@@ -123,6 +124,22 @@ test("WhatAmIAI is represented honestly — free to use, still building", () => 
   assert.equal(p.status, "building");
   assert.equal(p.access, "Free");
   assert.equal(p.accessNote, "Building");
+});
+
+// 2026-11-19: family history went live on whatamiai.com beside the
+// reflection tools. The hub names both, and never more than the pages do.
+test("WhatAmIAI's hub copy names the reflection tools and family history, without overclaiming", () => {
+  const p = byName("WhatAmIAI");
+  for (const line of [p.description, p.aboutLine ?? ""]) {
+    assert.match(line, /tools/, "the reflection tools are still there");
+    assert.match(line, /family history/i, "family history is named");
+    assert.match(line, /likely kept/, "records are where they are likely kept, never promised");
+    assert.doesNotMatch(line, /\bfree\b|\bAI\b|genealogy|DNA|guarantee|proves/i);
+  }
+  assert.equal(p.expandLabel, "family history");
+  const edition = EDITION_PROPERTIES.find((e) => e.id === "whatamiai");
+  assert.match(edition?.line ?? "", /family history/);
+  assert.doesNotMatch(edition?.line ?? "", /guide to using AI/, "the old description is gone");
 });
 
 // ── Fambookagram + Friendbookagram: retired 2026-08-02 ──────────────────────
@@ -603,6 +620,12 @@ const EXPECTED_FEATURE_LINKS: Record<string, string[]> = {
     "https://opendoku.com/slopedoku/",
     "https://opendoku.com/surfdoku/",
     "https://opendoku.com/minedoku/",
+  ],
+  // 2026-11-19: WhatAmIAI's two family history pages; the card's main link
+  // keeps opening the reflection tools. Both 200 live.
+  WhatAmIAI: [
+    "https://whatamiai.com/discover",
+    "https://whatamiai.com/family",
   ],
 };
 

@@ -325,10 +325,14 @@ export const products: Product[] = [
   {
     name: "WhatAmIAI",
     emoji: "🤖",
+    // 2026-11-19: family history went live beside the reflection tools, as
+    // two pages: Discover (one person, where their records are likely kept)
+    // and My Family (a family tree that shows each fact's sources). Both
+    // stay in the browser; family history pages carry no analytics.
     description:
-      "Short tap-to-answer tools for thinking through a decision, your money, a habit, or your phone use. Your answers stay on your device.",
+      "Short tap-to-answer tools for a decision, your money or a habit. For family history, see where an ancestor's records are likely kept and build a tree that shows its sources. Everything is saved on your device.",
     aboutLine:
-      "A tool for noticing patterns in the questions you ask and the decisions you make. It runs on your device.",
+      "Short tools for thinking through decisions and habits. For family history, see where an ancestor's records are likely kept and build a tree that shows its sources.",
     aboutAction: "Take a look",
     // Free to use today, still being polished — the qualifier says so plainly.
     access: "Free",
@@ -339,6 +343,13 @@ export const products: Product[] = [
     experiment: true,
     status: "building",
     category: "creativity",
+    // The card's main link opens the reflection tools; these two open the
+    // family history pages directly (both 200 live, 2026-11-19).
+    expandLabel: "family history",
+    links: [
+      { label: "🔎 Discover: look up one person", href: "https://whatamiai.com/discover" },
+      { label: "🌳 My Family: build your family tree", href: "https://whatamiai.com/family" },
+    ],
   },
   {
     name: "PleaseBeReady",
