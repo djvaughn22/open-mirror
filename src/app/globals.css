@@ -2266,3 +2266,120 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   outline: 2px solid #38bdf8;
   outline-offset: 2px;
 }
+
+/* ── Homepage hero (owner brief 2026-11-19) ─────────────────────────────────
+   Phones: eyebrow, headline, one line, two actions; compact, so the project
+   directory starts near the first screen. Wide screens: a wider, left-aligned
+   editorial layout with one real product (a phone capture of its live site)
+   on the right. Flat and solid like the rest of the hub: no glow, gradient or
+   see-through fill; the sky blue only on the primary action. Colors come from
+   the --om-* tokens, with light-theme overrides below for the two accents. */
+.om-hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 24px 26px;
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+.om-hero-eyebrow {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--om-sub);
+}
+.om-hero-title {
+  margin: 0 0 12px;
+  max-width: 17ch;
+  font-size: clamp(2.05rem, 8.6vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--om-text);
+  text-wrap: balance;
+}
+.om-hero-lede {
+  margin: 0 0 22px;
+  max-width: 34rem;
+  font-size: clamp(1.02rem, 3.6vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--om-text);
+}
+.om-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+a.om-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: #38bdf8;
+  color: #0b1220;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+}
+a.om-hero-primary:hover { background: #7dd3fc; }
+a.om-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 6px;
+  color: var(--om-text);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--om-border);
+  text-underline-offset: 5px;
+}
+a.om-hero-secondary:hover { text-decoration-color: currentColor; }
+a.om-hero-primary:focus-visible,
+a.om-hero-secondary:focus-visible,
+a.om-hero-phone:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+.om-hero-preview { display: none; margin: 0; }
+a.om-hero-phone {
+  display: block;
+  padding: 10px;
+  border: 1px solid var(--om-border);
+  border-radius: 34px;
+  background: var(--om-surface);
+}
+.om-hero-shot { display: block; width: 100%; height: auto; border-radius: 25px; }
+.om-hero-shot-light { display: none; }
+.om-hero-caption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--om-sub);
+}
+.om-hero-caption a { color: var(--om-text); font-weight: 800; text-decoration: none; }
+.om-hero-caption a:hover { text-decoration: underline; }
+.om-projects-head { scroll-margin-top: 76px; margin: 0 0 26px; }
+.om-projects-title { margin: 0 0 6px; font-size: 1.35rem; font-weight: 900; color: var(--om-text); }
+.om-projects-intro { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.55; color: var(--om-sub); }
+@media (min-width: 960px) {
+  .om-hero {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 72px;
+    padding: 64px 40px 56px;
+  }
+  .om-hero-preview { display: block; }
+  .om-hero-lede { margin-bottom: 30px; }
+}
+html[data-om-theme="light"] a.om-hero-primary,
+html[data-chp-visual-theme="light"] a.om-hero-primary { background: #0369a1; color: #ffffff; }
+html[data-om-theme="light"] a.om-hero-primary:hover,
+html[data-chp-visual-theme="light"] a.om-hero-primary:hover { background: #075985; }
+html[data-om-theme="light"] .om-hero-shot-dark,
+html[data-chp-visual-theme="light"] .om-hero-shot-dark { display: none; }
+html[data-om-theme="light"] .om-hero-shot-light,
+html[data-chp-visual-theme="light"] .om-hero-shot-light { display: block; }

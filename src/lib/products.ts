@@ -121,6 +121,21 @@ export const STUDIO = {
   // 2026-11-19 (owner): "family history" added after WhatAmIAI's family
   // history pages went live; the list follows the homepage's group order.
   welcome: "A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, reflection, family history, and building your own. Each site has its own name and purpose. All are welcome.",
+  /**
+   * The homepage hero (owner brief 2026-11-19): the header already says Open
+   * Mirror LLC, so the hero says what the studio makes and where to go. The
+   * welcome line above now introduces the directory (#projects) instead.
+   */
+  hero: {
+    eyebrow: "Independent digital product studio",
+    title: "Useful websites for everyday life.",
+    lede: "We build tools for families and create websites for small businesses.",
+    primary: { label: "Explore our projects", href: "#projects" },
+    secondary: { label: "Get a website built", href: "https://stepinthering.com" },
+    /** One real product on the right on wide screens: a phone capture of its live site, both themes. */
+    preview: { product: "PleaseBeReady", caption: "Food & Water planner", dark: "/brand/pbr-preview-dark.webp", light: "/brand/pbr-preview-light.webp", width: 780, height: 1520,
+      alt: "PleaseBeReady on a phone: the Food & Water planner set to 4 people for 7 days, showing 28 gallons of water and 28 person-days of food." },
+  },
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
   /**

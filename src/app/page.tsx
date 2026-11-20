@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
-import { homeSections, siteKey, STUDIO } from "../lib/products";
+import { homeSections, products, siteKey, STUDIO } from "../lib/products";
 
 export const metadata: Metadata = {
   description: STUDIO.welcome,
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 // Cool, flat palette — matched to CrossHeartPray / TheDJCares so the family feels connected.
 const bg = "#0b1220";
 const border = "#26324c";
-const text = "#e8edf5";
 const sub = "#94a3b8";
 
 function GroupLabel({ children }: { children: React.ReactNode }) {
@@ -24,18 +24,42 @@ function GroupLabel({ children }: { children: React.ReactNode }) {
 
 export default function OpenMirrorHub() {
   const sections = homeSections();
+  const { hero } = STUDIO;
+  const shown = products.find((p) => p.name === hero.preview.product);
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      <div style={{ maxWidth: 760, margin: "0 auto", padding: "44px 24px 90px" }}>
+      {/* Hero (owner brief 2026-11-19): what the studio makes and where to go, left-aligned with one
+          real product beside it on wide screens; headline and actions first on phones. Classes in
+          globals.css ("Homepage hero") so both themes follow the --om-* tokens. */}
+      <section className="om-hero" aria-labelledby="om-hero-title">
+        <div className="om-hero-copy">
+          <p className="om-hero-eyebrow">{hero.eyebrow}</p>
+          <h1 id="om-hero-title" className="om-hero-title">{hero.title}</h1>
+          <p className="om-hero-lede">{hero.lede}</p>
+          <div className="om-hero-actions">
+            <a href={hero.primary.href} className="om-hero-primary">{hero.primary.label}</a>
+            <a href={hero.secondary.href} className="om-hero-secondary">{hero.secondary.label} <span aria-hidden>→</span></a>
+          </div>
+        </div>
+        {shown && (
+          <figure className="om-hero-preview">
+            <a href={shown.href} className="om-hero-phone" aria-label={`${shown.name}: ${hero.preview.caption}`}>
+              <Image className="om-hero-shot om-hero-shot-dark" src={hero.preview.dark} width={hero.preview.width} height={hero.preview.height} sizes="300px" alt={hero.preview.alt} />
+              <Image className="om-hero-shot om-hero-shot-light" src={hero.preview.light} width={hero.preview.width} height={hero.preview.height} sizes="300px" alt={hero.preview.alt} />
+            </a>
+            <figcaption className="om-hero-caption"><a href={shown.href}>{shown.name}</a> · {hero.preview.caption}</figcaption>
+          </figure>
+        )}
+      </section>
 
-        {/* What Open Mirror is, in plain words, before anything else
-            (owner brief 2026-11-14: the ten-second test). */}
-        <header style={{ textAlign: "center", marginBottom: 36 }}>
-          <h1 style={{ fontSize: "clamp(2rem, 9vw, 2.9rem)", fontWeight: 900, color: text, margin: "0 0 10px", lineHeight: 1.05 }}>
-            Open Mirror <span style={{ color: "#38BDF8" }}>LLC</span>
-          </h1>
-          <p style={{ fontSize: 16, fontWeight: 600, color: text, margin: "0 auto", maxWidth: 560, lineHeight: 1.55 }}>
+      <div style={{ maxWidth: 760, margin: "0 auto", padding: "8px 24px 90px" }}>
+
+        {/* The directory. "Explore our projects" lands here; the welcome line (2026-11-14, family
+            history named 2026-11-19) introduces it instead of filling the hero. */}
+        <header id="projects" className="om-projects-head">
+          <h2 className="om-projects-title">Our projects</h2>
+          <p className="om-projects-intro">
             {STUDIO.welcome}{" "}
             <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
           </p>

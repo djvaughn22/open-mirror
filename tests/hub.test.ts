@@ -896,6 +896,31 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
   assert.match(page, /href="\/about-open-mirror"/);
 });
 
+// 2026-11-19 (owner brief): the hero says what the studio makes and where to
+// go; the header already names Open Mirror LLC. One real product on the right
+// on wide screens, both themes; CrossHeartPray stays out of the change.
+test("the homepage hero: plain copy, one primary action to the directory, a quieter link to Step In The Ring", () => {
+  const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  const css = readFileSync(join(repoRoot, "src/app/globals.css"), "utf8");
+  const { hero } = STUDIO;
+  assert.equal(hero.eyebrow, "Independent digital product studio");
+  assert.equal(hero.title, "Useful websites for everyday life.");
+  assert.equal(hero.lede, "We build tools for families and create websites for small businesses.");
+  assert.deepEqual(hero.primary, { label: "Explore our projects", href: "#projects" });
+  assert.equal(hero.secondary.label, "Get a website built");
+  assert.equal(new URL(hero.secondary.href).hostname, "stepinthering.com");
+  assert.match(page, /id="projects"/, "the primary action lands on the directory");
+  assert.match(page, /className="om-hero-primary"[\s\S]*className="om-hero-secondary"/, "primary first, the quieter link second");
+  assert.doesNotMatch(page, /Open Mirror <span/, "the hero no longer repeats the studio name from the header");
+  const shown = products.find((p) => p.name === hero.preview.product);
+  assert.ok(shown, "the preview is a real product in the registry");
+  assert.notEqual(shown!.name, "CrossHeartPray");
+  for (const f of [hero.preview.dark, hero.preview.light]) assert.ok(existsSync(join(repoRoot, "public", f)), `${f} exists`);
+  assert.match(css, /html\[data-om-theme="light"\] \.om-hero-shot-light/, "the light theme shows the light capture");
+  const heroCss = css.slice(css.lastIndexOf("/*", css.indexOf("Homepage hero (owner brief 2026-11-19)"))).replace(/\/\*[\s\S]*?\*\//g, "");
+  assert.doesNotMatch(heroCss, /gradient|box-shadow|backdrop-filter|rgba\(|opacity/, "flat and solid, like the rest of the hub");
+});
+
 // 2026-10-17: the whole card opens its site as a normal link, hover no longer
 // flickers the cursor, and each card carries one share icon that copies its
 // own site address. The separate text "Share …" button under the faith
