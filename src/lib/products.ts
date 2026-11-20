@@ -125,16 +125,24 @@ export const STUDIO = {
    * The homepage hero (owner brief 2026-11-19): the header already says Open
    * Mirror LLC, so the hero says what the studio makes and where to go. The
    * welcome line above now introduces the directory (#projects) instead.
+   * 2026-11-20 (owner): the second action is the free website starter itself
+   * (stepinthering.com/start, step 1 of the starter), and nothing in the hero
+   * offers paid website work, which waits on the employment review.
+   * PleaseBeReady stays the featured product, on phones as well.
    */
   hero: {
     eyebrow: "Independent digital product studio",
     title: "Useful websites for everyday life.",
-    lede: "We build tools for families and create websites for small businesses.",
+    lede: "We build tools for families and a website starter for small businesses.",
     primary: { label: "Explore our projects", href: "#projects" },
-    secondary: { label: "Get a website built", href: "https://stepinthering.com" },
-    /** One real product on the right on wide screens: a phone capture of its live site, both themes. */
-    preview: { product: "PleaseBeReady", caption: "Food & Water planner", dark: "/brand/pbr-preview-dark.webp", light: "/brand/pbr-preview-light.webp", width: 780, height: 1520,
-      alt: "PleaseBeReady on a phone: the Food & Water planner set to 4 people for 7 days, showing 28 gallons of water and 28 person-days of food." },
+    secondary: { label: "Try the free website starter", href: "https://stepinthering.com/start", note: "On Step In The Ring: pick an example and make it yours." },
+    /**
+     * The featured product: a phone capture of its planner beside the copy on wide screens (both themes),
+     * a short card under the actions on phones. `line` says what a visitor can do there.
+     */
+    preview: { product: "PleaseBeReady", line: "Plan what to buy for a party, sleepover or camping trip, with amounts for your group.", go: "Open PleaseBeReady",
+      dark: "/brand/pbr-planner-dark.webp", light: "/brand/pbr-planner-light.webp", width: 780, height: 1520,
+      alt: "PleaseBeReady on a phone: its planner, with occasions such as a sleepover, a birthday party and camping, and a button to plan a sleepover for 4." },
   },
   mission:
     "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",

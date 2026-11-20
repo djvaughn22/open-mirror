@@ -29,9 +29,10 @@ export default function OpenMirrorHub() {
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      {/* Hero (owner brief 2026-11-19): what the studio makes and where to go, left-aligned with one
-          real product beside it on wide screens; headline and actions first on phones. Classes in
-          globals.css ("Homepage hero") so both themes follow the --om-* tokens. */}
+      {/* Hero (owner brief 2026-11-19, revised 2026-11-20): what the studio makes and where to go,
+          left-aligned with the featured product beside it on wide screens; on phones the headline and
+          actions come first, then a short card for the featured product. Classes in globals.css
+          ("Homepage hero") so both themes follow the --om-* tokens. */}
       <section className="om-hero" aria-labelledby="om-hero-title">
         <div className="om-hero-copy">
           <p className="om-hero-eyebrow">{hero.eyebrow}</p>
@@ -39,16 +40,26 @@ export default function OpenMirrorHub() {
           <p className="om-hero-lede">{hero.lede}</p>
           <div className="om-hero-actions">
             <a href={hero.primary.href} className="om-hero-primary">{hero.primary.label}</a>
-            <a href={hero.secondary.href} className="om-hero-secondary">{hero.secondary.label} <span aria-hidden>→</span></a>
+            <a href={hero.secondary.href} className="om-hero-secondary">
+              <span className="om-hero-secondary-label">{hero.secondary.label} <span aria-hidden>→</span></span>
+              <span className="om-hero-secondary-note">{hero.secondary.note}</span>
+            </a>
           </div>
+          {shown && (
+            <a href={shown.href} className="om-hero-feature">
+              <span className="om-hero-feature-name">{shown.name}</span>
+              <span className="om-hero-feature-line">{hero.preview.line}</span>
+              <span className="om-hero-feature-go">{hero.preview.go} <span aria-hidden>→</span></span>
+            </a>
+          )}
         </div>
         {shown && (
           <figure className="om-hero-preview">
-            <a href={shown.href} className="om-hero-phone" aria-label={`${shown.name}: ${hero.preview.caption}`}>
+            <a href={shown.href} className="om-hero-phone" aria-label={`${shown.name}: ${hero.preview.line}`}>
               <Image className="om-hero-shot om-hero-shot-dark" src={hero.preview.dark} width={hero.preview.width} height={hero.preview.height} sizes="300px" alt={hero.preview.alt} />
               <Image className="om-hero-shot om-hero-shot-light" src={hero.preview.light} width={hero.preview.width} height={hero.preview.height} sizes="300px" alt={hero.preview.alt} />
             </a>
-            <figcaption className="om-hero-caption"><a href={shown.href}>{shown.name}</a> · {hero.preview.caption}</figcaption>
+            <figcaption className="om-hero-caption"><a href={shown.href}>{shown.name}</a>{hero.preview.line}</figcaption>
           </figure>
         )}
       </section>
