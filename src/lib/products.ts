@@ -371,7 +371,7 @@ export const products: Product[] = [
     description:
       "Make a household emergency plan for outages, storms, and water shutoffs.",
     aboutLine:
-      "A store and planner for getting ready, with ready-made lists for storms, outages, a new puppy, a first car and more.",
+      "Make a household emergency plan for outages, storms, and water shutoffs.",
     aboutAction: "Get ready",
     access: "Free",
     accent: "#34D399",
