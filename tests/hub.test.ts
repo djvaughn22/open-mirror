@@ -885,7 +885,9 @@ test("PleaseBeReady is described as the store and planner it is, and stays in th
 test("the homepage header says what Open Mirror is in plain words, with no mission block", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
   assert.doesNotMatch(page, /missionShort|STUDIO\.purpose/);
-  assert.match(page, /\{STUDIO\.welcome\}/);
+  // 2026-11-20 night: the welcome line is the meta description; the hero's one sentence is on the page.
+  assert.match(page, /description: STUDIO\.welcome/);
+  assert.match(page, /\{hero\.lede\}/);
   assert.match(STUDIO.welcome, /independent studio/);
   assert.match(STUDIO.welcome, /websites/);
   assert.ok(STUDIO.welcome.length < 240, "two or three short sentences, not a block");
@@ -896,37 +898,27 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
   assert.match(page, /href="\/about-open-mirror"/);
 });
 
-// 2026-11-19 (owner brief): the hero says what the studio makes and where to
-// go; the header already names Open Mirror LLC. One real product on the right
-// on wide screens, both themes; CrossHeartPray stays out of the change.
-// 2026-11-20 (owner): the second action is the free website starter itself, at
-// its exact address, and the hero offers no paid website work (on hold pending
-// the employment review). PleaseBeReady is featured on phones too.
-test("the homepage hero: plain copy, one primary action to the directory, the free website starter, PleaseBeReady featured", () => {
+// 2026-11-20, night (owner): the Nov 19-20 hero ("Useful websites for everyday
+// life", the website starter link, the PleaseBeReady capture) was rejected in
+// production. The homepage leads with the Open Mirror identity, one plain
+// sentence, and one action into the directory. No sales or service copy.
+test("the homepage hero: the studio's name, one sentence, one action into the directory, nothing to buy or hire", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
   const css = readFileSync(join(repoRoot, "src/app/globals.css"), "utf8");
   const { hero } = STUDIO;
-  assert.equal(hero.eyebrow, "Independent digital product studio");
-  assert.equal(hero.title, "Useful websites for everyday life.");
-  assert.equal(hero.lede, "We build tools for families and a website starter for small businesses.");
-  assert.deepEqual(hero.primary, { label: "Explore our projects", href: "#projects" });
-  assert.equal(hero.secondary.label, "Try the free website starter");
-  assert.equal(hero.secondary.href, "https://stepinthering.com/start", "the starter's first step, not the SITR home or /services");
-  assert.match(hero.secondary.note, /Step In The Ring/, "says where the link goes");
-  const words = [hero.eyebrow, hero.title, hero.lede, hero.secondary.label, hero.secondary.note, hero.preview.line].join(" ");
-  assert.doesNotMatch(words, /get a website built|create websites|\$|price|hire|services|quote/i, "no paid website work in the hero");
+  assert.match(page, /className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC<\/span><\/h1>/, "the studio's name is the headline");
+  assert.equal(hero.lede, "A small family studio making useful apps for faith, family, sports and games, and getting ready.");
+  assert.deepEqual(hero.primary, { label: "Explore the apps", href: "#projects" });
   assert.match(page, /id="projects"/, "the primary action lands on the directory");
-  assert.match(page, /className="om-hero-primary"[\s\S]*className="om-hero-secondary"/, "primary first, the quieter link second");
-  assert.doesNotMatch(page, /Open Mirror <span/, "the hero no longer repeats the studio name from the header");
-  const shown = products.find((p) => p.name === hero.preview.product);
-  assert.ok(shown, "the preview is a real product in the registry");
-  assert.equal(shown!.name, "PleaseBeReady");
-  assert.match(page, /className="om-hero-feature"/, "phones get a card for the featured product");
-  assert.match(css, /@media \(min-width: 960px\)[^}]*\{[\s\S]*?a\.om-hero-feature \{ display: none; \}/, "wide screens show the capture instead");
-  for (const f of [hero.preview.dark, hero.preview.light]) assert.ok(existsSync(join(repoRoot, "public", f)), `${f} exists`);
-  assert.match(css, /html\[data-om-theme="light"\] \.om-hero-shot-light/, "the light theme shows the light capture");
-  const heroCss = css.slice(css.lastIndexOf("/*", css.indexOf("Homepage hero (owner brief 2026-11-19)"))).replace(/\/\*[\s\S]*?\*\//g, "");
-  assert.doesNotMatch(heroCss, /gradient|box-shadow|backdrop-filter|rgba\(|opacity/, "flat and solid, like the rest of the hub");
+  assert.equal((page.match(/om-hero-primary/g) ?? []).length, 1, "one action in the hero");
+  assert.doesNotMatch(page, /om-hero-secondary|om-hero-feature|om-hero-preview|next\/image/, "no second action and no featured-product capture");
+  assert.doesNotMatch(page, /website starter|get a website built|create websites|stepinthering|\/editions|Ask about an edition|services|hire|quote|\$\d/i,
+    "no website-starter, paid-work or edition pitch on the homepage");
+  assert.doesNotMatch(hero.lede, /free|price|business/i);
+  for (const f of ["pbr-planner-dark.webp", "pbr-planner-light.webp"]) assert.ok(!existsSync(join(repoRoot, "public/brand", f)), `${f} is gone`);
+  assert.match(css, /html\[data-om-theme="light"\] \.om-hero-llc/, "LLC stays readable in the light theme");
+  const heroCss = css.slice(css.lastIndexOf("/*", css.indexOf("Homepage hero (owner direction 2026-11-20, night)"))).replace(/\/\*[\s\S]*?\*\//g, "");
+  assert.doesNotMatch(heroCss.slice(0, 2000), /gradient|box-shadow|backdrop-filter|rgba\(|opacity/, "flat and solid, like the rest of the hub");
 });
 
 // 2026-10-17: the whole card opens its site as a normal link, hover no longer
@@ -1000,7 +992,7 @@ test("every site card on the hub shows its real .com name, matching its own link
 test("CrossHeartPray leads the homepage and sits nowhere near a conversion path", () => {
   assert.equal(homeSections()[0].items[0].name, "CrossHeartPray");
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
-  assert.ok(page.indexOf("{sections.map") < page.indexOf('href="/editions"'), "the editions line comes after every site");
+  assert.doesNotMatch(page, /href="\/editions"/, "no edition pitch on the homepage (2026-11-20 night)");
 });
 
 test("registry copy carries no unproven claims, and no AI positioning outside Step In The Ring", () => {

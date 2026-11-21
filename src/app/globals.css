@@ -2267,152 +2267,57 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   outline-offset: 2px;
 }
 
-/* ── Homepage hero (owner brief 2026-11-19) ─────────────────────────────────
-   Phones: eyebrow, headline, one line, two actions; compact, so the project
-   directory starts near the first screen. Wide screens: a wider, left-aligned
-   editorial layout with one real product (a phone capture of its live site)
-   on the right. Flat and solid like the rest of the hub: no glow, gradient or
-   see-through fill; the sky blue only on the primary action. Colors come from
-   the --om-* tokens, with light-theme overrides below for the two accents. */
+/* ── Homepage hero (owner direction 2026-11-20, night) ────────────────────────
+   The Open Mirror identity first: the studio's name (LLC in sky blue, as the
+   home page has always shown it), one plain sentence about what the studio
+   makes, and one action into the directory. No second action, no featured
+   product capture, no business or sales copy (that story lives on About).
+   Flat and solid like the rest of the hub; colors from the --om-* tokens. */
 .om-hero {
-  max-width: 1080px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 30px 24px 26px;
-  display: grid;
-  gap: 40px;
-  align-items: center;
-}
-.om-hero-eyebrow {
-  margin: 0 0 10px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--om-sub);
+  padding: 40px 24px 34px;
+  text-align: center;
 }
 .om-hero-title {
   margin: 0 0 12px;
-  max-width: 17ch;
-  font-size: clamp(2.05rem, 8.6vw, 3.75rem);
+  font-size: clamp(2.2rem, 10vw, 3.2rem);
   font-weight: 900;
   line-height: 1.04;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--om-text);
-  text-wrap: balance;
 }
+.om-hero-llc { color: #38bdf8; }
 .om-hero-lede {
-  margin: 0 0 22px;
-  max-width: 34rem;
-  font-size: clamp(1.02rem, 3.6vw, 1.2rem);
+  margin: 0 auto 22px;
+  max-width: 32rem;
+  font-size: clamp(1.05rem, 4.2vw, 1.2rem);
   font-weight: 600;
   line-height: 1.5;
   color: var(--om-text);
-}
-.om-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 24px;
+  text-wrap: balance;
 }
 a.om-hero-primary {
   display: inline-flex;
   align-items: center;
-  min-height: 48px;
-  padding: 0 22px;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 26px;
   border-radius: 999px;
   background: #38bdf8;
   color: #0b1220;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   text-decoration: none;
 }
 a.om-hero-primary:hover { background: #7dd3fc; }
-a.om-hero-secondary {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-height: 44px;
-  gap: 3px;
-  color: var(--om-text);
-  text-decoration: none;
-}
-.om-hero-secondary-label {
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: var(--om-border);
-  text-underline-offset: 5px;
-}
-a.om-hero-secondary:hover .om-hero-secondary-label { text-decoration-color: currentColor; }
-.om-hero-secondary-note { font-size: 13px; font-weight: 600; color: var(--om-sub); }
-/* The featured product on phones (2026-11-20): one plain card under the actions.
-   Wide screens show the phone capture instead. */
-a.om-hero-feature {
-  display: block;
-  margin-top: 24px;
-  max-width: 34rem;
-  padding: 14px 16px;
-  border: 1px solid var(--om-border);
-  border-radius: 14px;
-  background: var(--om-surface);
-  color: var(--om-text);
-  text-decoration: none;
-}
-.om-hero-feature-name { display: block; font-size: 16px; font-weight: 900; }
-.om-hero-feature-line { display: block; margin-top: 4px; font-size: 14px; font-weight: 600; line-height: 1.5; color: var(--om-sub); }
-.om-hero-feature-go {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: 800;
-  text-decoration: underline;
-  text-decoration-color: var(--om-border);
-  text-underline-offset: 4px;
-}
-a.om-hero-feature:hover .om-hero-feature-go { text-decoration-color: currentColor; }
-a.om-hero-primary:focus-visible,
-a.om-hero-secondary:focus-visible,
-a.om-hero-feature:focus-visible,
-a.om-hero-phone:focus-visible {
-  outline: 2px solid #38bdf8;
-  outline-offset: 3px;
-}
-.om-hero-preview { display: none; margin: 0; }
-a.om-hero-phone {
-  display: block;
-  padding: 10px;
-  border: 1px solid var(--om-border);
-  border-radius: 34px;
-  background: var(--om-surface);
-}
-.om-hero-shot { display: block; width: 100%; height: auto; border-radius: 25px; }
-.om-hero-shot-light { display: none; }
-.om-hero-caption {
-  margin-top: 12px;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--om-sub);
-}
-.om-hero-caption a { display: block; margin-bottom: 2px; color: var(--om-text); font-weight: 800; text-decoration: none; }
-.om-hero-caption a:hover { text-decoration: underline; }
+a.om-hero-primary:focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px; }
 .om-projects-head { scroll-margin-top: 76px; margin: 0 0 26px; }
 .om-projects-title { margin: 0 0 6px; font-size: 1.35rem; font-weight: 900; color: var(--om-text); }
 .om-projects-intro { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.55; color: var(--om-sub); }
-@media (min-width: 960px) {
-  .om-hero {
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 72px;
-    padding: 64px 40px 56px;
-  }
-  .om-hero-preview { display: block; }
-  a.om-hero-feature { display: none; }
-  .om-hero-lede { margin-bottom: 30px; }
-}
+html[data-om-theme="light"] .om-hero-llc,
+html[data-chp-visual-theme="light"] .om-hero-llc { color: #0369a1; }
 html[data-om-theme="light"] a.om-hero-primary,
 html[data-chp-visual-theme="light"] a.om-hero-primary { background: #0369a1; color: #ffffff; }
 html[data-om-theme="light"] a.om-hero-primary:hover,
 html[data-chp-visual-theme="light"] a.om-hero-primary:hover { background: #075985; }
-html[data-om-theme="light"] .om-hero-shot-dark,
-html[data-chp-visual-theme="light"] .om-hero-shot-dark { display: none; }
-html[data-om-theme="light"] .om-hero-shot-light,
-html[data-chp-visual-theme="light"] .om-hero-shot-light { display: block; }

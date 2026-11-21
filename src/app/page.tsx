@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
-import { homeSections, products, siteKey, STUDIO } from "../lib/products";
+import { homeSections, siteKey, STUDIO } from "../lib/products";
 
 export const metadata: Metadata = {
   description: STUDIO.welcome,
@@ -25,54 +24,27 @@ function GroupLabel({ children }: { children: React.ReactNode }) {
 export default function OpenMirrorHub() {
   const sections = homeSections();
   const { hero } = STUDIO;
-  const shown = products.find((p) => p.name === hero.preview.product);
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      {/* Hero (owner brief 2026-11-19, revised 2026-11-20): what the studio makes and where to go,
-          left-aligned with the featured product beside it on wide screens; on phones the headline and
-          actions come first, then a short card for the featured product. Classes in globals.css
-          ("Homepage hero") so both themes follow the --om-* tokens. */}
+      {/* Hero (owner direction 2026-11-20, night): the Open Mirror identity, one plain sentence
+          about what the studio makes, and one action into the directory. No sales copy
+          here; the fuller story is on About. Classes in globals.css ("Homepage hero"). */}
       <section className="om-hero" aria-labelledby="om-hero-title">
-        <div className="om-hero-copy">
-          <p className="om-hero-eyebrow">{hero.eyebrow}</p>
-          <h1 id="om-hero-title" className="om-hero-title">{hero.title}</h1>
-          <p className="om-hero-lede">{hero.lede}</p>
-          <div className="om-hero-actions">
-            <a href={hero.primary.href} className="om-hero-primary">{hero.primary.label}</a>
-            <a href={hero.secondary.href} className="om-hero-secondary">
-              <span className="om-hero-secondary-label">{hero.secondary.label} <span aria-hidden>→</span></span>
-              <span className="om-hero-secondary-note">{hero.secondary.note}</span>
-            </a>
-          </div>
-          {shown && (
-            <a href={shown.href} className="om-hero-feature">
-              <span className="om-hero-feature-name">{shown.name}</span>
-              <span className="om-hero-feature-line">{hero.preview.line}</span>
-              <span className="om-hero-feature-go">{hero.preview.go} <span aria-hidden>→</span></span>
-            </a>
-          )}
-        </div>
-        {shown && (
-          <figure className="om-hero-preview">
-            <a href={shown.href} className="om-hero-phone" aria-label={`${shown.name}: ${hero.preview.line}`}>
-              <Image className="om-hero-shot om-hero-shot-dark" src={hero.preview.dark} width={hero.preview.width} height={hero.preview.height} sizes="300px" alt={hero.preview.alt} />
-              <Image className="om-hero-shot om-hero-shot-light" src={hero.preview.light} width={hero.preview.width} height={hero.preview.height} sizes="300px" alt={hero.preview.alt} />
-            </a>
-            <figcaption className="om-hero-caption"><a href={shown.href}>{shown.name}</a>{hero.preview.line}</figcaption>
-          </figure>
-        )}
+        <h1 id="om-hero-title" className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC</span></h1>
+        <p className="om-hero-lede">{hero.lede}</p>
+        <a href={hero.primary.href} className="om-hero-primary">{hero.primary.label}</a>
       </section>
 
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "8px 24px 90px" }}>
 
-        {/* The directory. "Explore our projects" lands here; the welcome line (2026-11-14, family
-            history named 2026-11-19) introduces it instead of filling the hero. */}
+        {/* The directory. "Explore the apps" lands here. The hero already says what the studio
+            makes, so this header is just the heading and a pointer to the fuller story on About. */}
         <header id="projects" className="om-projects-head">
-          <h2 className="om-projects-title">Our projects</h2>
+          <h2 className="om-projects-title">The apps</h2>
           <p className="om-projects-intro">
-            {STUDIO.welcome}{" "}
-            <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About</a>
+            Each site has its own name and purpose. All are welcome.{" "}
+            <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About the studio</a>
           </p>
         </header>
 
@@ -87,12 +59,6 @@ export default function OpenMirrorHub() {
             </div>
           </section>
         ))}
-
-        <p style={{ marginTop: 44, textAlign: "center", fontSize: 14, fontWeight: 600, color: sub }}>
-          Want a version of one of these sites for your business or group?{" "}
-          <a href="/editions" style={{ color: "#38BDF8", textDecoration: "underline", textUnderlineOffset: 3 }}>Ask about an edition</a>
-        </p>
-
       </div>
     </main>
   );
