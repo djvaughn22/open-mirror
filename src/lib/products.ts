@@ -367,9 +367,9 @@ export const products: Product[] = [
   {
     name: "PleaseBeReady",
     emoji: "🧰",
-    // 2026-11-14: it is a store and planner now (31 kits, 16 aisles), not a checklist site.
+    // 2026-11-21 (owner): the directory card leads with the emergency plan, not the store.
     description:
-      "A store and planner for getting ready: pick what's coming, from a winter storm to a new puppy, get a ready-made list, and shop it. Lists stay on your device.",
+      "Make a household emergency plan for outages, storms, and water shutoffs.",
     aboutLine:
       "A store and planner for getting ready, with ready-made lists for storms, outages, a new puppy, a first car and more.",
     aboutAction: "Get ready",

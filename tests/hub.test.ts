@@ -873,9 +873,11 @@ test("the homepage groups every public site once, by what a visitor comes to do"
   assert.match(card, /p\.experiment \? STATUS_LABEL\.beta/, "a live experiment reads as a Beta");
 });
 
-test("PleaseBeReady is described as the store and planner it is, and stays in the menu", () => {
+// 2026-11-21 (owner): the directory card leads with the household emergency plan, not the store.
+test("PleaseBeReady's card leads with the emergency plan, and it stays in the menu", () => {
   const pbr = byName("PleaseBeReady");
-  assert.match(pbr.description, /store and planner/);
+  assert.equal(pbr.description, "Make a household emergency plan for outages, storms, and water shutoffs.");
+  assert.doesNotMatch(pbr.description, /store|shop|buy/i, "no store-first wording on the card");
   assert.doesNotMatch(pbr.description, /checklists for storms/i, "the old checklist-only line is gone");
   assert.ok(homeSections().find((s) => s.key === "everyday")?.items.includes(pbr));
   assert.ok(navProductOrder().some((p) => p.name === "PleaseBeReady"), "and in the family menu");
