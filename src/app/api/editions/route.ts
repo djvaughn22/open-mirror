@@ -32,7 +32,14 @@ export async function GET() {
   return NextResponse.json({ stamp: Date.now(), online: db || email, db, email }, { headers: { "Cache-Control": "no-store" } });
 }
 
+// Retired 2026-11-23 (decision #20): /editions redirects to About, so the form
+// is gone and the endpoint turns requests away. The code stays for history.
+const RETIRED = true;
+
 export async function POST(req: NextRequest) {
+  if (RETIRED) {
+    return NextResponse.json({ ok: false, error: "Customer editions aren't offered right now." }, { status: 410 });
+  }
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (!allow(`any:${ip}`, 20, 10 * 60_000)) {
     return NextResponse.json({ ok: false, error: "That is several requests at once. Try again in a few minutes." }, { status: 429 });

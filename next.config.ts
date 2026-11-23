@@ -62,6 +62,15 @@ const nextConfig: NextConfig = {
       { source: "/partnership", destination: "/about-open-mirror", permanent: false },
       { source: "/products/old-laptop-to-build-machine/:path*", destination: "https://stepinthering.com/products/ready-to-build", permanent: false },
       { source: "/downloads/old-laptop-readiness-check.pdf", destination: "https://stepinthering.com/products/ready-to-build", permanent: false },
+      // 2026-11-23 (church and family review, decision #20): two unfinished
+      // areas stop serving pages. Customer editions showed a proposed price
+      // while paid work is paused; the St. Louis sports wire stopped updating
+      // Sep 1 and its review queue was public. The family's sports desk is
+      // iDontCry's, so the old sports URLs land there.
+      { source: "/editions", destination: "/about-open-mirror", permanent: false },
+      { source: "/sports-desk", destination: "https://www.idontcry.com/sports", permanent: false },
+      { source: "/sports", destination: "https://www.idontcry.com/sports", permanent: false },
+      { source: "/sports/:path*", destination: "https://www.idontcry.com/sports", permanent: false },
       ...toCrossHeartPray,
       ...toStandaloneSites,
     ];

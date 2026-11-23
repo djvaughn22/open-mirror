@@ -1031,6 +1031,19 @@ test("the hub tells search engines what to index, and keeps the old sports wire 
   assert.match(sportsLayout, /index: false/);
 });
 
+test("editions and the old sports wire are retired: redirected, unlisted, and the request API refuses (2026-11-23)", () => {
+  const config = readFileSync(join(repoRoot, "next.config.ts"), "utf8");
+  assert.match(config, /source: "\/editions", destination: "\/about-open-mirror", permanent: false/);
+  for (const source of ["/sports-desk", "/sports", "/sports/:path*"]) {
+    assert.ok(config.includes(`source: "${source}", destination: "https://www.idontcry.com/sports", permanent: false`), `${source} redirects to the iDontCry sports desk`);
+  }
+  const sitemap = readFileSync(join(repoRoot, "src/app/sitemap.ts"), "utf8");
+  assert.doesNotMatch(sitemap, /"\/editions"/, "editions are not in the sitemap");
+  const api = readFileSync(join(repoRoot, "src/app/api/editions/route.ts"), "utf8");
+  assert.match(api, /const RETIRED = true;/);
+  assert.match(api, /status: 410/);
+});
+
 test("the shared sync never writes into CrossHeartPray unless the owner opts in", () => {
   const sync = readFileSync(join(repoRoot, "scripts/sync-ui.sh"), "utf8");
   const chpCopy = sync.match(/if \[([^\n]*)\][^\n]*\n\s*cp "\$SRC\/OpenMirrorTheme\.tsx" "\$CHP_COMPONENTS/);
