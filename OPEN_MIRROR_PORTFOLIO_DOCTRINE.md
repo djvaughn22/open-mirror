@@ -98,6 +98,26 @@ Open Mirror does not exist to collect websites.
 
 It exists to turn imagination into useful, ownable, real-world value.
 
+## Messaging independence (owner direction, 2026-11-24)
+
+This wins over every older section of this file on brand and messaging.
+
+- Open Mirror is an independent studio that turns ideas into useful websites
+  and apps. It is not a preparedness company, and it is not a set of sites
+  selling visitors on each other.
+- Each product says its own purpose, simply, on its own site: what it is,
+  what you can do, how to start.
+- Preparedness, "Be Ready" and PleaseBeReady belong to pleasebeready.com only.
+- No cross-promotion on product pages: no sister-site plugs, no family bands.
+  The shared footer is the family tie; the hub directory lists every site.
+- About pages explain the one product, with one quiet attribution line.
+- No new portfolio-wide narrative in place of the old one.
+- The "Handoffs" bullet and the 2026-10-08 update under "Flow" below are
+  superseded where they place PleaseBeReady or other sites on product pages.
+  Real feature handoffs (Dream Lab to Step In The Ring) stay.
+
+Rules and a pre-ship check: `docs/MESSAGING.md`.
+
 ## Portfolio direction (owner-approved, 2026-10-07)
 
 This section is the current direction for brand, traffic, UX and messaging.

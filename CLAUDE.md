@@ -6,6 +6,21 @@ This is the HUB of the Open Mirror family (11 sites, separate repos, all on
 Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 
 ## Family rules (apply to every Open Mirror repo)
+- **Messaging independence (owner, 2026-11-24; wins over any older bullet
+  below that disagrees):** Open Mirror is an independent studio that makes
+  things, and each site stands on its own, in its own voice. Preparedness
+  wording ("be ready", "getting ready", readiness, emergency planning) and
+  PleaseBeReady plugs live ONLY on pleasebeready.com: never in Open Mirror's
+  identity lines, never on another site. No "sister site" plugs, no Open
+  Mirror family bands, no cross-promotion blocks on product pages; the shared
+  footer is the family tie, and the hub directory is the one place that lists
+  every site. A satellite About explains that product only, with one quiet
+  line ("X is an Open Mirror LLC project."). Share text and search
+  descriptions describe the product, not the company. Feature handoffs that
+  do real work (iDontCry's Dream Lab and Dream a game to Step In The Ring)
+  stay. Don't replace the old story with a new portfolio-wide narrative or
+  slogan, and keep internal analogies off pages. Details and a pre-ship check:
+  `docs/MESSAGING.md`.
 - **Design:** flat + cool. bg `#0b1220`, surface `#141d2e`, border `#26324c`,
   text `#e8edf5`, muted `#94a3b8`. No glass/transparency, no gradients, **no red**.
 - **Site accents** (the colored ".com" wherever a site name appears — master
@@ -32,8 +47,9 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   faithful media (easy to find and share, never a door or sales path);
   iDontCry = the family doorway (plain site copy, jokes stay in joke content
   and buttons); Step In The Ring = the practical build path; PleaseBeReady =
-  a useful secondary resource, discovered from relevant pages, kept out of
-  the purpose statement and never pitched; everything else is a beta or an
+  its own preparedness site, listed in the hub directory like the others and
+  never plugged from other sites (2026-11-24; it was "discovered from
+  relevant pages" before); everything else is a beta or an
   experiment (`experiment: true` in the registry) until it is ready. No
   AI-branded features or AI messaging. No revenue plans in public copy.
 - **Mission haikus (First / More / Keep going — owner-replaced Jul 15 2026):**
