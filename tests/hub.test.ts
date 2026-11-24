@@ -960,7 +960,9 @@ test("homepage cards open as a normal link, share by copying their own URL, and 
 // Open Mirror is, and they don't list the sites' categories either.
 test("the studio's identity lines never present preparedness as what Open Mirror is", () => {
   const og = readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8");
-  const lines = [STUDIO.hero.lede, STUDIO.welcome, STUDIO.mission, STUDIO.label, ...STUDIO.purpose, og];
+  const manifest = readFileSync(join(repoRoot, "src/app/manifest.ts"), "utf8").replace(/\/\/.*$/gm, "");
+  assert.match(manifest, /description: "An independent studio that turns ideas into useful websites and apps\."/, "the install description is the studio line");
+  const lines = [STUDIO.hero.lede, STUDIO.welcome, STUDIO.mission, STUDIO.label, ...STUDIO.purpose, og, manifest];
   for (const line of lines) {
     assert.doesNotMatch(line, /\bready\b|readiness|getting ready|prepar|emergenc|PleaseBeReady/i, "no preparedness in the studio's identity");
   }

@@ -6,8 +6,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Open Mirror LLC",
     short_name: "Open Mirror",
-    description:
-      "An independent creative studio building useful, original products across faith, family, creativity, and play — all made to help people create.",
+    // 2026-11-24 (owner): the same plain studio line as the homepage.
+    description: "An independent studio that turns ideas into useful websites and apps.",
     start_url: "/",
     display: "standalone",
     orientation: "portrait",
