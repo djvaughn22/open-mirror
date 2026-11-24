@@ -31,7 +31,7 @@ import {
 } from "../src/lib/products.ts";
 // services.ts imports ./products without an extension (fine for Next, not for
 // the strip-types test runner), so its locks below scan the source instead.
-import { BE_PREPARED_CARD, liveDestinations } from "../src/lib/destinations.ts";
+import { liveDestinations } from "../src/lib/destinations.ts";
 import { EDITION_PROPERTIES } from "../src/lib/editions.ts";
 
 const repoRoot = join(import.meta.dirname, "..");
@@ -231,21 +231,13 @@ test("PleaseBeReady is in the family menu, the directory and About", () => {
   assert.match(nav, /showInNav !== false/, "the nav must respect showInNav for pinned resources");
 });
 
-test("the Be Prepared card keeps its exact destination and message", () => {
-  const live = liveDestinations(BE_PREPARED_CARD.destinations);
-  assert.equal(live[0]?.href, "https://pleasebeready.com", "the destination URL is locked");
-  assert.equal(live[0]?.label, "Visit PleaseBeReady.com");
-  assert.equal(BE_PREPARED_CARD.heading, "Be prepared. Nothing dramatic.");
-  assert.match(BE_PREPARED_CARD.closing ?? "", /ready to help/, "the closing line stays");
-  const share = BE_PREPARED_CARD.share;
-  assert.ok(share, "the reminder stays shareable");
-  assert.equal(share.url, "https://pleasebeready.com");
-  assert.equal(share.title, "Be prepared. Nothing dramatic.");
-  assert.ok(share.text.trim().length > 40, "share text must never go empty");
-  assert.equal(share.label, "Share this reminder");
-  const copy = `${BE_PREPARED_CARD.body.join(" ")} ${share.text}`;
-  assert.doesNotMatch(copy, /disaster|too late|protect your family|survival|bunker|when.*strikes/i,
-    "the reminder never becomes fear copy");
+// 2026-11-24 (owner): the dormant "Be prepared" card and label are gone, so a
+// later pass can't wire a preparedness message back onto Open Mirror itself.
+test("no preparedness card or label is kept for the hub", () => {
+  const destinations = readFileSync(join(repoRoot, "src/lib/destinations.ts"), "utf8");
+  const registry = readFileSync(join(repoRoot, "src/lib/products.ts"), "utf8");
+  assert.doesNotMatch(destinations, /export const BE_PREPARED_CARD|Be prepared\. Nothing dramatic/);
+  assert.doesNotMatch(registry, /BOTTOM_PIN_LABEL/);
 });
 
 // 2026-10-17 (owner): selling is the wrong direction for now. The dormant

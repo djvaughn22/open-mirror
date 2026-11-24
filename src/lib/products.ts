@@ -503,8 +503,7 @@ export function foundationProduct(): Product | undefined {
 
 /** Bottom-of-page section shared by the homepage and About page. */
 // A secondary, useful resource — not part of the main purpose (owner, 2026-10-08).
-export const BOTTOM_PIN_LABEL = "Be prepared";
-
+// 2026-11-24: its old "Be prepared" heading constant (unused) was removed.
 export function bottomPinnedProducts(): Product[] {
   return products.filter(
     (p) => p.pinBottom === true && p.showInPortfolio !== false

@@ -72,39 +72,8 @@ export type DestinationCardContent = {
   share?: ShareContent;
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// The Be Prepared reminder — the first configured destination card.
-// The message is the owner's; keep it calm and practical. Never rewrite it
-// into emergency marketing, urgency, or sales copy.
-// ─────────────────────────────────────────────────────────────────────────────
-
 // The dormant Open Mirror Resale (eBay) card was removed on 2026-10-17
 // (owner: selling is the wrong direction for now).
-
-export const BE_PREPARED_CARD: DestinationCardContent = {
-  eyebrow: "A small reminder",
-  heading: "Be prepared. Nothing dramatic.",
-  body: [
-    "Keep your phone charged. Know who you would call. Have a little food, water, and the basic things your household may need.",
-    "You do not have to expect the worst. A few simple plans can make an ordinary hard day easier.",
-  ],
-  closing: "Prepared is just another word for ready to help.",
-  attribution: "An Open Mirror project",
-  emblem: "🎒",
-  destinations: [
-    {
-      label: "Visit PleaseBeReady.com",
-      href: "https://pleasebeready.com",
-      kind: "resource",
-      external: true,
-      enabled: true,
-      status: "available",
-    },
-  ],
-  share: {
-    label: "Share this reminder",
-    title: "Be prepared. Nothing dramatic.",
-    text: "Keep your phone charged, know who you would call, and keep a few basic household supplies. Prepared is just another word for ready to help.",
-    url: "https://pleasebeready.com",
-  },
-};
+// The dormant preparedness reminder card was removed on 2026-11-24
+// (owner: preparedness belongs to PleaseBeReady alone; Open Mirror itself
+// carries no preparedness message).
