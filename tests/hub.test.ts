@@ -894,9 +894,9 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
   assert.match(STUDIO.welcome, /websites/);
   assert.ok(STUDIO.welcome.length < 240, "two or three short sentences, not a block");
   assert.doesNotMatch(STUDIO.welcome, /\bfree\b|journey|empower|innovative/i, "plain words, no money copy");
-  // 2026-11-19 (owner): family history is named, here and on the share image.
-  assert.match(STUDIO.welcome, /reflection, family history, and building your own/);
-  assert.match(readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8"), /getting ready, family history, and building your own/);
+  // 2026-11-24 (owner): the studio's own line, the same on the page, in search and on the share image.
+  assert.match(STUDIO.welcome, /^An independent studio that turns ideas into useful websites and apps\./);
+  assert.match(readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8"), /An independent studio that turns ideas into useful websites and apps\./);
   assert.match(page, /href="\/about-open-mirror"/);
 });
 
@@ -909,7 +909,7 @@ test("the homepage hero: the studio's name, one sentence, one action into the di
   const css = readFileSync(join(repoRoot, "src/app/globals.css"), "utf8");
   const { hero } = STUDIO;
   assert.match(page, /className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC<\/span><\/h1>/, "the studio's name is the headline");
-  assert.equal(hero.lede, "A small family studio making useful apps for faith, family, sports and games, and getting ready.");
+  assert.equal(hero.lede, "An independent studio that turns ideas into useful websites and apps.");
   assert.deepEqual(hero.primary, { label: "Explore the apps", href: "#projects" });
   assert.match(page, /id="projects"/, "the primary action lands on the directory");
   assert.equal((page.match(/om-hero-primary/g) ?? []).length, 1, "one action in the hero");
@@ -960,6 +960,21 @@ test("homepage cards open as a normal link, share by copying their own URL, and 
   // Features expansion and its links still work, above the overlay.
   assert.match(card, /aria-expanded=\{open\}/);
   assert.match(css, /\.om-product-card \.om-expand-btn,\s*\.om-product-card \.om-expand,/, "the toggle and panel stay clickable");
+});
+
+// 2026-11-24 (owner messaging direction): Open Mirror is an independent studio
+// that makes things; each site stands on its own. Preparedness belongs to
+// PleaseBeReady only, so the studio's own lines never present it as what
+// Open Mirror is, and they don't list the sites' categories either.
+test("the studio's identity lines never present preparedness as what Open Mirror is", () => {
+  const og = readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8");
+  const lines = [STUDIO.hero.lede, STUDIO.welcome, STUDIO.mission, STUDIO.label, ...STUDIO.purpose, og];
+  for (const line of lines) {
+    assert.doesNotMatch(line, /\bready\b|readiness|getting ready|prepar|emergenc|PleaseBeReady/i, "no preparedness in the studio's identity");
+  }
+  for (const line of [STUDIO.hero.lede, STUDIO.welcome, STUDIO.mission]) {
+    assert.doesNotMatch(line, /faith|sports|games|family history/i, "no list of product categories in the studio's line");
+  }
 });
 
 test("the About opening is the owner's, and stays free of sales and AI language", () => {

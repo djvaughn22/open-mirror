@@ -120,7 +120,11 @@ export const STUDIO = {
   // ten seconds. Plain words; no mission block.
   // 2026-11-19 (owner): "family history" added after WhatAmIAI's family
   // history pages went live; the list follows the homepage's group order.
-  welcome: "A small independent studio making useful websites for everyday life: faith, sports and games, getting ready, reflection, family history, and building your own. Each site has its own name and purpose. All are welcome.",
+  // 2026-11-24 (owner messaging direction): Open Mirror is an independent
+  // studio and each site stands on its own. The studio's lines no longer list
+  // product categories, and preparedness ("getting ready") belongs to
+  // PleaseBeReady alone, never to Open Mirror's identity.
+  welcome: "An independent studio that turns ideas into useful websites and apps. Each site has its own name and purpose.",
   /**
    * The homepage hero (owner direction 2026-11-20, night; replaces the Nov 19-20
    * "Useful websites for everyday life" hero, which was rejected in production):
@@ -129,11 +133,13 @@ export const STUDIO = {
    * link, no featured-product capture, no business copy on the homepage.
    */
   hero: {
-    lede: "A small family studio making useful apps for faith, family, sports and games, and getting ready.",
+    lede: "An independent studio that turns ideas into useful websites and apps.",
     primary: { label: "Explore the apps", href: "#projects" },
   },
+  // The default description and share text for hub pages (2026-11-24: the
+  // same plain identity as the homepage, no list of product categories).
   mission:
-    "Open Mirror LLC makes small projects for faith, family, and making things — prayer and faithful media, family sports and games, and help turning an idea into something real.",
+    "Open Mirror LLC is an independent studio that turns ideas into useful websites and apps. Each site has its own name and purpose.",
   /**
    * The About page's opening, in the owner's direction (2026-10-08, second
    * pass): plain, warm, direct. About only — never a homepage block, never on
