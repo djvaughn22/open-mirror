@@ -110,6 +110,9 @@ This wins over every older section of this file on brand and messaging.
 - Preparedness, "Be Ready" and PleaseBeReady belong to pleasebeready.com only.
 - No cross-promotion on product pages: no sister-site plugs, no family bands.
   The shared footer is the family tie; the hub directory lists every site.
+- 2026-11-25: the footer's OpenMirrorLLC.com link is the one discovery path
+  and stays on every site. No copy about how things were built, and no public
+  service pricing; inquiries go to ask@openmirrorllc.com.
 - About pages explain the one product, with one quiet attribution line.
 - No new portfolio-wide narrative in place of the old one.
 - The "Handoffs" bullet and the 2026-10-08 update under "Flow" below are
@@ -201,11 +204,11 @@ public repo.
 - **CrossHeartPray** — Foundation. Bible-first, humble, useful, calm, source-backed. Not an AI product, wellness brand, or sales funnel.
 - **TheDJCares** — Curated supporting product. Trusted music, teaching, encouragement. Warm, low-noise, Gospel-first. Not an open platform or algorithm.
 - **DontCloneMeTom** — Rescue-focused mission product. Helps real adoptable dogs find homes. Hero: "Every good boy and girl deserves a good home."
-- **iDontCry** — Family creative playground. Broad imagination and creation for kids and families. Not the Engine Room.
-- **StepInTheRing** — Build system and Engine Room. "Take any idea and turn it into a real first build. AI in your corner." The Engine Room lives here, not in the hub. *(2026-10-07: no AI positioning in public copy; see Portfolio direction.)*
+- **iDontCry** — Sports, games, challenges and family fun. The Heisman two-sides challenge (`/games/heisman`, in preview 2026-11-25) is the first coordination challenge. Not the Engine Room.
+- **StepInTheRing** — Helps people turn ideas into real things: websites and small businesses first. Useful examples, simple inquiries to ask@openmirrorllc.com, no public prices while paid help is paused. The Engine Room lives here, not in the hub. *(2026-10-07 and 2026-11-25: no AI positioning in public copy.)*
 - **OpenDoku** — Reusable game and puzzle engine. Individual games are experiments, not all major releases.
 - **WatchedNotWatched** — Active consumer-product build. Personal watch list and recommendations. Local-first, no account. No family-filter/scene-skipping claims; no universal-provider claims.
-- **WhatAmIAI** — Self-assessment and AI-usage reflection. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding. *(2026-11-19: family history now sits beside the reflection tools as two pages, Discover and My Family. Family facts never claim more than their sources; see the whatamiai repo's HANDOFF.md.)*
+- **WhatAmIAI** — Family history, ancestry and personal discovery (owner, 2026-11-25), beside the older self-assessment and AI-usage reflection tools. Careful, grounded, not gimmicky or diagnostic. Quietly consistent with the studio's Christian foundation without overt religious branding. *(2026-11-19: family history now sits beside the reflection tools as two pages, Discover and My Family. Family facts never claim more than their sources; see the whatamiai repo's HANDOFF.md.)*
 - **Reflect** — Hidden personal experiment. Route stays live; not promoted in the portfolio.
 - **PleaseBeReady** — Preserved practical utility. Calm preparedness page; not an active priority. *(Superseded 2026-10-07: now a priority household-preparedness product; see Portfolio direction.)*
 - **Fambookagram / Friendbookagram** — Retired as standalone products on 2026-08-02. The concepts live on as playground pages inside iDontCry (idontcry.com/fambookagram, idontcry.com/friendbookagram); standalone repos archived with history preserved.

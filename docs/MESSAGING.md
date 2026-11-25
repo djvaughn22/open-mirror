@@ -1,7 +1,8 @@
 # Messaging rules for every Open Mirror site
 
-Owner direction, 2026-11-24. Read this before writing or changing any public
-copy in any Open Mirror repo. Where older notes disagree, this wins.
+Owner direction, 2026-11-24, amended 2026-11-25. Read this before writing or
+changing any public copy in any Open Mirror repo. Where older notes disagree,
+this wins.
 
 ## What each thing is
 
@@ -14,7 +15,7 @@ apps. The things it makes stand on their own.
 | PleaseBeReady | Preparedness, emergency planning, supplies and shopping |
 | WhatAmIAI | Family history, ancestry and personal discovery |
 | Step In The Ring | Helping people turn ideas into websites and real businesses |
-| iDontCry | Sports, games and family entertainment |
+| iDontCry | Sports, games, challenges and family entertainment |
 | TheDJCares | Encouragement, faith and giving |
 | WatchedNotWatched | Finding and tracking movies, shows and books |
 | OpenDoku | Sudoku and puzzles |
@@ -28,10 +29,11 @@ apps. The things it makes stand on their own.
 2. **Preparedness stays on PleaseBeReady.** "Be ready", "getting ready",
    readiness, emergency planning and PleaseBeReady itself never appear in
    Open Mirror's identity lines or as a plug on another site.
-3. **No cross-promotion on product pages.** No "sister site" lines, no Open
-   Mirror family bands, no "part of the Open Mirror family" sections. The
-   shared footer (Open Mirror LLC · About · ✝️ ❤️ 🙏) is the family tie. The
-   hub directory is the one place that lists every site.
+3. **One quiet way to find the rest.** Every site keeps the shared footer,
+   whose first link, OpenMirrorLLC.com, opens the hub. That link is the whole
+   connection: no "sister site" lines, family bands, banners, popups or
+   cross-promotion blocks. The hub directory is the one place that lists
+   every public site, and it lists all of them.
 4. **Real handoffs stay.** A feature that hands work to another site, like
    iDontCry's Dream Lab or Dream a game opening Step In The Ring, keeps its
    link, described once, where the feature is.
@@ -46,6 +48,16 @@ apps. The things it makes stand on their own.
 8. **Legal and affiliate text stays as written.** Disclaimers, the employer
    line and the Amazon Associates notice are not messaging edits.
 9. **Less is more.** Removing a line is usually better than replacing it.
+10. **Keep how it was built behind the scenes.** No "AI-powered", "built with
+    AI", "AI-generated", agent or prompting talk, and no human-versus-AI
+    claims, in page copy, metadata or share text. Keep product names
+    (WhatAmIAI), plain descriptions of features that really use AI, and every
+    privacy disclosure and user control.
+11. **Don't lead with money.** No public service or package prices, pricing
+    tables, discounts, upgrade pitches or sales funnels. Business,
+    partnership and custom-work questions go to ask@openmirrorllc.com, said
+    plainly. Store product prices, checkout, paid-customer features and legal
+    or affiliate notices stay exactly as they are.
 
 ## Pre-ship check
 
@@ -54,4 +66,11 @@ On any site other than PleaseBeReady, this should find nothing in page copy
 
 ```bash
 grep -rniE "be ready|getting ready|readiness|preparedness|pleasebeready|sister site|open mirror family" app src --include=*.tsx --include=*.ts --include=*.html
+```
+
+On every site, read each hit of this one in context (product features that
+really use AI, and real store prices, are allowed):
+
+```bash
+grep -rnE "\bAI\b|AI-powered|built with AI|AI-generated|\$[0-9]+|per month|pricing" app src --include=*.tsx --include=*.ts --include=*.html
 ```

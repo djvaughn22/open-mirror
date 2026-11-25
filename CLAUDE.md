@@ -21,6 +21,13 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   stay. Don't replace the old story with a new portfolio-wide narrative or
   slogan, and keep internal analogies off pages. Details and a pre-ship check:
   `docs/MESSAGING.md`.
+- **Owner reset (2026-11-25; amends the bullet above):** every site keeps the
+  shared footer's OpenMirrorLLC.com link (the one discovery path) and the hub
+  directory lists every public site. No copy about how anything was built
+  (AI-powered, built with AI, agents, prompting). No public service prices,
+  pricing tables or upgrade pitches; business questions go to
+  ask@openmirrorllc.com. Real store prices, checkout and legal or affiliate
+  notices stay. Nothing ships without the owner's yes.
 - **Design:** flat + cool. bg `#0b1220`, surface `#141d2e`, border `#26324c`,
   text `#e8edf5`, muted `#94a3b8`. No glass/transparency, no gradients, **no red**.
 - **Site accents** (the colored ".com" wherever a site name appears — master
