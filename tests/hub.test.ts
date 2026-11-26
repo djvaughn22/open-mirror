@@ -318,6 +318,7 @@ test("About is the plain business page in the owner's structure", () => {
   assert.match(STUDIO.purpose[1], /Some projects are established; others are still being tested or developed\.$/);
   assert.match(STUDIO.purpose[2], /^Everyone is welcome here\./);
   assert.match(STUDIO.purpose[2], /happy to talk about Jesus/);
+  assert.equal(STUDIO.purpose[3], "Anyone can start with an idea. We start from a blank canvas and make it a little better every day.", "the owner's blank-canvas line, word for word");
   assert.match(about, /Betas and experiments/, "experiments are named as such on About");
   // Footer landing sections (family standard, 2026-08-02): Contact and
   // Disclaimer live ON About — no services pitch, no availability line.
