@@ -33,6 +33,7 @@ export default function OpenMirrorHub() {
       <section className="om-hero" aria-labelledby="om-hero-title">
         <h1 id="om-hero-title" className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC</span></h1>
         <p className="om-hero-lede">{hero.lede}</p>
+        <p className="om-hero-note">{hero.note}</p>
         <a href={hero.primary.href} className="om-hero-primary">{hero.primary.label}</a>
       </section>
 

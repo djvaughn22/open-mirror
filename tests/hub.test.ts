@@ -312,9 +312,12 @@ test("Reflect remains hidden everywhere public", () => {
 test("About is the plain business page in the owner's structure", () => {
   const about = readFileSync(join(repoRoot, "src/app/about-open-mirror/page.tsx"), "utf8");
   assert.match(about, /STUDIO\.purpose\.map/, "the opening comes from the registry (owner, 2026-10-08)");
-  assert.equal(STUDIO.purpose[0], "Open Mirror LLC is an independent company behind a group of separate websites. Each project has its own name, audience, and purpose.");
-  assert.match(STUDIO.purpose[1], /^Christian faith guides the work\./);
+  // 2026-11-26 (owner direction, Nov 25): Jesus first, said plainly here.
+  assert.match(STUDIO.purpose[0], /^Open Mirror LLC is a Christian-owned company building websites, applications, games and digital products\./);
+  assert.match(STUDIO.purpose[1], /^Jesus Christ comes first\./);
   assert.match(STUDIO.purpose[1], /Some projects are established; others are still being tested or developed\.$/);
+  assert.match(STUDIO.purpose[2], /^Everyone is welcome here\./);
+  assert.match(STUDIO.purpose[2], /happy to talk about Jesus/);
   assert.match(about, /Betas and experiments/, "experiments are named as such on About");
   // Footer landing sections (family standard, 2026-08-02): Contact and
   // Disclaimer live ON About — no services pitch, no availability line.
@@ -882,13 +885,13 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
   // 2026-11-20 night: the welcome line is the meta description; the hero's one sentence is on the page.
   assert.match(page, /description: STUDIO\.welcome/);
   assert.match(page, /\{hero\.lede\}/);
-  assert.match(STUDIO.welcome, /independent studio/);
-  assert.match(STUDIO.welcome, /websites/);
+  assert.match(STUDIO.welcome, /^We make things\. We help people make things\./);
   assert.ok(STUDIO.welcome.length < 240, "two or three short sentences, not a block");
   assert.doesNotMatch(STUDIO.welcome, /\bfree\b|journey|empower|innovative/i, "plain words, no money copy");
-  // 2026-11-24 (owner): the studio's own line, the same on the page, in search and on the share image.
-  assert.match(STUDIO.welcome, /^An independent studio that turns ideas into useful websites and apps\./);
-  assert.match(readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8"), /An independent studio that turns ideas into useful websites and apps\./);
+  // 2026-11-26 (owner): the owner's line, the same on the page, in search and on the share image,
+  // with the Christian-owned identity said once, plainly.
+  assert.match(STUDIO.welcome, /Christian-owned/);
+  assert.match(readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8"), /We make things\. We help people make things\. A Christian-owned company\./);
   assert.match(page, /href="\/about-open-mirror"/);
 });
 
@@ -901,7 +904,9 @@ test("the homepage hero: the studio's name, one sentence, one action into the di
   const css = readFileSync(join(repoRoot, "src/app/globals.css"), "utf8");
   const { hero } = STUDIO;
   assert.match(page, /className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC<\/span><\/h1>/, "the studio's name is the headline");
-  assert.equal(hero.lede, "An independent studio that turns ideas into useful websites and apps.");
+  assert.equal(hero.lede, "We make things. We help people make things.");
+  assert.equal(hero.note, "A Christian-owned company. Everyone is welcome here.");
+  assert.match(page, /\{hero\.note\}/, "the identity line shows under the lede");
   assert.deepEqual(hero.primary, { label: "Explore the apps", href: "#projects" });
   assert.match(page, /id="projects"/, "the primary action lands on the directory");
   assert.equal((page.match(/om-hero-primary/g) ?? []).length, 1, "one action in the hero");
@@ -961,19 +966,21 @@ test("homepage cards open as a normal link, share by copying their own URL, and 
 test("the studio's identity lines never present preparedness as what Open Mirror is", () => {
   const og = readFileSync(join(repoRoot, "src/app/opengraph-image.tsx"), "utf8");
   const manifest = readFileSync(join(repoRoot, "src/app/manifest.ts"), "utf8").replace(/\/\/.*$/gm, "");
-  assert.match(manifest, /description: "An independent studio that turns ideas into useful websites and apps\."/, "the install description is the studio line");
+  assert.match(manifest, /description: "We make things\. We help people make things\. A Christian-owned company\."/, "the install description is the owner's line");
   const lines = [STUDIO.hero.lede, STUDIO.welcome, STUDIO.mission, STUDIO.label, ...STUDIO.purpose, og, manifest];
   for (const line of lines) {
     assert.doesNotMatch(line, /\bready\b|readiness|getting ready|prepar|emergenc|PleaseBeReady/i, "no preparedness in the studio's identity");
   }
+  // 2026-11-26: the owner's line names what Open Mirror makes (websites, applications,
+  // games, digital products), but never lists the sites' topics.
   for (const line of [STUDIO.hero.lede, STUDIO.welcome, STUDIO.mission]) {
-    assert.doesNotMatch(line, /faith|sports|games|family history/i, "no list of product categories in the studio's line");
+    assert.doesNotMatch(line, /sports|family history|puzzles|movies|dog rescue/i, "no list of the sites' topics in the studio's line");
   }
 });
 
 test("the About opening is the owner's, and stays free of sales and AI language", () => {
   const text = STUDIO.purpose.join(" ");
-  assert.match(text, /Christian faith guides the work/);
+  assert.match(text, /Jesus Christ comes first/);
   assert.doesNotMatch(text, /\bAI\b|buy|sale|revenue|partner|guarantee/i);
 });
 

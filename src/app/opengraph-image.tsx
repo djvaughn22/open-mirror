@@ -4,7 +4,7 @@
 
 import { ImageResponse } from "next/og";
 
-export const alt = "Open Mirror LLC: an independent studio that turns ideas into useful websites and apps.";
+export const alt = "Open Mirror LLC: we make things. We help people make things. A Christian-owned company.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,7 +36,7 @@ export default function OpengraphImage() {
           <span style={{ color: BRAND }}>LLC</span>
         </div>
         <div style={{ marginTop: 28, fontSize: 36, color: SUB, lineHeight: 1.35, display: "flex" }}>
-          An independent studio that turns ideas into useful websites and apps.
+          We make things. We help people make things. A Christian-owned company.
         </div>
       </div>
     ),

@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Open Mirror LLC",
     short_name: "Open Mirror",
     // 2026-11-24 (owner): the same plain studio line as the homepage.
-    description: "An independent studio that turns ideas into useful websites and apps.",
+    description: "We make things. We help people make things. A Christian-owned company.",
     start_url: "/",
     display: "standalone",
     orientation: "portrait",

@@ -124,7 +124,10 @@ export const STUDIO = {
   // studio and each site stands on its own. The studio's lines no longer list
   // product categories, and preparedness ("getting ready") belongs to
   // PleaseBeReady alone, never to Open Mirror's identity.
-  welcome: "An independent studio that turns ideas into useful websites and apps. Each site has its own name and purpose.",
+  // 2026-11-26 (owner direction, Nov 25): Jesus first, said plainly on Open
+  // Mirror itself. "We make things. We help people make things." is the
+  // owner's own line. Product sites stay as they are.
+  welcome: "We make things. We help people make things. Open Mirror is a Christian-owned company, and everyone is welcome here.",
   /**
    * The homepage hero (owner direction 2026-11-20, night; replaces the Nov 19-20
    * "Useful websites for everyday life" hero, which was rejected in production):
@@ -133,21 +136,23 @@ export const STUDIO = {
    * link, no featured-product capture, no business copy on the homepage.
    */
   hero: {
-    lede: "An independent studio that turns ideas into useful websites and apps.",
+    lede: "We make things. We help people make things.",
+    note: "A Christian-owned company. Everyone is welcome here.",
     primary: { label: "Explore the apps", href: "#projects" },
   },
   // The default description and share text for hub pages (2026-11-24: the
   // same plain identity as the homepage, no list of product categories).
   mission:
-    "Open Mirror LLC is an independent studio that turns ideas into useful websites and apps. Each site has its own name and purpose.",
+    "Open Mirror LLC is a Christian-owned company building websites, applications, games and digital products. We create our own ideas and help others bring theirs to life.",
   /**
    * The About page's opening, in the owner's direction (2026-10-08, second
    * pass): plain, warm, direct. About only — never a homepage block, never on
    * a satellite site. PleaseBeReady is deliberately not named here.
    */
   purpose: [
-    "Open Mirror LLC is an independent company behind a group of separate websites. Each project has its own name, audience, and purpose.",
-    "Christian faith guides the work. The projects include resources for prayer and Christian media, family entertainment, turning ideas into real projects, and supporting dog rescue. Some projects are established; others are still being tested or developed.",
+    "Open Mirror LLC is a Christian-owned company building websites, applications, games and digital products. We create our own ideas and help others bring theirs to life. Each project has its own name, audience, and purpose.",
+    "Jesus Christ comes first. That shapes what we build, how we treat people, how we protect what they share with us, and how we earn and give. Some projects are established; others are still being tested or developed.",
+    "Everyone is welcome here. You don't have to share our faith to use anything we make, and we are always happy to talk about Jesus with anyone who wants to know more.",
   ],
   missionShort:
     "Creating useful, original products across\nfaith, family, creativity, and play.",

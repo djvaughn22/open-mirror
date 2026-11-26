@@ -2288,6 +2288,16 @@ html[data-om-theme="light"] body :is([class*="text-[#64748b]" i], [style*="color
   color: var(--om-text);
 }
 .om-hero-llc { color: #38bdf8; }
+/* 2026-11-26: the owner's identity line under the lede: Christian-owned, everyone welcome. */
+.om-hero-note {
+  margin: -12px auto 22px;
+  max-width: 32rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--om-sub, #94a3b8);
+  text-wrap: balance;
+}
 .om-hero-lede {
   margin: 0 auto 22px;
   max-width: 32rem;

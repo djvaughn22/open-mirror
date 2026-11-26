@@ -6,6 +6,11 @@ This is the HUB of the Open Mirror family (11 sites, separate repos, all on
 Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 
 ## Family rules (apply to every Open Mirror repo)
+- **Open Mirror's identity (owner, Nov 25 direction; preview 2026-11-26):**
+  "We make things. We help people make things." Open Mirror is a
+  Christian-owned company; Jesus Christ comes first; everyone is welcome. Say
+  it plainly on the hub (home line and About), never as a slogan on product
+  sites. CrossHeartPray and TheDJCares are the openly Christian products.
 - **Messaging independence (owner, 2026-11-24; wins over any older bullet
   below that disagrees):** Open Mirror is an independent studio that makes
   things, and each site stands on its own, in its own voice. Preparedness

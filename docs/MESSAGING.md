@@ -6,8 +6,12 @@ this wins.
 
 ## What each thing is
 
-Open Mirror is an independent studio that turns ideas into useful websites and
-apps. The things it makes stand on their own.
+Open Mirror's own line (owner, Nov 25 direction; preview 2026-11-26): "We make
+things. We help people make things." Open Mirror is a Christian-owned company,
+and everyone is welcome. It says so plainly on openmirrorllc.com (home and
+About) and nowhere else: the things it makes stand on their own, and product
+sites don't repeat the company's faith line. (Before: "An independent studio
+that turns ideas into useful websites and apps.")
 
 | Site | Its own purpose (direction, not hero copy) |
 |---|---|
