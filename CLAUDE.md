@@ -6,6 +6,10 @@ This is the HUB of the Open Mirror family (11 sites, separate repos, all on
 Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 
 ## Family rules (apply to every Open Mirror repo)
+- **The owner's compass (permanent, Nov 25 2026):** before building any
+  feature, ask whether it helps someone live, learn, create, connect,
+  prepare, persevere or serve. Jesus first; people before technology;
+  technology in service of life. Each product stays independent and simple.
 - **Open Mirror's identity (owner, Nov 25 direction; preview 2026-11-26):**
   "We make things. We help people make things." Open Mirror is a
   Christian-owned company; Jesus Christ comes first; everyone is welcome. Say

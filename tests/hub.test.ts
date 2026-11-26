@@ -314,7 +314,7 @@ test("About is the plain business page in the owner's structure", () => {
   assert.match(about, /STUDIO\.purpose\.map/, "the opening comes from the registry (owner, 2026-10-08)");
   // 2026-11-26 (owner direction, Nov 25): Jesus first, said plainly here.
   assert.match(STUDIO.purpose[0], /^Open Mirror LLC is a Christian-owned company building websites, applications, games and digital products\./);
-  assert.match(STUDIO.purpose[1], /^Jesus Christ comes first\./);
+  assert.match(STUDIO.purpose[1], /^Jesus Christ comes first, and people come before technology\./, "the owner's Nov 25 purpose: Jesus first, people before technology");
   assert.match(STUDIO.purpose[1], /Some projects are established; others are still being tested or developed\.$/);
   assert.match(STUDIO.purpose[2], /^Everyone is welcome here\./);
   assert.match(STUDIO.purpose[2], /happy to talk about Jesus/);

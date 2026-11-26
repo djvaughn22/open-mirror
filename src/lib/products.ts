@@ -151,7 +151,7 @@ export const STUDIO = {
    */
   purpose: [
     "Open Mirror LLC is a Christian-owned company building websites, applications, games and digital products. We create our own ideas and help others bring theirs to life. Each project has its own name, audience, and purpose.",
-    "Jesus Christ comes first. That shapes what we build, how we treat people, how we protect what they share with us, and how we earn and give. Some projects are established; others are still being tested or developed.",
+    "Jesus Christ comes first, and people come before technology. That shapes what we build, how we treat people, how we protect what they share with us, and how we earn and give. Some projects are established; others are still being tested or developed.",
     "Everyone is welcome here. You don't have to share our faith to use anything we make, and we are always happy to talk about Jesus with anyone who wants to know more.",
     // The owner's blank-canvas line (decision 18, Nov 22 draft; "preserve the
     // living blank canvas concept", Nov 25 direction). Preview only.
