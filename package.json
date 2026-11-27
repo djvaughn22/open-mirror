@@ -11,7 +11,8 @@
     "wire": "node --experimental-strip-types scripts/ingest.ts",
     "credential": "node --experimental-strip-types scripts/credential.ts",
     "catalog:check": "node --experimental-strip-types scripts/catalog-check.ts",
-    "sales:summary": "node --experimental-strip-types scripts/sales-summary.ts"
+    "sales:summary": "node --experimental-strip-types scripts/sales-summary.ts",
+    "links:check": "node --experimental-strip-types scripts/check-links.ts"
   },
   "dependencies": {
     "@types/pg": "^8.23.1",

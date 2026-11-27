@@ -98,6 +98,23 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   deploys by CLI (`npx vercel --prod`), not on push.
 
 ## Hub-specific
+- **Homepage (owner, Nov 26-27 2026; wins over older hero notes):** the owner's
+  exact four lines, "Open Mirror / What are you doing? / What do you want to
+  do? / Let us help you." The questions are real inputs (`AskOpenMirror.tsx`)
+  answered by the shared, deterministic `src/lib/discovery/intent.ts`: it runs
+  in the browser, sends nothing, stores nothing and puts no typed text in a
+  URL. The directory ("The apps") stays below, with the owner's one identity
+  line. No long hero, no slogan, nothing to buy.
+- **Open Mirror Learning** (`/learn`, `/learn/[subject]`, `/learn/work`): a
+  directory of free resources made by others, not a school. The public name is
+  "Learning". "University" is the owner's internal working title until the
+  naming question is reviewed: don't use it in page copy (a test enforces
+  this). Every resource has cost and license labels and a checked date, with
+  no affiliate links. Careers link to BLS and O*NET; copy no pay numbers and
+  never score a job. `npm run links:check` verifies the links.
+- **Marketplace** (`/marketplace`): only true, useful things. No listings, no
+  prices, no checkout, no merchant named until one has signed an agreement and
+  consented. The fictional demo is private and never enters this repo.
 - Menu (`src/components/OpenMirrorNav.tsx`): live sites, divider, single
   "Coming Soon" heading over the in-progress sites, divider, About last.
   Bible Reading Plan PDF lives on the About page, not the menu.

@@ -885,7 +885,8 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
   assert.doesNotMatch(page, /missionShort|STUDIO\.purpose/);
   // 2026-11-20 night: the welcome line is the meta description; the hero's one sentence is on the page.
   assert.match(page, /description: STUDIO\.welcome/);
-  assert.match(page, /\{hero\.lede\}/);
+  // Nov 26-27 2026 (owner): the hero is the four lines in AskOpenMirror; the identity line moves to the directory intro.
+  assert.match(page, /<AskOpenMirror \/>/);
   assert.match(STUDIO.welcome, /^We make things\. We help people make things\./);
   assert.ok(STUDIO.welcome.length < 240, "two or three short sentences, not a block");
   assert.doesNotMatch(STUDIO.welcome, /\bfree\b|journey|empower|innovative/i, "plain words, no money copy");
@@ -900,25 +901,31 @@ test("the homepage header says what Open Mirror is in plain words, with no missi
 // life", the website starter link, the PleaseBeReady capture) was rejected in
 // production. The homepage leads with the Open Mirror identity, one plain
 // sentence, and one action into the directory. No sales or service copy.
-test("the homepage hero: the studio's name, one sentence, one action into the directory, nothing to buy or hire", () => {
+// Nov 26-27 2026 (owner direction, replaces the Nov 20 hero test): the homepage
+// is the owner's exact four lines, and the questions work.
+//   Open Mirror / What are you doing? / What do you want to do? / Let us help you.
+test("the homepage: the owner's four lines, two real questions, no long hero, nothing to buy", () => {
   const page = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+  const ask = readFileSync(join(repoRoot, "src/components/AskOpenMirror.tsx"), "utf8");
   const css = readFileSync(join(repoRoot, "src/app/globals.css"), "utf8");
-  const { hero } = STUDIO;
-  assert.match(page, /className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC<\/span><\/h1>/, "the studio's name is the headline");
-  assert.equal(hero.lede, "We make things. We help people make things.");
-  assert.equal(hero.note, "A Christian-owned company. Everyone is welcome here.");
-  assert.match(page, /\{hero\.note\}/, "the identity line shows under the lede");
-  assert.deepEqual(hero.primary, { label: "Explore the apps", href: "#projects" });
-  assert.match(page, /id="projects"/, "the primary action lands on the directory");
-  assert.equal((page.match(/om-hero-primary/g) ?? []).length, 1, "one action in the hero");
-  assert.doesNotMatch(page, /om-hero-secondary|om-hero-feature|om-hero-preview|next\/image/, "no second action and no featured-product capture");
-  assert.doesNotMatch(page, /website starter|get a website built|create websites|stepinthering|\/editions|Ask about an edition|services|hire|quote|\$\d/i,
-    "no website-starter, paid-work or edition pitch on the homepage");
-  assert.doesNotMatch(hero.lede, /free|price|business/i);
-  for (const f of ["pbr-planner-dark.webp", "pbr-planner-light.webp"]) assert.ok(!existsSync(join(repoRoot, "public/brand", f)), `${f} is gone`);
-  assert.match(css, /html\[data-om-theme="light"\] \.om-hero-llc/, "LLC stays readable in the light theme");
-  const heroCss = css.slice(css.lastIndexOf("/*", css.indexOf("Homepage hero (owner direction 2026-11-20, night)"))).replace(/\/\*[\s\S]*?\*\//g, "");
-  assert.doesNotMatch(heroCss.slice(0, 2000), /gradient|box-shadow|backdrop-filter|rgba\(|opacity/, "flat and solid, like the rest of the hub");
+  assert.match(ask, />Open Mirror<\/h1>/, "the name is the headline, exactly");
+  assert.match(ask, /htmlFor="om-doing" className="om-ask-q">What are you doing\?<\/label>/);
+  assert.match(ask, /htmlFor="om-want" className="om-ask-q">What do you want to do\?<\/label>/);
+  assert.match(ask, /type="submit" className="om-ask-go">Let us help you\.<\/button>/);
+  assert.match(ask, /id="om-doing"/);
+  assert.match(ask, /id="om-want"/);
+  // Matching happens in the browser; what someone types never leaves it or lands in a URL.
+  assert.doesNotMatch(ask, /fetch\(|router\.push|searchParams|localStorage|gtag\(|track\(/);
+  assert.match(ask, /Email the owner for more details\./, "a person is one email away");
+  assert.doesNotMatch(ask, /\$\d|per month|pricing|buy now|checkout/i, "nothing to buy");
+  // The owner's Nov 25 identity line stays on the page, once, in the directory intro.
+  assert.equal(STUDIO.hero.note, "A Christian-owned company. Everyone is welcome here.");
+  assert.match(page, /\{hero\.note\} Each site has its own name and purpose\./);
+  assert.match(page, /id="projects"/, "the directory stays on the home page");
+  assert.doesNotMatch(page, /om-hero-primary|om-hero-lede|missionShort/, "no long hero");
+  const askCss = css.slice(css.indexOf("Homepage ask (owner direction"), css.indexOf("Open Mirror Learning and Marketplace (owner direction"));
+  assert.doesNotMatch(askCss.replace(/\/\*[\s\S]*?\*\//g, ""), /gradient|box-shadow|backdrop-filter|rgba\(|opacity/, "flat and solid, like the rest of the hub");
+  assert.match(css, /html\[data-om-theme="light"\] button\.om-ask-go/, "the button reads in the light theme");
 });
 
 // 2026-10-17: the whole card opens its site as a normal link, hover no longer

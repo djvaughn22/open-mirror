@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AskOpenMirror from "../components/AskOpenMirror";
 import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
 import { homeSections, siteKey, STUDIO } from "../lib/products";
@@ -27,24 +28,20 @@ export default function OpenMirrorHub() {
 
   return (
     <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      {/* Hero (owner direction 2026-11-20, night): the Open Mirror identity, one plain sentence
-          about what the studio makes, and one action into the directory. No sales copy
-          here; the fuller story is on About. Classes in globals.css ("Homepage hero"). */}
-      <section className="om-hero" aria-labelledby="om-hero-title">
-        <h1 id="om-hero-title" className="om-hero-title">Open Mirror <span className="om-hero-llc">LLC</span></h1>
-        <p className="om-hero-lede">{hero.lede}</p>
-        <p className="om-hero-note">{hero.note}</p>
-        <a href={hero.primary.href} className="om-hero-primary">{hero.primary.label}</a>
-      </section>
+      {/* The homepage (owner direction, Nov 26-27 2026), in the owner's exact words:
+          "Open Mirror / What are you doing? / What do you want to do? / Let us help you."
+          The questions work: AskOpenMirror answers them with places to go. No long hero,
+          no slogan. The fuller story is on About. Classes in globals.css ("Homepage ask"). */}
+      <AskOpenMirror />
 
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "8px 24px 90px" }}>
 
-        {/* The directory. "Explore the apps" lands here. The hero already says what the studio
-            makes, so this header is just the heading and a pointer to the fuller story on About. */}
+        {/* The directory: every public site. The questions above link into it too; this
+            header is the heading, the owner's one identity line and a pointer to About. */}
         <header id="projects" className="om-projects-head">
           <h2 className="om-projects-title">The apps</h2>
           <p className="om-projects-intro">
-            Each site has its own name and purpose. All are welcome.{" "}
+            {hero.note} Each site has its own name and purpose.{" "}
             <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About the studio</a>
           </p>
         </header>

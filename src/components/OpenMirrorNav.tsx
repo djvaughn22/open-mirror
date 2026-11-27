@@ -34,6 +34,10 @@ const MENU: Item[] = [
   // CrossHeartPray (the Foundation) is reached through the shared footer
   // (2026-07-30 family standard) — the menu holds only this site's pages.
   { label: "Open Mirror Home", href: "/", emoji: "🪞" },
+  // Nov 26-27 2026 (owner): the hub's own two new pages. Hub menu only; never
+  // the shared family menu, so no product site carries them.
+  { label: "Learning", href: "/learn", emoji: "📚" },
+  { label: "Marketplace", href: "/marketplace", emoji: "🧭" },
   { divider: true },
   { label: "About", href: "/about-open-mirror", emoji: "ℹ️" },
   // Contact opens email directly (2026-08-02) — the /contact route stays only

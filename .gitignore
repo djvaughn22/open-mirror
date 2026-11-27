@@ -69,3 +69,4 @@ data/sports/credentials.json
 /docs/PRODUCT_FOUNDATION_OLD_LAPTOP.md
 /scripts/build-launch-images.py
 /scripts/package-old-laptop-bundle.sh
+link-check.json
