@@ -1,103 +1,153 @@
 "use client";
 
-// The homepage (owner direction, Nov 26-27 2026), in the owner's exact words:
-//   Open Mirror / What are you doing? / What do you want to do? / Let us help you.
-// The two questions are real inputs and "Let us help you." answers them with
-// places to go: Open Mirror's own tools, free learning, work that lasts, the
-// Marketplace when someone is buying, selling or restoring, and the owner's
-// email. Matching runs here in the browser (lib/discovery/intent.ts): nothing
-// typed is sent anywhere, stored or put in a URL. No account.
+// The homepage question box (owner direction: the four lines "Open Mirror /
+// What are you doing? / What do you want to do? / Let us help you." are
+// approved; Nov 27-28 2026: make them compact, optional, quick and enjoyable).
+//
+// Two real questions in one compact box, like a travel site's search card.
+// Answer either, both, or neither and just browse below. Ideas under the box
+// change with the question you're on; tapping one answers it right away.
+// Matching runs here in the browser (lib/discovery/intent.ts): what someone
+// types is never sent anywhere, stored or put in a URL. The only thing
+// measured is whether anything matched, and which of our own results was
+// opened (lib/measure.ts).
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { interpret, type Interpretation } from "../lib/discovery/intent.ts";
 import { placeById, type Place } from "../lib/discovery/places.ts";
 import { occupationById } from "../lib/learning/careers.ts";
+import { measure } from "../lib/measure.ts";
 
 const EMAIL = "ask@openmirrorllc.com";
 const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent("Open Mirror: help")}`;
 
-const DOING = ["Fixing up an old computer", "Running a small business", "Studying", "Looking for work", "Raising a family", "Going through a hard time"];
-const WANT = ["Learn something new", "Make a website", "Find work that lasts", "Start a business", "Read the Bible", "Restore something old"];
+// Real things people say. Short enough for a phone.
+const IDEAS = {
+  doing: ["Fixing up an old computer", "Raising kids", "Looking for work", "Running a small shop", "Studying", "Going through a hard time"],
+  want: ["Learn piano", "Fix my car", "Make a website", "Grow my own food", "Start a business", "Find steady work", "Read the Bible", "Restore something old"],
+} as const;
+
+type Which = keyof typeof IDEAS;
 
 function PlaceLink({ p }: { p: Place }) {
   const external = p.href.startsWith("http");
   return (
-    <li className="om-res-item">
-      <a href={p.href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{p.title}</a>
-      <span className="om-res-line">{p.line}</span>
-      <span className="om-res-site">{p.site}</span>
+    <li className="om-hit">
+      <a
+        href={p.href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        onClick={() => measure("om_result", { where: "home", kind: p.kind === "market" ? "market" : "place", id: p.id })}
+      >
+        <span className="om-hit-title">{p.title}</span>
+        <span className="om-hit-line">{p.line}</span>
+        <span className="om-hit-meta">{p.site}</span>
+      </a>
     </li>
   );
 }
 
-function Results({ r }: { r: Interpretation }) {
-  const ours = r.places.filter((p) => p.item.kind === "ours").slice(0, 4).map((p) => p.item);
-  const subjects = r.subjects.slice(0, 5).map((s) => s.item);
+function Results({ r, onClear, headingRef }: { r: Interpretation; onClear: () => void; headingRef: React.RefObject<HTMLHeadingElement | null> }) {
+  const paths = r.learningPaths.slice(0, 2).map((p) => p.item);
+  const ours = r.places.filter((p) => p.item.kind === "ours").slice(0, 3).map((p) => p.item);
+  const subjects = r.subjects.slice(0, 4).map((s) => s.item);
   const wantsWork = r.paths.some((p) => p === "job" || p === "career-change" || p === "apprenticeship") || r.places.some((p) => p.item.id === "work");
   const jobs = wantsWork
-    ? [...new Set(subjects.flatMap((s) => s.careers ?? []))].slice(0, 4).map((id) => occupationById(id)).filter((o): o is NonNullable<typeof o> => !!o)
+    ? [...new Set(subjects.flatMap((s) => s.careers ?? []))].slice(0, 3).map((id) => occupationById(id)).filter((o): o is NonNullable<typeof o> => !!o)
     : [];
   const market = r.market.map((d) => placeById(`market-${d}`)).filter((p): p is Place => !!p);
-  const nothing = !r.urgent && !ours.length && !subjects.length && !market.length && !wantsWork;
+  const nothing = !r.urgent && !paths.length && !ours.length && !subjects.length && !market.length && !wantsWork;
   const crisis = placeById("988");
 
   return (
     <div className="om-results">
+      <div className="om-results-head">
+        <h2 ref={headingRef} tabIndex={-1} className="om-results-title">{nothing ? "Nothing matched yet" : "Here's where to start"}</h2>
+        <button type="button" className="om-linkbtn" onClick={onClear}>Clear</button>
+      </div>
+
       {r.urgent && crisis && (
-        <section className="om-res-group om-res-urgent" aria-label="Help right now">
+        <section className="om-res-urgent" aria-label="Help right now">
           <h3>Help right now</h3>
-          <ul><PlaceLink p={crisis} /></ul>
+          <ul className="om-hits"><PlaceLink p={crisis} /></ul>
         </section>
       )}
+
       {nothing && (
         <p className="om-res-none">
-          Nothing matched those words yet. Try saying it another way, look through <Link href="/learn">Open Mirror Learning</Link>, or browse <a href="#projects">the apps</a>.
+          Try other words, or browse <Link href="/learn/paths">learning paths</Link>, <Link href="/learn">subjects</Link> or <a href="#projects">the apps</a>.
         </p>
       )}
-      {ours.length > 0 && (
-        <section className="om-res-group" aria-label="On Open Mirror">
-          <h3>Try this</h3>
-          <ul>{ours.map((p) => <PlaceLink key={p.id} p={p} />)}</ul>
-        </section>
-      )}
-      {subjects.length > 0 && (
-        <section className="om-res-group" aria-label="Learn">
-          <h3>Learn, free</h3>
-          <ul>
-            {subjects.map((s) => (
-              <li key={s.slug} className="om-res-item">
-                <Link href={`/learn/${s.slug}`}>{s.name}</Link>
-                <span className="om-res-line">{s.line}</span>
+
+      {paths.length > 0 && (
+        <section aria-label="Learning paths">
+          <h3>Start here</h3>
+          <ul className="om-hits">
+            {paths.map((p, i) => (
+              <li key={p.slug} className="om-hit om-hit-path">
+                <Link href={`/learn/paths/${p.slug}`} onClick={() => measure("om_result", { where: "home", kind: "path", id: p.slug })}>
+                  <span className="om-hit-icon" aria-hidden>{p.icon}</span>
+                  <span className="om-hit-body">
+                    <span className="om-hit-title">{p.title}</span>
+                    <span className="om-hit-line">{r.lowCost && i === 0 && p.little[0] ? p.little[0] : p.line}</span>
+                    <span className="om-hit-meta">{p.steps.length} steps · Learning path</span>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
-          <p className="om-res-more"><Link href="/learn">Every subject&nbsp;→</Link></p>
         </section>
       )}
-      {wantsWork && (
-        <section className="om-res-group" aria-label="Work">
-          <h3>Work that lasts</h3>
-          <ul>
-            {jobs.map((o) => (
-              <li key={o.id} className="om-res-item">
-                <a href={o.bls ?? `https://www.onetonline.org/link/summary/${o.soc}`} target="_blank" rel="noopener noreferrer">{o.title}</a>
-                <span className="om-res-line">What the work is, pay and how to start, from the U.S. Department of Labor.</span>
+
+      {ours.length > 0 && (
+        <section aria-label="On Open Mirror">
+          <h3>Try this</h3>
+          <ul className="om-hits">{ours.map((p) => <PlaceLink key={p.id} p={p} />)}</ul>
+        </section>
+      )}
+
+      {subjects.length > 0 && (
+        <section aria-label="Subjects">
+          <h3>Learn more</h3>
+          <ul className="om-chips-list">
+            {subjects.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/learn/${s.slug}`} className="om-tag" onClick={() => measure("om_result", { where: "home", kind: "subject", id: s.slug })}>{s.name}</Link>
               </li>
             ))}
-            <li className="om-res-item">
-              <Link href="/learn/work">Work that meets lasting needs</Link>
-              <span className="om-res-line">Food, water, shelter, health, repair and more, with official information.</span>
+          </ul>
+        </section>
+      )}
+
+      {wantsWork && (
+        <section aria-label="Work">
+          <h3>Work</h3>
+          <ul className="om-hits">
+            {jobs.map((o) => (
+              <li key={o.id} className="om-hit">
+                <a href={o.bls ?? `https://www.onetonline.org/link/summary/${o.soc}`} target="_blank" rel="noopener noreferrer" onClick={() => measure("om_result", { where: "home", kind: "work", id: o.id })}>
+                  <span className="om-hit-title">{o.title}</span>
+                  <span className="om-hit-meta">Pay, outlook and training: U.S. Department of Labor</span>
+                </a>
+              </li>
+            ))}
+            <li className="om-hit">
+              <Link href="/learn/work" onClick={() => measure("om_result", { where: "home", kind: "work", id: "work-that-lasts" })}>
+                <span className="om-hit-title">Work that lasts</span>
+                <span className="om-hit-line">Jobs that meet needs like food, shelter, health and repair.</span>
+              </Link>
             </li>
           </ul>
         </section>
       )}
+
       {market.length > 0 && (
-        <section className="om-res-group" aria-label="Marketplace">
+        <section aria-label="Marketplace">
           <h3>Marketplace</h3>
-          <ul>{market.map((p) => <PlaceLink key={p.id} p={p} />)}</ul>
+          <ul className="om-hits">{market.map((p) => <PlaceLink key={p.id} p={p} />)}</ul>
         </section>
       )}
+
       <p className="om-res-owner">
         Want a person to help? <a href={MAILTO}>Email the owner for more details.</a>
       </p>
@@ -108,9 +158,46 @@ function Results({ r }: { r: Interpretation }) {
 export default function AskOpenMirror() {
   const [doing, setDoing] = useState("");
   const [want, setWant] = useState("");
+  const [focus, setFocus] = useState<Which>("want");
   const [answer, setAnswer] = useState<Interpretation | null>(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const resultsRef = useRef<HTMLDivElement | null>(null);
+  const [asked, setAsked] = useState(0);
 
-  const ask = (d = doing, w = want) => setAnswer(interpret(`${d} ${w}`));
+  const ask = (d = doing, w = want) => {
+    const r = interpret(`${d} ${w}`);
+    if (r.empty) return;
+    setAnswer(r);
+    setAsked((n) => n + 1);
+    const found = r.urgent || r.learningPaths.length > 0 || r.subjects.length > 0 || r.places.length > 0 || r.market.length > 0;
+    measure("om_search", { where: "home", found: found ? "yes" : "no" });
+  };
+
+  // After an answer, move focus to its heading: that closes the phone keyboard
+  // and tells screen readers the answer is there (one announcement, not two).
+  useEffect(() => {
+    if (!asked) return;
+    headingRef.current?.focus({ preventScroll: true });
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    resultsRef.current?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  }, [asked]);
+
+  const pick = (which: Which, idea: string) => {
+    if (which === "doing") {
+      setDoing(idea);
+      ask(idea, want);
+    } else {
+      setWant(idea);
+      ask(doing, idea);
+    }
+  };
+
+  const clear = () => {
+    setDoing("");
+    setWant("");
+    setAnswer(null);
+    document.getElementById("om-want")?.focus();
+  };
 
   return (
     <section className="om-ask" aria-labelledby="om-ask-title">
@@ -122,28 +209,49 @@ export default function AskOpenMirror() {
           ask();
         }}
       >
-        <label htmlFor="om-doing" className="om-ask-q">What are you doing?</label>
-        <input id="om-doing" className="om-ask-input" value={doing} onChange={(e) => setDoing(e.target.value)} autoComplete="off" maxLength={200} placeholder="Fixing up an old laptop, running a shop, raising kids" />
-        <div className="om-ask-chips" role="group" aria-label="Examples for what you're doing">
-          {DOING.map((c) => (
-            <button key={c} type="button" className="om-ask-chip" aria-pressed={doing === c} onClick={() => setDoing(c)}>{c}</button>
+        <div className="om-ask-box">
+          <div className="om-ask-field">
+            <label htmlFor="om-doing" className="om-ask-q">What are you doing?</label>
+            <input
+              id="om-doing"
+              className="om-ask-input"
+              value={doing}
+              onChange={(e) => setDoing(e.target.value)}
+              onFocus={() => setFocus("doing")}
+              autoComplete="off"
+              enterKeyHint="search"
+              maxLength={200}
+              placeholder="Fixing up an old laptop"
+            />
+          </div>
+          <div className="om-ask-field">
+            <label htmlFor="om-want" className="om-ask-q">What do you want to do?</label>
+            <input
+              id="om-want"
+              className="om-ask-input"
+              value={want}
+              onChange={(e) => setWant(e.target.value)}
+              onFocus={() => setFocus("want")}
+              autoComplete="off"
+              enterKeyHint="search"
+              maxLength={200}
+              placeholder="Learn piano, fix a car"
+            />
+          </div>
+        </div>
+        <div className="om-ask-ideas" role="group" aria-label={focus === "doing" ? "Ideas for what you're doing" : "Ideas for what you want to do"}>
+          {IDEAS[focus].map((idea) => (
+            <button key={idea} type="button" className="om-idea" onClick={() => pick(focus, idea)}>{idea}</button>
           ))}
         </div>
-
-        <label htmlFor="om-want" className="om-ask-q">What do you want to do?</label>
-        <input id="om-want" className="om-ask-input" value={want} onChange={(e) => setWant(e.target.value)} autoComplete="off" maxLength={200} placeholder="Learn to fix cars, make a website, find steady work" />
-        <div className="om-ask-chips" role="group" aria-label="Examples for what you want to do">
-          {WANT.map((c) => (
-            <button key={c} type="button" className="om-ask-chip" aria-pressed={want === c} onClick={() => setWant(c)}>{c}</button>
-          ))}
-        </div>
-
         <button type="submit" className="om-ask-go">Let us help you.</button>
       </form>
       <noscript>
-        <p className="om-res-none">Browse <Link href="/learn">Open Mirror Learning</Link> or the apps below, or email {EMAIL}.</p>
+        <p className="om-res-none">Browse <Link href="/learn/paths">learning paths</Link>, <Link href="/learn">subjects</Link> or the apps below, or email {EMAIL}.</p>
       </noscript>
-      <div aria-live="polite">{answer && <Results r={answer} />}</div>
+      <div ref={resultsRef} className="om-results-wrap">
+        {answer && <Results r={answer} onClear={clear} headingRef={headingRef} />}
+      </div>
     </section>
   );
 }

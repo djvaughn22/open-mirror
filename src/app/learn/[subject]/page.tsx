@@ -4,8 +4,12 @@ import { notFound } from "next/navigation";
 import { SUBJECTS, disciplineBySlug, subjectBySlug, wikiUrl } from "../../../lib/learning/taxonomy";
 import { COST_LABEL, KIND_LABEL, LICENSE_LABEL, RESOURCES, type Resource } from "../../../lib/learning/resources";
 import { NEED_LABEL, occupationById, onetUrl } from "../../../lib/learning/careers";
-import { resourcesFor } from "../../../lib/learning/directory";
+import { CHECKED_ON, resourcesFor } from "../../../lib/learning/directory";
+import { areaOfDiscipline } from "../../../lib/learning/areas";
+import { pathsForSubject } from "../../../lib/learning/paths";
 import { STUDIO } from "../../../lib/products";
+import PathRow from "../../../components/learning/PathRow";
+import SaveSubject from "../../../components/learning/SaveSubject";
 
 // One subject: free ways to learn it, the work it leads to, and related
 // subjects. Static pages, plain text links, fast on a phone.
@@ -37,6 +41,7 @@ function ResourceLine({ r }: { r: Resource }) {
       <a href={r.url} target="_blank" rel="noopener noreferrer">{r.title}</a>
       <span className="ol-meta">
         {r.by} · {KIND_LABEL[r.kind]} · {COST_LABEL[r.cost]} · {r.licenseName ? `${LICENSE_LABEL[r.license]} (${r.licenseName})` : LICENSE_LABEL[r.license]}
+        {r.region ? ` · ${r.region}` : ""}
         {r.ours ? " · An Open Mirror project" : ""}
       </span>
       {r.note && <span className="ol-note">{r.note}</span>}
@@ -56,14 +61,26 @@ export default async function SubjectPage({ params }: Props) {
   const related = d.subjects.filter((x) => x.slug !== s.slug);
   const pick = (id: string) => RESOURCES.find((r) => r.id === id);
   const business = BUSINESS_FRIENDLY.has(d.slug) ? ["sba-guide", "score", "sitr-engines"].map(pick).filter((r): r is Resource => !!r) : [];
+  const area = areaOfDiscipline(d.slug);
+  const paths = pathsForSubject(s.slug).slice(0, 3);
 
   return (
     <main className="ol-page">
       <nav className="ol-crumbs" aria-label="Breadcrumb">
-        <Link href="/learn">Learning</Link> › <Link href={`/learn#d-${d.slug}`}>{d.name}</Link>
+        <Link href="/learn">Learning</Link> › {area ? <Link href={`/learn/area/${area.slug}#d-${d.slug}`}>{area.name}</Link> : d.name}
       </nav>
-      <h1 className="ol-title">{s.name}</h1>
+      <div className="ol-subject-head">
+        <h1 className="ol-title">{s.name}</h1>
+        <SaveSubject slug={s.slug} name={s.name} />
+      </div>
       <p className="ol-lede">{s.line}</p>
+
+      {paths.length > 0 && (
+        <section className="ol-section ol-section-tight" aria-labelledby="path-h">
+          <h2 id="path-h" className="om-sec-title">Follow a path</h2>
+          <ul className="om-items">{paths.map((p) => <PathRow key={p.slug} p={p} />)}</ul>
+        </section>
+      )}
 
       <section className="ol-section" aria-labelledby="start-h">
         <h2 id="start-h" className="ol-h2">Start here</h2>
@@ -128,7 +145,7 @@ export default async function SubjectPage({ params }: Props) {
       )}
 
       <p className="ol-foot">
-        Free resources made by others, linked to the original source and checked on November 27, 2026. Open Mirror Learning is a directory, not a
+        Free resources made by others, linked to the original source and checked on {CHECKED_ON}. Open Mirror Learning is a directory, not a
         school, and these sources aren&apos;t affiliated with us. Suggest a resource or report a broken link:{" "}
         <a href={`mailto:${STUDIO.email}?subject=${encodeURIComponent(`Open Mirror Learning: ${s.name}`)}`}>{STUDIO.email}</a>
       </p>

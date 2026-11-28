@@ -12,7 +12,7 @@ import { RESOURCES, type Resource, type PathwayId } from "./resources.ts";
 import { DISCIPLINES, type Subject } from "./taxonomy.ts";
 
 const LEVEL_RANK = { start: 0, any: 1, deeper: 2 } as const;
-const COST_RANK = { free: 0, "free-account": 1, "free-paid-cert": 2, "free-paid-exam": 3 } as const;
+const COST_RANK = { free: 0, "free-account": 1, "free-paid-cert": 2, "free-paid-exam": 3, "free-limited": 4 } as const;
 const LICENSE_RANK = { open: 0, gov: 0, free: 1 } as const;
 
 export function rankResources(list: { r: Resource; exact: boolean }[]): Resource[] {
@@ -39,6 +39,9 @@ export function resourcesFor(subject: Pick<Subject, "slug">, discipline: string)
 export function resourcesForPath(path: PathwayId): Resource[] {
   return rankResources(RESOURCES.filter((r) => r.paths?.includes(path)).map((r) => ({ r, exact: true })));
 }
+
+/** The night every outside link in Learning was last opened (see resources.ts `checked`). */
+export const CHECKED_ON = "November 27, 2026";
 
 export function subjectCount(): number {
   return DISCIPLINES.reduce((n, d) => n + d.subjects.length, 0);

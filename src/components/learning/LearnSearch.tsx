@@ -1,72 +1,119 @@
 "use client";
 
 // "What do you want to learn?" A person doesn't need the formal name of a
-// subject: "I like fixing things" finds car repair, electronics, HVAC,
-// electrical work and more. Matching runs in the browser (lib/discovery):
-// nothing typed is sent anywhere or put in a URL.
+// subject: "I like fixing things" finds car repair, small engines and home
+// repair; "I have an old computer and no money" finds the low-cost way to fix
+// one up. Results appear as you type. Matching runs in the browser
+// (lib/discovery/intent.ts): nothing typed is sent anywhere or put in a URL.
+// Only whether something matched is measured, when the search is submitted.
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { interpret } from "../../lib/discovery/intent.ts";
-import { PATHWAYS, type PathwayId } from "../../lib/learning/resources.ts";
+import { PATHWAYS } from "../../lib/learning/resources.ts";
+import { measure } from "../../lib/measure.ts";
 
-const EXAMPLES = ["I like fixing things", "How do computers work?", "I want to grow food", "Help people get well", "Make music", "Start a business"];
+const EXAMPLES = ["I want to fix cars", "Learn piano", "Build a website", "Grow my own food", "Understand electricity", "Old computer, no money"];
 
 export default function LearnSearch() {
   const [text, setText] = useState("");
-  const [asked, setAsked] = useState("");
-  const result = useMemo(() => (asked.trim() ? interpret(asked) : null), [asked]);
+  const deferred = useDeferredValue(text);
+  const result = useMemo(() => (deferred.trim().length >= 2 ? interpret(deferred) : null), [deferred]);
 
-  const go = (t: string) => {
-    setText(t);
-    setAsked(t);
+  const report = (t: string) => {
+    const r = interpret(t);
+    if (r.empty) return;
+    measure("om_search", { where: "learn", found: r.learningPaths.length || r.subjects.length ? "yes" : "no" });
   };
 
-  const paths = (result?.paths ?? []).map((id) => PATHWAYS.find((p) => p.id === id)).filter((p): p is (typeof PATHWAYS)[number] => !!p);
+  const paths = result?.learningPaths.slice(0, 3) ?? [];
+  const subjects = result?.subjects.slice(0, 6) ?? [];
+  const reasons = (result?.paths ?? []).map((id) => PATHWAYS.find((p) => p.id === id)).filter((p): p is (typeof PATHWAYS)[number] => !!p);
+  const none = !!result && !result.empty && !paths.length && !subjects.length;
 
   return (
     <div className="ol-search">
       <form
+        role="search"
+        className="ol-search-form"
         onSubmit={(e) => {
           e.preventDefault();
-          setAsked(text);
+          report(text);
+          (document.activeElement as HTMLElement | null)?.blur();
         }}
-        className="ol-search-form"
       >
         <label htmlFor="ol-q" className="ol-q">What do you want to learn?</label>
         <div className="ol-search-row">
-          <input id="ol-q" className="ol-input" value={text} onChange={(e) => setText(e.target.value)} autoComplete="off" maxLength={200} placeholder="Say it in your own words" />
+          <input
+            id="ol-q"
+            className="ol-input"
+            type="search"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            autoComplete="off"
+            enterKeyHint="search"
+            maxLength={200}
+            placeholder="Say it in your own words"
+            aria-describedby="ol-q-hint"
+          />
           <button type="submit" className="ol-go">Find</button>
         </div>
+        <p id="ol-q-hint" className="ol-hint">Results show as you type.</p>
       </form>
-      <p className="ol-examples">
-        Try:{" "}
-        {EXAMPLES.map((ex, i) => (
-          <span key={ex}>
-            <button type="button" className="ol-example" onClick={() => go(ex)}>{ex}</button>
-            {i < EXAMPLES.length - 1 ? " · " : ""}
-          </span>
+      <div className="om-ideas-row" role="group" aria-label="Examples">
+        {EXAMPLES.map((ex) => (
+          <button
+            key={ex}
+            type="button"
+            className="om-idea"
+            onClick={() => {
+              setText(ex);
+              report(ex);
+            }}
+          >
+            {ex}
+          </button>
         ))}
-      </p>
-      <div aria-live="polite">
-        {result && result.subjects.length === 0 && (
-          <p className="ol-none">No subject matched those words yet. Try other words, or browse every subject below.</p>
-        )}
-        {result && result.subjects.length > 0 && (
-          <ol className="ol-hits">
-            {result.subjects.slice(0, 10).map((s) => (
-              <li key={s.item.slug}>
-                <Link href={`/learn/${s.item.slug}`}>{s.item.name}</Link>
-                <span> {s.item.line}</span>
-                <span className="ol-why"> Matched: {s.why.slice(0, 3).join(", ")}</span>
-              </li>
-            ))}
-          </ol>
-        )}
+      </div>
+
+      <div aria-live="polite" aria-atomic="false" className="ol-live">
+        {none && <p className="ol-none">No subject matched those words yet. Try other words, or browse the areas below.</p>}
         {paths.length > 0 && (
+          <section className="ol-hits-group" aria-label="Learning paths">
+            <h2 className="ol-mini-h">Learning paths</h2>
+            <ul className="om-items">
+              {paths.map(({ item: p }, i) => (
+                <li key={p.slug}>
+                  <Link className="om-item" href={`/learn/paths/${p.slug}`} onClick={() => measure("om_result", { where: "learn", kind: "path", id: p.slug })}>
+                    <span className="om-item-icon" aria-hidden>{p.icon}</span>
+                    <span className="om-item-body">
+                      <span className="om-item-title">{p.title}</span>
+                      <span className="om-item-line">{result?.lowCost && i === 0 && p.little[0] ? p.little[0] : p.line}</span>
+                    </span>
+                    <span className="om-item-meta"><span className="om-item-steps">{p.steps.length} steps</span></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {subjects.length > 0 && (
+          <section className="ol-hits-group" aria-label="Subjects">
+            <h2 className="ol-mini-h">Subjects</h2>
+            <ul className="ol-hits">
+              {subjects.map((s) => (
+                <li key={s.item.slug}>
+                  <Link href={`/learn/${s.item.slug}`} onClick={() => measure("om_result", { where: "learn", kind: "subject", id: s.item.slug })}>{s.item.name}</Link>
+                  <span className="ol-hit-line">{s.item.line}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {reasons.length > 0 && (
           <p className="ol-paths">
-            Learning for a reason? {paths.map((p, i) => (
-              <span key={p.id}>{i > 0 ? " · " : ""}<a href={`/learn#why-${p.id as PathwayId}`}>{p.label}</a></span>
+            Learning for a reason? {reasons.map((p, i) => (
+              <span key={p.id}>{i > 0 ? " · " : ""}<a href={`#why-${p.id}`}>{p.label}</a></span>
             ))}
           </p>
         )}

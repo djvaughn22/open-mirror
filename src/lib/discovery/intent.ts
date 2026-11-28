@@ -15,6 +15,7 @@
 
 import { SUBJECTS } from "../learning/taxonomy.ts";
 import type { PathwayId } from "../learning/resources.ts";
+import { PATHS, type LearningPath } from "../learning/paths.ts";
 import { PLACES, type Place } from "./places.ts";
 
 export type MarketDoor = "buy" | "sell" | "find" | "restore";
@@ -62,24 +63,25 @@ function hits(term: string, norm: string, words: Set<string>): boolean {
 
 // Broad interests: one everyday idea that opens several subjects at once,
 // most likely first. "I like fixing things" is the owner's own example.
-type Interest = { terms: string[]; subjects: string[]; paths?: PathwayId[] };
+type Interest = { terms: string[]; subjects: string[]; paths?: PathwayId[]; learn?: string[] };
 
 export const INTERESTS: Interest[] = [
-  { terms: ["fix", "repair", "broken", "tinker", "take apart", "mend", "handy", "handyman"], subjects: ["automotive-repair", "electronics", "hvac", "electrical-work", "appliance-repair", "carpentry-woodworking", "mechanical-engineering", "computer-repair", "small-engine-repair", "home-repair"], paths: ["skill"] },
-  { terms: ["build", "make things", "maker", "hands", "work with my hands"], subjects: ["carpentry-woodworking", "welding", "electronics", "mechanical-engineering", "crafts", "home-repair"], paths: ["skill", "create"] },
-  { terms: ["help people", "helping people", "care for people", "serve", "make a difference", "volunteer"], subjects: ["nursing", "first-aid", "teaching", "psychology", "public-health", "early-childhood"] },
-  { terms: ["outside", "outdoors", "nature"], subjects: ["outdoor-recreation", "ecology", "conservation", "gardening", "farming"] },
+  { terms: ["fix", "repair", "broken", "tinker", "take apart", "mend", "handy", "handyman"], subjects: ["automotive-repair", "electronics", "hvac", "electrical-work", "appliance-repair", "carpentry-woodworking", "mechanical-engineering", "computer-repair", "small-engine-repair", "home-repair"], paths: ["skill"], learn: ["car-repair", "small-engines", "home-maintenance", "restore-old-computer", "electricity"] },
+  { terms: ["build", "make things", "maker", "hands", "work with my hands"], subjects: ["carpentry-woodworking", "welding", "electronics", "mechanical-engineering", "crafts", "home-repair"], paths: ["skill", "create"], learn: ["home-maintenance", "electricity"] },
+  { terms: ["help people", "helps people", "helping people", "care for people", "serve", "make a difference", "volunteer"], subjects: ["nursing", "first-aid", "teaching", "psychology", "public-health", "early-childhood"], learn: ["find-work"] },
+  { terms: ["outside", "outdoors", "nature"], subjects: ["outdoor-recreation", "ecology", "conservation", "gardening", "farming"], learn: ["grow-food"] },
   { terms: ["animal", "animals", "pet"], subjects: ["animal-care", "ecology", "farming"] },
-  { terms: ["create", "creative", "art", "artist"], subjects: ["drawing", "painting", "graphic-design", "photography", "songwriting", "writing", "crafts"], paths: ["create"] },
-  { terms: ["numbers", "math", "data"], subjects: ["arithmetic-algebra", "statistics", "accounting", "calculus"] },
-  { terms: ["computer", "technology", "tech"], subjects: ["computer-basics", "computer-repair", "programming", "web-development", "linux", "artificial-intelligence"] },
-  { terms: ["food", "eat", "kitchen"], subjects: ["cooking", "baking", "nutrition", "food-safety", "gardening", "food-preservation"] },
-  { terms: ["money", "earn", "income", "rich", "wealth"], subjects: ["personal-finance", "starting-a-business", "accounting", "investing-basics"] },
+  { terms: ["create", "creative", "art", "artist"], subjects: ["drawing", "painting", "graphic-design", "photography", "songwriting", "writing", "crafts"], paths: ["create"], learn: ["music-creation", "build-a-website"] },
+  { terms: ["numbers", "math", "data"], subjects: ["arithmetic-algebra", "statistics", "accounting", "calculus"], learn: ["math-to-calculus"] },
+  { terms: ["computer", "technology", "tech"], subjects: ["computer-basics", "computer-repair", "programming", "web-development", "linux", "artificial-intelligence"], learn: ["computer-hardware", "restore-old-computer", "programming", "linux", "ai-basics"] },
+  { terms: ["food", "eat", "kitchen"], subjects: ["cooking", "baking", "nutrition", "food-safety", "gardening", "food-preservation"], learn: ["grow-food", "food-preservation"] },
+  { terms: ["money", "earn", "income", "rich", "wealth"], subjects: ["personal-finance", "starting-a-business", "accounting", "investing-basics"], learn: ["start-small-business", "find-work"] },
   { terms: ["kid", "kids", "child", "children", "son", "daughter"], subjects: ["childcare-parenting", "early-childhood", "tutoring", "human-development"] },
   { terms: ["why", "meaning", "purpose", "big question"], subjects: ["philosophy", "bible-theology", "ethics", "psychology"] },
   { terms: ["story", "stories"], subjects: ["writing", "literature", "filmmaking", "theater"] },
   { terms: ["sport", "sports", "athlete", "team"], subjects: ["coaching", "fitness"] },
-  { terms: ["last", "lasting", "future proof", "ai proof", "wont be replaced", "safe job", "stable job"], subjects: ["electrical-work", "plumbing", "hvac", "nursing", "teaching", "farming"], paths: ["job", "career-change"] },
+  { terms: ["last", "lasting", "future proof", "ai proof", "wont be replaced", "safe job", "stable job"], subjects: ["electrical-work", "plumbing", "hvac", "nursing", "teaching", "farming"], paths: ["job", "career-change"], learn: ["find-work", "electricity"] },
+  { terms: ["restore", "restoration", "refinish", "antique", "vintage", "old things"], subjects: ["watch-clock-repair", "carpentry-woodworking", "computer-repair"], learn: ["watch-clock", "restore-old-computer"] },
 ];
 
 const PATH_TERMS: { path: PathwayId; terms: string[] }[] = [
@@ -114,14 +116,20 @@ export function marketDoors(text: string): MarketDoor[] {
 export type Scored<T> = { item: T; score: number; why: string[] };
 
 export type Interpretation = {
+  /** Learning paths (paths.ts): an ordered way in, best first. */
+  learningPaths: Scored<LearningPath>[];
   subjects: Scored<(typeof SUBJECTS)[number]>[];
   places: Scored<Place>[];
   market: MarketDoor[];
   paths: PathwayId[];
   /** A safety signal: show crisis help first. */
   urgent: boolean;
+  /** The person said money is tight: lead with the low-cost way in. */
+  lowCost: boolean;
   empty: boolean;
 };
+
+const LOW_COST = ["no money", "little money", "not much money", "broke", "cheap", "cheaply", "cant afford", "on a budget", "tight budget", "low budget", "low income", "limited budget", "for free", "without money", "no budget"];
 
 const URGENT = ["suicide", "suicidal", "kill myself", "end my life", "want to die", "self harm", "hurt myself", "cant go on", "dont want to live"];
 
@@ -144,15 +152,47 @@ export function interpret(text: string): Interpretation {
     for (const w of s.words) if (hits(w, norm, words)) bump(s.slug, w.includes(" ") ? 3 : 2, w);
   }
   const paths = new Set<PathwayId>();
+  const interestPaths = new Map<string, { score: number; why: string }>();
   for (const it of INTERESTS) {
     const t = it.terms.find((x) => hits(x, norm, words));
     if (!t) continue;
     it.subjects.forEach((slug, i) => bump(slug, 1.5 + (it.subjects.length - i) * 0.01, t));
     it.paths?.forEach((p) => paths.add(p));
+    it.learn?.forEach((slug, i) => {
+      const cur = interestPaths.get(slug);
+      const add = 1.5 + (it.learn!.length - i) * 0.01;
+      interestPaths.set(slug, { score: (cur?.score ?? 0) + add, why: cur?.why ?? t });
+    });
   }
   for (const p of PATH_TERMS) if (p.terms.some((t) => hits(t, norm, words))) paths.add(p.path);
 
   const subjects = [...subjectScore.values()].sort((a, b) => b.score - a.score);
+
+  // Learning paths: their own words first, then a broad interest that opens
+  // them, then the subjects they teach. A path needs one of its own words, an
+  // interest, or a strong match on its home subject.
+  const learningPaths: Scored<LearningPath>[] = [];
+  for (const p of PATHS) {
+    const why = p.terms.filter((t) => hits(t, norm, words));
+    let score = why.reduce((n, t) => n + (t.includes(" ") ? 3 : 2), 0);
+    const interest = interestPaths.get(p.slug);
+    if (interest) score += interest.score;
+    const home = subjectScore.get(p.subjects[0]);
+    if (home) score += home.score * 0.6;
+    for (const slug of p.subjects.slice(1)) score += (subjectScore.get(slug)?.score ?? 0) * 0.2;
+    if (why.length || interest || (home && home.score >= 3)) {
+      learningPaths.push({ item: p, score, why: why.length ? why : interest ? [interest.why] : home ? home.why : [] });
+    }
+  }
+  learningPaths.sort((a, b) => b.score - a.score);
+
+  // When someone names a path in its own words ("build a website"), its
+  // subjects lead the subject list too, ahead of broad matches ("build").
+  const named = learningPaths.find((x) => x.item.terms.some((t) => hits(t, norm, words)));
+  if (named) {
+    named.item.subjects.forEach((slug, i) => bump(slug, i === 0 ? 3 : 1, named.why[0] ?? named.item.title.toLowerCase()));
+    subjects.splice(0, subjects.length, ...[...subjectScore.values()].sort((a, b) => b.score - a.score));
+  }
 
   // Places: Open Mirror sites and pages, Learning, the Marketplace doors.
   const places: Scored<Place>[] = [];
@@ -163,5 +203,6 @@ export function interpret(text: string): Interpretation {
   places.sort((a, b) => b.score - a.score);
 
   const urgent = URGENT.some((t) => norm.includes(` ${t} `));
-  return { subjects, places, market: marketDoors(text), paths: [...paths], urgent, empty };
+  const lowCost = LOW_COST.some((t) => hits(t, norm, words));
+  return { learningPaths, subjects, places, market: marketDoors(text), paths: [...paths], urgent, lowCost, empty };
 }

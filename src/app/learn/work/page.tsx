@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { NEEDS_ORDER, NEED_LABEL, OCCUPATIONS, onetUrl } from "../../../lib/learning/careers";
 import { SUBJECTS } from "../../../lib/learning/taxonomy";
+import { pathBySlug } from "../../../lib/learning/paths";
+import { RESOURCES } from "../../../lib/learning/resources";
 import { STUDIO } from "../../../lib/products";
 
 // Work that lasts (owner direction, Nov 26-27 2026): kinds of work that meet
@@ -16,6 +18,8 @@ export const metadata: Metadata = {
 };
 
 const subjectsFor = (id: string) => SUBJECTS.filter((s) => s.careers?.includes(id));
+const routes = pathBySlug("find-work")?.routes ?? [];
+const res = (id: string) => RESOURCES.find((r) => r.id === id);
 
 export default function WorkPage() {
   return (
@@ -31,10 +35,28 @@ export default function WorkPage() {
         tends to change differently than work done only on a screen. That&apos;s a description, not a promise. <a href="#method">How we describe it</a>.
       </p>
       <p className="ol-p">
-        Not sure what fits you? The <a href="https://www.mynextmove.org/explore/ip" target="_blank" rel="noopener noreferrer">O*NET Interest Profiler</a> asks
-        what you like to do and suggests real occupations. To earn while you learn, search the{" "}
+        Not sure what fits you? Follow <Link href="/learn/paths/find-work">Find work that fits you</Link>, six steps from what you care about to
+        real help getting hired. To earn while you learn, search the{" "}
         <a href="https://www.apprenticeship.gov/apprenticeship-job-finder" target="_blank" rel="noopener noreferrer">Apprenticeship Finder</a>.
       </p>
+
+      <section className="ol-section" aria-labelledby="routes-h">
+        <h2 id="routes-h" className="ol-h2">Start from where you are</h2>
+        <ul className="ol-res-list">
+          {routes.map((rt) => (
+            <li key={rt.label} className="ol-res">
+              <span className="ol-route-label">{rt.label}</span>
+              <span className="ol-note">{rt.text}</span>
+              <span className="ol-meta">
+                {rt.res.map(res).filter((r): r is NonNullable<ReturnType<typeof res>> => !!r).map((r, i) => (
+                  <span key={r.id}>{i > 0 ? " · " : ""}<a href={r.url} target="_blank" rel="noopener noreferrer">{r.title}</a></span>
+                ))}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="ol-p-sm">These are U.S. programs. Most countries run similar public employment services.</p>
+      </section>
 
       {NEEDS_ORDER.map((need) => {
         const jobs = OCCUPATIONS.filter((o) => o.needs[0] === need);

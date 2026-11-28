@@ -97,7 +97,7 @@ export const DISCIPLINES: Discipline[] = [
     slug: "agriculture", name: "Agriculture and food production", cip: ["01"],
     subjects: [
       { slug: "farming", name: "Farming and ranching", wiki: "Agriculture", words: ["farm", "farming", "crop", "ranch", "cattle", "tractor", "harvest", "soil"], careers: ["farmer", "farmworker"], line: "Growing food and raising animals, and what it takes to run a farm." },
-      { slug: "gardening", name: "Gardening", wiki: "Gardening", words: ["garden", "gardening", "plant", "vegetable", "flower", "seed", "grow food", "compost"], careers: ["farmworker"], line: "Growing vegetables, fruit and flowers where you live." },
+      { slug: "gardening", name: "Gardening", wiki: "Gardening", words: ["garden", "gardening", "plant", "vegetable", "flower", "seed", "grow food", "grow my own", "compost"], careers: ["farmworker"], line: "Growing vegetables, fruit and flowers where you live." },
       { slug: "animal-care", name: "Animal care", wiki: "Animal_husbandry", words: ["animal", "dog", "cat", "horse", "chicken", "pet", "livestock", "vet", "veterinary"], careers: ["vet-tech", "animal-caretaker", "farmer"], line: "Caring for pets and livestock, and the work of people who do it daily." },
       { slug: "food-preservation", name: "Canning and food preservation", wiki: "Food_preservation", words: ["canning", "preserve", "pickle", "freeze", "dehydrate", "jam"], line: "Keeping food safely: canning, freezing and drying, by tested methods." },
     ],
@@ -108,7 +108,7 @@ export const DISCIPLINES: Discipline[] = [
       { slug: "ecology", name: "Ecology and nature", wiki: "Ecology", words: ["nature", "ecology", "ecosystem", "wildlife", "forest", "bird", "insect"], careers: ["conservation-scientist", "environmental-technician"], line: "How living things and places depend on each other." },
       { slug: "conservation", name: "Conservation and land care", wiki: "Conservation_biology", words: ["conservation", "environment", "stewardship", "park", "forestry", "land"], careers: ["conservation-scientist"], line: "Caring for land, water and wildlife so they last." },
       { slug: "energy", name: "Energy", wiki: "Energy_development", words: ["energy", "solar", "wind", "power", "battery", "efficiency", "utility"], careers: ["solar-installer", "wind-technician", "line-worker"], line: "Where power comes from, how it reaches us, and how to use less of it." },
-      { slug: "water", name: "Water and wastewater", wiki: "Water_resources", words: ["water", "river", "well", "wastewater", "water treatment", "clean water"], careers: ["water-operator", "plumber"], line: "Clean water in, used water treated: the systems every town needs." },
+      { slug: "water", name: "Water and wastewater", wiki: "Water_resources", words: ["water", "river", "water well", "well water", "wastewater", "water treatment", "clean water"], careers: ["water-operator", "plumber"], line: "Clean water in, used water treated: the systems every town needs." },
     ],
   },
   {

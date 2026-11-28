@@ -100,7 +100,7 @@ export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subt
         border: "1px solid var(--om-border)",
         borderLeft: `3px solid ${p.accent}`,
         borderRadius: 14,
-        padding: isFoundation ? "20px 20px 18px" : "18px 20px 16px",
+        padding: isFoundation ? "16px 16px 14px" : "14px 16px 12px",
         transition: "all 0.2s ease",
       }}
       className="om-product-card"
@@ -109,7 +109,7 @@ export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subt
         {isFoundation ? (
           // The real established mark — cross, heart, pray — already on disk
           // from CrossHeartPray's own brand work.
-          <Image src="/crossheartpray-icon.svg" alt="" width={52} height={52} priority style={{ borderRadius: 14, display: "block", flexShrink: 0 }} />
+          <Image src="/crossheartpray-icon.svg" alt="" width={46} height={46} priority style={{ borderRadius: 12, display: "block", flexShrink: 0 }} />
         ) : (
           // Every product's real, already-shipped icon.svg favicon is this
           // exact template — a dark rounded tile holding its emoji glyph
@@ -122,9 +122,9 @@ export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subt
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
-              width: 44,
-              height: 44,
-              borderRadius: 12,
+              width: 40,
+              height: 40,
+              borderRadius: 11,
               background: "var(--om-inset)",
               border: `1px solid ${p.accent}55`,
               fontSize: 22,
@@ -170,12 +170,12 @@ export default function ProductCard({ p, subtitle, doorKey }: { p: Product; subt
       </div>
       <p aria-live="polite" className="om-card-share-status">{copyStatus}</p>
 
-      <p style={{ fontSize: isFoundation ? 15 : 14.5, color: sub, margin: "12px 0 0", lineHeight: 1.55 }}>
+      <p style={{ fontSize: 14, color: sub, margin: "10px 0 0", lineHeight: 1.5 }}>
         {subtitle && <span style={{ display: "block", color: p.accent, marginBottom: 6 }}>{subtitle}</span>}
         {p.description}
       </p>
 
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "4px 16px", marginTop: 12 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "4px 16px", marginTop: 10 }}>
         <a
           href={p.href}
           data-door={doorKey}

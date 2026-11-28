@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import AskOpenMirror from "../components/AskOpenMirror";
 import DoorMeasure from "../components/DoorMeasure";
 import ProductCard from "../components/ProductCard";
+import ContinueLearning from "../components/learning/ContinueLearning";
+import PathRow from "../components/learning/PathRow";
+import { AREAS } from "../lib/learning/areas";
+import { FEATURED_PATHS, PATHS, pathBySlug } from "../lib/learning/paths";
+import { subjectCount } from "../lib/learning/directory";
 import { homeSections, siteKey, STUDIO } from "../lib/products";
 
 export const metadata: Metadata = {
@@ -9,54 +15,101 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Cool, flat palette — matched to CrossHeartPray / TheDJCares so the family feels connected.
-const bg = "#0b1220";
-const border = "#26324c";
-const sub = "#94a3b8";
-
 function GroupLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: sub, margin: "0 0 16px", paddingBottom: 10, borderBottom: `1px solid ${border}`, textAlign: "left" }}>
-      {children}
-    </p>
-  );
+  return <p className="om-group-label">{children}</p>;
 }
 
+// The homepage (owner direction, Nov 26-28 2026). The owner's four lines stay
+// at the top, as two quick, optional questions (AskOpenMirror). Everything
+// below works without answering: learning paths, subjects, work, and the
+// apps. Classes in globals.css ("Homepage, Nov 28").
 export default function OpenMirrorHub() {
   const sections = homeSections();
   const { hero } = STUDIO;
+  const featured = FEATURED_PATHS.slice(0, 6).map((s) => pathBySlug(s)).filter((p): p is NonNullable<typeof p> => !!p);
 
   return (
-    <main style={{ background: bg, minHeight: "100vh", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      {/* The homepage (owner direction, Nov 26-27 2026), in the owner's exact words:
-          "Open Mirror / What are you doing? / What do you want to do? / Let us help you."
-          The questions work: AskOpenMirror answers them with places to go. No long hero,
-          no slogan. The fuller story is on About. Classes in globals.css ("Homepage ask"). */}
+    <main className="om-home">
       <AskOpenMirror />
 
-      <div style={{ maxWidth: 760, margin: "0 auto", padding: "8px 24px 90px" }}>
+      <div className="om-home-body">
+        <ContinueLearning where="home" />
 
-        {/* The directory: every public site. The questions above link into it too; this
-            header is the heading, the owner's one identity line and a pointer to About. */}
-        <header id="projects" className="om-projects-head">
-          <h2 className="om-projects-title">The apps</h2>
-          <p className="om-projects-intro">
-            {hero.note} Each site has its own name and purpose.{" "}
-            <a href="/about-open-mirror" style={{ color: sub, textDecoration: "underline", textUnderlineOffset: 3 }}>About the studio</a>
-          </p>
-        </header>
+        <section className="om-sec" aria-labelledby="home-paths">
+          <div className="om-sec-head">
+            <h2 id="home-paths" className="om-sec-title">Learn something, step by step</h2>
+            <Link href="/learn/paths" className="om-sec-more">All {PATHS.length}</Link>
+          </div>
+          <ul className="om-items">
+            {featured.map((p) => <PathRow key={p.slug} p={p} lineless />)}
+          </ul>
+        </section>
 
-        {/* Four groups named for what a visitor comes to do. CrossHeartPray
-            leads the first group and the page, as it always has. */}
-        <DoorMeasure />
-        {sections.map((s, i) => (
-          <section key={s.key} aria-label={s.label} style={{ marginTop: i === 0 ? 0 : 44 }}>
-            <GroupLabel>{s.label}</GroupLabel>
-            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-              {s.items.map((p) => <ProductCard key={p.name} p={p} doorKey={siteKey(p)} />)}
-            </div>
-          </section>
-        ))}
+        <section className="om-sec" aria-labelledby="home-subjects">
+          <div className="om-sec-head">
+            <h2 id="home-subjects" className="om-sec-title">Browse {subjectCount()} subjects</h2>
+            <Link href="/learn" className="om-sec-more">Learning</Link>
+          </div>
+          <ul className="om-area-grid">
+            {AREAS.map((a) => (
+              <li key={a.slug}>
+                <Link className="om-area" href={`/learn/area/${a.slug}`}>
+                  <span className="om-item-icon" aria-hidden>{a.icon}</span>
+                  <span className="om-area-name">{a.name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="om-sec" aria-labelledby="home-work">
+          <h2 id="home-work" className="om-sec-title">Find work</h2>
+          <ul className="om-items">
+            <li>
+              <Link className="om-item" href="/learn/paths/find-work">
+                <span className="om-item-icon" aria-hidden>🧭</span>
+                <span className="om-item-body">
+                  <span className="om-item-title">Find work that fits you</span>
+                  <span className="om-item-line">What you care about, the careers that use it, and real help getting hired.</span>
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link className="om-item" href="/learn/work">
+                <span className="om-item-icon" aria-hidden>🛠️</span>
+                <span className="om-item-body">
+                  <span className="om-item-title">Work that lasts</span>
+                  <span className="om-item-line">Jobs that meet needs like food, shelter, health and repair, with official pay and training.</span>
+                </span>
+              </Link>
+            </li>
+          </ul>
+        </section>
+
+        {/* The directory: every public site, in its own section below the
+            learning. The header is the heading, the owner's one identity
+            line and a pointer to About. */}
+        <section className="om-sec om-apps" aria-labelledby="projects-title">
+          <header id="projects" className="om-projects-head">
+            <h2 id="projects-title" className="om-projects-title">The apps</h2>
+            <p className="om-projects-intro">
+              {hero.note} Each site has its own name and purpose.{" "}
+              <a href="/about-open-mirror" className="om-quiet-link">About the studio</a>
+            </p>
+          </header>
+
+          {/* Four groups named for what a visitor comes to do. CrossHeartPray
+              leads the first group, as it always has. */}
+          <DoorMeasure />
+          {sections.map((s, i) => (
+            <section key={s.key} aria-label={s.label} className={i === 0 ? "om-group om-group-first" : "om-group"}>
+              <GroupLabel>{s.label}</GroupLabel>
+              <div className="om-cards">
+                {s.items.map((p) => <ProductCard key={p.name} p={p} doorKey={siteKey(p)} />)}
+              </div>
+            </section>
+          ))}
+        </section>
       </div>
     </main>
   );
