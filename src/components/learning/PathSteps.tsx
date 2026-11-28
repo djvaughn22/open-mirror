@@ -5,8 +5,8 @@
 // the links for it. "Mark done" works on any step, so someone who already
 // knows the basics can skip ahead. The next step opens by itself.
 
-import { useEffect, useRef } from "react";
-import { pathStatus, resetPath, startPath, toggleStep, update } from "../../lib/learning/progress.ts";
+import { useEffect } from "react";
+import { load, pathStatus, resetPath, startPath, toggleStep, update } from "../../lib/learning/progress.ts";
 import { measure } from "../../lib/measure.ts";
 import { useLearning } from "./useLearning.ts";
 
@@ -84,18 +84,24 @@ export function PathProgress({ slug, total, firstStep }: { slug: string; total: 
 
 export default function PathSteps({ slug, steps }: { slug: string; steps: StepView[] }) {
   const state = useLearning();
-  const status = pathStatus(state, slug);
   const done = new Set(state.paths[slug]?.done ?? []);
-  const opened = useRef(false);
-
-  // Once progress is known, open the next step, or the one named in the address (#step-s3).
+  // After the page loads, open the step named in the address (#step-s3), or
+  // else the next step not done. Progress is read straight from this device
+  // here, because the first render always shows a fresh visit. Step 1 is open
+  // in the page as served; it closes when it's already done.
   useEffect(() => {
-    if (opened.current) return;
-    opened.current = true;
     const hash = window.location.hash.match(/^#step-(s\d+)$/)?.[1];
-    if (hash) openStep(hash, true);
-    else if (status?.next) openStep(status.next.id, false);
-  }, [status?.next]);
+    if (hash) {
+      openStep(hash, true);
+      return;
+    }
+    const next = pathStatus(load(), slug)?.next;
+    if (next && next.id !== steps[0]?.id) {
+      const first = document.getElementById(`step-${steps[0].id}`)?.querySelector("details");
+      if (first && load().paths[slug]?.done.includes(steps[0].id)) first.open = false;
+      openStep(next.id, false);
+    }
+  }, [slug, steps]);
 
   useEffect(() => {
     const onHash = () => {

@@ -54,8 +54,9 @@ export default async function SubjectPage({ params }: Props) {
   if (!s) notFound();
   const d = disciplineBySlug(s.discipline)!;
   const list = resourcesFor(s, s.discipline);
-  const start = list.filter((r) => r.level === "start");
-  const further = list.filter((r) => r.level !== "start");
+  // "Start here" stays short (five at most); everything else is under "Go further".
+  const start = list.filter((r) => r.level === "start").slice(0, 5);
+  const further = list.filter((r) => !start.includes(r));
   const jobs = (s.careers ?? []).map((id) => occupationById(id)).filter((o): o is NonNullable<typeof o> => !!o);
   const apprenticeship = jobs.some((o) => o.apprenticeship);
   const related = d.subjects.filter((x) => x.slug !== s.slug);

@@ -73,7 +73,7 @@ export const INTERESTS: Interest[] = [
   { terms: ["animal", "animals", "pet"], subjects: ["animal-care", "ecology", "farming"] },
   { terms: ["create", "creative", "art", "artist"], subjects: ["drawing", "painting", "graphic-design", "photography", "songwriting", "writing", "crafts"], paths: ["create"], learn: ["music-creation", "build-a-website"] },
   { terms: ["numbers", "math", "data"], subjects: ["arithmetic-algebra", "statistics", "accounting", "calculus"], learn: ["math-to-calculus"] },
-  { terms: ["computer", "technology", "tech"], subjects: ["computer-basics", "computer-repair", "programming", "web-development", "linux", "artificial-intelligence"], learn: ["computer-hardware", "restore-old-computer", "programming", "linux", "ai-basics"] },
+  { terms: ["computer", "technology", "tech", "laptop", "desktop", "pc", "dell", "hp", "lenovo", "thinkpad", "macbook", "chromebook", "acer", "toshiba"], subjects: ["computer-basics", "computer-repair", "programming", "web-development", "linux", "artificial-intelligence"], learn: ["computer-hardware", "restore-old-computer", "programming", "linux", "ai-basics"] },
   { terms: ["food", "eat", "kitchen"], subjects: ["cooking", "baking", "nutrition", "food-safety", "gardening", "food-preservation"], learn: ["grow-food", "food-preservation"] },
   { terms: ["money", "earn", "income", "rich", "wealth"], subjects: ["personal-finance", "starting-a-business", "accounting", "investing-basics"], learn: ["start-small-business", "find-work"] },
   { terms: ["kid", "kids", "child", "children", "son", "daughter"], subjects: ["childcare-parenting", "early-childhood", "tutoring", "human-development"] },
@@ -86,7 +86,8 @@ export const INTERESTS: Interest[] = [
 
 const PATH_TERMS: { path: PathwayId; terms: string[] }[] = [
   { path: "college", terms: ["college", "university", "degree", "sat", "act", "fafsa", "freshman"] },
-  { path: "job", terms: ["job", "jobs", "work", "career", "hire", "hired", "employment", "pay", "salary", "resume"] },
+  // "work" only as a phrase: "how it works" and "stopped working" aren't job searches.
+  { path: "job", terms: ["job", "jobs", "find work", "looking for work", "need work", "out of work", "back to work", "steady work", "work as", "become a", "become an", "train to be", "career", "hire", "hired", "employment", "pay", "salary", "resume"] },
   { path: "career-change", terms: ["change careers", "career change", "new career", "switch careers", "start over", "laid off"] },
   { path: "apprenticeship", terms: ["apprentice", "apprenticeship", "trade school", "trade", "trades", "union"] },
   { path: "start-business", terms: ["start a business", "own business", "side hustle", "entrepreneur", "startup", "self employed", "llc"] },
@@ -106,7 +107,7 @@ export function marketDoors(text: string): MarketDoor[] {
   const item = ITEM_TERMS.some((t) => hits(t, norm, words));
   const doors: MarketDoor[] = [];
   const any = (terms: string[]) => terms.some((t) => hits(t, norm, words));
-  if (any(["restore", "restoration", "refinish", "heirloom"]) || (item && any(["fix", "repair", "clean", "service"]))) doors.push("restore");
+  if (any(["restore", "restoration", "refinish", "heirloom"]) || (item && any(["fix", "repair", "clean", "service", "broken"]))) doors.push("restore");
   if (item && any(["sell", "selling", "consign", "get rid of", "worth"])) doors.push("sell");
   if (item && any(["buy", "buying", "purchase", "shop for"])) doors.push("buy");
   if (item && any(["looking for", "find", "search for", "hunting for", "track down", "source", "hard to find"])) doors.push("find");
@@ -133,9 +134,17 @@ const LOW_COST = ["no money", "little money", "not much money", "broke", "cheap"
 
 const URGENT = ["suicide", "suicidal", "kill myself", "end my life", "want to die", "self harm", "hurt myself", "cant go on", "dont want to live"];
 
+// Ways people say a thing is broken. Read as "broken" (a repair need), so
+// "my watch stopped working" isn't taken for a job search.
+const BROKEN = ["stopped working", "not working", "isnt working", "doesnt work", "wont work", "quit working", "stopped running", "dont work", "died on me", "broke down"];
+
 export function interpret(text: string): Interpretation {
-  const norm = normalize(text);
-  const words = wordSet(text);
+  let cleaned = normalize(text);
+  for (const b of BROKEN) cleaned = cleaned.split(` ${b} `).join(" broken ");
+  // "Teach myself" is learning, not teaching others.
+  cleaned = cleaned.split(" teach myself ").join(" learn ").split(" teaching myself ").join(" learning ");
+  const norm = cleaned;
+  const words = wordSet(cleaned);
   const empty = words.size === 0;
 
   // Subjects: their own everyday words, then broad interests.
@@ -177,9 +186,12 @@ export function interpret(text: string): Interpretation {
     let score = why.reduce((n, t) => n + (t.includes(" ") ? 3 : 2), 0);
     const interest = interestPaths.get(p.slug);
     if (interest) score += interest.score;
+    // Matched only through a broad interest, its subjects' scores came from
+    // that same interest: count them lightly so the interest's own order holds.
+    const weight = !why.length && interest ? 0.1 : 1;
     const home = subjectScore.get(p.subjects[0]);
-    if (home) score += home.score * 0.6;
-    for (const slug of p.subjects.slice(1)) score += (subjectScore.get(slug)?.score ?? 0) * 0.2;
+    if (home) score += home.score * 0.6 * weight;
+    for (const slug of p.subjects.slice(1)) score += (subjectScore.get(slug)?.score ?? 0) * 0.2 * weight;
     if (why.length || interest || (home && home.score >= 3)) {
       learningPaths.push({ item: p, score, why: why.length ? why : interest ? [interest.why] : home ? home.why : [] });
     }
@@ -204,5 +216,5 @@ export function interpret(text: string): Interpretation {
 
   const urgent = URGENT.some((t) => norm.includes(` ${t} `));
   const lowCost = LOW_COST.some((t) => hits(t, norm, words));
-  return { learningPaths, subjects, places, market: marketDoors(text), paths: [...paths], urgent, lowCost, empty };
+  return { learningPaths, subjects, places, market: marketDoors(cleaned), paths: [...paths], urgent, lowCost, empty };
 }

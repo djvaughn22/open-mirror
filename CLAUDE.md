@@ -98,20 +98,38 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
   deploys by CLI (`npx vercel --prod`), not on push.
 
 ## Hub-specific
-- **Homepage (owner, Nov 26-27 2026; wins over older hero notes):** the owner's
+- **Homepage (owner, Nov 26-28 2026; wins over older hero notes):** the owner's
   exact four lines, "Open Mirror / What are you doing? / What do you want to
-  do? / Let us help you." The questions are real inputs (`AskOpenMirror.tsx`)
-  answered by the shared, deterministic `src/lib/discovery/intent.ts`: it runs
-  in the browser, sends nothing, stores nothing and puts no typed text in a
-  URL. The directory ("The apps") stays below, with the owner's one identity
-  line. No long hero, no slogan, nothing to buy.
-- **Open Mirror Learning** (`/learn`, `/learn/[subject]`, `/learn/work`): a
-  directory of free resources made by others, not a school. The public name is
-  "Learning". "University" is the owner's internal working title until the
-  naming question is reviewed: don't use it in page copy (a test enforces
-  this). Every resource has cost and license labels and a checked date, with
-  no affiliate links. Careers link to BLS and O*NET; copy no pay numbers and
-  never score a job. `npm run links:check` verifies the links.
+  do? / Let us help you." Nov 28 (preview, awaiting the owner's review): the two
+  questions sit in one compact card, both optional, with one scrolling row of
+  ideas that follows the question in focus (`AskOpenMirror.tsx`). Answers come
+  from the shared, deterministic `src/lib/discovery/intent.ts` in the browser:
+  learning paths first, then Open Mirror pages, subjects, work and Marketplace
+  doors. Typed words are never sent, stored or put in a URL; the last question
+  is kept only in the tab's memory so Back shows the same answers. Below the
+  card, everything works without answering: learning paths, the nine subject
+  areas, work, then the directory ("The apps", the owner's one identity line).
+  No long hero, no slogan, nothing to buy.
+- **Open Mirror Learning** (`/learn`, `/learn/paths`, `/learn/paths/[slug]`,
+  `/learn/area/[slug]`, `/learn/[subject]`, `/learn/work`): a directory of free
+  resources made by others, not a school. The public name is "Learning".
+  "University" is the owner's internal working title until the naming question
+  is reviewed: don't use it in page copy (tests enforce this, in paths too).
+  - Structure: 9 areas (`areas.ts`) → 24 disciplines → 102 subjects; adding a
+    subject never lengthens the first screen.
+  - Learning paths (`paths.ts`, Nov 28): our suggested order through others'
+    free resources, with what you need, what it costs, starting with very
+    little, steps (learn / try it / ready when), safety notes, people to learn
+    with, and work. No prices, no "best", no credentials. Make the existing
+    paths excellent before adding more.
+  - Progress, saved and recent subjects stay on the device
+    (`progress.ts`, key `om-learning`, ids only).
+  - Every resource has cost and license labels, a region where it applies, and
+    a checked date; no affiliate links. Careers link to BLS and O*NET; copy no
+    pay numbers and never score a job. `npm run links:check` verifies links.
+  - Measurement (`src/lib/measure.ts`) is OFF (`MEASURE_ENABLED = false`) until
+    the owner approves it; even then it sends only fixed event names and our
+    own ids, never typed text. DoorMeasure's site-card count is separate.
 - **Marketplace** (`/marketplace`): only true, useful things. No listings, no
   prices, no checkout, no merchant named until one has signed an agreement and
   consented. The fictional demo is private and never enters this repo.

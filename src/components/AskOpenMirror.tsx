@@ -8,9 +8,9 @@
 // Answer either, both, or neither and just browse below. Ideas under the box
 // change with the question you're on; tapping one answers it right away.
 // Matching runs here in the browser (lib/discovery/intent.ts): what someone
-// types is never sent anywhere, stored or put in a URL. The only thing
-// measured is whether anything matched, and which of our own results was
-// opened (lib/measure.ts).
+// types is never sent anywhere, stored or put in a URL. If the owner turns on
+// measurement (lib/measure.ts, off for now), the only things counted are
+// whether anything matched and which of our own results was opened.
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -30,6 +30,14 @@ const IDEAS = {
 
 type Which = keyof typeof IDEAS;
 
+// The last question asked, kept only in this tab's memory (not in storage, a
+// cookie or the address), so Back from a result shows the same answers. A
+// reload or a new tab starts fresh.
+const memory: { ask: { doing: string; want: string } | null } = { ask: null };
+function rememberAsk(ask: { doing: string; want: string } | null) {
+  memory.ask = ask;
+}
+
 function PlaceLink({ p }: { p: Place }) {
   const external = p.href.startsWith("http");
   return (
@@ -48,12 +56,19 @@ function PlaceLink({ p }: { p: Place }) {
 }
 
 function Results({ r, onClear, headingRef }: { r: Interpretation; onClear: () => void; headingRef: React.RefObject<HTMLHeadingElement | null> }) {
-  const paths = r.learningPaths.slice(0, 2).map((p) => p.item);
+  // Keep answers that are close to the best one; a distant second (matched
+  // only through a broad word like "fix") is noise next to a precise match.
+  const topPath = r.learningPaths[0]?.score ?? 0;
+  const paths = r.learningPaths.filter((p, i) => i === 0 || p.score >= topPath * 0.5).slice(0, 2).map((p) => p.item);
   const ours = r.places.filter((p) => p.item.kind === "ours").slice(0, 3).map((p) => p.item);
-  const subjects = r.subjects.slice(0, 4).map((s) => s.item);
+  const topSubject = r.subjects[0]?.score ?? 0;
+  const subjects = r.subjects.filter((x) => x.score >= topSubject * 0.4).slice(0, 4).map((s) => s.item);
   const wantsWork = r.paths.some((p) => p === "job" || p === "career-change" || p === "apprenticeship") || r.places.some((p) => p.item.id === "work");
+  // Jobs come from the subjects matched; when the best answer is the general
+  // "find work" path, show its own spread of work that meets real needs instead.
+  const jobIds = paths[0]?.slug === "find-work" ? paths[0].work : subjects.flatMap((s) => s.careers ?? []);
   const jobs = wantsWork
-    ? [...new Set(subjects.flatMap((s) => s.careers ?? []))].slice(0, 3).map((id) => occupationById(id)).filter((o): o is NonNullable<typeof o> => !!o)
+    ? [...new Set(jobIds)].slice(0, 3).map((id) => occupationById(id)).filter((o): o is NonNullable<typeof o> => !!o)
     : [];
   const market = r.market.map((d) => placeById(`market-${d}`)).filter((p): p is Place => !!p);
   const nothing = !r.urgent && !paths.length && !ours.length && !subjects.length && !market.length && !wantsWork;
@@ -156,10 +171,10 @@ function Results({ r, onClear, headingRef }: { r: Interpretation; onClear: () =>
 }
 
 export default function AskOpenMirror() {
-  const [doing, setDoing] = useState("");
-  const [want, setWant] = useState("");
+  const [doing, setDoing] = useState(() => memory.ask?.doing ?? "");
+  const [want, setWant] = useState(() => memory.ask?.want ?? "");
   const [focus, setFocus] = useState<Which>("want");
-  const [answer, setAnswer] = useState<Interpretation | null>(null);
+  const [answer, setAnswer] = useState<Interpretation | null>(() => (memory.ask ? interpret(`${memory.ask.doing} ${memory.ask.want}`) : null));
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const resultsRef = useRef<HTMLDivElement | null>(null);
   const [asked, setAsked] = useState(0);
@@ -167,6 +182,7 @@ export default function AskOpenMirror() {
   const ask = (d = doing, w = want) => {
     const r = interpret(`${d} ${w}`);
     if (r.empty) return;
+    rememberAsk({ doing: d, want: w });
     setAnswer(r);
     setAsked((n) => n + 1);
     const found = r.urgent || r.learningPaths.length > 0 || r.subjects.length > 0 || r.places.length > 0 || r.market.length > 0;
@@ -193,6 +209,7 @@ export default function AskOpenMirror() {
   };
 
   const clear = () => {
+    rememberAsk(null);
     setDoing("");
     setWant("");
     setAnswer(null);

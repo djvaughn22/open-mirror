@@ -17,7 +17,7 @@ import { DISCIPLINES, SUBJECTS } from "../src/lib/learning/taxonomy.ts";
 import {
   EMPTY, continueList, pathStatus, resetPath, sanitize, startPath, toggleSaved, toggleStep, visitSubject,
 } from "../src/lib/learning/progress.ts";
-import { measure } from "../src/lib/measure.ts";
+import { MEASURE_ENABLED, measure, send } from "../src/lib/measure.ts";
 
 const repoRoot = join(import.meta.dirname, "..");
 const read = (rel: string) => readFileSync(join(repoRoot, rel), "utf8");
@@ -177,17 +177,22 @@ test("saved and recent subjects are capped and de-duplicated", () => {
   assert.equal(toggleSaved(s, "anything typed"), s);
 });
 
-test("measurement sends only fixed names and our own ids, and nothing under Do Not Track", () => {
+test("measurement is off pending approval, and when on sends only fixed names and our own ids", () => {
   const sent: unknown[][] = [];
   const g = globalThis as unknown as { window?: unknown };
   const fakeWindow = { navigator: {} as Record<string, unknown>, gtag: (...args: unknown[]) => sent.push(args) };
   g.window = fakeWindow;
   try {
+    // Off until the owner approves: the pages' calls send nothing.
+    assert.equal(MEASURE_ENABLED, false, "search measurement stays off pending the owner's approval");
     measure("path_start", { path: "piano" });
-    measure("om_result", { where: "home", kind: "subject", id: "I typed my address here" as string });
-    measure("om_search", { where: "learn", found: "yes" });
+    assert.deepEqual(sent, []);
+    // When it's turned on, only safe values go out.
+    send("path_start", { path: "piano" });
+    send("om_result", { where: "home", kind: "subject", id: "I typed my address here" as string });
+    send("om_search", { where: "learn", found: "yes" });
     fakeWindow.navigator.doNotTrack = "1";
-    measure("path_start", { path: "linux" });
+    send("path_start", { path: "linux" });
   } finally {
     delete g.window;
   }
@@ -215,4 +220,21 @@ test("new Learning pages keep the directory's honesty and are in the sitemap", (
   const sitemap = read("src/app/sitemap.ts");
   assert.match(sitemap, /\/learn\/paths\/\$\{p\.slug\}/);
   assert.match(sitemap, /\/learn\/area\/\$\{a\.slug\}/);
+});
+
+test("everyday phrasing lands on a useful start, and broken things aren't job searches", () => {
+  const top = (q: string) => interpret(q).learningPaths[0]?.item.slug;
+  assert.equal(top("I got an old dell from my uncle"), "restore-old-computer");
+  assert.equal(top("I want to start a lawn care business"), "start-small-business");
+  assert.equal(top("I bake cakes and want to sell them"), "start-small-business");
+  assert.equal(top("how do I can green beans"), "food-preservation");
+  assert.equal(top("I'm 16 and want a good job someday"), "find-work");
+  const watch = interpret("my grandpa's pocket watch stopped working");
+  assert.equal(watch.learningPaths[0]?.item.slug, "watch-clock");
+  assert.ok(!watch.paths.includes("job"), "'stopped working' is a repair, not a job search");
+  assert.ok(watch.market.includes("restore"), "and the Marketplace's Restore door opens");
+  assert.ok(!interpret("how the stock market works").paths.includes("job"), "'how it works' isn't a job search");
+  assert.ok(interpret("I want to become a nurse").paths.includes("job"), "'become a nurse' is a career question");
+  assert.ok(!interpret("I'm in high school and don't know what job I want").places.some((p) => p.item.id === "idc-sports"), "high school alone isn't a sports question");
+  assert.ok(interpret("power went out").places.some((p) => p.item.id === "pbr"), "a power outage finds the household planning site");
 });

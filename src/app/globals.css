@@ -2404,7 +2404,10 @@ button.om-ask-go:focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px
 .om-item-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
 .om-item-title { font-size: 15.5px; font-weight: 800; line-height: 1.3; color: var(--om-text); }
 .om-item-line { font-size: 13.5px; line-height: 1.4; color: var(--om-sub); }
-.om-item-meta { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 12.5px; font-weight: 700; color: var(--om-sub); }
+.om-item-meta { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: var(--om-sub); }
+.om-item-sub { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 2px; font-size: 12.5px; font-weight: 700; color: var(--om-sub); }
+.om-item:has(.om-item-line) { align-items: flex-start; }
+.om-item:has(.om-item-line) .om-item-icon { margin-top: 2px; }
 .om-item-steps { white-space: nowrap; }
 .om-badge { padding: 1px 7px; border-radius: 999px; border: 1px solid #38bdf8; color: var(--om-text); font-size: 11.5px; font-weight: 800; white-space: nowrap; }
 .om-progress { display: block; width: 100%; max-width: 240px; height: 6px; margin-top: 4px; border-radius: 999px; border: 1px solid var(--om-border); background: var(--om-inset); overflow: hidden; }
@@ -2447,6 +2450,10 @@ html[data-om-theme="light"] .om-badge,
 html[data-om-theme="light"] .om-res-urgent,
 html[data-om-theme="light"] .om-continue .om-items { border-color: #0369a1; }
 html[data-om-theme="light"] .om-progress-bar { background: #0369a1; }
+/* The shared light theme paints every input; inside the question card the
+   field itself is the box, so the input stays clear. */
+html[data-om-theme="light"] .om-ask-input,
+html[data-chp-visual-theme="light"] .om-ask-input { background: transparent !important; }
 
 /* ── Open Mirror Learning and Marketplace (owner direction, Nov 26-27 2026) ─────
    Craigslist-plain: text links, dense lists, fast on a phone. Tokens only. */
@@ -2534,7 +2541,8 @@ html[data-om-theme="light"] .ol-go { background: #0369a1; color: #ffffff; }
 .ol-p-sm { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--om-sub); }
 .ol-list { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; }
 .ol-res > a { font-size: 16px; }
-.ol-page .om-item, .ol-page .om-area, .ol-page .ol-subjects a { color: var(--om-text); text-decoration: none; }
+.ol-page .om-item, .ol-page .om-area, .ol-page .ol-subjects a, .ol-page .om-tag { color: var(--om-text); text-decoration: none; }
+html[data-om-theme="light"] .ol-page .om-tag { color: var(--om-text); }
 .ol-why-list { display: block; border-bottom: 1px solid var(--om-border); }
 .ol-why { border-top: 1px solid var(--om-border); }
 .ol-why summary, .ol-about > summary { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 0; cursor: pointer; list-style: none; }

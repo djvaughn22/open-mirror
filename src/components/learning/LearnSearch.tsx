@@ -5,7 +5,8 @@
 // repair; "I have an old computer and no money" finds the low-cost way to fix
 // one up. Results appear as you type. Matching runs in the browser
 // (lib/discovery/intent.ts): nothing typed is sent anywhere or put in a URL.
-// Only whether something matched is measured, when the search is submitted.
+// Measurement (lib/measure.ts) is off for now; if turned on, it would count
+// only whether something matched, when the search is submitted.
 
 import Link from "next/link";
 import { useDeferredValue, useMemo, useState } from "react";
@@ -13,10 +14,20 @@ import { interpret } from "../../lib/discovery/intent.ts";
 import { PATHWAYS } from "../../lib/learning/resources.ts";
 import { measure } from "../../lib/measure.ts";
 
+// Kept only in this tab's memory so Back from a result shows the same search.
+const memory = { text: "" };
+function rememberText(v: string) {
+  memory.text = v;
+}
+
 const EXAMPLES = ["I want to fix cars", "Learn piano", "Build a website", "Grow my own food", "Understand electricity", "Old computer, no money"];
 
 export default function LearnSearch() {
-  const [text, setText] = useState("");
+  const [text, setTextState] = useState(() => memory.text);
+  const setText = (v: string) => {
+    rememberText(v);
+    setTextState(v);
+  };
   const deferred = useDeferredValue(text);
   const result = useMemo(() => (deferred.trim().length >= 2 ? interpret(deferred) : null), [deferred]);
 
@@ -26,8 +37,11 @@ export default function LearnSearch() {
     measure("om_search", { where: "learn", found: r.learningPaths.length || r.subjects.length ? "yes" : "no" });
   };
 
-  const paths = result?.learningPaths.slice(0, 3) ?? [];
-  const subjects = result?.subjects.slice(0, 6) ?? [];
+  // Close matches only: a distant second (matched through a broad word) is noise.
+  const topPath = result?.learningPaths[0]?.score ?? 0;
+  const topSubject = result?.subjects[0]?.score ?? 0;
+  const paths = result?.learningPaths.filter((p, i) => i === 0 || p.score >= topPath * 0.5).slice(0, 3) ?? [];
+  const subjects = result?.subjects.filter((x) => x.score >= topSubject * 0.4).slice(0, 6) ?? [];
   const reasons = (result?.paths ?? []).map((id) => PATHWAYS.find((p) => p.id === id)).filter((p): p is (typeof PATHWAYS)[number] => !!p);
   const none = !!result && !result.empty && !paths.length && !subjects.length;
 
@@ -53,7 +67,7 @@ export default function LearnSearch() {
             autoComplete="off"
             enterKeyHint="search"
             maxLength={200}
-            placeholder="Say it in your own words"
+            placeholder="In your own words"
             aria-describedby="ol-q-hint"
           />
           <button type="submit" className="ol-go">Find</button>

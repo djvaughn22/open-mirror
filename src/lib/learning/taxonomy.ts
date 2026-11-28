@@ -132,7 +132,7 @@ export const DISCIPLINES: Discipline[] = [
   {
     slug: "education", name: "Education and teaching", cip: ["13"],
     subjects: [
-      { slug: "teaching", name: "Teaching", wiki: "Teacher", words: ["teach", "teacher", "teaching", "classroom", "lesson", "school"], careers: ["elementary-teacher", "high-school-teacher"], line: "How people learn, and how to help them." },
+      { slug: "teaching", name: "Teaching", wiki: "Teacher", words: ["teach", "teacher", "teaching", "classroom", "lesson", "school teacher", "teach at a school"], careers: ["elementary-teacher", "high-school-teacher"], line: "How people learn, and how to help them." },
       { slug: "early-childhood", name: "Early childhood", wiki: "Early_childhood_education", words: ["preschool", "toddler", "baby", "little kid", "daycare", "childcare", "child"], careers: ["preschool-teacher", "childcare-worker"], line: "How young children grow and learn, and caring for them well." },
       { slug: "tutoring", name: "Tutoring and homeschooling", wiki: "Homeschooling", words: ["tutor", "tutoring", "homeschool", "homework", "help my kid"], careers: ["elementary-teacher"], line: "Teaching one learner at a time, at home or alongside school." },
     ],
@@ -246,7 +246,7 @@ export const DISCIPLINES: Discipline[] = [
     slug: "life", name: "Personal development and life skills", cip: ["37", "35", "32"],
     subjects: [
       { slug: "study-skills", name: "Study skills", wiki: "Study_skills", words: ["study", "studying", "exam", "test", "notes", "homework", "learn faster", "school"], line: "How to study, take notes and remember." },
-      { slug: "career-planning", name: "Finding work that fits", wiki: "Career_development", words: ["career", "job", "work", "resume", "interview", "hire", "employment", "apprenticeship"], line: "Figuring out what work fits you, and the steps to get there." },
+      { slug: "career-planning", name: "Finding work that fits", wiki: "Career_development", words: ["career", "job", "find work", "looking for work", "resume", "interview", "hire", "employment", "apprenticeship"], line: "Figuring out what work fits you, and the steps to get there." },
       { slug: "habits-goals", name: "Habits, goals and time", wiki: "Time_management", words: ["habit", "goal", "time", "focus", "procrastinate", "routine", "organize", "plan"], line: "Building habits and getting the important things done." },
     ],
   },

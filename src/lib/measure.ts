@@ -5,7 +5,15 @@
 // fails). Only fixed event names and ids from our own lists are sent: never
 // anything a person typed, never a family detail, nothing personal. Browsers
 // that send Do Not Track or Global Privacy Control send nothing.
+//
+// OFF until the owner approves it (Nov 28 2026: "Keep the new instrumentation
+// disabled pending approval"). The calls stay in place so turning it on is
+// one line: MEASURE_ENABLED. The homepage's older site-card count
+// (DoorMeasure, site_card_click) is separate and unchanged.
 // ─────────────────────────────────────────────────────────────────────────────
+
+/** The owner's switch. False: nothing below is ever sent. */
+export const MEASURE_ENABLED = false;
 
 export type MeasureEvents = {
   /** A question or search was answered. Only whether anything matched. */
@@ -21,6 +29,12 @@ export type MeasureEvents = {
 const SAFE = /^[a-z0-9-]{1,48}$/;
 
 export function measure<K extends keyof MeasureEvents>(name: K, params: MeasureEvents[K]): void {
+  if (!MEASURE_ENABLED) return;
+  send(name, params);
+}
+
+/** The sending itself, with every safeguard. Exported for tests; pages call measure(). */
+export function send<K extends keyof MeasureEvents>(name: K, params: MeasureEvents[K]): void {
   if (typeof window === "undefined") return;
   const nav = window.navigator as Navigator & { globalPrivacyControl?: boolean };
   if (nav.doNotTrack === "1" || nav.globalPrivacyControl === true) return;

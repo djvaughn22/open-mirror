@@ -4,8 +4,11 @@
 //   1. Made for this exact subject before discipline-wide sources.
 //   2. Easier first ("start", then "any", then "deeper").
 //   3. Free with no account before free with an account.
-//   4. Open-licensed and public sources before free-to-read ones.
-//   5. Our own free tools last within a tie, so outside sources lead.
+//   4. Lessons before tools: courses, books, reading and video, then
+//      practice, then references, official pages, tools and groups
+//      (Nov 28: so a download page never tops a subject's "Start here").
+//   5. Open-licensed and public sources before free-to-read ones.
+//   6. Our own free tools last within a tie, so outside sources lead.
 // Every entry is a checked, working link (resources.ts).
 
 import { RESOURCES, type Resource, type PathwayId } from "./resources.ts";
@@ -14,6 +17,7 @@ import { DISCIPLINES, type Subject } from "./taxonomy.ts";
 const LEVEL_RANK = { start: 0, any: 1, deeper: 2 } as const;
 const COST_RANK = { free: 0, "free-account": 1, "free-paid-cert": 2, "free-paid-exam": 3, "free-limited": 4 } as const;
 const LICENSE_RANK = { open: 0, gov: 0, free: 1 } as const;
+const KIND_RANK = { course: 0, book: 0, read: 0, watch: 1, practice: 1, reference: 2, official: 2, tool: 3, community: 3 } as const;
 
 export function rankResources(list: { r: Resource; exact: boolean }[]): Resource[] {
   return [...list]
@@ -21,6 +25,7 @@ export function rankResources(list: { r: Resource; exact: boolean }[]): Resource
       Number(b.exact) - Number(a.exact) ||
       LEVEL_RANK[a.r.level] - LEVEL_RANK[b.r.level] ||
       COST_RANK[a.r.cost] - COST_RANK[b.r.cost] ||
+      KIND_RANK[a.r.kind] - KIND_RANK[b.r.kind] ||
       LICENSE_RANK[a.r.license] - LICENSE_RANK[b.r.license] ||
       Number(!!a.r.ours) - Number(!!b.r.ours) ||
       a.r.title.localeCompare(b.r.title),
