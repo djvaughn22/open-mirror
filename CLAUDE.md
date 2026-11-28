@@ -100,7 +100,7 @@ Vercel). DJ (djvaughn22) owns everything. Baseline tag: `mvp-1`.
 ## Hub-specific
 - **Homepage (owner, Nov 26-28 2026; wins over older hero notes):** the owner's
   exact four lines, "Open Mirror / What are you doing? / What do you want to
-  do? / Let us help you." Nov 28 (preview, awaiting the owner's review): the two
+  do? / Let us help you." Nov 28 (shipped on the owner's yes): the two
   questions sit in one compact card, both optional, with one scrolling row of
   ideas that follows the question in focus (`AskOpenMirror.tsx`). Answers come
   from the shared, deterministic `src/lib/discovery/intent.ts` in the browser:
